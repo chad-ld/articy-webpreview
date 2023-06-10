@@ -56,6 +56,24 @@ class ArticyProject{
         return undefined;
     }
 
+    GetFirstChildOfNode(parentnode:any){
+        function recursiveSearch(node:any){
+            if (node.Children==undefined)
+                return undefined;
+            if (node.Id == parentnode.Properties.Id)
+                return node.Children[0];
+            let child:any = undefined;
+            for (let i=0; i < node.Children.length; i++){
+                child = recursiveSearch(node.Children[i]);
+                if (child != undefined)
+                    return child;
+            }
+            return undefined;
+        }
+        let child:any = recursiveSearch(this.data.Hierarchy);
+        return this.GetNodeByID(child.Id);
+    }
+
     GetVariablesFromNode(node:any){
        
         if (node.Properties == undefined)
