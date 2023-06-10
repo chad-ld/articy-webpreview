@@ -7,9 +7,12 @@ function InteractiveArticyViewer(){
 
     const [project, setProject] = useState(undefined as unknown as ArticyProject);
     const [nodeList, setNodeList] = useState([] as any[])
+    const [parentNodeList, setParentNodeList] = useState([] as any[])
+    
 
     var currentNode = nodeList.length>0?nodeList[nodeList.length-1]:undefined;
     var lastNode = nodeList.length>1?nodeList[nodeList.length-2]:undefined;
+    var parentNode = parentNodeList.length>0?parentNodeList[parentNodeList.length-1]:undefined;
 
     useEffect(()=>{
         fetch('../Articy Base Project.json?'+(Date.now().toString())).then( response => {return response.json();}).then( data => {
@@ -21,8 +24,9 @@ function InteractiveArticyViewer(){
     },[]);
 
     useEffect(()=>{
-        if (project != undefined)
+        if (project != undefined){
             setCurrentNode(project.GetStartNode());
+        }
     }, [project]);
       
     useEffect(()=>{
@@ -97,9 +101,28 @@ function InteractiveArticyViewer(){
                     )
                     break;
                 case "FlowFragment":
-                    setTimeout(()=>{
-                        setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
-                    },0);
+                    if (parentNodeList.length>0 && parentNodeList[parentNodeList.length-1].Properties.Id == currentNode.Properties.Id)
+                    {
+                        console.log(parentNodeList[parentNodeList.length-1], currentNode);
+                        setTimeout(()=>{
+                            parentNodeList.pop();
+                            setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                        },0);
+                    }
+                    else{
+                        let childnode = project.GetFirstChildOfNode(currentNode);
+                        if (childnode != undefined){
+                            setTimeout(()=>{
+                                setParentNodeList([...parentNodeList,currentNode]);
+                                setCurrentNode(childnode);
+                            },0);
+                        }
+                        else{
+                            setTimeout(()=>{
+                                setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                            },0);
+                        }
+                    }
                     return (
                         <>Please wait...</>
                     )
@@ -109,6 +132,7 @@ function InteractiveArticyViewer(){
                     if (conditions){
                         result = project.CheckCondition(conditions);
                     }
+                    console.log("result",result);
                     if (result){
                         setTimeout(()=>{
                             setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
@@ -124,6 +148,7 @@ function InteractiveArticyViewer(){
                         <>Please wait...</>
                     )
                 default:
+                    console.error("Cannot render node",currentNode);
                     return (
                         <>
                         <div>Node of type {currentNode.Type} has not yet been implemented.</div>
