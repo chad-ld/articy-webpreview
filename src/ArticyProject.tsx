@@ -116,7 +116,6 @@ class ArticyProject{
         for (let j=dataChunks.length-2; j>=0; j--){
             newData = {[dataChunks[j]]:newData} as {[k:string]:any};
         }
-        console.log(this.variables,newData);
         return this.ObjectCompare(this.variables,newData);
     }
 

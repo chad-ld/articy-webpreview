@@ -1,3 +1,4 @@
+import packageJson from "../package.json";
 import { useEffect, useState } from "react";
 import QuestionPanel from "./panels/QuestionPanel";
 import ArticyProject from "./ArticyProject";
@@ -12,7 +13,9 @@ function InteractiveArticyViewer(){
     var lastNode = nodeList.length>1?nodeList[nodeList.length-2]:undefined;
 
     useEffect(()=>{
-        fetch('../Articy Base Project.json?'+(Date.now().toString())).then( response => {return response.json();}).then( data => {
+        console.log("%c[Articy HTML Viewer - JSON export] version: "+packageJson.version,
+         'color: #ffa619; background: #1c282a; font-size: 20px');
+        fetch('./Articy Base Project.json?'+(Date.now().toString())).then( response => {return response.json();}).then( data => {
             setProject(new ArticyProject(data));
         })
         .catch((error)=>{
