@@ -11,15 +11,24 @@ interface InstructionPanelProps{
 }
 
 function InstructionPanel (props:InstructionPanelProps){
-    return(
-        <>
-        <TextBlock>{props.text}</TextBlock>
-        <br />
-        <Button 
-            disabled={props.button.hidden}
-            onClick={()=>{props.button.onClick()}}>{props.button.text}</Button>
-        </>
-    )
+    if (!props.button.hidden){
+        return(
+            <>
+            <TextBlock>{props.text}</TextBlock>
+            <br />
+            <Button 
+                danger={props.button.hidden}
+                onClick={()=>{props.button.onClick()}}>{props.button.text}</Button>
+            </>
+        )
+    }
+    else{
+        return(
+            <>
+            <TextBlock>{props.text}</TextBlock>
+            </>
+        )
+    }
 }
 
 export default InstructionPanel

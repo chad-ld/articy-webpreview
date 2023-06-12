@@ -1,6 +1,5 @@
 import { Button } from "antd";
 import TextBlock from "../components/TextBlock";
-import ArticyProject from "../ArticyProject";
 
 interface QuestionPanelProps{
     text:string;
@@ -20,7 +19,7 @@ function QuestionPanel (props:QuestionPanelProps){
         <br />
         {props.buttons.map((button) => (<div key={i++}>
             <Button 
-                disabled={button.hidden}
+                danger={button.hidden}
                 onClick={()=>{button.onClick();}}>
                     {button.text}
             </Button>
