@@ -32,29 +32,29 @@ https://dev.chadbriggs.com/articy/testing/demo/index.html
 
 1. Download the HTML template files here:
     
-    [html_viewer_template_v1.zip](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5854c665-33b1-4151-8c7e-417d7def6d4b/html_viewer_template_v1.zip)
+   https://github.com/chad-ld/articy-webpreview/tree/main/builds
     
 2. Export the files to a folder on your hard drive, keeping the same folder structure as the zip file. 
 3. Open up your Articy project in the Articy Editor. 
 4. Wherever you want the HTML preview of your flow to start, create an instruction node and insert the following line in the node: //HTMLPREVIEW
 An example of such a node in Articy is as follows:
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/312a30e2-c07b-475b-8a46-fb707d3516aa/Untitled.png)
-    
+![Untitled](https://github.com/chad-ld/articy-webpreview/assets/124286589/e39c2f70-a763-4907-a966-7d6767a098ba)
+
 5. Save your Articy project.
 6. Export your Articy project. 
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cd286e9e-c2f3-4784-8c5c-85bdfe37d79b/Untitled.png)
+![Untitled (1)](https://github.com/chad-ld/articy-webpreview/assets/124286589/f1376902-46d7-4a57-8852-888d74083f09)
     
 7. Select the JSON format, and then set the location of the JSON export. In most cases, the other default export settings will work just fine, no need to modify those. The HTML preview exporter will only use the flows that are connected to your //HTMLPREVEW start node. 
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/27db179d-6f07-4de0-a4ee-ce150c74d698/Untitled.png)
-    
+![Untitled (2)](https://github.com/chad-ld/articy-webpreview/assets/124286589/6313da11-4d2c-401d-8ff8-b59b88fb3efe)
+
 8. Move the newly exported Articy JSON file in the same folder as the index.hml that you downloaded above. 
 9. Open the index.html file inside a text editor, change the default JSON file export to the name of your Articy export. Save and close the text editor. 
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c3171ddf-5180-4162-aece-b1d242cea74b/Untitled.png)
-    
+![Untitled (3)](https://github.com/chad-ld/articy-webpreview/assets/124286589/73e2e65e-c85b-4369-85dc-104489972d26)
+
 10. Copy the Articy template folder to a webserver. The main folder your index.html and associated files will reside in can be renamed from “html_viewer_template_v1” to whatever you wish, just do not rename or move the “assets” folder relative to the index.html file.  
 11. Navigate to the URL of the folder location based where you uploaded the file to on your webserver. So a sample path might be https://www.customurl.com/myflowname/index.html
 
