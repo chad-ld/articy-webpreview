@@ -58,4 +58,4 @@ An example of such a node in Articy is as follows:
 10. Copy the Articy template folder to a webserver. The main folder your index.html and associated files will reside in can be renamed from “html_viewer_template_v1” to whatever you wish, just do not rename or move the “assets” folder relative to the index.html file.  
 11. Navigate to the URL of the folder location based where you uploaded the file to on your webserver. So a sample path might be https://www.customurl.com/myflowname/index.html
 
-As always, any feedback is greatly appreciated to help me improve the project.
+As always, any feedback is greatly appreciated to help me improve the project. Shared under the GNU GENERAL PUBLIC LICENSE terms. 
