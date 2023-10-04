@@ -1,5 +1,6 @@
 # Articy HTML Flow Preview
-One of Articy’s biggest pain points is that you need Articy installed and shared access to a repository in order to preview a flow with someone who isn’t sitting at the same computer as you. This involves the clunky process of screenshots and/or recording your screen while you play through the flow. Neither are ideal. This plugin was developed to overcome those limitations, letting any user with a web browser demo the flow first hand for repeated playthroughs. You can see a demo of an exported Articy flow in action here:
+One of Articy’s biggest pain points is that you need Articy installed and shared access to a repository in order to preview a flow with someone who isn’t sitting at the same computer as you. This involves the clunky process of screenshots and/or recording your screen while you play through the flow. Neither option is ideal. This plugin was developed to overcome those limitations, letting any user with a web browser demo the flow first hand for repeated playthroughs. You can see a demo of an exported Articy flow in action here:
+
 https://dev.chadbriggs.com/articy/testing/demo/index.html
 
 ### Requirements:
