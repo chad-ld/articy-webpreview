@@ -39,21 +39,21 @@ https://dev.chadbriggs.com/articy/testing/demo/index.html
 4. Wherever you want the HTML preview of your flow to start, create an instruction node and insert the following line in the node: //HTMLPREVIEW
 An example of such a node in Articy is as follows:
     
-![Untitled](https://github.com/chad-ld/articy-webpreview/assets/124286589/e39c2f70-a763-4907-a966-7d6767a098ba)
+![Untitled](https://github.com/chad-ld/articy-webpreview/assets/124286589/301456c0-2225-4184-8cbd-744b6e34efa6)
 
 5. Save your Articy project.
 6. Export your Articy project. 
     
-![Untitled (1)](https://github.com/chad-ld/articy-webpreview/assets/124286589/f1376902-46d7-4a57-8852-888d74083f09)
+![Untitled (1)](https://github.com/chad-ld/articy-webpreview/assets/124286589/a26450e8-e086-425f-baeb-bcf3af6ecc19)
     
 7. Select the JSON format, and then set the location of the JSON export. In most cases, the other default export settings will work just fine, no need to modify those. The HTML preview exporter will only use the flows that are connected to your //HTMLPREVEW start node. 
     
-![Untitled (2)](https://github.com/chad-ld/articy-webpreview/assets/124286589/6313da11-4d2c-401d-8ff8-b59b88fb3efe)
+![Untitled (2)](https://github.com/chad-ld/articy-webpreview/assets/124286589/9d9440bd-c122-4d22-9137-c6d4008d764c)
 
 8. Move the newly exported Articy JSON file in the same folder as the index.hml that you downloaded above. 
 9. Open the index.html file inside a text editor, change the default JSON file export to the name of your Articy export. Save and close the text editor. 
     
-![Untitled (3)](https://github.com/chad-ld/articy-webpreview/assets/124286589/73e2e65e-c85b-4369-85dc-104489972d26)
+![Untitled (3)](https://github.com/chad-ld/articy-webpreview/assets/124286589/16d66700-a294-41e2-8ac8-a684bee92b0d)
 
 10. Copy the Articy template folder to a webserver. The main folder your index.html and associated files will reside in can be renamed from “html_viewer_template_v1” to whatever you wish, just do not rename or move the “assets” folder relative to the index.html file.  
 11. Navigate to the URL of the folder location based where you uploaded the file to on your webserver. So a sample path might be https://www.customurl.com/myflowname/index.html
