@@ -6,8 +6,9 @@ https://dev.chadbriggs.com/articy/testing/demo/index.html
 ### Requirements:
 
 - A web server to host files for preview.
-- Articy Draft 3.0 or later.
+- Articy Draft 3.X
 - Text editor to modify HTML to point to Articy JSON file.
+- NOTE: Has NOT been tested with Articy Draft X
 
 ### Current Features:
 
