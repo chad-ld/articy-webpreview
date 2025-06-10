@@ -127,7 +127,67 @@ function InteractiveArticyViewer(){
     function DisplayNode(){
         if (currentNode != undefined){
             switch (currentNode.Type){
+                case "VirtualChoice":
+                    return (
+                        <div>
+                            {currentNode.Properties.Options.map((option: any, index: number) => (
+                                <div key={index} style={{ marginBottom: '20px' }}>
+                                    <InstructionPanel
+                                        title={option.nodeData.Properties.DisplayName}
+                                        text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                        color={option.nodeData.Properties.Color}
+                                        button={{
+                                            hidden: false,
+                                            text: "Next",
+                                            onClick: option.onClick
+                                        }}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    )
                 case "Instruction":
+                    // Check if this Instruction node has multiple output connections (acts like a Hub)
+                    if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
+                        // Treat as Hub with multiple choices
+                        function getConditionText(node:any){
+                            const targetNode = project.GetNodeByID(node.Target);
+                            return targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
+                        }
+                        var options = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                            const targetNode = project.GetNodeByID(conn.Target);
+                            return {
+                                hidden: getConditionText(conn)==""?false:!project.CheckConditionString(getConditionText(conn)),
+                                text: targetNode.Properties.DisplayName || targetNode.Properties.Text || "Continue",
+                                onClick:()=>{
+                                    setCurrentNode(targetNode);
+                                }
+                            };
+                        });
+
+                        return (
+                            <QuestionPanel
+                                text={currentNode.Properties.Expression || currentNode.Properties.DisplayName}
+                                buttons={options}
+                            />
+                        )
+                    } else {
+                        // Regular single-path Instruction
+                        return (
+                            <InstructionPanel
+                                title={currentNode.Properties.DisplayName}
+                                text={currentNode.Properties.Expression}
+                                color={currentNode.Properties.Color}
+                                button={{
+                                    hidden:false,
+                                    text:"Next",
+                                    onClick:()=>{
+                                        setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                    }
+                                }}
+                            />
+                        )
+                    }
                 case "WaypointTemplate":
                 case "JournalEntryTemplate":
                 case "PlayerActionTemplate":
@@ -145,6 +205,52 @@ function InteractiveArticyViewer(){
                                 text:"Next",
                                 onClick:()=>{
                                     setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                }
+                            }}
+                        />
+                    )
+                case "LocationTemplate":
+                case "EnemyGenericTemplate":
+                case "innervoice_template":
+                case "NPCTemplate":
+                case "PCTemplate":
+                case "WeaponTemplate":
+                case "DialogueExplorationActionTemplate":
+                    return (
+                        <InstructionPanel
+                            title={currentNode.Properties.DisplayName}
+                            text={currentNode.Properties.Text}
+                            color={currentNode.Properties.Color}
+                            button={{
+                                hidden:currentNode.Properties.OutputPins[0].Connections==undefined?true:false,
+                                text:"Next",
+                                onClick:()=>{
+                                    // Check if this node has multiple output connections
+                                    if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
+                                        // Create a virtual choice node to show multiple options
+                                        const choiceOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                                            const targetNode = project.GetNodeByID(conn.Target);
+                                            const conditionText = targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
+                                            return {
+                                                hidden: conditionText===""?false:!project.CheckConditionString(conditionText),
+                                                nodeData: targetNode,
+                                                onClick:()=>{
+                                                    setCurrentNode(targetNode);
+                                                }
+                                            };
+                                        });
+
+                                        // Set a virtual choice node
+                                        setCurrentNode({
+                                            Type: "VirtualChoice",
+                                            Properties: {
+                                                Options: choiceOptions
+                                            }
+                                        });
+                                    } else {
+                                        // Single connection - navigate normally
+                                        setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                    }
                                 }
                             }}
                         />
@@ -200,6 +306,11 @@ function InteractiveArticyViewer(){
                 case "PlayerActionFlowTemplate":
                 case "DialogueIntActionTemplate":
                 case "DialogueInternalActionTemplate":
+                case "LocationFlowTemplate":
+                case "EnemyGenericFlowTemplate":
+                case "NPCFlowTemplate":
+                case "PCFlowTemplate":
+                case "WeaponFlowTemplate":
                     let childnode = project.GetFirstChildOfNode(currentNode);
                     if (childnode != undefined){
                         setTimeout(()=>{

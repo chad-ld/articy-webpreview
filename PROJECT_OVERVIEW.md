@@ -55,12 +55,15 @@ Core class for Articy JSON processing:
 
 | Node Type | Description | Behavior |
 |-----------|-------------|----------|
-| **Instruction** | Simple text display | Shows text + "Next" button |
+| **Instruction** | Simple text display | Shows text + "Next" button. Multi-path support: shows choices when multiple connections |
 | **Hub** | Choice/branching point | Shows question + multiple choice buttons |
 | **Jump** | Navigation redirect | Automatically jumps to target node |
 | **FlowFragment** | Container node | Automatically enters first child node |
 | **Condition** | Conditional logic | Evaluates condition, branches accordingly |
 | **DialogueInteractiveFragmentTemplate** | Dialogue text | Shows text + optional "Next" button |
+| **LocationTemplate** | Location/scene nodes | Shows location info + "Next" button. Multi-path support: shows choices when multiple connections |
+| **Template Nodes** | Various template types | Supports: EnemyGenericTemplate, innervoice_template, NPCTemplate, PCTemplate, WeaponTemplate, DialogueExplorationActionTemplate |
+| **Flow Templates** | Flow container nodes | Auto-navigation: CombatFlowTemplate, CraftingFlowTemplate, TravelFlowTemplate, PlayerActionFlowTemplate, etc. |
 
 ## Current Articy JSON Format (Draft 3.x)
 
@@ -159,6 +162,19 @@ npm run preview      # Preview production build
 
 ## Recent Improvements (Latest Update)
 
+### Multi-Path Navigation System:
+- **Smart choice detection**: Nodes with multiple output connections automatically display as choice panels
+- **Virtual choice nodes**: System creates temporary choice nodes to display multiple path options
+- **Proper node formatting**: Choice options display as full InstructionPanels with correct colors and styling
+- **Individual navigation**: Each choice option has its own "Next" button for path selection
+- **Supported node types**: Works with Instruction, LocationTemplate, and other template nodes
+
+### Enhanced Node Type Support:
+- **Comprehensive template coverage**: Added support for all major Articy template types
+- **Location nodes**: Proper handling of LocationTemplate nodes with multi-path navigation
+- **Template standardization**: Consistent behavior across EnemyGenericTemplate, NPCTemplate, PCTemplate, WeaponTemplate, etc.
+- **Flow template auto-navigation**: Automatic progression through flow container nodes
+
 ### Enhanced Syntax Highlighting:
 - **Consistent comment highlighting**: All comments (`//`) now display in green (#88d889) across all nodes
 - **Advanced expression parsing**: Complex expressions like `TestFlowVariables.TestPlayerHitPoints+1` are properly tokenized
@@ -192,6 +208,13 @@ Some node types (Jump, FlowFragment, Condition) automatically navigate without u
 
 ### Condition Parsing:
 The system parses dot-notation variable references and evaluates them against the current variable state using lodash merge operations.
+
+### Multi-Path Navigation Logic:
+When a node has multiple output connections, the system:
+1. **Detection**: Checks `OutputPins[0].Connections.length > 1`
+2. **Virtual Node Creation**: Creates a temporary "VirtualChoice" node containing target node data
+3. **Choice Rendering**: Displays each target node as a full InstructionPanel with proper formatting
+4. **Individual Navigation**: Each choice has its own "Next" button that navigates to that specific path
 
 ### Error Handling:
 Unimplemented node types display an error message indicating the missing functionality.
