@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import QuestionPanel from "./panels/QuestionPanel";
 import ArticyProject from "./ArticyProject";
 import InstructionPanel from "./panels/InstructionPanel";
+import { Button, message } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
 
 function InteractiveArticyViewer(){
 
     const [project, setProject] = useState(undefined as unknown as ArticyProject);
-    const [nodeList, setNodeList] = useState([] as any[])
+    const [nodeList, setNodeList] = useState([] as any[]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isDragOver, setIsDragOver] = useState(false);
 
     var currentNode = nodeList.length>0?nodeList[nodeList.length-1]:undefined;
     var lastNode = nodeList.length>1?nodeList[nodeList.length-2]:undefined;
@@ -15,12 +19,22 @@ function InteractiveArticyViewer(){
     useEffect(()=>{
         console.log("%c[Articy HTML Viewer - JSON export] version: "+packageJson.version,
          'color: #ffa619; background: #1c282a; font-size: 20px');
-        fetch('./Articy Base Project.json?'+(Date.now().toString())).then( response => {return response.json();}).then( data => {
-            setProject(new ArticyProject(data));
-        })
-        .catch((error)=>{
-          console.error(error);
-        });
+
+        // Try to load default JSON file if available (for web server deployment)
+        fetch('./Articy Base Project.json?'+(Date.now().toString()))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Default JSON file not found');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setProject(new ArticyProject(data));
+            })
+            .catch(()=>{
+                console.log('No default JSON file found, waiting for user to upload file');
+                // Don't show error - this is expected when running locally
+            });
     },[]);
 
     useEffect(()=>{
@@ -55,6 +69,75 @@ function InteractiveArticyViewer(){
             project.StoreVariablesFromNode(node);
         setNodeList([...nodeList,node]);
     }
+
+    // Handle file upload/drop
+    const handleFileLoad = (file: File) => {
+        setIsLoading(true);
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            try {
+                const jsonContent = e.target?.result as string;
+                const data = JSON.parse(jsonContent);
+                setProject(new ArticyProject(data));
+                message.success(`Loaded ${file.name} successfully!`);
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                message.error('Invalid JSON file. Please select a valid Articy export.');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        reader.onerror = () => {
+            message.error('Error reading file');
+            setIsLoading(false);
+        };
+
+        reader.readAsText(file);
+    };
+
+    // Handle drag and drop
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragOver(false);
+
+        const files = Array.from(e.dataTransfer.files);
+        const jsonFile = files.find(file =>
+            file.type === 'application/json' || file.name.toLowerCase().endsWith('.json')
+        );
+
+        if (jsonFile) {
+            handleFileLoad(jsonFile);
+        } else {
+            message.error('Please drop a JSON file');
+        }
+    };
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+    };
+
+    const handleDragEnter = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragOver(true);
+    };
+
+    const handleDragLeave = (e: React.DragEvent) => {
+        e.preventDefault();
+        // Only set to false if we're leaving the drop area entirely
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+            setIsDragOver(false);
+        }
+    };
+
+    // Handle file input
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            handleFileLoad(file);
+        }
+    };
     
     function DisplayNode(){
         if (currentNode != undefined){
@@ -163,9 +246,58 @@ function InteractiveArticyViewer(){
         else return (<>No Current Node</>)
     }
 
+    // File upload component
+    function FileUploadArea() {
+        return (
+            <div
+                className={`file-upload-area ${isDragOver ? 'drag-over' : ''}`}
+                style={{
+                    padding: '40px',
+                    textAlign: 'center',
+                    minHeight: '400px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+            >
+                <div style={{ marginBottom: '20px' }}>
+                    <InboxOutlined style={{ fontSize: '48px', color: '#1890ff' }} />
+                </div>
+                <h2>Articy Web Viewer</h2>
+                <p style={{ fontSize: '16px', marginBottom: '20px' }}>
+                    Drag & drop your Articy JSON export file here, or click to browse
+                </p>
+                <input
+                    type="file"
+                    accept=".json,application/json"
+                    onChange={handleFileSelect}
+                    style={{ display: 'none' }}
+                    id="file-input"
+                />
+                <Button
+                    type="primary"
+                    size="large"
+                    loading={isLoading}
+                    onClick={() => document.getElementById('file-input')?.click()}
+                >
+                    {isLoading ? 'Loading...' : 'Select JSON File'}
+                </Button>
+                <div style={{ marginTop: '20px', fontSize: '12px', color: '#666' }}>
+                    <p>Supported: Articy Draft JSON exports</p>
+                    <p>No web server required - runs completely locally!</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div>
-            <DisplayNode />
+            {project ? <DisplayNode /> : <FileUploadArea />}
         </div>
     )
 }
