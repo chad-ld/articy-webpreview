@@ -6,7 +6,7 @@ import InstructionPanel from "./panels/InstructionPanel";
 import EndOfFlowPanel from "./panels/EndOfFlowPanel";
 import VariablesPanel from "./components/VariablesPanel";
 import { Button, message } from "antd";
-import { InboxOutlined } from "@ant-design/icons";
+import { InboxOutlined, CommentOutlined } from "@ant-design/icons";
 
 // Component for condition bubbles with notches
 function ConditionBubble({ condition, nodeRef, disabled }: { condition: string, nodeRef: React.RefObject<HTMLDivElement>, disabled: boolean }) {
@@ -197,7 +197,7 @@ function InteractiveArticyViewer(){
 
     function setCurrentNode(node:any){
         // console.log("setting current Node:",node);
-        if (node.Type == "Instruction")
+        if (node.Type == "Instruction" || node.Type == "WaypointTemplate")
             project.StoreVariablesFromNode(node);
         setNodeList([...nodeList,node]);
     }
@@ -276,6 +276,32 @@ function InteractiveArticyViewer(){
                         };
                     });
                     return hubOptions.filter((option: any) => !option.disabled);
+                }
+                return [{ isSingleChoice: true }];
+
+            case "DialogueIntActionTemplate":
+            case "DialogueInternalActionTemplate":
+                if (currentNode.Properties.OutputPins &&
+                    currentNode.Properties.OutputPins[0] &&
+                    currentNode.Properties.OutputPins[0].Connections &&
+                    currentNode.Properties.OutputPins[0].Connections.length > 1) {
+
+                    const dialogueHubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                        const targetNode = project.GetNodeByID(conn.Target);
+                        const conditionText = getConditionText(conn);
+                        const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+                        return {
+                            disabled: !conditionMet,
+                            nodeData: targetNode,
+                            conditionText: conditionText,
+                            onClick:()=>{
+                                if (conditionMet) {
+                                    setCurrentNode(targetNode);
+                                }
+                            }
+                        };
+                    });
+                    return dialogueHubOptions.filter((option: any) => !option.disabled);
                 }
                 return [{ isSingleChoice: true }];
 
@@ -587,15 +613,34 @@ function InteractiveArticyViewer(){
                             }}
                         />
                     )
+                case "DialogueFragment":
                 case "DialogueInteractiveFragmentTemplate":
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
                         return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
                     }
 
+                    // Get speaker name with dialogue icon if available
+                    const getSpeakerName = (node: any) => {
+                        if (node.Properties.Speaker) {
+                            const speakerNode = project.GetNodeByID(node.Properties.Speaker);
+                            if (speakerNode) {
+                                return (
+                                    <span>
+                                        <CommentOutlined style={{ marginRight: '6px' }} />
+                                        {speakerNode.Properties.DisplayName}
+                                    </span>
+                                );
+                            }
+                        }
+                        return null;
+                    };
+
+                    const speakerName = getSpeakerName(currentNode);
+
                     return (
                         <InstructionPanel
-                            title={currentNode.Properties.DisplayName}
+                            title={speakerName || currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
                             color={currentNode.Properties.Color}
                             button={{
@@ -678,13 +723,141 @@ function InteractiveArticyViewer(){
                         <>Please wait...</>
                     )
                     break;
+                case "DialogueIntActionTemplate":
+                case "DialogueInternalActionTemplate":
+                    // These should act like Hub nodes - show all output connections as choices
+                    console.log("DialogueIntActionTemplate node details:", currentNode);
+                    console.log("Has output connections:", hasOutputConnections(currentNode));
+                    console.log("OutputPins:", currentNode.Properties.OutputPins);
+
+                    // Check if this node has no output connections - show end of flow
+                    if (!hasOutputConnections(currentNode)) {
+                        console.log("No output connections - showing end of flow");
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
+                    }
+
+                    // Check if this node has multiple output connections (acts like a Hub)
+                    if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
+                        // Treat as Hub with multiple choices - use same logic as Hub case
+                        console.log("DialogueIntActionTemplate with multiple outputs (Hub-like) triggered! Current node:", currentNode);
+
+                        // Get speaker name with dialogue icon if available
+                        const getSpeakerName = (node: any) => {
+                            if (node.Properties.Speaker) {
+                                const speakerNode = project.GetNodeByID(node.Properties.Speaker);
+                                if (speakerNode) {
+                                    return (
+                                        <span>
+                                            <CommentOutlined style={{ marginRight: '6px' }} />
+                                            {speakerNode.Properties.DisplayName}
+                                        </span>
+                                    );
+                                }
+                            }
+                            return null;
+                        };
+
+                        const dialogueHubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                            const targetNode = project.GetNodeByID(conn.Target);
+                            const conditionText = getConditionText(conn);
+                            const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+                            return {
+                                disabled: !conditionMet,
+                                nodeData: targetNode,
+                                conditionText: conditionText,
+                                onClick:()=>{
+                                    if (conditionMet) {
+                                        setCurrentNode(targetNode);
+                                    }
+                                }
+                            };
+                        });
+
+                        const nodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>(
+                            dialogueHubOptions.map(() => createRef<HTMLDivElement>())
+                        );
+
+                        return (
+                            <div style={{ position: 'relative' }}>
+                                {/* Condition bubbles on the left */}
+                                {dialogueHubOptions.map((option: any, index: number) => {
+                                    console.log('Dialogue Hub Option:', { index, conditionText: option.conditionText, disabled: option.disabled });
+                                    return option.conditionText && (
+                                        <ConditionBubble
+                                            key={`condition-${index}`}
+                                            condition={option.conditionText}
+                                            nodeRef={nodeRefs.current[index]}
+                                            disabled={option.disabled}
+                                        />
+                                    );
+                                })}
+
+                                {/* Choice nodes */}
+                                {dialogueHubOptions.map((option: any, index: number) => {
+                                    const enabledOptions = dialogueHubOptions.filter((opt: any) => !opt.disabled);
+                                    const enabledIndex = enabledOptions.indexOf(option);
+                                    const speakerName = getSpeakerName(option.nodeData);
+                                    return (
+                                        <div key={index} ref={nodeRefs.current[index]} style={{ marginBottom: '20px' }}>
+                                            <InstructionPanel
+                                                title={speakerName || option.nodeData.Properties.DisplayName}
+                                                text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                                color={option.nodeData.Properties.Color}
+                                                selected={!option.disabled && enabledIndex === selectedChoiceIndex}
+                                                button={{
+                                                    hidden: false,
+                                                    disabled: option.disabled,
+                                                    text: "Next",
+                                                    onClick: option.onClick
+                                                }}
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )
+                    } else {
+                        // Single connection - navigate normally like DialogueInteractiveFragmentTemplate
+                        // Get speaker name with dialogue icon if available
+                        const getSpeakerName = (node: any) => {
+                            if (node.Properties.Speaker) {
+                                const speakerNode = project.GetNodeByID(node.Properties.Speaker);
+                                if (speakerNode) {
+                                    return (
+                                        <span>
+                                            <CommentOutlined style={{ marginRight: '6px' }} />
+                                            {speakerNode.Properties.DisplayName}
+                                        </span>
+                                    );
+                                }
+                            }
+                            return null;
+                        };
+
+                        const speakerName = getSpeakerName(currentNode);
+
+                        return (
+                            <InstructionPanel
+                                title={speakerName || currentNode.Properties.DisplayName}
+                                text={currentNode.Properties.Text}
+                                color={currentNode.Properties.Color}
+                                selected={true}
+                                button={{
+                                    hidden:false,
+                                    text:"Next",
+                                    onClick:()=>{
+                                        console.log("Next button clicked, navigating to:", currentNode.Properties.OutputPins[0].Connections[0].Target);
+                                        setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                    }
+                                }}
+                            />
+                        )
+                    }
                 case "FlowFragment":
                 case "CombatFlowTemplate":
                 case "CraftingFlowTemplate":
                 case "TravelFlowTemplate":
                 case "PlayerActionFlowTemplate":
-                case "DialogueIntActionTemplate":
-                case "DialogueInternalActionTemplate":
                 case "LocationFlowTemplate":
                 case "EnemyGenericFlowTemplate":
                 case "NPCFlowTemplate":
@@ -695,13 +868,14 @@ function InteractiveArticyViewer(){
                         setTimeout(()=>{
                             setCurrentNode(childnode);
                         },0);
+                        return (
+                            <>Please wait...</>
+                        )
                     }
                     else{
-
+                        // No child found - show end of flow
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
                     }
-                    return (
-                        <>Please wait...</>
-                    )
                 case "Condition":
                     let conditions = project.GetVariablesFromNode(currentNode);
                     let result = false;
