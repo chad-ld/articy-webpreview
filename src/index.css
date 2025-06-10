@@ -95,6 +95,9 @@ button:focus-visible {
   border-radius: 5px;
   padding: 10px;
   margin-top: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .articy-codeblock {
@@ -106,6 +109,9 @@ button:focus-visible {
   border-radius: 5px;
   padding: 10px;
   margin-top: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 /* When there's a header, adjust border radius */

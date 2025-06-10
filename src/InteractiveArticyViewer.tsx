@@ -1,5 +1,5 @@
 import packageJson from "../package.json";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, createRef } from "react";
 import QuestionPanel from "./panels/QuestionPanel";
 import ArticyProject from "./ArticyProject";
 import InstructionPanel from "./panels/InstructionPanel";
@@ -7,6 +7,93 @@ import EndOfFlowPanel from "./panels/EndOfFlowPanel";
 import VariablesPanel from "./components/VariablesPanel";
 import { Button, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
+
+// Component for condition bubbles with notches
+function ConditionBubble({ condition, nodeRef, disabled }: { condition: string, nodeRef: React.RefObject<HTMLDivElement>, disabled: boolean }) {
+    const [position, setPosition] = useState({ top: 0, left: -10 }); // Set to -10 for close positioning
+
+    useEffect(() => {
+        if (nodeRef.current) {
+            const rect = nodeRef.current.getBoundingClientRect();
+            const containerRect = nodeRef.current.offsetParent?.getBoundingClientRect();
+            if (containerRect) {
+                setPosition({
+                    top: rect.top - containerRect.top + (rect.height / 2) - 15, // Center vertically on the node
+                    left: -10 // Set to -10 for close positioning
+                });
+            }
+        }
+    }, [nodeRef]);
+
+    // Parse condition to color code like variables panel
+    const parseConditionWithColors = (conditionText: string) => {
+        // Regex to match different parts: namespace.variable, operators, booleans, numbers
+        const regex = /(\w+)(\.)(\w+)(==|!=|>=|<=|>|<)(\btrue\b|\bfalse\b|\d+|"[^"]*")/g;
+
+        return conditionText.replace(regex, (match, namespace, dot, variable, operator, value) => {
+            const namespaceColor = '#00ff00'; // Green for namespace (like TestFlowVariables)
+            const variableColor = '#569cd6'; // Blue for variable names
+            const operatorColor = '#d4d4d4'; // Grey for operators
+            let valueColor = '#d4d4d4'; // Default grey
+
+            // Color code the value based on type
+            if (value === 'true') {
+                valueColor = '#00ff00'; // Green for true
+            } else if (value === 'false') {
+                valueColor = '#ff0000'; // Red for false
+            } else if (value.startsWith('"')) {
+                valueColor = '#ce9178'; // Purple/brown for strings
+            } else if (/^\d+$/.test(value)) {
+                valueColor = '#b5cea8'; // Light green for numbers
+            }
+
+            return `<span style="color: ${namespaceColor}">${namespace}</span><span style="color: ${operatorColor}">${dot}</span><span style="color: ${variableColor}">${variable}</span><span style="color: ${operatorColor}">${operator}</span><span style="color: ${valueColor}">${value}</span>`;
+        });
+    };
+
+    const bubbleStyle: React.CSSProperties = {
+        position: 'absolute',
+        left: `${position.left}px`, // Use left positioning (simpler)
+        top: `${position.top}px`,
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        color: '#ffffff',
+        padding: '8px 12px',
+        borderRadius: '4px',
+        fontSize: '13px',
+        fontFamily: 'Arial, sans-serif',
+        fontWeight: 'bold',
+        maxWidth: '250px', // 25% wider (was 200px)
+        wordBreak: 'break-word',
+        zIndex: 1000,
+        border: 'none',
+        opacity: 1, // Always full opacity, don't grey out
+        boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
+        textAlign: 'right', // Right-align the text content
+        transform: 'translateX(-100%)' // Anchor to right edge - this makes left position act like right position
+    };
+
+    return (
+        <div style={bubbleStyle}>
+            <span style={{
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.8)' // Add text shadow for brightness
+            }} dangerouslySetInnerHTML={{ __html: parseConditionWithColors(condition) }}>
+            </span>
+            {/* Notch pointing right */}
+            <div style={{
+                position: 'absolute',
+                left: '100%', // Position at right edge of bubble
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '0',
+                height: '0',
+                borderLeft: '8px solid rgba(0, 0, 0, 0.9)',
+                borderTop: '6px solid transparent',
+                borderBottom: '6px solid transparent'
+            }} />
+        </div>
+    );
+}
 
 function InteractiveArticyViewer(){
 
@@ -196,10 +283,28 @@ function InteractiveArticyViewer(){
                             };
                         });
 
+                        const nodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>(
+                            instructionHubOptions.map(() => createRef<HTMLDivElement>())
+                        );
+
                         return (
-                            <div>
+                            <div style={{ position: 'relative' }}>
+                                {/* Condition bubbles on the left */}
+                                {instructionHubOptions.map((option: any, index: number) => {
+                                    console.log('Instruction Hub Option:', { index, conditionText: option.conditionText, disabled: option.disabled });
+                                    return option.conditionText && (
+                                        <ConditionBubble
+                                            key={`condition-${index}`}
+                                            condition={option.conditionText}
+                                            nodeRef={nodeRefs.current[index]}
+                                            disabled={option.disabled}
+                                        />
+                                    );
+                                })}
+
+                                {/* Choice nodes */}
                                 {instructionHubOptions.map((option: any, index: number) => (
-                                    <div key={index} style={{ marginBottom: '20px' }}>
+                                    <div key={index} ref={nodeRefs.current[index]} style={{ marginBottom: '20px' }}>
                                         <InstructionPanel
                                             title={option.nodeData.Properties.DisplayName}
                                             text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
@@ -211,19 +316,6 @@ function InteractiveArticyViewer(){
                                                 onClick: option.onClick
                                             }}
                                         />
-                                        {/* Show condition text if it exists */}
-                                        {option.conditionText && (
-                                            <div style={{
-                                                fontSize: '12px',
-                                                color: option.disabled ? '#999' : '#666',
-                                                marginTop: '5px',
-                                                padding: '5px',
-                                                backgroundColor: 'rgba(0,0,0,0.3)',
-                                                borderRadius: '3px'
-                                            }}>
-                                                Condition: {option.conditionText}
-                                            </div>
-                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -372,10 +464,28 @@ function InteractiveArticyViewer(){
                         };
                     });
 
+                    const hubNodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>(
+                        hubOptions.map(() => createRef<HTMLDivElement>())
+                    );
+
                     return (
-                        <div>
+                        <div style={{ position: 'relative' }}>
+                            {/* Condition bubbles on the left */}
+                            {hubOptions.map((option: any, index: number) => {
+                                console.log('Hub Option:', { index, conditionText: option.conditionText, disabled: option.disabled });
+                                return option.conditionText && (
+                                    <ConditionBubble
+                                        key={`condition-${index}`}
+                                        condition={option.conditionText}
+                                        nodeRef={hubNodeRefs.current[index]}
+                                        disabled={option.disabled}
+                                    />
+                                );
+                            })}
+
+                            {/* Choice nodes */}
                             {hubOptions.map((option: any, index: number) => (
-                                <div key={index} style={{ marginBottom: '20px' }}>
+                                <div key={index} ref={hubNodeRefs.current[index]} style={{ marginBottom: '20px' }}>
                                     <InstructionPanel
                                         title={option.nodeData.Properties.DisplayName}
                                         text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
@@ -387,19 +497,6 @@ function InteractiveArticyViewer(){
                                             onClick: option.onClick
                                         }}
                                     />
-                                    {/* Show condition text if it exists */}
-                                    {option.conditionText && (
-                                        <div style={{
-                                            fontSize: '12px',
-                                            color: option.disabled ? '#999' : '#666',
-                                            marginTop: '5px',
-                                            padding: '5px',
-                                            backgroundColor: 'rgba(0,0,0,0.3)',
-                                            borderRadius: '3px'
-                                        }}>
-                                            Condition: {option.conditionText}
-                                        </div>
-                                    )}
                                 </div>
                             ))}
                         </div>

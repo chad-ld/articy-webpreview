@@ -78,9 +78,12 @@ function VariablesPanel(props: VariablesPanelProps) {
             return <span style={{ color: '#999' }}>{value}</span>;
         }
 
-        // Handle boolean values
-        if (value === 'true' || value === 'false') {
-            return <span style={{ color: '#FF9800' }}>{value}</span>;
+        // Handle boolean values with green/red coloring
+        if (value === 'true') {
+            return <span style={{ color: '#00ff00' }}>{value}</span>; // Green for true
+        }
+        if (value === 'false') {
+            return <span style={{ color: '#ff0000' }}>{value}</span>; // Red for false
         }
 
         // Handle string values
