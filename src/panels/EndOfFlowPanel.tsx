@@ -3,9 +3,16 @@ import { Button } from 'antd';
 
 interface EndOfFlowPanelProps {
     onRestart: () => void;
+    selected?: boolean;
 }
 
-const EndOfFlowPanel: React.FC<EndOfFlowPanelProps> = ({ onRestart }) => {
+const EndOfFlowPanel: React.FC<EndOfFlowPanelProps> = ({ onRestart, selected }) => {
+    const selectionStyle = selected ? {
+        border: '3px solid #ffa619',
+        boxShadow: '0 0 15px rgba(255, 166, 25, 0.5)',
+        borderRadius: '10px'
+    } : {};
+
     return (
         <div style={{
             display: 'flex',
@@ -14,7 +21,8 @@ const EndOfFlowPanel: React.FC<EndOfFlowPanelProps> = ({ onRestart }) => {
             justifyContent: 'center',
             minHeight: '400px',
             textAlign: 'center',
-            padding: '40px'
+            padding: '40px',
+            ...selectionStyle
         }}>
             <h1 style={{
                 fontSize: '32px',

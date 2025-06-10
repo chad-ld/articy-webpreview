@@ -10,7 +10,7 @@ interface VariablesPanelProps {
 
 function VariablesPanel(props: VariablesPanelProps) {
     const [variables, setVariables] = useState<any>({});
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
     const [panelWidth, setPanelWidth] = useState(300);
     const [isResizing, setIsResizing] = useState(false);
     const [searchFilter, setSearchFilter] = useState("");

@@ -102,6 +102,7 @@ function InteractiveArticyViewer(){
     const [isLoading, setIsLoading] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
     const [variablesPanelWidth, setVariablesPanelWidth] = useState(0);
+    const [selectedChoiceIndex, setSelectedChoiceIndex] = useState(0);
 
     var currentNode = nodeList.length>0?nodeList[nodeList.length-1]:undefined;
     var lastNode = nodeList.length>1?nodeList[nodeList.length-2]:undefined;
@@ -111,6 +112,52 @@ function InteractiveArticyViewer(){
          'color: #ffa619; background: #1c282a; font-size: 20px');
         console.log('Ready for file upload - drag and drop a JSON file or click to browse');
     },[]);
+
+    // Keyboard navigation handler
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            // Only handle keyboard events when a project is loaded
+            if (!project || !currentNode) return;
+
+            // Get current available choices
+            const availableChoices = getCurrentAvailableChoices();
+
+            switch (event.key) {
+                case 'ArrowUp':
+                    event.preventDefault();
+                    if (availableChoices.length > 1) {
+                        setSelectedChoiceIndex(prev =>
+                            prev > 0 ? prev - 1 : availableChoices.length - 1
+                        );
+                    }
+                    break;
+
+                case 'ArrowDown':
+                    event.preventDefault();
+                    if (availableChoices.length > 1) {
+                        setSelectedChoiceIndex(prev =>
+                            prev < availableChoices.length - 1 ? prev + 1 : 0
+                        );
+                    }
+                    break;
+
+                case 'Enter':
+                    event.preventDefault();
+                    handleEnterKey(availableChoices);
+                    break;
+
+                case 'r':
+                    if (event.ctrlKey) {
+                        event.preventDefault();
+                        restartFlow();
+                    }
+                    break;
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [project, currentNode, selectedChoiceIndex]);
 
     useEffect(()=>{
         if (project != undefined){
@@ -143,6 +190,11 @@ function InteractiveArticyViewer(){
         }
     }, [nodeList]);
 
+    // Reset selected choice index when node changes
+    useEffect(() => {
+        setSelectedChoiceIndex(0);
+    }, [currentNode]);
+
     function setCurrentNode(node:any){
         // console.log("setting current Node:",node);
         if (node.Type == "Instruction")
@@ -162,6 +214,112 @@ function InteractiveArticyViewer(){
                node.Properties.OutputPins[0] &&
                node.Properties.OutputPins[0].Connections &&
                node.Properties.OutputPins[0].Connections.length > 0;
+    }
+
+    function getConditionText(node:any){
+        const targetNode = project.GetNodeByID(node.Target);
+        return targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
+    }
+
+    // Helper function to get current available choices for keyboard navigation
+    function getCurrentAvailableChoices(): any[] {
+        if (!currentNode) return [];
+
+        switch (currentNode.Type) {
+            case "VirtualChoice":
+                return currentNode.Properties.Options.filter((option: any) => !option.hidden);
+
+            case "Instruction":
+                if (currentNode.Properties.OutputPins &&
+                    currentNode.Properties.OutputPins[0] &&
+                    currentNode.Properties.OutputPins[0].Connections &&
+                    currentNode.Properties.OutputPins[0].Connections.length > 1) {
+
+                    const instructionHubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                        const targetNode = project.GetNodeByID(conn.Target);
+                        const conditionText = getConditionText(conn);
+                        const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+                        return {
+                            disabled: !conditionMet,
+                            nodeData: targetNode,
+                            conditionText: conditionText,
+                            onClick:()=>{
+                                if (conditionMet) {
+                                    setCurrentNode(targetNode);
+                                }
+                            }
+                        };
+                    });
+                    return instructionHubOptions.filter((option: any) => !option.disabled);
+                }
+                return [{ isSingleChoice: true }]; // Single choice indicator
+
+            case "DialogueInteractiveFragmentTemplate":
+                if (currentNode.Properties.OutputPins &&
+                    currentNode.Properties.OutputPins[0] &&
+                    currentNode.Properties.OutputPins[0].Connections) {
+
+                    const hubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                        const targetNode = project.GetNodeByID(conn.Target);
+                        const conditionText = getConditionText(conn);
+                        const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+                        return {
+                            disabled: !conditionMet,
+                            nodeData: targetNode,
+                            conditionText: conditionText,
+                            onClick:()=>{
+                                if (conditionMet) {
+                                    const finalTarget = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
+                                    setCurrentNode(finalTarget);
+                                }
+                            }
+                        };
+                    });
+                    return hubOptions.filter((option: any) => !option.disabled);
+                }
+                return [{ isSingleChoice: true }];
+
+            default:
+                // For other node types that have single "Next" buttons
+                if (hasOutputConnections(currentNode)) {
+                    return [{ isSingleChoice: true }];
+                }
+                return [{ isEndOfFlow: true }]; // End of flow
+        }
+    }
+
+    // Helper function to handle Enter key press
+    function handleEnterKey(availableChoices: any[]) {
+        if (availableChoices.length === 0) return;
+
+        const selectedChoice = availableChoices[selectedChoiceIndex];
+
+        if (selectedChoice.isEndOfFlow) {
+            restartFlow();
+            return;
+        }
+
+        if (selectedChoice.isSingleChoice) {
+            // Handle single choice navigation
+            if (currentNode.Type === "Instruction") {
+                if (currentNode.Properties.OutputPins &&
+                    currentNode.Properties.OutputPins[0] &&
+                    currentNode.Properties.OutputPins[0].Connections &&
+                    currentNode.Properties.OutputPins[0].Connections.length === 1) {
+                    setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                }
+            } else {
+                // Handle other single-choice node types
+                if (hasOutputConnections(currentNode)) {
+                    setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                }
+            }
+        } else {
+            // Handle multiple choice selection
+            if (selectedChoice.onClick) {
+                selectedChoice.onClick();
+            }
+        }
     }
 
     // Handle file upload/drop
@@ -239,22 +397,28 @@ function InteractiveArticyViewer(){
             console.log("DisplayNode - Current node:", currentNode);
             switch (currentNode.Type){
                 case "VirtualChoice":
+                    const visibleOptions = currentNode.Properties.Options.filter((option: any) => !option.hidden);
                     return (
                         <div>
-                            {currentNode.Properties.Options.map((option: any, index: number) => (
-                                <div key={index} style={{ marginBottom: '20px' }}>
-                                    <InstructionPanel
-                                        title={option.nodeData.Properties.DisplayName}
-                                        text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
-                                        color={option.nodeData.Properties.Color}
-                                        button={{
-                                            hidden: false,
-                                            text: "Next",
-                                            onClick: option.onClick
-                                        }}
-                                    />
-                                </div>
-                            ))}
+                            {currentNode.Properties.Options.map((option: any, index: number) => {
+                                if (option.hidden) return null;
+                                const visibleIndex = visibleOptions.indexOf(option);
+                                return (
+                                    <div key={index} style={{ marginBottom: '20px' }}>
+                                        <InstructionPanel
+                                            title={option.nodeData.Properties.DisplayName}
+                                            text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                            color={option.nodeData.Properties.Color}
+                                            selected={visibleIndex === selectedChoiceIndex}
+                                            button={{
+                                                hidden: false,
+                                                text: "Next",
+                                                onClick: option.onClick
+                                            }}
+                                        />
+                                    </div>
+                                );
+                            })}
                         </div>
                     )
                 case "Instruction":
@@ -262,10 +426,6 @@ function InteractiveArticyViewer(){
                     if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
                         // Treat as Hub with multiple choices - use same logic as Hub case
                         console.log("Instruction with multiple outputs (Hub-like) triggered! Current node:", currentNode);
-                        function getConditionText(node:any){
-                            const targetNode = project.GetNodeByID(node.Target);
-                            return targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
-                        }
 
                         const instructionHubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
                             const targetNode = project.GetNodeByID(conn.Target);
@@ -303,28 +463,33 @@ function InteractiveArticyViewer(){
                                 })}
 
                                 {/* Choice nodes */}
-                                {instructionHubOptions.map((option: any, index: number) => (
-                                    <div key={index} ref={nodeRefs.current[index]} style={{ marginBottom: '20px' }}>
-                                        <InstructionPanel
-                                            title={option.nodeData.Properties.DisplayName}
-                                            text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
-                                            color={option.nodeData.Properties.Color}
-                                            button={{
-                                                hidden: false,
-                                                disabled: option.disabled,
-                                                text: "Next",
-                                                onClick: option.onClick
-                                            }}
-                                        />
-                                    </div>
-                                ))}
+                                {instructionHubOptions.map((option: any, index: number) => {
+                                    const enabledOptions = instructionHubOptions.filter((opt: any) => !opt.disabled);
+                                    const enabledIndex = enabledOptions.indexOf(option);
+                                    return (
+                                        <div key={index} ref={nodeRefs.current[index]} style={{ marginBottom: '20px' }}>
+                                            <InstructionPanel
+                                                title={option.nodeData.Properties.DisplayName}
+                                                text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                                color={option.nodeData.Properties.Color}
+                                                selected={!option.disabled && enabledIndex === selectedChoiceIndex}
+                                                button={{
+                                                    hidden: false,
+                                                    disabled: option.disabled,
+                                                    text: "Next",
+                                                    onClick: option.onClick
+                                                }}
+                                            />
+                                        </div>
+                                    );
+                                })}
                             </div>
                         )
                     } else {
                         // Regular single-path Instruction
                         // Check if this node has no output connections - show end of flow
                         if (!hasOutputConnections(currentNode)) {
-                            return <EndOfFlowPanel onRestart={restartFlow} />;
+                            return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
                         }
 
                         return (
@@ -332,6 +497,7 @@ function InteractiveArticyViewer(){
                                 title={currentNode.Properties.DisplayName}
                                 text={currentNode.Properties.Expression}
                                 color={currentNode.Properties.Color}
+                                selected={true}
                                 button={{
                                     hidden:false,
                                     text:"Next",
@@ -351,7 +517,7 @@ function InteractiveArticyViewer(){
                 case "AreaEventTemplate":
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
                     }
 
                     return (
@@ -359,6 +525,7 @@ function InteractiveArticyViewer(){
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Expression}
                             color={currentNode.Properties.Color}
+                            selected={true}
                             button={{
                                 hidden:false,
                                 text:"Next",
@@ -377,7 +544,7 @@ function InteractiveArticyViewer(){
                 case "DialogueExplorationActionTemplate":
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
                     }
 
                     return (
@@ -385,6 +552,7 @@ function InteractiveArticyViewer(){
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
                             color={currentNode.Properties.Color}
+                            selected={true}
                             button={{
                                 hidden: false,
                                 text:"Next",
@@ -422,7 +590,7 @@ function InteractiveArticyViewer(){
                 case "DialogueInteractiveFragmentTemplate":
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
                     }
 
                     return (
@@ -441,10 +609,6 @@ function InteractiveArticyViewer(){
                     )
                 case "Hub":
                     console.log("Hub case triggered! Current node:", currentNode);
-                    function getConditionText(node:any){
-                        const targetNode = project.GetNodeByID(node.Target);
-                        return targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
-                    }
 
                     const hubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
                         const targetNode = project.GetNodeByID(conn.Target);
@@ -484,21 +648,26 @@ function InteractiveArticyViewer(){
                             })}
 
                             {/* Choice nodes */}
-                            {hubOptions.map((option: any, index: number) => (
-                                <div key={index} ref={hubNodeRefs.current[index]} style={{ marginBottom: '20px' }}>
-                                    <InstructionPanel
-                                        title={option.nodeData.Properties.DisplayName}
-                                        text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
-                                        color={option.nodeData.Properties.Color}
-                                        button={{
-                                            hidden: false,
-                                            disabled: option.disabled,
-                                            text: "Next",
-                                            onClick: option.onClick
-                                        }}
-                                    />
-                                </div>
-                            ))}
+                            {hubOptions.map((option: any, index: number) => {
+                                const enabledOptions = hubOptions.filter((opt: any) => !opt.disabled);
+                                const enabledIndex = enabledOptions.indexOf(option);
+                                return (
+                                    <div key={index} ref={hubNodeRefs.current[index]} style={{ marginBottom: '20px' }}>
+                                        <InstructionPanel
+                                            title={option.nodeData.Properties.DisplayName}
+                                            text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                            color={option.nodeData.Properties.Color}
+                                            selected={!option.disabled && enabledIndex === selectedChoiceIndex}
+                                            button={{
+                                                hidden: false,
+                                                disabled: option.disabled,
+                                                text: "Next",
+                                                onClick: option.onClick
+                                            }}
+                                        />
+                                    </div>
+                                );
+                            })}
                         </div>
                     )
                 case "Jump":
@@ -632,6 +801,22 @@ function InteractiveArticyViewer(){
                 transition: 'margin-left 0.3s ease',
                 minHeight: '100vh'
             }}>
+                {project && (
+                    <div style={{
+                        position: 'fixed',
+                        top: '10px',
+                        right: '10px',
+                        background: 'rgba(0, 0, 0, 0.8)',
+                        color: 'white',
+                        padding: '8px 12px',
+                        borderRadius: '4px',
+                        fontSize: '12px',
+                        zIndex: 1000,
+                        fontFamily: 'monospace'
+                    }}>
+                        ↑↓ Navigate • Enter Select • Ctrl+R Restart
+                    </div>
+                )}
                 {project ? <DisplayNode /> : <FileUploadArea />}
             </div>
         </div>

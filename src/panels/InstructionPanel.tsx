@@ -15,6 +15,7 @@ interface InstructionPanelProps{
         text:string;
         onClick:Function
     };
+    selected?: boolean;
 }
 
 function InstructionPanel (props:InstructionPanelProps){
@@ -59,9 +60,19 @@ function InstructionPanel (props:InstructionPanelProps){
         pointerEvents: 'none' as const
     } : {};
 
+    // Apply selection styling
+    const selectionStyle = props.selected ? {
+        border: '3px solid #ffa619',
+        boxShadow: '0 0 15px rgba(255, 166, 25, 0.5)',
+        transform: 'scale(1.02)',
+        transition: 'all 0.2s ease'
+    } : {};
+
+    const combinedStyle = { ...nodeStyle, ...selectionStyle };
+
     if (!props.button.hidden){
         return(
-            <div className="node" style={nodeStyle}>
+            <div className="node" style={combinedStyle}>
                 {props.title && (
                     <div
                         className="articy-node-header"
@@ -85,7 +96,7 @@ function InstructionPanel (props:InstructionPanelProps){
     }
     else{
         return(
-            <div className="node" style={nodeStyle}>
+            <div className="node" style={combinedStyle}>
                 {props.title && (
                     <div
                         className="articy-node-header"
