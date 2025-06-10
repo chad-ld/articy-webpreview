@@ -8092,7 +8092,7 @@
               "h": 275.0
             },
             "ShortId": 3805813902,
-            "Expression": "//QUEST_001 FLOW START\n//The player/writer starts this quest, seeking out advice from the legendary blacksmith Devil Opper. It is said he can construct a blade known as The Code to assist you on your journey.\n\n//TESTING VARIABLES\nTestFlowVariables.HasShield=true;",
+            "Expression": "//QUEST_001 FLOW START\n//The player/writer starts this quest, seeking out advice from the legendary blacksmith Devil Opper. It is said he can construct a blade known as The Code to assist you on your journey.\n\n//TESTING VARIABLES\nTestFlowVariables.HasShield=true;\nTestFlowVariables.Quest001_waypoint01_completed=false;\nTestFlowVariables.Quest001_waypoint02_completed=false;\nTestFlowVariables.Quest001_waypoint03_completed=false;\nTestFlowVariables.Quest001_waypoint04_completed=false;",
             "Color": {
               "r": 0.5764706,
               "g": 0.75686276,

@@ -71,6 +71,9 @@ class ArticyProject{
             return undefined;
         }
         let child:any = recursiveSearch(this.data.Hierarchy);
+        if (child == undefined) {
+            return undefined;
+        }
         return this.GetNodeByID(child.Id);
     }
 
@@ -109,6 +112,19 @@ class ArticyProject{
     }
 
     CheckConditionString(condition:string){
+        // Handle compound conditions with && and || operators
+        if (condition.includes('&&')) {
+            const parts = condition.split('&&');
+            return parts.every(part => this.CheckSingleCondition(part.trim()));
+        } else if (condition.includes('||')) {
+            const parts = condition.split('||');
+            return parts.some(part => this.CheckSingleCondition(part.trim()));
+        } else {
+            return this.CheckSingleCondition(condition);
+        }
+    }
+
+    CheckSingleCondition(condition:string){
         let value = this.SplitValueFromText(condition);
         let newData:{[k:string]:any} = {};
         let dataChunks = this.SplitIndexersFromText(condition);
