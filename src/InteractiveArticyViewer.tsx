@@ -312,23 +312,59 @@ function InteractiveArticyViewer(){
                     )
                 case "Hub":
                     function getConditionText(node:any){
-                        console.log(project.GetNodeByID(node.Target).Properties.Text,project.GetNodeByID(node.Target).Properties.InputPins[0].Text);
-                        return project.GetNodeByID(node.Target).Properties.InputPins[0].Text;
+                        const targetNode = project.GetNodeByID(node.Target);
+                        return targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
                     }
-                    var options = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>(
-                        {
-                            hidden: getConditionText(conn)==""?false:!project.CheckConditionString(getConditionText(conn)),
-                            text:project.GetNodeByID(conn.Target).Properties.Text,
+
+                    const hubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                        const targetNode = project.GetNodeByID(conn.Target);
+                        const conditionText = getConditionText(conn);
+                        const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+                        return {
+                            disabled: !conditionMet,
+                            nodeData: targetNode,
+                            conditionText: conditionText, // Store condition text for display
                             onClick:()=>{
-                                setCurrentNode(project.GetNodeByID(project.GetNodeByID(conn.Target).Properties.OutputPins[0].Connections[0].Target));
+                                if (conditionMet) {
+                                    // Navigate to the actual target node (skip intermediate nodes)
+                                    const finalTarget = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
+                                    setCurrentNode(finalTarget);
+                                }
                             }
-                        }));
+                        };
+                    });
 
                     return (
-                        <QuestionPanel 
-                            text={project.GetNodeByID(currentNode.Properties.InputPins[0].Owner).Properties.Text}
-                            buttons={options}
-                        />
+                        <div>
+                            {hubOptions.map((option: any, index: number) => (
+                                <div key={index} style={{ marginBottom: '20px' }}>
+                                    <InstructionPanel
+                                        title={option.nodeData.Properties.DisplayName}
+                                        text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                        color={option.nodeData.Properties.Color}
+                                        button={{
+                                            hidden: false,
+                                            disabled: option.disabled,
+                                            text: "Next",
+                                            onClick: option.onClick
+                                        }}
+                                    />
+                                    {/* Show condition text if it exists */}
+                                    {option.conditionText && (
+                                        <div style={{
+                                            fontSize: '12px',
+                                            color: option.disabled ? '#999' : '#666',
+                                            marginTop: '5px',
+                                            padding: '5px',
+                                            backgroundColor: 'rgba(0,0,0,0.3)',
+                                            borderRadius: '3px'
+                                        }}>
+                                            Condition: {option.conditionText}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
                     )
                 case "Jump":
                     setTimeout(()=>{

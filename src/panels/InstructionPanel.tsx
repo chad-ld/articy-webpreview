@@ -11,6 +11,7 @@ interface InstructionPanelProps{
     };
     button:{
         hidden:boolean;
+        disabled?:boolean;
         text:string;
         onClick:Function
     };
@@ -49,9 +50,18 @@ function InstructionPanel (props:InstructionPanelProps){
     };
 
     const { frameColor, backgroundColor, headerTextColor } = getColors();
+
+    // Apply grayed out effect if disabled
+    const isDisabled = props.button.disabled || props.button.hidden;
+    const nodeStyle = isDisabled ? {
+        opacity: 0.5,
+        filter: 'grayscale(50%)',
+        pointerEvents: 'none' as const
+    } : {};
+
     if (!props.button.hidden){
         return(
-            <div className="node">
+            <div className="node" style={nodeStyle}>
                 {props.title && (
                     <div
                         className="articy-node-header"
@@ -68,13 +78,14 @@ function InstructionPanel (props:InstructionPanelProps){
                 <br />
                 <Button
                     danger={props.button.hidden}
-                    onClick={()=>{props.button.onClick()}}>{props.button.text}</Button>
+                    disabled={isDisabled}
+                    onClick={()=>{if (!isDisabled) props.button.onClick()}}>{props.button.text}</Button>
             </div>
         )
     }
     else{
         return(
-            <div className="node">
+            <div className="node" style={nodeStyle}>
                 {props.title && (
                     <div
                         className="articy-node-header"
