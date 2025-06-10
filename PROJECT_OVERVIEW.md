@@ -118,7 +118,10 @@ npm run preview      # Preview production build
 1. Run `npm run build`
 2. Copy contents of `dist/` to `builds/html_viewer_template_v1/`
 3. Update `index.html` to point to correct JSON file
-4. Deploy to web server
+4. Deploy to web server using automated scripts:
+   - **SFTP**: `deploy-to-sftp-winscp.bat` (requires WinSCP)
+   - **FTP**: `deploy-to-ftp.bat` or `deploy-to-ftp-advanced.bat`
+   - **Manual**: Use FileZilla, web control panel, or other FTP clients
 
 ## Usage Workflow
 
@@ -153,6 +156,31 @@ npm run preview      # Preview production build
 - 📊 Variable state sidebar/viewer
 - 🖼️ Character/item image support
 - 💻 Local file execution (no web server required)
+
+## Recent Improvements (Latest Update)
+
+### Enhanced Syntax Highlighting:
+- **Consistent comment highlighting**: All comments (`//`) now display in green (#88d889) across all nodes
+- **Advanced expression parsing**: Complex expressions like `TestFlowVariables.TestPlayerHitPoints+1` are properly tokenized
+- **Improved color scheme**:
+  - Variable names: Teal (#6e9a9a)
+  - Numbers: Gray (#a3a4a4)
+  - Booleans/Keywords: Orange (#f6a206)
+  - String values: White (default)
+  - Comments: Green (#88d889)
+
+### Deployment Automation:
+- **SFTP deployment script**: `deploy-to-sftp-winscp.bat` for WinSCP users
+- **FTP deployment scripts**: `deploy-to-ftp.bat` and `deploy-to-ftp-advanced.bat`
+- **Configuration management**: Uses `sftp-config.txt` for secure credential storage
+- **Automated building**: Scripts can build project before deployment
+- **Error handling**: Comprehensive validation and error reporting
+
+### File Loading Improvements:
+- **Drag & drop support**: Users can drag JSON files directly into the browser
+- **Client-side processing**: No server upload required, files processed in browser memory
+- **Privacy focused**: JSON files never leave the user's device
+- **Web server compatible**: Drag & drop works on both local and hosted versions
 
 ## Technical Notes
 
