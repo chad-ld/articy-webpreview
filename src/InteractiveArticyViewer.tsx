@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import QuestionPanel from "./panels/QuestionPanel";
 import ArticyProject from "./ArticyProject";
 import InstructionPanel from "./panels/InstructionPanel";
+import EndOfFlowPanel from "./panels/EndOfFlowPanel";
 import { Button, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 
@@ -39,6 +40,11 @@ function InteractiveArticyViewer(){
                 return;
             if (currentNode.Properties.OutputPins[0].Connections == undefined)
                 return;
+            // Add additional safety checks for lastNode properties
+            if (lastNode.Properties.OutputPins[0] == undefined ||
+                lastNode.Properties.OutputPins[0].Connections == undefined ||
+                lastNode.Properties.OutputPins[0].Connections.length === 0)
+                return;
             //check if we are exiting children node
             if (lastNode.Properties.OutputPins[0].Connections[0].Target == lastNode.Properties.Parent){
                 setTimeout(()=>{
@@ -53,6 +59,20 @@ function InteractiveArticyViewer(){
         if (node.Type == "Instruction")
             project.StoreVariablesFromNode(node);
         setNodeList([...nodeList,node]);
+    }
+
+    function restartFlow(){
+        setNodeList([]);
+        setTimeout(() => {
+            setCurrentNode(project.GetStartNode());
+        }, 0);
+    }
+
+    function hasOutputConnections(node: any): boolean {
+        return node.Properties.OutputPins &&
+               node.Properties.OutputPins[0] &&
+               node.Properties.OutputPins[0].Connections &&
+               node.Properties.OutputPins[0].Connections.length > 0;
     }
 
     // Handle file upload/drop
@@ -173,6 +193,11 @@ function InteractiveArticyViewer(){
                         )
                     } else {
                         // Regular single-path Instruction
+                        // Check if this node has no output connections - show end of flow
+                        if (!hasOutputConnections(currentNode)) {
+                            return <EndOfFlowPanel onRestart={restartFlow} />;
+                        }
+
                         return (
                             <InstructionPanel
                                 title={currentNode.Properties.DisplayName}
@@ -195,6 +220,11 @@ function InteractiveArticyViewer(){
                 case "CombatTemplate":
                 case "TravelTemplate":
                 case "AreaEventTemplate":
+                    // Check if this node has no output connections - show end of flow
+                    if (!hasOutputConnections(currentNode)) {
+                        return <EndOfFlowPanel onRestart={restartFlow} />;
+                    }
+
                     return (
                         <InstructionPanel
                             title={currentNode.Properties.DisplayName}
@@ -216,13 +246,18 @@ function InteractiveArticyViewer(){
                 case "PCTemplate":
                 case "WeaponTemplate":
                 case "DialogueExplorationActionTemplate":
+                    // Check if this node has no output connections - show end of flow
+                    if (!hasOutputConnections(currentNode)) {
+                        return <EndOfFlowPanel onRestart={restartFlow} />;
+                    }
+
                     return (
                         <InstructionPanel
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
                             color={currentNode.Properties.Color}
                             button={{
-                                hidden:currentNode.Properties.OutputPins[0].Connections==undefined?true:false,
+                                hidden: false,
                                 text:"Next",
                                 onClick:()=>{
                                     // Check if this node has multiple output connections
@@ -256,14 +291,18 @@ function InteractiveArticyViewer(){
                         />
                     )
                 case "DialogueInteractiveFragmentTemplate":
-                    //console.log(currentNode.Properties.OutputPins[0].Connections==undefined);
+                    // Check if this node has no output connections - show end of flow
+                    if (!hasOutputConnections(currentNode)) {
+                        return <EndOfFlowPanel onRestart={restartFlow} />;
+                    }
+
                     return (
                         <InstructionPanel
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
                             color={currentNode.Properties.Color}
                             button={{
-                                hidden:currentNode.Properties.OutputPins[0].Connections==undefined?true:false,
+                                hidden: false,
                                 text:"Next",
                                 onClick:()=>{
                                     setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
