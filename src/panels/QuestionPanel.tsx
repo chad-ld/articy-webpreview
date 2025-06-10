@@ -14,18 +14,18 @@ var i = 0;
 
 function QuestionPanel (props:QuestionPanelProps){
     return(
-        <>
-        <TextBlock>{props.text}</TextBlock>
-        <br />
-        {props.buttons.map((button) => (<div key={i++}>
-            <Button 
-                danger={button.hidden}
-                onClick={()=>{button.onClick();}}>
-                    {button.text}
-            </Button>
-        <br/><br/>
-        </div>) )}
-        </>
+        <div className="node">
+            <TextBlock>{props.text}</TextBlock>
+            <br />
+            {props.buttons.map((button) => (<div key={i++}>
+                <Button
+                    danger={button.hidden}
+                    onClick={()=>{button.onClick();}}>
+                        {button.text}
+                </Button>
+            <br/><br/>
+            </div>) )}
+        </div>
     )
 }
 

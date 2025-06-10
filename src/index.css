@@ -29,6 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #242424;
 }
 
 h1 {
@@ -53,6 +54,89 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Articy-specific styling */
+#root {
+  width: 800px;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+}
+
+.node {
+  margin: 20px;
+  padding: 10px;
+  box-shadow: 7px 7px rgba(0,0,0,.2);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: rgba(100,100,100,.5);
+}
+
+.articy-node-header {
+  background-color: rgb(147, 193, 204);
+  color: #2c3e50;
+  padding: 8px 15px;
+  margin-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  font-weight: bold;
+  border: 2px solid rgb(147, 193, 204);
+  border-bottom: none;
+}
+
+.articy-textblock {
+  box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,.3);
+  background-color: #5a6668;
+  border-color: rgb(147, 193, 204);
+  border-style: solid;
+  border-width: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 0;
+}
+
+.articy-codeblock {
+  box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,.3);
+  background-color: #5a6668;
+  border-color: rgb(147, 193, 204);
+  border-style: solid;
+  border-width: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 0;
+}
+
+/* When there's a header, adjust border radius */
+.articy-node-header + .articy-textblock,
+.articy-node-header + .articy-codeblock {
+  border-radius: 0 0 5px 5px;
+}
+
+/* Syntax highlighting */
+.hljs-comment {
+  color: #88d889;
+}
+
+.hljs-title {
+  color: #6e9a9a;
+}
+
+.hljs-property {
+  color: #6e9a9a;
+}
+
+.hljs-literal {
+  color: #f6a206;
+}
+
+.hljs-number {
+  color: #a3a4a4;
+}
+
+.node > .ant-btn-dangerous {
+  background-color: rgba(60,0,0,1);
 }
 
 @media (prefers-color-scheme: light) {

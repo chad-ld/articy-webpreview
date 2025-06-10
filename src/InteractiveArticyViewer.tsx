@@ -144,7 +144,8 @@ function InteractiveArticyViewer(){
             switch (currentNode.Type){
                 case "Instruction":
                     return (
-                        <InstructionPanel 
+                        <InstructionPanel
+                            title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Expression}
                             button={{
                                 hidden:false,
@@ -158,7 +159,8 @@ function InteractiveArticyViewer(){
                 case "DialogueInteractiveFragmentTemplate":
                     //console.log(currentNode.Properties.OutputPins[0].Connections==undefined);
                     return (
-                        <InstructionPanel 
+                        <InstructionPanel
+                            title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
                             button={{
                                 hidden:currentNode.Properties.OutputPins[0].Connections==undefined?true:false,

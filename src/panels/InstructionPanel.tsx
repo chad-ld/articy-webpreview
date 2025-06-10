@@ -3,6 +3,7 @@ import { Button } from "antd"
 
 interface InstructionPanelProps{
     text:string;
+    title?:string;
     button:{
         hidden:boolean;
         text:string;
@@ -13,20 +14,30 @@ interface InstructionPanelProps{
 function InstructionPanel (props:InstructionPanelProps){
     if (!props.button.hidden){
         return(
-            <>
-            <TextBlock>{props.text}</TextBlock>
-            <br />
-            <Button 
-                danger={props.button.hidden}
-                onClick={()=>{props.button.onClick()}}>{props.button.text}</Button>
-            </>
+            <div className="node">
+                {props.title && (
+                    <div className="articy-node-header">
+                        {props.title}
+                    </div>
+                )}
+                <TextBlock>{props.text}</TextBlock>
+                <br />
+                <Button
+                    danger={props.button.hidden}
+                    onClick={()=>{props.button.onClick()}}>{props.button.text}</Button>
+            </div>
         )
     }
     else{
         return(
-            <>
-            <TextBlock>{props.text}</TextBlock>
-            </>
+            <div className="node">
+                {props.title && (
+                    <div className="articy-node-header">
+                        {props.title}
+                    </div>
+                )}
+                <TextBlock>{props.text}</TextBlock>
+            </div>
         )
     }
 }
