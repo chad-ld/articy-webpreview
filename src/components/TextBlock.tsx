@@ -1,6 +1,11 @@
 import { PropsWithChildren } from "react";
 
-function TextBlock (props:PropsWithChildren){
+interface TextBlockProps extends PropsWithChildren {
+    borderColor?: string;
+    backgroundColor?: string;
+}
+
+function TextBlock (props:TextBlockProps){
 
     const text = props.children as string;
     const textChunks = text.split("\n");
@@ -79,9 +84,19 @@ function TextBlock (props:PropsWithChildren){
         return line;
     };
 
+    const borderColor = props.borderColor || 'rgb(147, 193, 204)';
+    const bgColor = props.backgroundColor || '#5a6668'; // Default dark gray-blue from old version
+
     if (isCodeBlock) {
         return(
-            <div className="articy-codeblock">
+            <div
+                className="articy-codeblock"
+                style={{
+                    borderColor: borderColor,
+                    backgroundColor: bgColor,
+                    color: 'white' // Ensure white text for readability
+                }}
+            >
                 {textChunks.map((chunk) => (
                     <div key={i++}>
                         {renderCodeLine(chunk)}
@@ -92,7 +107,14 @@ function TextBlock (props:PropsWithChildren){
         );
     } else {
         return(
-            <div className="articy-textblock">
+            <div
+                className="articy-textblock"
+                style={{
+                    borderColor: borderColor,
+                    backgroundColor: bgColor,
+                    color: 'white' // Ensure white text for readability
+                }}
+            >
                 {textChunks.map((chunk) => (
                     <div key={i++}>
                         {renderCodeLine(chunk)}

@@ -19,22 +19,7 @@ function InteractiveArticyViewer(){
     useEffect(()=>{
         console.log("%c[Articy HTML Viewer - JSON export] version: "+packageJson.version,
          'color: #ffa619; background: #1c282a; font-size: 20px');
-
-        // Try to load default JSON file if available (for web server deployment)
-        fetch('./Articy Base Project.json?'+(Date.now().toString()))
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Default JSON file not found');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setProject(new ArticyProject(data));
-            })
-            .catch(()=>{
-                console.log('No default JSON file found, waiting for user to upload file');
-                // Don't show error - this is expected when running locally
-            });
+        console.log('Ready for file upload - drag and drop a JSON file or click to browse');
     },[]);
 
     useEffect(()=>{
@@ -143,10 +128,18 @@ function InteractiveArticyViewer(){
         if (currentNode != undefined){
             switch (currentNode.Type){
                 case "Instruction":
+                case "WaypointTemplate":
+                case "JournalEntryTemplate":
+                case "PlayerActionTemplate":
+                case "CraftingTemplate":
+                case "CombatTemplate":
+                case "TravelTemplate":
+                case "AreaEventTemplate":
                     return (
                         <InstructionPanel
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Expression}
+                            color={currentNode.Properties.Color}
                             button={{
                                 hidden:false,
                                 text:"Next",
@@ -162,6 +155,7 @@ function InteractiveArticyViewer(){
                         <InstructionPanel
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
+                            color={currentNode.Properties.Color}
                             button={{
                                 hidden:currentNode.Properties.OutputPins[0].Connections==undefined?true:false,
                                 text:"Next",
@@ -200,6 +194,12 @@ function InteractiveArticyViewer(){
                     )
                     break;
                 case "FlowFragment":
+                case "CombatFlowTemplate":
+                case "CraftingFlowTemplate":
+                case "TravelFlowTemplate":
+                case "PlayerActionFlowTemplate":
+                case "DialogueIntActionTemplate":
+                case "DialogueInternalActionTemplate":
                     let childnode = project.GetFirstChildOfNode(currentNode);
                     if (childnode != undefined){
                         setTimeout(()=>{
