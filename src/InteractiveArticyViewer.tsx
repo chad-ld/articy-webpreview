@@ -4,6 +4,7 @@ import QuestionPanel from "./panels/QuestionPanel";
 import ArticyProject from "./ArticyProject";
 import InstructionPanel from "./panels/InstructionPanel";
 import EndOfFlowPanel from "./panels/EndOfFlowPanel";
+import VariablesPanel from "./components/VariablesPanel";
 import { Button, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 
@@ -13,6 +14,7 @@ function InteractiveArticyViewer(){
     const [nodeList, setNodeList] = useState([] as any[]);
     const [isLoading, setIsLoading] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
+    const [variablesPanelWidth, setVariablesPanelWidth] = useState(0);
 
     var currentNode = nodeList.length>0?nodeList[nodeList.length-1]:undefined;
     var lastNode = nodeList.length>1?nodeList[nodeList.length-2]:undefined;
@@ -146,6 +148,8 @@ function InteractiveArticyViewer(){
     
     function DisplayNode(){
         if (currentNode != undefined){
+            console.log("DisplayNode - Current node type:", currentNode.Type);
+            console.log("DisplayNode - Current node:", currentNode);
             switch (currentNode.Type){
                 case "VirtualChoice":
                     return (
@@ -169,27 +173,60 @@ function InteractiveArticyViewer(){
                 case "Instruction":
                     // Check if this Instruction node has multiple output connections (acts like a Hub)
                     if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
-                        // Treat as Hub with multiple choices
+                        // Treat as Hub with multiple choices - use same logic as Hub case
+                        console.log("Instruction with multiple outputs (Hub-like) triggered! Current node:", currentNode);
                         function getConditionText(node:any){
                             const targetNode = project.GetNodeByID(node.Target);
                             return targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
                         }
-                        var options = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+
+                        const instructionHubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
                             const targetNode = project.GetNodeByID(conn.Target);
+                            const conditionText = getConditionText(conn);
+                            const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
                             return {
-                                hidden: getConditionText(conn)==""?false:!project.CheckConditionString(getConditionText(conn)),
-                                text: targetNode.Properties.DisplayName || targetNode.Properties.Text || "Continue",
+                                disabled: !conditionMet,
+                                nodeData: targetNode,
+                                conditionText: conditionText, // Store condition text for display
                                 onClick:()=>{
-                                    setCurrentNode(targetNode);
+                                    if (conditionMet) {
+                                        setCurrentNode(targetNode);
+                                    }
                                 }
                             };
                         });
 
                         return (
-                            <QuestionPanel
-                                text={currentNode.Properties.Expression || currentNode.Properties.DisplayName}
-                                buttons={options}
-                            />
+                            <div>
+                                {instructionHubOptions.map((option: any, index: number) => (
+                                    <div key={index} style={{ marginBottom: '20px' }}>
+                                        <InstructionPanel
+                                            title={option.nodeData.Properties.DisplayName}
+                                            text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                            color={option.nodeData.Properties.Color}
+                                            button={{
+                                                hidden: false,
+                                                disabled: option.disabled,
+                                                text: "Next",
+                                                onClick: option.onClick
+                                            }}
+                                        />
+                                        {/* Show condition text if it exists */}
+                                        {option.conditionText && (
+                                            <div style={{
+                                                fontSize: '12px',
+                                                color: option.disabled ? '#999' : '#666',
+                                                marginTop: '5px',
+                                                padding: '5px',
+                                                backgroundColor: 'rgba(0,0,0,0.3)',
+                                                borderRadius: '3px'
+                                            }}>
+                                                Condition: {option.conditionText}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
                         )
                     } else {
                         // Regular single-path Instruction
@@ -311,6 +348,7 @@ function InteractiveArticyViewer(){
                         />
                     )
                 case "Hub":
+                    console.log("Hub case triggered! Current node:", currentNode);
                     function getConditionText(node:any){
                         const targetNode = project.GetNodeByID(node.Target);
                         return targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
@@ -485,7 +523,20 @@ function InteractiveArticyViewer(){
 
     return (
         <div>
-            {project ? <DisplayNode /> : <FileUploadArea />}
+            {project && (
+                <VariablesPanel
+                    project={project}
+                    currentNode={currentNode}
+                    onWidthChange={setVariablesPanelWidth}
+                />
+            )}
+            <div style={{
+                marginLeft: variablesPanelWidth,
+                transition: 'margin-left 0.3s ease',
+                minHeight: '100vh'
+            }}>
+                {project ? <DisplayNode /> : <FileUploadArea />}
+            </div>
         </div>
     )
 }
