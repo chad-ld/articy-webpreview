@@ -1,0 +1,6 @@
+SFTP_HOST=dev.chadbriggs.com
+SFTP_USER=chabri23_dev
+SFTP_PASS=E2Tta6@78lOH
+SFTP_PORT=22
+SFTP_REMOTE_DIR=/home/chabri23_dev/dev.chadbriggs.com/articy/articy_v1_dd
+WEB_URL_PATH=/articy/articy_v1_dd
