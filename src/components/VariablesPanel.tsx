@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Tooltip } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined } from "@ant-design/icons";
+import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, HistoryOutlined } from "@ant-design/icons";
 
 interface VariablesPanelProps {
     project: any;
     currentNode: any;
     onWidthChange: (width: number) => void;
+    showPrevious: boolean;
+    onTogglePrevious: () => void;
+    hasPreviousChoice: boolean;
 }
 
 function VariablesPanel(props: VariablesPanelProps) {
@@ -136,7 +139,7 @@ function VariablesPanel(props: VariablesPanelProps) {
 
     return (
         <>
-            {/* Toggle Button */}
+            {/* Toggle Buttons */}
             <Button
                 icon={isVisible ? <EyeInvisibleOutlined /> : <EyeOutlined />}
                 onClick={() => setIsVisible(!isVisible)}
@@ -151,6 +154,24 @@ function VariablesPanel(props: VariablesPanelProps) {
             >
                 {isVisible ? 'Hide' : 'Show'} Variables
             </Button>
+
+            {/* Show Previous Button */}
+            {props.hasPreviousChoice && (
+                <Button
+                    icon={<HistoryOutlined />}
+                    onClick={props.onTogglePrevious}
+                    style={{
+                        position: 'fixed',
+                        left: isVisible ? panelWidth + 10 : 10,
+                        top: 45,
+                        zIndex: 1001,
+                        transition: 'left 0.3s ease'
+                    }}
+                    size="small"
+                >
+                    {props.showPrevious ? 'Hide' : 'Show'} Previous
+                </Button>
+            )}
 
             {/* Variables Panel */}
             {isVisible && (

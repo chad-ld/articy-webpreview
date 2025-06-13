@@ -8,6 +8,103 @@ import VariablesPanel from "./components/VariablesPanel";
 import { Button, message } from "antd";
 import { InboxOutlined, CommentOutlined } from "@ant-design/icons";
 
+// Interface for tracking previous choices
+interface PreviousChoice {
+    node: any;
+    choiceText: string;
+    choiceTitle?: string;
+    color?: { r: number; g: number; b: number };
+    nodeList: any[];
+    variables: any;
+}
+
+// Component for displaying previous choice
+function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: { previousChoice: PreviousChoice, onBack: () => void, selected?: boolean }) {
+    // Convert Articy color (0.0-1.0) to CSS RGB (0-255) and create darker background
+    const getColors = () => {
+        if (previousChoice.color) {
+            const r = Math.round(previousChoice.color.r * 255);
+            const g = Math.round(previousChoice.color.g * 255);
+            const b = Math.round(previousChoice.color.b * 255);
+
+            // Frame/border color (original color but greyed out)
+            const frameColor = `rgba(${r}, ${g}, ${b}, 0.5)`;
+
+            // Background color (darker version - about 50% darker and greyed out)
+            const darkR = Math.round(r * 0.5);
+            const darkG = Math.round(g * 0.5);
+            const darkB = Math.round(b * 0.5);
+            const backgroundColor = `rgba(${darkR}, ${darkG}, ${darkB}, 0.5)`;
+
+            // Calculate relative luminance to determine text color
+            const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+            const headerTextColor = luminance > 0.5 ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
+
+            return { frameColor, backgroundColor, headerTextColor };
+        }
+        // Default colors (teal is light, so use black text)
+        return {
+            frameColor: 'rgba(147, 193, 204, 0.5)',
+            backgroundColor: 'rgba(73, 96, 102, 0.5)',
+            headerTextColor: 'rgba(0,0,0,0.6)'
+        };
+    };
+
+    const { frameColor, backgroundColor, headerTextColor } = getColors();
+
+    return (
+        <div style={{ marginBottom: '20px' }}>
+            <h3 style={{
+                color: '#999',
+                fontSize: '16px',
+                marginBottom: '10px',
+                fontWeight: 'normal'
+            }}>
+                Previous Choice
+            </h3>
+            <div className="node" style={{
+                opacity: 0.6,
+                filter: 'grayscale(30%)',
+                pointerEvents: 'none',
+                // Apply golden selection style to entire node container
+                boxShadow: selected ? '0 0 0 3px rgba(255, 193, 7, 0.6)' : 'none',
+                borderRadius: '4px'
+            }}>
+                {previousChoice.choiceTitle && (
+                    <div
+                        className="articy-node-header"
+                        style={{
+                            backgroundColor: frameColor,
+                            borderColor: frameColor,
+                            color: headerTextColor
+                        }}
+                    >
+                        {previousChoice.choiceTitle}
+                    </div>
+                )}
+                <div style={{
+                    border: `2px solid ${frameColor}`,
+                    backgroundColor: backgroundColor,
+                    color: 'rgba(255,255,255,0.6)',
+                    padding: '10px',
+                    borderRadius: '4px',
+                    fontSize: '14px',
+                    lineHeight: '1.4'
+                }}>
+                    {previousChoice.choiceText}
+                </div>
+            </div>
+            <Button
+                onClick={onBack}
+                style={{ marginTop: '10px' }}
+                size="small"
+            >
+                Back
+            </Button>
+        </div>
+    );
+}
+
 // Component for condition bubbles with notches
 function ConditionBubble({ condition, nodeRef, disabled }: { condition: string, nodeRef: React.RefObject<HTMLDivElement>, disabled: boolean }) {
     const [position, setPosition] = useState({ top: 0, left: -10 }); // Set to -10 for close positioning
@@ -103,6 +200,8 @@ function InteractiveArticyViewer(){
     const [isDragOver, setIsDragOver] = useState(false);
     const [variablesPanelWidth, setVariablesPanelWidth] = useState(0);
     const [selectedChoiceIndex, setSelectedChoiceIndex] = useState(0);
+    const [previousChoiceHistory, setPreviousChoiceHistory] = useState<PreviousChoice[]>([]);
+    const [showPrevious, setShowPrevious] = useState(true);
 
     var currentNode = nodeList.length>0?nodeList[nodeList.length-1]:undefined;
     var lastNode = nodeList.length>1?nodeList[nodeList.length-2]:undefined;
@@ -192,10 +291,25 @@ function InteractiveArticyViewer(){
 
     // Reset selected choice index when node changes
     useEffect(() => {
-        setSelectedChoiceIndex(0);
-    }, [currentNode]);
+        // Always start focus on first forward choice (skip previous choice if visible)
+        const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+        setSelectedChoiceIndex(hasPreviousChoice ? 1 : 0);
+    }, [currentNode, showPrevious, previousChoiceHistory.length]);
 
-    function setCurrentNode(node:any){
+    function setCurrentNode(node:any, choiceInfo?: { text: string, title?: string, color?: { r: number; g: number; b: number } }){
+        // Store previous choice if we have choice info and a current node
+        if (choiceInfo && currentNode) {
+            const previousChoice: PreviousChoice = {
+                node: currentNode,
+                choiceText: choiceInfo.text,
+                choiceTitle: choiceInfo.title,
+                color: choiceInfo.color,
+                nodeList: [...nodeList],
+                variables: project ? { ...project.variables } : {}
+            };
+            setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
+        }
+
         // console.log("setting current Node:",node);
         if (node.Type == "Instruction" || node.Type == "WaypointTemplate")
             project.StoreVariablesFromNode(node);
@@ -204,9 +318,53 @@ function InteractiveArticyViewer(){
 
     function restartFlow(){
         setNodeList([]);
+        setPreviousChoiceHistory([]);
         setTimeout(() => {
             setCurrentNode(project.GetStartNode());
         }, 0);
+    }
+
+    function goBack(){
+        if (previousChoiceHistory.length > 0) {
+            const lastChoice = previousChoiceHistory[previousChoiceHistory.length - 1];
+
+            // Restore variables state
+            if (project && lastChoice.variables) {
+                project.variables = { ...lastChoice.variables };
+            }
+
+            // Restore node list
+            setNodeList(lastChoice.nodeList);
+
+            // Remove the last choice from history
+            setPreviousChoiceHistory(previousChoiceHistory.slice(0, -1));
+        }
+    }
+
+    // Helper function to navigate with choice tracking
+    function navigateWithChoice(targetNode: any, choiceText: string, choiceTitle?: string, choiceColor?: { r: number; g: number; b: number }) {
+        const choiceInfo = {
+            text: choiceText,
+            title: choiceTitle,
+            color: choiceColor
+        };
+
+        // Special handling for dialogue fragments:
+        // If the target node is a DialogueFragment or DialogueInteractiveFragmentTemplate
+        // AND the current node is NOT a dialogue fragment, skip showing the chosen fragment
+        // and jump directly to its response
+        if ((targetNode.Type === "DialogueFragment" || targetNode.Type === "DialogueInteractiveFragmentTemplate") &&
+            currentNode &&
+            currentNode.Type !== "DialogueFragment" &&
+            currentNode.Type !== "DialogueInteractiveFragmentTemplate" &&
+            hasOutputConnections(targetNode)) {
+
+            // Skip the dialogue fragment and go directly to its target
+            const nextNode = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
+            setCurrentNode(nextNode, choiceInfo);
+        } else {
+            setCurrentNode(targetNode, choiceInfo);
+        }
     }
 
     function hasOutputConnections(node: any): boolean {
@@ -225,9 +383,21 @@ function InteractiveArticyViewer(){
     function getCurrentAvailableChoices(): any[] {
         if (!currentNode) return [];
 
+        let choices: any[] = [];
+
+        // Add previous choice as first option if available and visible
+        if (showPrevious && previousChoiceHistory.length > 0) {
+            choices.push({
+                isPreviousChoice: true,
+                onClick: goBack
+            });
+        }
+
         switch (currentNode.Type) {
             case "VirtualChoice":
-                return currentNode.Properties.Options.filter((option: any) => !option.hidden);
+                const virtualChoices = currentNode.Properties.Options.filter((option: any) => !option.hidden);
+                choices.push(...virtualChoices);
+                break;
 
             case "Instruction":
                 if (currentNode.Properties.OutputPins &&
@@ -250,9 +420,12 @@ function InteractiveArticyViewer(){
                             }
                         };
                     });
-                    return instructionHubOptions.filter((option: any) => !option.disabled);
+                    // Include all options (enabled and disabled) for navigation
+                    choices.push(...instructionHubOptions);
+                } else {
+                    choices.push({ isSingleChoice: true }); // Single choice indicator
                 }
-                return [{ isSingleChoice: true }]; // Single choice indicator
+                break;
 
             case "DialogueInteractiveFragmentTemplate":
                 if (currentNode.Properties.OutputPins &&
@@ -275,9 +448,12 @@ function InteractiveArticyViewer(){
                             }
                         };
                     });
-                    return hubOptions.filter((option: any) => !option.disabled);
+                    // Include all options (enabled and disabled) for navigation
+                    choices.push(...hubOptions);
+                } else {
+                    choices.push({ isSingleChoice: true });
                 }
-                return [{ isSingleChoice: true }];
+                break;
 
             case "DialogueIntActionTemplate":
             case "DialogueInternalActionTemplate":
@@ -301,17 +477,24 @@ function InteractiveArticyViewer(){
                             }
                         };
                     });
-                    return dialogueHubOptions.filter((option: any) => !option.disabled);
+                    // Include all options (enabled and disabled) for navigation
+                    choices.push(...dialogueHubOptions);
+                } else {
+                    choices.push({ isSingleChoice: true });
                 }
-                return [{ isSingleChoice: true }];
+                break;
 
             default:
                 // For other node types that have single "Next" buttons
                 if (hasOutputConnections(currentNode)) {
-                    return [{ isSingleChoice: true }];
+                    choices.push({ isSingleChoice: true });
+                } else {
+                    choices.push({ isEndOfFlow: true }); // End of flow
                 }
-                return [{ isEndOfFlow: true }]; // End of flow
+                break;
         }
+
+        return choices;
     }
 
     // Helper function to handle Enter key press
@@ -319,6 +502,11 @@ function InteractiveArticyViewer(){
         if (availableChoices.length === 0) return;
 
         const selectedChoice = availableChoices[selectedChoiceIndex];
+
+        if (selectedChoice.isPreviousChoice) {
+            goBack();
+            return;
+        }
 
         if (selectedChoice.isEndOfFlow) {
             restartFlow();
@@ -332,17 +520,29 @@ function InteractiveArticyViewer(){
                     currentNode.Properties.OutputPins[0] &&
                     currentNode.Properties.OutputPins[0].Connections &&
                     currentNode.Properties.OutputPins[0].Connections.length === 1) {
-                    setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                    const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                    navigateWithChoice(
+                        targetNode,
+                        currentNode.Properties.Expression,
+                        currentNode.Properties.DisplayName,
+                        currentNode.Properties.Color
+                    );
                 }
             } else {
                 // Handle other single-choice node types
                 if (hasOutputConnections(currentNode)) {
-                    setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                    const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                    navigateWithChoice(
+                        targetNode,
+                        currentNode.Properties.Text || currentNode.Properties.Expression,
+                        currentNode.Properties.DisplayName,
+                        currentNode.Properties.Color
+                    );
                 }
             }
         } else {
             // Handle multiple choice selection
-            if (selectedChoice.onClick) {
+            if (selectedChoice.onClick && !selectedChoice.disabled) {
                 selectedChoice.onClick();
             }
         }
@@ -417,25 +617,31 @@ function InteractiveArticyViewer(){
         }
     };
     
-    function DisplayNode(){
+    function DisplayNode({ isPreviousChoiceSelected = false }: { isPreviousChoiceSelected?: boolean } = {}){
         if (currentNode != undefined){
             console.log("DisplayNode - Current node type:", currentNode.Type);
             console.log("DisplayNode - Current node:", currentNode);
             switch (currentNode.Type){
                 case "VirtualChoice":
                     const visibleOptions = currentNode.Properties.Options.filter((option: any) => !option.hidden);
+                    // Calculate offset for previous choice (if visible, it takes index 0)
+                    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+                    const choiceOffset = hasPreviousChoice ? 1 : 0;
+
                     return (
                         <div>
                             {currentNode.Properties.Options.map((option: any, index: number) => {
                                 if (option.hidden) return null;
                                 const visibleIndex = visibleOptions.indexOf(option);
+                                // Only select if previous choice is NOT selected
+                                const isSelected = !isPreviousChoiceSelected && (visibleIndex + choiceOffset === selectedChoiceIndex);
                                 return (
                                     <div key={index} style={{ marginBottom: '20px' }}>
                                         <InstructionPanel
                                             title={option.nodeData.Properties.DisplayName}
                                             text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
                                             color={option.nodeData.Properties.Color}
-                                            selected={visibleIndex === selectedChoiceIndex}
+                                            selected={isSelected}
                                             button={{
                                                 hidden: false,
                                                 text: "Next",
@@ -463,7 +669,12 @@ function InteractiveArticyViewer(){
                                 conditionText: conditionText, // Store condition text for display
                                 onClick:()=>{
                                     if (conditionMet) {
-                                        setCurrentNode(targetNode);
+                                        navigateWithChoice(
+                                            targetNode,
+                                            targetNode.Properties.Text || targetNode.Properties.Expression,
+                                            targetNode.Properties.DisplayName,
+                                            targetNode.Properties.Color
+                                        );
                                     }
                                 }
                             };
@@ -490,15 +701,21 @@ function InteractiveArticyViewer(){
 
                                 {/* Choice nodes */}
                                 {instructionHubOptions.map((option: any, index: number) => {
-                                    const enabledOptions = instructionHubOptions.filter((opt: any) => !opt.disabled);
-                                    const enabledIndex = enabledOptions.indexOf(option);
+                                    // Calculate offset for previous choice (if visible, it takes index 0)
+                                    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+                                    const choiceOffset = hasPreviousChoice ? 1 : 0;
+                                    // Selection index is based on position in all options (including disabled)
+                                    const forwardChoiceIndex = index + choiceOffset;
+                                    // Only select if previous choice is NOT selected
+                                    const isSelected = !isPreviousChoiceSelected && (forwardChoiceIndex === selectedChoiceIndex);
+
                                     return (
                                         <div key={index} ref={nodeRefs.current[index]} style={{ marginBottom: '20px' }}>
                                             <InstructionPanel
                                                 title={option.nodeData.Properties.DisplayName}
                                                 text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
                                                 color={option.nodeData.Properties.Color}
-                                                selected={!option.disabled && enabledIndex === selectedChoiceIndex}
+                                                selected={isSelected}
                                                 button={{
                                                     hidden: false,
                                                     disabled: option.disabled,
@@ -515,7 +732,7 @@ function InteractiveArticyViewer(){
                         // Regular single-path Instruction
                         // Check if this node has no output connections - show end of flow
                         if (!hasOutputConnections(currentNode)) {
-                            return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
+                            return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
                         }
 
                         return (
@@ -523,12 +740,18 @@ function InteractiveArticyViewer(){
                                 title={currentNode.Properties.DisplayName}
                                 text={currentNode.Properties.Expression}
                                 color={currentNode.Properties.Color}
-                                selected={true}
+                                selected={!isPreviousChoiceSelected}
                                 button={{
                                     hidden:false,
                                     text:"Next",
                                     onClick:()=>{
-                                        setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                        const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                                        navigateWithChoice(
+                                            targetNode,
+                                            currentNode.Properties.Expression,
+                                            currentNode.Properties.DisplayName,
+                                            currentNode.Properties.Color
+                                        );
                                     }
                                 }}
                             />
@@ -543,7 +766,7 @@ function InteractiveArticyViewer(){
                 case "AreaEventTemplate":
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
                     }
 
                     return (
@@ -551,12 +774,18 @@ function InteractiveArticyViewer(){
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Expression}
                             color={currentNode.Properties.Color}
-                            selected={true}
+                            selected={!isPreviousChoiceSelected}
                             button={{
                                 hidden:false,
                                 text:"Next",
                                 onClick:()=>{
-                                    setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                    const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                                    navigateWithChoice(
+                                        targetNode,
+                                        currentNode.Properties.Expression,
+                                        currentNode.Properties.DisplayName,
+                                        currentNode.Properties.Color
+                                    );
                                 }
                             }}
                         />
@@ -570,7 +799,7 @@ function InteractiveArticyViewer(){
                 case "DialogueExplorationActionTemplate":
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
                     }
 
                     return (
@@ -578,7 +807,7 @@ function InteractiveArticyViewer(){
                             title={currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
                             color={currentNode.Properties.Color}
-                            selected={true}
+                            selected={!isPreviousChoiceSelected}
                             button={{
                                 hidden: false,
                                 text:"Next",
@@ -593,7 +822,12 @@ function InteractiveArticyViewer(){
                                                 hidden: conditionText===""?false:!project.CheckConditionString(conditionText),
                                                 nodeData: targetNode,
                                                 onClick:()=>{
-                                                    setCurrentNode(targetNode);
+                                                    navigateWithChoice(
+                                                        targetNode,
+                                                        targetNode.Properties.Text || targetNode.Properties.Expression,
+                                                        targetNode.Properties.DisplayName,
+                                                        targetNode.Properties.Color
+                                                    );
                                                 }
                                             };
                                         });
@@ -607,7 +841,13 @@ function InteractiveArticyViewer(){
                                         });
                                     } else {
                                         // Single connection - navigate normally
-                                        setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                        const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                                        navigateWithChoice(
+                                            targetNode,
+                                            currentNode.Properties.Text || currentNode.Properties.Expression,
+                                            currentNode.Properties.DisplayName,
+                                            currentNode.Properties.Color
+                                        );
                                     }
                                 }
                             }}
@@ -617,7 +857,7 @@ function InteractiveArticyViewer(){
                 case "DialogueInteractiveFragmentTemplate":
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
                     }
 
                     // Get speaker name with dialogue icon if available
@@ -638,16 +878,34 @@ function InteractiveArticyViewer(){
 
                     const speakerName = getSpeakerName(currentNode);
 
+                    // Get speaker name as string for choice title (without JSX)
+                    const getSpeakerNameString = (node: any) => {
+                        if (node.Properties.Speaker) {
+                            const speakerNode = project.GetNodeByID(node.Properties.Speaker);
+                            if (speakerNode) {
+                                return speakerNode.Properties.DisplayName;
+                            }
+                        }
+                        return node.Properties.DisplayName;
+                    };
+
                     return (
                         <InstructionPanel
                             title={speakerName || currentNode.Properties.DisplayName}
                             text={currentNode.Properties.Text}
                             color={currentNode.Properties.Color}
+                            selected={!isPreviousChoiceSelected}
                             button={{
                                 hidden: false,
                                 text:"Next",
                                 onClick:()=>{
-                                    setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                    const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                                    navigateWithChoice(
+                                        targetNode,
+                                        currentNode.Properties.Text,
+                                        getSpeakerNameString(currentNode), // Use speaker name as title
+                                        currentNode.Properties.Color
+                                    );
                                 }
                             }}
                         />
@@ -667,7 +925,12 @@ function InteractiveArticyViewer(){
                                 if (conditionMet) {
                                     // Navigate to the actual target node (skip intermediate nodes)
                                     const finalTarget = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
-                                    setCurrentNode(finalTarget);
+                                    navigateWithChoice(
+                                        finalTarget,
+                                        targetNode.Properties.Text || targetNode.Properties.Expression,
+                                        targetNode.Properties.DisplayName,
+                                        targetNode.Properties.Color
+                                    );
                                 }
                             }
                         };
@@ -694,15 +957,21 @@ function InteractiveArticyViewer(){
 
                             {/* Choice nodes */}
                             {hubOptions.map((option: any, index: number) => {
-                                const enabledOptions = hubOptions.filter((opt: any) => !opt.disabled);
-                                const enabledIndex = enabledOptions.indexOf(option);
+                                // Calculate offset for previous choice (if visible, it takes index 0)
+                                const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+                                const choiceOffset = hasPreviousChoice ? 1 : 0;
+                                // Selection index is based on position in all options (including disabled)
+                                const forwardChoiceIndex = index + choiceOffset;
+                                // Only select if previous choice is NOT selected
+                                const isSelected = !isPreviousChoiceSelected && (forwardChoiceIndex === selectedChoiceIndex);
+
                                 return (
                                     <div key={index} ref={hubNodeRefs.current[index]} style={{ marginBottom: '20px' }}>
                                         <InstructionPanel
                                             title={option.nodeData.Properties.DisplayName}
                                             text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
                                             color={option.nodeData.Properties.Color}
-                                            selected={!option.disabled && enabledIndex === selectedChoiceIndex}
+                                            selected={isSelected}
                                             button={{
                                                 hidden: false,
                                                 disabled: option.disabled,
@@ -733,7 +1002,7 @@ function InteractiveArticyViewer(){
                     // Check if this node has no output connections - show end of flow
                     if (!hasOutputConnections(currentNode)) {
                         console.log("No output connections - showing end of flow");
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
                     }
 
                     // Check if this node has multiple output connections (acts like a Hub)
@@ -761,13 +1030,39 @@ function InteractiveArticyViewer(){
                             const targetNode = project.GetNodeByID(conn.Target);
                             const conditionText = getConditionText(conn);
                             const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+
+                            console.log("DialogueIntActionTemplate choice:", {
+                                targetNodeId: conn.Target,
+                                targetNodeType: targetNode.Type,
+                                targetNodeText: targetNode.Properties.Text,
+                                conditionText: conditionText,
+                                conditionMet: conditionMet,
+                                disabled: !conditionMet
+                            });
+
                             return {
                                 disabled: !conditionMet,
                                 nodeData: targetNode,
                                 conditionText: conditionText,
                                 onClick:()=>{
                                     if (conditionMet) {
-                                        setCurrentNode(targetNode);
+                                        // Get speaker name as string for choice title
+                                        const getSpeakerNameString = (node: any) => {
+                                            if (node.Properties.Speaker) {
+                                                const speakerNode = project.GetNodeByID(node.Properties.Speaker);
+                                                if (speakerNode) {
+                                                    return speakerNode.Properties.DisplayName;
+                                                }
+                                            }
+                                            return node.Properties.DisplayName;
+                                        };
+
+                                        navigateWithChoice(
+                                            targetNode,
+                                            targetNode.Properties.Text || targetNode.Properties.Expression,
+                                            getSpeakerNameString(targetNode), // Use speaker name as title
+                                            targetNode.Properties.Color
+                                        );
                                     }
                                 }
                             };
@@ -794,16 +1089,22 @@ function InteractiveArticyViewer(){
 
                                 {/* Choice nodes */}
                                 {dialogueHubOptions.map((option: any, index: number) => {
-                                    const enabledOptions = dialogueHubOptions.filter((opt: any) => !opt.disabled);
-                                    const enabledIndex = enabledOptions.indexOf(option);
                                     const speakerName = getSpeakerName(option.nodeData);
+                                    // Calculate offset for previous choice (if visible, it takes index 0)
+                                    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+                                    const choiceOffset = hasPreviousChoice ? 1 : 0;
+                                    // Selection index is based on position in all options (including disabled)
+                                    const forwardChoiceIndex = index + choiceOffset;
+                                    // Only select if previous choice is NOT selected
+                                    const isSelected = !isPreviousChoiceSelected && (forwardChoiceIndex === selectedChoiceIndex);
+
                                     return (
                                         <div key={index} ref={nodeRefs.current[index]} style={{ marginBottom: '20px' }}>
                                             <InstructionPanel
                                                 title={speakerName || option.nodeData.Properties.DisplayName}
                                                 text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
                                                 color={option.nodeData.Properties.Color}
-                                                selected={!option.disabled && enabledIndex === selectedChoiceIndex}
+                                                selected={isSelected}
                                                 button={{
                                                     hidden: false,
                                                     disabled: option.disabled,
@@ -841,13 +1142,31 @@ function InteractiveArticyViewer(){
                                 title={speakerName || currentNode.Properties.DisplayName}
                                 text={currentNode.Properties.Text}
                                 color={currentNode.Properties.Color}
-                                selected={true}
+                                selected={!isPreviousChoiceSelected}
                                 button={{
                                     hidden:false,
                                     text:"Next",
                                     onClick:()=>{
                                         console.log("Next button clicked, navigating to:", currentNode.Properties.OutputPins[0].Connections[0].Target);
-                                        setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
+                                        const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+
+                                        // Get speaker name as string for choice title
+                                        const getSpeakerNameString = (node: any) => {
+                                            if (node.Properties.Speaker) {
+                                                const speakerNode = project.GetNodeByID(node.Properties.Speaker);
+                                                if (speakerNode) {
+                                                    return speakerNode.Properties.DisplayName;
+                                                }
+                                            }
+                                            return node.Properties.DisplayName;
+                                        };
+
+                                        navigateWithChoice(
+                                            targetNode,
+                                            currentNode.Properties.Text,
+                                            getSpeakerNameString(currentNode), // Use speaker name as title
+                                            currentNode.Properties.Color
+                                        );
                                     }
                                 }}
                             />
@@ -874,7 +1193,7 @@ function InteractiveArticyViewer(){
                     }
                     else{
                         // No child found - show end of flow
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={true} />;
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
                     }
                 case "Condition":
                     let conditions = project.GetVariablesFromNode(currentNode);
@@ -897,6 +1216,49 @@ function InteractiveArticyViewer(){
                     return (
                         <>Please wait...</>
                     )
+                case "DialogueNode":
+                    // DialogueNode with NavigationTemplate - handle like other choice nodes
+                    const availableChoices = getAvailableChoices();
+                    console.log("DialogueNode choices:", availableChoices);
+
+                    // Filter out special choices (previous, single, end of flow)
+                    const dialogueChoices = availableChoices.filter(choice =>
+                        !choice.isPreviousChoice && !choice.isSingleChoice && !choice.isEndOfFlow
+                    );
+
+                    if (dialogueChoices.length === 0) {
+                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
+                    }
+
+                    return (
+                        <div>
+                            {dialogueChoices.map((choice: any, index: number) => {
+                                // Calculate offset for previous choice (if visible, it takes index 0)
+                                const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+                                const choiceOffset = hasPreviousChoice ? 1 : 0;
+                                const forwardChoiceIndex = index + choiceOffset;
+                                // Only select if previous choice is NOT selected
+                                const isSelected = !isPreviousChoiceSelected && (forwardChoiceIndex === selectedChoiceIndex);
+
+                                return (
+                                    <div key={index} style={{ marginBottom: '20px' }}>
+                                        <InstructionPanel
+                                            title={choice.nodeData.Properties.DisplayName}
+                                            text={choice.nodeData.Properties.Text || choice.nodeData.Properties.Expression}
+                                            color={choice.nodeData.Properties.Color}
+                                            selected={isSelected}
+                                            button={{
+                                                hidden: false,
+                                                disabled: choice.disabled,
+                                                text: "Next",
+                                                onClick: choice.onClick
+                                            }}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    );
                 default:
                     console.error("Cannot render node",currentNode);
                     return (
@@ -968,6 +1330,9 @@ function InteractiveArticyViewer(){
                     project={project}
                     currentNode={currentNode}
                     onWidthChange={setVariablesPanelWidth}
+                    showPrevious={showPrevious}
+                    onTogglePrevious={() => setShowPrevious(!showPrevious)}
+                    hasPreviousChoice={previousChoiceHistory.length > 0}
                 />
             )}
             <div style={{
@@ -991,7 +1356,37 @@ function InteractiveArticyViewer(){
                         ↑↓ Navigate • Enter Select • Ctrl+R Restart
                     </div>
                 )}
-                {project ? <DisplayNode /> : <FileUploadArea />}
+                {project ? (
+                    <div>
+                        {/* Previous Choice Display */}
+                        {showPrevious && previousChoiceHistory.length > 0 && (
+                            <>
+                                <PreviousChoiceDisplay
+                                    previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
+                                    onBack={goBack}
+                                    selected={selectedChoiceIndex === 0} // First choice is previous choice
+                                />
+                                {/* Divider Line */}
+                                <div style={{
+                                    width: '100%',
+                                    height: '1px',
+                                    backgroundColor: '#666',
+                                    margin: '20px 0',
+                                    opacity: 0.5
+                                }} />
+                                <h3 style={{
+                                    color: '#999',
+                                    fontSize: '16px',
+                                    marginBottom: '20px',
+                                    fontWeight: 'normal'
+                                }}>
+                                    Available Choices
+                                </h3>
+                            </>
+                        )}
+                        <DisplayNode isPreviousChoiceSelected={showPrevious && previousChoiceHistory.length > 0 && selectedChoiceIndex === 0} />
+                    </div>
+                ) : <FileUploadArea />}
             </div>
         </div>
     )
