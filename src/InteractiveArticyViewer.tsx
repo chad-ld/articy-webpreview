@@ -822,6 +822,7 @@ function InteractiveArticyViewer(){
                                                 hidden: conditionText===""?false:!project.CheckConditionString(conditionText),
                                                 nodeData: targetNode,
                                                 onClick:()=>{
+                                                    // Store the choice that was made (the target node info) and navigate to it
                                                     navigateWithChoice(
                                                         targetNode,
                                                         targetNode.Properties.Text || targetNode.Properties.Expression,
@@ -832,13 +833,18 @@ function InteractiveArticyViewer(){
                                             };
                                         });
 
-                                        // Set a virtual choice node
+                                        // Set a virtual choice node with choice info to store current node in history
+                                        const choiceInfo = {
+                                            text: currentNode.Properties.Text || currentNode.Properties.Expression,
+                                            title: currentNode.Properties.DisplayName,
+                                            color: currentNode.Properties.Color
+                                        };
                                         setCurrentNode({
                                             Type: "VirtualChoice",
                                             Properties: {
                                                 Options: choiceOptions
                                             }
-                                        });
+                                        }, choiceInfo);
                                     } else {
                                         // Single connection - navigate normally
                                         const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
@@ -925,6 +931,7 @@ function InteractiveArticyViewer(){
                                 if (conditionMet) {
                                     // Navigate to the actual target node (skip intermediate nodes)
                                     const finalTarget = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
+                                    // Store the choice that was actually displayed to the user (the targetNode info)
                                     navigateWithChoice(
                                         finalTarget,
                                         targetNode.Properties.Text || targetNode.Properties.Expression,
