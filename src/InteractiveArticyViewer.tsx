@@ -363,12 +363,15 @@ function InteractiveArticyViewer(){
     }
 
     // Helper function to navigate with choice tracking
-    function navigateWithChoice(targetNode: any, choiceText: string, choiceTitle?: string, choiceColor?: { r: number; g: number; b: number }) {
+    function navigateWithChoice(targetNode: any, choiceText: string, choiceTitle?: string, choiceColor?: { r: number; g: number; b: number }, sourceNode?: any) {
         const choiceInfo = {
             text: choiceText,
             title: choiceTitle,
             color: choiceColor
         };
+
+        // Use the provided sourceNode or fall back to currentNode
+        const actualSourceNode = sourceNode || currentNode;
 
         // Special handling for dialogue fragments and action templates:
         // Only skip if ALL of these conditions are met:
@@ -376,10 +379,10 @@ function InteractiveArticyViewer(){
         // 2. Choice was made from a multi-choice screen (VirtualChoice, DialogueIntActionTemplate, etc.)
         // 3. Target has exactly one output connection
         // 4. The target's text matches the choice text (indicating it's the same content)
-        const isFromMultiChoiceScreen = currentNode && (
-            currentNode.Type === "VirtualChoice" ||
-            (currentNode.Type === "DialogueIntActionTemplate" && currentNode.Properties.OutputPins?.[0]?.Connections?.length > 1) ||
-            (currentNode.Type === "DialogueInternalActionTemplate" && currentNode.Properties.OutputPins?.[0]?.Connections?.length > 1)
+        const isFromMultiChoiceScreen = actualSourceNode && (
+            (actualSourceNode.Type === "VirtualChoice" && actualSourceNode.Properties.Options && actualSourceNode.Properties.Options.filter((opt: any) => !opt.hidden).length > 1) ||
+            (actualSourceNode.Type === "DialogueIntActionTemplate" && actualSourceNode.Properties.OutputPins?.[0]?.Connections?.length > 1) ||
+            (actualSourceNode.Type === "DialogueInternalActionTemplate" && actualSourceNode.Properties.OutputPins?.[0]?.Connections?.length > 1)
         );
 
         if ((targetNode.Type === "DialogueFragment" ||
@@ -402,7 +405,7 @@ function InteractiveArticyViewer(){
                                targetNode.Type === "DialogueIntActionTemplate" ||
                                targetNode.Type === "DialogueInternalActionTemplate",
                 isFromMultiChoiceScreen: isFromMultiChoiceScreen,
-                currentNodeType: currentNode?.Type,
+                currentNodeType: actualSourceNode?.Type,
                 hasOutputConnections: hasOutputConnections(targetNode),
                 outputConnectionsCount: targetNode.Properties.OutputPins?.[0]?.Connections?.length || 0,
                 textMatches: targetNode.Properties.Text === choiceText || targetNode.Properties.Expression === choiceText,
@@ -907,11 +910,19 @@ function InteractiveArticyViewer(){
                                                 nodeData: targetNode,
                                                 onClick:()=>{
                                                     // Store the choice that was made (the target node info) and navigate to it
+                                                    // Pass the VirtualChoice node as the source
+                                                    const virtualChoiceNode = {
+                                                        Type: "VirtualChoice",
+                                                        Properties: {
+                                                            Options: choiceOptions
+                                                        }
+                                                    };
                                                     navigateWithChoice(
                                                         targetNode,
                                                         targetNode.Properties.Text || targetNode.Properties.Expression,
                                                         targetNode.Properties.DisplayName,
-                                                        targetNode.Properties.Color
+                                                        targetNode.Properties.Color,
+                                                        virtualChoiceNode
                                                     );
                                                 }
                                             };
@@ -1019,11 +1030,19 @@ function InteractiveArticyViewer(){
                                                 conditionText: conditionText,
                                                 onClick:()=>{
                                                     if (conditionMet) {
+                                                        // Pass the VirtualChoice node as the source
+                                                        const virtualChoiceNode = {
+                                                            Type: "VirtualChoice",
+                                                            Properties: {
+                                                                Options: dialogueFragmentOptions
+                                                            }
+                                                        };
                                                         navigateWithChoice(
                                                             targetNode,
                                                             targetNode.Properties.Text || targetNode.Properties.Expression,
                                                             getSpeakerNameString(targetNode), // Use target node's speaker name as title
-                                                            targetNode.Properties.Color
+                                                            targetNode.Properties.Color,
+                                                            virtualChoiceNode
                                                         );
                                                     }
                                                 }
