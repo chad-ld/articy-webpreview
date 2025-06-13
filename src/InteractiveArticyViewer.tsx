@@ -341,6 +341,27 @@ function InteractiveArticyViewer(){
         }
     }
 
+    // Helper function to check if current node has multiple choices
+    function currentNodeHasMultipleChoices(): boolean {
+        if (!currentNode || !currentNode.Properties.OutputPins || !currentNode.Properties.OutputPins[0]) {
+            return false;
+        }
+
+        const connections = currentNode.Properties.OutputPins[0].Connections;
+        if (!connections) return false;
+
+        // Check for multiple connections
+        if (connections.length > 1) return true;
+
+        // For VirtualChoice nodes, check if they have multiple visible options
+        if (currentNode.Type === "VirtualChoice" && currentNode.Properties.Options) {
+            const visibleOptions = currentNode.Properties.Options.filter((option: any) => !option.hidden);
+            return visibleOptions.length > 1;
+        }
+
+        return false;
+    }
+
     // Helper function to navigate with choice tracking
     function navigateWithChoice(targetNode: any, choiceText: string, choiceTitle?: string, choiceColor?: { r: number; g: number; b: number }) {
         const choiceInfo = {
@@ -349,20 +370,45 @@ function InteractiveArticyViewer(){
             color: choiceColor
         };
 
-        // Special handling for dialogue fragments:
-        // If the target node is a DialogueFragment or DialogueInteractiveFragmentTemplate
-        // AND the current node is NOT a dialogue fragment, skip showing the chosen fragment
-        // and jump directly to its response
-        if ((targetNode.Type === "DialogueFragment" || targetNode.Type === "DialogueInteractiveFragmentTemplate") &&
-            currentNode &&
-            currentNode.Type !== "DialogueFragment" &&
-            currentNode.Type !== "DialogueInteractiveFragmentTemplate" &&
-            hasOutputConnections(targetNode)) {
+        // Special handling for dialogue fragments and action templates:
+        // Only skip if ALL of these conditions are met:
+        // 1. Target is a dialogue fragment or action template
+        // 2. Choice was made from a multi-choice screen (VirtualChoice, DialogueIntActionTemplate, etc.)
+        // 3. Target has exactly one output connection
+        // 4. The target's text matches the choice text (indicating it's the same content)
+        const isFromMultiChoiceScreen = currentNode && (
+            currentNode.Type === "VirtualChoice" ||
+            (currentNode.Type === "DialogueIntActionTemplate" && currentNode.Properties.OutputPins?.[0]?.Connections?.length > 1) ||
+            (currentNode.Type === "DialogueInternalActionTemplate" && currentNode.Properties.OutputPins?.[0]?.Connections?.length > 1)
+        );
 
-            // Skip the dialogue fragment and go directly to its target
+        if ((targetNode.Type === "DialogueFragment" ||
+             targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
+             targetNode.Type === "DialogueIntActionTemplate" ||
+             targetNode.Type === "DialogueInternalActionTemplate") &&
+            isFromMultiChoiceScreen &&
+            hasOutputConnections(targetNode) &&
+            targetNode.Properties.OutputPins[0].Connections.length === 1 &&
+            (targetNode.Properties.Text === choiceText || targetNode.Properties.Expression === choiceText)) { // Text must match
+
+            console.log("Skipping dialogue node because it's a duplicate of the choice just made from multi-choice screen");
+            // Skip the dialogue node and go directly to its target
             const nextNode = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
             setCurrentNode(nextNode, choiceInfo);
         } else {
+            console.log("Showing dialogue node - not skipping because:", {
+                isDialogueNode: targetNode.Type === "DialogueFragment" ||
+                               targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                               targetNode.Type === "DialogueIntActionTemplate" ||
+                               targetNode.Type === "DialogueInternalActionTemplate",
+                isFromMultiChoiceScreen: isFromMultiChoiceScreen,
+                currentNodeType: currentNode?.Type,
+                hasOutputConnections: hasOutputConnections(targetNode),
+                outputConnectionsCount: targetNode.Properties.OutputPins?.[0]?.Connections?.length || 0,
+                textMatches: targetNode.Properties.Text === choiceText || targetNode.Properties.Expression === choiceText,
+                targetText: targetNode.Properties.Text || targetNode.Properties.Expression,
+                choiceText: choiceText
+            });
             setCurrentNode(targetNode, choiceInfo);
         }
     }
@@ -430,7 +476,8 @@ function InteractiveArticyViewer(){
             case "DialogueInteractiveFragmentTemplate":
                 if (currentNode.Properties.OutputPins &&
                     currentNode.Properties.OutputPins[0] &&
-                    currentNode.Properties.OutputPins[0].Connections) {
+                    currentNode.Properties.OutputPins[0].Connections &&
+                    currentNode.Properties.OutputPins[0].Connections.length > 1) {
 
                     const hubOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
                         const targetNode = project.GetNodeByID(conn.Target);
@@ -442,8 +489,12 @@ function InteractiveArticyViewer(){
                             conditionText: conditionText,
                             onClick:()=>{
                                 if (conditionMet) {
-                                    const finalTarget = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
-                                    setCurrentNode(finalTarget);
+                                    navigateWithChoice(
+                                        targetNode,
+                                        targetNode.Properties.Text || targetNode.Properties.Expression,
+                                        targetNode.Properties.DisplayName,
+                                        targetNode.Properties.Color
+                                    );
                                 }
                             }
                         };
@@ -479,6 +530,39 @@ function InteractiveArticyViewer(){
                     });
                     // Include all options (enabled and disabled) for navigation
                     choices.push(...dialogueHubOptions);
+                } else {
+                    choices.push({ isSingleChoice: true });
+                }
+                break;
+
+            case "DialogueNode":
+                if (currentNode.Properties.OutputPins &&
+                    currentNode.Properties.OutputPins[0] &&
+                    currentNode.Properties.OutputPins[0].Connections &&
+                    currentNode.Properties.OutputPins[0].Connections.length > 1) {
+
+                    const dialogueNodeOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                        const targetNode = project.GetNodeByID(conn.Target);
+                        const conditionText = getConditionText(conn);
+                        const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+                        return {
+                            disabled: !conditionMet,
+                            nodeData: targetNode,
+                            conditionText: conditionText,
+                            onClick:()=>{
+                                if (conditionMet) {
+                                    navigateWithChoice(
+                                        targetNode,
+                                        targetNode.Properties.Text || targetNode.Properties.Expression,
+                                        targetNode.Properties.DisplayName,
+                                        targetNode.Properties.Color
+                                    );
+                                }
+                            }
+                        };
+                    });
+                    // Include all options (enabled and disabled) for navigation
+                    choices.push(...dialogueNodeOptions);
                 } else {
                     choices.push({ isSingleChoice: true });
                 }
@@ -895,27 +979,99 @@ function InteractiveArticyViewer(){
                         return node.Properties.DisplayName;
                     };
 
-                    return (
-                        <InstructionPanel
-                            title={speakerName || currentNode.Properties.DisplayName}
-                            text={currentNode.Properties.Text}
-                            color={currentNode.Properties.Color}
-                            selected={!isPreviousChoiceSelected}
-                            button={{
-                                hidden: false,
-                                text:"Next",
-                                onClick:()=>{
-                                    const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
-                                    navigateWithChoice(
-                                        targetNode,
-                                        currentNode.Properties.Text,
-                                        getSpeakerNameString(currentNode), // Use speaker name as title
-                                        currentNode.Properties.Color
-                                    );
-                                }
-                            }}
-                        />
-                    )
+                    // Check if this node has multiple output connections
+                    if (currentNode.Properties.OutputPins &&
+                        currentNode.Properties.OutputPins[0] &&
+                        currentNode.Properties.OutputPins[0].Connections &&
+                        currentNode.Properties.OutputPins[0].Connections.length > 1) {
+
+                        console.log("DialogueInteractiveFragmentTemplate with multiple outputs detected! Connections:", currentNode.Properties.OutputPins[0].Connections);
+
+                        // First show the dialogue text, then when clicked, show the choices
+                        return (
+                            <InstructionPanel
+                                title={speakerName || currentNode.Properties.DisplayName}
+                                text={currentNode.Properties.Text}
+                                color={currentNode.Properties.Color}
+                                selected={!isPreviousChoiceSelected}
+                                button={{
+                                    hidden: false,
+                                    text:"Next",
+                                    onClick:()=>{
+                                        // Create a virtual choice node to show the response options
+                                        const dialogueFragmentOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                                            const targetNode = project.GetNodeByID(conn.Target);
+                                            const conditionText = getConditionText(conn);
+                                            const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+
+                                            console.log("DialogueInteractiveFragmentTemplate choice:", {
+                                                targetNodeId: conn.Target,
+                                                targetNodeType: targetNode.Type,
+                                                targetNodeText: targetNode.Properties.Text,
+                                                conditionText: conditionText,
+                                                conditionMet: conditionMet,
+                                                disabled: !conditionMet
+                                            });
+
+                                            return {
+                                                disabled: !conditionMet,
+                                                nodeData: targetNode,
+                                                conditionText: conditionText,
+                                                onClick:()=>{
+                                                    if (conditionMet) {
+                                                        navigateWithChoice(
+                                                            targetNode,
+                                                            targetNode.Properties.Text || targetNode.Properties.Expression,
+                                                            getSpeakerNameString(targetNode), // Use target node's speaker name as title
+                                                            targetNode.Properties.Color
+                                                        );
+                                                    }
+                                                }
+                                            };
+                                        });
+
+                                        // Store the current dialogue as choice info for history
+                                        const choiceInfo = {
+                                            text: currentNode.Properties.Text,
+                                            title: getSpeakerNameString(currentNode),
+                                            color: currentNode.Properties.Color
+                                        };
+
+                                        // Set a virtual choice node to show the response options
+                                        setCurrentNode({
+                                            Type: "VirtualChoice",
+                                            Properties: {
+                                                Options: dialogueFragmentOptions
+                                            }
+                                        }, choiceInfo);
+                                    }
+                                }}
+                            />
+                        );
+                    } else {
+                        // Single connection - show as single dialogue fragment
+                        return (
+                            <InstructionPanel
+                                title={speakerName || currentNode.Properties.DisplayName}
+                                text={currentNode.Properties.Text}
+                                color={currentNode.Properties.Color}
+                                selected={!isPreviousChoiceSelected}
+                                button={{
+                                    hidden: false,
+                                    text:"Next",
+                                    onClick:()=>{
+                                        const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                                        navigateWithChoice(
+                                            targetNode,
+                                            currentNode.Properties.Text,
+                                            getSpeakerNameString(currentNode), // Use speaker name as title
+                                            currentNode.Properties.Color
+                                        );
+                                    }
+                                }}
+                            />
+                        );
+                    }
                 case "Hub":
                     console.log("Hub case triggered! Current node:", currentNode);
 
@@ -929,11 +1085,9 @@ function InteractiveArticyViewer(){
                             conditionText: conditionText, // Store condition text for display
                             onClick:()=>{
                                 if (conditionMet) {
-                                    // Navigate to the actual target node (skip intermediate nodes)
-                                    const finalTarget = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
-                                    // Store the choice that was actually displayed to the user (the targetNode info)
+                                    // Navigate to the target node - let navigateWithChoice handle any skipping logic
                                     navigateWithChoice(
-                                        finalTarget,
+                                        targetNode,
                                         targetNode.Properties.Text || targetNode.Properties.Expression,
                                         targetNode.Properties.DisplayName,
                                         targetNode.Properties.Color
@@ -1225,47 +1379,110 @@ function InteractiveArticyViewer(){
                     )
                 case "DialogueNode":
                     // DialogueNode with NavigationTemplate - handle like other choice nodes
-                    const availableChoices = getAvailableChoices();
-                    console.log("DialogueNode choices:", availableChoices);
+                    console.log("DialogueNode triggered! Current node:", currentNode);
 
-                    // Filter out special choices (previous, single, end of flow)
-                    const dialogueChoices = availableChoices.filter(choice =>
-                        !choice.isPreviousChoice && !choice.isSingleChoice && !choice.isEndOfFlow
-                    );
-
-                    if (dialogueChoices.length === 0) {
+                    // Check if this node has no output connections - show end of flow
+                    if (!hasOutputConnections(currentNode)) {
                         return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
                     }
 
-                    return (
-                        <div>
-                            {dialogueChoices.map((choice: any, index: number) => {
-                                // Calculate offset for previous choice (if visible, it takes index 0)
-                                const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
-                                const choiceOffset = hasPreviousChoice ? 1 : 0;
-                                const forwardChoiceIndex = index + choiceOffset;
-                                // Only select if previous choice is NOT selected
-                                const isSelected = !isPreviousChoiceSelected && (forwardChoiceIndex === selectedChoiceIndex);
+                    // Check if this node has multiple output connections
+                    if (currentNode.Properties.OutputPins &&
+                        currentNode.Properties.OutputPins[0] &&
+                        currentNode.Properties.OutputPins[0].Connections &&
+                        currentNode.Properties.OutputPins[0].Connections.length > 1) {
 
-                                return (
-                                    <div key={index} style={{ marginBottom: '20px' }}>
-                                        <InstructionPanel
-                                            title={choice.nodeData.Properties.DisplayName}
-                                            text={choice.nodeData.Properties.Text || choice.nodeData.Properties.Expression}
-                                            color={choice.nodeData.Properties.Color}
-                                            selected={isSelected}
-                                            button={{
-                                                hidden: false,
-                                                disabled: choice.disabled,
-                                                text: "Next",
-                                                onClick: choice.onClick
-                                            }}
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    );
+                        console.log("DialogueNode with multiple outputs detected! Connections:", currentNode.Properties.OutputPins[0].Connections);
+
+                        const dialogueNodeOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
+                            const targetNode = project.GetNodeByID(conn.Target);
+                            const conditionText = getConditionText(conn);
+                            const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
+
+                            console.log("DialogueNode choice:", {
+                                targetNodeId: conn.Target,
+                                targetNodeType: targetNode.Type,
+                                targetNodeText: targetNode.Properties.Text,
+                                conditionText: conditionText,
+                                conditionMet: conditionMet,
+                                disabled: !conditionMet
+                            });
+
+                            return {
+                                disabled: !conditionMet,
+                                nodeData: targetNode,
+                                conditionText: conditionText,
+                                onClick:()=>{
+                                    if (conditionMet) {
+                                        navigateWithChoice(
+                                            targetNode,
+                                            targetNode.Properties.Text || targetNode.Properties.Expression,
+                                            targetNode.Properties.DisplayName,
+                                            targetNode.Properties.Color
+                                        );
+                                    }
+                                }
+                            };
+                        });
+
+                        const nodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>(
+                            dialogueNodeOptions.map(() => createRef<HTMLDivElement>())
+                        );
+
+                        return (
+                            <div>
+                                {/* Choice nodes */}
+                                {dialogueNodeOptions.map((option: any, index: number) => {
+                                    // Calculate offset for previous choice (if visible, it takes index 0)
+                                    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+                                    const choiceOffset = hasPreviousChoice ? 1 : 0;
+                                    // Selection index is based on position in all options (including disabled)
+                                    const forwardChoiceIndex = index + choiceOffset;
+                                    // Only select if previous choice is NOT selected
+                                    const isSelected = !isPreviousChoiceSelected && (forwardChoiceIndex === selectedChoiceIndex);
+
+                                    return (
+                                        <div key={index} style={{ marginBottom: '20px' }}>
+                                            <InstructionPanel
+                                                title={option.nodeData.Properties.DisplayName}
+                                                text={option.nodeData.Properties.Text || option.nodeData.Properties.Expression}
+                                                color={option.nodeData.Properties.Color}
+                                                selected={isSelected}
+                                                button={{
+                                                    hidden: false,
+                                                    text: "Next",
+                                                    onClick: option.onClick
+                                                }}
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        );
+                    } else {
+                        // Single connection - show as single choice
+                        return (
+                            <InstructionPanel
+                                title={currentNode.Properties.DisplayName}
+                                text={currentNode.Properties.Text || currentNode.Properties.Expression}
+                                color={currentNode.Properties.Color}
+                                selected={!isPreviousChoiceSelected}
+                                button={{
+                                    hidden: false,
+                                    text:"Next",
+                                    onClick:()=>{
+                                        const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target);
+                                        navigateWithChoice(
+                                            targetNode,
+                                            currentNode.Properties.Text || currentNode.Properties.Expression,
+                                            currentNode.Properties.DisplayName,
+                                            currentNode.Properties.Color
+                                        );
+                                    }
+                                }}
+                            />
+                        );
+                    }
                 default:
                     console.error("Cannot render node",currentNode);
                     return (
