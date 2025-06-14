@@ -899,7 +899,7 @@ function InteractiveArticyViewer(){
 
                         console.log("DialogueInteractiveFragmentTemplate with multiple outputs detected! Connections:", currentNode.Properties.OutputPins[0].Connections);
 
-                        // Show as single dialogue and navigate to first output
+                        // Show dialogue first, then when clicked, show the multiple choice options
                         return (
                             <InstructionPanel
                                 title={speakerName || currentNode.Properties.DisplayName}
@@ -909,7 +909,45 @@ function InteractiveArticyViewer(){
                                 button={{
                                     hidden: false,
                                     text: "Next",
-                                    onClick: () => handleSingleChoiceNavigation(currentNode)
+                                    onClick: () => {
+                                        // Create choice options for all output connections
+                                        const dialogueChoiceOptions = currentNode.Properties.OutputPins[0].Connections.map((conn: any) => {
+                                            const targetNode = project.GetNodeByID(conn.Target);
+                                            const conditionText = getConditionText(conn);
+                                            const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+
+                                            return {
+                                                disabled: !conditionMet,
+                                                nodeData: targetNode,
+                                                conditionText: conditionText,
+                                                onClick: () => {
+                                                    if (conditionMet) {
+                                                        const choiceInfo = {
+                                                            text: targetNode.Properties.Text || targetNode.Properties.Expression,
+                                                            title: getSpeakerNameString(targetNode),
+                                                            color: targetNode.Properties.Color,
+                                                            fromMultiChoice: true
+                                                        };
+                                                        setCurrentNode(targetNode, choiceInfo);
+                                                    }
+                                                }
+                                            };
+                                        });
+
+                                        // Store current dialogue in history and show choice screen
+                                        const choiceInfo = {
+                                            text: currentNode.Properties.Text,
+                                            title: getSpeakerNameString(currentNode),
+                                            color: currentNode.Properties.Color
+                                        };
+
+                                        setCurrentNode({
+                                            Type: "VirtualChoice",
+                                            Properties: {
+                                                Options: dialogueChoiceOptions
+                                            }
+                                        }, choiceInfo);
+                                    }
                                 }}
                             />
                         );
