@@ -488,7 +488,7 @@ function InteractiveArticyViewer(){
                         // FIXED: Store the choice text (what the player actually clicked) for history,
                         // not the target node's text. This prevents creating intermediate pages.
                         const choiceInfo = {
-                            text: targetNode.Properties.Text || targetNode.Properties.Expression, // What the player selected
+                            text: targetNode.Properties.Text || targetNode.Properties.Expression, // What the player selected (the choice button text)
                             title: getSpeakerNameString(targetNode) || targetNode.Properties.DisplayName,
                             color: targetNode.Properties.Color,
                             fromMultiChoice: true // This is always from a multi-choice context
@@ -835,14 +835,14 @@ function InteractiveArticyViewer(){
                                                             Options: choiceOptions
                                                         }
                                                     };
-                                                    navigateWithChoice(
-                                                        targetNode,
-                                                        targetNode.Properties.Text || targetNode.Properties.Expression,
-                                                        targetNode.Properties.DisplayName,
-                                                        targetNode.Properties.Color,
-                                                        virtualChoiceNode,
-                                                        true // fromMultiChoice - this is from a multi-choice context
-                                                    );
+                                                    // FIXED: Go directly to target node to prevent duplicate pages
+                                                    const choiceInfo = {
+                                                        text: targetNode.Properties.Text || targetNode.Properties.Expression,
+                                                        title: targetNode.Properties.DisplayName,
+                                                        color: targetNode.Properties.Color,
+                                                        fromMultiChoice: true // This is from a multi-choice context
+                                                    };
+                                                    setCurrentNode(targetNode, choiceInfo);
                                                 }
                                             };
                                         });
@@ -876,6 +876,21 @@ function InteractiveArticyViewer(){
 
                     const speakerName = getSpeakerNameWithIcon(currentNode);
 
+                    // Check if we came from a multi-choice context - if so, skip this dialogue fragment entirely
+                    const cameFromMultiChoice = previousChoiceHistory.length > 0 &&
+                                               previousChoiceHistory[previousChoiceHistory.length - 1]?.fromMultiChoice;
+
+                    if (cameFromMultiChoice) {
+                        console.log("DialogueInteractiveFragmentTemplate: Came from multi choice, skipping dialogue fragment entirely");
+                        // Skip this dialogue fragment and navigate directly to the first output
+                        setTimeout(() => {
+                            handleSingleChoiceNavigation(currentNode);
+                        }, 0);
+                        return (
+                            <>Please wait...</>
+                        );
+                    }
+
                     // Check if this node has multiple output connections
                     if (currentNode.Properties.OutputPins &&
                         currentNode.Properties.OutputPins[0] &&
@@ -884,100 +899,20 @@ function InteractiveArticyViewer(){
 
                         console.log("DialogueInteractiveFragmentTemplate with multiple outputs detected! Connections:", currentNode.Properties.OutputPins[0].Connections);
 
-                        // Check if we came from a single-choice context - if so, treat as single dialogue and navigate to first output
-                        const cameFromSingleChoice = previousChoiceHistory.length > 0 &&
-                                                   !previousChoiceHistory[previousChoiceHistory.length - 1]?.fromMultiChoice;
-
-                        if (cameFromSingleChoice) {
-                            console.log("DialogueInteractiveFragmentTemplate: Came from single choice, treating as single dialogue");
-                            // Show as single dialogue and navigate to first output
-                            return (
-                                <InstructionPanel
-                                    title={speakerName || currentNode.Properties.DisplayName}
-                                    text={currentNode.Properties.Text}
-                                    color={currentNode.Properties.Color}
-                                    selected={!isPreviousChoiceSelected}
-                                    button={{
-                                        hidden: false,
-                                        text: "Next",
-                                        onClick: () => handleSingleChoiceNavigation(currentNode)
-                                    }}
-                                />
-                            );
-                        } else {
-                            console.log("DialogueInteractiveFragmentTemplate: Came from multi choice, showing choice screen");
-                            // First show the dialogue text, then when clicked, show the choices
-                            return (
-                                <InstructionPanel
-                                    title={speakerName || currentNode.Properties.DisplayName}
-                                    text={currentNode.Properties.Text}
-                                    color={currentNode.Properties.Color}
-                                    selected={!isPreviousChoiceSelected}
-                                    button={{
-                                        hidden: false,
-                                        text:"Next",
-                                        onClick:()=>{
-                                        // Create a virtual choice node to show the response options
-                                        const dialogueFragmentOptions = currentNode.Properties.OutputPins[0].Connections.map((conn:any)=>{
-                                            const targetNode = project.GetNodeByID(conn.Target);
-                                            const conditionText = getConditionText(conn);
-                                            const conditionMet = conditionText==="" ? true : project.CheckConditionString(conditionText);
-
-                                            console.log("DialogueInteractiveFragmentTemplate choice:", {
-                                                targetNodeId: conn.Target,
-                                                targetNodeType: targetNode.Type,
-                                                targetNodeText: targetNode.Properties.Text,
-                                                conditionText: conditionText,
-                                                conditionMet: conditionMet,
-                                                disabled: !conditionMet
-                                            });
-
-                                            return {
-                                                disabled: !conditionMet,
-                                                nodeData: targetNode,
-                                                conditionText: conditionText,
-                                                onClick:()=>{
-                                                    if (conditionMet) {
-                                                        console.log("🎭 DIALOGUE FRAGMENT CHOICE CLICK - From DialogueFragment to:", targetNode.Properties.Id, targetNode.Type);
-                                                        // Pass the VirtualChoice node as the source
-                                                        const virtualChoiceNode = {
-                                                            Type: "VirtualChoice",
-                                                            Properties: {
-                                                                Options: dialogueFragmentOptions
-                                                            }
-                                                        };
-                                                        navigateWithChoice(
-                                                            targetNode,
-                                                            targetNode.Properties.Text || targetNode.Properties.Expression,
-                                                            getSpeakerNameString(targetNode), // Use target node's speaker name as title
-                                                            targetNode.Properties.Color,
-                                                            virtualChoiceNode,
-                                                            true // fromMultiChoice - this is from a multi-choice context
-                                                        );
-                                                    }
-                                                }
-                                            };
-                                        });
-
-                                        // Store the current dialogue as choice info for history
-                                        const choiceInfo = {
-                                            text: currentNode.Properties.Text,
-                                            title: getSpeakerNameString(currentNode),
-                                            color: currentNode.Properties.Color
-                                        };
-
-                                        // Set a virtual choice node to show the response options
-                                        setCurrentNode({
-                                            Type: "VirtualChoice",
-                                            Properties: {
-                                                Options: dialogueFragmentOptions
-                                            }
-                                        }, choiceInfo);
-                                    }
+                        // Show as single dialogue and navigate to first output
+                        return (
+                            <InstructionPanel
+                                title={speakerName || currentNode.Properties.DisplayName}
+                                text={currentNode.Properties.Text}
+                                color={currentNode.Properties.Color}
+                                selected={!isPreviousChoiceSelected}
+                                button={{
+                                    hidden: false,
+                                    text: "Next",
+                                    onClick: () => handleSingleChoiceNavigation(currentNode)
                                 }}
                             />
                         );
-                        }
                     } else {
                         // Single connection - show as single dialogue fragment
                         return (
