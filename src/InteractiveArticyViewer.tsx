@@ -192,6 +192,63 @@ function ConditionBubble({ condition, nodeRef, disabled }: { condition: string, 
     );
 }
 
+// File upload component
+function FileUploadArea({ isDragOver, handleDrop, handleDragOver, handleDragEnter, handleDragLeave, handleFileSelect, isLoading }: {
+    isDragOver: boolean;
+    handleDrop: (e: React.DragEvent) => void;
+    handleDragOver: (e: React.DragEvent) => void;
+    handleDragEnter: (e: React.DragEvent) => void;
+    handleDragLeave: (e: React.DragEvent) => void;
+    handleFileSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isLoading: boolean;
+}) {
+    return (
+        <div
+            className={`file-upload-area ${isDragOver ? 'drag-over' : ''}`}
+            style={{
+                padding: '40px',
+                textAlign: 'center',
+                minHeight: '400px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+        >
+            <div style={{ marginBottom: '20px' }}>
+                <InboxOutlined style={{ fontSize: '48px', color: '#1890ff' }} />
+            </div>
+            <h2>Articy Web Viewer</h2>
+            <p style={{ fontSize: '16px', marginBottom: '20px' }}>
+                Drag & drop your Articy JSON export file here, or click to browse
+            </p>
+            <input
+                type="file"
+                accept=".json,application/json"
+                onChange={handleFileSelect}
+                style={{ display: 'none' }}
+                id="file-input"
+            />
+            <Button
+                type="primary"
+                size="large"
+                loading={isLoading}
+                onClick={() => document.getElementById('file-input')?.click()}
+            >
+                {isLoading ? 'Loading...' : 'Select JSON File'}
+            </Button>
+            <div style={{ marginTop: '20px', fontSize: '12px', color: '#666' }}>
+                <p>Supported: Articy Draft JSON exports</p>
+                <p>No web server required - runs completely locally!</p>
+            </div>
+        </div>
+    );
+}
+
 function InteractiveArticyViewer(){
 
     const [project, setProject] = useState(undefined as unknown as ArticyProject);
@@ -342,95 +399,84 @@ function InteractiveArticyViewer(){
         }
     }
 
-    // Helper function to check if current node has multiple choices
-    function currentNodeHasMultipleChoices(): boolean {
-        if (!currentNode || !currentNode.Properties.OutputPins || !currentNode.Properties.OutputPins[0]) {
-            return false;
-        }
+    // Unified function to get all outputs from current node
+    function getCurrentNodeOutputs(): any[] {
+        if (!currentNode) return [];
 
-        const connections = currentNode.Properties.OutputPins[0].Connections;
-        if (!connections) return false;
-
-        // Check for multiple connections
-        if (connections.length > 1) return true;
-
-        // For VirtualChoice nodes, check if they have multiple visible options
+        // Handle VirtualChoice nodes (special case for choice collections)
         if (currentNode.Type === "VirtualChoice" && currentNode.Properties.Options) {
-            const visibleOptions = currentNode.Properties.Options.filter((option: any) => !option.hidden);
-            return visibleOptions.length > 1;
+            return currentNode.Properties.Options.filter((option: any) => !option.hidden);
         }
 
-        return false;
+        // Handle Jump nodes (redirect to target)
+        if (currentNode.Type === "Jump" && currentNode.Properties.Target) {
+            const targetNode = project.GetNodeByID(currentNode.Properties.Target);
+            if (targetNode) {
+                // Auto-navigate to jump target
+                setTimeout(() => setCurrentNode(targetNode), 0);
+                return [];
+            }
+        }
+
+        // Handle FlowFragment nodes (enter first child)
+        if (currentNode.Type === "FlowFragment" ||
+            currentNode.Type === "CombatFlowTemplate" ||
+            currentNode.Type === "CraftingFlowTemplate" ||
+            currentNode.Type === "TravelFlowTemplate" ||
+            currentNode.Type === "PlayerActionFlowTemplate" ||
+            currentNode.Type === "LocationFlowTemplate" ||
+            currentNode.Type === "EnemyGenericFlowTemplate" ||
+            currentNode.Type === "NPCFlowTemplate" ||
+            currentNode.Type === "PCFlowTemplate" ||
+            currentNode.Type === "WeaponFlowTemplate") {
+            const childNode = project.GetFirstChildOfNode(currentNode);
+            if (childNode) {
+                // Auto-navigate to first child
+                setTimeout(() => setCurrentNode(childNode), 0);
+                return [];
+            }
+        }
+
+        // Handle Condition nodes (evaluate condition and auto-navigate)
+        if (currentNode.Type === "Condition") {
+            const conditions = project.GetVariablesFromNode(currentNode);
+            const result = conditions ? project.CheckCondition(conditions) : false;
+            console.log("Condition result:", result);
+
+            // Navigate to appropriate output based on condition result
+            if (currentNode.Properties.OutputPins && currentNode.Properties.OutputPins.length >= 2) {
+                const targetPin = result ? 0 : 1; // True = first output, False = second output
+                if (currentNode.Properties.OutputPins[targetPin] &&
+                    currentNode.Properties.OutputPins[targetPin].Connections &&
+                    currentNode.Properties.OutputPins[targetPin].Connections.length > 0) {
+                    const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[targetPin].Connections[0].Target);
+                    setTimeout(() => setCurrentNode(targetNode), 0);
+                }
+            }
+            return [];
+        }
+
+        // Standard case: get all output connections
+        if (currentNode.Properties.OutputPins &&
+            currentNode.Properties.OutputPins[0] &&
+            currentNode.Properties.OutputPins[0].Connections) {
+            return currentNode.Properties.OutputPins[0].Connections;
+        }
+
+        return [];
     }
 
-    // Helper function to navigate with choice tracking
-    function navigateWithChoice(targetNode: any, choiceText: string, choiceTitle?: string, choiceColor?: { r: number; g: number; b: number }, sourceNode?: any, fromMultiChoice?: boolean) {
-        // Use explicit fromMultiChoice parameter if provided, otherwise auto-detect
-        const actualFromMultiChoice = fromMultiChoice !== undefined ? fromMultiChoice : currentNodeHasMultipleChoices();
-
-        const choiceInfo = {
+    // Unified navigation function - handles all node transitions
+    function navigateToNode(targetNode: any, choiceText?: string, choiceTitle?: string, choiceColor?: { r: number; g: number; b: number }, fromMultiChoice?: boolean) {
+        const choiceInfo = choiceText ? {
             text: choiceText,
             title: choiceTitle,
             color: choiceColor,
-            fromMultiChoice: actualFromMultiChoice
-        };
+            fromMultiChoice: fromMultiChoice || false
+        } : undefined;
 
-        console.log("=== NAVIGATION DEBUG ===");
-        console.log("Current node:", currentNode?.Properties?.Id, currentNode?.Type, currentNode?.Properties?.Text);
-        console.log("Target node:", targetNode?.Properties?.Id, targetNode?.Type, targetNode?.Properties?.Text);
-        console.log("Choice text:", choiceText);
-        console.log("Are IDs same?", currentNode?.Properties?.Id === targetNode?.Properties?.Id);
-        console.log("Are texts same?", currentNode?.Properties?.Text === targetNode?.Properties?.Text);
-
-        // Bulletproof duplicate detection: Check for both identical node IDs and identical content
-        const sameNodeId = currentNode && targetNode.Properties.Id === currentNode.Properties.Id;
-
-        // Check if text content is the same
-        const sameTextContent = currentNode &&
-                               currentNode.Properties.Text &&
-                               targetNode.Properties.Text &&
-                               currentNode.Properties.Text === targetNode.Properties.Text;
-
-        // Check if speaker/title is the same
-        const currentSpeaker = getSpeakerNameString(currentNode) || currentNode?.Properties?.DisplayName;
-        const targetSpeaker = getSpeakerNameString(targetNode) || targetNode?.Properties?.DisplayName;
-        const sameSpeaker = currentSpeaker === targetSpeaker;
-
-        // Check if previous page had multiple choices (indicating we came from a choice selection)
-        const cameFromMultiChoice = previousChoiceHistory.length > 0 &&
-                                   previousChoiceHistory[previousChoiceHistory.length - 1]?.fromMultiChoice;
-
-        console.log("Duplicate detection checks:");
-        console.log("- Same node ID:", sameNodeId);
-        console.log("- Same text content:", sameTextContent);
-        console.log("- Same speaker:", sameSpeaker, `(${currentSpeaker} vs ${targetSpeaker})`);
-        console.log("- Came from multi-choice:", cameFromMultiChoice);
-
-        // Skip only if: same node ID OR (same text AND same speaker AND came from multi-choice)
-        const shouldSkip = sameNodeId || (sameTextContent && sameSpeaker && cameFromMultiChoice);
-
-        if (shouldSkip) {
-            if (sameNodeId) {
-                console.log("🚫 SKIPPING duplicate node - target node is the same as current node");
-            } else {
-                console.log("🚫 SKIPPING duplicate dialogue - same text, same speaker, came from multi-choice");
-            }
-
-            // Skip to the target's output if it has exactly one connection
-            if (hasOutputConnections(targetNode) && targetNode.Properties.OutputPins[0].Connections.length === 1) {
-                const nextNode = project.GetNodeByID(targetNode.Properties.OutputPins[0].Connections[0].Target);
-                console.log("Skipping to next node:", nextNode?.Properties?.Id, nextNode?.Type, nextNode?.Properties?.Text);
-                navigateWithChoice(nextNode, choiceText, choiceTitle, choiceColor, sourceNode, actualFromMultiChoice);
-            } else {
-                // If no single output connection, just set the target node anyway
-                console.log("No single output connection, setting target node anyway");
-                setCurrentNode(targetNode, choiceInfo);
-            }
-        } else {
-            console.log("✅ Navigating to new node:", targetNode.Properties.Id);
-            setCurrentNode(targetNode, choiceInfo);
-        }
-        console.log("========================");
+        console.log("🔄 NAVIGATING TO NODE:", targetNode?.Properties?.Id, targetNode?.Type);
+        setCurrentNode(targetNode, choiceInfo);
     }
 
     function hasOutputConnections(node: any): boolean {
@@ -472,11 +518,26 @@ function InteractiveArticyViewer(){
         return node.Properties.DisplayName || '';
     }
 
-    // Consolidated function to create choice options for multi-output nodes
-    function createChoiceOptions(connections: any[], useNavigateWithChoice: boolean = true): any[] {
-        return connections.map((conn: any) => {
-            const targetNode = project.GetNodeByID(conn.Target);
-            const conditionText = getConditionText(conn);
+    // Unified function to create choice options from any outputs
+    function createChoiceOptions(outputs: any[]): any[] {
+        return outputs.map((output: any) => {
+            // Handle different output types
+            let targetNode: any;
+            let conditionText = "";
+
+            if (output.Target) {
+                // Standard connection output
+                targetNode = project.GetNodeByID(output.Target);
+                conditionText = getConditionText(output);
+            } else if (output.nodeData) {
+                // Already processed output (like VirtualChoice options)
+                targetNode = output.nodeData;
+                conditionText = output.conditionText || "";
+            } else {
+                // Direct node reference
+                targetNode = output;
+            }
+
             const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
 
             return {
@@ -485,47 +546,44 @@ function InteractiveArticyViewer(){
                 conditionText: conditionText,
                 onClick: () => {
                     if (conditionMet) {
-                        // FIXED: Store the choice text (what the player actually clicked) for history,
-                        // not the target node's text. This prevents creating intermediate pages.
-                        const choiceInfo = {
-                            text: targetNode.Properties.Text || targetNode.Properties.Expression, // What the player selected (the choice button text)
-                            title: getSpeakerNameString(targetNode) || targetNode.Properties.DisplayName,
-                            color: targetNode.Properties.Color,
-                            fromMultiChoice: true // This is always from a multi-choice context
-                        };
-
-                        // Go directly to the target node without creating intermediate pages
-                        setCurrentNode(targetNode, choiceInfo);
+                        const choiceText = targetNode.Properties.Text || targetNode.Properties.Expression;
+                        const choiceTitle = getSpeakerNameString(targetNode) || targetNode.Properties.DisplayName;
+                        navigateToNode(targetNode, choiceText, choiceTitle, targetNode.Properties.Color, true);
                     }
                 }
             };
         });
     }
 
-    // Consolidated function to handle single choice navigation
-    function handleSingleChoiceNavigation(node: any) {
-        console.log("🔄 SINGLE CHOICE NAVIGATION - From node:", node.Properties.Id, node.Type, node.Properties.Text);
-        if (!hasOutputConnections(node)) {
-            console.log("🔄 SINGLE CHOICE NAVIGATION - No output connections found");
-            return null; // Caller should handle end of flow
+    // Unified function to handle Next button press - shows all outputs
+    function handleNextButton() {
+        const outputs = getCurrentNodeOutputs();
+
+        if (outputs.length === 0) {
+            // No outputs - end of flow
+            return;
+        } else if (outputs.length === 1) {
+            // Single output - navigate directly
+            const targetNode = project.GetNodeByID(outputs[0].Target);
+            const choiceText = currentNode.Properties.Text || currentNode.Properties.Expression;
+            const choiceTitle = getSpeakerNameString(currentNode) || currentNode.Properties.DisplayName;
+            navigateToNode(targetNode, choiceText, choiceTitle, currentNode.Properties.Color, false);
+        } else {
+            // Multiple outputs - show as choices
+            const choiceOptions = createChoiceOptions(outputs);
+            const virtualChoiceNode = {
+                Type: "VirtualChoice",
+                Properties: {
+                    Options: choiceOptions
+                }
+            };
+            const choiceInfo = {
+                text: currentNode.Properties.Text || currentNode.Properties.Expression,
+                title: getSpeakerNameString(currentNode) || currentNode.Properties.DisplayName,
+                color: currentNode.Properties.Color
+            };
+            setCurrentNode(virtualChoiceNode, choiceInfo);
         }
-
-        const targetNode = project.GetNodeByID(node.Properties.OutputPins[0].Connections[0].Target);
-        console.log("🔄 SINGLE CHOICE NAVIGATION - To node:", targetNode.Properties.Id, targetNode.Type, targetNode.Properties.Text);
-        const choiceText = node.Properties.Text || node.Properties.Expression;
-        const choiceTitle = getSpeakerNameString(node) || node.Properties.DisplayName;
-
-        // For single choice navigation, we're NOT coming from a multi-choice screen
-        const choiceInfo = {
-            text: choiceText,
-            title: choiceTitle,
-            color: node.Properties.Color,
-            fromMultiChoice: false // Always false for single choice navigation
-        };
-
-        // FIXED: Go directly to target node without showing the choice as an intermediate page
-        // This prevents the extra "choice confirmation" pages from appearing
-        setCurrentNode(targetNode, choiceInfo);
     }
 
     // Consolidated function to render hub-style choice displays with condition bubbles
@@ -579,7 +637,7 @@ function InteractiveArticyViewer(){
         );
     }
 
-    // Helper function to get current available choices for keyboard navigation
+    // Unified function to get current available choices for keyboard navigation
     function getCurrentAvailableChoices(): any[] {
         if (!currentNode) return [];
 
@@ -593,55 +651,23 @@ function InteractiveArticyViewer(){
             });
         }
 
-        switch (currentNode.Type) {
-            case "VirtualChoice":
-                const virtualChoices = currentNode.Properties.Options.filter((option: any) => !option.hidden);
-                choices.push(...virtualChoices);
-                break;
+        // Get outputs using unified function
+        const outputs = getCurrentNodeOutputs();
 
-            case "Instruction":
-                if (currentNode.Properties.OutputPins &&
-                    currentNode.Properties.OutputPins[0] &&
-                    currentNode.Properties.OutputPins[0].Connections &&
-                    currentNode.Properties.OutputPins[0].Connections.length > 1) {
-
-                    const instructionHubOptions = createChoiceOptions(currentNode.Properties.OutputPins[0].Connections, false);
-                    choices.push(...instructionHubOptions);
-                } else {
-                    choices.push({ isSingleChoice: true }); // Single choice indicator
-                }
-                break;
-
-            case "DialogueInteractiveFragmentTemplate":
-            case "DialogueIntActionTemplate":
-            case "DialogueInternalActionTemplate":
-            case "DialogueNode":
-                if (currentNode.Properties.OutputPins &&
-                    currentNode.Properties.OutputPins[0] &&
-                    currentNode.Properties.OutputPins[0].Connections &&
-                    currentNode.Properties.OutputPins[0].Connections.length > 1) {
-
-                    const dialogueOptions = createChoiceOptions(currentNode.Properties.OutputPins[0].Connections, true);
-                    choices.push(...dialogueOptions);
-                } else {
-                    choices.push({ isSingleChoice: true });
-                }
-                break;
-
-            default:
-                // For other node types that have single "Next" buttons
-                if (hasOutputConnections(currentNode)) {
-                    choices.push({ isSingleChoice: true });
-                } else {
-                    choices.push({ isEndOfFlow: true }); // End of flow
-                }
-                break;
+        if (outputs.length === 0) {
+            choices.push({ isEndOfFlow: true });
+        } else if (outputs.length === 1) {
+            choices.push({ isSingleChoice: true });
+        } else {
+            // Multiple outputs - add as choice options
+            const choiceOptions = createChoiceOptions(outputs);
+            choices.push(...choiceOptions);
         }
 
         return choices;
     }
 
-    // Helper function to handle Enter key press
+    // Unified function to handle Enter key press
     function handleEnterKey(availableChoices: any[]) {
         if (availableChoices.length === 0) return;
 
@@ -658,8 +684,8 @@ function InteractiveArticyViewer(){
         }
 
         if (selectedChoice.isSingleChoice) {
-            // Handle single choice navigation using consolidated function
-            handleSingleChoiceNavigation(currentNode);
+            // Handle using unified next button function
+            handleNextButton();
         } else {
             // Handle multiple choice selection
             if (selectedChoice.onClick && !selectedChoice.disabled) {
@@ -737,420 +763,78 @@ function InteractiveArticyViewer(){
         }
     };
     
+    // Unified DisplayNode function - handles all node types the same way
     function DisplayNode({ isPreviousChoiceSelected = false }: { isPreviousChoiceSelected?: boolean } = {}){
-        if (currentNode != undefined){
-            console.log("DisplayNode - Current node type:", currentNode.Type);
-            console.log("DisplayNode - Current node:", currentNode);
-            switch (currentNode.Type){
-                case "VirtualChoice":
-                    const visibleOptions = currentNode.Properties.Options.filter((option: any) => !option.hidden);
-                    return renderHubChoices(visibleOptions, false, isPreviousChoiceSelected); // No condition bubbles for virtual choices
-                case "Instruction":
-                    // Check if this Instruction node has multiple output connections (acts like a Hub)
-                    if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
-                        console.log("Instruction with multiple outputs (Hub-like) triggered! Current node:", currentNode);
-                        const instructionHubOptions = createChoiceOptions(currentNode.Properties.OutputPins[0].Connections, true);
-                        return renderHubChoices(instructionHubOptions, true, isPreviousChoiceSelected);
-                    } else {
-                        // Regular single-path Instruction
-                        if (!hasOutputConnections(currentNode)) {
-                            return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
-                        }
-
-                        return (
-                            <InstructionPanel
-                                title={currentNode.Properties.DisplayName}
-                                text={currentNode.Properties.Expression}
-                                color={currentNode.Properties.Color}
-                                selected={!isPreviousChoiceSelected}
-                                button={{
-                                    hidden: false,
-                                    text: "Next",
-                                    onClick: () => handleSingleChoiceNavigation(currentNode)
-                                }}
-                            />
-                        );
-                    }
-                case "WaypointTemplate":
-                case "JournalEntryTemplate":
-                case "PlayerActionTemplate":
-                case "CraftingTemplate":
-                case "CombatTemplate":
-                case "TravelTemplate":
-                case "AreaEventTemplate":
-                    // Check if this node has no output connections - show end of flow
-                    if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
-                    }
-
-                    return (
-                        <InstructionPanel
-                            title={currentNode.Properties.DisplayName}
-                            text={currentNode.Properties.Expression}
-                            color={currentNode.Properties.Color}
-                            selected={!isPreviousChoiceSelected}
-                            button={{
-                                hidden: false,
-                                text: "Next",
-                                onClick: () => handleSingleChoiceNavigation(currentNode)
-                            }}
-                        />
-                    );
-                case "LocationTemplate":
-                case "EnemyGenericTemplate":
-                case "innervoice_template":
-                case "NPCTemplate":
-                case "PCTemplate":
-                case "WeaponTemplate":
-                case "DialogueExplorationActionTemplate":
-                    // Check if this node has no output connections - show end of flow
-                    if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
-                    }
-
-                    return (
-                        <InstructionPanel
-                            title={currentNode.Properties.DisplayName}
-                            text={currentNode.Properties.Text}
-                            color={currentNode.Properties.Color}
-                            selected={!isPreviousChoiceSelected}
-                            button={{
-                                hidden: false,
-                                text: "Next",
-                                onClick: () => {
-                                    // Check if this node has multiple output connections
-                                    if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
-                                        // Create a virtual choice node to show multiple options
-                                        const choiceOptions = currentNode.Properties.OutputPins[0].Connections.map((conn: any) => {
-                                            const targetNode = project.GetNodeByID(conn.Target);
-                                            const conditionText = targetNode.Properties.InputPins && targetNode.Properties.InputPins[0] ? targetNode.Properties.InputPins[0].Text : "";
-                                            return {
-                                                hidden: conditionText === "" ? false : !project.CheckConditionString(conditionText),
-                                                nodeData: targetNode,
-                                                onClick: () => {
-                                                    // Pass the VirtualChoice node as the source
-                                                    const virtualChoiceNode = {
-                                                        Type: "VirtualChoice",
-                                                        Properties: {
-                                                            Options: choiceOptions
-                                                        }
-                                                    };
-                                                    // FIXED: Go directly to target node to prevent duplicate pages
-                                                    const choiceInfo = {
-                                                        text: targetNode.Properties.Text || targetNode.Properties.Expression,
-                                                        title: targetNode.Properties.DisplayName,
-                                                        color: targetNode.Properties.Color,
-                                                        fromMultiChoice: true // This is from a multi-choice context
-                                                    };
-                                                    setCurrentNode(targetNode, choiceInfo);
-                                                }
-                                            };
-                                        });
-
-                                        // Set a virtual choice node with choice info to store current node in history
-                                        const choiceInfo = {
-                                            text: currentNode.Properties.Text || currentNode.Properties.Expression,
-                                            title: currentNode.Properties.DisplayName,
-                                            color: currentNode.Properties.Color
-                                        };
-                                        setCurrentNode({
-                                            Type: "VirtualChoice",
-                                            Properties: {
-                                                Options: choiceOptions
-                                            }
-                                        }, choiceInfo);
-                                    } else {
-                                        // Single connection - navigate normally
-                                        handleSingleChoiceNavigation(currentNode);
-                                    }
-                                }
-                            }}
-                        />
-                    );
-                case "DialogueFragment":
-                case "DialogueInteractiveFragmentTemplate":
-                    // Check if this node has no output connections - show end of flow
-                    if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
-                    }
-
-                    const speakerName = getSpeakerNameWithIcon(currentNode);
-
-                    // Check if we came from a multi-choice context - if so, skip this dialogue fragment entirely
-                    const cameFromMultiChoice = previousChoiceHistory.length > 0 &&
-                                               previousChoiceHistory[previousChoiceHistory.length - 1]?.fromMultiChoice;
-
-                    if (cameFromMultiChoice) {
-                        console.log("DialogueInteractiveFragmentTemplate: Came from multi choice, skipping dialogue fragment entirely");
-                        // Skip this dialogue fragment and navigate directly to the first output
-                        setTimeout(() => {
-                            handleSingleChoiceNavigation(currentNode);
-                        }, 0);
-                        return (
-                            <>Please wait...</>
-                        );
-                    }
-
-                    // Check if this node has multiple output connections
-                    if (currentNode.Properties.OutputPins &&
-                        currentNode.Properties.OutputPins[0] &&
-                        currentNode.Properties.OutputPins[0].Connections &&
-                        currentNode.Properties.OutputPins[0].Connections.length > 1) {
-
-                        console.log("DialogueInteractiveFragmentTemplate with multiple outputs detected! Connections:", currentNode.Properties.OutputPins[0].Connections);
-
-                        // Show dialogue first, then when clicked, show the multiple choice options
-                        return (
-                            <InstructionPanel
-                                title={speakerName || currentNode.Properties.DisplayName}
-                                text={currentNode.Properties.Text}
-                                color={currentNode.Properties.Color}
-                                selected={!isPreviousChoiceSelected}
-                                button={{
-                                    hidden: false,
-                                    text: "Next",
-                                    onClick: () => {
-                                        // Create choice options for all output connections
-                                        const dialogueChoiceOptions = currentNode.Properties.OutputPins[0].Connections.map((conn: any) => {
-                                            const targetNode = project.GetNodeByID(conn.Target);
-                                            const conditionText = getConditionText(conn);
-                                            const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
-
-                                            return {
-                                                disabled: !conditionMet,
-                                                nodeData: targetNode,
-                                                conditionText: conditionText,
-                                                onClick: () => {
-                                                    if (conditionMet) {
-                                                        const choiceInfo = {
-                                                            text: targetNode.Properties.Text || targetNode.Properties.Expression,
-                                                            title: getSpeakerNameString(targetNode),
-                                                            color: targetNode.Properties.Color,
-                                                            fromMultiChoice: true
-                                                        };
-                                                        setCurrentNode(targetNode, choiceInfo);
-                                                    }
-                                                }
-                                            };
-                                        });
-
-                                        // Store current dialogue in history and show choice screen
-                                        const choiceInfo = {
-                                            text: currentNode.Properties.Text,
-                                            title: getSpeakerNameString(currentNode),
-                                            color: currentNode.Properties.Color
-                                        };
-
-                                        setCurrentNode({
-                                            Type: "VirtualChoice",
-                                            Properties: {
-                                                Options: dialogueChoiceOptions
-                                            }
-                                        }, choiceInfo);
-                                    }
-                                }}
-                            />
-                        );
-                    } else {
-                        // Single connection - show as single dialogue fragment
-                        return (
-                            <InstructionPanel
-                                title={speakerName || currentNode.Properties.DisplayName}
-                                text={currentNode.Properties.Text}
-                                color={currentNode.Properties.Color}
-                                selected={!isPreviousChoiceSelected}
-                                button={{
-                                    hidden: false,
-                                    text: "Next",
-                                    onClick: () => handleSingleChoiceNavigation(currentNode)
-                                }}
-                            />
-                        );
-                    }
-                case "Hub":
-                    console.log("Hub case triggered! Current node:", currentNode);
-                    const hubOptions = createChoiceOptions(currentNode.Properties.OutputPins[0].Connections, true);
-                    return renderHubChoices(hubOptions, true, isPreviousChoiceSelected);
-                case "Jump":
-                    setTimeout(()=>{
-                        setCurrentNode(project.GetNodeByID(currentNode.Properties.Target));
-                    },0);
-                    return (
-                        <>Please wait...</>
-                    )
-                    break;
-                case "DialogueIntActionTemplate":
-                case "DialogueInternalActionTemplate":
-                    // These should act like Hub nodes - show all output connections as choices
-                    console.log("DialogueIntActionTemplate node details:", currentNode);
-
-                    // Check if this node has no output connections - show end of flow
-                    if (!hasOutputConnections(currentNode)) {
-                        console.log("No output connections - showing end of flow");
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
-                    }
-
-                    // Check if this node has multiple output connections (acts like a Hub)
-                    if (currentNode.Properties.OutputPins[0].Connections && currentNode.Properties.OutputPins[0].Connections.length > 1) {
-                        console.log("DialogueIntActionTemplate with multiple outputs (Hub-like) triggered! Current node:", currentNode);
-                        const dialogueHubOptions = createChoiceOptions(currentNode.Properties.OutputPins[0].Connections, true);
-                        return renderHubChoices(dialogueHubOptions, true, isPreviousChoiceSelected);
-                    } else {
-                        // Single connection - navigate normally like DialogueInteractiveFragmentTemplate
-                        const speakerName = getSpeakerNameWithIcon(currentNode);
-
-                        return (
-                            <InstructionPanel
-                                title={speakerName || currentNode.Properties.DisplayName}
-                                text={currentNode.Properties.Text}
-                                color={currentNode.Properties.Color}
-                                selected={!isPreviousChoiceSelected}
-                                button={{
-                                    hidden: false,
-                                    text: "Next",
-                                    onClick: () => handleSingleChoiceNavigation(currentNode)
-                                }}
-                            />
-                        );
-                    }
-                case "FlowFragment":
-                case "CombatFlowTemplate":
-                case "CraftingFlowTemplate":
-                case "TravelFlowTemplate":
-                case "PlayerActionFlowTemplate":
-                case "LocationFlowTemplate":
-                case "EnemyGenericFlowTemplate":
-                case "NPCFlowTemplate":
-                case "PCFlowTemplate":
-                case "WeaponFlowTemplate":
-                    let childnode = project.GetFirstChildOfNode(currentNode);
-                    if (childnode != undefined){
-                        setTimeout(()=>{
-                            setCurrentNode(childnode);
-                        },0);
-                        return (
-                            <>Please wait...</>
-                        )
-                    }
-                    else{
-                        // No child found - show end of flow
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
-                    }
-                case "Condition":
-                    let conditions = project.GetVariablesFromNode(currentNode);
-                    let result = false;
-                    if (conditions){
-                        result = project.CheckCondition(conditions);
-                    }
-                    console.log("result",result);
-                    if (result){
-                        setTimeout(()=>{
-                            setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[0].Connections[0].Target));
-                        },0);
-                    }
-                    else{
-                        setTimeout(()=>{
-                            setCurrentNode(project.GetNodeByID(currentNode.Properties.OutputPins[1].Connections[0].Target));
-                        },0);
-                    }
-                    
-                    return (
-                        <>Please wait...</>
-                    )
-                case "DialogueNode":
-                    // DialogueNode with NavigationTemplate - handle like other choice nodes
-                    console.log("DialogueNode triggered! Current node:", currentNode);
-
-                    // Check if this node has no output connections - show end of flow
-                    if (!hasOutputConnections(currentNode)) {
-                        return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
-                    }
-
-                    // Check if this node has multiple output connections
-                    if (currentNode.Properties.OutputPins &&
-                        currentNode.Properties.OutputPins[0] &&
-                        currentNode.Properties.OutputPins[0].Connections &&
-                        currentNode.Properties.OutputPins[0].Connections.length > 1) {
-
-                        console.log("DialogueNode with multiple outputs detected! Connections:", currentNode.Properties.OutputPins[0].Connections);
-                        const dialogueNodeOptions = createChoiceOptions(currentNode.Properties.OutputPins[0].Connections, true);
-                        return renderHubChoices(dialogueNodeOptions, false, isPreviousChoiceSelected); // No condition bubbles for DialogueNode
-                    } else {
-                        // Single connection - show as single choice
-                        return (
-                            <InstructionPanel
-                                title={currentNode.Properties.DisplayName}
-                                text={currentNode.Properties.Text || currentNode.Properties.Expression}
-                                color={currentNode.Properties.Color}
-                                selected={!isPreviousChoiceSelected}
-                                button={{
-                                    hidden: false,
-                                    text: "Next",
-                                    onClick: () => handleSingleChoiceNavigation(currentNode)
-                                }}
-                            />
-                        );
-                    }
-                default:
-                    console.error("Cannot render node",currentNode);
-                    return (
-                        <>
-                        <div>Node of type {currentNode.Type} has not yet been implemented.</div>
-                        </>
-                    )
-            }
+        if (!currentNode) {
+            return <>No Current Node</>;
         }
-        else return (<>No Current Node</>)
-    }
 
-    // File upload component
-    function FileUploadArea() {
+        console.log("DisplayNode - Current node type:", currentNode.Type);
+        console.log("DisplayNode - Current node:", currentNode);
+
+        // Handle special auto-navigation cases first
+        if (currentNode.Type === "Jump" ||
+            currentNode.Type === "Condition" ||
+            currentNode.Type === "FlowFragment" ||
+            currentNode.Type === "CombatFlowTemplate" ||
+            currentNode.Type === "CraftingFlowTemplate" ||
+            currentNode.Type === "TravelFlowTemplate" ||
+            currentNode.Type === "PlayerActionFlowTemplate" ||
+            currentNode.Type === "LocationFlowTemplate" ||
+            currentNode.Type === "EnemyGenericFlowTemplate" ||
+            currentNode.Type === "NPCFlowTemplate" ||
+            currentNode.Type === "PCFlowTemplate" ||
+            currentNode.Type === "WeaponFlowTemplate") {
+            return <>Please wait...</>;
+        }
+
+        // Get outputs using unified function
+        const outputs = getCurrentNodeOutputs();
+
+        // Handle VirtualChoice (special case for choice collections)
+        if (currentNode.Type === "VirtualChoice") {
+            const visibleOptions = currentNode.Properties.Options.filter((option: any) => !option.hidden);
+            return renderHubChoices(visibleOptions, false, isPreviousChoiceSelected);
+        }
+
+        // Handle end of flow
+        if (outputs.length === 0) {
+            return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
+        }
+
+        // Handle multiple outputs - show as choices
+        if (outputs.length > 1) {
+            const choiceOptions = createChoiceOptions(outputs);
+            const showConditionBubbles = currentNode.Type === "Hub" || currentNode.Type === "Instruction";
+            return renderHubChoices(choiceOptions, showConditionBubbles, isPreviousChoiceSelected);
+        }
+
+        // Handle single output - show node content with Next button
+        const nodeTitle = getSpeakerNameWithIcon(currentNode) || currentNode.Properties.DisplayName;
+        const nodeText = currentNode.Properties.Text || currentNode.Properties.Expression;
+
         return (
-            <div
-                className={`file-upload-area ${isDragOver ? 'drag-over' : ''}`}
-                style={{
-                    padding: '40px',
-                    textAlign: 'center',
-                    minHeight: '400px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center'
+            <InstructionPanel
+                title={nodeTitle}
+                text={nodeText}
+                color={currentNode.Properties.Color}
+                selected={!isPreviousChoiceSelected}
+                button={{
+                    hidden: false,
+                    text: "Next",
+                    onClick: handleNextButton
                 }}
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-                onDragEnter={handleDragEnter}
-                onDragLeave={handleDragLeave}
-            >
-                <div style={{ marginBottom: '20px' }}>
-                    <InboxOutlined style={{ fontSize: '48px', color: '#1890ff' }} />
-                </div>
-                <h2>Articy Web Viewer</h2>
-                <p style={{ fontSize: '16px', marginBottom: '20px' }}>
-                    Drag & drop your Articy JSON export file here, or click to browse
-                </p>
-                <input
-                    type="file"
-                    accept=".json,application/json"
-                    onChange={handleFileSelect}
-                    style={{ display: 'none' }}
-                    id="file-input"
-                />
-                <Button
-                    type="primary"
-                    size="large"
-                    loading={isLoading}
-                    onClick={() => document.getElementById('file-input')?.click()}
-                >
-                    {isLoading ? 'Loading...' : 'Select JSON File'}
-                </Button>
-                <div style={{ marginTop: '20px', fontSize: '12px', color: '#666' }}>
-                    <p>Supported: Articy Draft JSON exports</p>
-                    <p>No web server required - runs completely locally!</p>
-                </div>
-            </div>
+            />
         );
     }
+
+
+
+
+
+
+
+
 
     return (
         <div>
@@ -1215,7 +899,15 @@ function InteractiveArticyViewer(){
                         )}
                         <DisplayNode isPreviousChoiceSelected={showPrevious && previousChoiceHistory.length > 0 && selectedChoiceIndex === 0} />
                     </div>
-                ) : <FileUploadArea />}
+                ) : <FileUploadArea
+                    isDragOver={isDragOver}
+                    handleDrop={handleDrop}
+                    handleDragOver={handleDragOver}
+                    handleDragEnter={handleDragEnter}
+                    handleDragLeave={handleDragLeave}
+                    handleFileSelect={handleFileSelect}
+                    isLoading={isLoading}
+                />}
             </div>
         </div>
     )
