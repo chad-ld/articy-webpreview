@@ -1,0 +1,196 @@
+{
+  "GlobalVariables": [
+    {
+      "Namespace": "TestFlowVariables",
+      "Description": "",
+      "Variables": [
+        {
+          "Variable": "Quest001_waypoint01_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Boolean for testing purposes."
+        },
+        {
+          "Variable": "Quest001_waypoint02_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Boolean for testing purposes."
+        },
+        {
+          "Variable": "Quest001_waypoint03_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Boolean for testing purposes."
+        },
+        {
+          "Variable": "HasSword",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the sword?"
+        },
+        {
+          "Variable": "HasShield",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the shield?"
+        },
+        {
+          "Variable": "Quest001_waypoint01_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint02_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint03_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "TestPlayerHitPoints",
+          "Type": "Integer",
+          "Value": "10",
+          "Description": "Player Health in HP"
+        },
+        {
+          "Variable": "TestPlayerLevel",
+          "Type": "Integer",
+          "Value": "1",
+          "Description": "Player level"
+        },
+        {
+          "Variable": "HasBucket",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the bucket?"
+        },
+        {
+          "Variable": "HasHolyJerky",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the holy Jerky Bits?"
+        },
+        {
+          "Variable": "TrollDead",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Is the troll dead?"
+        },
+        {
+          "Variable": "JerkyFist",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Crafted the JerkyFist?"
+        },
+        {
+          "Variable": "Quest001_waypoint04_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint05_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint04_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint05_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint06_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint06_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_Started",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_Finished",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint07_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint07_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "SampleString",
+          "Type": "String",
+          "Value": "blank",
+          "Description": ""
+        }
+      ]
+    },
+    {
+      "Namespace": "RNDVariables",
+      "Description": "",
+      "Variables": [
+        {
+          "Variable": "Option01Discussed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Spoken in simple flow example yet?"
+        },
+        {
+          "Variable": "EndingVariable",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Sample Conditioni Check"
+        },
+        {
+          "Variable": "nevertruevar",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "never true variable"
+        },
+        {
+          "Variable": "GitVar",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "InventoryItem01",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Test Inventory Item"
+        }
+      ]
+    }
+  ]
+}
