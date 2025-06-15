@@ -1,0 +1,118 @@
+[vite] connecting... client:206:9
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-CIQVVTPY.js:21536:25
+[Articy HTML Viewer - JSON export] version: 0.1.0 InteractiveArticyViewer.tsx:327:13
+Ready for file upload - drag and drop a JSON file or click to browse InteractiveArticyViewer.tsx:328:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:369:13
+[Articy HTML Viewer - JSON export] version: 0.1.0 InteractiveArticyViewer.tsx:327:13
+Ready for file upload - drag and drop a JSON file or click to browse InteractiveArticyViewer.tsx:328:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:369:13
+GET
+http://localhost:5173/favicon.ico
+[HTTP/1.1 404 Not Found 0ms]
+
+variables initialized 
+Object { TestFlowVariables: {…}, RNDVariables: {…} }
+ArticyProject.tsx:19:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:763:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:763:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:369:13
+[vite] connected. client:286:21
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:763:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:763:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:763:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:763:13
+🔄 Variables reset to initial state: 
+Object { TestFlowVariables: {…}, RNDVariables: {…} }
+ArticyProject.tsx:56:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:369:13
+🔄 STORING VARIABLES from node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:414:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:415:15
+Node Expression: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW InteractiveArticyViewer.tsx:416:15
+DisplayNode - Current node type: QuestHeaderTemplate InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "QuestHeaderTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:763:13
+DisplayNode - Current node type: QuestHeaderTemplate InteractiveArticyViewer.tsx:762:13
+DisplayNode - Current node: 
+Object { Type: "QuestHeaderTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:763:13
+🔗 TextBlock received text with notion.so URL: In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! 
+
+
+
+Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4
+
+
+
+
+
+
+
+*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers! TextBlock.tsx:54:13
+🔗 Text chunks after split: 
+Array(7) [ "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! ", "", "Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4", "", "", "", "*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!" ]
+TextBlock.tsx:58:13
+🔗 Chunk 0: "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! " TextBlock.tsx:60:15
+🔗 Chunk 1: "" TextBlock.tsx:60:15
+🔗 Chunk 2: "Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4" TextBlock.tsx:60:15
+🔗 Chunk 3: "" TextBlock.tsx:60:15
+🔗 Chunk 4: "" TextBlock.tsx:60:15
+🔗 Chunk 5: "" TextBlock.tsx:60:15
+🔗 Chunk 6: "*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!" TextBlock.tsx:60:15
+🔗 Processing chunk in map (codeblock): "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! " TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "" TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4" TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "" 3 TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!" TextBlock.tsx:177:17
+🔗 TextBlock received text with notion.so URL: In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! 
+
+
+
+Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4
+
+
+
+
+
+
+
+*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers! TextBlock.tsx:54:13
+🔗 Text chunks after split: 
+Array(7) [ "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! ", "", "Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4", "", "", "", "*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!" ]
+TextBlock.tsx:58:13
+🔗 Chunk 0: "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! " TextBlock.tsx:60:15
+🔗 Chunk 1: "" TextBlock.tsx:60:15
+🔗 Chunk 2: "Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4" TextBlock.tsx:60:15
+🔗 Chunk 3: "" TextBlock.tsx:60:15
+🔗 Chunk 4: "" TextBlock.tsx:60:15
+🔗 Chunk 5: "" TextBlock.tsx:60:15
+🔗 Chunk 6: "*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!" TextBlock.tsx:60:15
+🔗 Processing chunk in map (codeblock): "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! " TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "" TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "Quest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4" TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "" 3 TextBlock.tsx:177:17
+🔗 Processing chunk in map (codeblock): "*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!" TextBlock.tsx:177:17
+currentNode updated: 
+Object { Type: "QuestHeaderTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:369:13

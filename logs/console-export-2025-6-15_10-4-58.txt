@@ -1,0 +1,929 @@
+[vite] connecting... client:206:9
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-CIQVVTPY.js:21536:25
+[Articy HTML Viewer - JSON export] version: 0.1.0 InteractiveArticyViewer.tsx:323:13
+Ready for file upload - drag and drop a JSON file or click to browse InteractiveArticyViewer.tsx:324:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:365:13
+[Articy HTML Viewer - JSON export] version: 0.1.0 InteractiveArticyViewer.tsx:323:13
+Ready for file upload - drag and drop a JSON file or click to browse InteractiveArticyViewer.tsx:324:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:365:13
+GET
+http://localhost:5173/favicon.ico
+[HTTP/1.1 404 Not Found 0ms]
+
+[vite] connected. client:286:21
+variables initialized 
+Object { TestFlowVariables: {…}, RNDVariables: {…} }
+ArticyProject.tsx:16:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004333 Instruction InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+🔄 NAVIGATING TO NODE: 0x0100000600004472 WaypointTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004333 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //QUEST_001 FLOW START
+//The player/writer starts this quest, seeking out advice from the legendary blacksmith Duhvel Opper. It is said he can construct a blade known as The Code to assist you on your journey.
+
+//TESTING VARIABLES
+TestFlowVariables.HasShield=true;
+TestFlowVariables.TestPlayerHitPoints=TestFlowVariables.TestPlayerHitPoints+1;
+TestFlowVariables.SampleString="great googly moogly";
+
+InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.SampleString="great googly moogly"; ArticyProject.tsx:84:17
+processing... TestFlowVariables.TestPlayerHitPoints=TestFlowVariables.TestPlayerHitPoints+1; ArticyProject.tsx:84:17
+processing... TestFlowVariables.HasShield=true; ArticyProject.tsx:84:17
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000433B LocationTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004472 WaypointTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //QUEST_001_OBJ_001 - Ask the blacksmith about The Code.
+
+//NOTES
+//Waypoint should be centered on the Duhvel Opper character in the PerForge.
+
+//Variable Changes Needed
+TestFlowVariables.Quest001_waypoint01_visible=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.Quest001_waypoint01_visible=true; ArticyProject.tsx:84:17
+DisplayNode - Current node type: LocationTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: LocationTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004337 Instruction InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000437A DialogueIntActionTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004337 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - PerForge Conversation Hub Start InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: DialogueIntActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueIntActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueIntActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueIntActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueIntActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004388 DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000438E DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004394 DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043AC DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043B9 DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043B2 DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004580 WaypointTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043BF Jump InteractiveArticyViewer.tsx:476:13
+🔄 JUMP REDIRECT: 0x01000006000043BF → 0x0100000600004337 InteractiveArticyViewer.tsx:390:17
+🔄 STORING VARIABLES from node: 0x0100000600004580 WaypointTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //QUEST_001_OBJ_002 - Grab the bucket of bits for the blacksmith.
+
+//NOTES
+//Waypoint should be centered on the bucket of bits inside the room.
+
+//Variable Changes Needed
+TestFlowVariables.Quest001_waypoint01_visible=false;
+TestFlowVariables.Quest001_waypoint01_completed=true;
+TestFlowVariables.Quest001_waypoint02_visible=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.Quest001_waypoint02_visible=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint01_completed=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint01_visible=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000436E PlayerActionTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004337 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - PerForge Conversation Hub Start InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004586 WaypointTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x010000060000436E PlayerActionTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //ACTION - Pick up bucket of bits
+
+TestFlowVariables.HasBucket=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.HasBucket=true; ArticyProject.tsx:84:17
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043EE Jump InteractiveArticyViewer.tsx:476:13
+🔄 JUMP REDIRECT: 0x01000006000043EE → 0x0100000600004337 InteractiveArticyViewer.tsx:390:17
+🔄 STORING VARIABLES from node: 0x0100000600004586 WaypointTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //QUEST_001_OBJ_003 - Return the bucket of bits to the blacksmith.
+
+//NOTES
+//Waypoint should be centered on the Duhvel Opper character in the PerForge.
+
+//Variable Changes Needed
+TestFlowVariables.Quest001_waypoint02_visible=false;
+TestFlowVariables.Quest001_waypoint02_completed=true;
+TestFlowVariables.Quest001_waypoint03_visible=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.Quest001_waypoint03_visible=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint02_completed=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint02_visible=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000437A DialogueIntActionTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004337 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - PerForge Conversation Hub Start InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: DialogueIntActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueIntActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueIntActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueIntActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueIntActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043C9 DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043C3 DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000443B DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueInteractiveFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004453 DialogueExplorationActionTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004445 PlayerActionTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004441 AreaEventTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004445 PlayerActionTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //ACTION - Gives bucket to Duhvel Opper.
+
+TestFlowVariables.HasBucket=false; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.HasBucket=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000444D DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004441 AreaEventTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //EVENT - Duhvel Opper plunges The half finished Code into the bucket of bits. Swirling lights and energy fly out of the bucket, the player recoiling. The Duhvel Opper pulls out a fully formed Code. He hands it to the player. InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004449 PlayerActionTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000458C WaypointTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004449 PlayerActionTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //ACTION - Takes The Code
+
+TestFlowVariables.HasSword=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.HasSword=true; ArticyProject.tsx:84:17
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000445A Jump InteractiveArticyViewer.tsx:476:13
+🔄 JUMP REDIRECT: 0x010000060000445A → 0x0100000600004337 InteractiveArticyViewer.tsx:390:17
+🔄 STORING VARIABLES from node: 0x010000060000458C WaypointTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //QUEST_001_OBJ_004 - Test the blade on the block of Kew Eh. 
+
+//NOTES
+//Waypoint should be centered on the bucket of bits inside the room.
+
+//Variable Changes Needed
+TestFlowVariables.Quest001_waypoint03_visible=false;
+TestFlowVariables.Quest001_waypoint03_completed=true;
+TestFlowVariables.Quest001_waypoint04_visible=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.Quest001_waypoint04_visible=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint03_completed=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint03_visible=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004464 PlayerActionTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004337 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - PerForge Conversation Hub Start InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004468 AreaEventTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004464 PlayerActionTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //ACTION - Swing sword at the Kew Eh block.
+
+InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000446C DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004468 AreaEventTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //EVENT - The player swings a mighty blow and connects with the block. The sword shatters into pieces.
+
+TestFlowVariables.HasSword=false; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.HasSword=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004488 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004476 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000445E DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000447C DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004482 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000448E DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000044A4 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004498 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000044AA DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000449E DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000459B WaypointTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004494 Jump InteractiveArticyViewer.tsx:476:13
+🔄 JUMP REDIRECT: 0x0100000600004494 → 0x0100000600004337 InteractiveArticyViewer.tsx:390:17
+🔄 STORING VARIABLES from node: 0x010000060000459B WaypointTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //QUEST_001_OBJ_005 - Prepare your gauntlets for the upcoming battle.
+
+//NOTES
+//Waypoint should be centered on the bridge in the Lost Forest.
+//Waypoint should be centered on the Sacred Tree of Holy Jerky.
+
+//Variable Changes Needed
+TestFlowVariables.Quest001_waypoint04_visible=false;
+TestFlowVariables.Quest001_waypoint04_completed=true;
+TestFlowVariables.Quest001_waypoint05_visible=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.Quest001_waypoint05_visible=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint04_completed=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint04_visible=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043CF TravelTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004337 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - PerForge Conversation Hub Start InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: TravelTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "TravelTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: TravelTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "TravelTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "TravelTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043D3 LocationTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: LocationTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: LocationTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004402 Instruction InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043FE PlayerActionTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004402 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - The Lost Forest InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: PlayerActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "PlayerActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000800000642 LocationTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x01000006000043FE PlayerActionTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //ACTION - Search for Holy Jerky Bits
+
+TestFlowVariables.HasHolyJerky=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.HasHolyJerky=true; ArticyProject.tsx:84:17
+DisplayNode - Current node type: LocationTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: LocationTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "LocationTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000045AC WaypointTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: WaypointTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "WaypointTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004406 Jump InteractiveArticyViewer.tsx:476:13
+🔄 JUMP REDIRECT: 0x0100000600004406 → 0x0100000600004402 InteractiveArticyViewer.tsx:390:17
+🔄 STORING VARIABLES from node: 0x01000006000045AC WaypointTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //QUEST_001_OBJ_006 - Prepare your gauntlets for the upcoming battle.
+
+//NOTES
+//Waypoint should be centered on the bridge in the Lost Forest.
+
+//Variable Changes Needed
+TestFlowVariables.Quest001_waypoint05_visible=false;
+TestFlowVariables.Quest001_waypoint05_completed=true;
+TestFlowVariables.Quest001_waypoint06_visible=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.Quest001_waypoint06_visible=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint05_completed=true; ArticyProject.tsx:84:17
+processing... TestFlowVariables.Quest001_waypoint05_visible=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000436A CraftingTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004402 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - The Lost Forest InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: CraftingTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "CraftingTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: CraftingTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "CraftingTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "CraftingTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000442B Instruction InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x010000060000436A CraftingTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //CRAFTING - Smear the Holy Jerky on your gauntlets. 
+TestFlowVariables.JerkyFist=true; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.JerkyFist=true; ArticyProject.tsx:84:17
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004427 Jump InteractiveArticyViewer.tsx:476:13
+🔄 JUMP REDIRECT: 0x0100000600004427 → 0x0100000600004402 InteractiveArticyViewer.tsx:390:17
+🔄 STORING VARIABLES from node: 0x010000060000442B Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //Used the Holy Jerky Bits
+TestFlowVariables.HasHolyJerky=false; InteractiveArticyViewer.tsx:412:15
+processing... TestFlowVariables.HasHolyJerky=false; ArticyProject.tsx:84:17
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004413 TravelTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004402 Instruction InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //HUB - The Lost Forest InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: TravelTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "TravelTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: TravelTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "TravelTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "TravelTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004376 AreaEventTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004381 DialogueExplorationActionTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004376 AreaEventTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //EVENT - A Toxic Troll climbs out from under a bridge that spans a small stream. It snarls and paces back and forth on the bridge. InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: DialogueExplorationActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationActionTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationActionTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043DE DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x01000006000043EA AreaEventTemplate InteractiveArticyViewer.tsx:476:13
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: AreaEventTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "AreaEventTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x0100000600004366 CombatTemplate InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x01000006000043EA AreaEventTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //EVENT - The troll thrusts a slimy, gruesome finger at the player and dozens of tiny blue birds swarm and attack.   InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: CombatTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "CombatTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: CombatTemplate InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "CombatTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "CombatTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:365:13
+🔄 NAVIGATING TO NODE: 0x010000060000440A Condition InteractiveArticyViewer.tsx:476:13
+🔄 STORING VARIABLES from node: 0x0100000600004366 CombatTemplate InteractiveArticyViewer.tsx:410:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:411:15
+Node Expression: //COMBAT - Attack the Toxic Troll InteractiveArticyViewer.tsx:412:15
+DisplayNode - Current node type: Condition InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+DisplayNode - Current node type: Condition InteractiveArticyViewer.tsx:720:13
+DisplayNode - Current node: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:721:13
+currentNode updated: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:365:13

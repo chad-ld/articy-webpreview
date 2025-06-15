@@ -1,0 +1,269 @@
+[vite] connecting... client:206:9
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-CIQVVTPY.js:21536:25
+[Articy HTML Viewer - JSON export] version: 0.1.0 InteractiveArticyViewer.tsx:327:13
+Ready for file upload - drag and drop a JSON file or click to browse InteractiveArticyViewer.tsx:328:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:369:13
+[Articy HTML Viewer - JSON export] version: 0.1.0 InteractiveArticyViewer.tsx:327:13
+Ready for file upload - drag and drop a JSON file or click to browse InteractiveArticyViewer.tsx:328:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:369:13
+variables initialized 
+Object { TestFlowVariables: {…}, RNDVariables: {…} }
+ArticyProject.tsx:19:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:369:13
+[vite] connected. client:286:21
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔍 getCurrentNodeOutputs - Current node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔄 Variables reset to initial state: 
+Object { TestFlowVariables: {…}, RNDVariables: {…} }
+ArticyProject.tsx:56:13
+currentNode updated: undefined InteractiveArticyViewer.tsx:369:13
+🔄 STORING VARIABLES from node: 0x01000008000004D5 Instruction InteractiveArticyViewer.tsx:414:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:415:15
+Node Expression: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW InteractiveArticyViewer.tsx:416:15
+DisplayNode - Current node type: CombatTemplate InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "CombatTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x0100000600004366 CombatTemplate InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: CombatTemplate InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "CombatTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x0100000600004366 CombatTemplate InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+currentNode updated: 
+Object { Type: "CombatTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:369:13
+🔍 getCurrentNodeOutputs - Current node: 0x0100000600004366 CombatTemplate InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔄 NAVIGATING TO NODE: 0x010000060000440A Condition InteractiveArticyViewer.tsx:498:13
+🔄 STORING VARIABLES from node: 0x0100000600004366 CombatTemplate InteractiveArticyViewer.tsx:414:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:415:15
+Node Expression: //COMBAT - Attack the Toxic Troll InteractiveArticyViewer.tsx:416:15
+DisplayNode - Current node type: Condition InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x010000060000440A Condition InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…}, {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: Condition InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x010000060000440A Condition InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…}, {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+currentNode updated: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:369:13
+DisplayNode - Current node type: Condition InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x010000060000440A Condition InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…}, {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: Condition InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Condition", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x010000060000440A Condition InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…}, {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔄 CONDITION EVALUATION: TestFlowVariables.JerkyFist==true; → false InteractiveArticyViewer.tsx:573:15
+🔄 CONDITION NAVIGATE: FALSE → 0x0100000600004505 InteractiveArticyViewer.tsx:579:19
+🔄 NAVIGATING TO NODE: 0x0100000600004505 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:498:13
+🔄 STORING VARIABLES from node: 0x010000060000440A Condition InteractiveArticyViewer.tsx:414:15
+Node Text: <empty string> InteractiveArticyViewer.tsx:415:15
+Node Expression: //Did player make the JerkyFist?
+TestFlowVariables.JerkyFist==true; InteractiveArticyViewer.tsx:416:15
+processing... TestFlowVariables.JerkyFist==true; ArticyProject.tsx:147:17
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x0100000600004505 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+DisplayNode - Current node type: DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x0100000600004505 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+currentNode updated: 
+Object { Type: "DialogueExplorationFragmentTemplate", Properties: {…}, Template: {} }
+InteractiveArticyViewer.tsx:369:13
+🔍 getCurrentNodeOutputs - Current node: 0x0100000600004505 DialogueExplorationFragmentTemplate InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 Found connections: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:485:15
+🔄 NAVIGATING TO NODE: 0x01000006000043F6 Instruction InteractiveArticyViewer.tsx:498:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000006000043F6 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 No connections found - returning empty array InteractiveArticyViewer.tsx:488:13
+DisplayNode - Current node type: Instruction InteractiveArticyViewer.tsx:761:13
+DisplayNode - Current node: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:762:13
+🔍 getCurrentNodeOutputs - Current node: 0x01000006000043F6 Instruction InteractiveArticyViewer.tsx:472:13
+🔍 OutputPins: 
+Array [ {…} ]
+InteractiveArticyViewer.tsx:473:13
+🔍 No connections found - returning empty array InteractiveArticyViewer.tsx:488:13
+currentNode updated: 
+Object { Type: "Instruction", Properties: {…} }
+InteractiveArticyViewer.tsx:369:13
