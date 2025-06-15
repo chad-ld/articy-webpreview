@@ -1,0 +1,1130 @@
+{
+  "FFr_F1DC497C.DisplayName": {
+    "": {
+      "Text": "RND Flows"
+    },
+    "Context": "Flow/RND Flows"
+  },
+  "FFr_F1DC497C.Text": {
+    "": {
+      "Text": "Experimental Test Flows"
+    },
+    "Context": "Flow/RND Flows"
+  },
+  "FFr_0D5E767F.DisplayName": {
+    "": {
+      "Text": "FLOW TEMPLATES"
+    },
+    "Context": "Flow/RND Flows/FLOW TEMPLATES"
+  },
+  "FFr_0D5E767F.Text": {
+    "": {
+      "Text": "Pre made sample nodes"
+    },
+    "Context": "Flow/RND Flows/FLOW TEMPLATES"
+  },
+  "FFr_B1513FC1.DisplayName": {
+    "": {
+      "Text": "hide 2nd node example"
+    },
+    "Context": "Flow/RND Flows/hide 2nd node example"
+  },
+  "FFr_B1513FC1.Text": {
+    "": {
+      "Text": "recreation of hide for visual studio"
+    },
+    "Context": "Flow/RND Flows/hide 2nd node example"
+  },
+  "FFr_2818583C.DisplayName": {
+    "": {
+      "Text": "v01 Mission Structure - Mission Centric"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric"
+  },
+  "FFr_2818583C.Text": {
+    "": {
+      "Text": "The original structure I had attempted for the open world template."
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric"
+  },
+  "FFr_CAA4F9DC.DisplayName": {
+    "": {
+      "Text": "v02 Mission Structure - Location Centric"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric"
+  },
+  "FFr_CAA4F9DC.Text": {
+    "": {
+      "Text": "Revised mission structure that is location centric."
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric"
+  },
+  "FFr_AB2104B3.DisplayName": {
+    "": {
+      "Text": "Template Nodes"
+    },
+    "Context": "Flow/Template Nodes"
+  },
+  "FFr_AB2104B3.Text": {
+    "": {
+      "Text": "Template nodes that can be copy/pasted into other flows."
+    },
+    "Context": "Flow/Template Nodes"
+  },
+  "FFr_D8EC5E7C.DisplayName": {
+    "": {
+      "Text": "Simple Flow Example"
+    },
+    "Context": "Flow/Simple Flow Example"
+  },
+  "FFr_D8EC5E7C.Text": {
+    "": {
+      "Text": "Simple Flow Example"
+    },
+    "Context": "Flow/Simple Flow Example"
+  },
+  "FFr_663FD1A4.DisplayName": {
+    "": {
+      "Text": "Nested Sample"
+    },
+    "Context": "Flow/Simple Flow Example/Nested Sample"
+  },
+  "FFr_663FD1A4.Text": {
+    "": {
+      "Text": "Nested conversation/actions here!"
+    },
+    "Context": "Flow/Simple Flow Example/Nested Sample"
+  },
+  "FFr_FC9DBC99.DisplayName": {
+    "": {
+      "Text": "Simple Ending Flow"
+    },
+    "Context": "Flow/Simple Ending Flow"
+  },
+  "FFr_FC9DBC99.Text": {
+    "": {
+      "Text": "The ending flow."
+    },
+    "Context": "Flow/Simple Ending Flow"
+  },
+  "FFr_35C445A4.DisplayName": {
+    "": {
+      "Text": "Flow Test v03"
+    },
+    "Context": "Flow/Flow Test v03"
+  },
+  "FFr_35C445A4.Text": {
+    "": {
+      "Text": "Flow Test v03"
+    },
+    "Context": "Flow/Flow Test v03"
+  },
+  "FFr_18E13728.DisplayName": {
+    "": {
+      "Text": "Nested Sample"
+    },
+    "Context": "Flow/Flow Test v03/Nested Sample"
+  },
+  "FFr_18E13728.Text": {
+    "": {
+      "Text": "Nested conversation/actions here!"
+    },
+    "Context": "Flow/Flow Test v03/Nested Sample"
+  },
+  "FFr_BBFA364D.DisplayName": {
+    "": {
+      "Text": "Alt Flow Node Test"
+    },
+    "Context": "Flow/Flow Test v03/Alt Flow Node Test"
+  },
+  "FFr_BBFA364D.Text": {
+    "": {
+      "Text": "Alt Flow Node Test"
+    },
+    "Context": "Flow/Flow Test v03/Alt Flow Node Test"
+  },
+  "FFr_5B0492DA.DisplayName": {
+    "": {
+      "Text": "Nest Test Level 01"
+    },
+    "Context": "Flow/Nest Test Level 01"
+  },
+  "FFr_5B0492DA.Text": {
+    "": {
+      "Text": "Nest Test Level 01"
+    },
+    "Context": "Flow/Nest Test Level 01"
+  },
+  "FFr_57B49778.DisplayName": {
+    "": {
+      "Text": "Second Level Nesting"
+    },
+    "Context": "Flow/Nest Test Level 01/Second Level Nesting"
+  },
+  "FFr_57B49778.Text": {
+    "": {
+      "Text": "Second Level Nesting"
+    },
+    "Context": "Flow/Nest Test Level 01/Second Level Nesting"
+  },
+  "FFr_A605BD84.DisplayName": {
+    "": {
+      "Text": "Web HTML Git Hub Issues"
+    },
+    "Context": "Flow/Web HTML Git Hub Issues"
+  },
+  "FFr_A605BD84.Text": {
+    "": {
+      "Text": "Errors reported by users for WebHTML"
+    },
+    "Context": "Flow/Web HTML Git Hub Issues"
+  },
+  "FFr_9BAE80A2.DisplayName": {
+    "": {
+      "Text": "Simplest Test CB"
+    },
+    "Context": "Flow/Web HTML Git Hub Issues/Simplest Test CB"
+  },
+  "FFr_9BAE80A2.Text": {
+    "": {
+      "Text": "https://github.com/chad-ld/articy-webpreview/issues/1#issuecomment-1870691731"
+    },
+    "Context": "Flow/Web HTML Git Hub Issues/Simplest Test CB"
+  },
+  "FFr_27B4BF65.DisplayName": {
+    "": {
+      "Text": "Saved By Zero Example"
+    },
+    "Context": "Flow/Web HTML Git Hub Issues/Saved By Zero Example"
+  },
+  "FFr_27B4BF65.Text": {
+    "": {
+      "Text": "https://github.com/chad-ld/articy-webpreview/issues/1#issuecomment-1870691731"
+    },
+    "Context": "Flow/Web HTML Git Hub Issues/Saved By Zero Example"
+  },
+  "FFr_B40E5B08.DisplayName": {
+    "": {
+      "Text": "Initiate Interactive Dialogue"
+    },
+    "Context": "Flow/hide 2nd node example/Initiate Interactive Dialogue"
+  },
+  "FFr_B40E5B08.Text": {
+    "": {
+      "Text": "decorative node that lets viewer know a branching dialouge is about to happen"
+    },
+    "Context": "Flow/hide 2nd node example/Initiate Interactive Dialogue"
+  },
+  "FFr_A325DF21.DisplayName": {
+    "": {
+      "Text": "Initiate Interactive Dialogue"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Initiate Interactive Dialogue"
+  },
+  "FFr_A325DF21.Text": {
+    "": {
+      "Text": "Talk to Duhvel Opper"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Initiate Interactive Dialogue"
+  },
+  "FFr_777D1E8B.DisplayName": {
+    "": {
+      "Text": "Initiate Interactive Dialogue"
+    },
+    "Context": "Flow/Template Nodes/Initiate Interactive Dialogue"
+  },
+  "FFr_777D1E8B.Text": {
+    "": {
+      "Text": "Interactive conversation that happens in normal exploration mode.\r\n\r\n(Details about conversation)"
+    },
+    "Context": "Flow/Template Nodes/Initiate Interactive Dialogue"
+  },
+  "FFr_EA4474CC.DisplayName": {
+    "": {
+      "Text": "||QUEST_001 - The Narrative Bible of Ultimate Power"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric/||QUEST_001 - The Narrative Bible of Ultimate Power"
+  },
+  "FFr_EA4474CC.Text": {
+    "": {
+      "Text": "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! \r\n\r\nQuest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4\r\n\r\n\r\n\r\n*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric/||QUEST_001 - The Narrative Bible of Ultimate Power"
+  },
+  "FFr_E9A4CE24.DisplayName": {
+    "": {
+      "Text": "||QUEST_002 - Revenge Of The Toxic Troll"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric/||QUEST_002 - Revenge Of The Toxic Troll"
+  },
+  "FFr_E9A4CE24.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nQuest Outline: (link here)"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric/||QUEST_002 - Revenge Of The Toxic Troll"
+  },
+  "FFr_A4AF0966.DisplayName": {
+    "": {
+      "Text": "||QUEST_101 - (Quest Name)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 01)/||QUEST_101 - (Quest Name)"
+  },
+  "FFr_A4AF0966.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nQuest Outline: (Notion Link Here)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 01)/||QUEST_101 - (Quest Name)"
+  },
+  "FFr_F36ADF2B.DisplayName": {
+    "": {
+      "Text": "||QUEST_102 - (Quest Name)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 01)/||QUEST_102 - (Quest Name)"
+  },
+  "FFr_F36ADF2B.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nQuest Outline: (Notion Link Here)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 01)/||QUEST_102 - (Quest Name)"
+  },
+  "FFr_36A9D2EF.DisplayName": {
+    "": {
+      "Text": "||QUEST_103 - (Quest Name)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 02)/||QUEST_103 - (Quest Name)"
+  },
+  "FFr_36A9D2EF.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nQuest Outline: (Notion Link Here)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 02)/||QUEST_103 - (Quest Name)"
+  },
+  "FFr_BCA3777E.DisplayName": {
+    "": {
+      "Text": "||QUEST_104 - (Quest Name)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 02)/||QUEST_104 - (Quest Name)"
+  },
+  "FFr_BCA3777E.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nQuest Outline: (Notion Link Here)"
+    },
+    "Context": "Flow/||LOCATION - (TEMP LOCATION 02)/||QUEST_104 - (Quest Name)"
+  },
+  "FFr_3033B87D.DisplayName": {
+    "": {
+      "Text": "||QUEST_000 - (Quest Name)"
+    },
+    "Context": "Flow/Template Nodes/||QUEST_000 - (Quest Name)"
+  },
+  "FFr_3033B87D.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nQuest Outline: (Notion Link Here)"
+    },
+    "Context": "Flow/Template Nodes/||QUEST_000 - (Quest Name)"
+  },
+  "FFr_4196D8BE.DisplayName": {
+    "": {
+      "Text": "||LOCATION - PerForge"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - PerForge"
+  },
+  "FFr_4196D8BE.Text": {
+    "": {
+      "Text": "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - PerForge"
+  },
+  "FFr_124A97AE.DisplayName": {
+    "": {
+      "Text": "||LOCATION - The Lost Forest"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Lost Forest"
+  },
+  "FFr_124A97AE.Text": {
+    "": {
+      "Text": "A dark, twisted forest full of dead trees and brambles. \r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Lost Forest"
+  },
+  "FFr_7412BD2A.DisplayName": {
+    "": {
+      "Text": "||LOCATION - The Pits of Gnesding"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Pits of Gnesding"
+  },
+  "FFr_7412BD2A.Text": {
+    "": {
+      "Text": "A dark hole, from which many do not return.\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Pits of Gnesding"
+  },
+  "FFr_4AC6C68B.DisplayName": {
+    "": {
+      "Text": "||LOCATION - (TEMP LOCATION 01)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 01)"
+  },
+  "FFr_4AC6C68B.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nContains following locations:\r\n\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 01)"
+  },
+  "FFr_EE2247AE.DisplayName": {
+    "": {
+      "Text": "||LOCATION - (TEMP LOCATION 02)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 02)"
+  },
+  "FFr_EE2247AE.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nContains following locations:\r\n\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 02)"
+  },
+  "FFr_85844006.DisplayName": {
+    "": {
+      "Text": "||LOCATION - (TEMP LOCATION 03)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 03)"
+  },
+  "FFr_85844006.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nContains following locations:\r\n\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 03)"
+  },
+  "FFr_1823A2F2.DisplayName": {
+    "": {
+      "Text": "||LOCATION - (TEMP LOCATION 04)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 04)"
+  },
+  "FFr_1823A2F2.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nContains following locations:\r\n\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/v02 Mission Structure - Location Centric/||LOCATION - (TEMP LOCATION 04)"
+  },
+  "FFr_451AD1EC.DisplayName": {
+    "": {
+      "Text": "||LOCATION - (Location Name)"
+    },
+    "Context": "Flow/Template Nodes/||LOCATION - (Location Name)"
+  },
+  "FFr_451AD1EC.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nContains following locations:\r\nResearch Lab\r\nLobby\r\nService Corridor\r\nSecurity Office\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/Template Nodes/||LOCATION - (Location Name)"
+  },
+  "FFr_A97DCF5D.DisplayName": {
+    "": {
+      "Text": "/BARKS - IdleWorking"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking"
+  },
+  "FFr_A97DCF5D.Text": {
+    "": {
+      "Text": "Duhvel Opper cycles through these lines randomly while busy hammering at the PerForge."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking"
+  },
+  "FFr_E3C53E60.DisplayName": {
+    "": {
+      "Text": "/BARKJUMP - IdleWorking"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKJUMP - IdleWorking"
+  },
+  "FFr_E3C53E60.Text": {
+    "": {
+      "Text": "Duhvel Opper cycles through these lines randomly while busy hammering at the PerForge. \r\n\r\nNOTE: This node does not currently progress properly with the html exporter. In a future version it will jump to a collection of barks that are triggered by the \"jump to barks\" text below. \r\n\r\nSample image of barks are here:\r\nhttp://dev.chadbriggs.com/articy/testing/demo/bark_layout_demo.png\r\n\r\nJUMP TO BARKS"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKJUMP - IdleWorking"
+  },
+  "FFr_B9F87F33.DisplayName": {
+    "": {
+      "Text": "Troll Threatens Player"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Troll Threatens Player"
+  },
+  "FFr_B9F87F33.Text": {
+    "": {
+      "Text": "The troll threatens the player when in range of bridge."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Troll Threatens Player"
+  },
+  "FFr_F6023C36.DisplayName": {
+    "": {
+      "Text": "Duhvel Opper Works on Sword"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper Works on Sword"
+  },
+  "FFr_F6023C36.Text": {
+    "": {
+      "Text": "The conversations continues in exploration mode as the blacksmith finishes the sword."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper Works on Sword"
+  },
+  "FFr_F59171D3.DisplayName": {
+    "": {
+      "Text": "/BARKS - (Situation)"
+    },
+    "Context": "Flow/Template Nodes//BARKS - (Situation)"
+  },
+  "FFr_F59171D3.Text": {
+    "": {
+      "Text": "Bark situation info, what triggers the barks"
+    },
+    "Context": "Flow/Template Nodes//BARKS - (Situation)"
+  },
+  "FFr_F75A144A.DisplayName": {
+    "": {
+      "Text": "/BARKJUMP - (bark group name)"
+    },
+    "Context": "Flow/Template Nodes//BARKJUMP - (bark group name)"
+  },
+  "FFr_F75A144A.Text": {
+    "": {
+      "Text": "Used to call out in a flow when barks start happening if needed.\r\n\r\nJUMP TO BARKS (link)"
+    },
+    "Context": "Flow/Template Nodes//BARKJUMP - (bark group name)"
+  },
+  "FFr_EF5D9B66.DisplayName": {
+    "": {
+      "Text": "Initiate Exploration Dialogue"
+    },
+    "Context": "Flow/Template Nodes/Initiate Exploration Dialogue"
+  },
+  "FFr_EF5D9B66.Text": {
+    "": {
+      "Text": "Non interactive conversation that happens in normal exploration mode.\r\n\r\n(Details about conversation."
+    },
+    "Context": "Flow/Template Nodes/Initiate Exploration Dialogue"
+  },
+  "FFr_D9D98307.DisplayName": {
+    "": {
+      "Text": "||CRAFTING - Flow"
+    },
+    "Context": "Flow/Template Nodes/||CRAFTING - Flow"
+  },
+  "FFr_D9D98307.Text": {
+    "": {
+      "Text": "Use a Crafting Flow if you need to group several actions, otherwise use a Crafting Instruction."
+    },
+    "Context": "Flow/Template Nodes/||CRAFTING - Flow"
+  },
+  "FFr_4E79470B.DisplayName": {
+    "": {
+      "Text": "||COMBAT - Flow"
+    },
+    "Context": "Flow/Template Nodes/||COMBAT - Flow"
+  },
+  "FFr_4E79470B.Text": {
+    "": {
+      "Text": "Use a Combat Flow if you need to group several actions, otherwise use a Combat Instruction."
+    },
+    "Context": "Flow/Template Nodes/||COMBAT - Flow"
+  },
+  "FFr_7E041108.DisplayName": {
+    "": {
+      "Text": "||ACTION - Flow"
+    },
+    "Context": "Flow/Template Nodes/||ACTION - Flow"
+  },
+  "FFr_7E041108.Text": {
+    "": {
+      "Text": "Use an Action Flow if you need to group several actions from Player, otherwise use an Action Instruction."
+    },
+    "Context": "Flow/Template Nodes/||ACTION - Flow"
+  },
+  "FFr_BDD348EC.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Flow"
+    },
+    "Context": "Flow/Template Nodes/||TRAVEL - Flow"
+  },
+  "FFr_BDD348EC.Text": {
+    "": {
+      "Text": "Use a Travel Flow if you need to group several actions, otherwise use a Travel Instruction."
+    },
+    "Context": "Flow/Template Nodes/||TRAVEL - Flow"
+  },
+  "Dlg_28733231.DisplayName": {
+    "": {
+      "Text": "Dialogue Node Test"
+    },
+    "Context": "Flow/Flow Test v03/Dialogue Node Test"
+  },
+  "Dlg_28733231.Text": {
+    "": {
+      "Text": "Example Dialouge Node"
+    },
+    "Context": "Flow/Flow Test v03/Dialogue Node Test"
+  },
+  "DFr_23C47AA0.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/RND Flows/New dialogue fragment"
+  },
+  "DFr_2FC47D0D.Text": {
+    "": {
+      "Text": "This is a text string that is exactly 128 characters long, written in notepad ++, so I can easily see the character count below."
+    },
+    "Context": "Flow/FLOW TEMPLATES/...: \"This is a text string that is exact...\""
+  },
+  "DFr_1F27D14A.Text": {
+    "": {
+      "Text": "LV01_O1"
+    },
+    "Context": "Flow/hide 2nd node example/Player/Writer: \"LV01_O1\""
+  },
+  "DFr_54BB4985.Text": {
+    "": {
+      "Text": "LV01_02"
+    },
+    "Context": "Flow/hide 2nd node example/Player/Writer: \"LV01_02\""
+  },
+  "DFr_54B7053A.Text": {
+    "": {
+      "Text": "LV01_03"
+    },
+    "Context": "Flow/hide 2nd node example/Player/Writer: \"LV01_03\""
+  },
+  "DFr_6EE8813B.Text": {
+    "": {
+      "Text": "LV01_O2_LV02_O1"
+    },
+    "Context": "Flow/hide 2nd node example/Duhvel Opper: \"LV01_O2_LV02_O1\""
+  },
+  "DFr_E18AB275.Text": {
+    "": {
+      "Text": "LV01_O2_LV02_01_LV03_01"
+    },
+    "Context": "Flow/hide 2nd node example/Player/Writer: \"LV01_O2_LV02_01_LV03_01\""
+  },
+  "DFr_1CAF9D43.Text": {
+    "": {
+      "Text": "LV01_O2_LV02_01_LV03_01_LV04_01"
+    },
+    "Context": "Flow/hide 2nd node example/Player/Writer: \"LV01_O2_LV02_01_LV03_01_LV04_01\""
+  },
+  "DFr_39A5C9ED.Text": {
+    "": {
+      "Text": "LV01_O2_LV02_01_LV03_01_LV04_02"
+    },
+    "Context": "Flow/hide 2nd node example/Player/Writer: \"LV01_O2_LV02_01_LV03_01_LV04_02\""
+  },
+  "DFr_18999178.Text": {
+    "": {
+      "Text": "LV01_O2_LV02_01_LV03_01_LV04_01_LV05_01"
+    },
+    "Context": "Flow/hide 2nd node example/Duhvel Opper: \"LV01_O2_LV02_01_LV03_01_LV04_01_LV0...\""
+  },
+  "DFr_83C2D768.Text": {
+    "": {
+      "Text": "Greetings Duhvel Opper! I seek a boon from you!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Greetings Duhvel Opper! I seek a bo...\""
+  },
+  "DFr_48943D5A.Text": {
+    "": {
+      "Text": "Let me guess, you want The Code weeks ahead of schedule?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Let me guess, you want The Code wee...\""
+  },
+  "DFr_5806B944.Text": {
+    "": {
+      "Text": "Uhh... yes?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Uhh... yes?\""
+  },
+  "DFr_7BE64636.Text": {
+    "": {
+      "Text": "Then piss off. I'm busy."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Then piss off. I'm busy.\""
+  },
+  "DFr_5A8C48AD.Text": {
+    "": {
+      "Text": "Noooo... nooo... not me. Of course not."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Noooo... nooo... not me. Of course...\""
+  },
+  "DFr_FA4B2E92.Text": {
+    "": {
+      "Text": "Of course you do. *sigh* Go fetch the bucket of bits over there and I'll grant you early access to The Code."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Of course you do. *sigh* Go fetch t...\""
+  },
+  "DFr_E539AFE5.Text": {
+    "": {
+      "Text": "What are you, an idiot? I'm a dwarf! I'm like 4 foot 5 in heels! Go get the bucket already!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"What are you, an idiot? I'm a dwarf...\""
+  },
+  "DFr_45BF975D.Text": {
+    "": {
+      "Text": "My friend, you are a giant among men!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"My friend, you are a giant among me...\""
+  },
+  "DFr_93D60487.Text": {
+    "": {
+      "Text": "I do! I'll have you know it took me but mere seconds to walk across the room and find it, snatching it with supreme confidence."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"I do! I'll have you know it took me...\""
+  },
+  "DFr_1017D866.Text": {
+    "": {
+      "Text": "Well? Do you have my bucket of bits?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Well? Do you have my bucket of bits...\""
+  },
+  "DFr_FAD81D68.Text": {
+    "": {
+      "Text": "Can you give me some more details on the bucket? Is it say... bigger than a breadbox?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Can you give me some more details o...\""
+  },
+  "DFr_AEC60672.Text": {
+    "": {
+      "Text": "Ugh.... I can't even..."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Ugh.... I can't even...\""
+  },
+  "DFr_CFCF4C79.Text": {
+    "": {
+      "Text": "It was the only bucket on the shelf you imbecile! Just give it to me!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"It was the only bucket on the shelf...\""
+  },
+  "DFr_D41132CE.Text": {
+    "": {
+      "Text": "Stop yapping and test The Code already!!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Stop yapping and test The Code alre...\""
+  },
+  "DFr_13CB1187.Text": {
+    "": {
+      "Text": "I've helped you all I can, piss off."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"I've helped you all I can, piss off...\""
+  },
+  "DFr_723C5E76.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown fox jumped."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "DFr_8091CC43.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "DFr_E7035826.Text": {
+    "": {
+      "Text": "Looks like I need to pick an option here."
+    },
+    "Context": "Flow/Simple Flow Example/Test - Angry Robot: \"Looks like I need to pick an option...\""
+  },
+  "DFr_5B00D550.Text": {
+    "": {
+      "Text": "I demand to talk about Option 01!"
+    },
+    "Context": "Flow/Simple Flow Example/Test - Angry Robot: \"I demand to talk about Option 01!\""
+  },
+  "DFr_3B9DFAA3.Text": {
+    "": {
+      "Text": "Tell me about Option 02 immediately, you pompous bucket of bolts!"
+    },
+    "Context": "Flow/Simple Flow Example/Test - Angry Robot: \"Tell me about Option 02 immediately...\""
+  },
+  "DFr_30736AB8.Text": {
+    "": {
+      "Text": "Now that I know about option 01, it is CLEARLY obvious that you are hiding the location of the secret rebel base!"
+    },
+    "Context": "Flow/Simple Flow Example/Test - Angry Robot: \"Now that I know about option 01, it...\""
+  },
+  "DFr_769F90ED.Text": {
+    "": {
+      "Text": "Option 01 is peachy keen!"
+    },
+    "Context": "Flow/Simple Flow Example/Test - Happy Robot: \"Option 01 is peachy keen!\""
+  },
+  "DFr_EC23536A.Text": {
+    "": {
+      "Text": "I would LOVE to help you with that, but as a simple query unit, I do not possess sufficient CPU cycles for your request."
+    },
+    "Context": "Flow/Simple Flow Example/Test - Happy Robot: \"I would LOVE to help you with that,...\""
+  },
+  "DFr_9127C335.Text": {
+    "": {
+      "Text": "Whoops, forgot I had a pizza in the oven! Gotta to go take that out. Byyyyyeee!"
+    },
+    "Context": "Flow/Simple Flow Example/Test - Angry Robot: \"Whoops, forgot I had a pizza in the...\""
+  },
+  "DFr_02894818.Text": {
+    "": {
+      "Text": "Gee whiz, this nesting stuff is neat!"
+    },
+    "Context": "Flow/Nested Sample/Test - Happy Robot: \"Gee whiz, this nesting stuff is nea...\""
+  },
+  "DFr_0620F71E.Text": {
+    "": {
+      "Text": "Oh boy! I've reached the end!"
+    },
+    "Context": "Flow/Simple Ending Flow/Test - Happy Robot: \"Oh boy! I've reached the end!\""
+  },
+  "DFr_A0F92491.Text": {
+    "": {
+      "Text": "Looks like I need to pick an option here, but on this new fancy flow."
+    },
+    "Context": "Flow/Flow Test v03/Test - Angry Robot: \"Looks like I need to pick an option...\""
+  },
+  "DFr_BD07ADAC.Text": {
+    "": {
+      "Text": "I demand to talk about Option 01!"
+    },
+    "Context": "Flow/Flow Test v03/Test - Angry Robot: \"I demand to talk about Option 01!\""
+  },
+  "DFr_7FA6FA95.Text": {
+    "": {
+      "Text": "Tell me about Option 02 immediately, you pompous bucket of bolts!"
+    },
+    "Context": "Flow/Flow Test v03/Test - Angry Robot: \"Tell me about Option 02 immediately...\""
+  },
+  "DFr_17552B00.Text": {
+    "": {
+      "Text": "Now that I know about option 01, it is SOOOO obvious that you are hiding the location of the secret rebel base!"
+    },
+    "Context": "Flow/Flow Test v03/Test - Angry Robot: \"Now that I know about option 01, it...\""
+  },
+  "DFr_1F51A21F.Text": {
+    "": {
+      "Text": "Option 01 is peachy keen!"
+    },
+    "Context": "Flow/Flow Test v03/Test - Happy Robot: \"Option 01 is peachy keen!\""
+  },
+  "DFr_C2808CEC.Text": {
+    "": {
+      "Text": "I would LOVE to help you with that, but as a simple query unit, I do not possess sufficient CPU cycles for your request."
+    },
+    "Context": "Flow/Flow Test v03/Test - Happy Robot: \"I would LOVE to help you with that,...\""
+  },
+  "DFr_3A56D5FD.Text": {
+    "": {
+      "Text": "Whoops, forgot I had a pizza in the oven! Gotta to go take that out. Byyyyyeee!"
+    },
+    "Context": "Flow/Flow Test v03/Test - Angry Robot: \"Whoops, forgot I had a pizza in the...\""
+  },
+  "DFr_A819CC2F.Text": {
+    "": {
+      "Text": "Gee whiz, this nesting stuff is neat!"
+    },
+    "Context": "Flow/Nested Sample/Test - Happy Robot: \"Gee whiz, this nesting stuff is nea...\""
+  },
+  "DFr_21AC7A3C.Text": {
+    "": {
+      "Text": "Blah blah blah"
+    },
+    "Context": "Flow/Flow Test v03/Test - Angry Robot: \"Blah blah blah\""
+  },
+  "DFr_E6C44B97.Text": {
+    "": {
+      "Text": "Activate Maximum Nesting!"
+    },
+    "Context": "Flow/Nest Test Level 01/Test - Happy Robot: \"Activate Maximum Nesting!\""
+  },
+  "DFr_04FCA4D9.Text": {
+    "": {
+      "Text": "Maximum Nestage Achieved"
+    },
+    "Context": "Flow/Second Level Nesting/Test - Happy Robot: \"Maximum Nestage Achieved\""
+  },
+  "DFr_2EDFF549.Text": {
+    "": {
+      "Text": "Oh Boy! The End! (Again)"
+    },
+    "Context": "Flow/Test - Happy Robot: \"Oh Boy! The End! (Again)\""
+  },
+  "DFr_103DB4E2.Text": {
+    "": {
+      "Text": "grrrr.. need to test this exporter"
+    },
+    "Context": "Flow/Simplest Test CB/Test - Angry Robot: \"grrrr.. need to test this exporter\""
+  },
+  "DFr_A8604BCC.Text": {
+    "": {
+      "Text": "Yay! It's 99!"
+    },
+    "Context": "Flow/Simplest Test CB/Test - Happy Robot: \"Yay! It's 99!\""
+  },
+  "DFr_55C319D8.Text": {
+    "": {
+      "Text": "Noooooooo!"
+    },
+    "Context": "Flow/Simplest Test CB/Test - Happy Robot: \"Noooooooo!\""
+  },
+  "DFr_36CE8E58.Text": {
+    "": {
+      "Text": "Yay! It's less than 99!"
+    },
+    "Context": "Flow/Saved By Zero Example/Test - Happy Robot: \"Yay! It's less than 99!\""
+  },
+  "DFr_D507A302.Text": {
+    "": {
+      "Text": "Noooooooo! It's more than 99!"
+    },
+    "Context": "Flow/Saved By Zero Example/Test - Happy Robot: \"Noooooooo! It's more than 99!\""
+  },
+  "DFr_BC656288.Text": {
+    "": {
+      "Text": "Yay! It's more than 99!"
+    },
+    "Context": "Flow/Saved By Zero Example/Test - Happy Robot: \"Yay! It's more than 99!\""
+  },
+  "DFr_320FDCF2.Text": {
+    "": {
+      "Text": "Noooooooo! It's less than 99!"
+    },
+    "Context": "Flow/Saved By Zero Example/Test - Happy Robot: \"Noooooooo! It's less than 99!\""
+  },
+  "DFr_1576B9E6.Text": {
+    "": {
+      "Text": "Why won't the ritual of compiling complete? WHY??"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Why won't the ritual of compiling c...\""
+  },
+  "DFr_1CDFA02B.Text": {
+    "": {
+      "Text": "Ugh, how long have I been crunching? I need a mental health day."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Ugh, how long have I been crunching...\""
+  },
+  "DFr_09584681.Text": {
+    "": {
+      "Text": "\"The blade needs to cut through 60 orcs per second. How hard can it be?\""
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"\"The blade needs to cut through 60...\""
+  },
+  "DFr_747DA647.Text": {
+    "": {
+      "Text": "They send a writer my way? Ha! The narrative in this game is mid at best."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Toxic Troll: \"They send a writer my way? Ha! The...\""
+  },
+  "DFr_777B4B20.Text": {
+    "": {
+      "Text": "Finished! A fine blade indeed! Here, give it a whack on that block of Kew Eh over there. I bet you can split it in half with ease!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Finished! A fine blade indeed! Here...\""
+  },
+  "DFr_857C59A3.Text": {
+    "": {
+      "Text": "Great! How long will that take?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Great! How long will that take?\""
+  },
+  "DFr_CF641138.Text": {
+    "": {
+      "Text": "Whoops. Well... that's what happens when you ask for early access to The Code."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Whoops. Well... that's what happens...\""
+  },
+  "DFr_652DB66E.Text": {
+    "": {
+      "Text": "Sure, if you want to stick around and wait for another build."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Sure, if you want to stick around a...\""
+  },
+  "DFr_E8A86380.Text": {
+    "": {
+      "Text": "About a week."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"About a week.\""
+  },
+  "DFr_CB23BDC8.Text": {
+    "": {
+      "Text": "What?? I can't wait that long! The Jeeerah Beast is sprinting towards the kingdom and will destroy us all!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"What?? I can't wait that long! The...\""
+  },
+  "DFr_67C385E2.Text": {
+    "": {
+      "Text": "Can you make another???"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Can you make another???\""
+  },
+  "DFr_F4C48FD3.Text": {
+    "": {
+      "Text": "*shrugs* That's what happens when you have me grind 300 gig stones into a build."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"*shrugs* That's what happens when y...\""
+  },
+  "DFr_980C738C.Text": {
+    "": {
+      "Text": "Hmmm... you could seek out the Toxic Troll in the Lost Forest. It's rumoured to possess the legendary Mace of Bug Squashing."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Hmmm... you could seek out the Toxi...\""
+  },
+  "DFr_09A0AAED.Text": {
+    "": {
+      "Text": "Smear some jerky strips on those gauntlets of yours and you might stand a chance. Good luck kid!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Smear some jerky strips on those ga...\""
+  },
+  "DFr_616013F4.Text": {
+    "": {
+      "Text": "There has to be another way!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"There has to be another way!\""
+  },
+  "DFr_51D50DF5.Text": {
+    "": {
+      "Text": "BUT... you won't win a fight against that thing without a serious upgrade. Seek out the Sacred Tree of Holy Jerky!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"BUT... you won't win a fight agains...\""
+  },
+  "DFr_1493C8F9.Text": {
+    "": {
+      "Text": "LOL! Those gauntlets are so basic bro!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Toxic Troll: \"LOL! Those gauntlets are so basic b...\""
+  },
+  "DFr_789773B0.Text": {
+    "": {
+      "Text": "What manner of wizardry is this? I've stumbled into a black void, seemingly designed hide me from what lies above!"
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"What manner of wizardry is this? I'...\""
+  },
+  "DFr_128A2034.Text": {
+    "": {
+      "Text": "I really have to pee. But I also need to return to the surface! The agony of this decision is soul crushing!"
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"I really have to pee. But I also ne...\""
+  },
+  "DFr_47A7050A.Text": {
+    "": {
+      "Text": "Nay, I must not empty my bladder! I shall return to the surface and leave this pit."
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"Nay, I must not empty my bladder! I...\""
+  },
+  "DFr_5C1BDA5F.Text": {
+    "": {
+      "Text": "Surely no one will mind if I take but a tiny tinkle? After all, I am obscured from the surface above."
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"Surely no one will mind if I take b...\""
+  },
+  "DFr_2F76D5B2.Text": {
+    "": {
+      "Text": "Bark 01"
+    },
+    "Context": "Flow/Template Nodes/...: \"Bark 01\""
+  },
+  "DFr_DBCBE028.Text": {
+    "": {
+      "Text": "Bark 02"
+    },
+    "Context": "Flow/Template Nodes/...: \"Bark 02\""
+  },
+  "DFr_5C599944.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown fox jumped."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "DFr_8C7B648F.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "DFr_23E8819C.Text": {
+    "": {
+      "Text": "well, hello there."
+    },
+    "Context": "Flow/Dialogue Node Test/Player/Writer: \"well, hello there.\""
+  },
+  "DFr_7B6F5F97.Text": {
+    "": {
+      "Text": "uhm, hello."
+    },
+    "Context": "Flow/Dialogue Node Test/Test - Angry Robot: \"uhm, hello.\""
+  },
+  "DFr_82C308CA.Text": {
+    "": {
+      "Text": "by the twin moons of nexus prime!"
+    },
+    "Context": "Flow/Dialogue Node Test/Test - Angry Robot: \"by the twin moons of nexus prime!\""
+  },
+  "DFr_B25E429C.Text": {
+    "": {
+      "Text": "well, hello there."
+    },
+    "Context": "Flow/Alt Flow Node Test/Player/Writer: \"well, hello there.\""
+  },
+  "DFr_37839DD4.Text": {
+    "": {
+      "Text": "stage 02"
+    },
+    "Context": "Flow/Alt Flow Node Test/Test - Angry Robot: \"stage 02\""
+  },
+  "DFr_59D2AF61.Text": {
+    "": {
+      "Text": "stage 03"
+    },
+    "Context": "Flow/Alt Flow Node Test/Test - Happy Robot: \"stage 03\""
+  },
+  "DFr_AB99705A.Text": {
+    "": {
+      "Text": "stage 03 - option 02"
+    },
+    "Context": "Flow/Alt Flow Node Test/Test - Happy Robot: \"stage 03 - option 02\""
+  },
+  "Ntt_18E68216.DisplayName": {
+    "": {
+      "Text": "Player/Writer"
+    },
+    "Context": "Entities/Player/Writer"
+  },
+  "Ntt_C21FA208.DisplayName": {
+    "": {
+      "Text": "Duhvel Opper"
+    },
+    "Context": "Entities/NPC/Duhvel Opper"
+  },
+  "Ntt_F17EEBF5.DisplayName": {
+    "": {
+      "Text": "Test - Angry Robot"
+    },
+    "Context": "Entities/NPC/Test - Angry Robot"
+  },
+  "Ntt_100228C8.DisplayName": {
+    "": {
+      "Text": "Test - Happy Robot"
+    },
+    "Context": "Entities/NPC/Test - Happy Robot"
+  },
+  "Ntt_F6CAC097.DisplayName": {
+    "": {
+      "Text": "Toxic Troll"
+    },
+    "Context": "Entities/NPC/Toxic Troll"
+  },
+  "Ntt_F6CAC097.Text": {
+    "": {
+      "Text": "A toxic beast that has crawled off the Web of Inter. A swarm of tiny blue birds flock around him and attack at his command."
+    },
+    "Context": "Entities/NPC/Toxic Troll"
+  },
+  "Ntt_7AC9E953.DisplayName": {
+    "": {
+      "Text": "The Mace Of Bug Squashing"
+    },
+    "Context": "Entities/equipment/The Mace Of Bug Squashing"
+  }
+}

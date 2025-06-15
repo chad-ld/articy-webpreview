@@ -1,0 +1,66 @@
+{
+  "Settings": {
+    "set_UseScriptSupport": "True",
+    "set_TextFormatter": "",
+    "set_IncludedNodes": "Settings, Project, GlobalVariables, ObjectDefinitions, Packages, ScriptMethods, Hierarchy, Assets",
+    "ExportVersion": "2.1",
+    "RuleSetId": "0100000600004019",
+    "RuleSetName": "Default Export Ruleset (complete Project)"
+  },
+  "Project": {
+    "Name": "Articy Base Project",
+    "DetailName": "",
+    "Guid": "375d123f-f6f7-4de4-8549-f3d4832c65e3",
+    "TechnicalName": "Articy_Base_Project"
+  },
+  "Languages": [
+    {
+      "CultureName": "",
+      "ArticyLanguageId": 127,
+      "LanguageName": "Invariant Language (Invariant Country)",
+      "IsVoiceOver": false
+    }
+  ],
+  "GlobalVariables": {
+    "FileName": "global_variables.json",
+    "Hash": "2cUH0BeYc3kGSUjPwHKvo/UKfie3UDRPxOTFhbXczz0="
+  },
+  "ObjectDefinitions": {
+    "Types": {
+      "FileName": "object_definitions.json",
+      "Hash": "LQ45S+4CJmA0lvxBoco6Sn9ck+OxRVzo6DG+sOIr2LQ="
+    },
+    "Texts": {
+      "FileName": "object_definitions_localization.json",
+      "Hash": "RBNvo1WzZ4oRRq0W9+hknpT7T8If536DEMBg9hyq/4o="
+    }
+  },
+  "Packages": [
+    {
+      "Name": "All objects",
+      "Id": "0x010000060000401C",
+      "Description": "Exports all objects & types of the project",
+      "IsDefaultPackage": true,
+      "IsIncluded": true,
+      "ScriptFragmentHash": "AW35TWJrX+Q+PnS+KXhjBO0BMezs5sHMr3PACNP8py4=",
+      "Files": {
+        "Objects": {
+          "FileName": "package_010000060000401C_objects.json",
+          "Hash": "n8KJsDDqScDfG6gwyHNWU1PzN28sQdl7ATU14VfwRsE="
+        },
+        "Texts": {
+          "FileName": "package_010000060000401C_localization.json",
+          "Hash": "9IZaD1MA0/3k/CjPD0F1kptsqLY4ISHcS8ywE+jZt1E="
+        }
+      }
+    }
+  ],
+  "ScriptMethods": {
+    "FileName": "script_methods.json",
+    "Hash": "+Hc7CrqwO4HgaJLz4pXA58UKo/0PYZLVIzK1n03xTOY="
+  },
+  "Hierarchy": {
+    "FileName": "hierarchy.json",
+    "Hash": "ObfMzK+3xwdxgbMMWmiuh482l2phGXxwRyUT1+MNIPg="
+  }
+}
