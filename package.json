@@ -1,7 +1,8 @@
 {
   "name": "articy-html-viewer",
   "private": true,
-  "version": "0.1.0",
+  "version": "3.1.0",
+  "description": "Articy Draft 3.x Web Preview - JSON viewer for Articy Draft 3.x series",
   "type": "module",
   "scripts": {
     "dev": "vite",
