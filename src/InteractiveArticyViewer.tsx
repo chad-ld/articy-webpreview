@@ -652,6 +652,7 @@ function InteractiveArticyViewer(){
     }
 
     // Consolidated function to render hub-style choice displays with condition bubbles
+    // Note: showConditionBubbles should always be true for uniform display across the app
     function renderHubChoices(options: any[], showConditionBubbles: boolean = true, isPreviousChoiceSelected: boolean = false): JSX.Element {
         const nodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>(
             options.map(() => createRef<HTMLDivElement>())
@@ -858,7 +859,7 @@ function InteractiveArticyViewer(){
         // Handle VirtualChoice (special case for choice collections)
         if (currentNode.Type === "VirtualChoice") {
             const visibleOptions = currentNode.Properties.Options.filter((option: any) => !option.hidden);
-            return renderHubChoices(visibleOptions, false, isPreviousChoiceSelected);
+            return renderHubChoices(visibleOptions, true, isPreviousChoiceSelected);
         }
 
         // Handle end of flow
@@ -869,8 +870,8 @@ function InteractiveArticyViewer(){
         // Handle multiple outputs - show as choices
         if (outputs.length > 1) {
             const choiceOptions = createChoiceOptions(outputs);
-            const showConditionBubbles = currentNode.Type === "Hub" || currentNode.Type === "Instruction";
-            return renderHubChoices(choiceOptions, showConditionBubbles, isPreviousChoiceSelected);
+            // Always show condition bubbles uniformly across the entire app
+            return renderHubChoices(choiceOptions, true, isPreviousChoiceSelected);
         }
 
         // Handle single output - show node content with Next button
