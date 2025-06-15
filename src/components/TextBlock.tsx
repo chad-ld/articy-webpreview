@@ -5,10 +5,63 @@ interface TextBlockProps extends PropsWithChildren {
     backgroundColor?: string;
 }
 
+// Function to detect and convert URLs to clickable links
+function renderTextWithLinks(text: string): JSX.Element[] {
+
+
+    // URL regex pattern that matches http:// and https:// URLs
+    const urlRegex = /(https?:\/\/[^\s\r\n]+)/g;
+
+    const parts = text.split(urlRegex);
+    const elements: JSX.Element[] = [];
+
+    parts.forEach((part, index) => {
+        // Use a fresh regex for each test to avoid global regex issues
+        const testRegex = /^https?:\/\/[^\s\r\n]+$/;
+        const isUrl = testRegex.test(part);
+
+        if (isUrl) {
+            // This is a URL - make it clickable
+            elements.push(
+                <a
+                    key={index}
+                    href={part}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                        color: '#87CEEB', // Light blue color for links
+                        textDecoration: 'underline',
+                        cursor: 'pointer'
+                    }}
+                    onMouseOver={(e) => {
+                        e.currentTarget.style.color = '#ADD8E6'; // Lighter blue on hover
+                    }}
+                    onMouseOut={(e) => {
+                        e.currentTarget.style.color = '#87CEEB'; // Back to original color
+                    }}
+                >
+                    {part}
+                </a>
+            );
+        } else if (part) {
+            // Regular text
+            elements.push(<span key={index}>{part}</span>);
+        }
+    });
+
+    return elements;
+}
+
 function TextBlock (props:TextBlockProps){
 
     const text = props.children as string;
-    const textChunks = text.split("\n");
+
+
+
+    // Handle both \r\n (Windows) and \n (Unix) line endings
+    const textChunks = text.split(/\r?\n/);
+
+
 
     // Detect if this is code content (contains variable assignments, comments, etc.)
     const isCodeBlock = text.includes("=") && (text.includes("//") || text.includes("."));
@@ -16,13 +69,14 @@ function TextBlock (props:TextBlockProps){
     var i = 0;
 
     // Apply syntax highlighting for all content
-    const renderCodeLine = (line: string) => {
+    const renderCodeLine = (line: string): JSX.Element | JSX.Element[] => {
         if (line.trim().startsWith("//")) {
-            return <span className="hljs-comment">{line}</span>;
+            return <span className="hljs-comment">{renderTextWithLinks(line)}</span>;
         }
 
         // Simple variable assignment highlighting
-        if (line.includes("=")) {
+        // Only treat as variable assignment if it looks like proper code (starts with identifier)
+        if (line.includes("=") && /^\s*[a-zA-Z_][a-zA-Z0-9_.]*\s*=/.test(line)) {
             const parts = line.split("=");
             if (parts.length === 2) {
                 const variable = parts[0].trim();
@@ -70,18 +124,18 @@ function TextBlock (props:TextBlockProps){
                     }
                 };
 
-                return (
-                    <>
-                        <span className="hljs-property">{variable}</span>
-                        <span>=</span>
-                        {renderValue(value)}
-                        {line.includes(";") && <span>;</span>}
-                    </>
-                );
+                return [
+                    <span key="var" className="hljs-property">{variable}</span>,
+                    <span key="eq">=</span>,
+                    <span key="val">{renderValue(value)}</span>,
+                    ...(line.includes(";") ? [<span key="semi">;</span>] : [])
+                ];
             }
         }
 
-        return line;
+
+
+        return renderTextWithLinks(line);
     };
 
     const borderColor = props.borderColor || 'rgb(147, 193, 204)';
@@ -97,12 +151,17 @@ function TextBlock (props:TextBlockProps){
                     color: 'white' // Ensure white text for readability
                 }}
             >
-                {textChunks.map((chunk) => (
-                    <div key={i++}>
-                        {renderCodeLine(chunk)}
-                        <br/>
-                    </div>
-                ))}
+                {textChunks.map((chunk) => {
+
+
+                    const renderedContent = renderCodeLine(chunk);
+                    return (
+                        <div key={i++}>
+                            {Array.isArray(renderedContent) ? renderedContent : renderedContent}
+                            <br/>
+                        </div>
+                    );
+                })}
             </div>
         );
     } else {
@@ -115,12 +174,17 @@ function TextBlock (props:TextBlockProps){
                     color: 'white' // Ensure white text for readability
                 }}
             >
-                {textChunks.map((chunk) => (
-                    <div key={i++}>
-                        {renderCodeLine(chunk)}
-                        <br/>
-                    </div>
-                ))}
+                {textChunks.map((chunk) => {
+
+
+                    const renderedContent = renderCodeLine(chunk);
+                    return (
+                        <div key={i++}>
+                            {Array.isArray(renderedContent) ? renderedContent : renderedContent}
+                            <br/>
+                        </div>
+                    );
+                })}
             </div>
         );
     }
