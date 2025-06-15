@@ -1,36 +1,41 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Tooltip } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, HistoryOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, EyeOutlined } from "@ant-design/icons";
 
-interface VariablesPanelProps {
+interface SearchNodesPanelProps {
     project: any;
     currentNode: any;
     onWidthChange: (width: number) => void;
-    showPrevious: boolean;
-    onTogglePrevious: () => void;
-    hasPreviousChoice: boolean;
+    onNavigateToNode: (nodeId: string) => void;
     isVisible: boolean;
     onToggleVisibility: () => void;
-    onToggleSearchPanel: () => void;
-    isSearchPanelVisible: boolean;
+    onToggleVariablesPanel: () => void;
+    isVariablesPanelVisible: boolean;
 }
 
-function VariablesPanel(props: VariablesPanelProps) {
-    const [variables, setVariables] = useState<any>({});
+function SearchNodesPanel(props: SearchNodesPanelProps) {
     const [panelWidth, setPanelWidth] = useState(300);
     const [isResizing, setIsResizing] = useState(false);
-    const [searchFilter, setSearchFilter] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState<any[]>([]);
     const [fontSize, setFontSize] = useState(12);
-
-    useEffect(() => {
-        if (props.project) {
-            setVariables(props.project.variables || {});
-        }
-    }, [props.project, props.currentNode]);
+    const [selectedResultIndex, setSelectedResultIndex] = useState(0);
 
     useEffect(() => {
         props.onWidthChange(props.isVisible ? panelWidth : 0);
     }, [props.isVisible, panelWidth, props]);
+
+    useEffect(() => {
+        // Perform search when search term changes
+        if (props.project && searchTerm.trim().length > 0) {
+            const results = props.project.SearchNodes(searchTerm);
+            setSearchResults(results);
+            setSelectedResultIndex(0);
+        } else {
+            setSearchResults([]);
+            setSelectedResultIndex(0);
+        }
+    }, [searchTerm, props.project]);
 
     const handleMouseDown = (e: React.MouseEvent) => {
         setIsResizing(true);
@@ -60,144 +65,163 @@ function VariablesPanel(props: VariablesPanelProps) {
         };
     }, [isResizing]);
 
-    const parseVariableValue = (value: string) => {
-        // Check if the value contains expressions like "TestFlowVariables.TestPlayerHitPoints+1"
-        const expressionRegex = /([a-zA-Z_][a-zA-Z0-9_]*\.[a-zA-Z_][a-zA-Z0-9_]*)([\+\-\*\/])(\d+)/;
-        const match = value.match(expressionRegex);
+    const handleGoToNode = (nodeId: string) => {
+        props.onNavigateToNode(nodeId);
+    };
 
-        if (match) {
-            const [, varRef, operator, number] = match;
-            const [namespace, varName] = varRef.split('.');
+    const handleResultDoubleClick = (nodeId: string) => {
+        handleGoToNode(nodeId);
+    };
+
+    const handleSearchKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && searchResults.length > 0) {
+            handleGoToNode(searchResults[selectedResultIndex].node.Properties.Id);
+        }
+    };
+
+    const renderSearchResults = () => {
+        if (searchTerm.trim().length === 0) {
             return (
-                <>
-                    <span style={{ color: '#4CAF50' }}>{namespace}</span>
-                    <span style={{ color: '#fff' }}>.</span>
-                    <span style={{ color: '#2196F3' }}>{varName}</span>
-                    <span style={{ color: '#fff' }}>{operator}</span>
-                    <span style={{ color: '#999' }}>{number}</span>
-                </>
+                <div style={{
+                    color: '#666',
+                    fontSize: '14px',
+                    textAlign: 'center',
+                    marginTop: '20px',
+                    fontStyle: 'italic'
+                }}>
+                    Enter search terms to find nodes
+                </div>
             );
         }
 
-        // Handle simple numeric values
-        if (/^\d+$/.test(value)) {
-            return <span style={{ color: '#999' }}>{value}</span>;
+        if (searchResults.length === 0) {
+            return (
+                <div style={{
+                    color: '#666',
+                    fontSize: '14px',
+                    textAlign: 'center',
+                    marginTop: '20px',
+                    fontStyle: 'italic'
+                }}>
+                    No nodes found matching "{searchTerm}"
+                </div>
+            );
         }
 
-        // Handle boolean values with green/red coloring
-        if (value === 'true') {
-            return <span style={{ color: '#00ff00' }}>{value}</span>; // Green for true
-        }
-        if (value === 'false') {
-            return <span style={{ color: '#ff0000' }}>{value}</span>; // Red for false
-        }
-
-        // Handle string values
-        return <span style={{ color: '#9C27B0' }}>{value}</span>;
-    };
-
-    const renderVariables = () => {
-        const entries: JSX.Element[] = [];
-
-        Object.keys(variables).forEach(namespace => {
-            const namespaceVars = variables[namespace];
-            Object.keys(namespaceVars).forEach(varName => {
-                const value = namespaceVars[varName];
-                const fullVarName = `${namespace}.${varName}`;
-                const valueStr = value.toString();
-
-                // Apply search filter
-                if (searchFilter && !fullVarName.toLowerCase().includes(searchFilter.toLowerCase()) &&
-                    !valueStr.toLowerCase().includes(searchFilter.toLowerCase())) {
-                    return;
-                }
-
-                entries.push(
-                    <div key={`${namespace}.${varName}`} style={{
-                        fontSize: `${fontSize}px`,
-                        color: '#fff',
-                        marginBottom: '2px',
-                        fontFamily: 'monospace',
-                        backgroundColor: 'rgba(0,0,0,0.3)',
-                        padding: '2px 5px',
-                        borderRadius: '2px',
-                        wordBreak: 'break-all'
-                    }}>
-                        <span style={{ color: '#4CAF50' }}>{namespace}</span>
-                        <span style={{ color: '#fff' }}>.</span>
-                        <span style={{ color: '#2196F3' }}>{varName}</span>
-                        <span style={{ color: '#fff' }}> = </span>
-                        {parseVariableValue(value)}
+        return searchResults.map((result, index) => (
+            <div
+                key={result.node.Properties.Id}
+                onDoubleClick={() => handleResultDoubleClick(result.node.Properties.Id)}
+                style={{
+                    fontSize: `${fontSize}px`,
+                    color: '#fff',
+                    marginBottom: '8px',
+                    fontFamily: 'monospace',
+                    backgroundColor: index === selectedResultIndex ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.3)',
+                    padding: '8px',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    border: index === selectedResultIndex ? '1px solid #555' : '1px solid transparent',
+                    transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={() => setSelectedResultIndex(index)}
+            >
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '4px'
+                }}>
+                    <div style={{ flex: 1 }}>
+                        <div style={{
+                            color: '#4CAF50',
+                            fontSize: `${fontSize - 1}px`,
+                            fontWeight: 'bold'
+                        }}>
+                            {result.node.Type}
+                        </div>
+                        <div style={{
+                            color: '#2196F3',
+                            fontSize: `${fontSize - 1}px`,
+                            wordBreak: 'break-all'
+                        }}>
+                            {result.node.Properties.DisplayName || 'Unnamed'}
+                        </div>
                     </div>
-                );
-            });
-        });
-
-        return entries;
+                    <Button
+                        size="small"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleGoToNode(result.node.Properties.Id);
+                        }}
+                        style={{
+                            fontSize: '10px',
+                            height: '20px',
+                            padding: '0 6px',
+                            backgroundColor: 'rgba(255,255,255,0.1)',
+                            border: '1px solid #444',
+                            color: '#fff'
+                        }}
+                    >
+                        Go
+                    </Button>
+                </div>
+                <div style={{
+                    color: '#ccc',
+                    fontSize: `${fontSize - 2}px`,
+                    lineHeight: '1.3',
+                    wordBreak: 'break-word'
+                }}>
+                    {result.preview}
+                </div>
+            </div>
+        ));
     };
 
-    if (Object.keys(variables).length === 0) {
+    if (!props.project) {
         return null;
     }
 
     return (
         <>
-            {/* Only show buttons when search panel is not visible */}
-            {!props.isSearchPanelVisible && (
+            {/* Only show buttons when this panel is visible and variables panel is not visible */}
+            {props.isVisible && !props.isVariablesPanelVisible && (
                 <>
-                    {/* Variables Toggle Button */}
+                    {/* Toggle Button */}
                     <Button
-                        icon={props.isVisible ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+                        icon={<EyeInvisibleOutlined />}
                         onClick={props.onToggleVisibility}
                         style={{
                             position: 'fixed',
-                            left: props.isVisible ? panelWidth + 10 : 10,
+                            left: panelWidth + 10,
                             top: 10,
                             zIndex: 1001,
                             transition: 'left 0.3s ease'
                         }}
                         size="small"
                     >
-                        {props.isVisible ? 'Hide' : 'Show'} Variables
+                        Hide Nodes
                     </Button>
 
-                    {/* Search Nodes Button - always visible when search panel is not open */}
+                    {/* Variables Button */}
                     <Button
-                        icon={<SearchOutlined />}
-                        onClick={props.onToggleSearchPanel}
+                        icon={<EyeOutlined />}
+                        onClick={props.onToggleVariablesPanel}
                         style={{
                             position: 'fixed',
-                            left: props.isVisible ? panelWidth + 10 : 10,
+                            left: panelWidth + 10,
                             top: 45,
                             zIndex: 1001,
                             transition: 'left 0.3s ease'
                         }}
                         size="small"
                     >
-                        Search Nodes
+                        Show Variables
                     </Button>
-
-                    {/* Show Previous Button - only when variables panel is visible */}
-                    {props.isVisible && props.hasPreviousChoice && (
-                        <Button
-                            icon={<HistoryOutlined />}
-                            onClick={props.onTogglePrevious}
-                            style={{
-                                position: 'fixed',
-                                left: props.isVisible ? panelWidth + 10 : 10,
-                                top: 80,
-                                zIndex: 1001,
-                                transition: 'left 0.3s ease'
-                            }}
-                            size="small"
-                        >
-                            {props.showPrevious ? 'Hide' : 'Show'} Previous
-                        </Button>
-                    )}
                 </>
             )}
 
-            {/* Variables Panel */}
+            {/* Search Nodes Panel */}
             {props.isVisible && (
                 <div style={{
                     position: 'fixed',
@@ -224,13 +248,14 @@ function VariablesPanel(props: VariablesPanelProps) {
                         alignItems: 'center',
                         gap: '10px'
                     }}>
-                        <span>Variables</span>
+                        <span>Search Nodes</span>
 
-                        {/* Search Filter */}
+                        {/* Search Input */}
                         <div style={{ position: 'relative', flex: 1 }}>
                             <Input
-                                value={searchFilter}
-                                onChange={(e) => setSearchFilter(e.target.value)}
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onKeyPress={handleSearchKeyPress}
                                 size="small"
                                 style={{
                                     width: '100%',
@@ -245,7 +270,7 @@ function VariablesPanel(props: VariablesPanelProps) {
                                     }
                                 }}
                             />
-                            {!searchFilter && (
+                            {!searchTerm && (
                                 <div style={{
                                     position: 'absolute',
                                     left: '11px',
@@ -256,14 +281,14 @@ function VariablesPanel(props: VariablesPanelProps) {
                                     pointerEvents: 'none',
                                     fontFamily: 'inherit'
                                 }}>
-                                    search variables
+                                    search nodes
                                 </div>
                             )}
                         </div>
 
                         {/* Font Size Controls */}
                         <div style={{ display: 'flex', gap: '2px' }}>
-                            <Tooltip title="debiggen variables">
+                            <Tooltip title="debiggen text">
                                 <Button
                                     icon={<MinusOutlined />}
                                     size="small"
@@ -278,7 +303,7 @@ function VariablesPanel(props: VariablesPanelProps) {
                                     }}
                                 />
                             </Tooltip>
-                            <Tooltip title="embiggen variables">
+                            <Tooltip title="embiggen text">
                                 <Button
                                     icon={<PlusOutlined />}
                                     size="small"
@@ -296,13 +321,13 @@ function VariablesPanel(props: VariablesPanelProps) {
                         </div>
                     </div>
 
-                    {/* Variables List */}
+                    {/* Results List */}
                     <div style={{
                         flex: 1,
                         overflowY: 'auto',
                         padding: '10px'
                     }}>
-                        {renderVariables()}
+                        {renderSearchResults()}
                     </div>
 
                     {/* Resize Handle */}
@@ -325,4 +350,4 @@ function VariablesPanel(props: VariablesPanelProps) {
     );
 }
 
-export default VariablesPanel;
+export default SearchNodesPanel;

@@ -77,6 +77,89 @@ class ArticyProject{
         return this.GetNodeByID(child.Id);
     }
 
+    SearchNodes(searchTerm: string): any[] {
+        if (!searchTerm || searchTerm.trim().length === 0) {
+            return [];
+        }
+
+        const results: any[] = [];
+        const searchLower = searchTerm.toLowerCase();
+
+        // Search through all nodes in the project
+        for (let i = 0; i < this.data.Packages[0].Models.length; i++) {
+            const node = this.data.Packages[0].Models[i];
+
+            // Skip nodes without properties
+            if (!node.Properties) {
+                continue;
+            }
+
+            let matches = false;
+            let matchedContent = '';
+
+            // Search in DisplayName
+            if (node.Properties.DisplayName &&
+                node.Properties.DisplayName.toLowerCase().includes(searchLower)) {
+                matches = true;
+                matchedContent = node.Properties.DisplayName;
+            }
+
+            // Search in Text
+            if (node.Properties.Text &&
+                node.Properties.Text.toLowerCase().includes(searchLower)) {
+                matches = true;
+                matchedContent = node.Properties.Text;
+            }
+
+            // Search in Expression
+            if (node.Properties.Expression &&
+                node.Properties.Expression.toLowerCase().includes(searchLower)) {
+                matches = true;
+                matchedContent = node.Properties.Expression;
+            }
+
+            // Search in TechnicalName
+            if (node.Properties.TechnicalName &&
+                node.Properties.TechnicalName.toLowerCase().includes(searchLower)) {
+                matches = true;
+                matchedContent = node.Properties.TechnicalName;
+            }
+
+            if (matches) {
+                results.push({
+                    node: node,
+                    matchedContent: matchedContent,
+                    preview: this.getNodePreviewText(node)
+                });
+            }
+        }
+
+        return results;
+    }
+
+    private getNodePreviewText(node: any): string {
+        // Get a preview of the node content for display
+        let preview = '';
+
+        if (node.Properties.Text) {
+            preview = node.Properties.Text;
+        } else if (node.Properties.Expression) {
+            preview = node.Properties.Expression;
+        } else if (node.Properties.DisplayName) {
+            preview = node.Properties.DisplayName;
+        } else {
+            preview = `${node.Type} node`;
+        }
+
+        // Limit preview length and clean up
+        preview = preview.replace(/\n/g, ' ').trim();
+        if (preview.length > 100) {
+            preview = preview.substring(0, 97) + '...';
+        }
+
+        return preview;
+    }
+
     GetVariablesFromNode(node:any){
        
         if (node.Properties == undefined)

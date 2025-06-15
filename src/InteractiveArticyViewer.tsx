@@ -4,6 +4,7 @@ import ArticyProject from "./ArticyProject";
 import InstructionPanel from "./panels/InstructionPanel";
 import EndOfFlowPanel from "./panels/EndOfFlowPanel";
 import VariablesPanel from "./components/VariablesPanel";
+import SearchNodesPanel from "./components/SearchNodesPanel";
 import { Button, message } from "antd";
 import { InboxOutlined, CommentOutlined } from "@ant-design/icons";
 
@@ -256,9 +257,12 @@ function InteractiveArticyViewer(){
     const [isLoading, setIsLoading] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
     const [variablesPanelWidth, setVariablesPanelWidth] = useState(0);
+    const [searchPanelWidth, setSearchPanelWidth] = useState(0);
     const [selectedChoiceIndex, setSelectedChoiceIndex] = useState(0);
     const [previousChoiceHistory, setPreviousChoiceHistory] = useState<PreviousChoice[]>([]);
     const [showPrevious, setShowPrevious] = useState(true);
+    const [isVariablesPanelVisible, setIsVariablesPanelVisible] = useState(false);
+    const [isSearchPanelVisible, setIsSearchPanelVisible] = useState(false);
 
     var currentNode = nodeList.length>0?nodeList[nodeList.length-1]:undefined;
     var lastNode = nodeList.length>1?nodeList[nodeList.length-2]:undefined;
@@ -442,6 +446,38 @@ function InteractiveArticyViewer(){
             setPreviousChoiceHistory(previousChoiceHistory.slice(0, -1));
         }
     }
+
+    // Handle panel visibility - ensure mutual exclusivity
+    function handleVariablesPanelToggle() {
+        if (isSearchPanelVisible) {
+            setIsSearchPanelVisible(false);
+        }
+        setIsVariablesPanelVisible(!isVariablesPanelVisible);
+    }
+
+    function handleSearchPanelToggle() {
+        if (isVariablesPanelVisible) {
+            setIsVariablesPanelVisible(false);
+        }
+        setIsSearchPanelVisible(!isSearchPanelVisible);
+    }
+
+    // Handle navigation to a specific node from search
+    function handleNavigateToNode(nodeId: string) {
+        const targetNode = project.GetNodeByID(nodeId);
+        if (targetNode) {
+            // Clear current flow and start fresh from the target node
+            setNodeList([]);
+            setPreviousChoiceHistory([]);
+            setTimeout(() => {
+                setCurrentNode(targetNode);
+            }, 0);
+        }
+    }
+
+    // Calculate total panel width for margin adjustment
+    const totalPanelWidth = isVariablesPanelVisible ? variablesPanelWidth :
+                           isSearchPanelVisible ? searchPanelWidth : 0;
 
     // Unified function to get all outputs from current node
     function getCurrentNodeOutputs(): any[] {
@@ -857,17 +893,33 @@ function InteractiveArticyViewer(){
     return (
         <div>
             {project && (
-                <VariablesPanel
-                    project={project}
-                    currentNode={currentNode}
-                    onWidthChange={setVariablesPanelWidth}
-                    showPrevious={showPrevious}
-                    onTogglePrevious={() => setShowPrevious(!showPrevious)}
-                    hasPreviousChoice={previousChoiceHistory.length > 0}
-                />
+                <>
+                    <VariablesPanel
+                        project={project}
+                        currentNode={currentNode}
+                        onWidthChange={setVariablesPanelWidth}
+                        showPrevious={showPrevious}
+                        onTogglePrevious={() => setShowPrevious(!showPrevious)}
+                        hasPreviousChoice={previousChoiceHistory.length > 0}
+                        isVisible={isVariablesPanelVisible}
+                        onToggleVisibility={handleVariablesPanelToggle}
+                        onToggleSearchPanel={handleSearchPanelToggle}
+                        isSearchPanelVisible={isSearchPanelVisible}
+                    />
+                    <SearchNodesPanel
+                        project={project}
+                        currentNode={currentNode}
+                        onWidthChange={setSearchPanelWidth}
+                        onNavigateToNode={handleNavigateToNode}
+                        isVisible={isSearchPanelVisible}
+                        onToggleVisibility={handleSearchPanelToggle}
+                        onToggleVariablesPanel={handleVariablesPanelToggle}
+                        isVariablesPanelVisible={isVariablesPanelVisible}
+                    />
+                </>
             )}
             <div style={{
-                marginLeft: variablesPanelWidth,
+                marginLeft: totalPanelWidth,
                 transition: 'margin-left 0.3s ease',
                 minHeight: '100vh'
             }}>
