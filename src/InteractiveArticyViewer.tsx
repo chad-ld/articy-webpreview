@@ -423,6 +423,11 @@ function InteractiveArticyViewer(){
     }
 
     function restartFlow(){
+        // Reset variables to their initial state
+        if (project) {
+            project.ResetVariablesToInitialState();
+        }
+
         setNodeList([]);
         setPreviousChoiceHistory([]);
         setTimeout(() => {
@@ -466,6 +471,11 @@ function InteractiveArticyViewer(){
     function handleNavigateToNode(nodeId: string) {
         const targetNode = project.GetNodeByID(nodeId);
         if (targetNode) {
+            // Reset variables to initial state when jumping to a specific node
+            if (project) {
+                project.ResetVariablesToInitialState();
+            }
+
             // Clear current flow and start fresh from the target node
             setNodeList([]);
             setPreviousChoiceHistory([]);

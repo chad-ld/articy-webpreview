@@ -1,11 +1,12 @@
 import _ from "lodash";
 
 class ArticyProject{
-    
+
     data:any;
 
     variables:any;
-    
+    initialVariables:any; // Store initial state for reset functionality
+
     constructor(data:Object){
         this.data = data;
         this.variables = {};
@@ -17,6 +18,8 @@ class ArticyProject{
                 this.variables[namespace][v.Variable] = v.Value.toLowerCase();
             }
         }
+        // Store a deep copy of initial variables for reset functionality
+        this.initialVariables = JSON.parse(JSON.stringify(this.variables));
         console.log("variables initialized",this.variables);
     }
 
@@ -54,6 +57,12 @@ class ArticyProject{
             return;
         this.variables = _.merge(this.variables,this.GetVariablesFromNode(node));
         return undefined;
+    }
+
+    ResetVariablesToInitialState(){
+        // Reset variables to their initial state (deep copy to avoid reference issues)
+        this.variables = JSON.parse(JSON.stringify(this.initialVariables));
+        console.log("🔄 Variables reset to initial state:", this.variables);
     }
 
     GetFirstChildOfNode(parentnode:any){
