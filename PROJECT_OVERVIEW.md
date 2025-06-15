@@ -59,7 +59,7 @@ Core class for Articy JSON processing:
 | **Hub** | Choice/branching point | Shows question + multiple choice buttons |
 | **Jump** | Navigation redirect | Automatically jumps to target node |
 | **FlowFragment** | Container node | Automatically enters first child node |
-| **Condition** | Conditional logic | Evaluates condition, branches accordingly |
+| **Condition** | Conditional logic | Shows condition text + "Next" button. Evaluates condition when Next is pressed, branches accordingly |
 | **DialogueInteractiveFragmentTemplate** | Dialogue text | Shows text + optional "Next" button |
 | **LocationTemplate** | Location/scene nodes | Shows location info + "Next" button. Multi-path support: shows choices when multiple connections |
 | **Template Nodes** | Various template types | Supports: EnemyGenericTemplate, innervoice_template, NPCTemplate, PCTemplate, WeaponTemplate, DialogueExplorationActionTemplate |
@@ -204,7 +204,7 @@ npm run preview      # Preview production build
 The system finds the starting point by searching for nodes with `//HTMLPREVIEW` in their Expression property.
 
 ### Automatic Navigation:
-Some node types (Jump, FlowFragment, Condition) automatically navigate without user interaction, using setTimeout to prevent stack overflow.
+Some node types (Jump, FlowFragment) automatically navigate without user interaction, using setTimeout to prevent stack overflow. Condition nodes are now displayed like regular nodes and evaluate their conditions when the user clicks "Next".
 
 ### Condition Parsing:
 The system parses dot-notation variable references and evaluates them against the current variable state using lodash merge operations.

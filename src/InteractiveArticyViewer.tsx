@@ -369,32 +369,7 @@ function InteractiveArticyViewer(){
             }
         }
 
-        // Handle Condition nodes immediately - evaluate and auto-navigate
-        if (node.Type === "Condition") {
-            // Extract the condition expression (skip comment lines)
-            const expression = node.Properties.Expression || "";
-            const lines = expression.split('\n');
-            const conditionLine = lines.find(line => line.trim() && !line.trim().startsWith('//'));
-            const result = conditionLine ? project.CheckConditionString(conditionLine.trim()) : false;
-            console.log("🔄 CONDITION EVALUATION:", conditionLine, "→", result);
-
-            // Navigate to appropriate output based on condition result
-            if (node.Properties.OutputPins && node.Properties.OutputPins.length >= 2) {
-                const targetPin = result ? 0 : 1; // True = first output, False = second output
-                if (node.Properties.OutputPins[targetPin] &&
-                    node.Properties.OutputPins[targetPin].Connections &&
-                    node.Properties.OutputPins[targetPin].Connections.length > 0) {
-
-                    const targetNodeId = node.Properties.OutputPins[targetPin].Connections[0].Target;
-                    const targetNode = project.GetNodeByID(targetNodeId);
-                    console.log("🔄 CONDITION AUTO-NAVIGATE:", result ? "TRUE" : "FALSE", "→", targetNodeId);
-
-                    // Recursively call setCurrentNode with the target, preserving choice info
-                    setCurrentNode(targetNode, choiceInfo);
-                    return;
-                }
-            }
-        }
+        // Note: Condition nodes are now handled like regular nodes - no auto-navigation
 
         // Store previous choice if we have choice info and a current node
         if (choiceInfo && currentNode) {
@@ -411,7 +386,7 @@ function InteractiveArticyViewer(){
         }
 
         // Store variables from the CURRENT node before navigating away (if we have a current node)
-        if (currentNode && (currentNode.Type == "Instruction" || currentNode.Type == "WaypointTemplate" || currentNode.Type == "PlayerActionTemplate" || currentNode.Type == "AreaEventTemplate" || currentNode.Type == "CraftingTemplate" || currentNode.Type == "CombatTemplate")) {
+        if (currentNode && (currentNode.Type == "Instruction" || currentNode.Type == "WaypointTemplate" || currentNode.Type == "PlayerActionTemplate" || currentNode.Type == "AreaEventTemplate" || currentNode.Type == "CraftingTemplate" || currentNode.Type == "CombatTemplate" || currentNode.Type == "Condition")) {
             console.log("🔄 STORING VARIABLES from node:", currentNode.Properties.Id, currentNode.Type);
             console.log("Node Text:", currentNode.Properties.Text);
             console.log("Node Expression:", currentNode.Properties.Expression);
@@ -493,6 +468,8 @@ function InteractiveArticyViewer(){
     function getCurrentNodeOutputs(): any[] {
         if (!currentNode) return [];
 
+
+
         // Handle VirtualChoice nodes (special case for choice collections)
         if (currentNode.Type === "VirtualChoice" && currentNode.Properties.Options) {
             return currentNode.Properties.Options.filter((option: any) => !option.hidden);
@@ -527,7 +504,6 @@ function InteractiveArticyViewer(){
             currentNode.Properties.OutputPins[0].Connections) {
             return currentNode.Properties.OutputPins[0].Connections;
         }
-
         return [];
     }
 
@@ -622,10 +598,43 @@ function InteractiveArticyViewer(){
 
     // Unified function to handle Next button press - shows all outputs
     function handleNextButton() {
+        // Special handling for Condition nodes - evaluate condition and navigate accordingly
+        if (currentNode.Type === "Condition") {
+            // Extract the condition expression (skip comment lines)
+            const expression = currentNode.Properties.Expression || "";
+            const lines = expression.split('\n');
+            const conditionLine = lines.find(line => line.trim() && !line.trim().startsWith('//'));
+            const result = conditionLine ? project.CheckConditionString(conditionLine.trim()) : false;
+            console.log("🔄 CONDITION EVALUATION:", conditionLine, "→", result);
+
+            // Navigate to appropriate output based on condition result
+            if (currentNode.Properties.OutputPins && currentNode.Properties.OutputPins.length >= 2) {
+                const targetPin = result ? 0 : 1; // True = first output, False = second output
+                if (currentNode.Properties.OutputPins[targetPin] &&
+                    currentNode.Properties.OutputPins[targetPin].Connections &&
+                    currentNode.Properties.OutputPins[targetPin].Connections.length > 0) {
+
+                    const targetNodeId = currentNode.Properties.OutputPins[targetPin].Connections[0].Target;
+                    const targetNode = project.GetNodeByID(targetNodeId);
+                    console.log("🔄 CONDITION NAVIGATE:", result ? "TRUE" : "FALSE", "→", targetNodeId);
+
+                    const choiceText = currentNode.Properties.Text || currentNode.Properties.Expression;
+                    const choiceTitle = getSpeakerNameString(currentNode) || currentNode.Properties.DisplayName;
+                    navigateToNode(targetNode, choiceText, choiceTitle, currentNode.Properties.Color, false);
+                    return;
+                }
+            }
+        }
+
         const outputs = getCurrentNodeOutputs();
 
         if (outputs.length === 0) {
-            // No outputs - end of flow
+            // No outputs - navigate to end of flow
+            const endOfFlowNode = {
+                Type: "EndOfFlow",
+                Properties: {}
+            };
+            setCurrentNode(endOfFlowNode);
             return;
         } else if (outputs.length === 1) {
             // Single output - navigate directly
@@ -838,9 +847,8 @@ function InteractiveArticyViewer(){
         console.log("DisplayNode - Current node type:", currentNode.Type);
         console.log("DisplayNode - Current node:", currentNode);
 
-        // Handle special auto-navigation cases first
-        if (currentNode.Type === "Condition" ||
-            currentNode.Type === "FlowFragment" ||
+        // Handle special auto-navigation cases first (removed Condition from this list)
+        if (currentNode.Type === "FlowFragment" ||
             currentNode.Type === "CombatFlowTemplate" ||
             currentNode.Type === "CraftingFlowTemplate" ||
             currentNode.Type === "TravelFlowTemplate" ||
@@ -862,8 +870,43 @@ function InteractiveArticyViewer(){
             return renderHubChoices(visibleOptions, true, isPreviousChoiceSelected);
         }
 
-        // Handle end of flow
+        // Handle EndOfFlow (special case for terminal nodes that have been clicked)
+        if (currentNode.Type === "EndOfFlow") {
+            return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
+        }
+
+        // Handle end of flow - but only show end panel if user has clicked Next on a terminal node
+        // Terminal nodes should still be displayed with a Next button first
         if (outputs.length === 0) {
+            // Check if this is a terminal node that should be displayed
+            const nodeTitle = getSpeakerNameWithIcon(currentNode) || currentNode.Properties.DisplayName;
+            const nodeText = currentNode.Properties.Text || currentNode.Properties.Expression;
+
+            // If the node has content to display, show it with a Next button that leads to end of flow
+            if (nodeTitle || nodeText) {
+                return (
+                    <InstructionPanel
+                        title={nodeTitle}
+                        text={nodeText}
+                        color={currentNode.Properties.Color}
+                        selected={!isPreviousChoiceSelected}
+                        button={{
+                            hidden: false,
+                            text: "Next",
+                            onClick: () => {
+                                // Navigate to a special "EndOfFlow" node
+                                const endOfFlowNode = {
+                                    Type: "EndOfFlow",
+                                    Properties: {}
+                                };
+                                setCurrentNode(endOfFlowNode);
+                            }
+                        }}
+                    />
+                );
+            }
+
+            // If no content to display, show end of flow directly
             return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
         }
 
