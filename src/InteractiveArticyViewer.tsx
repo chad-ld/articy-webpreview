@@ -386,7 +386,8 @@ function InteractiveArticyViewer(){
         }
 
         // Store variables from the CURRENT node before navigating away (if we have a current node)
-        if (currentNode && (currentNode.Type == "Instruction" || currentNode.Type == "WaypointTemplate" || currentNode.Type == "PlayerActionTemplate" || currentNode.Type == "AreaEventTemplate" || currentNode.Type == "CraftingTemplate" || currentNode.Type == "CombatTemplate" || currentNode.Type == "Condition")) {
+        // NOTE: Condition nodes are excluded - they should only evaluate conditions, not modify variables
+        if (currentNode && (currentNode.Type == "Instruction" || currentNode.Type == "WaypointTemplate" || currentNode.Type == "PlayerActionTemplate" || currentNode.Type == "AreaEventTemplate" || currentNode.Type == "CraftingTemplate" || currentNode.Type == "CombatTemplate")) {
             console.log("🔄 STORING VARIABLES from node:", currentNode.Properties.Id, currentNode.Type);
             console.log("Node Text:", currentNode.Properties.Text);
             console.log("Node Expression:", currentNode.Properties.Expression);
