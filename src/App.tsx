@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ConfigProvider, message } from 'antd';
+import { ConfigProvider, message, Button, Space } from 'antd';
+import { TableOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import EnhancedFileInput from './components/EnhancedFileInput';
 import ArticyViewer from './components/ArticyViewer';
+import InteractiveArticyViewer from './components/InteractiveArticyViewer';
 import './App.css';
 
 interface ProcessingReport {
@@ -30,6 +32,7 @@ function App() {
   const [articyData, setArticyData] = useState<any>(null);
   const [processingReport, setProcessingReport] = useState<ProcessingReport | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [viewMode, setViewMode] = useState<'interactive' | 'data'>('interactive');
 
   useEffect(() => {
     // Log app startup
@@ -82,6 +85,26 @@ function App() {
                 <span className="confidence">({(processingReport.confidence * 100).toFixed(0)}% confidence)</span>
               </div>
             )}
+
+            {/* View Mode Toggle */}
+            {articyData && (
+              <Space style={{ marginTop: '16px' }}>
+                <Button
+                  type={viewMode === 'interactive' ? 'primary' : 'default'}
+                  icon={<PlayCircleOutlined />}
+                  onClick={() => setViewMode('interactive')}
+                >
+                  Interactive Mode
+                </Button>
+                <Button
+                  type={viewMode === 'data' ? 'primary' : 'default'}
+                  icon={<TableOutlined />}
+                  onClick={() => setViewMode('data')}
+                >
+                  Data View
+                </Button>
+              </Space>
+            )}
           </div>
         </header>
 
@@ -123,11 +146,18 @@ function App() {
             ) : (
               /* Articy Viewer Interface */
               <div className="viewer-section">
-                <ArticyViewer 
-                  data={articyData} 
-                  report={processingReport}
-                  onReset={handleReset}
-                />
+                {viewMode === 'interactive' ? (
+                  <InteractiveArticyViewer
+                    data={articyData}
+                    onReset={handleReset}
+                  />
+                ) : (
+                  <ArticyViewer
+                    data={articyData}
+                    report={processingReport}
+                    onReset={handleReset}
+                  />
+                )}
               </div>
             )}
           </div>

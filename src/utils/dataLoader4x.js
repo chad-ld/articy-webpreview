@@ -24,10 +24,11 @@ class DataLoader4x {
     try {
       console.log('Loading 4.x format data...');
       console.log('Available files:', Object.keys(files));
+      console.log('File sizes:', Object.keys(files).map(name => `${name}: ${files[name]?.length || 0} chars`));
 
       // Step 1: Load manifest first to understand file structure
       await this.loadManifest(files);
-      
+
       // Step 2: Load all referenced files
       await this.loadGlobalVariables(files);
       await this.loadHierarchy(files);
@@ -37,12 +38,58 @@ class DataLoader4x {
 
       // Step 3: Combine all data into unified structure
       const unifiedData = this.combineData();
-      
+
       console.log('4.x data loading complete');
       return unifiedData;
     } catch (error) {
       console.error('Error loading 4.x data:', error);
       throw new Error(`Failed to load 4.x data: ${error.message}`);
+    }
+  }
+
+  /**
+   * Load all 4.x data from a collection of files (raw data for DataMerger4x)
+   * @param {Object} files - Object with filename as key and file content as value
+   * @returns {Promise<Object>} - Raw loaded data structure for DataMerger4x
+   */
+  async loadAllRaw(files) {
+    try {
+      console.log('Loading 4.x format data (raw)...');
+      console.log('Available files:', Object.keys(files));
+      console.log('File sizes:', Object.keys(files).map(name => `${name}: ${files[name]?.length || 0} chars`));
+
+      // Step 1: Load manifest first to understand file structure
+      await this.loadManifest(files);
+
+      // Step 2: Load all referenced files
+      await this.loadGlobalVariables(files);
+      await this.loadHierarchy(files);
+      await this.loadObjectDefinitions(files);
+      await this.loadPackageData(files);
+      await this.loadScriptMethods(files);
+
+      // Step 3: Return raw loaded data structure for DataMerger4x
+      const rawData = {
+        manifest: this.manifest,
+        globalVariables: this.globalVariables,
+        hierarchy: this.hierarchy,
+        objectDefinitions: this.objectDefinitions,
+        objectDefinitionsLocalization: this.objectDefinitionsLocalization,
+        packages: this.packageObjects,
+        localizations: this.packageLocalizations,
+        scriptMethods: this.scriptMethods
+      };
+
+      console.log('4.x raw data loading complete:', {
+        hasManifest: !!rawData.manifest,
+        packageCount: Object.keys(rawData.packages).length,
+        totalObjects: Object.values(rawData.packages).reduce((sum, pkg) => sum + (pkg.Objects?.length || 0), 0)
+      });
+
+      return rawData;
+    } catch (error) {
+      console.error('Error loading 4.x raw data:', error);
+      throw new Error(`Failed to load 4.x raw data: ${error.message}`);
     }
   }
 
@@ -157,16 +204,41 @@ class DataLoader4x {
 
     for (const packageInfo of this.manifest.Packages) {
       const packageId = packageInfo.Id;
-      
+
+      console.log(`🔍 Processing package:`, {
+        id: packageId,
+        name: packageInfo.Name,
+        objectsFile: packageInfo.Files?.Objects?.FileName
+      });
+
       // Load package objects
       const objectsFileName = packageInfo.Files?.Objects?.FileName;
       if (objectsFileName && files[objectsFileName]) {
         try {
-          this.packageObjects[packageId] = JSON.parse(files[objectsFileName]);
-          console.log(`Package objects loaded for ${packageId}:`, this.packageObjects[packageId].Objects?.length || 0, 'objects');
+          const rawData = JSON.parse(files[objectsFileName]);
+          this.packageObjects[packageId] = rawData;
+
+          console.log(`📦 Package objects loaded for ${packageId}:`, {
+            objectsCount: rawData.Objects?.length || 0,
+            hasObjects: !!rawData.Objects,
+            topLevelKeys: Object.keys(rawData),
+            firstObjectType: rawData.Objects?.[0]?.Type || 'none',
+            rawDataType: typeof rawData,
+            isArray: Array.isArray(rawData)
+          });
+
+          // Debug: Log structure if no objects found
+          if (!rawData.Objects || rawData.Objects.length === 0) {
+            console.log(`🔍 Package ${packageId} full structure:`, rawData);
+          } else {
+            console.log(`✅ Package ${packageId} has ${rawData.Objects.length} objects`);
+          }
         } catch (error) {
+          console.error(`❌ Failed to parse ${objectsFileName}:`, error);
           throw new Error(`Failed to parse ${objectsFileName}: ${error.message}`);
         }
+      } else {
+        console.warn(`⚠️ Objects file not found: ${objectsFileName}`);
       }
 
       // Load package localization

@@ -24,6 +24,12 @@ class DataMerger4x {
   merge(loadedData) {
     if (this.debugMode) {
       console.log('🔄 Starting data merge process...');
+      console.log('🔍 LoadedData structure:', {
+        hasManifest: !!loadedData.manifest,
+        hasPackages: !!loadedData.packages,
+        packageKeys: Object.keys(loadedData.packages || {}),
+        hasLocalizations: !!loadedData.localizations
+      });
     }
 
     const mergedData = {
@@ -31,7 +37,7 @@ class DataMerger4x {
       Project: this.mergeProject(loadedData.manifest?.Project),
       GlobalVariables: this.mergeGlobalVariables(loadedData.globalVariables),
       ObjectDefinitions: this.mergeObjectDefinitions(loadedData.objectDefinitions, loadedData.objectDefinitionsLocalization),
-      Packages: this.mergePackages(loadedData.packages, loadedData.localizations),
+      Packages: this.mergePackages(loadedData.manifest, loadedData.packages, loadedData.localizations),
       Hierarchy: this.mergeHierarchy(loadedData.hierarchy),
       ScriptMethods: this.mergeScriptMethods(loadedData.scriptMethods)
     };
@@ -118,26 +124,65 @@ class DataMerger4x {
 
   /**
    * Merge packages with their objects and localizations
-   * @param {Object} packages - Package data by ID
+   * @param {Object} manifest - Manifest data containing package metadata
+   * @param {Object} packageObjects - Package objects data by ID
    * @param {Object} localizations - Localization data by package ID
    * @returns {Array} - Array of merged packages
    */
-  mergePackages(packages, localizations) {
-    if (!packages) return [];
+  mergePackages(manifest, packageObjects, localizations) {
+    if (!manifest?.Packages || !packageObjects) {
+      console.warn('⚠️ Missing manifest packages or package objects data');
+      return [];
+    }
 
     const mergedPackages = [];
 
-    for (const [packageId, packageData] of Object.entries(packages)) {
+    for (const packageInfo of manifest.Packages) {
+      const packageId = packageInfo.Id;
+      const packageData = packageObjects[packageId];
       const localization = localizations?.[packageId] || {};
-      
-      const mergedPackage = {
-        Name: packageData.Name || 'Unnamed Package',
-        Description: packageData.Description || '',
-        IsDefaultPackage: packageData.IsDefaultPackage || false,
-        Models: this.mergeModels(packageData.Objects || [], localization)
-      };
 
-      mergedPackages.push(mergedPackage);
+      if (this.debugMode) {
+        console.log(`🔄 Merging package ${packageId}:`, {
+          name: packageInfo.Name,
+          hasPackageData: !!packageData,
+          packageDataKeys: packageData ? Object.keys(packageData) : [],
+          objectCount: packageData?.Objects?.length || 0,
+          hasLocalization: !!localization,
+          packageDataType: typeof packageData,
+          isPackageDataArray: Array.isArray(packageData)
+        });
+      }
+
+      if (packageData) {
+        // Debug: Log detailed package data structure
+        console.log(`🔍 Package ${packageId} detailed structure:`, {
+          hasObjects: !!packageData.Objects,
+          objectsType: typeof packageData.Objects,
+          objectsIsArray: Array.isArray(packageData.Objects),
+          objectsLength: packageData.Objects?.length || 0,
+          firstObjectType: packageData.Objects?.[0]?.Type,
+          packageDataKeys: Object.keys(packageData)
+        });
+
+        const objectsToMerge = packageData.Objects || [];
+        console.log(`🔄 About to merge ${objectsToMerge.length} objects for package ${packageId}`);
+
+        const mergedPackage = {
+          Name: packageInfo.Name || 'Unnamed Package',
+          Description: packageInfo.Description || '',
+          IsDefaultPackage: packageInfo.IsDefaultPackage || false,
+          Models: this.mergeModels(objectsToMerge, localization)
+        };
+
+        mergedPackages.push(mergedPackage);
+
+        if (this.debugMode) {
+          console.log(`✅ Package ${packageId} merged: ${mergedPackage.Models.length} models`);
+        }
+      } else {
+        console.warn(`⚠️ No package data found for ${packageId}`);
+      }
     }
 
     return mergedPackages;

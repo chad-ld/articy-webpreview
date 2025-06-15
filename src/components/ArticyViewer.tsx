@@ -18,9 +18,26 @@ interface ArticyViewerProps {
 const ArticyViewer: React.FC<ArticyViewerProps> = ({ data, report, onReset }) => {
   const [activeTab, setActiveTab] = useState('overview');
 
+  // Debug: Log data structure received by ArticyViewer
+  console.log('🔍 ArticyViewer received data:', {
+    hasPackages: !!data.Packages,
+    packageCount: data.Packages?.length || 0,
+    firstPackageName: data.Packages?.[0]?.Name,
+    firstPackageModelCount: data.Packages?.[0]?.Models?.length || 0,
+    reportTotalModels: report.summary.totalModels,
+    dataKeys: Object.keys(data)
+  });
+
   // Get first package for display
   const firstPackage = data.Packages?.[0];
   const firstModels = firstPackage?.Models?.slice(0, 10) || [];
+
+  console.log('🔍 ArticyViewer firstPackage:', {
+    name: firstPackage?.Name,
+    hasModels: !!firstPackage?.Models,
+    modelCount: firstPackage?.Models?.length || 0,
+    firstModelType: firstPackage?.Models?.[0]?.Type
+  });
 
   // Get global variables for display
   const globalVariables = data.GlobalVariables || [];

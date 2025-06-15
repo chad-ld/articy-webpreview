@@ -12,7 +12,7 @@ class DataRouter {
     this.formatDetector = new FormatDetector();
     this.dataLoader4x = new DataLoader4x();
     this.dataMerger4x = new DataMerger4x();
-    this.debugMode = false;
+    this.debugMode = true; // Enable debug mode for 4.x development
   }
 
   /**
@@ -137,8 +137,8 @@ class DataRouter {
       console.log('📋 Processing 4.x format data...');
     }
 
-    // Use the 4.x loader to load and merge data
-    const loadedData = await this.dataLoader4x.loadAll(detection.files);
+    // Use the 4.x loader to load raw data (not combined)
+    const loadedData = await this.dataLoader4x.loadAllRaw(detection.files);
     const mergedData = this.dataMerger4x.merge(loadedData);
 
     // Validate merged data
