@@ -354,6 +354,44 @@ function InteractiveArticyViewer(){
     }, [currentNode, showPrevious, previousChoiceHistory.length]);
 
     function setCurrentNode(node:any, choiceInfo?: { text: string, title?: string, color?: { r: number; g: number; b: number }, fromMultiChoice?: boolean }){
+        // Handle Jump nodes immediately - redirect to target
+        if (node.Type === "Jump" && node.Properties.Target) {
+            const targetNode = project.GetNodeByID(node.Properties.Target);
+            if (targetNode) {
+                console.log("🔄 JUMP REDIRECT:", node.Properties.Id, "→", targetNode.Properties.Id);
+                // Recursively call setCurrentNode with the target, preserving choice info
+                setCurrentNode(targetNode, choiceInfo);
+                return;
+            }
+        }
+
+        // Handle Condition nodes immediately - evaluate and auto-navigate
+        if (node.Type === "Condition") {
+            // Extract the condition expression (skip comment lines)
+            const expression = node.Properties.Expression || "";
+            const lines = expression.split('\n');
+            const conditionLine = lines.find(line => line.trim() && !line.trim().startsWith('//'));
+            const result = conditionLine ? project.CheckConditionString(conditionLine.trim()) : false;
+            console.log("🔄 CONDITION EVALUATION:", conditionLine, "→", result);
+
+            // Navigate to appropriate output based on condition result
+            if (node.Properties.OutputPins && node.Properties.OutputPins.length >= 2) {
+                const targetPin = result ? 0 : 1; // True = first output, False = second output
+                if (node.Properties.OutputPins[targetPin] &&
+                    node.Properties.OutputPins[targetPin].Connections &&
+                    node.Properties.OutputPins[targetPin].Connections.length > 0) {
+
+                    const targetNodeId = node.Properties.OutputPins[targetPin].Connections[0].Target;
+                    const targetNode = project.GetNodeByID(targetNodeId);
+                    console.log("🔄 CONDITION AUTO-NAVIGATE:", result ? "TRUE" : "FALSE", "→", targetNodeId);
+
+                    // Recursively call setCurrentNode with the target, preserving choice info
+                    setCurrentNode(targetNode, choiceInfo);
+                    return;
+                }
+            }
+        }
+
         // Store previous choice if we have choice info and a current node
         if (choiceInfo && currentNode) {
             const previousChoice: PreviousChoice = {
@@ -368,9 +406,15 @@ function InteractiveArticyViewer(){
             setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
         }
 
+        // Store variables from the CURRENT node before navigating away (if we have a current node)
+        if (currentNode && (currentNode.Type == "Instruction" || currentNode.Type == "WaypointTemplate" || currentNode.Type == "PlayerActionTemplate" || currentNode.Type == "AreaEventTemplate" || currentNode.Type == "CraftingTemplate" || currentNode.Type == "CombatTemplate")) {
+            console.log("🔄 STORING VARIABLES from node:", currentNode.Properties.Id, currentNode.Type);
+            console.log("Node Text:", currentNode.Properties.Text);
+            console.log("Node Expression:", currentNode.Properties.Expression);
+            project.StoreVariablesFromNode(currentNode);
+        }
+
         // console.log("setting current Node:",node);
-        if (node.Type == "Instruction" || node.Type == "WaypointTemplate")
-            project.StoreVariablesFromNode(node);
         setNodeList([...nodeList,node]);
     }
 
@@ -408,15 +452,7 @@ function InteractiveArticyViewer(){
             return currentNode.Properties.Options.filter((option: any) => !option.hidden);
         }
 
-        // Handle Jump nodes (redirect to target)
-        if (currentNode.Type === "Jump" && currentNode.Properties.Target) {
-            const targetNode = project.GetNodeByID(currentNode.Properties.Target);
-            if (targetNode) {
-                // Auto-navigate to jump target
-                setTimeout(() => setCurrentNode(targetNode), 0);
-                return [];
-            }
-        }
+
 
         // Handle FlowFragment nodes (enter first child)
         if (currentNode.Type === "FlowFragment" ||
@@ -437,24 +473,7 @@ function InteractiveArticyViewer(){
             }
         }
 
-        // Handle Condition nodes (evaluate condition and auto-navigate)
-        if (currentNode.Type === "Condition") {
-            const conditions = project.GetVariablesFromNode(currentNode);
-            const result = conditions ? project.CheckCondition(conditions) : false;
-            console.log("Condition result:", result);
 
-            // Navigate to appropriate output based on condition result
-            if (currentNode.Properties.OutputPins && currentNode.Properties.OutputPins.length >= 2) {
-                const targetPin = result ? 0 : 1; // True = first output, False = second output
-                if (currentNode.Properties.OutputPins[targetPin] &&
-                    currentNode.Properties.OutputPins[targetPin].Connections &&
-                    currentNode.Properties.OutputPins[targetPin].Connections.length > 0) {
-                    const targetNode = project.GetNodeByID(currentNode.Properties.OutputPins[targetPin].Connections[0].Target);
-                    setTimeout(() => setCurrentNode(targetNode), 0);
-                }
-            }
-            return [];
-        }
 
         // Standard case: get all output connections
         if (currentNode.Properties.OutputPins &&
@@ -773,8 +792,7 @@ function InteractiveArticyViewer(){
         console.log("DisplayNode - Current node:", currentNode);
 
         // Handle special auto-navigation cases first
-        if (currentNode.Type === "Jump" ||
-            currentNode.Type === "Condition" ||
+        if (currentNode.Type === "Condition" ||
             currentNode.Type === "FlowFragment" ||
             currentNode.Type === "CombatFlowTemplate" ||
             currentNode.Type === "CraftingFlowTemplate" ||
