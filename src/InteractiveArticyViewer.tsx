@@ -910,11 +910,36 @@ function InteractiveArticyViewer(){
             return <EndOfFlowPanel onRestart={restartFlow} selected={!isPreviousChoiceSelected} />;
         }
 
-        // Handle multiple outputs - show as choices
+        // Handle multiple outputs - but for dialogue fragments, show content first, then choices on Next
         if (outputs.length > 1) {
-            const choiceOptions = createChoiceOptions(outputs);
-            // Always show condition bubbles uniformly across the entire app
-            return renderHubChoices(choiceOptions, true, isPreviousChoiceSelected);
+            // Check if this is a dialogue fragment that should show content before choices
+            const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                     currentNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                     currentNode.Type === "DialogueFragment";
+
+            if (isDialogueFragment) {
+                // Show dialogue content with Next button that will lead to choices
+                const nodeTitle = getSpeakerNameWithIcon(currentNode) || currentNode.Properties.DisplayName;
+                const nodeText = currentNode.Properties.Text || currentNode.Properties.Expression;
+
+                return (
+                    <InstructionPanel
+                        title={nodeTitle}
+                        text={nodeText}
+                        color={currentNode.Properties.Color}
+                        selected={!isPreviousChoiceSelected}
+                        button={{
+                            hidden: false,
+                            text: "Next",
+                            onClick: handleNextButton
+                        }}
+                    />
+                );
+            } else {
+                // Non-dialogue nodes with multiple outputs - show as choices immediately
+                const choiceOptions = createChoiceOptions(outputs);
+                return renderHubChoices(choiceOptions, true, isPreviousChoiceSelected);
+            }
         }
 
         // Handle single output - show node content with Next button
