@@ -10172,7 +10172,7 @@
           "h": 275.0
         },
         "ShortId": 2050028080,
-        "Expression": "//QUEST_RND FLOW START\n\n//This quest involves two crazy robots, one who is very angry and demands sensitive information.\n\n\n//TESTING VARIABLES\nRNDVariables.EndingVariable=false;\n\n//HTMLPREVIEW\n\n",
+        "Expression": "//QUEST_RND FLOW START\n\n//This quest involves two crazy robots, one who is very angry and demands sensitive information.\n\n\n//TESTING VARIABLES\nRNDVariables.EndingVariable=false;\n\n\n\n",
         "Color": {
           "r": 0.78431374,
           "g": 0.8862745,
@@ -10432,7 +10432,7 @@
           "h": 100.0
         },
         "ShortId": 4087630997,
-        "Expression": "//ARTICY HTML VIEWER START NODE\n",
+        "Expression": "//ARTICY HTML VIEWER START NODE\n//HTMLPREVIEW",
         "Color": {
           "r": 0.78431374,
           "g": 0.8862745,
