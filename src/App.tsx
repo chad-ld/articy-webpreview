@@ -118,7 +118,7 @@ function App() {
                 
                 {/* Feature Information */}
                 <div className="features-info">
-                  <h3>What's New in v4.x</h3>
+                  <h3 style={{ color: 'rgba(255, 255, 255, 0.7)' }}>What's New in v4.x</h3>
                   <div className="features-grid">
                     <div className="feature-card">
                       <h4>🔄 Universal Format Support</h4>
@@ -146,6 +146,7 @@ function App() {
                   data={articyData}
                   onReset={handleReset}
                   onPanelWidthChange={setPanelWidth}
+                  onLoadScreen={handleReset}
                 />
               </div>
             )}

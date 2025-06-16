@@ -72,47 +72,7 @@ function InstructionPanel(props: InstructionPanelProps) {
   if (!props.button.hidden) {
     return (
       <div className="node" style={combinedStyle}>
-        {/* Debug Color Squares */}
-        <div style={{
-          display: 'flex',
-          gap: '10px',
-          marginBottom: '10px',
-          alignItems: 'center',
-          fontSize: '12px',
-          color: 'white'
-        }}>
-          <div style={{
-            width: '50px',
-            height: '30px',
-            backgroundColor: frameColor,
-            border: '1px solid white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '10px',
-            color: 'black',
-            fontWeight: 'bold'
-          }}>
-            BORDER
-          </div>
-          <div style={{
-            width: '50px',
-            height: '30px',
-            backgroundColor: backgroundColor,
-            border: '1px solid white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '10px',
-            color: 'white',
-            fontWeight: 'bold'
-          }}>
-            BG
-          </div>
-          <span style={{ color: 'white' }}>
-            Border: {frameColor} | Background: {backgroundColor}
-          </span>
-        </div>
+
 
         {props.title && (
           <div
@@ -146,47 +106,7 @@ function InstructionPanel(props: InstructionPanelProps) {
   } else {
     return (
       <div className="node" style={combinedStyle}>
-        {/* Debug Color Squares */}
-        <div style={{
-          display: 'flex',
-          gap: '10px',
-          marginBottom: '10px',
-          alignItems: 'center',
-          fontSize: '12px',
-          color: 'white'
-        }}>
-          <div style={{
-            width: '50px',
-            height: '30px',
-            backgroundColor: frameColor,
-            border: '1px solid white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '10px',
-            color: 'black',
-            fontWeight: 'bold'
-          }}>
-            BORDER
-          </div>
-          <div style={{
-            width: '50px',
-            height: '30px',
-            backgroundColor: backgroundColor,
-            border: '1px solid white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '10px',
-            color: 'white',
-            fontWeight: 'bold'
-          }}>
-            BG
-          </div>
-          <span style={{ color: 'white' }}>
-            Border: {frameColor} | Background: {backgroundColor}
-          </span>
-        </div>
+
 
         {props.title && (
           <div
