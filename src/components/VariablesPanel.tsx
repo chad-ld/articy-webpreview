@@ -101,7 +101,7 @@ function VariablesPanel(props: VariablesPanelProps) {
         }
 
         // Handle string values
-        return <span style={{ color: '#9C27B0' }}>{valueStr}</span>;
+        return <span style={{ color: '#CE93D8' }}>{valueStr}</span>;
     };
 
     const renderVariablesFlat = () => {
