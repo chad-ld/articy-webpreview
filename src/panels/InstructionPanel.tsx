@@ -130,15 +130,17 @@ function InstructionPanel(props: InstructionPanelProps) {
           {props.text}
         </TextBlock>
         <br />
-        <Button
-          danger={props.button.hidden}
-          disabled={isDisabled}
-          onClick={() => {
-            if (!isDisabled) props.button.onClick();
-          }}
-        >
-          {props.button.text}
-        </Button>
+        <div style={{ textAlign: 'right' }}>
+          <Button
+            danger={props.button.hidden}
+            disabled={isDisabled}
+            onClick={() => {
+              if (!isDisabled) props.button.onClick();
+            }}
+          >
+            {props.button.text}
+          </Button>
+        </div>
       </div>
     );
   } else {

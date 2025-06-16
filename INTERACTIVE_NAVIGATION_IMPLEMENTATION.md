@@ -274,3 +274,22 @@ This implementation will restore the full interactive functionality while mainta
 - Search panel (400px) triggers responsive behavior immediately
 - Wider panels cause proportional content shifting
 - All sections move together for consistent layout
+
+### UI Polish & Button Alignment ✅
+**Date**: June 16, 2025
+**Features Completed**:
+- **Fixed Spacing Consistency**: Previous Choice and Available Choices sections now have identical header spacing
+- **Swapped Button Alignment**: Back button left-aligned, Next/choice buttons right-aligned for intuitive navigation
+- **Button Color Consistency**: Back button now matches Next button brightness (removed opacity fade)
+- **Visual Balance**: Previous choice node remains properly faded while button stays fully visible
+
+**Technical Details**:
+- Removed `marginTop: '20px'` from PreviousChoiceDisplay for consistent spacing
+- Moved Back button outside faded node container to prevent color inheritance
+- Added `textAlign: 'right'` to Next buttons in InstructionPanel and choice buttons in QuestionPanel
+- Simplified QuestionPanel button styling (removed full-width, size overrides)
+
+**User Experience**:
+- Perfect visual symmetry between Previous Choice and Available Choices sections
+- Logical button positioning follows standard UI conventions (Back=left, Forward=right)
+- Clear visual hierarchy with consistent button styling across all interaction types

@@ -120,22 +120,14 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, color, choic
 
       <div style={{ marginTop: '15px' }}>
         {choices.map((choice, index) => (
-          <div key={index} style={{ marginBottom: '10px' }}>
+          <div key={index} style={{ marginBottom: '10px', textAlign: 'right' }}>
             <Button
-              size="large"
               onClick={choice.onClick}
               disabled={choice.disabled}
               style={{
-                width: '100%',
                 backgroundColor: choice.disabled ? '#666' : undefined,
                 borderColor: choice.disabled ? '#666' : undefined,
-                color: choice.disabled ? '#ccc' : undefined,
-                fontWeight: 'bold',
-                textAlign: 'left',
-                height: 'auto',
-                padding: '10px 15px',
-                whiteSpace: 'normal',
-                wordBreak: 'break-word'
+                color: choice.disabled ? '#ccc' : undefined
               }}
             >
               {choice.text}
