@@ -51,19 +51,19 @@ function renderTextWithLinks(text: string): JSX.Element[] {
 
 function TextBlock(props: TextBlockProps) {
   const text = props.children as string;
-  
+
   // Handle both \r\n (Windows) and \n (Unix) line endings
   const textChunks = text.split(/\r?\n/);
-  
+
   // Detect if this is code content (contains variable assignments, comments, etc.)
   const isCodeBlock = text.includes("=") && (text.includes("//") || text.includes("."));
-  
+
   var i = 0;
 
-  // Apply syntax highlighting for all content
+  // Apply syntax highlighting for all content (copied from original v3.x)
   const renderCodeLine = (line: string): JSX.Element | JSX.Element[] => {
     if (line.trim().startsWith("//")) {
-      return <span style={{ color: '#6A9955' }}>{renderTextWithLinks(line)}</span>;
+      return <span className="hljs-comment">{renderTextWithLinks(line)}</span>;
     }
 
     // Simple variable assignment highlighting
@@ -83,11 +83,11 @@ function TextBlock(props: TextBlockProps) {
         // For complex expressions, apply syntax highlighting to parts
         const renderValue = (val: string) => {
           if (isNumber) {
-            return <span style={{ color: '#b5cea8' }}>{val}</span>;
+            return <span className="hljs-number">{val}</span>;
           } else if (isBooleanOrKeyword) {
-            return <span style={{ color: '#569cd6' }}>{val}</span>;
+            return <span className="hljs-literal">{val}</span>;
           } else if (isString) {
-            return <span style={{ color: '#ce9178' }}>{val}</span>; // String values remain default color (white)
+            return <span>{val}</span>; // String values remain default color (white)
           } else {
             // For complex expressions, use a more sophisticated approach
             // Split by operators and numbers while preserving them
@@ -99,16 +99,16 @@ function TextBlock(props: TextBlockProps) {
                   if (trimmedToken === '') {
                     return <span key={index}>{token}</span>; // Preserve whitespace
                   } else if (/^\d+$/.test(trimmedToken)) {
-                    return <span key={index} style={{ color: '#b5cea8' }}>{token}</span>;
+                    return <span key={index} className="hljs-number">{token}</span>;
                   } else if (/^[a-zA-Z_][a-zA-Z0-9_.]*$/.test(trimmedToken)) {
                     // Variable names (letters, numbers, dots, underscores)
-                    return <span key={index} style={{ color: '#9cdcfe' }}>{token}</span>;
+                    return <span key={index} className="hljs-property">{token}</span>;
                   } else if (/^[\+\-\*\/=;]$/.test(trimmedToken)) {
                     // Operators
-                    return <span key={index} style={{ color: '#d4d4d4' }}>{token}</span>; // Keep operators default color
+                    return <span key={index}>{token}</span>; // Keep operators default color
                   } else {
                     // Other symbols
-                    return <span key={index}>{token}</span>;
+                    return <span key={index} className="hljs-literal">{token}</span>;
                   }
                 })}
               </>
@@ -117,10 +117,10 @@ function TextBlock(props: TextBlockProps) {
         };
 
         return [
-          <span key="var" style={{ color: '#9cdcfe' }}>{variable}</span>,
-          <span key="eq" style={{ color: '#d4d4d4' }}>=</span>,
+          <span key="var" className="hljs-property">{variable}</span>,
+          <span key="eq">=</span>,
           <span key="val">{renderValue(value)}</span>,
-          ...(line.includes(";") ? [<span key="semi" style={{ color: '#d4d4d4' }}>;</span>] : [])
+          ...(line.includes(";") ? [<span key="semi">;</span>] : [])
         ];
       }
     }
@@ -128,23 +128,16 @@ function TextBlock(props: TextBlockProps) {
     return renderTextWithLinks(line);
   };
 
-  const borderColor = props.borderColor || 'rgb(147, 193, 204)';
-  const bgColor = props.backgroundColor || '#5a6668'; // Default dark gray-blue from old version
+
 
   if (isCodeBlock) {
     return (
       <div
+        className="articy-codeblock"
         style={{
-          border: `2px solid ${borderColor}`,
-          backgroundColor: bgColor,
-          padding: '10px',
-          borderRadius: '5px',
-          fontFamily: 'Consolas, Monaco, "Courier New", monospace',
-          fontSize: '14px',
-          lineHeight: '1.4',
-          color: '#d4d4d4',
-          whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word'
+          borderColor: props.borderColor || 'rgb(147, 193, 204)',
+          backgroundColor: props.backgroundColor || 'rgb(90, 102, 104)',
+          color: 'white' // Ensure white text for readability
         }}
       >
         {textChunks.map((chunk) => {
@@ -160,17 +153,11 @@ function TextBlock(props: TextBlockProps) {
   } else {
     return (
       <div
+        className="articy-textblock"
         style={{
-          border: `2px solid ${borderColor}`,
-          backgroundColor: bgColor,
-          padding: '10px',
-          borderRadius: '5px',
-          fontFamily: 'Arial, sans-serif',
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: '#ffffff',
-          whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word'
+          borderColor: props.borderColor || 'rgb(147, 193, 204)',
+          backgroundColor: props.backgroundColor || 'rgb(90, 102, 104)',
+          color: 'white' // Ensure white text for readability
         }}
       >
         {textChunks.map((chunk) => {

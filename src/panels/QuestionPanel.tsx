@@ -25,7 +25,8 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, color, choic
       // Frame/border color (original color)
       const frameColor = `rgb(${r}, ${g}, ${b})`;
 
-      // Background color (darker version - about 50% darker)
+      // Background color (50% darker version to preserve color relationships)
+      // Pure blue rgb(0, 0, 255) becomes rgb(0, 0, 128)
       const darkR = Math.round(r * 0.5);
       const darkG = Math.round(g * 0.5);
       const darkB = Math.round(b * 0.5);
@@ -41,7 +42,7 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, color, choic
     // Default colors
     return {
       frameColor: 'rgb(147, 193, 204)',
-      backgroundColor: 'rgb(73, 96, 102)',
+      backgroundColor: 'rgb(90, 102, 104)',
       headerTextColor: 'black'
     };
   };
@@ -57,62 +58,90 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, color, choic
   } : {};
 
   return (
-    <div
-      style={{
-        border: `2px solid ${frameColor}`,
-        borderRadius: '10px',
-        backgroundColor: frameColor,
-        padding: '0',
-        margin: '20px 0',
-        maxWidth: '600px',
-        ...selectionStyle
-      }}
-    >
+    <div className="node" style={selectionStyle}>
+      {/* Debug Color Squares */}
+      <div style={{
+        display: 'flex',
+        gap: '10px',
+        marginBottom: '10px',
+        alignItems: 'center',
+        fontSize: '12px',
+        color: 'white'
+      }}>
+        <div style={{
+          width: '50px',
+          height: '30px',
+          backgroundColor: frameColor,
+          border: '1px solid white',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '10px',
+          color: 'black',
+          fontWeight: 'bold'
+        }}>
+          BORDER
+        </div>
+        <div style={{
+          width: '50px',
+          height: '30px',
+          backgroundColor: backgroundColor,
+          border: '1px solid white',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '10px',
+          color: 'white',
+          fontWeight: 'bold'
+        }}>
+          BG
+        </div>
+        <span style={{ color: 'white' }}>
+          Border: {frameColor} | Background: {backgroundColor}
+        </span>
+      </div>
+
       {title && (
         <div
+          className="articy-node-header"
           style={{
             backgroundColor: frameColor,
-            color: headerTextColor,
-            padding: '10px 15px',
-            borderRadius: '8px 8px 0 0',
-            fontWeight: 'bold',
-            fontSize: '16px'
+            borderColor: frameColor,
+            color: headerTextColor
           }}
         >
           {title}
         </div>
       )}
-      
-      <div style={{ padding: '15px' }}>
-        <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
-          {text}
-        </TextBlock>
-        
-        <div style={{ marginTop: '15px' }}>
-          {choices.map((choice, index) => (
-            <div key={index} style={{ marginBottom: '10px' }}>
-              <Button
-                type="primary"
-                size="large"
-                onClick={choice.onClick}
-                disabled={choice.disabled}
-                style={{
-                  width: '100%',
-                  backgroundColor: choice.disabled ? '#666' : '#1890ff',
-                  borderColor: choice.disabled ? '#666' : '#1890ff',
-                  fontWeight: 'bold',
-                  textAlign: 'left',
-                  height: 'auto',
-                  padding: '10px 15px',
-                  whiteSpace: 'normal',
-                  wordBreak: 'break-word'
-                }}
-              >
-                {choice.text}
-              </Button>
-            </div>
-          ))}
-        </div>
+
+      <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
+        {text}
+      </TextBlock>
+
+      <div style={{ marginTop: '15px' }}>
+        {choices.map((choice, index) => (
+          <div key={index} style={{ marginBottom: '10px' }}>
+            <Button
+              size="large"
+              onClick={choice.onClick}
+              disabled={choice.disabled}
+              style={{
+                width: '100%',
+                backgroundColor: choice.disabled ? '#666' : undefined,
+                borderColor: choice.disabled ? '#666' : undefined,
+                color: choice.disabled ? '#ccc' : undefined,
+                fontWeight: 'bold',
+                textAlign: 'left',
+                height: 'auto',
+                padding: '10px 15px',
+                whiteSpace: 'normal',
+                wordBreak: 'break-word'
+              }}
+            >
+              {choice.text}
+            </Button>
+          </div>
+        ))}
       </div>
     </div>
   );
