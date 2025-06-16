@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ConfigProvider, message, Button, Space } from 'antd';
-import { TableOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { ConfigProvider, message } from 'antd';
 import EnhancedFileInput from './components/EnhancedFileInput';
-import ArticyViewer from './components/ArticyViewer';
 import InteractiveArticyViewer from './components/InteractiveArticyViewer';
 import './App.css';
 
@@ -32,7 +30,7 @@ function App() {
   const [articyData, setArticyData] = useState<any>(null);
   const [processingReport, setProcessingReport] = useState<ProcessingReport | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [viewMode, setViewMode] = useState<'interactive' | 'data'>('interactive');
+  const [panelWidth, setPanelWidth] = useState(0);
 
   useEffect(() => {
     // Log app startup
@@ -59,7 +57,22 @@ function App() {
   const handleReset = () => {
     setArticyData(null);
     setProcessingReport(null);
+    setPanelWidth(0);
     console.log('🔄 Application reset - ready for new file');
+  };
+
+  // Calculate gradual margin for header responsiveness
+  const calculateHeaderMargin = (panelWidth: number) => {
+    if (panelWidth === 0) return 'auto';
+
+    // Buffer zone: no shifting until panel is wider than 320px
+    const bufferThreshold = 320;
+    if (panelWidth <= bufferThreshold) return 'auto';
+
+    // Gradual shifting: start with minimal shift, increase gradually
+    const excessWidth = panelWidth - bufferThreshold;
+    const gradualShift = Math.min(excessWidth * 0.8, panelWidth); // 80% of excess width, capped at panel width
+    return `${gradualShift + 40}px`; // Add 40px buffer between panel and content
   };
 
   return (
@@ -74,36 +87,19 @@ function App() {
       <div className="app">
         {/* Header */}
         <header className="app-header">
-          <div className="container">
+          <div className="container" style={{
+            marginLeft: articyData ? calculateHeaderMargin(panelWidth) : 'auto',
+            transition: 'margin-left 0.3s ease'
+          }}>
             <h1>Articy Web Viewer v4.x</h1>
             <p>Universal viewer for Articy Draft 3.x and 4.x JSON exports</p>
-            
+
             {processingReport && (
               <div className="format-badge">
                 <span className="format-label">Format:</span>
                 <span className="format-value">{processingReport.format} v{processingReport.version}</span>
                 <span className="confidence">({(processingReport.confidence * 100).toFixed(0)}% confidence)</span>
               </div>
-            )}
-
-            {/* View Mode Toggle */}
-            {articyData && (
-              <Space style={{ marginTop: '16px' }}>
-                <Button
-                  type={viewMode === 'interactive' ? 'primary' : 'default'}
-                  icon={<PlayCircleOutlined />}
-                  onClick={() => setViewMode('interactive')}
-                >
-                  Interactive Mode
-                </Button>
-                <Button
-                  type={viewMode === 'data' ? 'primary' : 'default'}
-                  icon={<TableOutlined />}
-                  onClick={() => setViewMode('data')}
-                >
-                  Data View
-                </Button>
-              </Space>
             )}
           </div>
         </header>
@@ -146,18 +142,11 @@ function App() {
             ) : (
               /* Articy Viewer Interface */
               <div className="viewer-section">
-                {viewMode === 'interactive' ? (
-                  <InteractiveArticyViewer
-                    data={articyData}
-                    onReset={handleReset}
-                  />
-                ) : (
-                  <ArticyViewer
-                    data={articyData}
-                    report={processingReport}
-                    onReset={handleReset}
-                  />
-                )}
+                <InteractiveArticyViewer
+                  data={articyData}
+                  onReset={handleReset}
+                  onPanelWidthChange={setPanelWidth}
+                />
               </div>
             )}
           </div>
@@ -165,11 +154,21 @@ function App() {
 
         {/* Footer */}
         <footer className="app-footer">
-          <div className="container">
+          <div className="container" style={{
+            marginLeft: articyData ? calculateHeaderMargin(panelWidth) : 'auto',
+            transition: 'margin-left 0.3s ease'
+          }}>
             <div className="footer-content">
               <div className="footer-info">
                 <p>Articy Web Viewer v4.x - Universal JSON Viewer</p>
                 <p>Supports Articy Draft 3.x and 4.x formats</p>
+                {processingReport && (
+                  <p style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)', marginTop: '8px' }}>
+                    Processed: {new Date(processingReport.processingInfo.timestamp).toLocaleString()} |
+                    Input: {processingReport.processingInfo.inputType} |
+                    Features: {processingReport.features.hasHierarchy ? 'Hierarchy' : ''} {processingReport.features.hasScriptMethods ? 'Scripts' : ''}
+                  </p>
+                )}
               </div>
               <div className="footer-stats">
                 {processingReport && (
@@ -178,6 +177,19 @@ function App() {
                     <span>🎯 {processingReport.summary.totalModels} models</span>
                     <span>🔧 {processingReport.summary.globalVariables} variables</span>
                     <span>📋 {Object.keys(processingReport.nodeTypes).length} node types</span>
+                    <span>🏗️ {processingReport.summary.objectDefinitions} object definitions</span>
+                    <span>⚙️ {processingReport.format} v{processingReport.version}</span>
+                    <span>📊 {(processingReport.confidence * 100).toFixed(0)}% confidence</span>
+                    {/* Show top 3 node types */}
+                    {Object.entries(processingReport.nodeTypes)
+                      .sort(([,a], [,b]) => (b as number) - (a as number))
+                      .slice(0, 3)
+                      .map(([type, count]) => (
+                        <span key={type} style={{ fontSize: '11px', opacity: 0.8 }}>
+                          {type}: {count}
+                        </span>
+                      ))
+                    }
                   </>
                 )}
               </div>

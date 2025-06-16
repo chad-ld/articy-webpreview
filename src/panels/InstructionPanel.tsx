@@ -25,7 +25,8 @@ function InstructionPanel(props: InstructionPanelProps) {
       // Frame/border color (original color)
       const frameColor = `rgb(${r}, ${g}, ${b})`;
 
-      // Background color (darker version - about 50% darker)
+      // Background color (50% darker version to preserve color relationships)
+      // Pure blue rgb(0, 0, 255) becomes rgb(0, 0, 128)
       const darkR = Math.round(r * 0.5);
       const darkG = Math.round(g * 0.5);
       const darkB = Math.round(b * 0.5);
@@ -40,9 +41,10 @@ function InstructionPanel(props: InstructionPanelProps) {
     }
 
     // Default colors (teal is light, so use black text)
+    // Using target background color for good readability
     return {
       frameColor: 'rgb(147, 193, 204)',
-      backgroundColor: 'rgb(73, 96, 102)',
+      backgroundColor: 'rgb(90, 102, 104)',
       headerTextColor: 'black'
     };
   };
@@ -69,89 +71,136 @@ function InstructionPanel(props: InstructionPanelProps) {
 
   if (!props.button.hidden) {
     return (
-      <div
-        style={{
-          border: `2px solid ${frameColor}`,
-          borderRadius: '10px',
-          backgroundColor: frameColor,
-          padding: '0',
-          margin: '20px 0',
-          maxWidth: '600px',
-          ...combinedStyle
-        }}
-      >
+      <div className="node" style={combinedStyle}>
+        {/* Debug Color Squares */}
+        <div style={{
+          display: 'flex',
+          gap: '10px',
+          marginBottom: '10px',
+          alignItems: 'center',
+          fontSize: '12px',
+          color: 'white'
+        }}>
+          <div style={{
+            width: '50px',
+            height: '30px',
+            backgroundColor: frameColor,
+            border: '1px solid white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '10px',
+            color: 'black',
+            fontWeight: 'bold'
+          }}>
+            BORDER
+          </div>
+          <div style={{
+            width: '50px',
+            height: '30px',
+            backgroundColor: backgroundColor,
+            border: '1px solid white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '10px',
+            color: 'white',
+            fontWeight: 'bold'
+          }}>
+            BG
+          </div>
+          <span style={{ color: 'white' }}>
+            Border: {frameColor} | Background: {backgroundColor}
+          </span>
+        </div>
+
         {props.title && (
           <div
+            className="articy-node-header"
             style={{
               backgroundColor: frameColor,
-              color: headerTextColor,
-              padding: '10px 15px',
-              borderRadius: '8px 8px 0 0',
-              fontWeight: 'bold',
-              fontSize: '16px'
+              borderColor: frameColor,
+              color: headerTextColor
             }}
           >
             {props.title}
           </div>
         )}
-        
-        <div style={{ padding: '15px' }}>
-          <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
-            {props.text}
-          </TextBlock>
-          
-          <div style={{ marginTop: '15px', textAlign: 'center' }}>
-            <Button
-              type="primary"
-              size="large"
-              onClick={() => {
-                if (!isDisabled) props.button.onClick();
-              }}
-              style={{
-                backgroundColor: '#1890ff',
-                borderColor: '#1890ff',
-                fontWeight: 'bold'
-              }}
-            >
-              {props.button.text}
-            </Button>
-          </div>
-        </div>
+        <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
+          {props.text}
+        </TextBlock>
+        <br />
+        <Button
+          danger={props.button.hidden}
+          disabled={isDisabled}
+          onClick={() => {
+            if (!isDisabled) props.button.onClick();
+          }}
+        >
+          {props.button.text}
+        </Button>
       </div>
     );
   } else {
     return (
-      <div
-        style={{
-          border: `2px solid ${frameColor}`,
-          borderRadius: '10px',
-          backgroundColor: frameColor,
-          padding: '0',
-          margin: '20px 0',
-          maxWidth: '600px',
-          ...combinedStyle
-        }}
-      >
+      <div className="node" style={combinedStyle}>
+        {/* Debug Color Squares */}
+        <div style={{
+          display: 'flex',
+          gap: '10px',
+          marginBottom: '10px',
+          alignItems: 'center',
+          fontSize: '12px',
+          color: 'white'
+        }}>
+          <div style={{
+            width: '50px',
+            height: '30px',
+            backgroundColor: frameColor,
+            border: '1px solid white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '10px',
+            color: 'black',
+            fontWeight: 'bold'
+          }}>
+            BORDER
+          </div>
+          <div style={{
+            width: '50px',
+            height: '30px',
+            backgroundColor: backgroundColor,
+            border: '1px solid white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '10px',
+            color: 'white',
+            fontWeight: 'bold'
+          }}>
+            BG
+          </div>
+          <span style={{ color: 'white' }}>
+            Border: {frameColor} | Background: {backgroundColor}
+          </span>
+        </div>
+
         {props.title && (
           <div
+            className="articy-node-header"
             style={{
               backgroundColor: frameColor,
-              color: headerTextColor,
-              padding: '10px 15px',
-              borderRadius: '8px 8px 0 0',
-              fontWeight: 'bold',
-              fontSize: '16px'
+              borderColor: frameColor,
+              color: headerTextColor
             }}
           >
             {props.title}
           </div>
         )}
-        
-        <div style={{ padding: '15px' }}>
-          <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
-            {props.text}
-          </TextBlock>
-        </div>
+        <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
+          {props.text}
+        </TextBlock>
       </div>
     );
   }

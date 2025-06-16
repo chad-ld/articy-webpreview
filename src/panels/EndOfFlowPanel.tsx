@@ -15,14 +15,12 @@ const EndOfFlowPanel: React.FC<EndOfFlowPanelProps> = ({ onRestart, selected }) 
 
   return (
     <div
+      className="node"
       style={{
         textAlign: 'center',
         padding: '40px 20px',
         backgroundColor: '#2c3e50',
         border: '2px solid #34495e',
-        borderRadius: '10px',
-        margin: '20px 0',
-        maxWidth: '600px',
         color: '#ecf0f1',
         ...selectionStyle
       }}
@@ -39,7 +37,7 @@ const EndOfFlowPanel: React.FC<EndOfFlowPanelProps> = ({ onRestart, selected }) 
       >
         END OF FLOW
       </h2>
-      
+
       <p
         style={{
           fontSize: '16px',
@@ -49,14 +47,14 @@ const EndOfFlowPanel: React.FC<EndOfFlowPanelProps> = ({ onRestart, selected }) 
       >
         You have reached the end of this story flow.
       </p>
-      
+
       <Button
-        type="primary"
         size="large"
         onClick={onRestart}
         style={{
           backgroundColor: '#e74c3c',
           borderColor: '#e74c3c',
+          color: 'white',
           fontWeight: 'bold',
           fontSize: '16px',
           height: '45px',

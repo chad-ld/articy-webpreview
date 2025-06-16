@@ -1,0 +1,25 @@
+{
+    "name": "DreamHost Articy Server",
+    "host": "iad1-shared-e1-23.dreamhost.com",
+    "protocol": "sftp",
+    "port": 22,
+    "username": "chabri23_dev",
+    "password": "YOUR_PASSWORD_HERE",
+    "remotePath": "/home/chabri23_dev/dev.chadbriggs.com/articy/v4/",
+    "uploadOnSave": true,
+    "useTempFile": false,
+    "openSsh": false,
+    "downloadOnOpen": false,
+    "ignore": [
+        ".vscode",
+        ".git",
+        ".DS_Store",
+        "node_modules",
+        "*.log"
+    ],
+    "watcher": {
+        "files": "**/*",
+        "autoUpload": true,
+        "autoDelete": false
+    }
+}

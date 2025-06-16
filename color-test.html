@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Test - Old vs New</title>
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .test-container {
+            display: flex;
+            gap: 40px;
+            margin: 20px 0;
+        }
+        
+        .color-box {
+            width: 300px;
+            height: 200px;
+            border: 10px solid;
+            border-radius: 5px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        
+        .old-version {
+            /* Exact colors from old version */
+            border-color: rgb(147, 193, 204);
+            background-color: #4a6166; /* Correct color from your image */
+        }
+
+        .new-version-original {
+            /* What the new version was using */
+            border-color: rgb(147, 193, 204);
+            background-color: rgb(73, 96, 102);
+        }
+
+        .new-version-fixed {
+            /* What we think should fix it */
+            border-color: rgb(147, 193, 204);
+            background-color: #4a6166; /* Using the correct color from your image */
+        }
+        
+        .color-info {
+            margin-top: 10px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Articy Color Test</h1>
+    
+    <h2>Original Old Version Color</h2>
+    <div class="test-container">
+        <div class="color-box old-version">
+            <strong>OLD VERSION</strong><br>
+            Border: rgb(147, 193, 204)<br>
+            Background: #4a6166
+            <div class="color-info">
+                Hex #4a6166 = rgb(74, 97, 102)
+            </div>
+        </div>
+    </div>
+    
+    <h2>New Version - Before Fix</h2>
+    <div class="test-container">
+        <div class="color-box new-version-original">
+            <strong>NEW VERSION (ORIGINAL)</strong><br>
+            Border: rgb(147, 193, 204)<br>
+            Background: rgb(73, 96, 102)
+            <div class="color-info">
+                This was the darker background causing the issue
+            </div>
+        </div>
+    </div>
+    
+    <h2>New Version - After Fix</h2>
+    <div class="test-container">
+        <div class="color-box new-version-fixed">
+            <strong>NEW VERSION (FIXED)</strong><br>
+            Border: rgb(147, 193, 204)<br>
+            Background: #4a6166
+            <div class="color-info">
+                Should match the old version exactly
+            </div>
+        </div>
+    </div>
+    
+    <h2>Color Values Comparison</h2>
+    <table style="border-collapse: collapse; margin-top: 20px;">
+        <tr style="background-color: #444;">
+            <th style="border: 1px solid #666; padding: 8px;">Version</th>
+            <th style="border: 1px solid #666; padding: 8px;">Border Color</th>
+            <th style="border: 1px solid #666; padding: 8px;">Background Color</th>
+            <th style="border: 1px solid #666; padding: 8px;">RGB Values</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #666; padding: 8px;">Old</td>
+            <td style="border: 1px solid #666; padding: 8px;">rgb(147, 193, 204)</td>
+            <td style="border: 1px solid #666; padding: 8px;">#4a6166</td>
+            <td style="border: 1px solid #666; padding: 8px;">rgb(74, 97, 102)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #666; padding: 8px;">New (Original)</td>
+            <td style="border: 1px solid #666; padding: 8px;">rgb(147, 193, 204)</td>
+            <td style="border: 1px solid #666; padding: 8px;">rgb(73, 96, 102)</td>
+            <td style="border: 1px solid #666; padding: 8px;">rgb(73, 96, 102)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #666; padding: 8px;">New (Fixed)</td>
+            <td style="border: 1px solid #666; padding: 8px;">rgb(147, 193, 204)</td>
+            <td style="border: 1px solid #666; padding: 8px;">#4a6166</td>
+            <td style="border: 1px solid #666; padding: 8px;">rgb(74, 97, 102)</td>
+        </tr>
+    </table>
+</body>
+</html>
