@@ -293,3 +293,32 @@ This implementation will restore the full interactive functionality while mainta
 - Perfect visual symmetry between Previous Choice and Available Choices sections
 - Logical button positioning follows standard UI conventions (Back=left, Forward=right)
 - Clear visual hierarchy with consistent button styling across all interaction types
+
+### Keyboard Shortcuts Implementation ✅
+**Date**: June 16, 2025
+**Features Completed**:
+- **Keyboard Shortcuts Helper**: Fixed position display in upper right corner matching 3.x version exactly
+- **Ctrl+R Restart**: Resets variables to initial state and returns to start node (HTMLPREVIEW marker)
+- **Ctrl+L Load Screen**: Returns to file upload screen for loading different JSON files
+- **Enhanced Navigation**: Arrow keys (↑↓), Enter, and Escape for choice navigation
+- **Visual Consistency**: Exact styling match with original 3.x version (black background, white monospace text)
+
+**Technical Details**:
+- Functions defined as `useCallback` hooks with proper dependency arrays
+- Keyboard handler only active when project is loaded
+- Helper display appears in both regular node view and choice selection view
+- Integration with main App component via `onLoadScreen` prop
+- Fixed JavaScript hoisting issues and duplicate function declarations
+
+**Keyboard Shortcuts Available**:
+- **↑↓ Navigate**: Move selection between available choices
+- **Enter Select**: Confirm the currently selected choice
+- **Ctrl+R Restart**: Reset to beginning with fresh variables
+- **Ctrl+L Load**: Return to file selection screen
+- **Esc**: Cancel choice selection (when in choice mode)
+
+**User Experience**:
+- Helper text always visible in upper right when project loaded
+- Seamless keyboard navigation matching original 3.x behavior
+- Professional appearance with exact visual styling match
+- No JavaScript errors or performance issues

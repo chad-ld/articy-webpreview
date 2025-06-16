@@ -12,6 +12,7 @@ interface InteractiveArticyViewerProps {
   data: any;
   onReset: () => void;
   onPanelWidthChange?: (width: number) => void;
+  onLoadScreen?: () => void;
 }
 
 interface ChoiceOption {
@@ -121,7 +122,7 @@ function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
   );
 }
 
-const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data, onReset, onPanelWidthChange }) => {
+const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data, onReset, onPanelWidthChange, onLoadScreen }) => {
   const [project, setProject] = useState<ArticyProject | undefined>(undefined);
   const [currentNode, setCurrentNode] = useState<any>(null);
   const [nodeHistory, setNodeHistory] = useState<any[]>([]);
@@ -379,6 +380,29 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     console.log('🔄 Navigated to:', targetNode.Properties.Id, targetNode.Type);
   };
 
+  // Handle restart
+  const handleRestart = useCallback(() => {
+    if (project) {
+      project.ResetVariablesToInitialState();
+      const startNode = project.GetStartNode();
+      if (startNode) {
+        setCurrentNode(startNode);
+        setNodeHistory([startNode]);
+        setShowingChoices(false);
+        setChoiceOptions([]);
+        setSelectedChoiceIndex(0);
+        setPreviousChoiceHistory([]);
+      }
+    }
+  }, [project]);
+
+  // Handle load screen - go back to file selection
+  const handleLoadScreen = useCallback(() => {
+    if (onLoadScreen) {
+      onLoadScreen();
+    }
+  }, [onLoadScreen]);
+
   // Get current available choices for keyboard navigation (includes previous choice)
   const getCurrentAvailableChoices = useCallback(() => {
     let choices: any[] = [];
@@ -404,28 +428,36 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // Handle keyboard navigation
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    // Only handle keyboard events when a project is loaded
+    if (!project || !currentNode) return;
+
     const availableChoices = getCurrentAvailableChoices();
-    if (availableChoices.length === 0) return;
 
     switch (event.key) {
       case 'ArrowUp':
         event.preventDefault();
-        setSelectedChoiceIndex(prev => {
-          const newIndex = prev > 0 ? prev - 1 : availableChoices.length - 1;
-          console.log('🔼 Selected choice:', newIndex + 1, 'of', availableChoices.length);
-          return newIndex;
-        });
+        if (availableChoices.length > 1) {
+          setSelectedChoiceIndex(prev => {
+            const newIndex = prev > 0 ? prev - 1 : availableChoices.length - 1;
+            console.log('🔼 Selected choice:', newIndex + 1, 'of', availableChoices.length);
+            return newIndex;
+          });
+        }
         break;
       case 'ArrowDown':
         event.preventDefault();
-        setSelectedChoiceIndex(prev => {
-          const newIndex = prev < availableChoices.length - 1 ? prev + 1 : 0;
-          console.log('🔽 Selected choice:', newIndex + 1, 'of', availableChoices.length);
-          return newIndex;
-        });
+        if (availableChoices.length > 1) {
+          setSelectedChoiceIndex(prev => {
+            const newIndex = prev < availableChoices.length - 1 ? prev + 1 : 0;
+            console.log('🔽 Selected choice:', newIndex + 1, 'of', availableChoices.length);
+            return newIndex;
+          });
+        }
         break;
       case 'Enter':
         event.preventDefault();
+        if (availableChoices.length === 0) return;
+
         console.log('⏎ Confirming choice:', selectedChoiceIndex + 1);
         const selectedChoice = availableChoices[selectedChoiceIndex];
         if (selectedChoice.isPreviousChoice) {
@@ -439,6 +471,18 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           handleChoiceSelect(choiceIndex);
         }
         break;
+      case 'r':
+        if (event.ctrlKey) {
+          event.preventDefault();
+          handleRestart();
+        }
+        break;
+      case 'l':
+        if (event.ctrlKey) {
+          event.preventDefault();
+          handleLoadScreen();
+        }
+        break;
       case 'Escape':
         event.preventDefault();
         console.log('⎋ Cancelling choice selection');
@@ -446,7 +490,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         setChoiceOptions([]);
         break;
     }
-  }, [getCurrentAvailableChoices, selectedChoiceIndex, showPrevious, previousChoiceHistory.length, goBack, handleNext, handleChoiceSelect]);
+  }, [project, currentNode, getCurrentAvailableChoices, selectedChoiceIndex, showPrevious, previousChoiceHistory.length, goBack, handleNext, handleChoiceSelect, handleRestart, handleLoadScreen]);
 
   // Add keyboard event listener
   useEffect(() => {
@@ -467,9 +511,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     const outputs = getCurrentNodeOutputs();
 
-    // Hub nodes are LocationTemplate nodes or nodes with "HUB" in their name and multiple outputs
-    const isHubStyleNode = (currentNode.Type === "LocationTemplate" ||
-                           currentNode.Type === "Hub" ||
+    // Hub nodes are nodes with "HUB" in their name and multiple outputs
+    // Note: LocationTemplate nodes should show their content first, not immediately show choices
+    const isHubStyleNode = (currentNode.Type === "Hub" ||
                            (currentNode.Type === "Instruction" &&
                             (currentNode.Properties.DisplayName?.includes("HUB") ||
                              currentNode.Properties.Expression?.includes("HUB"))));
@@ -501,21 +545,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     }
   }, [totalPanelWidth, onPanelWidthChange]);
 
-  // Handle restart
-  const handleRestart = () => {
-    if (project) {
-      project.ResetVariablesToInitialState();
-      const startNode = project.GetStartNode();
-      if (startNode) {
-        setCurrentNode(startNode);
-        setNodeHistory([startNode]);
-        setShowingChoices(false);
-        setChoiceOptions([]);
-        setSelectedChoiceIndex(0);
-        setPreviousChoiceHistory([]);
-      }
-    }
-  };
+
 
   // Show loading state if no project loaded yet
   if (!project) {
@@ -590,6 +620,24 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           </>
         )}
 
+        {/* Keyboard shortcuts helper - exactly like 3.x version */}
+        {project && (
+          <div style={{
+            position: 'fixed',
+            top: '10px',
+            right: '10px',
+            background: 'rgba(0, 0, 0, 0.8)',
+            color: 'white',
+            padding: '8px 12px',
+            borderRadius: '4px',
+            fontSize: '12px',
+            zIndex: 1000,
+            fontFamily: 'monospace'
+          }}>
+            ↑↓ Navigate • Enter Select • Ctrl+R Restart • Ctrl+L Load
+          </div>
+        )}
+
         <div style={{
           padding: '20px',
           maxWidth: '800px',
@@ -624,10 +672,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           </>
         )}
 
-        {/* Show current node info */}
-        <div style={{ marginBottom: '20px' }}>
-          <h3 style={{ color: 'rgba(255, 255, 255, 0.87)', marginBottom: '10px' }}>{nodeTitle || 'Available Choices'}</h3>
-        </div>
+
 
         {/* Show each choice as individual panels */}
         {choiceOptions.map((option, index) => {
@@ -636,11 +681,27 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           const adjustedSelectedIndex = hasPreviousChoice ? selectedChoiceIndex - 1 : selectedChoiceIndex;
           const isSelected = index === adjustedSelectedIndex;
 
+          // Get the full text content from the target node (same logic as regular nodes)
+          let choiceNodeText = 'No content';
+          const targetNode = option.targetNode;
+
+          // Priority order for text content:
+          // 1. Text property (main content)
+          // 2. Expression property (for instruction nodes)
+          // 3. DisplayName as fallback
+          if (targetNode.Properties.Text && targetNode.Properties.Text.trim()) {
+            choiceNodeText = targetNode.Properties.Text;
+          } else if (targetNode.Properties.Expression && targetNode.Properties.Expression.trim()) {
+            choiceNodeText = targetNode.Properties.Expression;
+          } else if (targetNode.Properties.DisplayName && targetNode.Properties.DisplayName.trim()) {
+            choiceNodeText = targetNode.Properties.DisplayName;
+          }
+
           return (
             <div key={index} style={{ marginBottom: '15px' }}>
               <QuestionPanel
-                text={option.text}
-                title={undefined}
+                text={choiceNodeText}
+                title={option.text} // Use the choice label as the title
                 color={option.targetNode.Properties.Color || currentNode.Properties.Color}
                 choices={[{
                   text: "Next",
@@ -727,6 +788,24 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             isVariablesPanelVisible={isVariablesPanelVisible}
           />
         </>
+      )}
+
+      {/* Keyboard shortcuts helper - exactly like 3.x version */}
+      {project && (
+        <div style={{
+          position: 'fixed',
+          top: '10px',
+          right: '10px',
+          background: 'rgba(0, 0, 0, 0.8)',
+          color: 'white',
+          padding: '8px 12px',
+          borderRadius: '4px',
+          fontSize: '12px',
+          zIndex: 1000,
+          fontFamily: 'monospace'
+        }}>
+          ↑↓ Navigate • Enter Select • Ctrl+R Restart • Ctrl+L Load
+        </div>
       )}
 
       <div style={{

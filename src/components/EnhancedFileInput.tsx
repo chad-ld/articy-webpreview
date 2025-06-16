@@ -376,11 +376,7 @@ const EnhancedFileInput: React.FC<EnhancedFileInputProps> = ({
             <p>• Entire folder contents (4.x format)</p>
           </div>
 
-          {/* Footer */}
-          <div style={{ marginTop: '30px', fontSize: '12px', color: '#999' }}>
-            <p>No web server required - runs completely locally!</p>
-            <p>Automatic format detection and conversion</p>
-          </div>
+
         </>
       )}
     </div>
