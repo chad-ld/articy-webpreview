@@ -31,6 +31,96 @@ interface PreviousChoice {
   fromMultiChoice: boolean;
 }
 
+// Component for displaying previous choice
+function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
+  previousChoice: PreviousChoice,
+  onBack: () => void,
+  selected?: boolean
+}) {
+  // Convert Articy color (0.0-1.0) to CSS RGB (0-255) and create darker background
+  const getColors = () => {
+    if (previousChoice.color) {
+      const r = Math.round(previousChoice.color.r * 255);
+      const g = Math.round(previousChoice.color.g * 255);
+      const b = Math.round(previousChoice.color.b * 255);
+
+      // Frame/border color (original color but greyed out)
+      const frameColor = `rgba(${r}, ${g}, ${b}, 0.5)`;
+
+      // Background color (50% darker version with reduced opacity)
+      const darkR = Math.round(r * 0.5);
+      const darkG = Math.round(g * 0.5);
+      const darkB = Math.round(b * 0.5);
+      const backgroundColor = `rgba(${darkR}, ${darkG}, ${darkB}, 0.5)`;
+
+      // Calculate relative luminance to determine text color
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      const headerTextColor = luminance > 0.5 ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)';
+
+      return { frameColor, backgroundColor, headerTextColor };
+    }
+
+    // Default colors (greyed out)
+    return {
+      frameColor: 'rgba(147, 193, 204, 0.5)',
+      backgroundColor: 'rgba(90, 102, 104, 0.5)',
+      headerTextColor: 'rgba(0, 0, 0, 0.5)'
+    };
+  };
+
+  const { frameColor, backgroundColor, headerTextColor } = getColors();
+
+  return (
+    <div style={{ marginBottom: '20px' }}>
+      <h3 style={{
+        color: '#999',
+        fontSize: '16px',
+        marginBottom: '10px',
+        fontWeight: 'normal'
+      }}>
+        Previous Choice
+      </h3>
+      <div className="node" style={{
+        opacity: 0.6,
+        filter: 'grayscale(30%)',
+        // Apply golden selection style to entire node container
+        boxShadow: selected ? '0 0 0 3px rgba(255, 193, 7, 0.6)' : 'none',
+        borderRadius: '4px'
+      }}>
+        {previousChoice.choiceTitle && (
+          <div
+            className="articy-node-header"
+            style={{
+              backgroundColor: frameColor,
+              borderColor: frameColor,
+              color: headerTextColor
+            }}
+          >
+            {previousChoice.choiceTitle}
+          </div>
+        )}
+        <div style={{
+          backgroundColor: backgroundColor,
+          border: `2px solid ${frameColor}`,
+          borderRadius: '4px',
+          padding: '12px',
+          color: 'rgba(255, 255, 255, 0.7)',
+          fontSize: '14px',
+          lineHeight: '1.4'
+        }}>
+          {previousChoice.choiceText}
+        </div>
+      </div>
+      {/* Back button outside the faded node - left aligned, full opacity */}
+      <div style={{ marginTop: '10px', textAlign: 'left' }}>
+        <Button onClick={onBack}>
+          ← Back
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data, onReset, onPanelWidthChange }) => {
   const [project, setProject] = useState<ArticyProject | undefined>(undefined);
   const [currentNode, setCurrentNode] = useState<any>(null);
@@ -134,8 +224,16 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         project.variables = { ...lastChoice.variables };
       }
 
-      // Restore node list
+      // Restore node list and current node
       setNodeHistory(lastChoice.nodeList);
+
+      // Set current node to the last node in the restored history
+      if (lastChoice.nodeList.length > 0) {
+        setCurrentNode(lastChoice.nodeList[lastChoice.nodeList.length - 1]);
+      } else {
+        // If no history, go back to the previous choice node itself
+        setCurrentNode(lastChoice.node);
+      }
 
       // Remove the last choice from history
       setPreviousChoiceHistory(previousChoiceHistory.slice(0, -1));
@@ -143,6 +241,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       // Reset choice state
       setShowingChoices(false);
       setChoiceOptions([]);
+
+      console.log('🔙 Went back to previous choice');
     }
   };
 
@@ -197,8 +297,26 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       setCurrentNode(endNode);
       setShowingChoices(false);
     } else if (outputs.length === 1) {
-      // Single output - navigate directly
+      // Single output - navigate directly but store previous choice
       const targetNode = outputs[0].targetNode;
+
+      // Store previous choice for single-output navigation
+      const previousChoice: PreviousChoice = {
+        node: currentNode,
+        choiceText: outputs[0].text,
+        choiceTitle: currentNode.Properties.DisplayName,
+        color: currentNode.Properties.Color,
+        nodeList: [...nodeHistory],
+        variables: project ? { ...project.variables } : {},
+        fromMultiChoice: false
+      };
+      setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
+
+      // Store variables from the current node before navigating
+      if (project) {
+        project.StoreVariablesFromNode(currentNode);
+      }
+
       setCurrentNode(targetNode);
       setNodeHistory([...nodeHistory, targetNode]);
       setShowingChoices(false);
@@ -261,31 +379,65 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     console.log('🔄 Navigated to:', targetNode.Properties.Id, targetNode.Type);
   };
 
+  // Get current available choices for keyboard navigation (includes previous choice)
+  const getCurrentAvailableChoices = useCallback(() => {
+    let choices: any[] = [];
+
+    // Add previous choice as first option if available and visible
+    if (showPrevious && previousChoiceHistory.length > 0) {
+      choices.push({
+        isPreviousChoice: true,
+        onClick: goBack
+      });
+    }
+
+    // Add current choices
+    if (showingChoices) {
+      choices.push(...choiceOptions);
+    } else {
+      // Single choice or Next button
+      choices.push({ isSingleChoice: true, onClick: handleNext });
+    }
+
+    return choices;
+  }, [showPrevious, previousChoiceHistory.length, showingChoices, choiceOptions, goBack, handleNext]);
+
   // Handle keyboard navigation
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (!showingChoices || choiceOptions.length === 0) return;
+    const availableChoices = getCurrentAvailableChoices();
+    if (availableChoices.length === 0) return;
 
     switch (event.key) {
       case 'ArrowUp':
         event.preventDefault();
         setSelectedChoiceIndex(prev => {
-          const newIndex = prev > 0 ? prev - 1 : choiceOptions.length - 1;
-          console.log('🔼 Selected choice:', newIndex + 1, 'of', choiceOptions.length);
+          const newIndex = prev > 0 ? prev - 1 : availableChoices.length - 1;
+          console.log('🔼 Selected choice:', newIndex + 1, 'of', availableChoices.length);
           return newIndex;
         });
         break;
       case 'ArrowDown':
         event.preventDefault();
         setSelectedChoiceIndex(prev => {
-          const newIndex = prev < choiceOptions.length - 1 ? prev + 1 : 0;
-          console.log('🔽 Selected choice:', newIndex + 1, 'of', choiceOptions.length);
+          const newIndex = prev < availableChoices.length - 1 ? prev + 1 : 0;
+          console.log('🔽 Selected choice:', newIndex + 1, 'of', availableChoices.length);
           return newIndex;
         });
         break;
       case 'Enter':
         event.preventDefault();
         console.log('⏎ Confirming choice:', selectedChoiceIndex + 1);
-        handleChoiceSelect(selectedChoiceIndex);
+        const selectedChoice = availableChoices[selectedChoiceIndex];
+        if (selectedChoice.isPreviousChoice) {
+          goBack();
+        } else if (selectedChoice.isSingleChoice) {
+          handleNext();
+        } else {
+          // Adjust index for choice options (subtract 1 if previous choice exists)
+          const choiceIndex = showPrevious && previousChoiceHistory.length > 0 ?
+            selectedChoiceIndex - 1 : selectedChoiceIndex;
+          handleChoiceSelect(choiceIndex);
+        }
         break;
       case 'Escape':
         event.preventDefault();
@@ -294,7 +446,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         setChoiceOptions([]);
         break;
     }
-  }, [showingChoices, choiceOptions, selectedChoiceIndex]);
+  }, [getCurrentAvailableChoices, selectedChoiceIndex, showPrevious, previousChoiceHistory.length, goBack, handleNext, handleChoiceSelect]);
 
   // Add keyboard event listener
   useEffect(() => {
@@ -302,16 +454,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
-  // Calculate total panel width for margin adjustment
-  const totalPanelWidth = isVariablesPanelVisible ? variablesPanelWidth :
-                         isSearchPanelVisible ? searchPanelWidth : 0;
-
-  // Notify parent component of panel width changes
+  // Reset selected choice index when node changes
   useEffect(() => {
-    if (onPanelWidthChange) {
-      onPanelWidthChange(totalPanelWidth);
-    }
-  }, [totalPanelWidth, onPanelWidthChange]);
+    // Always start focus on first forward choice (skip previous choice if visible)
+    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+    setSelectedChoiceIndex(hasPreviousChoice ? 1 : 0);
+  }, [currentNode, showPrevious, previousChoiceHistory.length]);
 
   // Handle Hub nodes that should show choices immediately
   useEffect(() => {
@@ -338,10 +486,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         nodeId: currentNode.Properties.Id
       });
       setChoiceOptions(outputs);
-      setSelectedChoiceIndex(0);
       setShowingChoices(true);
     }
   }, [currentNode?.Properties?.Id, project, showingChoices]); // Trigger when node changes
+
+  // Calculate total panel width for margin adjustment
+  const totalPanelWidth = isVariablesPanelVisible ? variablesPanelWidth :
+                         isSearchPanelVisible ? searchPanelWidth : 0;
+
+  // Notify parent component of panel width changes
+  useEffect(() => {
+    if (onPanelWidthChange) {
+      onPanelWidthChange(totalPanelWidth);
+    }
+  }, [totalPanelWidth, onPanelWidthChange]);
 
   // Handle restart
   const handleRestart = () => {
@@ -439,9 +597,32 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           marginLeft: calculateMarginLeft(totalPanelWidth),
           transition: 'margin-left 0.3s ease'
         }}>
-          <div style={{ marginBottom: '20px', textAlign: 'right' }}>
-            <Button onClick={onReset}>Load New File</Button>
-          </div>
+        {/* Previous choice display */}
+        {showPrevious && previousChoiceHistory.length > 0 && (
+          <>
+            <PreviousChoiceDisplay
+              previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
+              onBack={goBack}
+              selected={selectedChoiceIndex === 0} // First choice is previous choice
+            />
+            {/* Divider Line */}
+            <div style={{
+              width: '100%',
+              height: '1px',
+              backgroundColor: '#666',
+              margin: '20px 0',
+              opacity: 0.5
+            }} />
+            <h3 style={{
+              color: '#999',
+              fontSize: '16px',
+              marginBottom: '20px',
+              fontWeight: 'normal'
+            }}>
+              Available Choices
+            </h3>
+          </>
+        )}
 
         {/* Show current node info */}
         <div style={{ marginBottom: '20px' }}>
@@ -449,25 +630,32 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         </div>
 
         {/* Show each choice as individual panels */}
-        {choiceOptions.map((option, index) => (
-          <div key={index} style={{ marginBottom: '15px' }}>
-            <QuestionPanel
-              text={option.text}
-              title={undefined}
-              color={option.targetNode.Properties.Color || currentNode.Properties.Color}
-              choices={[{
-                text: "Next",
-                disabled: option.disabled,
-                onClick: () => handleChoiceSelect(index)
-              }]}
-              selected={index === selectedChoiceIndex}
-            />
-          </div>
-        ))}
+        {choiceOptions.map((option, index) => {
+          // Calculate if this choice is selected (account for previous choice offset)
+          const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+          const adjustedSelectedIndex = hasPreviousChoice ? selectedChoiceIndex - 1 : selectedChoiceIndex;
+          const isSelected = index === adjustedSelectedIndex;
 
-          <div style={{ marginTop: '20px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
+          return (
+            <div key={index} style={{ marginBottom: '15px' }}>
+              <QuestionPanel
+                text={option.text}
+                title={undefined}
+                color={option.targetNode.Properties.Color || currentNode.Properties.Color}
+                choices={[{
+                  text: "Next",
+                  disabled: option.disabled,
+                  onClick: () => handleChoiceSelect(index)
+                }]}
+                selected={isSelected}
+              />
+            </div>
+          );
+        })}
+
+          <div style={{ marginTop: '10px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
             <strong>Navigation:</strong> Use ↑↓ arrow keys to select, Enter to choose, Esc to cancel<br />
-            <strong>Selected:</strong> {selectedChoiceIndex + 1} of {choiceOptions.length}<br />
+            <strong>Selected:</strong> {selectedChoiceIndex + 1} of {getCurrentAvailableChoices().length}<br />
             <strong>Debug Info:</strong> Node ID: {currentNode.Properties.Id}, Type: {currentNode.Type}
           </div>
         </div>
@@ -548,32 +736,31 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         marginLeft: calculateMarginLeft(totalPanelWidth),
         transition: 'margin-left 0.3s ease'
       }}>
-        <div style={{ marginBottom: '20px', textAlign: 'right' }}>
-          <Button onClick={onReset}>Load New File</Button>
-        </div>
-
         {/* Previous choice display */}
         {showPrevious && previousChoiceHistory.length > 0 && (
-          <div style={{ marginBottom: '20px' }}>
+          <>
+            <PreviousChoiceDisplay
+              previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
+              onBack={goBack}
+              selected={selectedChoiceIndex === 0} // First choice is previous choice
+            />
+            {/* Divider Line */}
             <div style={{
-              padding: '12px',
-              backgroundColor: 'rgba(100, 100, 100, 0.3)',
-              border: '1px solid #666',
-              borderRadius: '4px',
-              color: 'rgba(255, 255, 255, 0.7)',
-              fontSize: '14px'
+              width: '100%',
+              height: '1px',
+              backgroundColor: '#666',
+              margin: '20px 0',
+              opacity: 0.5
+            }} />
+            <h3 style={{
+              color: '#999',
+              fontSize: '16px',
+              marginBottom: '20px',
+              fontWeight: 'normal'
             }}>
-              <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>
-                Previous Choice:
-              </div>
-              <div style={{ marginBottom: '8px' }}>
-                {previousChoiceHistory[previousChoiceHistory.length - 1].choiceText}
-              </div>
-              <Button size="small" onClick={goBack}>
-                ← Back
-              </Button>
-            </div>
-          </div>
+              Available Choices
+            </h3>
+          </>
         )}
 
         <InstructionPanel
@@ -585,10 +772,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             text: "Next",
             onClick: handleNext
           }}
-          selected={true}
+          selected={!(showPrevious && previousChoiceHistory.length > 0 && selectedChoiceIndex === 0)}
         />
 
-        <div style={{ marginTop: '20px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
+        <div style={{ marginTop: '10px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
           <strong>Debug Info:</strong><br />
           Node ID: {currentNode.Properties.Id}<br />
           Node Type: {currentNode.Type}<br />
