@@ -195,7 +195,20 @@ class ArticyProject {
     for (let j = dataChunks.length - 2; j >= 0; j--) {
       newData = { [dataChunks[j]]: newData } as { [k: string]: any };
     }
-    return this.ObjectCompare(this.variables, newData);
+
+    // Debug logging for condition evaluation
+    console.log('🔍 CONDITION EVALUATION DEBUG:', {
+      originalCondition: condition,
+      splitValue: value,
+      dataChunks: dataChunks,
+      newData: newData,
+      currentVariables: this.variables
+    });
+
+    const result = this.ObjectCompare(this.variables, newData);
+    console.log('🔍 CONDITION RESULT:', result);
+
+    return result;
   }
 
   CheckCondition(condition: {}): boolean {
@@ -203,27 +216,44 @@ class ArticyProject {
   }
 
   ObjectCompare(objx: any, objy: any): boolean {
-    // Checks if obj2 key is in obj1
-    // Returns value comparison
-    function GetValue(obj1: any, obj2: any): any {
-      const obj1Keys = Object.keys(obj1).sort();
-      const obj2Keys = Object.keys(obj2).sort();
-      if (typeof obj1 === 'string') {
-        // We have our value
-        return obj1;
+    // objx = current variables (e.g., { TestFlowVariables: { Quest001_waypoint01_completed: "False" } })
+    // objy = condition structure (e.g., { TestFlowVariables: { Quest001_waypoint01_completed: false } })
+
+    // Get the actual variable value from objx using the path structure from objy
+    function GetValueFromPath(variables: any, pathStructure: any): any {
+      if (typeof variables === 'string' || typeof variables === 'boolean' || typeof variables === 'number') {
+        // We've reached the leaf value in the variables
+        return variables;
       }
-      for (let i = 0; i < obj1Keys.length; i++) {
-        for (let j = 0; j < obj2Keys.length; j++) {
-          if (obj1Keys[i] == obj2Keys[j]) {
-            return GetValue(obj1[obj1Keys[i]], obj2[obj2Keys[j]]);
-          }
+
+      if (typeof pathStructure === 'string' || typeof pathStructure === 'boolean' || typeof pathStructure === 'number') {
+        // We've reached the leaf in pathStructure, but variables should be the actual value
+        return variables;
+      }
+
+      // Navigate through the path
+      for (const key in pathStructure) {
+        if (variables && variables.hasOwnProperty(key)) {
+          return GetValueFromPath(variables[key], pathStructure[key]);
         }
       }
       return undefined;
     }
 
-    const value1 = GetValue(objx, objy);
-    const value2 = GetValue(objy, objy);
+    // Get the expected value from the condition structure (objy)
+    function GetExpectedValue(pathStructure: any): any {
+      if (typeof pathStructure === 'string' || typeof pathStructure === 'boolean' || typeof pathStructure === 'number') {
+        return pathStructure;
+      }
+
+      for (const key in pathStructure) {
+        return GetExpectedValue(pathStructure[key]);
+      }
+      return undefined;
+    }
+
+    const actualValue = GetValueFromPath(objx, objy);
+    const expectedValue = GetExpectedValue(objy);
 
     // Handle string-to-boolean conversion for proper comparison
     const normalizeValue = (val: any): any => {
@@ -234,23 +264,64 @@ class ArticyProject {
       return val;
     };
 
-    const normalizedValue1 = normalizeValue(value1);
-    const normalizedValue2 = normalizeValue(value2);
+    const normalizedActualValue = normalizeValue(actualValue);
+    const normalizedExpectedValue = normalizeValue(expectedValue);
 
-    return normalizedValue1 === normalizedValue2;
+    // Debug logging for comparison
+    console.log('🔍 OBJECT COMPARE DEBUG:', {
+      actualValue: actualValue,
+      expectedValue: expectedValue,
+      actualValueType: typeof actualValue,
+      expectedValueType: typeof expectedValue,
+      normalizedActualValue: normalizedActualValue,
+      normalizedExpectedValue: normalizedExpectedValue,
+      normalizedActualValueType: typeof normalizedActualValue,
+      normalizedExpectedValueType: typeof normalizedExpectedValue,
+      comparisonResult: normalizedActualValue === normalizedExpectedValue
+    });
+
+    return normalizedActualValue === normalizedExpectedValue;
   }
 
   SplitValueFromText(text: string): any {
-    const equalIndex = text.indexOf("=");
-    if (equalIndex === -1) return undefined;
-    
-    let value = text.substring(equalIndex + 1).trim();
-    
+    // Handle comparison operators: ==, !=, >=, <=, >, <
+    let operatorIndex = -1;
+    let operatorLength = 0;
+
+    // Check for double-character operators first
+    if (text.includes('==')) {
+      operatorIndex = text.indexOf('==');
+      operatorLength = 2;
+    } else if (text.includes('!=')) {
+      operatorIndex = text.indexOf('!=');
+      operatorLength = 2;
+    } else if (text.includes('>=')) {
+      operatorIndex = text.indexOf('>=');
+      operatorLength = 2;
+    } else if (text.includes('<=')) {
+      operatorIndex = text.indexOf('<=');
+      operatorLength = 2;
+    } else if (text.includes('>')) {
+      operatorIndex = text.indexOf('>');
+      operatorLength = 1;
+    } else if (text.includes('<')) {
+      operatorIndex = text.indexOf('<');
+      operatorLength = 1;
+    } else if (text.includes('=')) {
+      // Single = for assignment
+      operatorIndex = text.indexOf('=');
+      operatorLength = 1;
+    }
+
+    if (operatorIndex === -1) return undefined;
+
+    let value = text.substring(operatorIndex + operatorLength).trim();
+
     // Remove semicolon if present
     if (value.endsWith(";")) {
       value = value.slice(0, -1);
     }
-    
+
     // Parse different value types
     if (value === "true") return true;
     if (value === "false") return false;
@@ -260,15 +331,35 @@ class ArticyProject {
     if (!isNaN(Number(value))) {
       return Number(value);
     }
-    
+
     return value;
   }
 
   SplitIndexersFromText(text: string): string[] {
-    const equalIndex = text.indexOf("=");
-    if (equalIndex === -1) return [];
-    
-    const leftSide = text.substring(0, equalIndex).trim();
+    // Handle comparison operators: ==, !=, >=, <=, >, <, =
+    let operatorIndex = -1;
+
+    // Check for double-character operators first
+    if (text.includes('==')) {
+      operatorIndex = text.indexOf('==');
+    } else if (text.includes('!=')) {
+      operatorIndex = text.indexOf('!=');
+    } else if (text.includes('>=')) {
+      operatorIndex = text.indexOf('>=');
+    } else if (text.includes('<=')) {
+      operatorIndex = text.indexOf('<=');
+    } else if (text.includes('>')) {
+      operatorIndex = text.indexOf('>');
+    } else if (text.includes('<')) {
+      operatorIndex = text.indexOf('<');
+    } else if (text.includes('=')) {
+      // Single = for assignment
+      operatorIndex = text.indexOf('=');
+    }
+
+    if (operatorIndex === -1) return [];
+
+    const leftSide = text.substring(0, operatorIndex).trim();
     return leftSide.split(".");
   }
 }
