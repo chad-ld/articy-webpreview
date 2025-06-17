@@ -224,7 +224,20 @@ class ArticyProject {
 
     const value1 = GetValue(objx, objy);
     const value2 = GetValue(objy, objy);
-    return value1 == value2;
+
+    // Handle string-to-boolean conversion for proper comparison
+    const normalizeValue = (val: any): any => {
+      if (typeof val === 'string') {
+        if (val.toLowerCase() === 'true') return true;
+        if (val.toLowerCase() === 'false') return false;
+      }
+      return val;
+    };
+
+    const normalizedValue1 = normalizeValue(value1);
+    const normalizedValue2 = normalizeValue(value2);
+
+    return normalizedValue1 === normalizedValue2;
   }
 
   SplitValueFromText(text: string): any {
