@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef, createRef } from 'react';
 import { Button, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import ArticyProject from '../utils/ArticyProject';
@@ -7,6 +7,7 @@ import EndOfFlowPanel from '../panels/EndOfFlowPanel';
 import QuestionPanel from '../panels/QuestionPanel';
 import VariablesPanel from './VariablesPanel';
 import SearchNodesPanel from './SearchNodesPanel';
+import ConditionBubble from './ConditionBubble';
 
 interface InteractiveArticyViewerProps {
   data: any;
@@ -140,6 +141,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const [previousChoiceHistory, setPreviousChoiceHistory] = useState<PreviousChoice[]>([]);
   const [showPrevious, setShowPrevious] = useState(true);
 
+  // Refs for condition bubble positioning
+  const nodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>([]);
+  // State to force re-render when refs are ready
+  const [bubbleRenderKey, setBubbleRenderKey] = useState(0);
+
   // Initialize project when data is provided
   useEffect(() => {
     if (data) {
@@ -247,6 +253,30 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     }
   };
 
+  // Helper function to get condition text from target node's InputPins
+  const getConditionText = useCallback((connection: any): string => {
+    if (!project) return "";
+    const targetNode = project.GetNodeByID(connection.Target);
+    let conditionText = targetNode?.Properties?.InputPins?.[0]?.Text || "";
+
+    // Debug: Always log to see what's happening
+    console.log('🔍 GET CONDITION TEXT DEBUG:', {
+      connectionTarget: connection.Target,
+      targetNodeId: targetNode?.Properties?.Id,
+      targetNodeType: targetNode?.Type,
+      hasInputPins: !!targetNode?.Properties?.InputPins,
+      inputPinsLength: targetNode?.Properties?.InputPins?.length || 0,
+      inputPinsData: targetNode?.Properties?.InputPins,
+      rawConditionText: targetNode?.Properties?.InputPins?.[0]?.Text || "",
+      hasText: !!targetNode?.Properties?.InputPins?.[0]?.Text
+    });
+
+    // Clean up condition text - remove trailing semicolons and whitespace
+    conditionText = conditionText.replace(/;+$/, '').trim();
+
+    return conditionText;
+  }, [project]);
+
   // Get all output connections from a node
   const getCurrentNodeOutputs = useCallback(() => {
     if (!currentNode || !currentNode.Properties.OutputPins) return [];
@@ -272,11 +302,49 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               choiceText = choiceText.substring(0, 100) + '...';
             }
 
+            // Get condition text and evaluate it
+            const conditionText = getConditionText(connection);
+            const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+
+            // Only log when there's actually a condition to check
+            if (conditionText) {
+              // Get current variable values for debugging
+              const variableValues = {};
+              if (conditionText.includes('Quest001_waypoint01_completed')) {
+                variableValues['Quest001_waypoint01_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint01_completed;
+              }
+              if (conditionText.includes('Quest001_waypoint03_completed')) {
+                variableValues['Quest001_waypoint03_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint03_completed;
+              }
+              if (conditionText.includes('HasSword')) {
+                variableValues['HasSword'] = project.variables?.TestFlowVariables?.HasSword;
+              }
+              if (conditionText.includes('Quest001_waypoint02_visible')) {
+                variableValues['Quest001_waypoint02_visible'] = project.variables?.TestFlowVariables?.Quest001_waypoint02_visible;
+              }
+              if (conditionText.includes('Quest001_waypoint04_completed')) {
+                variableValues['Quest001_waypoint04_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint04_completed;
+              }
+
+              console.log('🔍 CONDITION CHECK:', {
+                targetNodeId: targetNode.Properties.Id,
+                conditionText: conditionText,
+                conditionTextLength: conditionText.length,
+                conditionTextTrimmed: conditionText.trim(),
+                conditionMet: conditionMet,
+                choiceText: choiceText,
+                currentVariableValues: variableValues
+              });
+
+              // Log all TestFlowVariables for debugging
+              console.log('🔍 ALL TESTFLOWVARIABLES:', project.variables?.TestFlowVariables);
+            }
+
             outputs.push({
               text: choiceText,
               targetNode: targetNode,
-              disabled: false, // TODO: Add condition checking
-              condition: connection.Condition || targetNode.Properties.InputPins?.[0]?.Text
+              disabled: !conditionMet,
+              condition: conditionText
             });
           }
         });
@@ -284,7 +352,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     });
 
     return outputs;
-  }, [currentNode, project]);
+  }, [currentNode, project, getConditionText]);
 
   // Handle Next button - enhanced navigation
   const handleNext = () => {
@@ -336,6 +404,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         console.log('🔀 Showing', outputs.length, 'dialogue choices');
       } else {
         // For Hub nodes and other multi-output nodes, show choices immediately
+        console.log('🔀 Setting choice options:', outputs.map((opt, idx) => ({
+          index: idx,
+          text: opt.text,
+          condition: opt.condition,
+          disabled: opt.disabled
+        })));
         setChoiceOptions(outputs);
         setSelectedChoiceIndex(0);
         setShowingChoices(true);
@@ -505,6 +579,32 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     setSelectedChoiceIndex(hasPreviousChoice ? 1 : 0);
   }, [currentNode, showPrevious, previousChoiceHistory.length]);
 
+  // Initialize node refs when choice options change
+  useEffect(() => {
+    nodeRefs.current = choiceOptions.map(() => createRef<HTMLDivElement>());
+    console.log('🔍 NODE REFS INITIALIZED:', {
+      choiceOptionsLength: choiceOptions.length,
+      nodeRefsLength: nodeRefs.current.length,
+      choiceConditions: choiceOptions.map((opt, idx) => ({ index: idx, condition: opt.condition, hasCondition: !!opt.condition }))
+    });
+
+    // Reset bubble render key when choice options change
+    setBubbleRenderKey(0);
+  }, [choiceOptions]);
+
+  // Force re-render of condition bubbles after DOM is mounted
+  useEffect(() => {
+    if (choiceOptions.length > 0 && nodeRefs.current.length > 0 && bubbleRenderKey === 0) {
+      // Use a delay to ensure DOM elements are mounted
+      const timer = setTimeout(() => {
+        console.log('🔍 FORCING BUBBLE RE-RENDER');
+        setBubbleRenderKey(1); // Trigger re-render
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [choiceOptions, bubbleRenderKey]);
+
   // Handle Hub nodes that should show choices immediately
   useEffect(() => {
     if (!currentNode || !project) return;
@@ -529,6 +629,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         outputCount: outputs.length,
         nodeId: currentNode.Properties.Id
       });
+      console.log('🔀 Hub setting choice options:', outputs.map((opt, idx) => ({
+        index: idx,
+        text: opt.text,
+        condition: opt.condition,
+        disabled: opt.disabled
+      })));
       setChoiceOptions(outputs);
       setShowingChoices(true);
     }
@@ -674,45 +780,92 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
 
 
-        {/* Show each choice as individual panels */}
-        {choiceOptions.map((option, index) => {
-          // Calculate if this choice is selected (account for previous choice offset)
-          const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
-          const adjustedSelectedIndex = hasPreviousChoice ? selectedChoiceIndex - 1 : selectedChoiceIndex;
-          const isSelected = index === adjustedSelectedIndex;
+        {/* Container for choices with condition bubbles */}
+        <div style={{ position: 'relative' }} key={`bubbles-container-${bubbleRenderKey}`}>
+          {/* Condition bubbles on the left */}
+          {choiceOptions.map((option, index) => {
+            // Debug condition bubble creation
+            console.log('🔍 CONDITION BUBBLE CHECK:', {
+              index: index,
+              hasCondition: !!option.condition,
+              condition: option.condition,
+              disabled: option.disabled,
+              hasNodeRef: !!nodeRefs.current[index],
+              bubbleRenderKey: bubbleRenderKey
+            });
 
-          // Get the full text content from the target node (same logic as regular nodes)
-          let choiceNodeText = 'No content';
-          const targetNode = option.targetNode;
+            const shouldRenderBubble = option.condition && nodeRefs.current[index] && bubbleRenderKey > 0;
+            console.log('🔍 CONDITION BUBBLE RENDER DECISION:', {
+              index: index,
+              shouldRenderBubble: shouldRenderBubble,
+              hasCondition: !!option.condition,
+              hasNodeRef: !!nodeRefs.current[index],
+              bubbleRenderKey: bubbleRenderKey
+            });
 
-          // Priority order for text content:
-          // 1. Text property (main content)
-          // 2. Expression property (for instruction nodes)
-          // 3. DisplayName as fallback
-          if (targetNode.Properties.Text && targetNode.Properties.Text.trim()) {
-            choiceNodeText = targetNode.Properties.Text;
-          } else if (targetNode.Properties.Expression && targetNode.Properties.Expression.trim()) {
-            choiceNodeText = targetNode.Properties.Expression;
-          } else if (targetNode.Properties.DisplayName && targetNode.Properties.DisplayName.trim()) {
-            choiceNodeText = targetNode.Properties.DisplayName;
-          }
+            if (shouldRenderBubble) {
+              console.log('🔍 CREATING CONDITION BUBBLE FOR INDEX:', index);
+              return (
+                <ConditionBubble
+                  key={`condition-bubble-${currentNode.Properties.Id}-${index}-${option.condition}`}
+                  condition={option.condition}
+                  nodeRef={nodeRefs.current[index]}
+                  disabled={option.disabled}
+                />
+              );
+            }
+            return null;
+          })}
 
-          return (
-            <div key={index} style={{ marginBottom: '15px' }}>
-              <QuestionPanel
-                text={choiceNodeText}
-                title={option.text} // Use the choice label as the title
-                color={option.targetNode.Properties.Color || currentNode.Properties.Color}
-                choices={[{
-                  text: "Next",
-                  disabled: option.disabled,
-                  onClick: () => handleChoiceSelect(index)
-                }]}
-                selected={isSelected}
-              />
-            </div>
-          );
-        })}
+          {/* Show each choice as individual panels */}
+          {choiceOptions.map((option, index) => {
+            // Calculate if this choice is selected (account for previous choice offset)
+            const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+            const adjustedSelectedIndex = hasPreviousChoice ? selectedChoiceIndex - 1 : selectedChoiceIndex;
+            const isSelected = index === adjustedSelectedIndex;
+
+            // Get the full text content from the target node (same logic as regular nodes)
+            let choiceNodeText = 'No content';
+            const targetNode = option.targetNode;
+
+            // Priority order for text content:
+            // 1. Text property (main content)
+            // 2. Expression property (for instruction nodes)
+            // 3. DisplayName as fallback
+            if (targetNode.Properties.Text && targetNode.Properties.Text.trim()) {
+              choiceNodeText = targetNode.Properties.Text;
+            } else if (targetNode.Properties.Expression && targetNode.Properties.Expression.trim()) {
+              choiceNodeText = targetNode.Properties.Expression;
+            } else if (targetNode.Properties.DisplayName && targetNode.Properties.DisplayName.trim()) {
+              choiceNodeText = targetNode.Properties.DisplayName;
+            }
+
+            return (
+              <div
+                key={index}
+                ref={nodeRefs.current[index]}
+                style={{
+                  marginBottom: '15px',
+                  opacity: option.disabled ? 0.5 : 1, // Fade out disabled choices
+                  filter: option.disabled ? 'grayscale(30%)' : 'none', // Add slight grayscale effect
+                  transition: 'opacity 0.3s ease, filter 0.3s ease' // Smooth transition
+                }}
+              >
+                <QuestionPanel
+                  text={choiceNodeText}
+                  title={option.text} // Use the choice label as the title
+                  color={option.targetNode.Properties.Color || currentNode.Properties.Color}
+                  choices={[{
+                    text: "Next",
+                    disabled: option.disabled,
+                    onClick: () => handleChoiceSelect(index)
+                  }]}
+                  selected={isSelected}
+                />
+              </div>
+            );
+          })}
+        </div>
 
           <div style={{ marginTop: '10px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
             <strong>Navigation:</strong> Use ↑↓ arrow keys to select, Enter to choose, Esc to cancel<br />
