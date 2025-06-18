@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Tooltip } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, HistoryOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, HistoryOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined } from "@ant-design/icons";
 
 interface VariablesPanelProps {
     project: any;
@@ -13,6 +13,8 @@ interface VariablesPanelProps {
     onToggleVisibility: () => void;
     onToggleSearchPanel: () => void;
     isSearchPanelVisible: boolean;
+    storyOnlyMode: boolean;
+    onToggleStoryOnlyMode: () => void;
 }
 
 function VariablesPanel(props: VariablesPanelProps) {
@@ -259,6 +261,25 @@ function VariablesPanel(props: VariablesPanelProps) {
                         Search Nodes
                     </Button>
 
+                    {/* Story Only Toggle Button - below Search Nodes */}
+                    <Button
+                        icon={<BookOutlined />}
+                        onClick={props.onToggleStoryOnlyMode}
+                        style={{
+                            position: 'fixed',
+                            left: props.isVisible ? panelWidth + 10 : 10,
+                            top: 80,
+                            zIndex: 1001,
+                            transition: 'left 0.3s ease',
+                            backgroundColor: props.storyOnlyMode ? '#1890ff' : undefined,
+                            borderColor: props.storyOnlyMode ? '#1890ff' : undefined,
+                            color: props.storyOnlyMode ? '#fff' : undefined
+                        }}
+                        size="small"
+                    >
+                        Story Only
+                    </Button>
+
                     {/* Show Previous Button - only when variables panel is visible */}
                     {props.isVisible && props.hasPreviousChoice && (
                         <Button
@@ -267,7 +288,7 @@ function VariablesPanel(props: VariablesPanelProps) {
                             style={{
                                 position: 'fixed',
                                 left: props.isVisible ? panelWidth + 10 : 10,
-                                top: 80,
+                                top: 115,
                                 zIndex: 1001,
                                 transition: 'left 0.3s ease'
                             }}
