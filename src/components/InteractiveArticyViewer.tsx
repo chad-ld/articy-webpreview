@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, createRef } from 'react';
 import { Button, message } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
+import { InboxOutlined, CommentOutlined } from '@ant-design/icons';
 import ArticyProject from '../utils/ArticyProject';
 import InstructionPanel from '../panels/InstructionPanel';
 import EndOfFlowPanel from '../panels/EndOfFlowPanel';
@@ -145,6 +145,33 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const nodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>([]);
   // State to force re-render when refs are ready
   const [bubbleRenderKey, setBubbleRenderKey] = useState(0);
+
+  // Helper function to get speaker name with icon for display
+  const getSpeakerNameWithIcon = (node: any) => {
+    if (node.Properties.Speaker) {
+      const speakerNode = project?.GetNodeByID(node.Properties.Speaker);
+      if (speakerNode) {
+        return (
+          <span>
+            <CommentOutlined style={{ marginRight: '6px' }} />
+            {speakerNode.Properties.DisplayName}
+          </span>
+        );
+      }
+    }
+    return null;
+  };
+
+  // Helper function to get speaker name as string (without JSX)
+  const getSpeakerNameString = (node: any): string => {
+    if (node.Properties.Speaker) {
+      const speakerNode = project?.GetNodeByID(node.Properties.Speaker);
+      if (speakerNode) {
+        return speakerNode.Properties.DisplayName;
+      }
+    }
+    return node.Properties.DisplayName || '';
+  };
 
   // Initialize project when data is provided
   useEffect(() => {
@@ -840,6 +867,21 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               choiceNodeText = targetNode.Properties.DisplayName;
             }
 
+            // Determine the title for the choice panel
+            let choiceTitle = option.text; // Default to choice label
+
+            // Check if target node is a dialogue fragment and use speaker name with icon
+            const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                           targetNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                           targetNode.Type === "DialogueFragment";
+
+            if (isTargetDialogueFragment) {
+              const speakerTitle = getSpeakerNameWithIcon(targetNode);
+              if (speakerTitle) {
+                choiceTitle = speakerTitle;
+              }
+            }
+
             return (
               <div
                 key={index}
@@ -853,7 +895,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               >
                 <QuestionPanel
                   text={choiceNodeText}
-                  title={option.text} // Use the choice label as the title
+                  title={choiceTitle}
                   color={option.targetNode.Properties.Color || currentNode.Properties.Color}
                   choices={[{
                     text: "Next",
@@ -877,9 +919,23 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     );
   }
 
+
+
   // Render regular node - get the best text content available
   let nodeText = 'No content';
   let nodeTitle = currentNode.Properties.DisplayName || undefined;
+
+  // Check if this is a dialogue fragment and use speaker name with icon for title
+  const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                            currentNode.Type === "DialogueExplorationFragmentTemplate" ||
+                            currentNode.Type === "DialogueFragment";
+
+  if (isDialogueFragment) {
+    const speakerTitle = getSpeakerNameWithIcon(currentNode);
+    if (speakerTitle) {
+      nodeTitle = speakerTitle;
+    }
+  }
 
   // Priority order for text content:
   // 1. Text property (main content)
