@@ -173,6 +173,27 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     return node.Properties.DisplayName || '';
   };
 
+  // Custom navigation function that handles Jump nodes automatically
+  const navigateToNode = (node: any) => {
+    if (!node) return;
+
+    // Handle Jump nodes immediately - redirect to target
+    if (node.Type === "Jump" && node.Properties.Target) {
+      const targetNode = project?.GetNodeByID(node.Properties.Target);
+      if (targetNode) {
+        console.log("🔄 JUMP REDIRECT:", node.Properties.Id, "→", targetNode.Properties.Id);
+        // Recursively call navigateToNode with the target
+        navigateToNode(targetNode);
+        return;
+      } else {
+        console.warn("⚠️ Jump node target not found:", node.Properties.Target);
+      }
+    }
+
+    // For non-Jump nodes, set as current node normally
+    setCurrentNode(node);
+  };
+
   // Initialize project when data is provided
   useEffect(() => {
     if (data) {
@@ -199,7 +220,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         } : null);
 
         if (startNode) {
-          setCurrentNode(startNode);
+          navigateToNode(startNode);
           setNodeHistory([startNode]);
           console.log('✅ InteractiveArticyViewer: Start node set successfully');
         } else {
@@ -243,7 +264,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       setShowingChoices(false);
       setChoiceOptions([]);
       setTimeout(() => {
-        setCurrentNode(targetNode);
+        navigateToNode(targetNode);
       }, 0);
     }
   };
@@ -263,10 +284,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
       // Set current node to the last node in the restored history
       if (lastChoice.nodeList.length > 0) {
-        setCurrentNode(lastChoice.nodeList[lastChoice.nodeList.length - 1]);
+        navigateToNode(lastChoice.nodeList[lastChoice.nodeList.length - 1]);
       } else {
         // If no history, go back to the previous choice node itself
-        setCurrentNode(lastChoice.node);
+        navigateToNode(lastChoice.node);
       }
 
       // Remove the last choice from history
@@ -390,7 +411,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     if (outputs.length === 0) {
       // End of flow - no outputs
       const endNode = { Type: "EndOfFlow", Properties: {} };
-      setCurrentNode(endNode);
+      navigateToNode(endNode);
       setShowingChoices(false);
     } else if (outputs.length === 1) {
       // Single output - navigate directly but store previous choice
@@ -413,7 +434,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         project.StoreVariablesFromNode(currentNode);
       }
 
-      setCurrentNode(targetNode);
+      navigateToNode(targetNode);
       setNodeHistory([...nodeHistory, targetNode]);
       setShowingChoices(false);
       console.log('🔄 Navigated to:', targetNode.Properties.Id, targetNode.Type);
@@ -472,7 +493,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     }
 
     // Navigate to the selected choice
-    setCurrentNode(targetNode);
+    navigateToNode(targetNode);
     setNodeHistory([...nodeHistory, targetNode]);
     setShowingChoices(false);
     setChoiceOptions([]);
@@ -487,7 +508,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       project.ResetVariablesToInitialState();
       const startNode = project.GetStartNode();
       if (startNode) {
-        setCurrentNode(startNode);
+        navigateToNode(startNode);
         setNodeHistory([startNode]);
         setShowingChoices(false);
         setChoiceOptions([]);
