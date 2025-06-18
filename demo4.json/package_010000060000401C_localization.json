@@ -439,7 +439,7 @@
   },
   "FFr_E3C53E60.Text": {
     "": {
-      "Text": "Duhvel Opper cycles through these lines randomly while busy hammering at the PerForge. \r\n\r\nNOTE: This node does not currently progress properly with the html exporter. In a future version it will jump to a collection of barks that are triggered by the \"jump to barks\" text below. \r\n\r\nSample image of barks are here:\r\nhttp://dev.chadbriggs.com/articy/testing/demo/bark_layout_demo.png\r\n\r\nJUMP TO BARKS"
+      "Text": "Duhvel Opper cycles through these lines randomly while busy hammering at the PerForge. \r\n\r\nYou can follow this node to view the barks."
     },
     "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKJUMP - IdleWorking"
   },
@@ -502,6 +502,18 @@
       "Text": "Non interactive conversation that happens in normal exploration mode.\r\n\r\n(Details about conversation."
     },
     "Context": "Flow/Template Nodes/Initiate Exploration Dialogue"
+  },
+  "FFr_A3F385EA.DisplayName": {
+    "": {
+      "Text": "/BARKS - IdleWorking - EXIT"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking - EXIT"
+  },
+  "FFr_A3F385EA.Text": {
+    "": {
+      "Text": "Exit the bark view and return to main flow"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking - EXIT"
   },
   "FFr_D9D98307.DisplayName": {
     "": {
@@ -892,6 +904,24 @@
       "Text": "Noooooooo! It's less than 99!"
     },
     "Context": "Flow/Saved By Zero Example/Test - Happy Robot: \"Noooooooo! It's less than 99!\""
+  },
+  "DFr_89315EB8.Text": {
+    "": {
+      "Text": "I thoought this hub type was broken or some nonesense?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"I thoought this hub type was broken...\""
+  },
+  "DFr_1AE78B8A.Text": {
+    "": {
+      "Text": "No conditions here! But gonna set one!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"No conditions here! But gonna set o...\""
+  },
+  "DFr_7BC9E9EF.Text": {
+    "": {
+      "Text": "Plain vanilla node"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Plain vanilla node\""
   },
   "DFr_1576B9E6.Text": {
     "": {

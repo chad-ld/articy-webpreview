@@ -517,14 +517,29 @@
                   "Type": "Instruction"
                 },
                 {
+                  "Id": "0x0100000600004333",
+                  "TechnicalName": "Ins_E2D81C8E",
+                  "Type": "Instruction"
+                },
+                {
                   "Id": "0x0100000600004351",
                   "TechnicalName": "FFr_A97DCF5D",
                   "Type": "FlowFragment"
                 },
                 {
-                  "Id": "0x0100000600004333",
-                  "TechnicalName": "Ins_E2D81C8E",
+                  "Id": "0x0100000600004472",
+                  "TechnicalName": "Ins_3EE5FF24",
                   "Type": "Instruction"
+                },
+                {
+                  "Id": "0x0100000B00000133",
+                  "TechnicalName": "FFr_A3F385EA",
+                  "Type": "FlowFragment"
+                },
+                {
+                  "Id": "0x0100000600004342",
+                  "TechnicalName": "",
+                  "Type": "Comment"
                 },
                 {
                   "Id": "0x010000060000435F",
@@ -542,14 +557,34 @@
                   "Type": "DialogueFragment"
                 },
                 {
-                  "Id": "0x0100000600004472",
-                  "TechnicalName": "Ins_3EE5FF24",
-                  "Type": "Instruction"
-                },
-                {
                   "Id": "0x010000060000433B",
                   "TechnicalName": "FFr_4196D8BE",
                   "Type": "FlowFragment"
+                },
+                {
+                  "Id": "0x0100000B00000120",
+                  "TechnicalName": "Jmp_5AFFDFDD",
+                  "Type": "Jump"
+                },
+                {
+                  "Id": "0x0100000B00000129",
+                  "TechnicalName": "Jmp_73E4B218",
+                  "Type": "Jump"
+                },
+                {
+                  "Id": "0x0100000B00000125",
+                  "TechnicalName": "Jmp_D4B15418",
+                  "Type": "Jump"
+                },
+                {
+                  "Id": "0x0100000B00000116",
+                  "TechnicalName": "Jmp_1FFC45AF",
+                  "Type": "Jump"
+                },
+                {
+                  "Id": "0x0100000B0000013C",
+                  "TechnicalName": "Hub_C2F3BA22",
+                  "Type": "Hub"
                 },
                 {
                   "Id": "0x0100000600004358",
@@ -557,9 +592,54 @@
                   "Type": "FlowFragment"
                 },
                 {
+                  "Id": "0x0100000B00000142",
+                  "TechnicalName": "DFr_89315EB8",
+                  "Type": "DialogueFragment"
+                },
+                {
+                  "Id": "0x0100000B00000155",
+                  "TechnicalName": "DFr_1AE78B8A",
+                  "Type": "DialogueFragment"
+                },
+                {
+                  "Id": "0x0100000B00000164",
+                  "TechnicalName": "DFr_7BC9E9EF",
+                  "Type": "DialogueFragment"
+                },
+                {
+                  "Id": "0x0100000B00000171",
+                  "TechnicalName": "Ins_B21CBB63",
+                  "Type": "Instruction"
+                },
+                {
                   "Id": "0x0100000600004337",
                   "TechnicalName": "Ins_D90F3128",
                   "Type": "Instruction"
+                },
+                {
+                  "Id": "0x0100000B00000111",
+                  "TechnicalName": "Jmp_C2E9904B",
+                  "Type": "Jump"
+                },
+                {
+                  "Id": "0x0100000B00000150",
+                  "TechnicalName": "Jmp_FB1E02D5",
+                  "Type": "Jump"
+                },
+                {
+                  "Id": "0x0100000B0000014B",
+                  "TechnicalName": "Ins_D9514657",
+                  "Type": "Instruction"
+                },
+                {
+                  "Id": "0x0100000B0000016C",
+                  "TechnicalName": "Jmp_010789DD",
+                  "Type": "Jump"
+                },
+                {
+                  "Id": "0x0100000B00000176",
+                  "TechnicalName": "Jmp_CC729BB4",
+                  "Type": "Jump"
                 },
                 {
                   "Id": "0x010000060000437A",
@@ -580,6 +660,11 @@
                   "Id": "0x01000006000043CF",
                   "TechnicalName": "Ins_4B88EDD2",
                   "Type": "Instruction"
+                },
+                {
+                  "Id": "0x0100000B0000015F",
+                  "TechnicalName": "Jmp_709D2804",
+                  "Type": "Jump"
                 },
                 {
                   "Id": "0x0100000600004586",
@@ -690,11 +775,6 @@
                   "Id": "0x0100000600004413",
                   "TechnicalName": "Ins_746766D6",
                   "Type": "Instruction"
-                },
-                {
-                  "Id": "0x0100000600004342",
-                  "TechnicalName": "",
-                  "Type": "Comment"
                 },
                 {
                   "Id": "0x010000060000443B",

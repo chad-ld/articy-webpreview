@@ -445,8 +445,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       // If this was from a multi-choice, we need to restore the choice state
       if (lastChoice.fromMultiChoice) {
         // Check if the restored node is a hub-style node
-        const isHubStyleNode = (lastChoice.node.Type === "Hub" ||
-                               lastChoice.node.Type === "DialogueIntActionTemplate" ||
+        const isHubStyleNode = (lastChoice.node.Type === "DialogueIntActionTemplate" ||
                                (lastChoice.node.Type === "Instruction" &&
                                 (lastChoice.node.Properties.DisplayName?.includes("HUB") ||
                                  lastChoice.node.Properties.Expression?.includes("HUB"))));
@@ -785,10 +784,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       }
 
       // Multiple outputs - store current node as previous choice before showing choices
-      // BUT: Don't store hub-style nodes as previous choices since they show choices immediately
+      // BUT: Don't store DialogueIntActionTemplate nodes as previous choices since they show choices immediately
+      // NOTE: Regular Hub nodes should now be stored as previous choices since they show content first
       // NOTE: Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
-      const isHubStyleNode = (currentNode.Type === "Hub" ||
-                             currentNode.Type === "DialogueIntActionTemplate" ||
+      const isHubStyleNode = (currentNode.Type === "DialogueIntActionTemplate" ||
                              (currentNode.Type === "Instruction" &&
                               (currentNode.Properties.DisplayName?.includes("HUB") ||
                                currentNode.Properties.Expression?.includes("HUB"))));
@@ -1140,12 +1139,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     const outputs = getCurrentNodeOutputs();
 
-    // Hub nodes are nodes with "HUB" in their name and multiple outputs
+    // DialogueIntActionTemplate nodes should act as hubs and show choices immediately
+    // BUT: Regular Hub nodes should show their title first, then choices when Next is clicked
     // Note: LocationTemplate nodes should show their content first, not immediately show choices
-    // DialogueIntActionTemplate nodes should also act as hubs and show choices immediately
     // Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
-    const isHubStyleNode = (currentNode.Type === "Hub" ||
-                           currentNode.Type === "DialogueIntActionTemplate" ||
+    const isHubStyleNode = (currentNode.Type === "DialogueIntActionTemplate" ||
                            (currentNode.Type === "Instruction" &&
                             (currentNode.Properties.DisplayName?.includes("HUB") ||
                              currentNode.Properties.Expression?.includes("HUB"))));
@@ -1482,7 +1480,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // 1. Text property (main content)
   // 2. Expression property (for instruction nodes)
   // 3. DisplayName as fallback
-  if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
+  // Special case: Hub nodes should only show their DisplayName as title, no body text
+  if (currentNode.Type === "Hub") {
+    nodeText = ''; // Hub nodes have no body text, only title
+    nodeTitle = currentNode.Properties.DisplayName || 'Hub';
+  } else if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
     nodeText = currentNode.Properties.Text;
   } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
     nodeText = currentNode.Properties.Expression;

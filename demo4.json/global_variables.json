@@ -153,6 +153,12 @@
           "Type": "String",
           "Value": "blank",
           "Description": ""
+        },
+        {
+          "Variable": "ArticyHubEnter",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Been to the articy hub yet?"
         }
       ]
     },
