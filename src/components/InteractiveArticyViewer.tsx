@@ -560,53 +560,16 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       navigateToNode(endNode);
       setShowingChoices(false);
     } else if (outputs.length === 1) {
-      // Single output - navigate directly but store previous choice
+      // Single output - navigate directly WITHOUT storing previous choice
+      // (Previous choices should only be stored for actual branching decisions)
       const targetNode = outputs[0].targetNode;
 
-      // Store previous choice for single-output navigation
-      // Use speaker name for dialogue fragments, otherwise use DisplayName
-      const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
-                                currentNode.Type === "DialogueExplorationFragmentTemplate" ||
-                                currentNode.Type === "DialogueFragment";
-
-      const choiceTitle = isDialogueFragment ?
-        getSpeakerNameString(currentNode) :
-        currentNode.Properties.DisplayName;
-
-      // Get the actual node content for the previous choice display
-      let nodeText = 'No content';
-
-      // Priority order for text content (same as main display logic):
-      // 1. Text property (main content)
-      // 2. Expression property (for instruction nodes)
-      // 3. DisplayName as fallback
-      if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
-        nodeText = currentNode.Properties.Text;
-      } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
-        nodeText = currentNode.Properties.Expression;
-      } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
-        nodeText = currentNode.Properties.DisplayName;
-      }
-
-      const previousChoice: PreviousChoice = {
-        node: currentNode,
-        choiceText: nodeText, // Use actual node content instead of connection label
-        choiceTitle: choiceTitle,
-        color: currentNode.Properties.Color,
-        nodeList: [...nodeHistory],
-        variables: project ? { ...project.variables } : {},
-        fromMultiChoice: false
-      };
-      console.log('📝 STORING PREVIOUS CHOICE (single output):', {
-        nodeId: currentNode.Properties.Id,
-        nodeType: currentNode.Type,
-        choiceText: nodeText,
-        choiceTitle: choiceTitle,
-        nodeHistoryLength: nodeHistory.length,
-        previousChoiceHistoryLength: previousChoiceHistory.length,
-        targetNodeId: targetNode.Properties.Id
+      console.log('🔄 Single output navigation (no choice stored):', {
+        fromNodeId: currentNode.Properties.Id,
+        fromNodeType: currentNode.Type,
+        toNodeId: targetNode.Properties.Id,
+        toNodeType: targetNode.Type
       });
-      setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
 
       // Store variables from the current node before navigating
       if (project) {
@@ -1184,10 +1147,15 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                                            targetNode.Type === "DialogueFragment" ||
                                            targetNode.Type === "DialogueIntActionTemplate";
 
+            let choiceStageDirections = undefined;
             if (isTargetDialogueFragment) {
               const speakerTitle = getSpeakerNameWithIcon(targetNode);
               if (speakerTitle) {
                 choiceTitle = speakerTitle;
+              }
+              // Get stage directions for dialogue fragment choices
+              if (targetNode.Properties.StageDirections && targetNode.Properties.StageDirections.trim()) {
+                choiceStageDirections = targetNode.Properties.StageDirections;
               }
             }
 
@@ -1205,6 +1173,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                 <QuestionPanel
                   text={choiceNodeText}
                   title={choiceTitle}
+                  stageDirections={choiceStageDirections}
                   color={option.targetNode.Properties.Color || currentNode.Properties.Color}
                   choices={[{
                     text: "Next",
@@ -1239,10 +1208,15 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                             currentNode.Type === "DialogueExplorationFragmentTemplate" ||
                             currentNode.Type === "DialogueFragment";
 
+  let stageDirections = undefined;
   if (isDialogueFragment) {
     const speakerTitle = getSpeakerNameWithIcon(currentNode);
     if (speakerTitle) {
       nodeTitle = speakerTitle;
+    }
+    // Get stage directions for dialogue fragments
+    if (currentNode.Properties.StageDirections && currentNode.Properties.StageDirections.trim()) {
+      stageDirections = currentNode.Properties.StageDirections;
     }
   }
 
@@ -1364,6 +1338,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         <InstructionPanel
           text={nodeText}
           title={nodeTitle}
+          stageDirections={stageDirections}
           color={currentNode.Properties.Color}
           button={{
             hidden: false,

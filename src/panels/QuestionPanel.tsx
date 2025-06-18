@@ -5,6 +5,7 @@ import TextBlock from '../components/TextBlock';
 interface QuestionPanelProps {
   text: string;
   title?: string;
+  stageDirections?: string;
   color?: { r: number; g: number; b: number; };
   choices: Array<{
     text: string;
@@ -14,7 +15,7 @@ interface QuestionPanelProps {
   selected?: boolean;
 }
 
-const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, color, choices, selected }) => {
+const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, stageDirections, color, choices, selected }) => {
   // Convert Articy color (0.0-1.0) to CSS RGB (0-255) and create darker background
   const getColors = () => {
     if (color) {
@@ -71,6 +72,24 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, color, choic
           }}
         >
           {title}
+        </div>
+      )}
+
+      {stageDirections && (
+        <div
+          className="articy-stage-directions"
+          style={{
+            backgroundColor: backgroundColor,
+            borderLeft: `10px solid ${frameColor}`,
+            borderRight: `10px solid ${frameColor}`,
+            color: 'white',
+            padding: '8px 12px',
+            fontStyle: 'italic',
+            fontSize: '0.9em',
+            textAlign: 'center'
+          }}
+        >
+          {stageDirections}
         </div>
       )}
 

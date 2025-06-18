@@ -4,6 +4,7 @@ import { Button } from "antd";
 interface InstructionPanelProps {
   text: string;
   title?: string;
+  stageDirections?: string;
   color?: { r: number; g: number; b: number; };
   button: {
     hidden: boolean;
@@ -86,6 +87,23 @@ function InstructionPanel(props: InstructionPanelProps) {
             {props.title}
           </div>
         )}
+        {props.stageDirections && (
+          <div
+            className="articy-stage-directions"
+            style={{
+              backgroundColor: backgroundColor,
+              borderLeft: `10px solid ${frameColor}`,
+              borderRight: `10px solid ${frameColor}`,
+              color: 'white',
+              padding: '8px 12px',
+              fontStyle: 'italic',
+              fontSize: '0.9em',
+              textAlign: 'center'
+            }}
+          >
+            {props.stageDirections}
+          </div>
+        )}
         <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
           {props.text}
         </TextBlock>
@@ -118,6 +136,23 @@ function InstructionPanel(props: InstructionPanelProps) {
             }}
           >
             {props.title}
+          </div>
+        )}
+        {props.stageDirections && (
+          <div
+            className="articy-stage-directions"
+            style={{
+              backgroundColor: backgroundColor,
+              borderLeft: `10px solid ${frameColor}`,
+              borderRight: `10px solid ${frameColor}`,
+              color: 'white',
+              padding: '8px 12px',
+              fontStyle: 'italic',
+              fontSize: '0.9em',
+              textAlign: 'center'
+            }}
+          >
+            {props.stageDirections}
           </div>
         )}
         <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
