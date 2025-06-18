@@ -133,6 +133,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const [choiceOptions, setChoiceOptions] = useState<ChoiceOption[]>([]);
   const [selectedChoiceIndex, setSelectedChoiceIndex] = useState(0);
   const [showingChoices, setShowingChoices] = useState(false);
+  const [showConditionChoices, setShowConditionChoices] = useState(false);
 
   // Panel state management
   const [variablesPanelWidth, setVariablesPanelWidth] = useState(0);
@@ -195,6 +196,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     // For non-Jump nodes, set as current node normally
     setCurrentNode(node);
+    setShowConditionChoices(false); // Reset condition choices state when navigating
   };
 
   // Initialize project when data is provided
@@ -398,73 +400,150 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     const outputs: ChoiceOption[] = [];
 
-    // Check all output pins
-    currentNode.Properties.OutputPins.forEach((outputPin: any) => {
-      if (outputPin.Connections && outputPin.Connections.length > 0) {
-        outputPin.Connections.forEach((connection: any) => {
-          const targetNode = project?.GetNodeByID(connection.Target);
-          if (targetNode) {
-            // Get choice text from the target node or connection label
-            let choiceText = connection.Label ||
-                           targetNode.Properties.DisplayName ||
-                           targetNode.Properties.Text ||
-                           targetNode.Properties.Expression ||
-                           `Go to ${targetNode.Type}`;
+    // Special handling for Condition nodes
+    if (currentNode.Type === "Condition") {
+      // Extract the condition expression (skip comment lines)
+      const expression = currentNode.Properties.Expression || "";
+      const lines = expression.split('\n');
+      const conditionLine = lines.find((line: string) => line.trim() && !line.trim().startsWith('//'));
+      const conditionResult = conditionLine ? project.CheckConditionString(conditionLine.trim()) : false;
+      console.log("🔄 CONDITION EVALUATION FOR CHOICES:", conditionLine, "→", conditionResult);
 
-            // Clean up the text (remove comments, etc.)
-            choiceText = choiceText.replace(/^\/\//, '').trim();
-            if (choiceText.length > 100) {
-              choiceText = choiceText.substring(0, 100) + '...';
-            }
+      // For condition nodes, check each output pin and enable/disable based on condition result
+      currentNode.Properties.OutputPins.forEach((outputPin: any, pinIndex: number) => {
+        if (outputPin.Connections && outputPin.Connections.length > 0) {
+          outputPin.Connections.forEach((connection: any) => {
+            const targetNode = project?.GetNodeByID(connection.Target);
+            if (targetNode) {
+              // Get choice text from the target node or connection label
+              let choiceText = connection.Label ||
+                             targetNode.Properties.DisplayName ||
+                             targetNode.Properties.Text ||
+                             targetNode.Properties.Expression ||
+                             `Go to ${targetNode.Type}`;
 
-            // Get condition text and evaluate it
-            const conditionText = getConditionText(connection);
-            const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
-
-            // Only log when there's actually a condition to check
-            if (conditionText) {
-              // Get current variable values for debugging
-              const variableValues = {};
-              if (conditionText.includes('Quest001_waypoint01_completed')) {
-                variableValues['Quest001_waypoint01_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint01_completed;
-              }
-              if (conditionText.includes('Quest001_waypoint03_completed')) {
-                variableValues['Quest001_waypoint03_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint03_completed;
-              }
-              if (conditionText.includes('HasSword')) {
-                variableValues['HasSword'] = project.variables?.TestFlowVariables?.HasSword;
-              }
-              if (conditionText.includes('Quest001_waypoint02_visible')) {
-                variableValues['Quest001_waypoint02_visible'] = project.variables?.TestFlowVariables?.Quest001_waypoint02_visible;
-              }
-              if (conditionText.includes('Quest001_waypoint04_completed')) {
-                variableValues['Quest001_waypoint04_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint04_completed;
+              // Clean up the text (remove comments, etc.)
+              choiceText = choiceText.replace(/^\/\//, '').trim();
+              if (choiceText.length > 100) {
+                choiceText = choiceText.substring(0, 100) + '...';
               }
 
-              console.log('🔍 CONDITION CHECK:', {
-                targetNodeId: targetNode.Properties.Id,
-                conditionText: conditionText,
-                conditionTextLength: conditionText.length,
-                conditionTextTrimmed: conditionText.trim(),
+              // For condition nodes: first pin (index 0) is enabled when condition is true,
+              // second pin (index 1) is enabled when condition is false
+              const conditionMet = pinIndex === 0 ? conditionResult : !conditionResult;
+
+              // Create condition text for bubbles - first pin shows condition as-is, second pin shows negated
+              let conditionText = "";
+              if (conditionLine) {
+                if (pinIndex === 0) {
+                  // First pin: show the condition as-is (for true case)
+                  conditionText = conditionLine.trim();
+                } else {
+                  // Second pin: show the negated condition (for false case)
+                  // Replace ==true with ==false, ==false with ==true
+                  if (conditionLine.includes('==true')) {
+                    conditionText = conditionLine.replace('==true', '==false').trim();
+                  } else if (conditionLine.includes('==false')) {
+                    conditionText = conditionLine.replace('==false', '==true').trim();
+                  } else {
+                    // For other conditions, just negate with !
+                    conditionText = `!(${conditionLine.trim()})`;
+                  }
+                }
+              }
+
+              console.log('🔍 CONDITION NODE CHOICE:', {
+                pinIndex: pinIndex,
+                conditionResult: conditionResult,
                 conditionMet: conditionMet,
                 choiceText: choiceText,
-                currentVariableValues: variableValues
+                conditionLine: conditionLine,
+                conditionText: conditionText
               });
 
-              // Log all TestFlowVariables for debugging
-              console.log('🔍 ALL TESTFLOWVARIABLES:', project.variables?.TestFlowVariables);
+              outputs.push({
+                text: choiceText,
+                targetNode: targetNode,
+                disabled: !conditionMet,
+                condition: conditionText
+              });
             }
+          });
+        }
+      });
+    } else {
+      // Normal handling for non-condition nodes
+      // Check all output pins
+      currentNode.Properties.OutputPins.forEach((outputPin: any) => {
+        if (outputPin.Connections && outputPin.Connections.length > 0) {
+          outputPin.Connections.forEach((connection: any) => {
+            const targetNode = project?.GetNodeByID(connection.Target);
+            if (targetNode) {
+              // Get choice text from the target node or connection label
+              let choiceText = connection.Label ||
+                             targetNode.Properties.DisplayName ||
+                             targetNode.Properties.Text ||
+                             targetNode.Properties.Expression ||
+                             `Go to ${targetNode.Type}`;
 
-            outputs.push({
-              text: choiceText,
-              targetNode: targetNode,
-              disabled: !conditionMet,
-              condition: conditionText
-            });
-          }
-        });
-      }
-    });
+              // Clean up the text (remove comments, etc.)
+              choiceText = choiceText.replace(/^\/\//, '').trim();
+              if (choiceText.length > 100) {
+                choiceText = choiceText.substring(0, 100) + '...';
+              }
+
+              // Get condition text and evaluate it
+              const conditionText = getConditionText(connection);
+              const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+
+              // Only log when there's actually a condition to check
+              if (conditionText) {
+                // Get current variable values for debugging
+                const variableValues = {};
+                if (conditionText.includes('Quest001_waypoint01_completed')) {
+                  variableValues['Quest001_waypoint01_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint01_completed;
+                }
+                if (conditionText.includes('Quest001_waypoint03_completed')) {
+                  variableValues['Quest001_waypoint03_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint03_completed;
+                }
+                if (conditionText.includes('HasSword')) {
+                  variableValues['HasSword'] = project.variables?.TestFlowVariables?.HasSword;
+                }
+                if (conditionText.includes('Quest001_waypoint02_visible')) {
+                  variableValues['Quest001_waypoint02_visible'] = project.variables?.TestFlowVariables?.Quest001_waypoint02_visible;
+                }
+                if (conditionText.includes('Quest001_waypoint04_completed')) {
+                  variableValues['Quest001_waypoint04_completed'] = project.variables?.TestFlowVariables?.Quest001_waypoint04_completed;
+                }
+                if (conditionText.includes('JerkyFist')) {
+                  variableValues['JerkyFist'] = project.variables?.TestFlowVariables?.JerkyFist;
+                }
+
+                console.log('🔍 CONDITION CHECK:', {
+                  targetNodeId: targetNode.Properties.Id,
+                  conditionText: conditionText,
+                  conditionTextLength: conditionText.length,
+                  conditionTextTrimmed: conditionText.trim(),
+                  conditionMet: conditionMet,
+                  choiceText: choiceText,
+                  currentVariableValues: variableValues
+                });
+
+                // Log all TestFlowVariables for debugging
+                console.log('🔍 ALL TESTFLOWVARIABLES:', project.variables?.TestFlowVariables);
+              }
+
+              outputs.push({
+                text: choiceText,
+                targetNode: targetNode,
+                disabled: !conditionMet,
+                condition: conditionText
+              });
+            }
+          });
+        }
+      });
+    }
 
     return outputs;
   }, [currentNode, project, getConditionText]);
@@ -539,8 +618,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       setShowingChoices(false);
       console.log('🔄 Navigated to:', targetNode.Properties.Id, targetNode.Type);
     } else {
+      // Special handling for condition nodes - show choices after first Next click
+      if (currentNode.Type === "Condition" && !showConditionChoices) {
+        // First time clicking Next on condition node - now show choices
+        setShowConditionChoices(true);
+        setChoiceOptions(outputs);
+        setSelectedChoiceIndex(0);
+        setShowingChoices(true);
+        console.log('🔀 Condition node - showing choices after Next click');
+        return;
+      }
+
       // Multiple outputs - store current node as previous choice before showing choices
       // BUT: Don't store hub-style nodes as previous choices since they show choices immediately
+      // NOTE: Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
       const isHubStyleNode = (currentNode.Type === "Hub" ||
                              currentNode.Type === "DialogueIntActionTemplate" ||
                              (currentNode.Type === "Instruction" &&
@@ -855,6 +946,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     // Hub nodes are nodes with "HUB" in their name and multiple outputs
     // Note: LocationTemplate nodes should show their content first, not immediately show choices
     // DialogueIntActionTemplate nodes should also act as hubs and show choices immediately
+    // Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
     const isHubStyleNode = (currentNode.Type === "Hub" ||
                            currentNode.Type === "DialogueIntActionTemplate" ||
                            (currentNode.Type === "Instruction" &&
