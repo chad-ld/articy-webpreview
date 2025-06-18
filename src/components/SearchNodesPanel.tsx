@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Tooltip } from "antd";
-import { EyeInvisibleOutlined, PlusOutlined, MinusOutlined, EyeOutlined } from "@ant-design/icons";
+import { EyeInvisibleOutlined, PlusOutlined, MinusOutlined, EyeOutlined, BookOutlined } from "@ant-design/icons";
 
 interface SearchNodesPanelProps {
     project: any;
@@ -11,6 +11,8 @@ interface SearchNodesPanelProps {
     onToggleVisibility: () => void;
     onToggleVariablesPanel: () => void;
     isVariablesPanelVisible: boolean;
+    storyOnlyMode: boolean;
+    onToggleStoryOnlyMode: () => void;
 }
 
 function SearchNodesPanel(props: SearchNodesPanelProps) {
@@ -159,6 +161,25 @@ function SearchNodesPanel(props: SearchNodesPanelProps) {
                         size="small"
                     >
                         Show Variables
+                    </Button>
+
+                    {/* Story Only Toggle Button - below Variables */}
+                    <Button
+                        icon={<BookOutlined />}
+                        onClick={props.onToggleStoryOnlyMode}
+                        style={{
+                            position: 'fixed',
+                            left: panelWidth + 10,
+                            top: 80,
+                            zIndex: 1001,
+                            transition: 'left 0.3s ease',
+                            backgroundColor: props.storyOnlyMode ? '#1890ff' : undefined,
+                            borderColor: props.storyOnlyMode ? '#1890ff' : undefined,
+                            color: props.storyOnlyMode ? '#fff' : undefined
+                        }}
+                        size="small"
+                    >
+                        Story Only
                     </Button>
                 </>
             )}

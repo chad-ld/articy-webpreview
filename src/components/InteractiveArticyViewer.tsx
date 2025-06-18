@@ -141,6 +141,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const [isVariablesPanelVisible, setIsVariablesPanelVisible] = useState(false);
   const [isSearchPanelVisible, setIsSearchPanelVisible] = useState(false);
 
+  // Story only mode state
+  const [storyOnlyMode, setStoryOnlyMode] = useState(false);
+
   // Previous choice history for back navigation
   const [previousChoiceHistory, setPreviousChoiceHistory] = useState<PreviousChoice[]>([]);
   const [showPrevious, setShowPrevious] = useState(true);
@@ -177,7 +180,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     return node.Properties.DisplayName || '';
   };
 
-  // Custom navigation function that handles Jump nodes automatically
+  // Custom navigation function that handles Jump nodes automatically and story only mode
   const navigateToNode = (node: any) => {
     if (!node) return;
 
@@ -194,7 +197,97 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       }
     }
 
-    // For non-Jump nodes, set as current node normally
+    // Handle story only mode - skip nodes that shouldn't be displayed
+    if (storyOnlyMode && !shouldDisplayNodeInStoryMode(node)) {
+      console.log("📖 STORY MODE: Skipping node", node.Type, node.Properties.Id);
+
+      // Process the node behind the scenes (store variables, etc.)
+      // NOTE: Condition nodes are excluded - they should only evaluate conditions, not modify variables
+      if (project && node.Type !== "Condition") {
+        project.StoreVariablesFromNode(node);
+      }
+
+      // Get outputs and automatically navigate to the next appropriate node
+      const outputs: ChoiceOption[] = [];
+
+      // Special handling for Condition nodes in story mode
+      if (node.Type === "Condition") {
+        // For condition nodes, evaluate the condition and navigate to the appropriate output
+        const expression = node.Properties.Expression || "";
+        const lines = expression.split('\n');
+        const conditionLine = lines.find((line: string) => line.trim() && !line.trim().startsWith('//'));
+        const conditionResult = conditionLine ? project.CheckConditionString(conditionLine.trim()) : false;
+
+        console.log("📖 STORY MODE: Condition node evaluation:", {
+          nodeId: node.Properties.Id,
+          conditionLine: conditionLine,
+          conditionResult: conditionResult
+        });
+
+        // Navigate to the appropriate output pin based on condition result
+        if (node.Properties.OutputPins) {
+          node.Properties.OutputPins.forEach((outputPin: any, pinIndex: number) => {
+            if (outputPin.Connections && outputPin.Connections.length > 0) {
+              // For condition nodes: first pin (index 0) is for true, second pin (index 1) is for false
+              const shouldTakeThisPin = pinIndex === 0 ? conditionResult : !conditionResult;
+
+              if (shouldTakeThisPin) {
+                outputPin.Connections.forEach((connection: any) => {
+                  const targetNode = project?.GetNodeByID(connection.Target);
+                  if (targetNode) {
+                    outputs.push({
+                      text: "",
+                      targetNode: targetNode,
+                      disabled: false,
+                      condition: conditionLine || ""
+                    });
+                  }
+                });
+              }
+            }
+          });
+        }
+      } else {
+        // Normal handling for non-condition nodes
+        if (node.Properties.OutputPins) {
+          node.Properties.OutputPins.forEach((outputPin: any) => {
+            if (outputPin.Connections && outputPin.Connections.length > 0) {
+              outputPin.Connections.forEach((connection: any) => {
+                const targetNode = project?.GetNodeByID(connection.Target);
+                if (targetNode) {
+                  // Check conditions for this output
+                  const conditionText = targetNode?.Properties?.InputPins?.[0]?.Text?.replace(/;+$/, '').trim() || "";
+                  const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+
+                  if (conditionMet) {
+                    outputs.push({
+                      text: "",
+                      targetNode: targetNode,
+                      disabled: false,
+                      condition: conditionText
+                    });
+                  }
+                }
+              });
+            }
+          });
+        }
+      }
+
+      // Navigate to the first valid output
+      if (outputs.length > 0) {
+        navigateToNode(outputs[0].targetNode);
+        return;
+      } else {
+        // No valid outputs, treat as end of flow
+        const endNode = { Type: "EndOfFlow", Properties: {} };
+        setCurrentNode(endNode);
+        setShowConditionChoices(false);
+        return;
+      }
+    }
+
+    // For non-Jump nodes that should be displayed, set as current node normally
     setCurrentNode(node);
     setShowConditionChoices(false); // Reset condition choices state when navigating
   };
@@ -252,6 +345,52 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     if (isVariablesPanelVisible) {
       setIsVariablesPanelVisible(false);
     }
+  };
+
+  const handleStoryOnlyModeToggle = () => {
+    setStoryOnlyMode(!storyOnlyMode);
+    console.log('🔄 Story Only Mode toggled:', !storyOnlyMode);
+  };
+
+  // Helper function to determine if a node should be displayed in story only mode
+  const shouldDisplayNodeInStoryMode = (node: any): boolean => {
+    if (!storyOnlyMode) return true; // Always display when story mode is off
+
+    // Always keep hub-style nodes that offer choices, even if they're instruction nodes
+    // These represent important decision points in the narrative
+    // We need to manually check outputs since we don't have access to getCurrentNodeOutputs here
+    let outputCount = 0;
+    if (node.Properties.OutputPins) {
+      node.Properties.OutputPins.forEach((outputPin: any) => {
+        if (outputPin.Connections && outputPin.Connections.length > 0) {
+          outputCount += outputPin.Connections.length;
+        }
+      });
+    }
+
+    const isHubStyleNode = (node.Type === "Hub" ||
+                           node.Type === "DialogueIntActionTemplate" ||
+                           (node.Type === "Instruction" &&
+                            (node.Properties.DisplayName?.includes("HUB") ||
+                             node.Properties.Expression?.includes("HUB"))));
+
+    if (isHubStyleNode && outputCount > 1) {
+      console.log('📖 STORY MODE: Keeping hub node with multiple outputs:', {
+        nodeId: node.Properties.Id,
+        nodeType: node.Type,
+        displayName: node.Properties.DisplayName,
+        outputCount: outputCount
+      });
+      return true; // Keep hub nodes that offer choices
+    }
+
+    // Filter out regular instruction nodes and condition nodes
+    if (node.Type === "Instruction" || node.Type === "Condition") {
+      return false;
+    }
+
+    // Keep narrative-oriented nodes like dialogue fragments, locations, etc.
+    return true;
   };
 
   // Handle navigation to a specific node from search
@@ -560,16 +699,69 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       navigateToNode(endNode);
       setShowingChoices(false);
     } else if (outputs.length === 1) {
-      // Single output - navigate directly WITHOUT storing previous choice
-      // (Previous choices should only be stored for actual branching decisions)
+      // Single output - only store as previous choice if this is a meaningful choice point
       const targetNode = outputs[0].targetNode;
 
-      console.log('🔄 Single output navigation (no choice stored):', {
+      console.log('🔄 Single output navigation:', {
         fromNodeId: currentNode.Properties.Id,
         fromNodeType: currentNode.Type,
         toNodeId: targetNode.Properties.Id,
         toNodeType: targetNode.Type
       });
+
+      // Only store as previous choice if this node was reached from a multi-choice selection
+      // This prevents linear dialogue progression from cluttering the back history
+      const lastChoice = previousChoiceHistory.length > 0 ?
+                        previousChoiceHistory[previousChoiceHistory.length - 1] : null;
+      const shouldStoreAsPreviousChoice = lastChoice && lastChoice.fromMultiChoice;
+
+      if (shouldStoreAsPreviousChoice) {
+        // Store the current node as previous choice for single-path navigation
+        const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                  currentNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                  currentNode.Type === "DialogueFragment";
+
+        const choiceTitle = isDialogueFragment ?
+          getSpeakerNameString(currentNode) :
+          currentNode.Properties.DisplayName;
+
+        // Get the actual node content for the previous choice display
+        let nodeText = 'No content';
+        if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
+          nodeText = currentNode.Properties.Text;
+        } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
+          nodeText = currentNode.Properties.Expression;
+        } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
+          nodeText = currentNode.Properties.DisplayName;
+        }
+
+        const previousChoice: PreviousChoice = {
+          node: currentNode,
+          choiceText: nodeText,
+          choiceTitle: choiceTitle,
+          color: currentNode.Properties.Color,
+          nodeList: [...nodeHistory],
+          variables: project ? { ...project.variables } : {},
+          fromMultiChoice: false
+        };
+
+        console.log('📝 STORING PREVIOUS CHOICE (single output from multi-choice):', {
+          nodeId: currentNode.Properties.Id,
+          nodeType: currentNode.Type,
+          choiceText: nodeText,
+          choiceTitle: choiceTitle,
+          nodeHistoryLength: nodeHistory.length,
+          previousChoiceHistoryLength: previousChoiceHistory.length
+        });
+
+        setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
+      } else {
+        console.log('🔄 SKIPPING previous choice storage (linear progression):', {
+          nodeId: currentNode.Properties.Id,
+          nodeType: currentNode.Type,
+          reason: 'Not from multi-choice selection'
+        });
+      }
 
       // Store variables from the current node before navigating
       if (project) {
@@ -678,7 +870,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // Handle choice selection
   const handleChoiceSelect = (choiceIndex: number) => {
-    if (!choiceOptions[choiceIndex] || choiceOptions[choiceIndex].disabled) return;
+    console.log('🖱️ MOUSE CLICK - handleChoiceSelect called:', {
+      choiceIndex: choiceIndex,
+      choiceOptionsLength: choiceOptions.length,
+      choiceExists: !!choiceOptions[choiceIndex],
+      choiceDisabled: choiceOptions[choiceIndex]?.disabled,
+      storyOnlyMode: storyOnlyMode,
+      targetNodeId: choiceOptions[choiceIndex]?.targetNode?.Properties?.Id,
+      targetNodeType: choiceOptions[choiceIndex]?.targetNode?.Type
+    });
+
+    if (!choiceOptions[choiceIndex] || choiceOptions[choiceIndex].disabled) {
+      console.log('🚫 EARLY RETURN - Choice not found or disabled');
+      return;
+    }
 
     const selectedChoice = choiceOptions[choiceIndex];
     const targetNode = selectedChoice.targetNode;
@@ -786,14 +991,28 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     // Add current choices
     if (showingChoices) {
-      choices.push(...choiceOptions);
+      // Filter choices based on story only mode and preserve original indices
+      const filteredChoicesWithIndices = choiceOptions
+        .map((option, originalIndex) => ({ option, originalIndex }))
+        .filter(({ option }) => {
+          if (storyOnlyMode && option.disabled) {
+            return false;
+          }
+          return true;
+        });
+
+      // Add the filtered choices with their original indices preserved
+      choices.push(...filteredChoicesWithIndices.map(({ option, originalIndex }) => ({
+        ...option,
+        originalIndex: originalIndex
+      })));
     } else {
       // Single choice or Next button
       choices.push({ isSingleChoice: true, onClick: handleNext });
     }
 
     return choices;
-  }, [showPrevious, previousChoiceHistory.length, showingChoices, choiceOptions, goBack, handleNext]);
+  }, [showPrevious, previousChoiceHistory.length, showingChoices, choiceOptions, storyOnlyMode, goBack, handleNext]);
 
   // Handle keyboard navigation
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -834,9 +1053,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         } else if (selectedChoice.isSingleChoice) {
           handleNext();
         } else {
-          // Adjust index for choice options (subtract 1 if previous choice exists)
-          const choiceIndex = showPrevious && previousChoiceHistory.length > 0 ?
+          // Get the selected choice and use its original index
+          const adjustedIndex = showPrevious && previousChoiceHistory.length > 0 ?
             selectedChoiceIndex - 1 : selectedChoiceIndex;
+          const selectedChoiceData = availableChoices[selectedChoiceIndex];
+
+          // Use the original index if available, otherwise fall back to adjusted index
+          const choiceIndex = selectedChoiceData.originalIndex !== undefined ?
+            selectedChoiceData.originalIndex : adjustedIndex;
           handleChoiceSelect(choiceIndex);
         }
         break;
@@ -876,16 +1100,26 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // Initialize node refs when choice options change
   useEffect(() => {
-    nodeRefs.current = choiceOptions.map(() => createRef<HTMLDivElement>());
+    // Filter choices based on story only mode
+    const filteredChoices = choiceOptions.filter((option) => {
+      if (storyOnlyMode && option.disabled) {
+        return false;
+      }
+      return true;
+    });
+
+    nodeRefs.current = filteredChoices.map(() => createRef<HTMLDivElement>());
     console.log('🔍 NODE REFS INITIALIZED:', {
       choiceOptionsLength: choiceOptions.length,
+      filteredChoicesLength: filteredChoices.length,
       nodeRefsLength: nodeRefs.current.length,
-      choiceConditions: choiceOptions.map((opt, idx) => ({ index: idx, condition: opt.condition, hasCondition: !!opt.condition }))
+      storyOnlyMode: storyOnlyMode,
+      choiceConditions: filteredChoices.map((opt, idx) => ({ index: idx, condition: opt.condition, hasCondition: !!opt.condition }))
     });
 
     // Reset bubble render key when choice options change
     setBubbleRenderKey(0);
-  }, [choiceOptions]);
+  }, [choiceOptions, storyOnlyMode]);
 
   // Force re-render of condition bubbles after DOM is mounted
   useEffect(() => {
@@ -1010,6 +1244,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               onToggleVisibility={handleVariablesPanelToggle}
               onToggleSearchPanel={handleSearchPanelToggle}
               isSearchPanelVisible={isSearchPanelVisible}
+              storyOnlyMode={storyOnlyMode}
+              onToggleStoryOnlyMode={handleStoryOnlyModeToggle}
             />
             <SearchNodesPanel
               project={project}
@@ -1020,6 +1256,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               onToggleVisibility={handleSearchPanelToggle}
               onToggleVariablesPanel={handleVariablesPanelToggle}
               isVariablesPanelVisible={isVariablesPanelVisible}
+              storyOnlyMode={storyOnlyMode}
+              onToggleStoryOnlyMode={handleStoryOnlyModeToggle}
             />
           </>
         )}
@@ -1081,33 +1319,44 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         {/* Container for choices with condition bubbles */}
         <div style={{ position: 'relative' }} key={`bubbles-container-${bubbleRenderKey}`}>
           {/* Condition bubbles on the left */}
-          {choiceOptions.map((option, index) => {
+          {choiceOptions
+            .map((option, originalIndex) => ({ option, originalIndex })) // Preserve original index
+            .filter(({ option, originalIndex }) => {
+              // In story only mode, hide choices with unmet conditions
+              if (storyOnlyMode && option.disabled) {
+                return false;
+              }
+              return true;
+            })
+            .map(({ option, originalIndex }, filteredIndex) => {
             // Debug condition bubble creation
             console.log('🔍 CONDITION BUBBLE CHECK:', {
-              index: index,
+              originalIndex: originalIndex,
+              filteredIndex: filteredIndex,
               hasCondition: !!option.condition,
               condition: option.condition,
               disabled: option.disabled,
-              hasNodeRef: !!nodeRefs.current[index],
+              hasNodeRef: !!nodeRefs.current[filteredIndex],
               bubbleRenderKey: bubbleRenderKey
             });
 
-            const shouldRenderBubble = option.condition && nodeRefs.current[index] && bubbleRenderKey > 0;
+            const shouldRenderBubble = option.condition && nodeRefs.current[filteredIndex] && bubbleRenderKey > 0 && !storyOnlyMode;
             console.log('🔍 CONDITION BUBBLE RENDER DECISION:', {
-              index: index,
+              originalIndex: originalIndex,
+              filteredIndex: filteredIndex,
               shouldRenderBubble: shouldRenderBubble,
               hasCondition: !!option.condition,
-              hasNodeRef: !!nodeRefs.current[index],
+              hasNodeRef: !!nodeRefs.current[filteredIndex],
               bubbleRenderKey: bubbleRenderKey
             });
 
             if (shouldRenderBubble) {
-              console.log('🔍 CREATING CONDITION BUBBLE FOR INDEX:', index);
+              console.log('🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX:', filteredIndex);
               return (
                 <ConditionBubble
-                  key={`condition-bubble-${currentNode.Properties.Id}-${index}-${option.condition}`}
+                  key={`condition-bubble-${currentNode.Properties.Id}-${originalIndex}-${option.condition}`}
                   condition={option.condition}
-                  nodeRef={nodeRefs.current[index]}
+                  nodeRef={nodeRefs.current[filteredIndex]}
                   disabled={option.disabled}
                 />
               );
@@ -1116,11 +1365,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           })}
 
           {/* Show each choice as individual panels */}
-          {choiceOptions.map((option, index) => {
+          {choiceOptions
+            .map((option, originalIndex) => ({ option, originalIndex })) // Preserve original index
+            .filter(({ option, originalIndex }) => {
+              // In story only mode, hide choices with unmet conditions
+              if (storyOnlyMode && option.disabled) {
+                return false;
+              }
+              return true;
+            })
+            .map(({ option, originalIndex }, filteredIndex) => {
             // Calculate if this choice is selected (account for previous choice offset)
             const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
             const adjustedSelectedIndex = hasPreviousChoice ? selectedChoiceIndex - 1 : selectedChoiceIndex;
-            const isSelected = index === adjustedSelectedIndex;
+            const isSelected = filteredIndex === adjustedSelectedIndex;
 
             // Get the full text content from the target node (same logic as regular nodes)
             let choiceNodeText = 'No content';
@@ -1161,8 +1419,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
             return (
               <div
-                key={index}
-                ref={nodeRefs.current[index]}
+                key={originalIndex}
+                ref={nodeRefs.current[filteredIndex]}
                 style={{
                   marginBottom: '15px',
                   opacity: option.disabled ? 0.5 : 1, // Fade out disabled choices
@@ -1178,7 +1436,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                   choices={[{
                     text: "Next",
                     disabled: option.disabled,
-                    onClick: () => handleChoiceSelect(index)
+                    onClick: () => handleChoiceSelect(originalIndex)
                   }]}
                   selected={isSelected}
                 />
@@ -1269,6 +1527,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             onToggleVisibility={handleVariablesPanelToggle}
             onToggleSearchPanel={handleSearchPanelToggle}
             isSearchPanelVisible={isSearchPanelVisible}
+            storyOnlyMode={storyOnlyMode}
+            onToggleStoryOnlyMode={handleStoryOnlyModeToggle}
           />
           <SearchNodesPanel
             project={project}
