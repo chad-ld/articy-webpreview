@@ -1792,8 +1792,8 @@
         "Text": "FFr_4196D8BE.Text",
         "ExternalId": "",
         "Position": {
-          "x": 1839.4000038782774,
-          "y": 1851.8000000000002
+          "x": 1450.0,
+          "y": 1875.0
         },
         "ZIndex": 24.0,
         "Size": {
@@ -1835,6 +1835,17 @@
                 "Label": "",
                 "TargetPin": "0x0100000600004359",
                 "Target": "0x0100000600004358"
+              },
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B0000013E",
+                "Target": "0x0100000B0000013C"
               }
             ]
           }
@@ -2373,6 +2384,17 @@
                 "Label": "",
                 "TargetPin": "0x0100000600004360",
                 "Target": "0x010000060000435F"
+              },
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000134",
+                "Target": "0x0100000B00000133"
               }
             ]
           }
@@ -2406,8 +2428,8 @@
         "Text": "FFr_E3C53E60.Text",
         "ExternalId": "",
         "Position": {
-          "x": 2189.4000038782774,
-          "y": 2226.8
+          "x": 1889.4000038782774,
+          "y": 2251.8
         },
         "ZIndex": 5.0,
         "Size": {
@@ -2426,7 +2448,20 @@
           {
             "Text": "",
             "Id": "0x010000060000435A",
-            "Owner": "0x0100000600004358"
+            "Owner": "0x0100000600004358",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000114",
+                "Target": "0x0100000B00000111"
+              }
+            ]
           }
         ]
       },
@@ -2737,6 +2772,71 @@
             "Text": "",
             "Id": "0x0100000600004104",
             "Owner": "0x0100000600004100"
+          }
+        ]
+      },
+      "Template": {}
+    },
+    {
+      "Type": "DialogueExplorationActionTemplate",
+      "Properties": {
+        "TechnicalName": "FFr_A3F385EA",
+        "Id": "0x0100000B00000133",
+        "Parent": "0x01000006000040F2",
+        "Attachments": [],
+        "DisplayName": "FFr_A3F385EA.DisplayName",
+        "PreviewImage": {
+          "ViewBox": {
+            "x": 0.0,
+            "y": 0.0,
+            "w": 0.0,
+            "h": 0.0
+          },
+          "Mode": "FromAsset",
+          "Asset": "0x0000000000000000"
+        },
+        "Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0
+        },
+        "Text": "FFr_A3F385EA.Text",
+        "ExternalId": "",
+        "Position": {
+          "x": 1375.0,
+          "y": 1625.0
+        },
+        "ZIndex": 5.0,
+        "Size": {
+          "w": 275.0,
+          "h": 125.0
+        },
+        "ShortId": 2750645738,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000134",
+            "Owner": "0x0100000B00000133"
+          }
+        ],
+        "OutputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000135",
+            "Owner": "0x0100000B00000133",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000119",
+                "Target": "0x0100000B00000116"
+              }
+            ]
           }
         ]
       },
@@ -6378,6 +6478,177 @@
       "Template": {}
     },
     {
+      "Type": "DialogueInteractiveFragmentTemplate",
+      "Properties": {
+        "TechnicalName": "DFr_89315EB8",
+        "Id": "0x0100000B00000142",
+        "Parent": "0x01000006000040F2",
+        "MenuText": "",
+        "StageDirections": "",
+        "Speaker": "0x0100000600004145",
+        "SplitHeight": 64.0,
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "DFr_89315EB8.Text",
+        "ExternalId": "",
+        "Position": {
+          "x": 2050.0,
+          "y": 2600.0
+        },
+        "ZIndex": 25.0,
+        "Size": {
+          "w": 225.0,
+          "h": 200.0
+        },
+        "ShortId": 2301714104,
+        "InputPins": [
+          {
+            "Text": "TestFlowVariables.ArticyHubEnter==true;",
+            "Id": "0x0100000B00000143",
+            "Owner": "0x0100000B00000142"
+          }
+        ],
+        "OutputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000144",
+            "Owner": "0x0100000B00000142",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000153",
+                "Target": "0x0100000B00000150"
+              }
+            ]
+          }
+        ]
+      },
+      "Template": {}
+    },
+    {
+      "Type": "DialogueInteractiveFragmentTemplate",
+      "Properties": {
+        "TechnicalName": "DFr_1AE78B8A",
+        "Id": "0x0100000B00000155",
+        "Parent": "0x01000006000040F2",
+        "MenuText": "",
+        "StageDirections": "stunned",
+        "Speaker": "0x0100000600004145",
+        "SplitHeight": 64.0,
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "DFr_1AE78B8A.Text",
+        "ExternalId": "",
+        "Position": {
+          "x": 2050.0,
+          "y": 2825.0
+        },
+        "ZIndex": 25.0,
+        "Size": {
+          "w": 225.0,
+          "h": 200.0
+        },
+        "ShortId": 451382154,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000156",
+            "Owner": "0x0100000B00000155"
+          }
+        ],
+        "OutputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000157",
+            "Owner": "0x0100000B00000155",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B0000014D",
+                "Target": "0x0100000B0000014B"
+              }
+            ]
+          }
+        ]
+      },
+      "Template": {}
+    },
+    {
+      "Type": "DialogueInteractiveFragmentTemplate",
+      "Properties": {
+        "TechnicalName": "DFr_7BC9E9EF",
+        "Id": "0x0100000B00000164",
+        "Parent": "0x01000006000040F2",
+        "MenuText": "",
+        "StageDirections": "",
+        "Speaker": "0x0100000600004145",
+        "SplitHeight": 64.0,
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "DFr_7BC9E9EF.Text",
+        "ExternalId": "",
+        "Position": {
+          "x": 2050.0,
+          "y": 3050.0
+        },
+        "ZIndex": 25.0,
+        "Size": {
+          "w": 225.0,
+          "h": 200.0
+        },
+        "ShortId": 2076830191,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000165",
+            "Owner": "0x0100000B00000164"
+          }
+        ],
+        "OutputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000166",
+            "Owner": "0x0100000B00000164",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B0000016D",
+                "Target": "0x0100000B0000016C"
+              }
+            ]
+          }
+        ]
+      },
+      "Template": {}
+    },
+    {
       "Type": "DialogueExplorationFragmentTemplate",
       "Properties": {
         "TechnicalName": "DFr_1576B9E6",
@@ -6415,7 +6686,20 @@
           {
             "Text": "",
             "Id": "0x0100000600004346",
-            "Owner": "0x0100000600004344"
+            "Owner": "0x0100000600004344",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000121",
+                "Target": "0x0100000B00000120"
+              }
+            ]
           }
         ]
       },
@@ -6459,7 +6743,20 @@
           {
             "Text": "",
             "Id": "0x010000060000434D",
-            "Owner": "0x010000060000434B"
+            "Owner": "0x010000060000434B",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B0000012A",
+                "Target": "0x0100000B00000129"
+              }
+            ]
           }
         ]
       },
@@ -6503,7 +6800,20 @@
           {
             "Text": "",
             "Id": "0x0100000600004361",
-            "Owner": "0x010000060000435F"
+            "Owner": "0x010000060000435F",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000126",
+                "Target": "0x0100000B00000125"
+              }
+            ]
           }
         ]
       },
@@ -8219,6 +8529,92 @@
       }
     },
     {
+      "Type": "Hub",
+      "Properties": {
+        "TechnicalName": "Hub_C2F3BA22",
+        "Id": "0x0100000B0000013C",
+        "Parent": "0x01000006000040F2",
+        "DisplayName": "Articy Hub Example",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 1775.0,
+          "y": 2875.0
+        },
+        "ZIndex": 186.0,
+        "Size": {
+          "w": 175.0,
+          "h": 50.0
+        },
+        "ShortId": 3270752802,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B0000013E",
+            "Owner": "0x0100000B0000013C"
+          }
+        ],
+        "OutputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B0000013F",
+            "Owner": "0x0100000B0000013C",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000143",
+                "Target": "0x0100000B00000142"
+              },
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000156",
+                "Target": "0x0100000B00000155"
+              },
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000165",
+                "Target": "0x0100000B00000164"
+              },
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000172",
+                "Target": "0x0100000B00000171"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "Type": "Jump",
       "Properties": {
         "TechnicalName": "Jmp_99865010",
@@ -8865,6 +9261,312 @@
       }
     },
     {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_C2E9904B",
+        "Id": "0x0100000B00000111",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x0100000600004351",
+        "TargetPin": "0x0100000600004352",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 2250.0,
+          "y": 2300.0
+        },
+        "ZIndex": 174.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 3270086731,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000114",
+            "Owner": "0x0100000B00000111"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_1FFC45AF",
+        "Id": "0x0100000B00000116",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x010000060000433B",
+        "TargetPin": "0x010000060000433C",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 1700.0,
+          "y": 1625.0
+        },
+        "ZIndex": 176.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 536626607,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000119",
+            "Owner": "0x0100000B00000116"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_D4B15418",
+        "Id": "0x0100000B00000125",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x0100000600004351",
+        "TargetPin": "0x0100000600004352",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 1700.0,
+          "y": 1400.0
+        },
+        "ZIndex": 174.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 3568391192,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000126",
+            "Owner": "0x0100000B00000125"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_5AFFDFDD",
+        "Id": "0x0100000B00000120",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x0100000600004351",
+        "TargetPin": "0x0100000600004352",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 1700.0,
+          "y": 950.0
+        },
+        "ZIndex": 174.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 1526718429,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000121",
+            "Owner": "0x0100000B00000120"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_73E4B218",
+        "Id": "0x0100000B00000129",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x0100000600004351",
+        "TargetPin": "0x0100000600004352",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 1700.0,
+          "y": 1175.0
+        },
+        "ZIndex": 174.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 1944367640,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B0000012A",
+            "Owner": "0x0100000B00000129"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_FB1E02D5",
+        "Id": "0x0100000B00000150",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x0100000B0000013C",
+        "TargetPin": "0x0100000B0000013E",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 2325.0,
+          "y": 2625.0
+        },
+        "ZIndex": 192.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 4213048021,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000153",
+            "Owner": "0x0100000B00000150"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_709D2804",
+        "Id": "0x0100000B0000015F",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x0100000B0000013C",
+        "TargetPin": "0x0100000B0000013E",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 2600.0,
+          "y": 2850.0
+        },
+        "ZIndex": 192.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 1889347588,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000160",
+            "Owner": "0x0100000B0000015F"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_010789DD",
+        "Id": "0x0100000B0000016C",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x0100000B0000013C",
+        "TargetPin": "0x0100000B0000013E",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 2350.0,
+          "y": 3075.0
+        },
+        "ZIndex": 192.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 17271261,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B0000016D",
+            "Owner": "0x0100000B0000016C"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Jump",
+      "Properties": {
+        "TechnicalName": "Jmp_CC729BB4",
+        "Id": "0x0100000B00000176",
+        "Parent": "0x01000006000040F2",
+        "Target": "0x010000060000433B",
+        "TargetPin": "0x010000060000433C",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 2350.0,
+          "y": 3275.0
+        },
+        "ZIndex": 192.0,
+        "Size": {
+          "w": 175.0,
+          "h": 150.0
+        },
+        "ShortId": 3430063028,
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000177",
+            "Owner": "0x0100000B00000176"
+          }
+        ]
+      }
+    },
+    {
       "Type": "Condition",
       "Properties": {
         "TechnicalName": "Cnd_47C73BD4",
@@ -9401,8 +10103,8 @@
         "Text": "",
         "ExternalId": "",
         "Position": {
-          "x": 1274.2000038782776,
-          "y": 1876.8000000000002
+          "x": 884.8000000000002,
+          "y": 1900.0
         },
         "ZIndex": 14.0,
         "Size": {
@@ -9816,6 +10518,60 @@
                 "Label": "",
                 "TargetPin": "0x01000006000040F4",
                 "Target": "0x01000006000040F2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Instruction",
+      "Properties": {
+        "TechnicalName": "Ins_F3A44C95",
+        "Id": "0x01000008000007DD",
+        "Parent": "0x01000006000040F2",
+        "DisplayName": "//ARTICY HTML VIEWER START NODE",
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 568.5036963832787,
+          "y": 1943.8543435265947
+        },
+        "ZIndex": 170.0,
+        "Size": {
+          "w": 225.0,
+          "h": 100.0
+        },
+        "ShortId": 4087630997,
+        "Expression": "//ARTICY HTML VIEWER START NODE\n//HTMLPREVIEW",
+        "Color": {
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x01000008000007DE",
+            "Owner": "0x01000008000007DD"
+          }
+        ],
+        "OutputPins": [
+          {
+            "Text": "",
+            "Id": "0x01000008000007DF",
+            "Owner": "0x01000008000007DD",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000600004334",
+                "Target": "0x0100000600004333"
               }
             ]
           }
@@ -10416,23 +11172,23 @@
     {
       "Type": "Instruction",
       "Properties": {
-        "TechnicalName": "Ins_F3A44C95",
-        "Id": "0x01000008000007DD",
+        "TechnicalName": "Ins_D9514657",
+        "Id": "0x0100000B0000014B",
         "Parent": "0x01000006000040F2",
-        "DisplayName": "//ARTICY HTML VIEWER START NODE",
+        "DisplayName": "TestFlowVariables.ArticyHubEnter=true;",
         "Text": "",
         "ExternalId": "",
         "Position": {
-          "x": 957.9037002615561,
-          "y": 1920.6543435265949
+          "x": 2325.0,
+          "y": 2875.0
         },
-        "ZIndex": 170.0,
+        "ZIndex": 190.0,
         "Size": {
           "w": 225.0,
           "h": 100.0
         },
-        "ShortId": 4087630997,
-        "Expression": "//ARTICY HTML VIEWER START NODE\n//HTMLPREVIEW",
+        "ShortId": 3645982295,
+        "Expression": "TestFlowVariables.ArticyHubEnter=true;",
         "Color": {
           "r": 0.78431374,
           "g": 0.8862745,
@@ -10441,15 +11197,15 @@
         "InputPins": [
           {
             "Text": "",
-            "Id": "0x01000008000007DE",
-            "Owner": "0x01000008000007DD"
+            "Id": "0x0100000B0000014D",
+            "Owner": "0x0100000B0000014B"
           }
         ],
         "OutputPins": [
           {
             "Text": "",
-            "Id": "0x01000008000007DF",
-            "Owner": "0x01000008000007DD",
+            "Id": "0x0100000B0000014E",
+            "Owner": "0x0100000B0000014B",
             "Connections": [
               {
                 "Color": {
@@ -10459,8 +11215,8 @@
                   "b": 0.90588236
                 },
                 "Label": "",
-                "TargetPin": "0x0100000600004334",
-                "Target": "0x0100000600004333"
+                "TargetPin": "0x0100000B00000160",
+                "Target": "0x0100000B0000015F"
               }
             ]
           }
@@ -11140,8 +11896,8 @@
         "Text": "",
         "ExternalId": "",
         "Position": {
-          "x": 2589.4000038782774,
-          "y": 2601.8
+          "x": 2600.0,
+          "y": 2500.0
         },
         "ZIndex": 20.0,
         "Size": {
@@ -11624,6 +12380,61 @@
       "Template": {}
     },
     {
+      "Type": "TravelTemplate",
+      "Properties": {
+        "TechnicalName": "Ins_B21CBB63",
+        "Id": "0x0100000B00000171",
+        "Parent": "0x01000006000040F2",
+        "DisplayName": "//TRAVEL - Perforge",
+        "Text": "",
+        "ExternalId": "",
+        "Position": {
+          "x": 2050.0,
+          "y": 3300.0
+        },
+        "ZIndex": 20.0,
+        "Size": {
+          "w": 225.0,
+          "h": 100.0
+        },
+        "ShortId": 2988227427,
+        "Expression": "//TRAVEL - Perforge",
+        "Color": {
+          "r": 0.050980393,
+          "g": 0.18039216,
+          "b": 0.31764707
+        },
+        "InputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000172",
+            "Owner": "0x0100000B00000171"
+          }
+        ],
+        "OutputPins": [
+          {
+            "Text": "",
+            "Id": "0x0100000B00000173",
+            "Owner": "0x0100000B00000171",
+            "Connections": [
+              {
+                "Color": {
+                  "a": 1.0,
+                  "r": 0.78431374,
+                  "g": 0.8862745,
+                  "b": 0.90588236
+                },
+                "Label": "",
+                "TargetPin": "0x0100000B00000177",
+                "Target": "0x0100000B00000176"
+              }
+            ]
+          }
+        ]
+      },
+      "Template": {}
+    },
+    {
       "Type": "AreaEventTemplate",
       "Properties": {
         "TechnicalName": "Ins_5A97A464",
@@ -11950,8 +12761,8 @@
         "Text": "",
         "ExternalId": "",
         "Position": {
-          "x": 1564.4000038782774,
-          "y": 1876.8000000000002
+          "x": 1175.0,
+          "y": 1900.0
         },
         "ZIndex": 21.0,
         "Size": {
