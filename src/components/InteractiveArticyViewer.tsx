@@ -8,6 +8,7 @@ import QuestionPanel from '../panels/QuestionPanel';
 import VariablesPanel from './VariablesPanel';
 import SearchNodesPanel from './SearchNodesPanel';
 import ConditionBubble from './ConditionBubble';
+import TextBlock from './TextBlock';
 
 interface InteractiveArticyViewerProps {
   data: any;
@@ -98,20 +99,22 @@ function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
               color: headerTextColor
             }}
           >
-            {previousChoice.choiceTitle}
+            {/* Check if this is a dialogue fragment by looking at the node type */}
+            {(previousChoice.node.Type === "DialogueInteractiveFragmentTemplate" ||
+              previousChoice.node.Type === "DialogueExplorationFragmentTemplate" ||
+              previousChoice.node.Type === "DialogueFragment") ? (
+              <span>
+                <CommentOutlined style={{ marginRight: '6px' }} />
+                {previousChoice.choiceTitle}
+              </span>
+            ) : (
+              previousChoice.choiceTitle
+            )}
           </div>
         )}
-        <div style={{
-          backgroundColor: backgroundColor,
-          border: `2px solid ${frameColor}`,
-          borderRadius: '4px',
-          padding: '12px',
-          color: 'rgba(255, 255, 255, 0.7)',
-          fontSize: '14px',
-          lineHeight: '1.4'
-        }}>
+        <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
           {previousChoice.choiceText}
-        </div>
+        </TextBlock>
       </div>
       {/* Back button outside the faded node - left aligned, full opacity */}
       <div style={{ marginTop: '10px', textAlign: 'left' }}>
@@ -274,6 +277,16 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     if (previousChoiceHistory.length > 0) {
       const lastChoice = previousChoiceHistory[previousChoiceHistory.length - 1];
 
+      console.log('🔙 GOING BACK TO PREVIOUS CHOICE:', {
+        backToNodeId: lastChoice.node.Properties.Id,
+        backToNodeType: lastChoice.node.Type,
+        lastChoiceText: lastChoice.choiceText,
+        lastChoiceTitle: lastChoice.choiceTitle,
+        nodeListLength: lastChoice.nodeList.length,
+        fromMultiChoice: lastChoice.fromMultiChoice,
+        currentPreviousHistoryLength: previousChoiceHistory.length
+      });
+
       // Restore variables state
       if (project && lastChoice.variables) {
         project.variables = { ...lastChoice.variables };
@@ -282,20 +295,74 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       // Restore node list and current node
       setNodeHistory(lastChoice.nodeList);
 
-      // Set current node to the last node in the restored history
-      if (lastChoice.nodeList.length > 0) {
-        navigateToNode(lastChoice.nodeList[lastChoice.nodeList.length - 1]);
-      } else {
-        // If no history, go back to the previous choice node itself
-        navigateToNode(lastChoice.node);
-      }
+      // Navigate to the choice-offering node
+      navigateToNode(lastChoice.node);
 
       // Remove the last choice from history
       setPreviousChoiceHistory(previousChoiceHistory.slice(0, -1));
 
-      // Reset choice state
-      setShowingChoices(false);
-      setChoiceOptions([]);
+      // If this was from a multi-choice, we need to restore the choice state
+      if (lastChoice.fromMultiChoice) {
+        // Check if the restored node is a hub-style node
+        const isHubStyleNode = (lastChoice.node.Type === "Hub" ||
+                               lastChoice.node.Type === "DialogueIntActionTemplate" ||
+                               (lastChoice.node.Type === "Instruction" &&
+                                (lastChoice.node.Properties.DisplayName?.includes("HUB") ||
+                                 lastChoice.node.Properties.Expression?.includes("HUB"))));
+
+        if (isHubStyleNode) {
+          // For hub nodes, directly show choices without calling handleNext
+          // Get outputs from the restored node
+          const outputs: ChoiceOption[] = [];
+          if (lastChoice.node.Properties.OutputPins) {
+            lastChoice.node.Properties.OutputPins.forEach((outputPin: any) => {
+              if (outputPin.Connections && outputPin.Connections.length > 0) {
+                outputPin.Connections.forEach((connection: any) => {
+                  const targetNode = project?.GetNodeByID(connection.Target);
+                  if (targetNode) {
+                    let choiceText = connection.Label ||
+                                   targetNode.Properties.DisplayName ||
+                                   targetNode.Properties.Text ||
+                                   targetNode.Properties.Expression ||
+                                   `Go to ${targetNode.Type}`;
+                    choiceText = choiceText.replace(/^\/\//, '').trim();
+                    if (choiceText.length > 100) {
+                      choiceText = choiceText.substring(0, 100) + '...';
+                    }
+
+                    const conditionText = targetNode?.Properties?.InputPins?.[0]?.Text?.replace(/;+$/, '').trim() || "";
+                    const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+
+                    outputs.push({
+                      text: choiceText,
+                      targetNode: targetNode,
+                      disabled: !conditionMet,
+                      condition: conditionText
+                    });
+                  }
+                });
+              }
+            });
+          }
+
+          console.log('🔙 Hub node restored - showing choices directly:', {
+            nodeId: lastChoice.node.Properties.Id,
+            nodeType: lastChoice.node.Type,
+            outputCount: outputs.length
+          });
+          setChoiceOptions(outputs);
+          setShowingChoices(true);
+        } else {
+          // For non-hub nodes, use the original handleNext approach
+          setTimeout(() => {
+            handleNext();
+          }, 0);
+        }
+      } else {
+        // Reset choice state for single choices
+        setShowingChoices(false);
+        setChoiceOptions([]);
+      }
 
       console.log('🔙 Went back to previous choice');
     }
@@ -418,15 +485,48 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       const targetNode = outputs[0].targetNode;
 
       // Store previous choice for single-output navigation
+      // Use speaker name for dialogue fragments, otherwise use DisplayName
+      const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                currentNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                currentNode.Type === "DialogueFragment";
+
+      const choiceTitle = isDialogueFragment ?
+        getSpeakerNameString(currentNode) :
+        currentNode.Properties.DisplayName;
+
+      // Get the actual node content for the previous choice display
+      let nodeText = 'No content';
+
+      // Priority order for text content (same as main display logic):
+      // 1. Text property (main content)
+      // 2. Expression property (for instruction nodes)
+      // 3. DisplayName as fallback
+      if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
+        nodeText = currentNode.Properties.Text;
+      } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
+        nodeText = currentNode.Properties.Expression;
+      } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
+        nodeText = currentNode.Properties.DisplayName;
+      }
+
       const previousChoice: PreviousChoice = {
         node: currentNode,
-        choiceText: outputs[0].text,
-        choiceTitle: currentNode.Properties.DisplayName,
+        choiceText: nodeText, // Use actual node content instead of connection label
+        choiceTitle: choiceTitle,
         color: currentNode.Properties.Color,
         nodeList: [...nodeHistory],
         variables: project ? { ...project.variables } : {},
         fromMultiChoice: false
       };
+      console.log('📝 STORING PREVIOUS CHOICE (single output):', {
+        nodeId: currentNode.Properties.Id,
+        nodeType: currentNode.Type,
+        choiceText: nodeText,
+        choiceTitle: choiceTitle,
+        nodeHistoryLength: nodeHistory.length,
+        previousChoiceHistoryLength: previousChoiceHistory.length,
+        targetNodeId: targetNode.Properties.Id
+      });
       setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
 
       // Store variables from the current node before navigating
@@ -439,10 +539,66 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       setShowingChoices(false);
       console.log('🔄 Navigated to:', targetNode.Properties.Id, targetNode.Type);
     } else {
-      // Multiple outputs - check if this is a dialogue node that should show content first
+      // Multiple outputs - store current node as previous choice before showing choices
+      // BUT: Don't store hub-style nodes as previous choices since they show choices immediately
+      const isHubStyleNode = (currentNode.Type === "Hub" ||
+                             currentNode.Type === "DialogueIntActionTemplate" ||
+                             (currentNode.Type === "Instruction" &&
+                              (currentNode.Properties.DisplayName?.includes("HUB") ||
+                               currentNode.Properties.Expression?.includes("HUB"))));
+
+      // Check if this is a dialogue fragment (needed for both hub and non-hub logic)
       const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
                                 currentNode.Type === "DialogueExplorationFragmentTemplate" ||
                                 currentNode.Type === "DialogueFragment";
+
+      if (!isHubStyleNode) {
+        const choiceTitle = isDialogueFragment ?
+          getSpeakerNameString(currentNode) :
+          currentNode.Properties.DisplayName;
+
+        // Get the actual node content for the previous choice display
+        let nodeText = 'No content';
+
+        // Priority order for text content (same as main display logic):
+        // 1. Text property (main content)
+        // 2. Expression property (for instruction nodes)
+        // 3. DisplayName as fallback
+        if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
+          nodeText = currentNode.Properties.Text;
+        } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
+          nodeText = currentNode.Properties.Expression;
+        } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
+          nodeText = currentNode.Properties.DisplayName;
+        }
+
+        // Store the current node as previous choice when transitioning to multiple choices
+        const previousChoice: PreviousChoice = {
+          node: currentNode,
+          choiceText: nodeText, // Use actual node content instead of generic text
+          choiceTitle: choiceTitle,
+          color: currentNode.Properties.Color,
+          nodeList: [...nodeHistory],
+          variables: project ? { ...project.variables } : {},
+          fromMultiChoice: false // This node itself is not from a multi-choice, but leads to one
+        };
+        console.log('📝 STORING PREVIOUS CHOICE (multiple outputs):', {
+          nodeId: currentNode.Properties.Id,
+          nodeType: currentNode.Type,
+          choiceText: nodeText,
+          choiceTitle: choiceTitle,
+          nodeHistoryLength: nodeHistory.length,
+          previousChoiceHistoryLength: previousChoiceHistory.length,
+          outputCount: outputs.length
+        });
+        setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
+      } else {
+        console.log('🔀 Hub-style node - NOT storing as previous choice:', {
+          nodeId: currentNode.Properties.Id,
+          nodeType: currentNode.Type,
+          outputCount: outputs.length
+        });
+      }
 
       if (isDialogueFragment && !showingChoices) {
         // For dialogue fragments, show choices after showing content
@@ -475,15 +631,52 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     // Store previous choice if we have a current node
     if (currentNode) {
+      // For choice selections, we need to store information for both:
+      // 1. Display: what choice was selected (target node info)
+      // 2. Navigation: where to go back to (current choice-offering node)
+      const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                      targetNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                      targetNode.Type === "DialogueFragment" ||
+                                      targetNode.Type === "DialogueIntActionTemplate";
+
+      // For DialogueIntActionTemplate (hub nodes), use the actual node content, not the choice text
+      let choiceTitle, choiceText;
+
+      if (targetNode.Type === "DialogueIntActionTemplate") {
+        // For hub nodes, show the hub's actual content as the choice text
+        choiceText = targetNode.Properties.Text ||
+                    targetNode.Properties.Expression ||
+                    targetNode.Properties.DisplayName ||
+                    selectedChoice.text;
+        choiceTitle = targetNode.Properties.DisplayName;
+      } else {
+        // For other nodes, use the original logic
+        choiceText = selectedChoice.text;
+        choiceTitle = isTargetDialogueFragment ?
+          getSpeakerNameString(targetNode) :
+          targetNode.Properties.DisplayName;
+      }
+
       const previousChoice: PreviousChoice = {
-        node: currentNode,
-        choiceText: selectedChoice.text,
-        choiceTitle: currentNode.Properties.DisplayName,
-        color: currentNode.Properties.Color,
+        node: currentNode, // Store the choice-offering node for navigation back
+        choiceText: choiceText, // Display the selected choice text or target content
+        choiceTitle: choiceTitle, // Display the target node title
+        color: targetNode.Properties.Color, // Use target node color for display
         nodeList: [...nodeHistory],
         variables: project ? { ...project.variables } : {},
         fromMultiChoice: choiceOptions.length > 1
       };
+      console.log('📝 STORING PREVIOUS CHOICE (choice select):', {
+        backToNodeId: currentNode.Properties.Id, // Where we'll navigate back to
+        backToNodeType: currentNode.Type,
+        displayChoiceText: choiceText, // What will be displayed
+        displayChoiceTitle: choiceTitle,
+        targetNodeId: targetNode.Properties.Id, // Where we're going now
+        targetNodeType: targetNode.Type,
+        nodeHistoryLength: nodeHistory.length,
+        previousChoiceHistoryLength: previousChoiceHistory.length,
+        fromMultiChoice: choiceOptions.length > 1
+      });
       setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
     }
 
@@ -661,7 +854,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     // Hub nodes are nodes with "HUB" in their name and multiple outputs
     // Note: LocationTemplate nodes should show their content first, not immediately show choices
+    // DialogueIntActionTemplate nodes should also act as hubs and show choices immediately
     const isHubStyleNode = (currentNode.Type === "Hub" ||
+                           currentNode.Type === "DialogueIntActionTemplate" ||
                            (currentNode.Type === "Instruction" &&
                             (currentNode.Properties.DisplayName?.includes("HUB") ||
                              currentNode.Properties.Expression?.includes("HUB"))));
@@ -793,7 +988,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         )}
 
         <div style={{
-          padding: '20px',
+          padding: '5px 20px',
           maxWidth: '800px',
           margin: '0 auto',
           marginLeft: calculateMarginLeft(totalPanelWidth),
@@ -894,7 +1089,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             // Check if target node is a dialogue fragment and use speaker name with icon
             const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
                                            targetNode.Type === "DialogueExplorationFragmentTemplate" ||
-                                           targetNode.Type === "DialogueFragment";
+                                           targetNode.Type === "DialogueFragment" ||
+                                           targetNode.Type === "DialogueIntActionTemplate";
 
             if (isTargetDialogueFragment) {
               const speakerTitle = getSpeakerNameWithIcon(targetNode);
@@ -973,6 +1169,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // Debug logging for specific node types
   if (currentNode.Type === "DialogueExplorationActionTemplate" ||
+      currentNode.Type === "DialogueIntActionTemplate" ||
       currentNode.Type === "Hub" ||
       currentNode.Type === "LocationTemplate" ||
       currentNode.Type === "BarkJumpTemplate" ||
@@ -1039,7 +1236,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       )}
 
       <div style={{
-        padding: '20px',
+        padding: '5px 20px',
         maxWidth: '800px',
         margin: '0 auto',
         marginLeft: calculateMarginLeft(totalPanelWidth),
