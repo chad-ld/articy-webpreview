@@ -17,15 +17,15 @@
   background: rgba(36, 36, 36, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 20px 0;
+  padding: 4px 0;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .app-header h1 {
-  margin: 0 0 8px 0;
-  font-size: 28px;
+  margin: 0 0 2px 0;
+  font-size: 20px;
   font-weight: 600;
   color: #1890ff;
   text-align: center;
@@ -35,19 +35,20 @@
   margin: 0;
   color: rgba(255, 255, 255, 0.7);
   text-align: center;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .format-badge {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-top: 12px;
-  padding: 6px 12px;
+  gap: 6px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  padding: 4px 8px;
   background: #e6f7ff;
   border: 1px solid #91d5ff;
-  border-radius: 16px;
+  border-radius: 12px;
   display: inline-flex;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -71,7 +72,7 @@
 /* Main Content */
 .app-main {
   flex: 1;
-  padding: 40px 0;
+  padding: 5px 0;
 }
 
 .upload-section {
@@ -176,15 +177,15 @@
   }
   
   .app-header h1 {
-    font-size: 24px;
+    font-size: 18px;
   }
-  
+
   .app-header p {
-    font-size: 14px;
+    font-size: 11px;
   }
-  
+
   .app-main {
-    padding: 20px 0;
+    padding: 4px 0;
   }
   
   .features-grid {
@@ -213,11 +214,11 @@
 
 @media (max-width: 480px) {
   .app-header {
-    padding: 16px 0;
+    padding: 3px 0;
   }
-  
+
   .app-header h1 {
-    font-size: 20px;
+    font-size: 16px;
   }
   
   .features-info h3 {
