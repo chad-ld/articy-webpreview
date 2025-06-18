@@ -52,6 +52,16 @@ function renderTextWithLinks(text: string): JSX.Element[] {
 function TextBlock(props: TextBlockProps) {
   const text = props.children as string;
 
+  // Safety check for undefined text
+  if (!text) {
+    console.warn('TextBlock received undefined text, using empty string');
+    return <div className="articy-textblock" style={{
+      borderColor: props.borderColor || 'rgb(147, 193, 204)',
+      backgroundColor: props.backgroundColor || 'rgb(90, 102, 104)',
+      color: 'white'
+    }}></div>;
+  }
+
   // Handle both \r\n (Windows) and \n (Unix) line endings
   const textChunks = text.split(/\r?\n/);
 
