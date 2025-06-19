@@ -718,18 +718,29 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                                   currentNode.Type === "DialogueExplorationFragmentTemplate" ||
                                   currentNode.Type === "DialogueFragment";
 
-        const choiceTitle = isDialogueFragment ?
+        const originalChoiceTitle = isDialogueFragment ?
           getSpeakerNameString(currentNode) :
           currentNode.Properties.DisplayName;
 
         // Get the actual node content for the previous choice display
+        // Use the same logic as main display to ensure consistency
         let nodeText = 'No content';
-        if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
+        let choiceTitle = currentNode.Properties.DisplayName || undefined;
+
+        if (currentNode.Type === "Hub") {
+          nodeText = ''; // Hub nodes have no body text, only title
+          choiceTitle = currentNode.Properties.DisplayName || 'Hub';
+        } else if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
           nodeText = currentNode.Properties.Text;
         } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
           nodeText = currentNode.Properties.Expression;
+          // For instruction nodes, always show DisplayName as title even if Expression is used for text
+          if (currentNode.Type === "Instruction") {
+            choiceTitle = currentNode.Properties.DisplayName || undefined;
+          }
         } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
           nodeText = currentNode.Properties.DisplayName;
+          choiceTitle = undefined; // Don't duplicate title and text
         }
 
         const previousChoice: PreviousChoice = {
@@ -796,23 +807,33 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                                 currentNode.Type === "DialogueFragment";
 
       if (!isHubStyleNode) {
-        const choiceTitle = isDialogueFragment ?
+        const originalChoiceTitle = isDialogueFragment ?
           getSpeakerNameString(currentNode) :
           currentNode.Properties.DisplayName;
 
         // Get the actual node content for the previous choice display
+        // Use the same logic as main display to ensure consistency
         let nodeText = 'No content';
+        let choiceTitle = currentNode.Properties.DisplayName || undefined;
 
         // Priority order for text content (same as main display logic):
         // 1. Text property (main content)
         // 2. Expression property (for instruction nodes)
         // 3. DisplayName as fallback
-        if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
+        if (currentNode.Type === "Hub") {
+          nodeText = ''; // Hub nodes have no body text, only title
+          choiceTitle = currentNode.Properties.DisplayName || 'Hub';
+        } else if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
           nodeText = currentNode.Properties.Text;
         } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
           nodeText = currentNode.Properties.Expression;
+          // For instruction nodes, always show DisplayName as title even if Expression is used for text
+          if (currentNode.Type === "Instruction") {
+            choiceTitle = currentNode.Properties.DisplayName || undefined;
+          }
         } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
           nodeText = currentNode.Properties.DisplayName;
+          choiceTitle = undefined; // Don't duplicate title and text
         }
 
         // Store the current node as previous choice when transitioning to multiple choices
@@ -991,11 +1012,30 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           getSpeakerNameString(finalTargetNode) :
           (skippedNode.Properties.DisplayName || finalTargetNode.Properties.DisplayName);
       } else {
-        // For other nodes, use the original logic
-        choiceText = selectedChoice.text;
-        choiceTitle = isTargetDialogueFragment ?
-          getSpeakerNameString(finalTargetNode) :
-          finalTargetNode.Properties.DisplayName;
+        // For other nodes, use the actual target node content (same logic as main display)
+        // This ensures previous choices show the same content as the main display
+        if (finalTargetNode.Type === "Hub") {
+          choiceText = ''; // Hub nodes have no body text, only title
+          choiceTitle = finalTargetNode.Properties.DisplayName || 'Hub';
+        } else if (finalTargetNode.Properties.Text && finalTargetNode.Properties.Text.trim()) {
+          choiceText = finalTargetNode.Properties.Text;
+          choiceTitle = finalTargetNode.Properties.DisplayName;
+        } else if (finalTargetNode.Properties.Expression && finalTargetNode.Properties.Expression.trim()) {
+          choiceText = finalTargetNode.Properties.Expression;
+          // For instruction nodes, always show DisplayName as title even if Expression is used for text
+          if (finalTargetNode.Type === "Instruction") {
+            choiceTitle = finalTargetNode.Properties.DisplayName || undefined;
+          }
+        } else if (finalTargetNode.Properties.DisplayName && finalTargetNode.Properties.DisplayName.trim()) {
+          choiceText = finalTargetNode.Properties.DisplayName;
+          choiceTitle = undefined; // Don't duplicate title and text
+        } else {
+          // Fallback to original logic if no content found
+          choiceText = selectedChoice.text;
+          choiceTitle = isTargetDialogueFragment ?
+            getSpeakerNameString(finalTargetNode) :
+            finalTargetNode.Properties.DisplayName;
+        }
       }
 
       const previousChoice: PreviousChoice = {
@@ -1489,7 +1529,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             }
 
             // Determine the title for the choice panel
-            let choiceTitle = option.text; // Default to choice label
+            // Use the same logic as main display to ensure consistency
+            let choiceTitle = targetNode.Properties.DisplayName || undefined;
 
             // Check if target node is a dialogue fragment and use speaker name with icon
             const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
@@ -1507,6 +1548,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               if (targetNode.Properties.StageDirections && targetNode.Properties.StageDirections.trim()) {
                 choiceStageDirections = targetNode.Properties.StageDirections;
               }
+            } else if (targetNode.Type === "Hub") {
+              // Hub nodes should show their DisplayName as title
+              choiceTitle = targetNode.Properties.DisplayName || 'Hub';
+            } else if (targetNode.Type === "Instruction") {
+              // For instruction nodes, always show DisplayName as title
+              choiceTitle = targetNode.Properties.DisplayName || undefined;
             }
 
             return (
@@ -1582,30 +1629,17 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     nodeText = currentNode.Properties.Text;
   } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
     nodeText = currentNode.Properties.Expression;
+    // For instruction nodes, always show DisplayName as title even if Expression is used for text
+    // This ensures nodes like "//HUB - PerForge Conversation Hub Start" show the full title
+    if (currentNode.Type === "Instruction") {
+      nodeTitle = currentNode.Properties.DisplayName || undefined;
+    }
   } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
     nodeText = currentNode.Properties.DisplayName;
     nodeTitle = undefined; // Don't duplicate title and text
   }
 
-  // Debug logging for specific node types
-  if (currentNode.Type === "DialogueExplorationActionTemplate" ||
-      currentNode.Type === "DialogueIntActionTemplate" ||
-      currentNode.Type === "Hub" ||
-      currentNode.Type === "LocationTemplate" ||
-      currentNode.Type === "BarkJumpTemplate" ||
-      (currentNode.Type === "Instruction" && currentNode.Properties.DisplayName?.includes("HUB"))) {
-    console.log('🔍 DEBUG - Special node type detected:', {
-      type: currentNode.Type,
-      id: currentNode.Properties.Id,
-      displayName: currentNode.Properties.DisplayName,
-      text: currentNode.Properties.Text,
-      expression: currentNode.Properties.Expression,
-      color: currentNode.Properties.Color,
-      outputs: getCurrentNodeOutputs().length,
-      resolvedNodeText: nodeText,
-      resolvedNodeTitle: nodeTitle
-    });
-  }
+
 
   return (
     <div>
