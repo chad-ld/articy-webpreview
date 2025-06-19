@@ -708,11 +708,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         toNodeType: targetNode.Type
       });
 
-      // Only store as previous choice if this node was reached from a multi-choice selection
-      // This prevents linear dialogue progression from cluttering the back history
-      const lastChoice = previousChoiceHistory.length > 0 ?
-                        previousChoiceHistory[previousChoiceHistory.length - 1] : null;
-      const shouldStoreAsPreviousChoice = lastChoice && lastChoice.fromMultiChoice;
+      // Store as previous choice for all single-output navigations to allow back navigation
+      // This allows users to go back through linear progression as well as multi-choice selections
+      const shouldStoreAsPreviousChoice = true;
 
       if (shouldStoreAsPreviousChoice) {
         // Store the current node as previous choice for single-path navigation
@@ -755,10 +753,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
         setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
       } else {
-        console.log('🔄 SKIPPING previous choice storage (linear progression):', {
-          nodeId: currentNode.Properties.Id,
-          nodeType: currentNode.Type,
-          reason: 'Not from multi-choice selection'
+        console.log('🔄 SKIPPING previous choice storage (no current node):', {
+          nodeId: currentNode?.Properties?.Id,
+          nodeType: currentNode?.Type,
+          reason: 'No current node to store'
         });
       }
 
