@@ -1527,16 +1527,21 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             let choiceNodeText = 'No content';
             const targetNode = option.targetNode;
 
-            // Priority order for text content:
-            // 1. Text property (main content)
-            // 2. Expression property (for instruction nodes)
-            // 3. DisplayName as fallback
-            if (targetNode.Properties.Text && targetNode.Properties.Text.trim()) {
-              choiceNodeText = targetNode.Properties.Text;
-            } else if (targetNode.Properties.Expression && targetNode.Properties.Expression.trim()) {
-              choiceNodeText = targetNode.Properties.Expression;
-            } else if (targetNode.Properties.DisplayName && targetNode.Properties.DisplayName.trim()) {
-              choiceNodeText = targetNode.Properties.DisplayName;
+            // Special handling for Hub nodes - they never have body text
+            if (targetNode.Type === 'Hub') {
+              choiceNodeText = '';
+            } else {
+              // Priority order for text content:
+              // 1. Text property (main content)
+              // 2. Expression property (for instruction nodes)
+              // 3. DisplayName as fallback
+              if (targetNode.Properties.Text && targetNode.Properties.Text.trim()) {
+                choiceNodeText = targetNode.Properties.Text;
+              } else if (targetNode.Properties.Expression && targetNode.Properties.Expression.trim()) {
+                choiceNodeText = targetNode.Properties.Expression;
+              } else if (targetNode.Properties.DisplayName && targetNode.Properties.DisplayName.trim()) {
+                choiceNodeText = targetNode.Properties.DisplayName;
+              }
             }
 
             // Determine the title for the choice panel
