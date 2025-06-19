@@ -887,39 +887,124 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     const selectedChoice = choiceOptions[choiceIndex];
     const targetNode = selectedChoice.targetNode;
 
+    // Check if we're going from multiple choice to single choice and should skip
+    const isFromMultipleChoice = choiceOptions.length > 1;
+    let finalTargetNode = targetNode;
+    let skippedNode = null;
+
+    if (isFromMultipleChoice) {
+      // Check if target node has exactly one output (single choice) first
+      const targetOutputs = [];
+      if (targetNode.Properties.OutputPins) {
+        targetNode.Properties.OutputPins.forEach((outputPin: any) => {
+          if (outputPin.Connections && outputPin.Connections.length > 0) {
+            outputPin.Connections.forEach((connection: any) => {
+              const nextNode = project?.GetNodeByID(connection.Target);
+              if (nextNode) {
+                // Check conditions for this output
+                const conditionText = nextNode?.Properties?.InputPins?.[0]?.Text?.replace(/;+$/, '').trim() || "";
+                const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+
+                if (conditionMet) {
+                  targetOutputs.push({
+                    text: connection.Label || nextNode.Properties.DisplayName || 'Next',
+                    targetNode: nextNode,
+                    disabled: false,
+                    condition: conditionText
+                  });
+                }
+              }
+            });
+          }
+        });
+      }
+
+      // Don't skip certain node types that are meant to show choices or content
+      // DialogueIntActionTemplate nodes are ALWAYS hub nodes and should never be skipped
+      // Other dialogue nodes should only be prevented from skipping if they have multiple outputs
+      const shouldNeverSkip = (
+        targetNode.Type === "DialogueIntActionTemplate" ||  // Hub nodes - ALWAYS show (never skip)
+        (targetNode.Type === "DialogueExplorationFragmentTemplate" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
+        (targetNode.Type === "DialogueInteractiveFragmentTemplate" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
+        (targetNode.Type === "DialogueFragment" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
+        targetNode.Type === "Hub" ||  // Hub nodes always show
+        targetNode.Type === "Condition" ||  // Condition nodes need to show their logic
+        (targetNode.Type === "Instruction" &&
+         (targetNode.Properties.DisplayName?.includes("HUB") ||
+          targetNode.Properties.Expression?.includes("HUB")))  // Hub-style instruction nodes
+      );
+
+      if (!shouldNeverSkip) {
+        // If target node has exactly one valid output, skip it
+        if (targetOutputs.length === 1) {
+          console.log('🔄 SKIP DETECTED: Multiple → Single choice, skipping intermediate node:', {
+            fromNodeId: currentNode.Properties.Id,
+            fromNodeType: currentNode.Type,
+            skippingNodeId: targetNode.Properties.Id,
+            skippingNodeType: targetNode.Type,
+            finalTargetNodeId: targetOutputs[0].targetNode.Properties.Id,
+            finalTargetNodeType: targetOutputs[0].targetNode.Type
+          });
+
+          skippedNode = targetNode;
+          finalTargetNode = targetOutputs[0].targetNode;
+
+          // Process the skipped node (store variables, etc.) but don't display it
+          if (project) {
+            project.StoreVariablesFromNode(skippedNode);
+          }
+        }
+      } else {
+        console.log('🔄 SKIP PREVENTION: Node type should never be skipped:', {
+          nodeId: targetNode.Properties.Id,
+          nodeType: targetNode.Type,
+          reason: 'Hub or dialogue node that needs to show content/choices'
+        });
+      }
+    }
+
     // Store previous choice if we have a current node
     if (currentNode) {
       // For choice selections, we need to store information for both:
       // 1. Display: what choice was selected (target node info)
       // 2. Navigation: where to go back to (current choice-offering node)
-      const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
-                                      targetNode.Type === "DialogueExplorationFragmentTemplate" ||
-                                      targetNode.Type === "DialogueFragment" ||
-                                      targetNode.Type === "DialogueIntActionTemplate";
+      const isTargetDialogueFragment = finalTargetNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                      finalTargetNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                      finalTargetNode.Type === "DialogueFragment" ||
+                                      finalTargetNode.Type === "DialogueIntActionTemplate";
 
       // For DialogueIntActionTemplate (hub nodes), use the actual node content, not the choice text
       let choiceTitle, choiceText;
 
-      if (targetNode.Type === "DialogueIntActionTemplate") {
+      if (finalTargetNode.Type === "DialogueIntActionTemplate") {
         // For hub nodes, show the hub's actual content as the choice text
-        choiceText = targetNode.Properties.Text ||
-                    targetNode.Properties.Expression ||
-                    targetNode.Properties.DisplayName ||
+        choiceText = finalTargetNode.Properties.Text ||
+                    finalTargetNode.Properties.Expression ||
+                    finalTargetNode.Properties.DisplayName ||
                     selectedChoice.text;
-        choiceTitle = targetNode.Properties.DisplayName;
+        choiceTitle = finalTargetNode.Properties.DisplayName;
+      } else if (skippedNode) {
+        // If we skipped a node, use the skipped node's content for display
+        choiceText = skippedNode.Properties.Text ||
+                    skippedNode.Properties.Expression ||
+                    skippedNode.Properties.DisplayName ||
+                    selectedChoice.text;
+        choiceTitle = isTargetDialogueFragment ?
+          getSpeakerNameString(finalTargetNode) :
+          (skippedNode.Properties.DisplayName || finalTargetNode.Properties.DisplayName);
       } else {
         // For other nodes, use the original logic
         choiceText = selectedChoice.text;
         choiceTitle = isTargetDialogueFragment ?
-          getSpeakerNameString(targetNode) :
-          targetNode.Properties.DisplayName;
+          getSpeakerNameString(finalTargetNode) :
+          finalTargetNode.Properties.DisplayName;
       }
 
       const previousChoice: PreviousChoice = {
         node: currentNode, // Store the choice-offering node for navigation back
         choiceText: choiceText, // Display the selected choice text or target content
         choiceTitle: choiceTitle, // Display the target node title
-        color: targetNode.Properties.Color, // Use target node color for display
+        color: skippedNode ? skippedNode.Properties.Color : finalTargetNode.Properties.Color, // Use skipped node color if available, otherwise final target
         nodeList: [...nodeHistory],
         variables: project ? { ...project.variables } : {},
         fromMultiChoice: choiceOptions.length > 1
@@ -929,8 +1014,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         backToNodeType: currentNode.Type,
         displayChoiceText: choiceText, // What will be displayed
         displayChoiceTitle: choiceTitle,
-        targetNodeId: targetNode.Properties.Id, // Where we're going now
-        targetNodeType: targetNode.Type,
+        targetNodeId: finalTargetNode.Properties.Id, // Where we're going now
+        targetNodeType: finalTargetNode.Type,
+        skippedNodeId: skippedNode?.Properties?.Id,
+        skippedNodeType: skippedNode?.Type,
         nodeHistoryLength: nodeHistory.length,
         previousChoiceHistoryLength: previousChoiceHistory.length,
         fromMultiChoice: choiceOptions.length > 1
@@ -943,14 +1030,23 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       project.StoreVariablesFromNode(currentNode);
     }
 
-    // Navigate to the selected choice
-    navigateToNode(targetNode);
-    setNodeHistory([...nodeHistory, targetNode]);
+    // Navigate to the final target (either original target or skipped-to node)
+    navigateToNode(finalTargetNode);
+
+    // Update node history - include skipped node if we skipped one
+    const newNodeHistory = skippedNode ?
+      [...nodeHistory, targetNode, finalTargetNode] :
+      [...nodeHistory, finalTargetNode];
+    setNodeHistory(newNodeHistory);
+
     setShowingChoices(false);
     setChoiceOptions([]);
 
     console.log('✅ Selected choice:', selectedChoice.text);
-    console.log('🔄 Navigated to:', targetNode.Properties.Id, targetNode.Type);
+    console.log('🔄 Navigated to:', finalTargetNode.Properties.Id, finalTargetNode.Type);
+    if (skippedNode) {
+      console.log('⏭️ Skipped intermediate node:', skippedNode.Properties.Id, skippedNode.Type);
+    }
   };
 
   // Handle restart

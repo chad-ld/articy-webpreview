@@ -1,0 +1,509 @@
+[vite] connecting... client:206:9
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-37RMDTVC.js:21536:25
+[Articy Web Viewer v4.x] Starting application... App.tsx:29:13
+✅ Enhanced file input ready App.tsx:30:13
+✅ 3.x and 4.x format support enabled App.tsx:31:13
+✅ Automatic format detection active App.tsx:32:13
+[Articy Web Viewer v4.x] Starting application... App.tsx:29:13
+✅ Enhanced file input ready App.tsx:30:13
+✅ 3.x and 4.x format support enabled App.tsx:31:13
+✅ Automatic format detection active App.tsx:32:13
+[vite] connected. client:286:21
+🔄 Processing input: Multiple JSON files (8 files) EnhancedFileInput.tsx:47:15
+🚀 Starting data processing pipeline... dataRouter.js:35:15
+🔍 Starting format detection... formatDetector.js:26:15
+📋 Input type detected: object formatDetector.js:44:17
+🎯 Detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9, inputType: "object" }
+formatDetector.js:66:17
+🔍 Format detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9 }
+dataRouter.js:43:17
+📋 Processing 4.x format data... dataRouter.js:137:15
+Loading 4.x format data (raw)... dataLoader4x.js:57:15
+Available files: 
+Array(8) [ "object_definitions_localization.json", "package_010000060000401C_localization.json", "package_010000060000401C_objects.json", "script_methods.json", "global_variables.json", "hierarchy.json", "manifest.json", "object_definitions.json" ]
+dataLoader4x.js:58:15
+File sizes: 
+Array(8) [ "object_definitions_localization.json: 2 chars", "package_010000060000401C_localization.json: 43332 chars", "package_010000060000401C_objects.json: 354877 chars", "script_methods.json: 27 chars", "global_variables.json: 5359 chars", "hierarchy.json: 57241 chars", "manifest.json: 2069 chars", "object_definitions.json: 58502 chars" ]
+dataLoader4x.js:59:15
+Manifest loaded: 
+Object { exportVersion: "2.1", packagesCount: 1 }
+dataLoader4x.js:108:15
+Global variables loaded: 2 namespaces dataLoader4x.js:136:15
+Hierarchy loaded dataLoader4x.js:161:15
+Object definitions loaded dataLoader4x.js:177:17
+Object definitions localization loaded dataLoader4x.js:188:17
+🔍 Processing package: 
+Object { id: "0x010000060000401C", name: "All objects", objectsFile: "package_010000060000401C_objects.json" }
+dataLoader4x.js:208:15
+📦 Package objects loaded for 0x010000060000401C: 
+Object { objectsCount: 256, hasObjects: true, topLevelKeys: (1) […], firstObjectType: "FlowFragment", rawDataType: "object", isArray: false }
+dataLoader4x.js:221:19
+✅ Package 0x010000060000401C has 256 objects dataLoader4x.js:234:21
+Package localization loaded for 0x010000060000401C: 188 text entries dataLoader4x.js:250:19
+Script methods loaded dataLoader4x.js:277:15
+4.x raw data loading complete: 
+Object { hasManifest: true, packageCount: 1, totalObjects: 256 }
+dataLoader4x.js:83:15
+🔄 Starting data merge process... dataMerger4x.js:26:15
+🔍 LoadedData structure: 
+Object { hasManifest: true, hasPackages: true, packageKeys: (1) […], hasLocalizations: true }
+dataMerger4x.js:27:15
+🔄 Merging package 0x010000060000401C: 
+Object { name: "All objects", hasPackageData: true, packageDataKeys: (1) […], objectCount: 256, hasLocalization: true, packageDataType: "object", isPackageDataArray: false }
+dataMerger4x.js:146:17
+🔍 Package 0x010000060000401C detailed structure: 
+Object { hasObjects: true, objectsType: "object", objectsIsArray: true, objectsLength: 256, firstObjectType: "FlowFragment", packageDataKeys: (1) […] }
+dataMerger4x.js:159:17
+🔄 About to merge 256 objects for package 0x010000060000401C dataMerger4x.js:169:17
+📝 Resolved DisplayName: FFr_F1DC497C.DisplayName → RND Flows dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_0D5E767F.DisplayName → FLOW TEMPLATES dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B1513FC1.DisplayName → hide 2nd node example dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2818583C.DisplayName → v01 Mission Structure - Mission Centric dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_CAA4F9DC.DisplayName → v02 Mission Structure - Location Centric dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AB2104B3.DisplayName → Template Nodes dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D8EC5E7C.DisplayName → Simple Flow Example dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_663FD1A4.DisplayName → Nested Sample dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_FC9DBC99.DisplayName → Simple Ending Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_35C445A4.DisplayName → Flow Test v03 dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_18E13728.DisplayName → Nested Sample dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BBFA364D.DisplayName → Alt Flow Node Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_5B0492DA.DisplayName → Nest Test Level 01 dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_57B49778.DisplayName → Second Level Nesting dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A605BD84.DisplayName → Web HTML Git Hub Issues dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9BAE80A2.DisplayName → Simplest Test CB dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_27B4BF65.DisplayName → Saved By Zero Example dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B40E5B08.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A325DF21.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_777D1E8B.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EA4474CC.DisplayName → ||QUEST_001 - The Narrative Bible of Ultimate Power dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E9A4CE24.DisplayName → ||QUEST_002 - Revenge Of The Toxic Troll dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A4AF0966.DisplayName → ||QUEST_101 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F36ADF2B.DisplayName → ||QUEST_102 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_36A9D2EF.DisplayName → ||QUEST_103 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BCA3777E.DisplayName → ||QUEST_104 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_3033B87D.DisplayName → ||QUEST_000 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4196D8BE.DisplayName → ||LOCATION - PerForge dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_124A97AE.DisplayName → ||LOCATION - The Lost Forest dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7412BD2A.DisplayName → ||LOCATION - The Pits of Gnesding dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4AC6C68B.DisplayName → ||LOCATION - (TEMP LOCATION 01) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EE2247AE.DisplayName → ||LOCATION - (TEMP LOCATION 02) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_85844006.DisplayName → ||LOCATION - (TEMP LOCATION 03) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_1823A2F2.DisplayName → ||LOCATION - (TEMP LOCATION 04) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_451AD1EC.DisplayName → ||LOCATION - (Location Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A97DCF5D.DisplayName → /BARKS - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E3C53E60.DisplayName → /BARKJUMP - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B9F87F33.DisplayName → Troll Threatens Player dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F6023C36.DisplayName → Duhvel Opper Works on Sword dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F59171D3.DisplayName → /BARKS - (Situation) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F75A144A.DisplayName → /BARKJUMP - (bark group name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EF5D9B66.DisplayName → Initiate Exploration Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D9D98307.DisplayName → ||CRAFTING - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4E79470B.DisplayName → ||COMBAT - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7E041108.DisplayName → ||ACTION - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BDD348EC.DisplayName → ||TRAVEL - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: Dlg_28733231.DisplayName → Dialogue Node Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_18E68216.DisplayName → Player/Writer dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_C21FA208.DisplayName → Duhvel Opper dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F17EEBF5.DisplayName → Test - Angry Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_100228C8.DisplayName → Test - Happy Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F6CAC097.DisplayName → Toxic Troll dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_7AC9E953.DisplayName → The Mace Of Bug Squashing dataMerger4x.js:247:21
+✅ Package 0x010000060000401C merged: 256 models dataMerger4x.js:181:19
+✅ Data merge complete: 
+Object { globalVariables: 2, objectDefinitions: 67, packages: 1, totalModels: 256 }
+dataMerger4x.js:46:15
+✅ 4.x data processed and converted: 
+Object { packages: 1, globalVariables: 2, objectDefinitions: 67, totalModels: 256 }
+dataRouter.js:152:15
+✅ Data processing complete: 
+Object { format: "4.x", packages: 1, totalModels: 256 }
+dataRouter.js:74:17
+Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead. chunk-3TLNCLU7.js:1346:15
+🎉 Data loaded successfully: 
+Object { success: true, format: "4.x", version: "2.1", confidence: 0.9, summary: {…}, nodeTypes: {…}, features: {…}, processingInfo: {…} }
+App.tsx:35:13
+🔄 InteractiveArticyViewer: Initializing ArticyProject with data: 
+Object { hasPackages: true, packageCount: 1, totalModels: 256 }
+InteractiveArticyViewer.tsx:246:17
+🔧 ArticyProject initialized with data: 
+Object { hasPackages: true, packageCount: 1, hasGlobalVariables: true, hasObjectDefinitions: true, sourceFormat: "4.x", totalModels: 256 }
+ArticyProject.ts:10:13
+📦 First package: 
+Object { name: "All objects", modelCount: 256, firstModel: "FlowFragment" }
+ArticyProject.ts:19:15
+🔍 InteractiveArticyViewer: Calling GetStartNode()... InteractiveArticyViewer.tsx:253:17
+🔍 Searching for start node in 1 packages ArticyProject.ts:48:13
+📦 Package 0: All objects, 256 models ArticyProject.ts:51:15
+🎯 Found start node: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true, foundIn: "Expression" }
+ArticyProject.ts:57:19
+🔍 InteractiveArticyViewer: GetStartNode() returned: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:255:17
+✅ InteractiveArticyViewer: Start node set successfully InteractiveArticyViewer.tsx:264:19
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyOnlyMode: false, choiceConditions: [] }
+InteractiveArticyViewer.tsx:780:13
+🔄 InteractiveArticyViewer: Initializing ArticyProject with data: 
+Object { hasPackages: true, packageCount: 1, totalModels: 256 }
+InteractiveArticyViewer.tsx:246:17
+🔧 ArticyProject initialized with data: 
+Object { hasPackages: true, packageCount: 1, hasGlobalVariables: true, hasObjectDefinitions: true, sourceFormat: "4.x", totalModels: 256 }
+ArticyProject.ts:10:13
+📦 First package: 
+Object { name: "All objects", modelCount: 256, firstModel: "FlowFragment" }
+ArticyProject.ts:19:15
+🔍 InteractiveArticyViewer: Calling GetStartNode()... InteractiveArticyViewer.tsx:253:17
+🔍 Searching for start node in 1 packages ArticyProject.ts:48:13
+📦 Package 0: All objects, 256 models ArticyProject.ts:51:15
+🎯 Found start node: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true, foundIn: "Expression" }
+ArticyProject.ts:57:19
+🔍 InteractiveArticyViewer: GetStartNode() returned: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:255:17
+✅ InteractiveArticyViewer: Start node set successfully InteractiveArticyViewer.tsx:264:19
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyOnlyMode: false, choiceConditions: [] }
+InteractiveArticyViewer.tsx:780:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004333", targetNodeId: "0x0100000600004333", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004333", targetNodeId: "0x0100000600004333", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004333", targetNodeId: "0x0100000600004333", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004333", targetNodeId: "0x0100000600004333", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004333", targetNodeId: "0x0100000600004333", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004333", targetNodeId: "0x0100000600004333", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔄 Single output navigation (no choice stored): 
+Object { fromNodeId: "0x01000008000007DD", fromNodeType: "Instruction", toNodeId: "0x0100000600004333", toNodeType: "Instruction" }
+InteractiveArticyViewer.tsx:522:15
+🔄 Navigated to: 0x0100000600004333 Instruction InteractiveArticyViewer.tsx:534:15
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004472", targetNodeId: "0x0100000600004472", targetNodeType: "WaypointTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004472", targetNodeId: "0x0100000600004472", targetNodeType: "WaypointTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004472", targetNodeId: "0x0100000600004472", targetNodeType: "WaypointTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004472", targetNodeId: "0x0100000600004472", targetNodeType: "WaypointTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004472", targetNodeId: "0x0100000600004472", targetNodeType: "WaypointTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004472", targetNodeId: "0x0100000600004472", targetNodeType: "WaypointTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔄 Single output navigation (no choice stored): 
+Object { fromNodeId: "0x0100000600004333", fromNodeType: "Instruction", toNodeId: "0x0100000600004472", toNodeType: "WaypointTemplate" }
+InteractiveArticyViewer.tsx:522:15
+processing... TestFlowVariables.SampleString="great googly moogly"; ArticyProject.ts:132:17
+processing... TestFlowVariables.TestPlayerHitPoints=TestFlowVariables.TestPlayerHitPoints+1; ArticyProject.ts:132:17
+processing... TestFlowVariables.HasShield=true; ArticyProject.ts:132:17
+🔄 Navigated to: 0x0100000600004472 WaypointTemplate InteractiveArticyViewer.tsx:534:15
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x010000060000433B", targetNodeId: "0x010000060000433B", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x010000060000433B", targetNodeId: "0x010000060000433B", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x010000060000433B", targetNodeId: "0x010000060000433B", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x010000060000433B", targetNodeId: "0x010000060000433B", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x010000060000433B", targetNodeId: "0x010000060000433B", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x010000060000433B", targetNodeId: "0x010000060000433B", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔄 Single output navigation (no choice stored): 
+Object { fromNodeId: "0x0100000600004472", fromNodeType: "WaypointTemplate", toNodeId: "0x010000060000433B", toNodeType: "LocationTemplate" }
+InteractiveArticyViewer.tsx:522:15
+processing... TestFlowVariables.Quest001_waypoint01_visible=true; ArticyProject.ts:132:17
+🔄 Navigated to: 0x010000060000433B LocationTemplate InteractiveArticyViewer.tsx:534:15
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 DEBUG - Special node type detected: 
+Object { type: "LocationTemplate", id: "0x010000060000433B", displayName: "||LOCATION - PerForge", text: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", expression: undefined, color: {…}, outputs: 2, resolvedNodeText: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", resolvedNodeTitle: "||LOCATION - PerForge" }
+InteractiveArticyViewer.tsx:1141:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 DEBUG - Special node type detected: 
+Object { type: "LocationTemplate", id: "0x010000060000433B", displayName: "||LOCATION - PerForge", text: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", expression: undefined, color: {…}, outputs: 2, resolvedNodeText: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", resolvedNodeTitle: "||LOCATION - PerForge" }
+InteractiveArticyViewer.tsx:1141:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 DEBUG - Special node type detected: 
+Object { type: "LocationTemplate", id: "0x010000060000433B", displayName: "||LOCATION - PerForge", text: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", expression: undefined, color: {…}, outputs: 2, resolvedNodeText: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", resolvedNodeTitle: "||LOCATION - PerForge" }
+InteractiveArticyViewer.tsx:1141:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 DEBUG - Special node type detected: 
+Object { type: "LocationTemplate", id: "0x010000060000433B", displayName: "||LOCATION - PerForge", text: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", expression: undefined, color: {…}, outputs: 2, resolvedNodeText: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", resolvedNodeTitle: "||LOCATION - PerForge" }
+InteractiveArticyViewer.tsx:1141:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+📝 STORING PREVIOUS CHOICE (multiple outputs): 
+Object { nodeId: "0x010000060000433B", nodeType: "LocationTemplate", choiceText: "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)", choiceTitle: "||LOCATION - PerForge", nodeHistoryLength: 4, previousChoiceHistoryLength: 0, outputCount: 2 }
+InteractiveArticyViewer.tsx:569:17
+🔀 Setting choice options: 
+Array [ {…}, {…} ]
+InteractiveArticyViewer.tsx:592:17
+🔀 Showing 2 choices InteractiveArticyViewer.tsx:601:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 2, filteredChoicesLength: 2, nodeRefsLength: 2, storyOnlyMode: false, choiceConditions: (2) […] }
+InteractiveArticyViewer.tsx:780:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:990:21
+🔍 FORCING BUBBLE RE-RENDER InteractiveArticyViewer.tsx:796:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004337", targetNodeId: "0x0100000600004337", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000600004358", targetNodeId: "0x0100000600004358", targetNodeType: "DialogueExplorationActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:386:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { index: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:981:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { index: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:990:21
