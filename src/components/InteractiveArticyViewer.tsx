@@ -352,34 +352,38 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     console.log('🔄 Story Only Mode toggled:', !storyOnlyMode);
   };
 
+  // Helper function to check if a node has multiple outputs (is a hub)
+  const hasMultipleOutputs = (node: any): boolean => {
+    if (!node?.Properties?.OutputPins) return false;
+
+    let outputCount = 0;
+    node.Properties.OutputPins.forEach((outputPin: any) => {
+      if (outputPin.Connections && outputPin.Connections.length > 0) {
+        outputCount += outputPin.Connections.length;
+      }
+    });
+
+    return outputCount > 1;
+  };
+
   // Helper function to determine if a node should be displayed in story only mode
   const shouldDisplayNodeInStoryMode = (node: any): boolean => {
     if (!storyOnlyMode) return true; // Always display when story mode is off
 
-    // Always keep hub-style nodes that offer choices, even if they're instruction nodes
+    // Always keep hub nodes that offer choices, even if they're instruction nodes
     // These represent important decision points in the narrative
-    // We need to manually check outputs since we don't have access to getCurrentNodeOutputs here
-    let outputCount = 0;
-    if (node.Properties.OutputPins) {
-      node.Properties.OutputPins.forEach((outputPin: any) => {
-        if (outputPin.Connections && outputPin.Connections.length > 0) {
-          outputCount += outputPin.Connections.length;
-        }
-      });
-    }
+    const isHubNode = hasMultipleOutputs(node);
 
-    const isHubStyleNode = (node.Type === "Hub" ||
-                           node.Type === "DialogueIntActionTemplate" ||
-                           (node.Type === "Instruction" &&
-                            (node.Properties.DisplayName?.includes("HUB") ||
-                             node.Properties.Expression?.includes("HUB"))));
+    // Also keep DialogueIntActionTemplate nodes as they are special hub-like nodes
+    const isSpecialHubNode = node.Type === "DialogueIntActionTemplate" || node.Type === "Hub";
 
-    if (isHubStyleNode && outputCount > 1) {
-      console.log('📖 STORY MODE: Keeping hub node with multiple outputs:', {
+    if (isHubNode || isSpecialHubNode) {
+      console.log('📖 STORY MODE: Keeping hub node:', {
         nodeId: node.Properties.Id,
         nodeType: node.Type,
         displayName: node.Properties.DisplayName,
-        outputCount: outputCount
+        isHubNode: isHubNode,
+        isSpecialHubNode: isSpecialHubNode
       });
       return true; // Keep hub nodes that offer choices
     }
@@ -444,13 +448,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
       // If this was from a multi-choice, we need to restore the choice state
       if (lastChoice.fromMultiChoice) {
-        // Check if the restored node is a hub-style node
-        const isHubStyleNode = (lastChoice.node.Type === "DialogueIntActionTemplate" ||
-                               (lastChoice.node.Type === "Instruction" &&
-                                (lastChoice.node.Properties.DisplayName?.includes("HUB") ||
-                                 lastChoice.node.Properties.Expression?.includes("HUB"))));
+        // Check if the restored node is a hub node (multiple outputs) or special hub type
+        const isHubNode = hasMultipleOutputs(lastChoice.node);
+        const isSpecialHubNode = lastChoice.node.Type === "DialogueIntActionTemplate" || lastChoice.node.Type === "Hub";
 
-        if (isHubStyleNode) {
+        if (isHubNode || isSpecialHubNode) {
           // For hub nodes, directly show choices without calling handleNext
           // Get outputs from the restored node
           const outputs: ChoiceOption[] = [];
@@ -488,6 +490,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           console.log('🔙 Hub node restored - showing choices directly:', {
             nodeId: lastChoice.node.Properties.Id,
             nodeType: lastChoice.node.Type,
+            isHubNode: isHubNode,
+            isSpecialHubNode: isSpecialHubNode,
             outputCount: outputs.length
           });
           setChoiceOptions(outputs);
@@ -796,17 +800,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       // BUT: Don't store DialogueIntActionTemplate nodes as previous choices since they show choices immediately
       // NOTE: Regular Hub nodes should now be stored as previous choices since they show content first
       // NOTE: Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
-      const isHubStyleNode = (currentNode.Type === "DialogueIntActionTemplate" ||
-                             (currentNode.Type === "Instruction" &&
-                              (currentNode.Properties.DisplayName?.includes("HUB") ||
-                               currentNode.Properties.Expression?.includes("HUB"))));
+      const isSpecialHubNode = currentNode.Type === "DialogueIntActionTemplate" || currentNode.Type === "Hub";
 
       // Check if this is a dialogue fragment (needed for both hub and non-hub logic)
       const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
                                 currentNode.Type === "DialogueExplorationFragmentTemplate" ||
                                 currentNode.Type === "DialogueFragment";
 
-      if (!isHubStyleNode) {
+      if (!isSpecialHubNode) {
         const originalChoiceTitle = isDialogueFragment ?
           getSpeakerNameString(currentNode) :
           currentNode.Properties.DisplayName;
@@ -857,9 +858,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         });
         setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
       } else {
-        console.log('🔀 Hub-style node - NOT storing as previous choice:', {
+        console.log('🔀 Special hub node - NOT storing as previous choice:', {
           nodeId: currentNode.Properties.Id,
           nodeType: currentNode.Type,
+          isSpecialHubNode: isSpecialHubNode,
           outputCount: outputs.length
         });
       }
@@ -942,15 +944,13 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       // DialogueIntActionTemplate nodes are ALWAYS hub nodes and should never be skipped
       // Other dialogue nodes should only be prevented from skipping if they have multiple outputs
       const shouldNeverSkip = (
-        targetNode.Type === "DialogueIntActionTemplate" ||  // Hub nodes - ALWAYS show (never skip)
+        targetNode.Type === "DialogueIntActionTemplate" ||  // Special hub nodes - ALWAYS show (never skip)
+        targetNode.Type === "Hub" ||  // Articy hub nodes always show
+        hasMultipleOutputs(targetNode) ||  // Any node with multiple outputs (hub nodes) - ALWAYS show
         (targetNode.Type === "DialogueExplorationFragmentTemplate" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
         (targetNode.Type === "DialogueInteractiveFragmentTemplate" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
         (targetNode.Type === "DialogueFragment" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
-        targetNode.Type === "Hub" ||  // Hub nodes always show
-        targetNode.Type === "Condition" ||  // Condition nodes need to show their logic
-        (targetNode.Type === "Instruction" &&
-         (targetNode.Properties.DisplayName?.includes("HUB") ||
-          targetNode.Properties.Expression?.includes("HUB")))  // Hub-style instruction nodes
+        targetNode.Type === "Condition"  // Condition nodes need to show their logic
       );
 
       if (!shouldNeverSkip) {
@@ -1277,19 +1277,19 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     // BUT: Regular Hub nodes should show their title first, then choices when Next is clicked
     // Note: LocationTemplate nodes should show their content first, not immediately show choices
     // Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
-    const isHubStyleNode = (currentNode.Type === "DialogueIntActionTemplate" ||
-                           (currentNode.Type === "Instruction" &&
-                            (currentNode.Properties.DisplayName?.includes("HUB") ||
-                             currentNode.Properties.Expression?.includes("HUB"))));
+    const isSpecialHubNode = currentNode.Type === "DialogueIntActionTemplate";
+    const isHubNode = hasMultipleOutputs(currentNode);
 
-    const shouldShowChoicesImmediately = isHubStyleNode &&
+    const shouldShowChoicesImmediately = isSpecialHubNode &&
                                          outputs.length > 1 &&
                                          !showingChoices;
 
     if (shouldShowChoicesImmediately) {
-      console.log('🔀 Hub-style node detected - showing choices immediately:', {
+      console.log('🔀 Special hub node detected - showing choices immediately:', {
         type: currentNode.Type,
         displayName: currentNode.Properties.DisplayName,
+        isSpecialHubNode: isSpecialHubNode,
+        isHubNode: isHubNode,
         outputCount: outputs.length,
         nodeId: currentNode.Properties.Id
       });
