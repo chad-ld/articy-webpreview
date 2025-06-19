@@ -93,9 +93,11 @@ const QuestionPanel: React.FC<QuestionPanelProps> = ({ text, title, stageDirecti
         </div>
       )}
 
-      <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
-        {text}
-      </TextBlock>
+      {text && text.trim() && (
+        <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
+          {text}
+        </TextBlock>
+      )}
 
       <div style={{ marginTop: '15px' }}>
         {choices.map((choice, index) => (

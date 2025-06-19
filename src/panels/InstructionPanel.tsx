@@ -104,9 +104,11 @@ function InstructionPanel(props: InstructionPanelProps) {
             {props.stageDirections}
           </div>
         )}
-        <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
-          {props.text}
-        </TextBlock>
+        {props.text && props.text.trim() && (
+          <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
+            {props.text}
+          </TextBlock>
+        )}
         <br />
         <div style={{ textAlign: 'right' }}>
           <Button
@@ -155,9 +157,11 @@ function InstructionPanel(props: InstructionPanelProps) {
             {props.stageDirections}
           </div>
         )}
-        <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
-          {props.text}
-        </TextBlock>
+        {props.text && props.text.trim() && (
+          <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
+            {props.text}
+          </TextBlock>
+        )}
       </div>
     );
   }
