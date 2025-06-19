@@ -99,17 +99,8 @@ function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
               color: headerTextColor
             }}
           >
-            {/* Check if this is a dialogue fragment by looking at the node type */}
-            {(previousChoice.node.Type === "DialogueInteractiveFragmentTemplate" ||
-              previousChoice.node.Type === "DialogueExplorationFragmentTemplate" ||
-              previousChoice.node.Type === "DialogueFragment") ? (
-              <span>
-                <CommentOutlined style={{ marginRight: '6px' }} />
-                {previousChoice.choiceTitle}
-              </span>
-            ) : (
-              previousChoice.choiceTitle
-            )}
+            {/* The choiceTitle already contains the speaker name with icon for dialogue fragments */}
+            {previousChoice.choiceTitle}
           </div>
         )}
         <TextBlock borderColor={frameColor} backgroundColor={backgroundColor}>
@@ -731,6 +722,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         let nodeText = 'No content';
         let choiceTitle = currentNode.Properties.DisplayName || undefined;
 
+        // For dialogue fragments, use speaker name as title (same as Available Choices)
+        if (isDialogueFragment) {
+          const speakerTitle = getSpeakerNameWithIcon(currentNode);
+          if (speakerTitle) {
+            choiceTitle = speakerTitle;
+          }
+        }
+
         if (currentNode.Type === "Hub") {
           nodeText = ''; // Hub nodes have no body text, only title
           choiceTitle = currentNode.Properties.DisplayName || 'Hub';
@@ -816,6 +815,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         // Use the same logic as main display to ensure consistency
         let nodeText = 'No content';
         let choiceTitle = currentNode.Properties.DisplayName || undefined;
+
+        // For dialogue fragments, use speaker name as title (same as Available Choices)
+        if (isDialogueFragment) {
+          const speakerTitle = getSpeakerNameWithIcon(currentNode);
+          if (speakerTitle) {
+            choiceTitle = speakerTitle;
+          }
+        }
 
         // Priority order for text content (same as main display logic):
         // 1. Text property (main content)
@@ -1001,7 +1008,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                     finalTargetNode.Properties.Expression ||
                     finalTargetNode.Properties.DisplayName ||
                     selectedChoice.text;
-        choiceTitle = finalTargetNode.Properties.DisplayName;
+        choiceTitle = getSpeakerNameWithIcon(finalTargetNode) || finalTargetNode.Properties.DisplayName;
       } else if (skippedNode) {
         // If we skipped a node, use the skipped node's content for display
         choiceText = skippedNode.Properties.Text ||
@@ -1009,7 +1016,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                     skippedNode.Properties.DisplayName ||
                     selectedChoice.text;
         choiceTitle = isTargetDialogueFragment ?
-          getSpeakerNameString(finalTargetNode) :
+          getSpeakerNameWithIcon(finalTargetNode) :
           (skippedNode.Properties.DisplayName || finalTargetNode.Properties.DisplayName);
       } else {
         // For other nodes, use the actual target node content (same logic as main display)
@@ -1019,12 +1026,16 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           choiceTitle = finalTargetNode.Properties.DisplayName || 'Hub';
         } else if (finalTargetNode.Properties.Text && finalTargetNode.Properties.Text.trim()) {
           choiceText = finalTargetNode.Properties.Text;
-          choiceTitle = finalTargetNode.Properties.DisplayName;
+          choiceTitle = isTargetDialogueFragment ?
+            getSpeakerNameWithIcon(finalTargetNode) :
+            finalTargetNode.Properties.DisplayName;
         } else if (finalTargetNode.Properties.Expression && finalTargetNode.Properties.Expression.trim()) {
           choiceText = finalTargetNode.Properties.Expression;
           // For instruction nodes, always show DisplayName as title even if Expression is used for text
           if (finalTargetNode.Type === "Instruction") {
             choiceTitle = finalTargetNode.Properties.DisplayName || undefined;
+          } else if (isTargetDialogueFragment) {
+            choiceTitle = getSpeakerNameWithIcon(finalTargetNode);
           }
         } else if (finalTargetNode.Properties.DisplayName && finalTargetNode.Properties.DisplayName.trim()) {
           choiceText = finalTargetNode.Properties.DisplayName;
@@ -1033,7 +1044,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           // Fallback to original logic if no content found
           choiceText = selectedChoice.text;
           choiceTitle = isTargetDialogueFragment ?
-            getSpeakerNameString(finalTargetNode) :
+            getSpeakerNameWithIcon(finalTargetNode) :
             finalTargetNode.Properties.DisplayName;
         }
       }
