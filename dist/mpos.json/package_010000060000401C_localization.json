@@ -1,0 +1,1148 @@
+{
+  "FFr_F1DC497C.DisplayName": {
+    "": {
+      "Text": "RND Flows"
+    },
+    "Context": "Flow/RND Flows"
+  },
+  "FFr_F1DC497C.Text": {
+    "": {
+      "Text": "Experimental Test Flows"
+    },
+    "Context": "Flow/RND Flows"
+  },
+  "FFr_2818583C.DisplayName": {
+    "": {
+      "Text": "v01 Mission Structure - Mission Centric"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric"
+  },
+  "FFr_2818583C.Text": {
+    "": {
+      "Text": "The original structure I had attempted for the open world template."
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric"
+  },
+  "FFr_4F482B74.DisplayName": {
+    "": {
+      "Text": "Dynaimic Node Data Test"
+    },
+    "Context": "Flow/RND Flows/Dynaimic Node Data Test"
+  },
+  "FFr_4F482B74.Text": {
+    "": {
+      "Text": "Test to see if variables can change node data easily"
+    },
+    "Context": "Flow/RND Flows/Dynaimic Node Data Test"
+  },
+  "FFr_AB2104B3.DisplayName": {
+    "": {
+      "Text": "Template Nodes"
+    },
+    "Context": "Flow/Template Nodes"
+  },
+  "FFr_AB2104B3.Text": {
+    "": {
+      "Text": "Template nodes that can be copy/pasted into other flows."
+    },
+    "Context": "Flow/Template Nodes"
+  },
+  "FFr_EA4474CC.DisplayName": {
+    "": {
+      "Text": "||QUEST_001 - The Narrative Bible of Ultimate Power"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric/||QUEST_001 - The Narrative Bible of Ultimate Power"
+  },
+  "FFr_EA4474CC.Text": {
+    "": {
+      "Text": "In this quest, the player/writer sets out to find a mythical narrative bible known as the Ehhh Aye*. Whoever wields the tome can use simple verbal prompts to generate narrative content guaranteed to make their game score 100% on Metacritic! \r\n\r\nQuest Outline: https://www.notion.so/chadbriggs/External-Lore-Page-Example-3c459c4d0ac842c99885f9059000c925?pvs=4\r\n\r\n\r\n\r\n*See what I did there? Don't worry, there is a lot more where that came from! Hang on to yer knickers!"
+    },
+    "Context": "Flow/v01 Mission Structure - Mission Centric/||QUEST_001 - The Narrative Bible of Ultimate Power"
+  },
+  "FFr_3033B87D.DisplayName": {
+    "": {
+      "Text": "||QUEST_000 - (Quest Name)"
+    },
+    "Context": "Flow/Template Nodes/||QUEST_000 - (Quest Name)"
+  },
+  "FFr_3033B87D.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nQuest Outline: (Notion Link Here)"
+    },
+    "Context": "Flow/Template Nodes/||QUEST_000 - (Quest Name)"
+  },
+  "FFr_4196D8BE.DisplayName": {
+    "": {
+      "Text": "||LOCATION - PerForge"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - PerForge"
+  },
+  "FFr_4196D8BE.Text": {
+    "": {
+      "Text": "A magical forge where the elements of The Code are stored. \r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - PerForge"
+  },
+  "FFr_124A97AE.DisplayName": {
+    "": {
+      "Text": "||LOCATION - The Lost Forest"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Lost Forest"
+  },
+  "FFr_124A97AE.Text": {
+    "": {
+      "Text": "A dark, twisted forest full of dead trees and brambles. \r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Lost Forest"
+  },
+  "FFr_7412BD2A.DisplayName": {
+    "": {
+      "Text": "||LOCATION - The Pits of Gnesding"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Pits of Gnesding"
+  },
+  "FFr_7412BD2A.Text": {
+    "": {
+      "Text": "A dark hole, from which many do not return.\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/||LOCATION - The Pits of Gnesding"
+  },
+  "FFr_021CD272.DisplayName": {
+    "": {
+      "Text": "||LOCATION - Crime Scene"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||LOCATION - Crime Scene"
+  },
+  "FFr_021CD272.Text": {
+    "": {
+      "Text": "The crime scene, Victor's secret apartment.\r\n\r\nLocation Details: (can put a hyperlink to notion or google doc here for art or programmer refernce)"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||LOCATION - Crime Scene"
+  },
+  "FFr_451AD1EC.DisplayName": {
+    "": {
+      "Text": "||LOCATION - (Location Name)"
+    },
+    "Context": "Flow/Template Nodes/||LOCATION - (Location Name)"
+  },
+  "FFr_451AD1EC.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me.\r\n\r\nContains following locations:\r\nResearch Lab\r\nLobby\r\nService Corridor\r\nSecurity Office\r\n\r\nLocation Details: (Notion URL)"
+    },
+    "Context": "Flow/Template Nodes/||LOCATION - (Location Name)"
+  },
+  "FFr_A97DCF5D.DisplayName": {
+    "": {
+      "Text": "/BARKS - IdleWorking"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking"
+  },
+  "FFr_A97DCF5D.Text": {
+    "": {
+      "Text": "Duhvel Opper cycles through these lines randomly while busy hammering at the PerForge."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking"
+  },
+  "FFr_E3C53E60.DisplayName": {
+    "": {
+      "Text": "/BARKJUMP - IdleWorking"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKJUMP - IdleWorking"
+  },
+  "FFr_E3C53E60.Text": {
+    "": {
+      "Text": "Duhvel Opper cycles through these lines randomly while busy hammering at the PerForge. \r\n\r\nYou can follow this node to view the barks."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKJUMP - IdleWorking"
+  },
+  "FFr_B9F87F33.DisplayName": {
+    "": {
+      "Text": "Troll Threatens Player"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Troll Threatens Player"
+  },
+  "FFr_B9F87F33.Text": {
+    "": {
+      "Text": "The troll threatens the player when in range of bridge."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Troll Threatens Player"
+  },
+  "FFr_F6023C36.DisplayName": {
+    "": {
+      "Text": "Duhvel Opper Works on Sword"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper Works on Sword"
+  },
+  "FFr_F6023C36.Text": {
+    "": {
+      "Text": "The conversations continues in exploration mode as the blacksmith finishes the sword."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper Works on Sword"
+  },
+  "FFr_A3F385EA.DisplayName": {
+    "": {
+      "Text": "/BARKS - IdleWorking - EXIT"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking - EXIT"
+  },
+  "FFr_A3F385EA.Text": {
+    "": {
+      "Text": "Exit the bark view and return to main flow"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power//BARKS - IdleWorking - EXIT"
+  },
+  "FFr_F59171D3.DisplayName": {
+    "": {
+      "Text": "/BARKS - (Situation)"
+    },
+    "Context": "Flow/Template Nodes//BARKS - (Situation)"
+  },
+  "FFr_F59171D3.Text": {
+    "": {
+      "Text": "Bark situation info, what triggers the barks"
+    },
+    "Context": "Flow/Template Nodes//BARKS - (Situation)"
+  },
+  "FFr_F75A144A.DisplayName": {
+    "": {
+      "Text": "/BARKJUMP - (bark group name)"
+    },
+    "Context": "Flow/Template Nodes//BARKJUMP - (bark group name)"
+  },
+  "FFr_F75A144A.Text": {
+    "": {
+      "Text": "Used to call out in a flow when barks start happening if needed.\r\n\r\nJUMP TO BARKS (link)"
+    },
+    "Context": "Flow/Template Nodes//BARKJUMP - (bark group name)"
+  },
+  "FFr_EF5D9B66.DisplayName": {
+    "": {
+      "Text": "Initiate Exploration Dialogue"
+    },
+    "Context": "Flow/Template Nodes/Initiate Exploration Dialogue"
+  },
+  "FFr_EF5D9B66.Text": {
+    "": {
+      "Text": "Non interactive conversation that happens in normal exploration mode.\r\n\r\n(Details about conversation."
+    },
+    "Context": "Flow/Template Nodes/Initiate Exploration Dialogue"
+  },
+  "FFr_A325DF21.DisplayName": {
+    "": {
+      "Text": "Initiate Interactive Dialogue"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Initiate Interactive Dialogue"
+  },
+  "FFr_A325DF21.Text": {
+    "": {
+      "Text": "Talk to Duhvel Opper"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Initiate Interactive Dialogue"
+  },
+  "FFr_D985C34A.DisplayName": {
+    "": {
+      "Text": "Daria Statements"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Daria Statements"
+  },
+  "FFr_D985C34A.Text": {
+    "": {
+      "Text": "Darias's statements, means, motives, and opportunities.\r\n\r\nDaria is Victor's wife."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Daria Statements"
+  },
+  "FFr_394DA921.DisplayName": {
+    "": {
+      "Text": "Liza Statements"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Liza Statements"
+  },
+  "FFr_394DA921.Text": {
+    "": {
+      "Text": "Liza's statements, means, motives, and opportunities.\r\n\r\nLiza is a former worker at Victor's nightclub."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Liza Statements"
+  },
+  "FFr_777D1E8B.DisplayName": {
+    "": {
+      "Text": "Initiate Interactive Dialogue"
+    },
+    "Context": "Flow/Template Nodes/Initiate Interactive Dialogue"
+  },
+  "FFr_777D1E8B.Text": {
+    "": {
+      "Text": "Interactive conversation that happens in normal exploration mode.\r\n\r\n(Details about conversation)"
+    },
+    "Context": "Flow/Template Nodes/Initiate Interactive Dialogue"
+  },
+  "FFr_8F9280AE.DisplayName": {
+    "": {
+      "Text": "Alex Statements"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Alex Statements"
+  },
+  "FFr_8F9280AE.Text": {
+    "": {
+      "Text": "Alex's statements, means, motives, and opportunities.\r\n\r\nAlex is Victor's brother."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Alex Statements"
+  },
+  "FFr_31EB1DE1.DisplayName": {
+    "": {
+      "Text": "Leo Statements"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Leo Statements"
+  },
+  "FFr_31EB1DE1.Text": {
+    "": {
+      "Text": "Leo's statements, means, motives, and opportunities\r\n\r\nLeo is Victors former biz partner."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Leo Statements"
+  },
+  "FFr_671D743F.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - (Module Name)"
+    },
+    "Context": "Flow/Template Nodes/||MINIGAME - (Module Name)"
+  },
+  "FFr_671D743F.Text": {
+    "": {
+      "Text": "Details on minigame"
+    },
+    "Context": "Flow/Template Nodes/||MINIGAME - (Module Name)"
+  },
+  "FFr_9F6691F3.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+  },
+  "FFr_9F6691F3.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+  },
+  "FFr_37D275E0.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Fingerprint Analysis"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_37D275E0.Text": {
+    "": {
+      "Text": "Minigame to determine which suspect matches the fingerprint from the suspect fingerprint database."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_390E6E85.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - WPA Analysis"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - WPA Analysis"
+  },
+  "FFr_390E6E85.Text": {
+    "": {
+      "Text": "Minigame to determine keycode and crack safe."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - WPA Analysis"
+  },
+  "FFr_2F424BCF.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+  },
+  "FFr_2F424BCF.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+  },
+  "FFr_F27928A8.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Murder Board"
+  },
+  "FFr_F27928A8.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Murder Board"
+  },
+  "FFr_FD7895A2.DisplayName": {
+    "": {
+      "Text": "||INFOUI - (Module Name)"
+    },
+    "Context": "Flow/Template Nodes/||INFOUI - (Module Name)"
+  },
+  "FFr_FD7895A2.Text": {
+    "": {
+      "Text": "Details on informational screen the helps track progress"
+    },
+    "Context": "Flow/Template Nodes/||INFOUI - (Module Name)"
+  },
+  "FFr_9C7C7ADA.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Evidence List"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Evidence List"
+  },
+  "FFr_9C7C7ADA.Text": {
+    "": {
+      "Text": "UI screen where user can browse existing evidence"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Evidence List"
+  },
+  "FFr_D9D98307.DisplayName": {
+    "": {
+      "Text": "||CRAFTING - Flow"
+    },
+    "Context": "Flow/Template Nodes/||CRAFTING - Flow"
+  },
+  "FFr_D9D98307.Text": {
+    "": {
+      "Text": "Use a Crafting Flow if you need to group several actions, otherwise use a Crafting Instruction."
+    },
+    "Context": "Flow/Template Nodes/||CRAFTING - Flow"
+  },
+  "FFr_4E79470B.DisplayName": {
+    "": {
+      "Text": "||COMBAT - Flow"
+    },
+    "Context": "Flow/Template Nodes/||COMBAT - Flow"
+  },
+  "FFr_4E79470B.Text": {
+    "": {
+      "Text": "Use a Combat Flow if you need to group several actions, otherwise use a Combat Instruction."
+    },
+    "Context": "Flow/Template Nodes/||COMBAT - Flow"
+  },
+  "FFr_7E041108.DisplayName": {
+    "": {
+      "Text": "||ACTION - Flow"
+    },
+    "Context": "Flow/Template Nodes/||ACTION - Flow"
+  },
+  "FFr_7E041108.Text": {
+    "": {
+      "Text": "Use an Action Flow if you need to group several actions from Player, otherwise use an Action Instruction."
+    },
+    "Context": "Flow/Template Nodes/||ACTION - Flow"
+  },
+  "FFr_C68BB590.DisplayName": {
+    "": {
+      "Text": "||ACTION - Investigate Safe"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||ACTION - Investigate Safe"
+  },
+  "FFr_C68BB590.Text": {
+    "": {
+      "Text": "A sturdy, electronic safe sits in the corner of the office."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||ACTION - Investigate Safe"
+  },
+  "FFr_BDD348EC.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Flow"
+    },
+    "Context": "Flow/Template Nodes/||TRAVEL - Flow"
+  },
+  "FFr_BDD348EC.Text": {
+    "": {
+      "Text": "Use a Travel Flow if you need to group several actions, otherwise use a Travel Instruction."
+    },
+    "Context": "Flow/Template Nodes/||TRAVEL - Flow"
+  },
+  "FFr_DDA6A2A2.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Load Crime Scene"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - Load Crime Scene"
+  },
+  "FFr_DDA6A2A2.Text": {
+    "": {
+      "Text": "Loads the crime scene into the three wall holo deck."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - Load Crime Scene"
+  },
+  "FFr_56524921.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Evidence List Kiosk"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_56524921.Text": {
+    "": {
+      "Text": "Move to the kiosk where you can look over the evidence you've uncovered and details associated with them."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_CD83CFD9.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Load Crime Scene"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - Load Crime Scene"
+  },
+  "FFr_CD83CFD9.Text": {
+    "": {
+      "Text": "Loads the crime scene into the three wall holo deck."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - Load Crime Scene"
+  },
+  "FFr_5C9C250F.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Evidence List Kiosk"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_5C9C250F.Text": {
+    "": {
+      "Text": "Move to the kiosk where you can look over the evidence you've uncovered and details associated with them."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_4424765F.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Murder Board"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Murder Board"
+  },
+  "FFr_4424765F.Text": {
+    "": {
+      "Text": "Move to the Murder Board screen where you can view the most up to date info on your suspects."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Murder Board"
+  },
+  "FFr_47EB4E72.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Murder Board"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Murder Board"
+  },
+  "FFr_47EB4E72.Text": {
+    "": {
+      "Text": "Move to the Murder Board screen where you can view the most up to date info on your suspects."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Murder Board"
+  },
+  "DFr_38831492.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Okay, okay... I lied!\""
+  },
+  "DFr_E1FDF29A.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"I stand by what I said!\""
+  },
+  "DFr_0DD10AB4.Text": {
+    "": {
+      "Text": "Attempt to contradict Liza?"
+    },
+    "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Attempt to contradict Liza?\""
+  },
+  "DFr_2099277F.Text": {
+    "": {
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nRevised autopsy report indicates the presence of the drug Etomidate, known on the street as Space Oil, in the victims body. The drug acts as a powerful sedative."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_D9D5B88D.Text": {
+    "": {
+      "Text": "A draft of a new will put together by Victor's attorney, showing revised estate distribution:\r\n\r\n0% to Daria\r\n\r\n0% to Alex\r\n\r\n0% to Leo"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Updated Will: \"A draft of a new will put together...\""
+  },
+  "DFr_6905ECFD.Text": {
+    "": {
+      "Text": "The paternity test details the results of a paternity test between Victor and Liza's child. The test results are negative, proving that Victor is not the father."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Paternity Test: \"The paternity test details the resu...\""
+  },
+  "DFr_D81337AB.Text": {
+    "": {
+      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Photo of Daria and Alex: \"A photo of Daria and Alex clearly m...\""
+  },
+  "DFr_54D3BCD8.Text": {
+    "": {
+      "Text": "Liza has been in Victor's love nest before."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza has been in Victor's love nest...\""
+  },
+  "DFr_C5EE2594.Text": {
+    "": {
+      "Text": "None"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"None\""
+  },
+  "DFr_83C2D768.Text": {
+    "": {
+      "Text": "Greetings Duhvel Opper! I seek a boon from you!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Greetings Duhvel Opper! I seek a bo...\""
+  },
+  "DFr_48943D5A.Text": {
+    "": {
+      "Text": "Let me guess, you want The Code weeks ahead of schedule?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Let me guess, you want The Code wee...\""
+  },
+  "DFr_5806B944.Text": {
+    "": {
+      "Text": "Uhh... yes?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Uhh... yes?\""
+  },
+  "DFr_7BE64636.Text": {
+    "": {
+      "Text": "Then piss off. I'm busy."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Then piss off. I'm busy.\""
+  },
+  "DFr_5A8C48AD.Text": {
+    "": {
+      "Text": "Noooo... nooo... not me. Of course not."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Noooo... nooo... not me. Of course...\""
+  },
+  "DFr_FA4B2E92.Text": {
+    "": {
+      "Text": "Of course you do. *sigh* Go fetch the bucket of bits over there and I'll grant you early access to The Code."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Of course you do. *sigh* Go fetch t...\""
+  },
+  "DFr_E539AFE5.Text": {
+    "": {
+      "Text": "What are you, an idiot? I'm a dwarf! I'm like 4 foot 5 in heels! Go get the bucket already!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"What are you, an idiot? I'm a dwarf...\""
+  },
+  "DFr_45BF975D.Text": {
+    "": {
+      "Text": "My friend, you are a giant among men!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"My friend, you are a giant among me...\""
+  },
+  "DFr_93D60487.Text": {
+    "": {
+      "Text": "I do! I'll have you know it took me but mere seconds to walk across the room and find it, snatching it with supreme confidence."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"I do! I'll have you know it took me...\""
+  },
+  "DFr_1017D866.Text": {
+    "": {
+      "Text": "Well? Do you have my bucket of bits?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Well? Do you have my bucket of bits...\""
+  },
+  "DFr_FAD81D68.Text": {
+    "": {
+      "Text": "Can you give me some more details on the bucket? Is it say... bigger than a breadbox?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Can you give me some more details o...\""
+  },
+  "DFr_AEC60672.Text": {
+    "": {
+      "Text": "Ugh.... I can't even..."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Ugh.... I can't even...\""
+  },
+  "DFr_CFCF4C79.Text": {
+    "": {
+      "Text": "It was the only bucket on the shelf you imbecile! Just give it to me!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"It was the only bucket on the shelf...\""
+  },
+  "DFr_D41132CE.Text": {
+    "": {
+      "Text": "Stop yapping and test The Code already!!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Stop yapping and test The Code alre...\""
+  },
+  "DFr_13CB1187.Text": {
+    "": {
+      "Text": "I've helped you all I can, piss off."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"I've helped you all I can, piss off...\""
+  },
+  "DFr_89315EB8.Text": {
+    "": {
+      "Text": "I thoought this hub type was broken or some nonesense?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"I thoought this hub type was broken...\""
+  },
+  "DFr_1AE78B8A.Text": {
+    "": {
+      "Text": "No conditions here! But gonna set one!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"No conditions here! But gonna set o...\""
+  },
+  "DFr_7BC9E9EF.Text": {
+    "": {
+      "Text": "Plain vanilla node"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Plain vanilla node\""
+  },
+  "DFr_723C5E76.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown fox jumped."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "DFr_8091CC43.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "DFr_6C2679B3.Text": {
+    "": {
+      "Text": "I have reformed from my troubled ways.\r\n\r\nLeo is doing well and is not in any trouble.\r\n\r\nVictor often took care of me financially.\r\n\r\nI didn’t know he had a love nest."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"I have reformed from my troubled wa...\""
+  },
+  "DFr_AE778612.Text": {
+    "": {
+      "Text": "Victor hated drugs.\r\n\r\nI am a confidential informant for the NBI drug investigation. \r\n\r\nI blackmailed Alex to keep him out of the NBI investigation.\r\n\r\nVictor kicked me out of the club when he found out about the investigation.\r\n\r\nI know where the love nest is."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Victor hated drugs. I am a confi...\""
+  },
+  "DFr_7EE5FA66.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Okay, okay... I lied!\""
+  },
+  "DFr_1E0411F3.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Leo Statements/Leo: \"I stand by what I said!\""
+  },
+  "DFr_062D14EB.Text": {
+    "": {
+      "Text": "Attempt to contradict Leo?"
+    },
+    "Context": "Flow/Leo Statements/Detective Siri/Alexa: \"Attempt to contradict Leo?\""
+  },
+  "DFr_F93BFB35.Text": {
+    "": {
+      "Text": "Liza has been to Victor's love nest before."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza has been to Victor's love nest...\""
+  },
+  "DFr_5F3B8E1A.Text": {
+    "": {
+      "Text": "Liza and her baby do not stand to financially benefit from the will."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza and her baby do not stand to f...\""
+  },
+  "DFr_8808F059.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Unknown\""
+  },
+  "DFr_32F000B8.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Unknown\""
+  },
+  "DFr_8CB9502E.Text": {
+    "": {
+      "Text": "I have reformed from my troubled ways.\r\n\r\nLeo is doing well and is not in any trouble.\r\n\r\nVictor often took care of me financially.\r\n\r\nI didn’t know he had a love nest."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"I have reformed from my troubled wa...\""
+  },
+  "DFr_6E4D96A6.Text": {
+    "": {
+      "Text": "Victor hated drugs, especially with my problems.\r\n\r\nLeo and I have been actively using the club to deal drugs.\r\n\r\nI paid Leo for his silence.\r\n\r\nDaria embezzled money from the club to help me pay Leo."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Victor hated drugs, especially with...\""
+  },
+  "DFr_F1D8EA75.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"I stand by what I said!\""
+  },
+  "DFr_E90C2C4E.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Okay, okay... I lied!\""
+  },
+  "DFr_DEF93694.Text": {
+    "": {
+      "Text": "Attempt to contradict Alex?"
+    },
+    "Context": "Flow/Alex Statements/Detective Siri/Alexa: \"Attempt to contradict Alex?\""
+  },
+  "DFr_03189472.Text": {
+    "": {
+      "Text": "Liza does not have clear access to etomidate, but she can get heroin through the club’s patrons."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza does not have clear access to...\""
+  },
+  "DFr_309E345B.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Okay, okay... I lied!\""
+  },
+  "DFr_0CE3995E.Text": {
+    "": {
+      "Text": "Attempt to contradict Daria?"
+    },
+    "Context": "Flow/Daria Statements/Detective Siri/Alexa: \"Attempt to contradict Daria?\""
+  },
+  "DFr_88E5563F.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Unknown\""
+  },
+  "DFr_00577F8B.Text": {
+    "": {
+      "Text": "Liza may benefit from the new will, as it prefers blood relatives."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza may benefit from the new will,...\""
+  },
+  "DFr_3A29262A.Text": {
+    "": {
+      "Text": "I have been working on divorcing Victor because of his affair.\r\n\r\nLiza is a gold-digger and Victor wanted a genetic test as proof.\r\n\r\nI don’t know why Leo would have left and that is suspicious.\r\n\r\nI didn’t know he had a love nest."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"I have been working on divorcing Vi...\""
+  },
+  "DFr_5DBB4533.Text": {
+    "": {
+      "Text": "Victor hated drugs.\r\n\r\nI have been working on divorcing Victor because of my affair with Alex.\r\n\r\nI am not worried about the will, as I can still benefit in both versions.\r\n\r\nSomeone is under investigation. I thought it was about me and the irregularities in our finances, but it wasn’t. It was about Leo."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Victor hated drugs. I have been...\""
+  },
+  "DFr_2A72556A.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"I stand by what I said!\""
+  },
+  "DFr_BA66ABFE.Text": {
+    "": {
+      "Text": "A document showing from a DNA testing lab with detailed scientific results of a paternity test."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Paternity Test: \"A document showing from a DNA testi...\""
+  },
+  "DFr_FF4179A1.Text": {
+    "": {
+      "Text": "The safe is locked has a keypad combination. Use the WPA (Wear Pattern Analysis) module to determine the key code and crack the safe."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Detective Siri/Alexa: \"The safe is locked has a keypad com...\""
+  },
+  "DFr_15767B0E.Text": {
+    "": {
+      "Text": "The safe is open! You've discovered:\r\n\r\n-A last will and testament with markup and notes scrawled on it.\r\n\r\n-A photograph of Daria and Alex\r\n\r\n-Lab results from a DNA matching compnay."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Detective Siri/Alexa: \"The safe is open! You've discovered...\""
+  },
+  "DFr_6F7DBF79.Text": {
+    "": {
+      "Text": "Victor hated drugs.\r\n\r\nI am a former worker at the club and slept with Victor.\r\n\r\nVictor is not the father of my child, despite me thinking he was. It must be my other relationship.\r\n\r\nDaria is having an affair with Alex."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Victor hated drugs. I am a forme...\""
+  },
+  "DFr_8527DCB9.Text": {
+    "": {
+      "Text": "I worked at the club for years while building my influencer career.\r\n\r\nVictor is the father of my child and I confronted him about it.\r\n\r\nIf anyone has heroin it would be that druggie, Alex. He and Leo are close.\r\n\r\nI have never heard of the love nest."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"I worked at the club for years whil...\""
+  },
+  "DFr_2F7B7C50.Text": {
+    "": {
+      "Text": "A last will and testament showing that Victor had distributed his estate as follows:\r\n\r\n50% to Daria\r\n\r\n25% to Alex\r\n\r\n25% to Leo"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Original Will: \"A last will and testament showing t...\""
+  },
+  "DFr_BB7750C2.Text": {
+    "": {
+      "Text": "A series of legal documents from Victor's attorney with notes and markups detailing changes to Victor's will."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Updated Will: \"A series of legal documents from Vi...\""
+  },
+  "DFr_4D7D11CD.Text": {
+    "": {
+      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint detected, needs analysis."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Photo of Daria and Alex: \"A photo of Daria and Alex clearly m...\""
+  },
+  "DFr_0985DFC6.Text": {
+    "": {
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_1576B9E6.Text": {
+    "": {
+      "Text": "Why won't the ritual of compiling complete? WHY??"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Why won't the ritual of compiling c...\""
+  },
+  "DFr_1CDFA02B.Text": {
+    "": {
+      "Text": "Ugh, how long have I been crunching? I need a mental health day."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Ugh, how long have I been crunching...\""
+  },
+  "DFr_09584681.Text": {
+    "": {
+      "Text": "\"The blade needs to cut through 60 orcs per second. How hard can it be?\""
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"\"The blade needs to cut through 60...\""
+  },
+  "DFr_747DA647.Text": {
+    "": {
+      "Text": "They send a writer my way? Ha! The narrative in this game is mid at best."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Toxic Troll: \"They send a writer my way? Ha! The...\""
+  },
+  "DFr_777B4B20.Text": {
+    "": {
+      "Text": "Finished! A fine blade indeed! Here, give it a whack on that block of Kew Eh over there. I bet you can split it in half with ease!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Finished! A fine blade indeed! Here...\""
+  },
+  "DFr_857C59A3.Text": {
+    "": {
+      "Text": "Great! How long will that take?"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Great! How long will that take?\""
+  },
+  "DFr_CF641138.Text": {
+    "": {
+      "Text": "Whoops. Well... that's what happens when you ask for early access to The Code."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Whoops. Well... that's what happens...\""
+  },
+  "DFr_652DB66E.Text": {
+    "": {
+      "Text": "Sure, if you want to stick around and wait for another build."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Sure, if you want to stick around a...\""
+  },
+  "DFr_E8A86380.Text": {
+    "": {
+      "Text": "About a week."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"About a week.\""
+  },
+  "DFr_CB23BDC8.Text": {
+    "": {
+      "Text": "What?? I can't wait that long! The Jeeerah Beast is sprinting towards the kingdom and will destroy us all!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"What?? I can't wait that long! The...\""
+  },
+  "DFr_67C385E2.Text": {
+    "": {
+      "Text": "Can you make another???"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"Can you make another???\""
+  },
+  "DFr_F4C48FD3.Text": {
+    "": {
+      "Text": "*shrugs* That's what happens when you have me grind 300 gig stones into a build."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"*shrugs* That's what happens when y...\""
+  },
+  "DFr_980C738C.Text": {
+    "": {
+      "Text": "Hmmm... you could seek out the Toxic Troll in the Lost Forest. It's rumoured to possess the legendary Mace of Bug Squashing."
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Hmmm... you could seek out the Toxi...\""
+  },
+  "DFr_09A0AAED.Text": {
+    "": {
+      "Text": "Smear some jerky strips on those gauntlets of yours and you might stand a chance. Good luck kid!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"Smear some jerky strips on those ga...\""
+  },
+  "DFr_616013F4.Text": {
+    "": {
+      "Text": "There has to be another way!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Player/Writer: \"There has to be another way!\""
+  },
+  "DFr_51D50DF5.Text": {
+    "": {
+      "Text": "BUT... you won't win a fight against that thing without a serious upgrade. Seek out the Sacred Tree of Holy Jerky!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Duhvel Opper: \"BUT... you won't win a fight agains...\""
+  },
+  "DFr_1493C8F9.Text": {
+    "": {
+      "Text": "LOL! Those gauntlets are so basic bro!"
+    },
+    "Context": "Flow/||QUEST_001 - The Narrative Bible of Ultimate Power/Toxic Troll: \"LOL! Those gauntlets are so basic b...\""
+  },
+  "DFr_789773B0.Text": {
+    "": {
+      "Text": "What manner of wizardry is this? I've stumbled into a black void, seemingly designed hide me from what lies above!"
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"What manner of wizardry is this? I'...\""
+  },
+  "DFr_128A2034.Text": {
+    "": {
+      "Text": "I really have to pee. But I also need to return to the surface! The agony of this decision is soul crushing!"
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"I really have to pee. But I also ne...\""
+  },
+  "DFr_47A7050A.Text": {
+    "": {
+      "Text": "Nay, I must not empty my bladder! I shall return to the surface and leave this pit."
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"Nay, I must not empty my bladder! I...\""
+  },
+  "DFr_5C1BDA5F.Text": {
+    "": {
+      "Text": "Surely no one will mind if I take but a tiny tinkle? After all, I am obscured from the surface above."
+    },
+    "Context": "Flow/||LOCATION - The Pits of Gnesding/Player/Writer: \"Surely no one will mind if I take b...\""
+  },
+  "DFr_2F76D5B2.Text": {
+    "": {
+      "Text": "Bark 01"
+    },
+    "Context": "Flow/Template Nodes/...: \"Bark 01\""
+  },
+  "DFr_DBCBE028.Text": {
+    "": {
+      "Text": "Bark 02"
+    },
+    "Context": "Flow/Template Nodes/...: \"Bark 02\""
+  },
+  "DFr_5C599944.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown fox jumped."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "DFr_8C7B648F.Text": {
+    "": {
+      "Text": "The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump. The quick brown fox jumped over the lazy dog. The quick brown jump over me."
+    },
+    "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
+  },
+  "Ntt_18E68216.DisplayName": {
+    "": {
+      "Text": "Player"
+    },
+    "Context": "Entities/Player"
+  },
+  "Ntt_C21FA208.DisplayName": {
+    "": {
+      "Text": "Duhvel Opper"
+    },
+    "Context": "Entities/NPC/Duhvel Opper"
+  },
+  "Ntt_F17EEBF5.DisplayName": {
+    "": {
+      "Text": "Test - Angry Robot"
+    },
+    "Context": "Entities/NPC/Test - Angry Robot"
+  },
+  "Ntt_100228C8.DisplayName": {
+    "": {
+      "Text": "Test - Happy Robot"
+    },
+    "Context": "Entities/NPC/Test - Happy Robot"
+  },
+  "Ntt_A4F9EF33.DisplayName": {
+    "": {
+      "Text": "Liza"
+    },
+    "Context": "Entities/NPC/Liza"
+  },
+  "Ntt_092A71A8.DisplayName": {
+    "": {
+      "Text": "Alex"
+    },
+    "Context": "Entities/NPC/Alex"
+  },
+  "Ntt_BA3FA39C.DisplayName": {
+    "": {
+      "Text": "Leo"
+    },
+    "Context": "Entities/NPC/Leo"
+  },
+  "Ntt_64EF5775.DisplayName": {
+    "": {
+      "Text": "Daria"
+    },
+    "Context": "Entities/NPC/Daria"
+  },
+  "Ntt_78B71307.DisplayName": {
+    "": {
+      "Text": "Detective Siri/Alexa"
+    },
+    "Context": "Entities/NPC/Detective Siri/Alexa"
+  },
+  "Ntt_F6CAC097.DisplayName": {
+    "": {
+      "Text": "Toxic Troll"
+    },
+    "Context": "Entities/NPC/Toxic Troll"
+  },
+  "Ntt_F6CAC097.Text": {
+    "": {
+      "Text": "A toxic beast that has crawled off the Web of Inter. A swarm of tiny blue birds flock around him and attack at his command."
+    },
+    "Context": "Entities/NPC/Toxic Troll"
+  },
+  "Ntt_7AC9E953.DisplayName": {
+    "": {
+      "Text": "The Mace Of Bug Squashing"
+    },
+    "Context": "Entities/equipment/The Mace Of Bug Squashing"
+  },
+  "Ntt_3B0DE166.DisplayName": {
+    "": {
+      "Text": "Updated Will"
+    },
+    "Context": "Entities/Evidence/Updated Will"
+  },
+  "Ntt_3CD15F77.DisplayName": {
+    "": {
+      "Text": "Autopsy Report"
+    },
+    "Context": "Entities/Evidence/Autopsy Report"
+  },
+  "Ntt_AF0A0E80.DisplayName": {
+    "": {
+      "Text": "Original Will"
+    },
+    "Context": "Entities/Evidence/Original Will"
+  },
+  "Ntt_0EA4A19F.DisplayName": {
+    "": {
+      "Text": "Paternity Test"
+    },
+    "Context": "Entities/Evidence/Paternity Test"
+  },
+  "Ntt_0E90DB1E.DisplayName": {
+    "": {
+      "Text": "Photo of Daria and Alex"
+    },
+    "Context": "Entities/Evidence/Photo of Daria and Alex"
+  },
+  "Ntt_02F2E520.DisplayName": {
+    "": {
+      "Text": "Safe"
+    },
+    "Context": "Entities/SceneObjects/Safe"
+  }
+}
