@@ -1,0 +1,44 @@
+GET
+https://dev.chadbriggs.com/assets/index-aecf2a1d.js
+NS_ERROR_CORRUPTED_CONTENT
+
+	
+GET
+	https://dev.chadbriggs.com/assets/index-aecf2a1d.js
+Status
+404
+VersionHTTP/2
+Transferred154 B (0 B size)
+Referrer Policystrict-origin-when-cross-origin
+DNS ResolutionDNS over HTTPS
+
+GET
+https://dev.chadbriggs.com/assets/index-d63f2c02.css
+[HTTP/2 404  84ms]
+
+	
+GET
+	https://dev.chadbriggs.com/assets/index-d63f2c02.css
+Status
+404
+VersionHTTP/2
+Transferred469 B (315 B size)
+Referrer Policystrict-origin-when-cross-origin
+DNS ResolutionDNS over HTTPS
+
+Loading module from “https://dev.chadbriggs.com/assets/index-aecf2a1d.js” was blocked because of a disallowed MIME type (“text/html”). v4.1
+Loading failed for the module with source “https://dev.chadbriggs.com/assets/index-aecf2a1d.js”. v4.1:55:71
+GET
+https://dev.chadbriggs.com/vite.svg
+[HTTP/2 404  0ms]
+
+	
+GET
+	https://dev.chadbriggs.com/vite.svg
+Status
+404
+VersionHTTP/2
+Transferred315 B (315 B size)
+Referrer Policystrict-origin-when-cross-origin
+DNS ResolutionSystem
+

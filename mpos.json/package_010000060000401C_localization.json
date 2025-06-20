@@ -547,25 +547,25 @@
   },
   "DFr_2099277F.Text": {
     "": {
-      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nRevised autopsy report indicates the presence of the drug Etomidate, known on the street as Space Oil, in the victims body. The drug acts as a powerful sedative."
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nRevised autopsy report indicates the presence of the drug Etomidate, known on the street as Space Oil, in the victims body. The drug acts as a powerful sedative.\r\n\r\nThis evidence cannot be processed further without cuase for a new report."
     },
     "Context": "Flow/Dynaimic Node Data Test/Autopsy Report: \"Gives injected heroin as cause of d...\""
   },
   "DFr_D9D5B88D.Text": {
     "": {
-      "Text": "A draft of a new will put together by Victor's attorney, showing revised estate distribution:\r\n\r\n0% to Daria\r\n\r\n0% to Alex\r\n\r\n0% to Leo"
+      "Text": "A draft of a new will put together by Victor's attorney, showing revised estate distribution:\r\n\r\n0% to Daria\r\n\r\n0% to Alex\r\n\r\n0% to Leo\r\n\r\nThis evidence cannot be processed further."
     },
     "Context": "Flow/Dynaimic Node Data Test/Updated Will: \"A draft of a new will put together...\""
   },
   "DFr_6905ECFD.Text": {
     "": {
-      "Text": "The paternity test details the results of a paternity test between Victor and Liza's child. The test results are negative, proving that Victor is not the father."
+      "Text": "The paternity test details the results of a paternity test between Victor and Liza's child. The test results are negative, proving that Victor is not the father. \r\n\r\nThis evidence cannot be processed further."
     },
     "Context": "Flow/Dynaimic Node Data Test/Paternity Test: \"The paternity test details the resu...\""
   },
   "DFr_D81337AB.Text": {
     "": {
-      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene."
+      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene.\r\n\r\nThis evidence cannot be processed further."
     },
     "Context": "Flow/Dynaimic Node Data Test/Photo of Daria and Alex: \"A photo of Daria and Alex clearly m...\""
   },
@@ -835,7 +835,7 @@
   },
   "DFr_BA66ABFE.Text": {
     "": {
-      "Text": "A document showing from a DNA testing lab with detailed scientific results of a paternity test."
+      "Text": "A document showing from a DNA testing lab with detailed scientific results of a paternity test. \r\n\r\nThis evidence can be summarized with document analytics."
     },
     "Context": "Flow/Dynaimic Node Data Test/Paternity Test: \"A document showing from a DNA testi...\""
   },
@@ -847,7 +847,7 @@
   },
   "DFr_15767B0E.Text": {
     "": {
-      "Text": "The safe is open! You've discovered:\r\n\r\n-A last will and testament with markup and notes scrawled on it.\r\n\r\n-A photograph of Daria and Alex\r\n\r\n-Lab results from a DNA matching compnay."
+      "Text": "The safe is open! You've discovered:\r\n\r\n-A last will and testament with markup and notes scrawled on it.\r\n\r\n-A photograph of Daria and Alex\r\n\r\n-Lab results from a DNA matching compnay.\r\n\r\nVisit the Evidence List Kiosk to examine the items further."
     },
     "Context": "Flow/Dynaimic Node Data Test/Detective Siri/Alexa: \"The safe is open! You've discovered...\""
   },
@@ -865,13 +865,13 @@
   },
   "DFr_2F7B7C50.Text": {
     "": {
-      "Text": "A last will and testament showing that Victor had distributed his estate as follows:\r\n\r\n50% to Daria\r\n\r\n25% to Alex\r\n\r\n25% to Leo"
+      "Text": "A last will and testament showing that Victor had distributed his estate as follows:\r\n\r\n50% to Daria\r\n\r\n25% to Alex\r\n\r\n25% to Leo\r\n\r\nThis evidence cannot be processed further."
     },
     "Context": "Flow/Dynaimic Node Data Test/Original Will: \"A last will and testament showing t...\""
   },
   "DFr_BB7750C2.Text": {
     "": {
-      "Text": "A series of legal documents from Victor's attorney with notes and markups detailing changes to Victor's will."
+      "Text": "A series of legal documents from Victor's attorney with notes and markups detailing changes to Victor's will.\r\n\r\nThis evidence can be summarized with Document Analytics."
     },
     "Context": "Flow/Dynaimic Node Data Test/Updated Will: \"A series of legal documents from Vi...\""
   },
@@ -883,7 +883,7 @@
   },
   "DFr_0985DFC6.Text": {
     "": {
-      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found."
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nThis evidence cannot be processed further."
     },
     "Context": "Flow/Dynaimic Node Data Test/Autopsy Report: \"Gives injected heroin as cause of d...\""
   },

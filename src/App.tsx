@@ -67,13 +67,16 @@ function App() {
       // Load all files
       const fileContents: { [key: string]: string } = {};
 
+      // Add cache-busting timestamp to ensure fresh data loads
+      const cacheBuster = Date.now();
+
       for (const fileName of mposFiles) {
         try {
-          const response = await fetch(`./mpos.json/${fileName}`);
+          const response = await fetch(`./mpos.json/${fileName}?v=${cacheBuster}`);
           if (response.ok) {
             const content = await response.text();
             fileContents[fileName] = content;
-            console.log(`✅ Loaded ${fileName}`);
+            console.log(`✅ Loaded ${fileName} (cache-busted)`);
           } else {
             console.warn(`⚠️ Could not load ${fileName}: ${response.status}`);
           }
