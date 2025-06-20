@@ -31,6 +31,7 @@ function App() {
   const [processingReport, setProcessingReport] = useState<ProcessingReport | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [panelWidth, setPanelWidth] = useState(0);
+  const [hideFooter, setHideFooter] = useState(false);
 
   useEffect(() => {
     // Log app startup
@@ -147,6 +148,7 @@ function App() {
                   onReset={handleReset}
                   onPanelWidthChange={setPanelWidth}
                   onLoadScreen={handleReset}
+                  onHideFooterChange={setHideFooter}
                 />
               </div>
             )}
@@ -154,49 +156,51 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="app-footer">
-          <div className="container" style={{
-            marginLeft: articyData ? calculateHeaderMargin(panelWidth) : 'auto',
-            transition: 'margin-left 0.3s ease'
-          }}>
-            <div className="footer-content">
-              <div className="footer-info">
-                <p>Articy Web Viewer v4.x - Universal JSON Viewer</p>
-                <p>Supports Articy Draft 3.x and 4.x formats</p>
-                {processingReport && (
-                  <p style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)', marginTop: '8px' }}>
-                    Processed: {new Date(processingReport.processingInfo.timestamp).toLocaleString()} |
-                    Input: {processingReport.processingInfo.inputType} |
-                    Features: {processingReport.features.hasHierarchy ? 'Hierarchy' : ''} {processingReport.features.hasScriptMethods ? 'Scripts' : ''}
-                  </p>
-                )}
-              </div>
-              <div className="footer-stats">
-                {processingReport && (
-                  <>
-                    <span>📦 {processingReport.summary.packages} packages</span>
-                    <span>🎯 {processingReport.summary.totalModels} models</span>
-                    <span>🔧 {processingReport.summary.globalVariables} variables</span>
-                    <span>📋 {Object.keys(processingReport.nodeTypes).length} node types</span>
-                    <span>🏗️ {processingReport.summary.objectDefinitions} object definitions</span>
-                    <span>⚙️ {processingReport.format} v{processingReport.version}</span>
-                    <span>📊 {(processingReport.confidence * 100).toFixed(0)}% confidence</span>
-                    {/* Show top 3 node types */}
-                    {Object.entries(processingReport.nodeTypes)
-                      .sort(([,a], [,b]) => (b as number) - (a as number))
-                      .slice(0, 3)
-                      .map(([type, count]) => (
-                        <span key={type} style={{ fontSize: '11px', opacity: 0.8 }}>
-                          {type}: {count}
-                        </span>
-                      ))
-                    }
-                  </>
-                )}
+        {!hideFooter && (
+          <footer className="app-footer">
+            <div className="container" style={{
+              marginLeft: articyData ? calculateHeaderMargin(panelWidth) : 'auto',
+              transition: 'margin-left 0.3s ease'
+            }}>
+              <div className="footer-content">
+                <div className="footer-info">
+                  <p>Articy Web Viewer v4.x - Universal JSON Viewer</p>
+                  <p>Supports Articy Draft 3.x and 4.x formats</p>
+                  {processingReport && (
+                    <p style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)', marginTop: '8px' }}>
+                      Processed: {new Date(processingReport.processingInfo.timestamp).toLocaleString()} |
+                      Input: {processingReport.processingInfo.inputType} |
+                      Features: {processingReport.features.hasHierarchy ? 'Hierarchy' : ''} {processingReport.features.hasScriptMethods ? 'Scripts' : ''}
+                    </p>
+                  )}
+                </div>
+                <div className="footer-stats">
+                  {processingReport && (
+                    <>
+                      <span>📦 {processingReport.summary.packages} packages</span>
+                      <span>🎯 {processingReport.summary.totalModels} models</span>
+                      <span>🔧 {processingReport.summary.globalVariables} variables</span>
+                      <span>📋 {Object.keys(processingReport.nodeTypes).length} node types</span>
+                      <span>🏗️ {processingReport.summary.objectDefinitions} object definitions</span>
+                      <span>⚙️ {processingReport.format} v{processingReport.version}</span>
+                      <span>📊 {(processingReport.confidence * 100).toFixed(0)}% confidence</span>
+                      {/* Show top 3 node types */}
+                      {Object.entries(processingReport.nodeTypes)
+                        .sort(([,a], [,b]) => (b as number) - (a as number))
+                        .slice(0, 3)
+                        .map(([type, count]) => (
+                          <span key={type} style={{ fontSize: '11px', opacity: 0.8 }}>
+                            {type}: {count}
+                          </span>
+                        ))
+                      }
+                    </>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </footer>
+          </footer>
+        )}
       </div>
     </ConfigProvider>
   );

@@ -15,6 +15,7 @@ interface InteractiveArticyViewerProps {
   onReset: () => void;
   onPanelWidthChange?: (width: number) => void;
   onLoadScreen?: () => void;
+  onHideFooterChange?: (hide: boolean) => void;
 }
 
 interface ChoiceOption {
@@ -117,7 +118,7 @@ function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
   );
 }
 
-const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data, onReset, onPanelWidthChange, onLoadScreen }) => {
+const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data, onReset, onPanelWidthChange, onLoadScreen, onHideFooterChange }) => {
   const [project, setProject] = useState<ArticyProject | undefined>(undefined);
   const [currentNode, setCurrentNode] = useState<any>(null);
   const [nodeHistory, setNodeHistory] = useState<any[]>([]);
@@ -140,14 +141,18 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     enabled: false,
     hideInstructions: false,
     hideConditions: false,
-    hideInactiveChoices: true
+    hideInactiveChoices: true,
+    hidePreviousChoices: false,
+    hideDebugInfo: false
   });
 
   // Temporary settings for dropdown (before applying)
   const [tempStoryModeSettings, setTempStoryModeSettings] = useState({
     hideInstructions: false,
     hideConditions: false,
-    hideInactiveChoices: true
+    hideInactiveChoices: true,
+    hidePreviousChoices: false,
+    hideDebugInfo: false
   });
 
   // Previous choice history for back navigation
@@ -220,7 +225,108 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       const childNode = project?.GetFirstChildOfNode(node);
       if (childNode) {
         console.log("🔄 FLOW FRAGMENT ENTRY:", node.Properties.Id, node.Type, "→", childNode.Properties.Id, childNode.Type);
-        // Auto-navigate to first child
+
+        // Check if story mode should auto-process this child node
+        if (storyModeSettings.enabled && !shouldDisplayNodeInStoryMode(childNode)) {
+          console.log("📖 STORY MODE: Auto-processing flow fragment start node:", {
+            nodeId: childNode.Properties.Id,
+            nodeType: childNode.Type,
+            reason: "Story mode set to hide this node type"
+          });
+
+          // Add the child node to history (so it appears in Previous Choice)
+          setNodeHistory([...nodeHistory, childNode]);
+
+          // Process the node behind the scenes (store variables, etc.)
+          if (project && childNode.Type !== "Condition") {
+            project.StoreVariablesFromNode(childNode);
+          }
+
+          // Get outputs and navigate directly to the appropriate next node
+          const outputs: ChoiceOption[] = [];
+
+          // Special handling for Condition nodes
+          if (childNode.Type === "Condition") {
+            const expression = childNode.Properties.Expression || "";
+            const lines = expression.split('\n');
+            const conditionLine = lines.find((line: string) => line.trim() && !line.trim().startsWith('//'));
+            const conditionResult = conditionLine ? project.CheckConditionString(conditionLine.trim()) : false;
+
+            console.log("📖 STORY MODE: Auto-processing condition node:", {
+              nodeId: childNode.Properties.Id,
+              conditionLine: conditionLine,
+              conditionResult: conditionResult
+            });
+
+            if (childNode.Properties.OutputPins) {
+              childNode.Properties.OutputPins.forEach((outputPin: any, pinIndex: number) => {
+                if (outputPin.Connections && outputPin.Connections.length > 0) {
+                  const shouldTakeThisPin = pinIndex === 0 ? conditionResult : !conditionResult;
+                  if (shouldTakeThisPin) {
+                    outputPin.Connections.forEach((connection: any) => {
+                      const targetNode = project?.GetNodeByID(connection.Target);
+                      if (targetNode) {
+                        outputs.push({
+                          text: "",
+                          targetNode: targetNode,
+                          disabled: false,
+                          condition: conditionLine || ""
+                        });
+                      }
+                    });
+                  }
+                }
+              });
+            }
+          } else {
+            // Normal handling for instruction nodes
+            if (childNode.Properties.OutputPins) {
+              childNode.Properties.OutputPins.forEach((outputPin: any) => {
+                if (outputPin.Connections && outputPin.Connections.length > 0) {
+                  outputPin.Connections.forEach((connection: any) => {
+                    const targetNode = project?.GetNodeByID(connection.Target);
+                    if (targetNode) {
+                      const conditionText = targetNode?.Properties?.InputPins?.[0]?.Text?.replace(/;+$/, '').trim() || "";
+                      const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+                      if (conditionMet) {
+                        outputs.push({
+                          text: "",
+                          targetNode: targetNode,
+                          disabled: false,
+                          condition: conditionText
+                        });
+                      }
+                    }
+                  });
+                }
+              });
+            }
+          }
+
+          // Navigate to the appropriate next node(s)
+          if (outputs.length === 1) {
+            // Single output - navigate directly
+            console.log("📖 STORY MODE: Auto-navigating to single output:", outputs[0].targetNode.Properties.Id);
+            navigateToNode(outputs[0].targetNode);
+          } else if (outputs.length > 1) {
+            // Multiple outputs - this should trigger the normal choice display
+            console.log("📖 STORY MODE: Multiple outputs found, setting up choices:", outputs.length);
+            // Set the instruction node as current so choices can be displayed
+            setCurrentNode(childNode);
+            // The normal handleNext logic will take over and show choices
+            setTimeout(() => {
+              handleNext();
+            }, 0);
+          } else {
+            // No valid outputs
+            console.log("📖 STORY MODE: No valid outputs found");
+            const endNode = { Type: "EndOfFlow", Properties: {} };
+            setCurrentNode(endNode);
+          }
+          return;
+        }
+
+        // Normal flow fragment entry - navigate to first child
         navigateToNode(childNode);
         return;
       } else {
@@ -231,7 +337,13 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     // Handle story only mode - skip nodes that shouldn't be displayed
     if (storyModeSettings.enabled && !shouldDisplayNodeInStoryMode(node)) {
-      console.log("📖 STORY MODE: Skipping node", node.Type, node.Properties.Id);
+      console.log("📖 STORY MODE: Skipping node", node.Type, node.Properties.Id, {
+        storyModeSettings: storyModeSettings,
+        nodeType: node.Type,
+        nodeId: node.Properties.Id,
+        shouldDisplay: shouldDisplayNodeInStoryMode(node),
+        isInsideFlowFragment: !!project?.GetParentFlowFragment(node)
+      });
 
       // Process the node behind the scenes (store variables, etc.)
       // NOTE: Condition nodes are excluded - they should only evaluate conditions, not modify variables
@@ -306,12 +418,27 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         }
       }
 
-      // Navigate to the first valid output
-      if (outputs.length > 0) {
+      // Handle outputs based on count and node type
+      if (outputs.length === 1) {
+        // Single output - navigate directly
+        console.log("📖 STORY MODE: Auto-navigating to single output:", outputs[0].targetNode.Properties.Id);
         navigateToNode(outputs[0].targetNode);
+        return;
+      } else if (outputs.length > 1) {
+        // Multiple outputs - this should trigger the normal choice display
+        console.log("📖 STORY MODE: Multiple outputs found, setting up choices:", outputs.length);
+        // Add the node to history (so it appears in Previous Choice)
+        setNodeHistory([...nodeHistory, node]);
+        // Set the instruction node as current so choices can be displayed
+        setCurrentNode(node);
+        // The normal handleNext logic will take over and show choices
+        setTimeout(() => {
+          handleNext();
+        }, 0);
         return;
       } else {
         // No valid outputs, treat as end of flow
+        console.log("📖 STORY MODE: No valid outputs found");
         const endNode = { Type: "EndOfFlow", Properties: {} };
         setCurrentNode(endNode);
         setShowConditionChoices(false);
@@ -364,6 +491,13 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     }
   }, [data]);
 
+  // Notify parent when hideDebugInfo changes to control footer visibility
+  useEffect(() => {
+    if (onHideFooterChange) {
+      onHideFooterChange(storyModeSettings.hideDebugInfo);
+    }
+  }, [storyModeSettings.hideDebugInfo, onHideFooterChange]);
+
   // Panel toggle functions
   const handleVariablesPanelToggle = () => {
     setIsVariablesPanelVisible(!isVariablesPanelVisible);
@@ -381,7 +515,29 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   const handleStoryOnlyModeToggle = () => {
     const newEnabled = !storyModeSettings.enabled;
-    setStoryModeSettings(prev => ({ ...prev, enabled: newEnabled }));
+
+    if (newEnabled) {
+      // When enabling story mode, turn on all hide options by default
+      setStoryModeSettings({
+        enabled: true,
+        hideInstructions: true,
+        hideConditions: true,
+        hideInactiveChoices: true,
+        hidePreviousChoices: true,
+        hideDebugInfo: true
+      });
+    } else {
+      // When disabling, turn off all options
+      setStoryModeSettings({
+        enabled: false,
+        hideInstructions: false,
+        hideConditions: false,
+        hideInactiveChoices: false,
+        hidePreviousChoices: false,
+        hideDebugInfo: false
+      });
+    }
+
     setStoryOnlyMode(newEnabled);
     console.log('🔄 Story Only Mode toggled:', newEnabled);
   };
@@ -398,13 +554,17 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     // Check if any filters are enabled
     const anyFiltersEnabled = tempStoryModeSettings.hideInstructions ||
                              tempStoryModeSettings.hideConditions ||
-                             tempStoryModeSettings.hideInactiveChoices;
+                             tempStoryModeSettings.hideInactiveChoices ||
+                             tempStoryModeSettings.hidePreviousChoices ||
+                             tempStoryModeSettings.hideDebugInfo;
 
     const newSettings = {
       enabled: anyFiltersEnabled,
       hideInstructions: tempStoryModeSettings.hideInstructions,
       hideConditions: tempStoryModeSettings.hideConditions,
-      hideInactiveChoices: tempStoryModeSettings.hideInactiveChoices
+      hideInactiveChoices: tempStoryModeSettings.hideInactiveChoices,
+      hidePreviousChoices: tempStoryModeSettings.hidePreviousChoices,
+      hideDebugInfo: tempStoryModeSettings.hideDebugInfo
     };
 
     setStoryModeSettings(newSettings);
@@ -417,14 +577,18 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       setTempStoryModeSettings({
         hideInstructions: true,
         hideConditions: true,
-        hideInactiveChoices: true
+        hideInactiveChoices: true,
+        hidePreviousChoices: true,
+        hideDebugInfo: true
       });
-      console.log('🔄 Story Mode: All filters preset selected');
+      console.log('🔄 Story Mode: Hide all preset selected');
     } else {
       setTempStoryModeSettings({
         hideInstructions: false,
         hideConditions: false,
-        hideInactiveChoices: false
+        hideInactiveChoices: false,
+        hidePreviousChoices: false,
+        hideDebugInfo: false
       });
       console.log('🔄 Story Mode: Show everything preset selected');
     }
@@ -440,7 +604,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       setTempStoryModeSettings({
         hideInstructions: storyModeSettings.hideInstructions,
         hideConditions: storyModeSettings.hideConditions,
-        hideInactiveChoices: storyModeSettings.hideInactiveChoices
+        hideInactiveChoices: storyModeSettings.hideInactiveChoices,
+        hidePreviousChoices: storyModeSettings.hidePreviousChoices,
+        hideDebugInfo: storyModeSettings.hideDebugInfo
       });
     }
   };
@@ -514,7 +680,33 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const shouldDisplayNodeInStoryMode = (node: any): boolean => {
     if (!storyModeSettings.enabled) return true; // Always display when story mode is off
 
-    // Always keep hub nodes that offer choices, even if they're instruction nodes
+    console.log('📖 STORY MODE: Evaluating node for display:', {
+      nodeId: node.Properties.Id,
+      nodeType: node.Type,
+      storyModeSettings: storyModeSettings
+    });
+
+    // Check if this node should be filtered based on story mode settings first
+    // This allows story mode to override hub node behavior
+    if (storyModeSettings.hideInstructions && nodeInheritsFromClass(node.Type, "Instruction")) {
+      console.log('📖 STORY MODE: Hiding instruction-based node (story mode override):', {
+        nodeType: node.Type,
+        nodeId: node.Properties.Id,
+        isHubNode: hasMultipleOutputs(node)
+      });
+      return false;
+    }
+
+    if (storyModeSettings.hideConditions && nodeInheritsFromClass(node.Type, "Condition")) {
+      console.log('📖 STORY MODE: Hiding condition-based node (story mode override):', {
+        nodeType: node.Type,
+        nodeId: node.Properties.Id,
+        isHubNode: hasMultipleOutputs(node)
+      });
+      return false;
+    }
+
+    // Keep hub nodes that offer choices (only if not filtered above)
     // These represent important decision points in the narrative
     const isHubNode = hasMultipleOutputs(node);
 
@@ -533,24 +725,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       return true; // Keep hub nodes that offer choices
     }
 
-    // Filter based on specific settings using dynamic class checking
-    if (storyModeSettings.hideInstructions && nodeInheritsFromClass(node.Type, "Instruction")) {
-      console.log('📖 STORY MODE: Hiding instruction-based node:', {
-        nodeType: node.Type,
-        nodeId: node.Properties.Id
-      });
-      return false;
-    }
-
-    if (storyModeSettings.hideConditions && nodeInheritsFromClass(node.Type, "Condition")) {
-      console.log('📖 STORY MODE: Hiding condition-based node:', {
-        nodeType: node.Type,
-        nodeId: node.Properties.Id
-      });
-      return false;
-    }
-
     // Keep narrative-oriented nodes like dialogue fragments, locations, etc.
+    console.log('📖 STORY MODE: Keeping narrative node:', {
+      nodeId: node.Properties.Id,
+      nodeType: node.Type,
+      reason: 'Narrative-oriented node'
+    });
     return true;
   };
 
@@ -1507,10 +1687,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // Reset selected choice index when node changes
   useEffect(() => {
-    // Always start focus on first forward choice (skip previous choice if visible)
-    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+    // Always start focus on first forward choice (skip previous choice if visible and not hidden by story mode)
+    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices;
     setSelectedChoiceIndex(hasPreviousChoice ? 1 : 0);
-  }, [currentNode, showPrevious, previousChoiceHistory.length]);
+  }, [currentNode, showPrevious, previousChoiceHistory.length, storyModeSettings.hidePreviousChoices]);
 
   // Initialize node refs when choice options change
   useEffect(() => {
@@ -1716,7 +1896,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           transition: 'margin-left 0.3s ease'
         }}>
         {/* Previous choice display */}
-        {showPrevious && previousChoiceHistory.length > 0 && (
+        {showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices && (
           <>
             <PreviousChoiceDisplay
               previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
@@ -2016,7 +2196,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         transition: 'margin-left 0.3s ease'
       }}>
         {/* Previous choice display */}
-        {showPrevious && previousChoiceHistory.length > 0 && (
+        {showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices && (
           <>
             <PreviousChoiceDisplay
               previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
@@ -2052,17 +2232,19 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             text: "Next",
             onClick: handleNext
           }}
-          selected={!(showPrevious && previousChoiceHistory.length > 0 && selectedChoiceIndex === 0)}
+          selected={!(showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices && selectedChoiceIndex === 0)}
         />
 
-        <div style={{ marginTop: '10px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
-          <strong>Debug Info:</strong><br />
-          Node ID: {currentNode.Properties.Id}<br />
-          Node Type: {currentNode.Type}<br />
-          History Length: {nodeHistory.length}<br />
-          Previous Choices: {previousChoiceHistory.length}<br />
-          Text: {nodeText.substring(0, 50)}...
-        </div>
+        {!storyModeSettings.hideDebugInfo && (
+          <div style={{ marginTop: '10px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
+            <strong>Debug Info:</strong><br />
+            Node ID: {currentNode.Properties.Id}<br />
+            Node Type: {currentNode.Type}<br />
+            History Length: {nodeHistory.length}<br />
+            Previous Choices: {previousChoiceHistory.length}<br />
+            Text: {nodeText.substring(0, 50)}...
+          </div>
+        )}
       </div>
     </div>
   );

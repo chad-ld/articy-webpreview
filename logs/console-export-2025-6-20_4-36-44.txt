@@ -1,0 +1,1720 @@
+[vite] connecting... client:206:9
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-37RMDTVC.js:21536:25
+[Articy Web Viewer v4.x] Starting application... App.tsx:29:13
+✅ Enhanced file input ready App.tsx:30:13
+✅ 3.x and 4.x format support enabled App.tsx:31:13
+✅ Automatic format detection active App.tsx:32:13
+[Articy Web Viewer v4.x] Starting application... App.tsx:29:13
+✅ Enhanced file input ready App.tsx:30:13
+✅ 3.x and 4.x format support enabled App.tsx:31:13
+✅ Automatic format detection active App.tsx:32:13
+GET
+http://localhost:3001/vite.svg
+[HTTP/1.1 404 Not Found 0ms]
+
+[vite] connected. client:286:21
+🔄 Processing input: Multiple JSON files (8 files) EnhancedFileInput.tsx:47:15
+🚀 Starting data processing pipeline... dataRouter.js:35:15
+🔍 Starting format detection... formatDetector.js:26:15
+📋 Input type detected: object formatDetector.js:44:17
+🎯 Detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9, inputType: "object" }
+formatDetector.js:66:17
+🔍 Format detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9 }
+dataRouter.js:43:17
+📋 Processing 4.x format data... dataRouter.js:137:15
+Loading 4.x format data (raw)... dataLoader4x.js:57:15
+Available files: 
+Array(8) [ "global_variables.json", "hierarchy.json", "manifest.json", "object_definitions.json", "object_definitions_localization.json", "package_010000060000401C_localization.json", "package_010000060000401C_objects.json", "script_methods.json" ]
+dataLoader4x.js:58:15
+File sizes: 
+Array(8) [ "global_variables.json: 12557 chars", "hierarchy.json: 64391 chars", "manifest.json: 2127 chars", "object_definitions.json: 59446 chars", "object_definitions_localization.json: 2 chars", "package_010000060000401C_localization.json: 40821 chars", "package_010000060000401C_objects.json: 386797 chars", "script_methods.json: 27 chars" ]
+dataLoader4x.js:59:15
+Manifest loaded: 
+Object { exportVersion: "2.1", packagesCount: 1 }
+dataLoader4x.js:108:15
+Global variables loaded: 5 namespaces dataLoader4x.js:136:15
+Hierarchy loaded dataLoader4x.js:161:15
+Object definitions loaded dataLoader4x.js:177:17
+Object definitions localization loaded dataLoader4x.js:188:17
+🔍 Processing package: 
+Object { id: "0x010000060000401C", name: "All objects", objectsFile: "package_010000060000401C_objects.json" }
+dataLoader4x.js:208:15
+📦 Package objects loaded for 0x010000060000401C: 
+Object { objectsCount: 281, hasObjects: true, topLevelKeys: (1) […], firstObjectType: "FlowFragment", rawDataType: "object", isArray: false }
+dataLoader4x.js:221:19
+✅ Package 0x010000060000401C has 281 objects dataLoader4x.js:234:21
+Package localization loaded for 0x010000060000401C: 177 text entries dataLoader4x.js:250:19
+Script methods loaded dataLoader4x.js:277:15
+4.x raw data loading complete: 
+Object { hasManifest: true, packageCount: 1, totalObjects: 281 }
+dataLoader4x.js:83:15
+🔄 Starting data merge process... dataMerger4x.js:26:15
+🔍 LoadedData structure: 
+Object { hasManifest: true, hasPackages: true, packageKeys: (1) […], hasLocalizations: true }
+dataMerger4x.js:27:15
+🔄 Merging package 0x010000060000401C: 
+Object { name: "All objects", hasPackageData: true, packageDataKeys: (1) […], objectCount: 281, hasLocalization: true, packageDataType: "object", isPackageDataArray: false }
+dataMerger4x.js:146:17
+🔍 Package 0x010000060000401C detailed structure: 
+Object { hasObjects: true, objectsType: "object", objectsIsArray: true, objectsLength: 281, firstObjectType: "FlowFragment", packageDataKeys: (1) […] }
+dataMerger4x.js:159:17
+🔄 About to merge 281 objects for package 0x010000060000401C dataMerger4x.js:169:17
+📝 Resolved DisplayName: FFr_F1DC497C.DisplayName → RND Flows dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2818583C.DisplayName → v01 Mission Structure - Mission Centric dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4F482B74.DisplayName → Dynaimic Node Data Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AB2104B3.DisplayName → Template Nodes dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EA4474CC.DisplayName → ||QUEST_001 - The Narrative Bible of Ultimate Power dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_3033B87D.DisplayName → ||QUEST_000 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4196D8BE.DisplayName → ||LOCATION - PerForge dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_124A97AE.DisplayName → ||LOCATION - The Lost Forest dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7412BD2A.DisplayName → ||LOCATION - The Pits of Gnesding dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_021CD272.DisplayName → ||LOCATION - Crime Scene dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_451AD1EC.DisplayName → ||LOCATION - (Location Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A97DCF5D.DisplayName → /BARKS - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E3C53E60.DisplayName → /BARKJUMP - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B9F87F33.DisplayName → Troll Threatens Player dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F6023C36.DisplayName → Duhvel Opper Works on Sword dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A3F385EA.DisplayName → /BARKS - IdleWorking - EXIT dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F59171D3.DisplayName → /BARKS - (Situation) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F75A144A.DisplayName → /BARKJUMP - (bark group name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EF5D9B66.DisplayName → Initiate Exploration Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A325DF21.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D985C34A.DisplayName → Daria Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_394DA921.DisplayName → Liza Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_777D1E8B.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8F9280AE.DisplayName → Alex Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_31EB1DE1.DisplayName → Leo Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_671D743F.DisplayName → ||MINIGAME - (Module Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9F6691F3.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_37D275E0.DisplayName → ||MINIGAME - Fingerprint Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_390E6E85.DisplayName → ||MINIGAME - WPA Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2F424BCF.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F27928A8.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_FD7895A2.DisplayName → ||INFOUI - (Module Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9C7C7ADA.DisplayName → ||INFO_UI - Evidence List dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D9D98307.DisplayName → ||CRAFTING - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4E79470B.DisplayName → ||COMBAT - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7E041108.DisplayName → ||ACTION - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BDD348EC.DisplayName → ||TRAVEL - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_18E68216.DisplayName → Player dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_C21FA208.DisplayName → Duhvel Opper dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F17EEBF5.DisplayName → Test - Angry Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_100228C8.DisplayName → Test - Happy Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_A4F9EF33.DisplayName → Liza dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_092A71A8.DisplayName → Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_BA3FA39C.DisplayName → Leo dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_64EF5775.DisplayName → Daria dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_78B71307.DisplayName → Detective Siri/Alexa dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F6CAC097.DisplayName → Toxic Troll dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_7AC9E953.DisplayName → The Mace Of Bug Squashing dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_3B0DE166.DisplayName → Updated Will dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_3CD15F77.DisplayName → Autopsy Report dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_AF0A0E80.DisplayName → Original Will dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_0EA4A19F.DisplayName → Paternity Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_0E90DB1E.DisplayName → Photo of Daria and Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_02F2E520.DisplayName → Safe dataMerger4x.js:247:21
+✅ Package 0x010000060000401C merged: 281 models dataMerger4x.js:181:19
+✅ Data merge complete: 
+Object { globalVariables: 5, objectDefinitions: 71, packages: 1, totalModels: 281 }
+dataMerger4x.js:46:15
+✅ 4.x data processed and converted: 
+Object { packages: 1, globalVariables: 5, objectDefinitions: 71, totalModels: 281 }
+dataRouter.js:152:15
+✅ Data processing complete: 
+Object { format: "4.x", packages: 1, totalModels: 281 }
+dataRouter.js:74:17
+Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead. chunk-AW3AH53L.js:1346:15
+🎉 Data loaded successfully: 
+Object { success: true, format: "4.x", version: "2.1", confidence: 0.9, summary: {…}, nodeTypes: {…}, features: {…}, processingInfo: {…} }
+App.tsx:35:13
+🔄 InteractiveArticyViewer: Initializing ArticyProject with data: 
+Object { hasPackages: true, packageCount: 1, totalModels: 281 }
+InteractiveArticyViewer.tsx:286:17
+🔧 ArticyProject initialized with data: 
+Object { hasPackages: true, packageCount: 1, hasGlobalVariables: true, hasObjectDefinitions: true, sourceFormat: "4.x", totalModels: 281 }
+ArticyProject.ts:13:13
+📦 First package: 
+Object { name: "All objects", modelCount: 281, firstModel: "FlowFragment" }
+ArticyProject.ts:22:15
+🔍 InteractiveArticyViewer: Calling GetStartNode()... InteractiveArticyViewer.tsx:293:17
+🔍 Searching for start node in 1 packages ArticyProject.ts:51:13
+📦 Package 0: All objects, 281 models ArticyProject.ts:54:15
+🎯 Found start node: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true, foundIn: "Expression" }
+ArticyProject.ts:60:19
+🔍 InteractiveArticyViewer: GetStartNode() returned: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:295:17
+✅ InteractiveArticyViewer: Start node set successfully InteractiveArticyViewer.tsx:304:19
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1131:13
+🔄 InteractiveArticyViewer: Initializing ArticyProject with data: 
+Object { hasPackages: true, packageCount: 1, totalModels: 281 }
+InteractiveArticyViewer.tsx:286:17
+🔧 ArticyProject initialized with data: 
+Object { hasPackages: true, packageCount: 1, hasGlobalVariables: true, hasObjectDefinitions: true, sourceFormat: "4.x", totalModels: 281 }
+ArticyProject.ts:13:13
+📦 First package: 
+Object { name: "All objects", modelCount: 281, firstModel: "FlowFragment" }
+ArticyProject.ts:22:15
+🔍 InteractiveArticyViewer: Calling GetStartNode()... InteractiveArticyViewer.tsx:293:17
+🔍 Searching for start node in 1 packages ArticyProject.ts:51:13
+📦 Package 0: All objects, 281 models ArticyProject.ts:54:15
+🎯 Found start node: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true, foundIn: "Expression" }
+ArticyProject.ts:60:19
+🔍 InteractiveArticyViewer: GetStartNode() returned: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:295:17
+✅ InteractiveArticyViewer: Start node set successfully InteractiveArticyViewer.tsx:304:19
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1131:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔄 Single output navigation: 
+Object { fromNodeId: "0x01000008000007DD", fromNodeType: "Instruction", toNodeId: "0x0100000B00000223", toNodeType: "LocationTemplate" }
+InteractiveArticyViewer.tsx:696:15
+📝 STORING PREVIOUS CHOICE (single output from multi-choice): 
+Object { nodeId: "0x01000008000007DD", nodeType: "Instruction", choiceText: "//ARTICY HTML VIEWER START NODE\n//HTMLPREVIEW", choiceTitle: "//ARTICY HTML VIEWER START NODE", nodeHistoryLength: 1, previousChoiceHistoryLength: 0 }
+InteractiveArticyViewer.tsx:739:17
+🔄 Navigated to: 0x0100000B00000223 LocationTemplate InteractiveArticyViewer.tsx:761:15
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+📝 STORING PREVIOUS CHOICE (multiple outputs): 
+Object { nodeId: "0x0100000B00000223", nodeType: "LocationTemplate", choiceText: "The crime scene, Victor's secret apartment.\r\n\r\n\r\n\r\nLocation Details: (can put a hyperlink to notion or google doc here for art or programmer refernce)", choiceTitle: "||LOCATION - Crime Scene", nodeHistoryLength: 2, previousChoiceHistoryLength: 1, outputCount: 3 }
+InteractiveArticyViewer.tsx:810:17
+🔀 Setting choice options: 
+Array(3) [ {…}, {…}, {…} ]
+InteractiveArticyViewer.tsx:834:17
+🔀 Showing 3 choices InteractiveArticyViewer.tsx:843:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 3, filteredChoicesLength: 3, nodeRefsLength: 3, storyModeSettings: {…}, choiceConditions: (3) […] }
+InteractiveArticyViewer.tsx:1131:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 FORCING BUBBLE RE-RENDER InteractiveArticyViewer.tsx:1147:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1363:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1363:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1363:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000022F", targetNodeId: "0x0100000B0000022F", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000001DC", targetNodeId: "0x0100000B000001DC", targetNodeType: "PlayerActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==false", hasText: true }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==false", splitValue: false, dataChunks: (2) […], newData: {…}, currentVariables: {…} }
+ArticyProject.ts:167:13
+🔍 OBJECT COMPARE DEBUG: 
+Object { actualValue: "False", expectedValue: false, actualValueType: "string", expectedValueType: "boolean", normalizedActualValue: false, normalizedExpectedValue: false, normalizedActualValueType: "boolean", normalizedExpectedValueType: "boolean", comparisonResult: true }
+ArticyProject.ts:218:13
+🔍 CONDITION RESULT: true ArticyProject.ts:175:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000001DC", conditionText: "EvidenceVariables.safe_opened==false", conditionTextLength: 36, conditionTextTrimmed: "EvidenceVariables.safe_opened==false", conditionMet: true, choiceText: "ACTION - Investigate safe", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:659:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:668:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002D6", targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "EvidenceVariables.safe_opened==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1363:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🖱️ MOUSE CLICK - handleChoiceSelect called: 
+Object { choiceIndex: 2, choiceOptionsLength: 3, choiceExists: true, choiceDisabled: false, storyOnlyMode: false, targetNodeId: "0x0100000B000002D6", targetNodeType: "TravelTemplate" }
+InteractiveArticyViewer.tsx:848:13
+🔄 SKIP DETECTED: Multiple → Single choice, skipping intermediate node: 
+Object { fromNodeId: "0x0100000B00000223", fromNodeType: "LocationTemplate", skippingNodeId: "0x0100000B000002D6", skippingNodeType: "TravelTemplate", finalTargetNodeId: "0x0100000B000002DA", finalTargetNodeType: "Jump" }
+InteractiveArticyViewer.tsx:899:19
+📝 STORING PREVIOUS CHOICE (choice select): 
+Object { backToNodeId: "0x0100000B00000223", backToNodeType: "LocationTemplate", displayChoiceText: "//TRAVEL - View Murder Board\n", displayChoiceTitle: "//TRAVEL - View Murder Board", targetNodeId: "0x0100000B000002DA", targetNodeType: "Jump", skippedNodeId: "0x0100000B000002D6", skippedNodeType: "TravelTemplate", nodeHistoryLength: 2, previousChoiceHistoryLength: 2, … }
+InteractiveArticyViewer.tsx:967:15
+🔄 JUMP REDIRECT: 0x0100000B000002DA → 0x0100000B000002C8 InteractiveArticyViewer.tsx:191:17
+✅ Selected choice: TRAVEL - View Murder Board InteractiveArticyViewer.tsx:993:13
+🔄 Navigated to: 0x0100000B000002DA Jump InteractiveArticyViewer.tsx:994:13
+⏭️ Skipped intermediate node: 0x0100000B000002D6 TravelTemplate InteractiveArticyViewer.tsx:996:15
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1131:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+📝 STORING PREVIOUS CHOICE (multiple outputs): 
+Object { nodeId: "0x0100000B000002C8", nodeType: "InfoUI", choiceText: "UI screen where user can view suspects statements, means, motive, opportunity", choiceTitle: "||INFO_UI - Murder Board", nodeHistoryLength: 4, previousChoiceHistoryLength: 3, outputCount: 3 }
+InteractiveArticyViewer.tsx:810:17
+🔀 Setting choice options: 
+Array(3) [ {…}, {…}, {…} ]
+InteractiveArticyViewer.tsx:834:17
+🔀 Showing 3 choices InteractiveArticyViewer.tsx:843:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 3, filteredChoicesLength: 3, nodeRefsLength: 3, storyModeSettings: {…}, choiceConditions: (3) […] }
+InteractiveArticyViewer.tsx:1131:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 FORCING BUBBLE RE-RENDER InteractiveArticyViewer.tsx:1147:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002E0", targetNodeId: "0x0100000B000002E0", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000373", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000B4D", targetNodeId: "0x0100000B00000B4D", targetNodeType: "TravelTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🖱️ MOUSE CLICK - handleChoiceSelect called: 
+Object { choiceIndex: 1, choiceOptionsLength: 3, choiceExists: true, choiceDisabled: false, storyOnlyMode: false, targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction" }
+InteractiveArticyViewer.tsx:848:13
+🔄 SKIP PREVENTION: Node type should never be skipped: 
+Object { nodeId: "0x0100000B00000373", nodeType: "Instruction", reason: "Hub or dialogue node that needs to show content/choices" }
+InteractiveArticyViewer.tsx:914:17
+📝 STORING PREVIOUS CHOICE (choice select): 
+Object { backToNodeId: "0x0100000B000002C8", backToNodeType: "InfoUI", displayChoiceText: "//See witness statements\n\n//temp point generator\n", displayChoiceTitle: "//See witness statements", targetNodeId: "0x0100000B00000373", targetNodeType: "Instruction", skippedNodeId: undefined, skippedNodeType: undefined, nodeHistoryLength: 4, previousChoiceHistoryLength: 4, … }
+InteractiveArticyViewer.tsx:967:15
+✅ Selected choice: See witness statements InteractiveArticyViewer.tsx:993:13
+🔄 Navigated to: 0x0100000B00000373 Instruction InteractiveArticyViewer.tsx:994:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1131:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+📝 STORING PREVIOUS CHOICE (multiple outputs): 
+Object { nodeId: "0x0100000B00000373", nodeType: "Instruction", choiceText: "//See witness statements\n\n//temp point generator\n", choiceTitle: "//See witness statements", nodeHistoryLength: 5, previousChoiceHistoryLength: 5, outputCount: 4 }
+InteractiveArticyViewer.tsx:810:17
+🔀 Setting choice options: 
+Array(4) [ {…}, {…}, {…}, {…} ]
+InteractiveArticyViewer.tsx:834:17
+🔀 Showing 4 choices InteractiveArticyViewer.tsx:843:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 4, filteredChoicesLength: 4, nodeRefsLength: 4, storyModeSettings: {…}, choiceConditions: (4) […] }
+InteractiveArticyViewer.tsx:1131:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 FORCING BUBBLE RE-RENDER InteractiveArticyViewer.tsx:1147:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002F2", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B0000048F", targetNodeId: "0x0100000B0000048F", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000004E3", targetNodeId: "0x0100000B000004E3", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000536", targetNodeId: "0x0100000B00000536", targetNodeType: "DialogueIntActionTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1344:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1354:21
+🖱️ MOUSE CLICK - handleChoiceSelect called: 
+Object { choiceIndex: 0, choiceOptionsLength: 4, choiceExists: true, choiceDisabled: false, storyOnlyMode: false, targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate" }
+InteractiveArticyViewer.tsx:848:13
+🔄 SKIP PREVENTION: Node type should never be skipped: 
+Object { nodeId: "0x0100000B000002F2", nodeType: "DialogueIntActionTemplate", reason: "Hub or dialogue node that needs to show content/choices" }
+InteractiveArticyViewer.tsx:914:17
+📝 STORING PREVIOUS CHOICE (choice select): 
+Object { backToNodeId: "0x0100000B00000373", backToNodeType: "Instruction", displayChoiceText: "Liza's statements, means, motives, and opportunities.\r\n\r\nLiza is a former worker at Victor's nightclub.", displayChoiceTitle: "Liza Statements", targetNodeId: "0x0100000B000002F2", targetNodeType: "DialogueIntActionTemplate", skippedNodeId: undefined, skippedNodeType: undefined, nodeHistoryLength: 5, previousChoiceHistoryLength: 6, … }
+InteractiveArticyViewer.tsx:967:15
+🔄 FLOW FRAGMENT ENTRY: 0x0100000B000002F2 DialogueIntActionTemplate → 0x0100000B0000060D DialogueInteractiveFragmentTemplate InteractiveArticyViewer.tsx:201:17
+✅ Selected choice: Liza Statements InteractiveArticyViewer.tsx:993:13
+🔄 Navigated to: 0x0100000B000002F2 DialogueIntActionTemplate InteractiveArticyViewer.tsx:994:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000616", targetNodeId: "0x0100000B00000616", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000616", targetNodeId: "0x0100000B00000616", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1131:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000616", targetNodeId: "0x0100000B00000616", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000616", targetNodeId: "0x0100000B00000616", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000616", targetNodeId: "0x0100000B00000616", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000616", targetNodeId: "0x0100000B00000616", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000616", targetNodeId: "0x0100000B00000616", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:560:13
