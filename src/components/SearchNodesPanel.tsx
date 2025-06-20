@@ -8,6 +8,8 @@ interface StoryModeSettings {
     hideInstructions: boolean;
     hideConditions: boolean;
     hideInactiveChoices: boolean;
+    hidePreviousChoices: boolean;
+    hideDebugInfo: boolean;
 }
 
 interface SearchNodesPanelProps {
@@ -245,11 +247,38 @@ function SearchNodesPanel(props: SearchNodesPanelProps) {
                                         ),
                                     },
                                     {
+                                        key: 'hidePreviousChoices',
+                                        label: (
+                                            <Checkbox
+                                                checked={props.tempStoryModeSettings.hidePreviousChoices}
+                                                onChange={(e) => props.onTempStoryModeSettingChange('hidePreviousChoices', e.target.checked)}
+                                            >
+                                                Hide Previous Choices
+                                            </Checkbox>
+                                        ),
+                                    },
+                                    {
+                                        key: 'hideDebugInfo',
+                                        label: (
+                                            <Checkbox
+                                                checked={props.tempStoryModeSettings.hideDebugInfo}
+                                                onChange={(e) => props.onTempStoryModeSettingChange('hideDebugInfo', e.target.checked)}
+                                            >
+                                                Hide Debug Info
+                                            </Checkbox>
+                                        ),
+                                    },
+                                    {
                                         type: 'divider',
                                     },
                                     {
-                                        key: 'allStoryMode',
-                                        label: '📖 All Story Mode',
+                                        key: 'hideAll',
+                                        label: (
+                                            <span>
+                                                <EyeInvisibleOutlined style={{ marginRight: '8px' }} />
+                                                Hide All
+                                            </span>
+                                        ),
                                         onClick: () => props.onStoryModePreset('all'),
                                     },
                                     {

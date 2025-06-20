@@ -1,0 +1,67 @@
+{
+  "Settings": {
+    "set_TextFormatter": "",
+    "set_IncludingAssets": "True",
+    "set_IncludedNodes": "Settings, Project, GlobalVariables, ObjectDefinitions, Packages, ScriptMethods, Hierarchy, Assets, Languages",
+    "set_UseScriptSupport": "True",
+    "ExportVersion": "2.1",
+    "RuleSetId": "0100000600004019",
+    "RuleSetName": "Default Export Ruleset (complete Project)"
+  },
+  "Project": {
+    "Name": "Mysteryworks Prince of Soulard",
+    "DetailName": "",
+    "Guid": "10f57f06-94be-41f7-8cf3-b874a5c797f2",
+    "TechnicalName": "Articy_Base_Project"
+  },
+  "Languages": [
+    {
+      "CultureName": "",
+      "ArticyLanguageId": 127,
+      "LanguageName": "Invariant Language (Invariant Country)",
+      "IsVoiceOver": false
+    }
+  ],
+  "GlobalVariables": {
+    "FileName": "global_variables.json",
+    "Hash": "A93x2ZIE4ko68sbtp3HFgZCC63h0M/NrJNKglzc1CTQ="
+  },
+  "ObjectDefinitions": {
+    "Types": {
+      "FileName": "object_definitions.json",
+      "Hash": "QQ56h1nUdGvxRgA0Mo96qpGsLWGtojtK9hkHa7ShmaU="
+    },
+    "Texts": {
+      "FileName": "object_definitions_localization.json",
+      "Hash": "RBNvo1WzZ4oRRq0W9+hknpT7T8If536DEMBg9hyq/4o="
+    }
+  },
+  "Packages": [
+    {
+      "Name": "All objects",
+      "Id": "0x010000060000401C",
+      "Description": "Exports all objects & types of the project",
+      "IsDefaultPackage": true,
+      "IsIncluded": true,
+      "ScriptFragmentHash": "euGfSCmho7npiJ3NfrrKweYCsZgdbDrXXc/loxhmx74=",
+      "Files": {
+        "Objects": {
+          "FileName": "package_010000060000401C_objects.json",
+          "Hash": "96MPb8euTp9v7lZszXMUn08lQRPF6vKnF+IS7Z6Kgfk="
+        },
+        "Texts": {
+          "FileName": "package_010000060000401C_localization.json",
+          "Hash": "lJ1VixK++xmUmsXimSkTarqSq5njxALSi6TNzRBbKGI="
+        }
+      }
+    }
+  ],
+  "ScriptMethods": {
+    "FileName": "script_methods.json",
+    "Hash": "+Hc7CrqwO4HgaJLz4pXA58UKo/0PYZLVIzK1n03xTOY="
+  },
+  "Hierarchy": {
+    "FileName": "hierarchy.json",
+    "Hash": "6ZjMOt2JHfuAbktAmMWuY6iT8kJuAV0YwGTTb4umoGk="
+  }
+}
