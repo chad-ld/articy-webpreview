@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, Input, Tooltip } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, HistoryOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined } from "@ant-design/icons";
+import { Button, Input, Tooltip, Dropdown, Checkbox } from "antd";
+import type { MenuProps } from 'antd';
+import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, HistoryOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined } from "@ant-design/icons";
+
+interface StoryModeSettings {
+    enabled: boolean;
+    hideInstructions: boolean;
+    hideConditions: boolean;
+    hideInactiveChoices: boolean;
+}
 
 interface VariablesPanelProps {
     project: any;
@@ -14,7 +22,14 @@ interface VariablesPanelProps {
     onToggleSearchPanel: () => void;
     isSearchPanelVisible: boolean;
     storyOnlyMode: boolean;
+    storyModeSettings: StoryModeSettings;
+    tempStoryModeSettings: Omit<StoryModeSettings, 'enabled'>;
     onToggleStoryOnlyMode: () => void;
+    onTempStoryModeSettingChange: (setting: keyof Omit<StoryModeSettings, 'enabled'>, value: boolean) => void;
+    onStoryModeApply: () => void;
+    onStoryModePreset: (preset: 'all' | 'none') => void;
+    onDropdownOpenChange: (open: boolean) => void;
+    dropdownOpen: boolean;
 }
 
 function VariablesPanel(props: VariablesPanelProps) {
@@ -261,24 +276,127 @@ function VariablesPanel(props: VariablesPanelProps) {
                         Search Nodes
                     </Button>
 
-                    {/* Story Only Toggle Button - below Search Nodes */}
-                    <Button
-                        icon={<BookOutlined />}
-                        onClick={props.onToggleStoryOnlyMode}
-                        style={{
-                            position: 'fixed',
-                            left: props.isVisible ? panelWidth + 10 : 10,
-                            top: 80,
-                            zIndex: 1001,
-                            transition: 'left 0.3s ease',
-                            backgroundColor: props.storyOnlyMode ? '#1890ff' : undefined,
-                            borderColor: props.storyOnlyMode ? '#1890ff' : undefined,
-                            color: props.storyOnlyMode ? '#fff' : undefined
-                        }}
-                        size="small"
-                    >
-                        Story Only
-                    </Button>
+                    {/* Story Only Split Button - below Search Nodes */}
+                    <div style={{
+                        position: 'fixed',
+                        left: props.isVisible ? panelWidth + 10 : 10,
+                        top: 80,
+                        zIndex: 1001,
+                        transition: 'left 0.3s ease',
+                        display: 'flex'
+                    }}>
+                        {/* Main Story Only Button */}
+                        <Button
+                            icon={<BookOutlined />}
+                            onClick={props.onToggleStoryOnlyMode}
+                            style={{
+                                backgroundColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                borderTopColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                borderBottomColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                borderLeftColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                borderRightColor: 'transparent',
+                                color: props.storyModeSettings.enabled ? '#fff' : undefined,
+                                borderTopRightRadius: 0,
+                                borderBottomRightRadius: 0,
+                                borderRightWidth: 0
+                            }}
+                            size="small"
+                        >
+                            Story Only
+                        </Button>
+
+                        {/* Dropdown Arrow Button */}
+                        <Dropdown
+                            menu={{
+                                items: [
+                                    {
+                                        key: 'hideInstructions',
+                                        label: (
+                                            <Checkbox
+                                                checked={props.tempStoryModeSettings.hideInstructions}
+                                                onChange={(e) => props.onTempStoryModeSettingChange('hideInstructions', e.target.checked)}
+                                            >
+                                                Hide Instructions
+                                            </Checkbox>
+                                        ),
+                                    },
+                                    {
+                                        key: 'hideConditions',
+                                        label: (
+                                            <Checkbox
+                                                checked={props.tempStoryModeSettings.hideConditions}
+                                                onChange={(e) => props.onTempStoryModeSettingChange('hideConditions', e.target.checked)}
+                                            >
+                                                Hide Conditions
+                                            </Checkbox>
+                                        ),
+                                    },
+                                    {
+                                        key: 'hideInactiveChoices',
+                                        label: (
+                                            <Checkbox
+                                                checked={props.tempStoryModeSettings.hideInactiveChoices}
+                                                onChange={(e) => props.onTempStoryModeSettingChange('hideInactiveChoices', e.target.checked)}
+                                            >
+                                                Hide Inactive Choices
+                                            </Checkbox>
+                                        ),
+                                    },
+                                    {
+                                        type: 'divider',
+                                    },
+                                    {
+                                        key: 'allStoryMode',
+                                        label: '📖 All Story Mode',
+                                        onClick: () => props.onStoryModePreset('all'),
+                                    },
+                                    {
+                                        key: 'showEverything',
+                                        label: '👁 Show Everything',
+                                        onClick: () => props.onStoryModePreset('none'),
+                                    },
+                                    {
+                                        type: 'divider',
+                                    },
+                                    {
+                                        key: 'apply',
+                                        label: (
+                                            <Button
+                                                type="primary"
+                                                size="small"
+                                                onClick={props.onStoryModeApply}
+                                                style={{ width: '100%' }}
+                                            >
+                                                Apply
+                                            </Button>
+                                        ),
+                                    },
+                                ],
+                            }}
+                            trigger={['click']}
+                            placement="bottomLeft"
+                            open={props.dropdownOpen}
+                            onOpenChange={props.onDropdownOpenChange}
+                        >
+                            <Button
+                                icon={<DownOutlined />}
+                                style={{
+                                    backgroundColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                    borderTopColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                    borderBottomColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                    borderRightColor: props.storyModeSettings.enabled ? '#1890ff' : undefined,
+                                    borderLeftColor: 'transparent',
+                                    color: props.storyModeSettings.enabled ? '#fff' : undefined,
+                                    borderTopLeftRadius: 0,
+                                    borderBottomLeftRadius: 0,
+                                    borderLeftWidth: 0,
+                                    minWidth: '24px',
+                                    padding: '0 4px'
+                                }}
+                                size="small"
+                            />
+                        </Dropdown>
+                    </div>
 
                     {/* Show Previous Button - only when variables panel is visible */}
                     {props.isVisible && props.hasPreviousChoice && (

@@ -135,6 +135,21 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // Story only mode state
   const [storyOnlyMode, setStoryOnlyMode] = useState(false);
 
+  // Story mode filter settings
+  const [storyModeSettings, setStoryModeSettings] = useState({
+    enabled: false,
+    hideInstructions: false,
+    hideConditions: false,
+    hideInactiveChoices: true
+  });
+
+  // Temporary settings for dropdown (before applying)
+  const [tempStoryModeSettings, setTempStoryModeSettings] = useState({
+    hideInstructions: false,
+    hideConditions: false,
+    hideInactiveChoices: true
+  });
+
   // Previous choice history for back navigation
   const [previousChoiceHistory, setPreviousChoiceHistory] = useState<PreviousChoice[]>([]);
   const [showPrevious, setShowPrevious] = useState(true);
@@ -189,7 +204,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     }
 
     // Handle story only mode - skip nodes that shouldn't be displayed
-    if (storyOnlyMode && !shouldDisplayNodeInStoryMode(node)) {
+    if (storyModeSettings.enabled && !shouldDisplayNodeInStoryMode(node)) {
       console.log("📖 STORY MODE: Skipping node", node.Type, node.Properties.Id);
 
       // Process the node behind the scenes (store variables, etc.)
@@ -339,8 +354,74 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   };
 
   const handleStoryOnlyModeToggle = () => {
-    setStoryOnlyMode(!storyOnlyMode);
-    console.log('🔄 Story Only Mode toggled:', !storyOnlyMode);
+    const newEnabled = !storyModeSettings.enabled;
+    setStoryModeSettings(prev => ({ ...prev, enabled: newEnabled }));
+    setStoryOnlyMode(newEnabled);
+    console.log('🔄 Story Only Mode toggled:', newEnabled);
+  };
+
+  const handleTempStoryModeSettingChange = (setting: keyof typeof tempStoryModeSettings, value: boolean) => {
+    setTempStoryModeSettings(prev => ({
+      ...prev,
+      [setting]: value
+    }));
+    console.log('🔄 Temp Story Mode Settings changed:', { ...tempStoryModeSettings, [setting]: value });
+  };
+
+  const handleStoryModeApply = () => {
+    // Check if any filters are enabled
+    const anyFiltersEnabled = tempStoryModeSettings.hideInstructions ||
+                             tempStoryModeSettings.hideConditions ||
+                             tempStoryModeSettings.hideInactiveChoices;
+
+    const newSettings = {
+      enabled: anyFiltersEnabled,
+      hideInstructions: tempStoryModeSettings.hideInstructions,
+      hideConditions: tempStoryModeSettings.hideConditions,
+      hideInactiveChoices: tempStoryModeSettings.hideInactiveChoices
+    };
+
+    setStoryModeSettings(newSettings);
+    setStoryOnlyMode(anyFiltersEnabled);
+    console.log('🔄 Story Mode Settings applied:', newSettings);
+  };
+
+  const handleStoryModePreset = (preset: 'all' | 'none') => {
+    if (preset === 'all') {
+      setTempStoryModeSettings({
+        hideInstructions: true,
+        hideConditions: true,
+        hideInactiveChoices: true
+      });
+      console.log('🔄 Story Mode: All filters preset selected');
+    } else {
+      setTempStoryModeSettings({
+        hideInstructions: false,
+        hideConditions: false,
+        hideInactiveChoices: false
+      });
+      console.log('🔄 Story Mode: Show everything preset selected');
+    }
+  };
+
+  // State to control dropdown visibility
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleDropdownOpenChange = (open: boolean) => {
+    setDropdownOpen(open);
+    if (open) {
+      // When opening dropdown, sync temp settings with current settings
+      setTempStoryModeSettings({
+        hideInstructions: storyModeSettings.hideInstructions,
+        hideConditions: storyModeSettings.hideConditions,
+        hideInactiveChoices: storyModeSettings.hideInactiveChoices
+      });
+    }
+  };
+
+  const handleStoryModeApplyAndClose = () => {
+    handleStoryModeApply();
+    setDropdownOpen(false);
   };
 
   // Helper function to check if a node has multiple outputs (is a hub)
@@ -357,9 +438,55 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     return outputCount > 1;
   };
 
+  // Helper function to check if a node type inherits from a specific class
+  const nodeInheritsFromClass = (nodeType: string, className: string): boolean => {
+    if (!project) {
+      console.log('🚨 No project found');
+      return false;
+    }
+
+    if (!project.objectDefinitions) {
+      console.log('🚨 No object definitions found in project. Project keys:', Object.keys(project));
+      return false;
+    }
+
+    console.log('🔍 Object definitions available:', {
+      count: project.objectDefinitions.length,
+      firstFew: project.objectDefinitions.slice(0, 3).map((def: any) => ({ Type: def.Type, Class: def.Class }))
+    });
+
+    const definition = project.objectDefinitions.find((def: any) => def.Type === nodeType);
+    if (!definition) {
+      console.log('🚨 No definition found for node type:', nodeType, 'Available types:', project.objectDefinitions.map((def: any) => def.Type).slice(0, 10));
+      return false;
+    }
+
+    console.log('🔍 Checking inheritance for:', {
+      nodeType,
+      className,
+      definitionClass: definition.Class,
+      definitionInheritsFrom: definition.InheritsFrom
+    });
+
+    // Check direct class match
+    if (definition.Class === className) {
+      console.log('✅ Direct class match:', nodeType, 'is', className);
+      return true;
+    }
+
+    // Check inheritance chain
+    if (definition.InheritsFrom === className) {
+      console.log('✅ Inheritance match:', nodeType, 'inherits from', className);
+      return true;
+    }
+
+    console.log('❌ No match:', nodeType, 'does not inherit from', className);
+    return false;
+  };
+
   // Helper function to determine if a node should be displayed in story only mode
   const shouldDisplayNodeInStoryMode = (node: any): boolean => {
-    if (!storyOnlyMode) return true; // Always display when story mode is off
+    if (!storyModeSettings.enabled) return true; // Always display when story mode is off
 
     // Always keep hub nodes that offer choices, even if they're instruction nodes
     // These represent important decision points in the narrative
@@ -379,8 +506,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       return true; // Keep hub nodes that offer choices
     }
 
-    // Filter out regular instruction nodes and condition nodes
-    if (node.Type === "Instruction" || node.Type === "Condition") {
+    // Filter based on specific settings using dynamic class checking
+    if (storyModeSettings.hideInstructions && nodeInheritsFromClass(node.Type, "Instruction")) {
+      console.log('📖 STORY MODE: Hiding instruction-based node:', {
+        nodeType: node.Type,
+        nodeId: node.Properties.Id
+      });
+      return false;
+    }
+
+    if (storyModeSettings.hideConditions && nodeInheritsFromClass(node.Type, "Condition")) {
+      console.log('📖 STORY MODE: Hiding condition-based node:', {
+        nodeType: node.Type,
+        nodeId: node.Properties.Id
+      });
       return false;
     }
 
@@ -1139,7 +1278,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       const filteredChoicesWithIndices = choiceOptions
         .map((option, originalIndex) => ({ option, originalIndex }))
         .filter(({ option }) => {
-          if (storyOnlyMode && option.disabled) {
+          if (storyModeSettings.enabled && storyModeSettings.hideInactiveChoices && option.disabled) {
             return false;
           }
           return true;
@@ -1246,7 +1385,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   useEffect(() => {
     // Filter choices based on story only mode
     const filteredChoices = choiceOptions.filter((option) => {
-      if (storyOnlyMode && option.disabled) {
+      if (storyModeSettings.enabled && storyModeSettings.hideInactiveChoices && option.disabled) {
         return false;
       }
       return true;
@@ -1257,7 +1396,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       choiceOptionsLength: choiceOptions.length,
       filteredChoicesLength: filteredChoices.length,
       nodeRefsLength: nodeRefs.current.length,
-      storyOnlyMode: storyOnlyMode,
+      storyModeSettings: storyModeSettings,
       choiceConditions: filteredChoices.map((opt, idx) => ({ index: idx, condition: opt.condition, hasCondition: !!opt.condition }))
     });
 
@@ -1388,7 +1527,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               onToggleSearchPanel={handleSearchPanelToggle}
               isSearchPanelVisible={isSearchPanelVisible}
               storyOnlyMode={storyOnlyMode}
+              storyModeSettings={storyModeSettings}
+              tempStoryModeSettings={tempStoryModeSettings}
               onToggleStoryOnlyMode={handleStoryOnlyModeToggle}
+              onTempStoryModeSettingChange={handleTempStoryModeSettingChange}
+              onStoryModeApply={handleStoryModeApplyAndClose}
+              onStoryModePreset={handleStoryModePreset}
+              onDropdownOpenChange={handleDropdownOpenChange}
+              dropdownOpen={dropdownOpen}
             />
             <SearchNodesPanel
               project={project}
@@ -1400,7 +1546,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               onToggleVariablesPanel={handleVariablesPanelToggle}
               isVariablesPanelVisible={isVariablesPanelVisible}
               storyOnlyMode={storyOnlyMode}
+              storyModeSettings={storyModeSettings}
+              tempStoryModeSettings={tempStoryModeSettings}
               onToggleStoryOnlyMode={handleStoryOnlyModeToggle}
+              onTempStoryModeSettingChange={handleTempStoryModeSettingChange}
+              onStoryModeApply={handleStoryModeApplyAndClose}
+              onStoryModePreset={handleStoryModePreset}
+              onDropdownOpenChange={handleDropdownOpenChange}
+              dropdownOpen={dropdownOpen}
             />
           </>
         )}
@@ -1466,7 +1619,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             .map((option, originalIndex) => ({ option, originalIndex })) // Preserve original index
             .filter(({ option, originalIndex }) => {
               // In story only mode, hide choices with unmet conditions
-              if (storyOnlyMode && option.disabled) {
+              if (storyModeSettings.enabled && storyModeSettings.hideInactiveChoices && option.disabled) {
                 return false;
               }
               return true;
@@ -1512,7 +1665,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             .map((option, originalIndex) => ({ option, originalIndex })) // Preserve original index
             .filter(({ option, originalIndex }) => {
               // In story only mode, hide choices with unmet conditions
-              if (storyOnlyMode && option.disabled) {
+              if (storyModeSettings.enabled && storyModeSettings.hideInactiveChoices && option.disabled) {
                 return false;
               }
               return true;
@@ -1674,7 +1827,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             onToggleSearchPanel={handleSearchPanelToggle}
             isSearchPanelVisible={isSearchPanelVisible}
             storyOnlyMode={storyOnlyMode}
+            storyModeSettings={storyModeSettings}
+            tempStoryModeSettings={tempStoryModeSettings}
             onToggleStoryOnlyMode={handleStoryOnlyModeToggle}
+            onTempStoryModeSettingChange={handleTempStoryModeSettingChange}
+            onStoryModeApply={handleStoryModeApplyAndClose}
+            onStoryModePreset={handleStoryModePreset}
+            onDropdownOpenChange={handleDropdownOpenChange}
+            dropdownOpen={dropdownOpen}
           />
           <SearchNodesPanel
             project={project}
@@ -1685,6 +1845,15 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             onToggleVisibility={handleSearchPanelToggle}
             onToggleVariablesPanel={handleVariablesPanelToggle}
             isVariablesPanelVisible={isVariablesPanelVisible}
+            storyOnlyMode={storyOnlyMode}
+            storyModeSettings={storyModeSettings}
+            tempStoryModeSettings={tempStoryModeSettings}
+            onToggleStoryOnlyMode={handleStoryOnlyModeToggle}
+            onTempStoryModeSettingChange={handleTempStoryModeSettingChange}
+            onStoryModeApply={handleStoryModeApplyAndClose}
+            onStoryModePreset={handleStoryModePreset}
+            onDropdownOpenChange={handleDropdownOpenChange}
+            dropdownOpen={dropdownOpen}
           />
         </>
       )}
