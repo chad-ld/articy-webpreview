@@ -4,10 +4,12 @@ class ArticyProject {
   data: any;
   variables: any;
   initialVariables: any; // Store initial state for reset functionality
+  objectDefinitions: any; // Store object definitions for class inheritance checking
 
   constructor(data: Object) {
     this.data = data;
     this.variables = {};
+    this.objectDefinitions = (data as any).ObjectDefinitions || [];
 
     // Debug: Log data structure
     console.log('🔧 ArticyProject initialized with data:', {
