@@ -90,6 +90,26 @@ class ArticyProject {
   }
 
   GetFirstChildOfNode(parent: any): any {
+    // For Flow Fragments, we need to find the start node, not just any child
+    const isFlowFragment = (
+      parent.Type === "FlowFragment" ||
+      parent.Type === "DialogueIntActionTemplate" ||
+      parent.Type === "CombatFlowTemplate" ||
+      parent.Type === "CraftingFlowTemplate" ||
+      parent.Type === "TravelFlowTemplate" ||
+      parent.Type === "PlayerActionFlowTemplate" ||
+      parent.Type === "LocationFlowTemplate" ||
+      parent.Type === "EnemyGenericFlowTemplate" ||
+      parent.Type === "NPCFlowTemplate" ||
+      parent.Type === "PCFlowTemplate" ||
+      parent.Type === "WeaponFlowTemplate"
+    );
+
+    if (isFlowFragment) {
+      return this.GetStartNodeInFlowFragment(parent);
+    }
+
+    // For non-Flow Fragments, return the first child as before
     for (let i = 0; i < this.data.Packages.length; i++) {
       const package_ = this.data.Packages[i];
       for (let j = 0; j < package_.Models.length; j++) {
@@ -100,6 +120,135 @@ class ArticyProject {
       }
     }
     return undefined;
+  }
+
+  GetStartNodeInFlowFragment(flowFragment: any): any {
+    // Get all children of the Flow Fragment
+    const children: any[] = [];
+    for (let i = 0; i < this.data.Packages.length; i++) {
+      const package_ = this.data.Packages[i];
+      for (let j = 0; j < package_.Models.length; j++) {
+        const model = package_.Models[j];
+        if (model.Properties.Parent == flowFragment.Properties.Id) {
+          children.push(model);
+        }
+      }
+    }
+
+    if (children.length === 0) {
+      return undefined;
+    }
+
+    // Find nodes that have no input connections from other nodes within the same Flow Fragment
+    const candidateStartNodes: any[] = [];
+    for (const child of children) {
+      const hasInternalInputs = this.hasInputConnectionsFromSiblings(child, children);
+      if (!hasInternalInputs) {
+        candidateStartNodes.push(child);
+      }
+    }
+
+    if (candidateStartNodes.length === 0) {
+      console.log("⚠️ No nodes without internal inputs found, returning first child");
+      return children[0];
+    }
+
+    if (candidateStartNodes.length === 1) {
+      console.log("🎯 Found start node in Flow Fragment:", candidateStartNodes[0].Properties.Id, candidateStartNodes[0].Type, candidateStartNodes[0].Properties.DisplayName);
+      return candidateStartNodes[0];
+    }
+
+    // Multiple candidates - use position and type to determine the best start node
+    // Prefer Instruction nodes with "HUB" in the name, then use leftmost position
+    let bestCandidate = candidateStartNodes[0];
+
+    for (const candidate of candidateStartNodes) {
+      const isHubInstruction = candidate.Type === "Instruction" &&
+                              candidate.Properties.DisplayName &&
+                              candidate.Properties.DisplayName.includes("HUB");
+      const currentIsHubInstruction = bestCandidate.Type === "Instruction" &&
+                                     bestCandidate.Properties.DisplayName &&
+                                     bestCandidate.Properties.DisplayName.includes("HUB");
+
+      // Prefer hub instructions over other nodes
+      if (isHubInstruction && !currentIsHubInstruction) {
+        bestCandidate = candidate;
+      } else if (isHubInstruction === currentIsHubInstruction) {
+        // If both are hub instructions or both are not, prefer leftmost position
+        const candidateX = candidate.Properties.Position?.x || 0;
+        const bestX = bestCandidate.Properties.Position?.x || 0;
+        if (candidateX < bestX) {
+          bestCandidate = candidate;
+        }
+      }
+    }
+
+    console.log("🎯 Found start node in Flow Fragment (from", candidateStartNodes.length, "candidates):", bestCandidate.Properties.Id, bestCandidate.Type, bestCandidate.Properties.DisplayName);
+    return bestCandidate;
+  }
+
+  // Find the parent Flow Fragment container for a given node
+  GetParentFlowFragment(node: any): any {
+    if (!node || !node.Properties.Parent) {
+      return undefined;
+    }
+
+    const parent = this.GetNodeByID(node.Properties.Parent);
+    if (!parent) {
+      return undefined;
+    }
+
+    // Check if the parent is a Flow Fragment
+    const isFlowFragment = (
+      parent.Type === "FlowFragment" ||
+      parent.Type === "DialogueIntActionTemplate" ||
+      parent.Type === "CombatFlowTemplate" ||
+      parent.Type === "CraftingFlowTemplate" ||
+      parent.Type === "TravelFlowTemplate" ||
+      parent.Type === "PlayerActionFlowTemplate" ||
+      parent.Type === "LocationFlowTemplate" ||
+      parent.Type === "EnemyGenericFlowFragment" ||
+      parent.Type === "NPCFlowTemplate" ||
+      parent.Type === "PCFlowTemplate" ||
+      parent.Type === "WeaponFlowTemplate"
+    );
+
+    if (isFlowFragment) {
+      return parent;
+    }
+
+    // Recursively check parent's parent
+    return this.GetParentFlowFragment(parent);
+  }
+
+  hasInputConnectionsFromSiblings(node: any, siblings: any[]): boolean {
+    if (!node.Properties.InputPins) {
+      return false;
+    }
+
+    // We need to find connections TO this node's input pins from sibling nodes
+    // Since input pins don't store their incoming connections, we need to search
+    // through all sibling nodes' output pins to see if any connect to this node
+    for (const sibling of siblings) {
+      if (sibling.Properties.Id === node.Properties.Id) {
+        continue; // Skip self
+      }
+
+      if (sibling.Properties.OutputPins) {
+        for (const outputPin of sibling.Properties.OutputPins) {
+          if (outputPin.Connections) {
+            for (const connection of outputPin.Connections) {
+              if (connection.Target === node.Properties.Id) {
+                console.log("🔗 Found internal connection:", sibling.Properties.Id, "→", node.Properties.Id);
+                return true;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return false;
   }
 
   StoreVariablesFromNode(node: any): void {

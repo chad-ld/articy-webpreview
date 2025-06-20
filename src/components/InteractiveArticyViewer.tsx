@@ -203,6 +203,32 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       }
     }
 
+    // Handle Flow Fragment nodes (enter first child)
+    // These are container nodes that should be entered rather than displayed
+    if (node.Type === "FlowFragment" ||
+        node.Type === "DialogueIntActionTemplate" ||
+        node.Type === "CombatFlowTemplate" ||
+        node.Type === "CraftingFlowTemplate" ||
+        node.Type === "TravelFlowTemplate" ||
+        node.Type === "PlayerActionFlowTemplate" ||
+        node.Type === "LocationFlowTemplate" ||
+        node.Type === "EnemyGenericFlowTemplate" ||
+        node.Type === "NPCFlowTemplate" ||
+        node.Type === "PCFlowTemplate" ||
+        node.Type === "WeaponFlowTemplate") {
+
+      const childNode = project?.GetFirstChildOfNode(node);
+      if (childNode) {
+        console.log("🔄 FLOW FRAGMENT ENTRY:", node.Properties.Id, node.Type, "→", childNode.Properties.Id, childNode.Type);
+        // Auto-navigate to first child
+        navigateToNode(childNode);
+        return;
+      } else {
+        console.log("⚠️ Flow Fragment has no children, treating as regular node:", node.Properties.Id, node.Type);
+        // If no children, fall through to normal handling (will follow output connections)
+      }
+    }
+
     // Handle story only mode - skip nodes that shouldn't be displayed
     if (storyModeSettings.enabled && !shouldDisplayNodeInStoryMode(node)) {
       console.log("📖 STORY MODE: Skipping node", node.Type, node.Properties.Id);
@@ -492,8 +518,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     // These represent important decision points in the narrative
     const isHubNode = hasMultipleOutputs(node);
 
-    // Also keep DialogueIntActionTemplate nodes as they are special hub-like nodes
-    const isSpecialHubNode = node.Type === "DialogueIntActionTemplate" || node.Type === "Hub";
+    // Also keep Hub nodes as they are special hub-like nodes
+    // NOTE: DialogueIntActionTemplate nodes are now Flow Fragments and will be entered automatically
+    const isSpecialHubNode = node.Type === "Hub";
 
     if (isHubNode || isSpecialHubNode) {
       console.log('📖 STORY MODE: Keeping hub node:', {
@@ -580,7 +607,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       if (lastChoice.fromMultiChoice) {
         // Check if the restored node is a hub node (multiple outputs) or special hub type
         const isHubNode = hasMultipleOutputs(lastChoice.node);
-        const isSpecialHubNode = lastChoice.node.Type === "DialogueIntActionTemplate" || lastChoice.node.Type === "Hub";
+        const isSpecialHubNode = lastChoice.node.Type === "Hub"; // Removed DialogueIntActionTemplate
 
         if (isHubNode || isSpecialHubNode) {
           // For hub nodes, directly show choices without calling handleNext
@@ -827,13 +854,96 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     const outputs = getCurrentNodeOutputs();
 
     if (outputs.length === 0) {
-      // End of flow - no outputs
+      // Check if we're inside a Flow Fragment and should exit to the parent level
+      const parentFlowFragment = project?.GetParentFlowFragment(currentNode);
+      if (parentFlowFragment) {
+        console.log('🔄 FLOW FRAGMENT EXIT: Exiting from', currentNode.Properties.Id, 'to parent', parentFlowFragment.Properties.Id);
+
+        // Get the Flow Fragment's output connections
+        const fragmentOutputs: ChoiceOption[] = [];
+        if (parentFlowFragment.Properties.OutputPins) {
+          parentFlowFragment.Properties.OutputPins.forEach((pin: any) => {
+            if (pin.Connections) {
+              pin.Connections.forEach((connection: any) => {
+                const targetNode = project.GetNodeByID(connection.Target);
+                if (targetNode) {
+                  fragmentOutputs.push({
+                    text: targetNode.Properties.Text || targetNode.Properties.Expression || targetNode.Properties.DisplayName || "Continue",
+                    targetNode: targetNode,
+                    disabled: false,
+                    condition: ""
+                  });
+                }
+              });
+            }
+          });
+        }
+
+        if (fragmentOutputs.length > 0) {
+          // Navigate to the first output of the Flow Fragment
+          console.log('🔄 FLOW FRAGMENT EXIT: Continuing to', fragmentOutputs[0].targetNode.Properties.Id, fragmentOutputs[0].targetNode.Type);
+          navigateToNode(fragmentOutputs[0].targetNode);
+          setShowingChoices(false);
+          return;
+        } else {
+          console.log('⚠️ FLOW FRAGMENT EXIT: Parent Flow Fragment has no outputs, treating as end of flow');
+        }
+      }
+
+      // End of flow - no outputs and not inside a Flow Fragment (or Flow Fragment has no outputs)
       const endNode = { Type: "EndOfFlow", Properties: {} };
       navigateToNode(endNode);
       setShowingChoices(false);
     } else if (outputs.length === 1) {
-      // Single output - only store as previous choice if this is a meaningful choice point
+      // Single output - check if we should exit Flow Fragment instead of following the connection
       const targetNode = outputs[0].targetNode;
+
+      // Check if the current node's output connects back to its parent Flow Fragment container
+      const parentFlowFragment = project?.GetParentFlowFragment(currentNode);
+
+      if (parentFlowFragment && targetNode.Properties.Id === parentFlowFragment.Properties.Id) {
+        // The output connects back to the parent Flow Fragment container - this means exit the Flow Fragment
+        console.log('🔄 FLOW FRAGMENT EXIT: Node output connects back to parent Flow Fragment:', {
+          fromNodeId: currentNode.Properties.Id,
+          fromNodeType: currentNode.Type,
+          parentFlowFragmentId: parentFlowFragment.Properties.Id,
+          parentFlowFragmentType: parentFlowFragment.Type
+        });
+
+        // Get the Flow Fragment's output connections
+        const fragmentOutputs: ChoiceOption[] = [];
+        if (parentFlowFragment.Properties.OutputPins) {
+          parentFlowFragment.Properties.OutputPins.forEach((pin: any) => {
+            if (pin.Connections) {
+              pin.Connections.forEach((connection: any) => {
+                const exitTargetNode = project.GetNodeByID(connection.Target);
+                if (exitTargetNode) {
+                  fragmentOutputs.push({
+                    text: exitTargetNode.Properties.Text || exitTargetNode.Properties.Expression || exitTargetNode.Properties.DisplayName || "Continue",
+                    targetNode: exitTargetNode,
+                    disabled: false,
+                    condition: ""
+                  });
+                }
+              });
+            }
+          });
+        }
+
+        if (fragmentOutputs.length > 0) {
+          // Navigate to the first output of the Flow Fragment
+          console.log('🔄 FLOW FRAGMENT EXIT: Continuing to', fragmentOutputs[0].targetNode.Properties.Id, fragmentOutputs[0].targetNode.Type);
+          navigateToNode(fragmentOutputs[0].targetNode);
+          setShowingChoices(false);
+          return;
+        } else {
+          console.log('⚠️ FLOW FRAGMENT EXIT: Parent Flow Fragment has no outputs, treating as end of flow');
+          const endNode = { Type: "EndOfFlow", Properties: {} };
+          navigateToNode(endNode);
+          setShowingChoices(false);
+          return;
+        }
+      }
 
       console.log('🔄 Single output navigation:', {
         fromNodeId: currentNode.Properties.Id,
@@ -935,10 +1045,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       }
 
       // Multiple outputs - store current node as previous choice before showing choices
-      // BUT: Don't store DialogueIntActionTemplate nodes as previous choices since they show choices immediately
+      // NOTE: DialogueIntActionTemplate nodes are now handled as Flow Fragments, not immediate hub nodes
       // NOTE: Regular Hub nodes should now be stored as previous choices since they show content first
       // NOTE: Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
-      const isSpecialHubNode = currentNode.Type === "DialogueIntActionTemplate" || currentNode.Type === "Hub";
+      const isSpecialHubNode = currentNode.Type === "Hub"; // Removed DialogueIntActionTemplate
 
       // Check if this is a dialogue fragment (needed for both hub and non-hub logic)
       const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
@@ -1087,15 +1197,29 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       }
 
       // Don't skip certain node types that are meant to show choices or content
-      // DialogueIntActionTemplate nodes are ALWAYS hub nodes and should never be skipped
-      // Other dialogue nodes should only be prevented from skipping if they have multiple outputs
+      // Flow Fragment nodes (including DialogueIntActionTemplate) should NEVER be skipped
+      // because they need to be entered to process their children
+      const isFlowFragment = (
+        targetNode.Type === "FlowFragment" ||
+        targetNode.Type === "DialogueIntActionTemplate" ||
+        targetNode.Type === "CombatFlowTemplate" ||
+        targetNode.Type === "CraftingFlowTemplate" ||
+        targetNode.Type === "TravelFlowTemplate" ||
+        targetNode.Type === "PlayerActionFlowTemplate" ||
+        targetNode.Type === "LocationFlowTemplate" ||
+        targetNode.Type === "EnemyGenericFlowTemplate" ||
+        targetNode.Type === "NPCFlowTemplate" ||
+        targetNode.Type === "PCFlowTemplate" ||
+        targetNode.Type === "WeaponFlowTemplate"
+      );
+
       const shouldNeverSkip = (
-        targetNode.Type === "DialogueIntActionTemplate" ||  // Special hub nodes - ALWAYS show (never skip)
+        isFlowFragment ||  // Flow Fragments must be entered, never skipped
         targetNode.Type === "Hub" ||  // Articy hub nodes always show
         hasMultipleOutputs(targetNode) ||  // Any node with multiple outputs (hub nodes) - ALWAYS show
-        (targetNode.Type === "DialogueExplorationFragmentTemplate" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
-        (targetNode.Type === "DialogueInteractiveFragmentTemplate" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
-        (targetNode.Type === "DialogueFragment" && targetOutputs.length > 1) ||  // Dialogue nodes with multiple choices
+        targetNode.Type === "DialogueExplorationFragmentTemplate" ||  // Dialogue nodes should always be shown
+        targetNode.Type === "DialogueInteractiveFragmentTemplate" ||  // Dialogue nodes should always be shown
+        targetNode.Type === "DialogueFragment" ||  // Dialogue nodes should always be shown
         targetNode.Type === "Condition"  // Condition nodes need to show their logic
       );
 
@@ -1142,7 +1266,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       let choiceTitle, choiceText;
 
       if (finalTargetNode.Type === "DialogueIntActionTemplate") {
-        // For hub nodes, show the hub's actual content as the choice text
+        // For Flow Fragment nodes, show the fragment's content as the choice text
         choiceText = finalTargetNode.Properties.Text ||
                     finalTargetNode.Properties.Expression ||
                     finalTargetNode.Properties.DisplayName ||
@@ -1219,6 +1343,13 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     }
 
     // Navigate to the final target (either original target or skipped-to node)
+    console.log('🔄 CHOICE SELECT: About to navigate to node:', {
+      finalTargetNodeId: finalTargetNode.Properties.Id,
+      finalTargetNodeType: finalTargetNode.Type,
+      isDialogueFragment: finalTargetNode.Type === "DialogueInteractiveFragmentTemplate" || finalTargetNode.Type === "DialogueExplorationFragmentTemplate",
+      hasOutputPins: !!finalTargetNode.Properties.OutputPins,
+      outputPinsLength: finalTargetNode.Properties.OutputPins?.length || 0
+    });
     navigateToNode(finalTargetNode);
 
     // Update node history - include skipped node if we skipped one
@@ -1423,11 +1554,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     const outputs = getCurrentNodeOutputs();
 
-    // DialogueIntActionTemplate nodes should act as hubs and show choices immediately
-    // BUT: Regular Hub nodes should show their title first, then choices when Next is clicked
+    // NOTE: DialogueIntActionTemplate nodes are now handled as Flow Fragments (they enter their children)
+    // so they should NOT be treated as immediate hub nodes anymore
+    // Regular Hub nodes should show their title first, then choices when Next is clicked
     // Note: LocationTemplate nodes should show their content first, not immediately show choices
     // Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
-    const isSpecialHubNode = currentNode.Type === "DialogueIntActionTemplate";
+    const isSpecialHubNode = false; // Removed DialogueIntActionTemplate from immediate hub handling
     const isHubNode = hasMultipleOutputs(currentNode);
 
     const shouldShowChoicesImmediately = isSpecialHubNode &&
