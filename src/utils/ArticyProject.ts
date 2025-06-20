@@ -339,26 +339,91 @@ class ArticyProject {
   }
 
   CheckSingleCondition(condition: string): boolean {
-    let value = this.SplitValueFromText(condition);
-    let newData: { [k: string]: any } = {};
-    let dataChunks = this.SplitIndexersFromText(condition);
-    newData[dataChunks[dataChunks.length - 1].trim()] = value;
-    for (let j = dataChunks.length - 2; j >= 0; j--) {
-      newData = { [dataChunks[j]]: newData } as { [k: string]: any };
+    // Determine the operator type
+    let operator = '=='; // default
+    let operatorIndex = -1;
+
+    // Check for operators in order of precedence (longer operators first)
+    if (condition.includes('>=')) {
+      operator = '>=';
+      operatorIndex = condition.indexOf('>=');
+    } else if (condition.includes('<=')) {
+      operator = '<=';
+      operatorIndex = condition.indexOf('<=');
+    } else if (condition.includes('!=')) {
+      operator = '!=';
+      operatorIndex = condition.indexOf('!=');
+    } else if (condition.includes('==')) {
+      operator = '==';
+      operatorIndex = condition.indexOf('==');
+    } else if (condition.includes('>')) {
+      operator = '>';
+      operatorIndex = condition.indexOf('>');
+    } else if (condition.includes('<')) {
+      operator = '<';
+      operatorIndex = condition.indexOf('<');
+    } else if (condition.includes('=')) {
+      operator = '=';
+      operatorIndex = condition.indexOf('=');
     }
 
-    // Debug logging for condition evaluation
+    if (operatorIndex === -1) {
+      console.log('🔍 NO OPERATOR FOUND in condition:', condition);
+      return false;
+    }
+
+    // Extract variable path and comparison value
+    const variablePath = condition.substring(0, operatorIndex).trim();
+    const comparisonValueStr = condition.substring(operatorIndex + operator.length).trim().replace(';', '');
+
+    // Parse the comparison value
+    let comparisonValue: any = comparisonValueStr;
+    if (comparisonValueStr === "true") comparisonValue = true;
+    else if (comparisonValueStr === "false") comparisonValue = false;
+    else if (!isNaN(Number(comparisonValueStr))) comparisonValue = Number(comparisonValueStr);
+    else if (comparisonValueStr.startsWith('"') && comparisonValueStr.endsWith('"')) {
+      comparisonValue = comparisonValueStr.slice(1, -1);
+    }
+
+    // Get the actual variable value
+    const actualValue = this.GetVariableValue(variablePath);
+
+    // Debug logging
     console.log('🔍 CONDITION EVALUATION DEBUG:', {
       originalCondition: condition,
-      splitValue: value,
-      dataChunks: dataChunks,
-      newData: newData,
+      operator: operator,
+      variablePath: variablePath,
+      actualValue: actualValue,
+      comparisonValue: comparisonValue,
       currentVariables: this.variables
     });
 
-    const result = this.ObjectCompare(this.variables, newData);
-    console.log('🔍 CONDITION RESULT:', result);
+    // Perform the comparison based on operator
+    let result = false;
+    switch (operator) {
+      case '>':
+        result = actualValue > comparisonValue;
+        break;
+      case '<':
+        result = actualValue < comparisonValue;
+        break;
+      case '>=':
+        result = actualValue >= comparisonValue;
+        break;
+      case '<=':
+        result = actualValue <= comparisonValue;
+        break;
+      case '!=':
+        result = actualValue != comparisonValue;
+        break;
+      case '==':
+      case '=':
+      default:
+        result = actualValue == comparisonValue;
+        break;
+    }
 
+    console.log('🔍 CONDITION RESULT:', result);
     return result;
   }
 
@@ -434,7 +499,50 @@ class ArticyProject {
     return normalizedActualValue === normalizedExpectedValue;
   }
 
+  // Helper method to get current variable value by path
+  GetVariableValue(variablePath: string): any {
+    const pathParts = variablePath.split('.');
+    let current = this.variables;
+
+    for (const part of pathParts) {
+      if (current && typeof current === 'object' && part in current) {
+        current = current[part];
+      } else {
+        return undefined; // Return undefined if variable doesn't exist
+      }
+    }
+
+    // Handle string-to-boolean conversion for proper comparison
+    if (typeof current === 'string') {
+      if (current.toLowerCase() === 'true') return true;
+      if (current.toLowerCase() === 'false') return false;
+      // Try to convert to number if it's a numeric string
+      if (!isNaN(Number(current))) return Number(current);
+    }
+
+    return current;
+  }
+
   SplitValueFromText(text: string): any {
+    // Handle increment/decrement operators first
+    if (text.includes('++')) {
+      // For increment, we need to get the current value and add 1
+      const variablePath = text.replace('++', '').replace(';', '').trim();
+      const currentValue = this.GetVariableValue(variablePath);
+      const numValue = Number(currentValue) || 0;
+      const newValue = numValue + 1;
+      console.log(`🔢 INCREMENT: ${variablePath} from ${currentValue} to ${newValue}`);
+      return newValue;
+    } else if (text.includes('--')) {
+      // For decrement, we need to get the current value and subtract 1
+      const variablePath = text.replace('--', '').replace(';', '').trim();
+      const currentValue = this.GetVariableValue(variablePath);
+      const numValue = Number(currentValue) || 0;
+      const newValue = numValue - 1;
+      console.log(`🔢 DECREMENT: ${variablePath} from ${currentValue} to ${newValue}`);
+      return newValue;
+    }
+
     // Handle comparison operators: ==, !=, >=, <=, >, <
     let operatorIndex = -1;
     let operatorLength = 0;
@@ -487,6 +595,15 @@ class ArticyProject {
   }
 
   SplitIndexersFromText(text: string): string[] {
+    // Handle increment/decrement operators first
+    if (text.includes('++')) {
+      const variablePath = text.replace('++', '').replace(';', '').trim();
+      return variablePath.split(".");
+    } else if (text.includes('--')) {
+      const variablePath = text.replace('--', '').replace(';', '').trim();
+      return variablePath.split(".");
+    }
+
     // Handle comparison operators: ==, !=, >=, <=, >, <, =
     let operatorIndex = -1;
 
