@@ -139,20 +139,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // Story mode filter settings
   const [storyModeSettings, setStoryModeSettings] = useState({
     enabled: false,
-    hideInstructions: false,
-    hideConditions: false,
+    hideInstructions: true,
+    hideConditions: true,
     hideInactiveChoices: true,
-    hidePreviousChoices: false,
-    hideDebugInfo: false
+    hidePreviousChoices: true,
+    hideDebugInfo: true
   });
 
   // Temporary settings for dropdown (before applying)
   const [tempStoryModeSettings, setTempStoryModeSettings] = useState({
-    hideInstructions: false,
-    hideConditions: false,
+    hideInstructions: true,
+    hideConditions: true,
     hideInactiveChoices: true,
-    hidePreviousChoices: false,
-    hideDebugInfo: false
+    hidePreviousChoices: true,
+    hideDebugInfo: true
   });
 
   // Previous choice history for back navigation
