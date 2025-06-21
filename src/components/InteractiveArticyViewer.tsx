@@ -126,6 +126,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const [selectedChoiceIndex, setSelectedChoiceIndex] = useState(0);
   const [showingChoices, setShowingChoices] = useState(false);
   const [showConditionChoices, setShowConditionChoices] = useState(false);
+  const [flowFragmentChoices, setFlowFragmentChoices] = useState<ChoiceOption[]>([]);
 
   // Panel state management
   const [variablesPanelWidth, setVariablesPanelWidth] = useState(0);
@@ -195,6 +196,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const navigateToNode = (node: any) => {
     if (!node) return;
 
+    console.log('🔄 NAVIGATE TO NODE:', {
+      id: node.Properties.Id,
+      type: node.Type,
+      displayName: node.Properties.DisplayName,
+      hasText: !!node.Properties.Text,
+      hasExpression: !!node.Properties.Expression
+    });
+
     // Handle Jump nodes immediately - redirect to target
     if (node.Type === "Jump" && node.Properties.Target) {
       const targetNode = project?.GetNodeByID(node.Properties.Target);
@@ -210,18 +219,99 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     // Handle Flow Fragment nodes (enter first child)
     // These are container nodes that should be entered rather than displayed
-    if (node.Type === "FlowFragment" ||
-        node.Type === "DialogueIntActionTemplate" ||
-        node.Type === "CombatFlowTemplate" ||
-        node.Type === "CraftingFlowTemplate" ||
-        node.Type === "TravelFlowTemplate" ||
-        node.Type === "PlayerActionFlowTemplate" ||
-        node.Type === "LocationFlowTemplate" ||
-        node.Type === "EnemyGenericFlowTemplate" ||
-        node.Type === "NPCFlowTemplate" ||
-        node.Type === "PCFlowTemplate" ||
-        node.Type === "WeaponFlowTemplate") {
+    // Use inheritance checking to determine if this is a flow fragment
+    if (project?.isFlowFragment(node)) {
 
+      // Check if there are multiple nodes connected to the input pin
+      const inputConnectedNodes = project?.GetNodesConnectedToFlowFragmentInput(node);
+
+      console.log("🔄 FLOW FRAGMENT ENTRY - Input Analysis:", {
+        flowFragmentId: node.Properties.Id,
+        flowFragmentType: node.Type,
+        flowFragmentDisplayName: node.Properties.DisplayName,
+        inputConnectedNodes: inputConnectedNodes?.length || 0,
+        inputNodes: inputConnectedNodes?.map(n => ({
+          id: n.Properties.Id,
+          type: n.Type,
+          displayName: n.Properties.DisplayName,
+          text: n.Properties.Text?.substring(0, 50) + "..."
+        })) || []
+      });
+
+      if (inputConnectedNodes && inputConnectedNodes.length > 1) {
+        // Multiple nodes connected to input pin - present them as choices
+        console.log("🎯 FLOW FRAGMENT: Multiple input nodes detected, creating choice menu");
+
+        // Filter out instruction nodes that are organizational/hub nodes
+        const filteredNodes = inputConnectedNodes.filter(inputNode => {
+          // Filter out instruction nodes with "hub" in the name (case insensitive)
+          if (inputNode.Type === "Instruction" &&
+              inputNode.Properties.DisplayName &&
+              inputNode.Properties.DisplayName.toLowerCase().includes("hub")) {
+            console.log("🚫 Filtering out hub instruction node:", inputNode.Properties.DisplayName);
+            return false;
+          }
+
+          // Filter out instruction nodes that have empty or comment-only expressions
+          if (inputNode.Type === "Instruction" &&
+              inputNode.Properties.Expression &&
+              inputNode.Properties.Expression.trim().startsWith("//") &&
+              !inputNode.Properties.Expression.includes("=")) {
+            console.log("🚫 Filtering out comment-only instruction node:", inputNode.Properties.DisplayName);
+            return false;
+          }
+
+          return true;
+        });
+
+        // Create choice options from filtered input-connected nodes
+        const choiceOptions: ChoiceOption[] = filteredNodes.map(inputNode => {
+          // Get condition text from the input pin
+          const conditionText = inputNode.Properties?.InputPins?.[0]?.Text?.replace(/;+$/, '').trim() || "";
+          const conditionMet = conditionText === "" ? true : project.CheckConditionString(conditionText);
+
+          return {
+            text: inputNode.Properties.DisplayName || inputNode.Properties.Text || `${inputNode.Type} ${inputNode.Properties.Id}`,
+            targetNode: inputNode,
+            disabled: !conditionMet,
+            condition: conditionText
+          };
+        });
+
+        // Sort choices by template technical name postfix
+        choiceOptions.sort((a, b) => {
+          const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
+          const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+
+          // Primary sort: by numeric postfix (lower numbers first)
+          if (sortOrderA.number !== sortOrderB.number) {
+            return sortOrderA.number - sortOrderB.number;
+          }
+
+          // Secondary sort: by original template name for consistency
+          return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+        });
+
+        console.log("🎯 FLOW FRAGMENT: Sorted choice options:", choiceOptions.map(opt => ({
+          text: opt.text,
+          nodeType: opt.targetNode.Type,
+          templateName: project.getTemplateTechnicalName(opt.targetNode.Type),
+          sortOrder: project.getTemplateSortOrder(opt.targetNode.Type)
+        })));
+
+        console.log("🎯 FLOW FRAGMENT: Created choice options:", choiceOptions.map(opt => ({ text: opt.text, targetId: opt.targetNode.Properties.Id })));
+
+        // Display the flow fragment node content first, then show choices
+        setCurrentNode(node);
+        setChoiceOptions(choiceOptions);
+        setShowingChoices(false); // Don't show choices immediately
+
+        // Store the choices to be shown when Next is clicked
+        setFlowFragmentChoices(choiceOptions);
+        return;
+      }
+
+      // Single node or no nodes - use existing logic
       const childNode = project?.GetFirstChildOfNode(node);
       if (childNode) {
         console.log("🔄 FLOW FRAGMENT ENTRY:", node.Properties.Id, node.Type, "→", childNode.Properties.Id, childNode.Type);
@@ -1031,6 +1121,31 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const handleNext = () => {
     if (!project || !currentNode) return;
 
+    // Check if we have flow fragment choices to show
+    if (flowFragmentChoices.length > 0) {
+      console.log("🎯 FLOW FRAGMENT: Showing stored choices for flow fragment:", {
+        currentNodeId: currentNode.Properties.Id,
+        currentNodeType: currentNode.Type,
+        choiceCount: flowFragmentChoices.length
+      });
+
+      // Store the current node as a previous choice
+      const previousChoice = {
+        node: currentNode,
+        choiceText: currentNode.Properties.Text || currentNode.Properties.DisplayName || "Previous Location",
+        choiceTitle: currentNode.Properties.DisplayName || "Previous Location",
+        backToNode: nodeHistory[nodeHistory.length - 2] || null,
+        skippedNode: null
+      };
+      setPreviousChoiceHistory([...previousChoiceHistory, previousChoice]);
+
+      // Show the flow fragment choices
+      setChoiceOptions(flowFragmentChoices);
+      setShowingChoices(true);
+      setFlowFragmentChoices([]); // Clear the stored choices
+      return;
+    }
+
     const outputs = getCurrentNodeOutputs();
 
     if (outputs.length === 0) {
@@ -1304,22 +1419,56 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
       if (isDialogueFragment && !showingChoices) {
         // For dialogue fragments, show choices after showing content
-        setChoiceOptions(outputs);
+
+        // Sort choices by template technical name postfix
+        const sortedOutputs = [...outputs].sort((a, b) => {
+          const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
+          const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+
+          // Primary sort: by numeric postfix (lower numbers first)
+          if (sortOrderA.number !== sortOrderB.number) {
+            return sortOrderA.number - sortOrderB.number;
+          }
+
+          // Secondary sort: by original template name for consistency
+          return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+        });
+
+        setChoiceOptions(sortedOutputs);
         setSelectedChoiceIndex(0);
         setShowingChoices(true);
-        console.log('🔀 Showing', outputs.length, 'dialogue choices');
+        console.log('🔀 Showing', sortedOutputs.length, 'dialogue choices (sorted)');
       } else {
         // For Hub nodes and other multi-output nodes, show choices immediately
-        console.log('🔀 Setting choice options:', outputs.map((opt, idx) => ({
+
+        // Sort choices by template technical name postfix
+        const sortedOutputs = [...outputs].sort((a, b) => {
+          const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
+          const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+
+          // Primary sort: by numeric postfix (lower numbers first)
+          if (sortOrderA.number !== sortOrderB.number) {
+            return sortOrderA.number - sortOrderB.number;
+          }
+
+          // Secondary sort: by original template name for consistency
+          return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+        });
+
+        console.log('🔀 Setting choice options (sorted):', sortedOutputs.map((opt, idx) => ({
           index: idx,
           text: opt.text,
           condition: opt.condition,
-          disabled: opt.disabled
+          disabled: opt.disabled,
+          nodeType: opt.targetNode.Type,
+          templateName: project.getTemplateTechnicalName(opt.targetNode.Type),
+          sortOrder: project.getTemplateSortOrder(opt.targetNode.Type)
         })));
-        setChoiceOptions(outputs);
+
+        setChoiceOptions(sortedOutputs);
         setSelectedChoiceIndex(0);
         setShowingChoices(true);
-        console.log('🔀 Showing', outputs.length, 'choices');
+        console.log('🔀 Showing', sortedOutputs.length, 'choices');
       }
     }
   };
@@ -1755,13 +1904,30 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         outputCount: outputs.length,
         nodeId: currentNode.Properties.Id
       });
-      console.log('🔀 Hub setting choice options:', outputs.map((opt, idx) => ({
+      // Sort choices by template technical name postfix
+      const sortedOutputs = [...outputs].sort((a, b) => {
+        const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
+        const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+
+        // Primary sort: by numeric postfix (lower numbers first)
+        if (sortOrderA.number !== sortOrderB.number) {
+          return sortOrderA.number - sortOrderB.number;
+        }
+
+        // Secondary sort: by original template name for consistency
+        return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+      });
+
+      console.log('🔀 Hub setting choice options (sorted):', sortedOutputs.map((opt, idx) => ({
         index: idx,
         text: opt.text,
         condition: opt.condition,
-        disabled: opt.disabled
+        disabled: opt.disabled,
+        nodeType: opt.targetNode.Type,
+        templateName: project.getTemplateTechnicalName(opt.targetNode.Type),
+        sortOrder: project.getTemplateSortOrder(opt.targetNode.Type)
       })));
-      setChoiceOptions(outputs);
+      setChoiceOptions(sortedOutputs);
       setShowingChoices(true);
     }
   }, [currentNode?.Properties?.Id, project, showingChoices]); // Trigger when node changes
