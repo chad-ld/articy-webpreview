@@ -91,21 +91,7 @@ class ArticyProject {
 
   GetFirstChildOfNode(parent: any): any {
     // For Flow Fragments, we need to find the start node, not just any child
-    const isFlowFragment = (
-      parent.Type === "FlowFragment" ||
-      parent.Type === "DialogueIntActionTemplate" ||
-      parent.Type === "CombatFlowTemplate" ||
-      parent.Type === "CraftingFlowTemplate" ||
-      parent.Type === "TravelFlowTemplate" ||
-      parent.Type === "PlayerActionFlowTemplate" ||
-      parent.Type === "LocationFlowTemplate" ||
-      parent.Type === "EnemyGenericFlowTemplate" ||
-      parent.Type === "NPCFlowTemplate" ||
-      parent.Type === "PCFlowTemplate" ||
-      parent.Type === "WeaponFlowTemplate"
-    );
-
-    if (isFlowFragment) {
+    if (this.isFlowFragment(parent)) {
       return this.GetStartNodeInFlowFragment(parent);
     }
 
@@ -187,6 +173,74 @@ class ArticyProject {
     return bestCandidate;
   }
 
+  // Get all nodes connected to the input pin of a Flow Fragment
+  // This handles cases where multiple nodes are connected to the input pin and should be presented as choices
+  GetNodesConnectedToFlowFragmentInput(flowFragment: any): any[] {
+    console.log("🔍 GetNodesConnectedToFlowFragmentInput called for:", {
+      id: flowFragment.Properties.Id,
+      type: flowFragment.Type,
+      displayName: flowFragment.Properties.DisplayName
+    });
+
+    // Get all children of the Flow Fragment
+    const children: any[] = [];
+    for (let i = 0; i < this.data.Packages.length; i++) {
+      const package_ = this.data.Packages[i];
+      for (let j = 0; j < package_.Models.length; j++) {
+        const model = package_.Models[j];
+        if (model.Properties.Parent == flowFragment.Properties.Id) {
+          children.push(model);
+        }
+      }
+    }
+
+    console.log("🔍 Flow Fragment children found:", {
+      flowFragmentId: flowFragment.Properties.Id,
+      childrenCount: children.length,
+      children: children.map(child => ({
+        id: child.Properties.Id,
+        type: child.Type,
+        displayName: child.Properties.DisplayName
+      }))
+    });
+
+    if (children.length === 0) {
+      console.log("⚠️ No children found in Flow Fragment");
+      return [];
+    }
+
+    // Find nodes that have no input connections from other nodes within the same Flow Fragment
+    // These are the nodes connected directly to the Flow Fragment's input pin
+    const inputConnectedNodes: any[] = [];
+    for (const child of children) {
+      const hasInternalInputs = this.hasInputConnectionsFromSiblings(child, children);
+      console.log("🔍 Checking child for internal inputs:", {
+        childId: child.Properties.Id,
+        childType: child.Type,
+        childDisplayName: child.Properties.DisplayName,
+        hasInternalInputs: hasInternalInputs
+      });
+
+      if (!hasInternalInputs) {
+        inputConnectedNodes.push(child);
+      }
+    }
+
+    console.log("🎯 Found nodes connected to Flow Fragment input:", {
+      flowFragmentId: flowFragment.Properties.Id,
+      flowFragmentType: flowFragment.Type,
+      totalChildren: children.length,
+      inputConnectedCount: inputConnectedNodes.length,
+      inputConnectedNodes: inputConnectedNodes.map(node => ({
+        id: node.Properties.Id,
+        type: node.Type,
+        displayName: node.Properties.DisplayName
+      }))
+    });
+
+    return inputConnectedNodes;
+  }
+
   // Find the parent Flow Fragment container for a given node
   GetParentFlowFragment(node: any): any {
     if (!node || !node.Properties.Parent) {
@@ -198,27 +252,49 @@ class ArticyProject {
       return undefined;
     }
 
-    // Check if the parent is a Flow Fragment
-    const isFlowFragment = (
-      parent.Type === "FlowFragment" ||
-      parent.Type === "DialogueIntActionTemplate" ||
-      parent.Type === "CombatFlowTemplate" ||
-      parent.Type === "CraftingFlowTemplate" ||
-      parent.Type === "TravelFlowTemplate" ||
-      parent.Type === "PlayerActionFlowTemplate" ||
-      parent.Type === "LocationFlowTemplate" ||
-      parent.Type === "EnemyGenericFlowFragment" ||
-      parent.Type === "NPCFlowTemplate" ||
-      parent.Type === "PCFlowTemplate" ||
-      parent.Type === "WeaponFlowTemplate"
-    );
-
-    if (isFlowFragment) {
+    // Check if the parent is a Flow Fragment using inheritance
+    if (this.isFlowFragment(parent)) {
       return parent;
     }
 
     // Recursively check parent's parent
     return this.GetParentFlowFragment(parent);
+  }
+
+  // Get all sibling nodes within the same flow fragment
+  GetSiblingNodesInFlowFragment(node: any): any[] {
+    const parentFlowFragment = this.GetParentFlowFragment(node);
+    if (!parentFlowFragment) {
+      return [];
+    }
+
+    // Get all children of the Flow Fragment (siblings of the current node)
+    const siblings: any[] = [];
+    for (let i = 0; i < this.data.Packages.length; i++) {
+      const package_ = this.data.Packages[i];
+      for (let j = 0; j < package_.Models.length; j++) {
+        const model = package_.Models[j];
+        if (model.Properties.Parent === parentFlowFragment.Properties.Id &&
+            model.Properties.Id !== node.Properties.Id) {
+          siblings.push(model);
+        }
+      }
+    }
+
+    console.log("🔍 GetSiblingNodesInFlowFragment:", {
+      currentNodeId: node.Properties.Id,
+      currentNodeType: node.Type,
+      parentFlowFragmentId: parentFlowFragment.Properties.Id,
+      parentFlowFragmentType: parentFlowFragment.Type,
+      siblingCount: siblings.length,
+      siblings: siblings.map(s => ({
+        id: s.Properties.Id,
+        type: s.Type,
+        displayName: s.Properties.DisplayName
+      }))
+    });
+
+    return siblings;
   }
 
   hasInputConnectionsFromSiblings(node: any, siblings: any[]): boolean {
@@ -249,6 +325,98 @@ class ArticyProject {
     }
 
     return false;
+  }
+
+  // Check if a node type inherits from a specific class
+  nodeInheritsFromClass(nodeType: string, className: string): boolean {
+    if (!this.objectDefinitions) {
+      console.log('🚨 No object definitions found in project');
+      return false;
+    }
+
+    const definition = this.objectDefinitions.find((def: any) => def.Type === nodeType);
+    if (!definition) {
+      console.log('🚨 No definition found for node type:', nodeType);
+      return false;
+    }
+
+    console.log('🔍 Checking inheritance for:', {
+      nodeType,
+      className,
+      definitionClass: definition.Class,
+      definitionInheritsFrom: definition.InheritsFrom
+    });
+
+    // Check direct class match
+    if (definition.Class === className) {
+      console.log('✅ Direct class match:', nodeType, 'is', className);
+      return true;
+    }
+
+    // Check inheritance chain
+    if (definition.InheritsFrom === className) {
+      console.log('✅ Inheritance match:', nodeType, 'inherits from', className);
+      return true;
+    }
+
+    console.log('❌ No inheritance match found');
+    return false;
+  }
+
+  // Check if a node is a flow fragment based on inheritance
+  isFlowFragment(node: any): boolean {
+    return this.nodeInheritsFromClass(node.Type, "FlowFragment");
+  }
+
+  // Get the template technical name for a node type
+  getTemplateTechnicalName(nodeType: string): string {
+    if (!this.objectDefinitions) {
+      console.log('🚨 No object definitions found in project');
+      return '';
+    }
+
+    const definition = this.objectDefinitions.find((def: any) => def.Type === nodeType);
+    if (!definition || !definition.Template) {
+      console.log('🚨 No template definition found for node type:', nodeType);
+      return '';
+    }
+
+    return definition.Template.TechnicalName || '';
+  }
+
+  // Extract the numeric suffix from a template technical name (e.g., "_99" from "TravelFlowTemplate_99")
+  getTemplateSortOrder(nodeType: string): { hasPostfix: boolean; number: number; originalName: string } {
+    const technicalName = this.getTemplateTechnicalName(nodeType);
+
+    // Match pattern like "_01", "_99", etc. at the end of the string
+    const match = technicalName.match(/_(\d+)$/);
+
+    if (match) {
+      const number = parseInt(match[1], 10);
+      console.log('🔢 Template sort order:', {
+        nodeType,
+        technicalName,
+        hasPostfix: true,
+        number
+      });
+      return {
+        hasPostfix: true,
+        number: number,
+        originalName: technicalName
+      };
+    } else {
+      console.log('🔢 Template sort order:', {
+        nodeType,
+        technicalName,
+        hasPostfix: false,
+        number: 50 // Default middle value for nodes without postfix
+      });
+      return {
+        hasPostfix: false,
+        number: 50, // Default middle value for nodes without postfix
+        originalName: technicalName
+      };
+    }
   }
 
   StoreVariablesFromNode(node: any): void {
