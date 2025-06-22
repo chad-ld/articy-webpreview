@@ -244,6 +244,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
         // Filter out instruction nodes that are organizational/hub nodes
         const filteredNodes = inputConnectedNodes.filter(inputNode => {
+          // Filter out Comment nodes (annotation/documentation nodes)
+          if (inputNode.Type === "Comment") {
+            console.log("🚫 Filtering out Comment annotation node:", inputNode.Properties.DisplayName || inputNode.Properties.Text);
+            return false;
+          }
+
           // Filter out instruction nodes with "hub" in the name (case insensitive)
           if (inputNode.Type === "Instruction" &&
               inputNode.Properties.DisplayName &&
@@ -984,6 +990,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           outputPin.Connections.forEach((connection: any) => {
             const targetNode = project?.GetNodeByID(connection.Target);
             if (targetNode) {
+              // Filter out Comment nodes (annotation/documentation nodes)
+              if (targetNode.Type === "Comment") {
+                console.log("🚫 Filtering out Comment annotation node from condition choices:", targetNode.Properties.DisplayName || targetNode.Properties.Text);
+                return; // Skip this connection
+              }
+
               // Get choice text from the target node or connection label
               let choiceText = connection.Label ||
                              targetNode.Properties.DisplayName ||
@@ -1048,6 +1060,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           outputPin.Connections.forEach((connection: any) => {
             const targetNode = project?.GetNodeByID(connection.Target);
             if (targetNode) {
+              // Filter out Comment nodes (annotation/documentation nodes)
+              if (targetNode.Type === "Comment") {
+                console.log("🚫 Filtering out Comment annotation node from choices:", targetNode.Properties.DisplayName || targetNode.Properties.Text);
+                return; // Skip this connection
+              }
+
               // Get choice text from the target node or connection label
               let choiceText = connection.Label ||
                              targetNode.Properties.DisplayName ||
@@ -1837,7 +1855,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // Reset selected choice index when node changes
   useEffect(() => {
     // Always start focus on first forward choice (skip previous choice if visible and not hidden by story mode)
-    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices;
+    const shouldHidePreviousChoices = storyModeSettings.enabled && storyModeSettings.hidePreviousChoices;
+    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices;
     setSelectedChoiceIndex(hasPreviousChoice ? 1 : 0);
   }, [currentNode, showPrevious, previousChoiceHistory.length, storyModeSettings.hidePreviousChoices]);
 
@@ -1997,9 +2016,6 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               project={project}
               currentNode={currentNode}
               onWidthChange={setVariablesPanelWidth}
-              showPrevious={showPrevious}
-              onTogglePrevious={() => setShowPrevious(!showPrevious)}
-              hasPreviousChoice={previousChoiceHistory.length > 0}
               isVisible={isVariablesPanelVisible}
               onToggleVisibility={handleVariablesPanelToggle}
               onToggleSearchPanel={handleSearchPanelToggle}
@@ -2062,7 +2078,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           transition: 'margin-left 0.3s ease'
         }}>
         {/* Previous choice display */}
-        {showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices && (
+        {(() => {
+          // Only respect hidePreviousChoices setting when story mode is enabled
+          const shouldHidePreviousChoices = storyModeSettings.enabled && storyModeSettings.hidePreviousChoices;
+          const shouldShow = showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices;
+          console.log('🔍 PREVIOUS CHOICE VISIBILITY CHECK:', {
+            showPrevious,
+            previousChoiceHistoryLength: previousChoiceHistory.length,
+            hidePreviousChoices: storyModeSettings.hidePreviousChoices,
+            storyModeEnabled: storyModeSettings.enabled,
+            shouldHidePreviousChoices,
+            shouldShow
+          });
+          return shouldShow;
+        })() && (
           <>
             <PreviousChoiceDisplay
               previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
@@ -2150,7 +2179,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             })
             .map(({ option, originalIndex }, filteredIndex) => {
             // Calculate if this choice is selected (account for previous choice offset)
-            const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0;
+            const shouldHidePreviousChoices = storyModeSettings.enabled && storyModeSettings.hidePreviousChoices;
+            const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices;
             const adjustedSelectedIndex = hasPreviousChoice ? selectedChoiceIndex - 1 : selectedChoiceIndex;
             const isSelected = filteredIndex === adjustedSelectedIndex;
 
@@ -2297,9 +2327,6 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             project={project}
             currentNode={currentNode}
             onWidthChange={setVariablesPanelWidth}
-            showPrevious={showPrevious}
-            onTogglePrevious={() => setShowPrevious(!showPrevious)}
-            hasPreviousChoice={previousChoiceHistory.length > 0}
             isVisible={isVariablesPanelVisible}
             onToggleVisibility={handleVariablesPanelToggle}
             onToggleSearchPanel={handleSearchPanelToggle}
@@ -2362,7 +2389,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         transition: 'margin-left 0.3s ease'
       }}>
         {/* Previous choice display */}
-        {showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices && (
+        {(() => {
+          // Only respect hidePreviousChoices setting when story mode is enabled
+          const shouldHidePreviousChoices = storyModeSettings.enabled && storyModeSettings.hidePreviousChoices;
+          const shouldShow = showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices;
+          console.log('🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice):', {
+            showPrevious,
+            previousChoiceHistoryLength: previousChoiceHistory.length,
+            hidePreviousChoices: storyModeSettings.hidePreviousChoices,
+            storyModeEnabled: storyModeSettings.enabled,
+            shouldHidePreviousChoices,
+            shouldShow
+          });
+          return shouldShow;
+        })() && (
           <>
             <PreviousChoiceDisplay
               previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
@@ -2398,7 +2438,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             text: "Next",
             onClick: handleNext
           }}
-          selected={!(showPrevious && previousChoiceHistory.length > 0 && !storyModeSettings.hidePreviousChoices && selectedChoiceIndex === 0)}
+          selected={!(() => {
+            const shouldHidePreviousChoices = storyModeSettings.enabled && storyModeSettings.hidePreviousChoices;
+            return showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices && selectedChoiceIndex === 0;
+          })()}
         />
 
         {!storyModeSettings.hideDebugInfo && (

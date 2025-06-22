@@ -420,10 +420,50 @@ class ArticyProject {
   }
 
   StoreVariablesFromNode(node: any): void {
-    const newVars = this.GetVariablesFromNode(node);
-    if (newVars) {
-      this.variables = _.merge(this.variables, newVars);
+    // 🔧 NEW LINE-BY-LINE APPROACH: Process variables immediately as we encounter each line
+    this.ProcessVariablesLineByLine(node);
+  }
+
+  /**
+   * Process variables line by line, updating this.variables immediately after each line
+   * This ensures increment operations work correctly and variables are always up-to-date
+   */
+  ProcessVariablesLineByLine(node: any): void {
+    if (node.Properties == undefined) return;
+    if (node.Properties.Expression == undefined) return;
+
+    const textChunks: string[] = (node.Properties.Expression as string).split("\n");
+
+    console.log(`🔄 PROCESSING VARIABLES LINE-BY-LINE for node ${node.Properties.Id}:`, {
+      nodeType: node.Type,
+      totalLines: textChunks.length,
+      expression: node.Properties.Expression
+    });
+
+    // Process each line immediately
+    for (let i = 0; i < textChunks.length; i++) {
+      const line = textChunks[i].trim();
+
+      // Skip empty lines and comments
+      if (line.length === 0 || line.startsWith("//")) {
+        continue;
+      }
+
+      console.log(`📝 PROCESSING LINE ${i + 1}: ${line}`);
+
+      // Process this single line and update variables immediately
+      const value = this.SplitValueFromText(line);
+      const pathChunks = this.SplitIndexersFromText(line);
+
+      if (pathChunks.length > 0 && value !== undefined) {
+        this.UpdateVariableDirectly(pathChunks, value);
+        console.log(`✅ LINE ${i + 1} COMPLETE: ${pathChunks.join('.')} = ${value}`);
+      } else {
+        console.log(`⚠️ LINE ${i + 1} SKIPPED: Could not parse variable assignment`);
+      }
     }
+
+    console.log(`🎯 FINAL VARIABLES AFTER LINE-BY-LINE PROCESSING:`, this.variables);
   }
 
   ResetVariablesToInitialState(): void {
@@ -466,44 +506,194 @@ class ArticyProject {
   }
 
   GetVariablesFromNode(node: any): any {
-    if (node.Properties == undefined) return;
-    if (node.Properties.Expression == undefined) return;
+    // 🔧 DEPRECATED: This method is now replaced by ProcessVariablesLineByLine
+    // Keeping for backward compatibility, but it just returns empty object
+    console.log("⚠️ GetVariablesFromNode called - this method is deprecated in favor of line-by-line processing");
+    return {};
+  }
 
-    var textChunks: string[] = (node.Properties.Expression as string).split("\n");
-    var newVars: { [k: string]: any } = {};
+  /**
+   * Update a variable directly in this.variables using the path chunks
+   * This ensures immediate updates for increment operations
+   */
+  UpdateVariableDirectly(pathChunks: string[], value: any): void {
+    let current = this.variables;
 
-    // Remove all commented and empty lines
-    for (let i = textChunks.length - 1; i >= 0; i--) {
-      if (textChunks[i].trim().slice(0, 2) == "//") {
-        textChunks.splice(i, 1);
-        continue;
+    // Navigate to the parent object
+    for (let i = 0; i < pathChunks.length - 1; i++) {
+      const chunk = pathChunks[i];
+      if (!current[chunk]) {
+        current[chunk] = {};
       }
-      if (textChunks[i].trim().length > 0) {
-        console.log("processing...", textChunks[i]);
-        let value = this.SplitValueFromText(textChunks[i]);
-        let newData: { [k: string]: any } = {};
-        let dataChunks = this.SplitIndexersFromText(textChunks[i]);
-        newData[dataChunks[dataChunks.length - 1].trim()] = value;
-        for (let j = dataChunks.length - 2; j >= 0; j--) {
-          newData = { [dataChunks[j]]: newData } as { [k: string]: any };
-        }
-        newVars = _.merge(newData, newVars);
-      }
+      current = current[chunk];
     }
-    return newVars;
+
+    // Set the final value
+    const finalKey = pathChunks[pathChunks.length - 1].trim();
+    current[finalKey] = value;
+
+    console.log(`🔧 DIRECT VARIABLE UPDATE: ${pathChunks.join('.')} = ${value}`, {
+      pathChunks: pathChunks,
+      finalKey: finalKey,
+      value: value,
+      updatedSection: current
+    });
   }
 
   CheckConditionString(condition: string): boolean {
-    // Handle compound conditions with && and || operators
-    if (condition.includes('&&')) {
-      const parts = condition.split('&&');
-      return parts.every(part => this.CheckSingleCondition(part.trim()));
-    } else if (condition.includes('||')) {
-      const parts = condition.split('||');
-      return parts.some(part => this.CheckSingleCondition(part.trim()));
-    } else {
-      return this.CheckSingleCondition(condition);
+    // Enhanced condition parser that handles parentheses and proper operator precedence
+    return this.ParseBooleanExpression(condition.trim());
+  }
+
+  /**
+   * Parse a boolean expression with support for:
+   * - Parentheses grouping: (condition1 && condition2) || condition3
+   * - Operator precedence: && has higher precedence than ||
+   * - Nested expressions: ((condition1 && condition2) || condition3) && condition4
+   */
+  ParseBooleanExpression(expression: string): boolean {
+    console.log('🔍 PARSING BOOLEAN EXPRESSION:', expression);
+
+    // Remove outer whitespace
+    expression = expression.trim();
+
+    // Handle parentheses first - find and evaluate innermost parentheses
+    while (expression.includes('(')) {
+      const result = this.EvaluateInnermostParentheses(expression);
+      if (result === null) {
+        console.error('🚨 Failed to parse parentheses in expression:', expression);
+        return false;
+      }
+      expression = result;
     }
+
+    // Now we have an expression without parentheses, evaluate it
+    return this.EvaluateSimpleExpression(expression);
+  }
+
+  /**
+   * Find and evaluate the innermost parentheses in an expression
+   * Returns the expression with the parentheses replaced by the result
+   */
+  EvaluateInnermostParentheses(expression: string): string | null {
+    // Find the last opening parenthesis (innermost)
+    let lastOpenIndex = -1;
+    for (let i = 0; i < expression.length; i++) {
+      if (expression[i] === '(') {
+        lastOpenIndex = i;
+      }
+    }
+
+    if (lastOpenIndex === -1) {
+      return expression; // No parentheses found
+    }
+
+    // Find the corresponding closing parenthesis
+    let closeIndex = -1;
+    for (let i = lastOpenIndex + 1; i < expression.length; i++) {
+      if (expression[i] === ')') {
+        closeIndex = i;
+        break;
+      }
+    }
+
+    if (closeIndex === -1) {
+      console.error('🚨 Unmatched opening parenthesis in expression:', expression);
+      return null;
+    }
+
+    // Extract the expression inside the parentheses
+    const innerExpression = expression.substring(lastOpenIndex + 1, closeIndex);
+    console.log('🔍 EVALUATING INNER EXPRESSION:', innerExpression);
+
+    // Evaluate the inner expression
+    const result = this.EvaluateSimpleExpression(innerExpression);
+    console.log('🔍 INNER EXPRESSION RESULT:', result);
+
+    // Replace the parentheses and their content with the result
+    const before = expression.substring(0, lastOpenIndex);
+    const after = expression.substring(closeIndex + 1);
+    const newExpression = before + result.toString() + after;
+
+    console.log('🔍 EXPRESSION AFTER PARENTHESES EVALUATION:', newExpression);
+    return newExpression;
+  }
+
+  /**
+   * Evaluate a simple expression without parentheses
+   * Handles || and && operators with proper precedence (|| has lower precedence than &&)
+   */
+  EvaluateSimpleExpression(expression: string): boolean {
+    expression = expression.trim();
+    console.log('🔍 EVALUATING SIMPLE EXPRESSION:', expression);
+
+    // Handle || operator (lowest precedence)
+    if (expression.includes('||')) {
+      const parts = this.SplitByOperator(expression, '||');
+      console.log('🔍 OR PARTS:', parts);
+      return parts.some(part => this.EvaluateSimpleExpression(part.trim()));
+    }
+
+    // Handle && operator (higher precedence)
+    if (expression.includes('&&')) {
+      const parts = this.SplitByOperator(expression, '&&');
+      console.log('🔍 AND PARTS:', parts);
+      return parts.every(part => this.EvaluateSimpleExpression(part.trim()));
+    }
+
+    // Handle boolean literals (from evaluated parentheses)
+    if (expression === 'true') return true;
+    if (expression === 'false') return false;
+
+    // Handle single condition
+    return this.CheckSingleCondition(expression);
+  }
+
+  /**
+   * Split an expression by an operator, respecting that the operator
+   * should not be inside parentheses or quotes
+   */
+  SplitByOperator(expression: string, operator: string): string[] {
+    const parts: string[] = [];
+    let currentPart = '';
+    let parenthesesDepth = 0;
+    let inQuotes = false;
+    let i = 0;
+
+    while (i < expression.length) {
+      const char = expression[i];
+
+      if (char === '"' && (i === 0 || expression[i - 1] !== '\\')) {
+        inQuotes = !inQuotes;
+        currentPart += char;
+      } else if (!inQuotes) {
+        if (char === '(') {
+          parenthesesDepth++;
+          currentPart += char;
+        } else if (char === ')') {
+          parenthesesDepth--;
+          currentPart += char;
+        } else if (parenthesesDepth === 0 && expression.substring(i, i + operator.length) === operator) {
+          // Found the operator at the top level
+          parts.push(currentPart);
+          currentPart = '';
+          i += operator.length - 1; // Skip the operator
+        } else {
+          currentPart += char;
+        }
+      } else {
+        currentPart += char;
+      }
+
+      i++;
+    }
+
+    // Add the last part
+    if (currentPart) {
+      parts.push(currentPart);
+    }
+
+    return parts;
   }
 
   CheckSingleCondition(condition: string): boolean {

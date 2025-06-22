@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Tooltip, Dropdown, Checkbox } from "antd";
 import type { MenuProps } from 'antd';
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, HistoryOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined } from "@ant-design/icons";
+import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined } from "@ant-design/icons";
 
 interface StoryModeSettings {
     enabled: boolean;
@@ -16,9 +16,7 @@ interface VariablesPanelProps {
     project: any;
     currentNode: any;
     onWidthChange: (width: number) => void;
-    showPrevious: boolean;
-    onTogglePrevious: () => void;
-    hasPreviousChoice: boolean;
+    // showPrevious, onTogglePrevious, hasPreviousChoice - REMOVED: Previous choice visibility now controlled via Story Mode dropdown
     isVisible: boolean;
     onToggleVisibility: () => void;
     onToggleSearchPanel: () => void;
@@ -427,23 +425,7 @@ function VariablesPanel(props: VariablesPanelProps) {
                         </Dropdown>
                     </div>
 
-                    {/* Show Previous Button - only when variables panel is visible */}
-                    {props.isVisible && props.hasPreviousChoice && (
-                        <Button
-                            icon={<HistoryOutlined />}
-                            onClick={props.onTogglePrevious}
-                            style={{
-                                position: 'fixed',
-                                left: props.isVisible ? panelWidth + 10 : 10,
-                                top: 115,
-                                zIndex: 1001,
-                                transition: 'left 0.3s ease'
-                            }}
-                            size="small"
-                        >
-                            {props.showPrevious ? 'Hide' : 'Show'} Previous
-                        </Button>
-                    )}
+                    {/* Show Previous Button - REMOVED: Previous choice visibility is now controlled via Story Mode dropdown */}
                 </>
             )}
 
