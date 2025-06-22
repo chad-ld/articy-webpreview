@@ -407,8 +407,29 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           } else if (outputs.length > 1) {
             // Multiple outputs - this should trigger the normal choice display
             console.log("📖 STORY MODE: Multiple outputs found, setting up choices:", outputs.length);
-            // Set the instruction node as current so choices can be displayed
-            setCurrentNode(childNode);
+
+            // Instead of setting the hidden node as current, create a virtual hub node
+            // that represents the choice point without displaying the instruction/condition content
+            const virtualHubNode = {
+              Type: "VirtualHub",
+              Properties: {
+                Id: `virtual_hub_${childNode.Properties.Id}`,
+                DisplayName: "Choose your action",
+                Text: "",
+                Expression: "",
+                OutputPins: childNode.Properties.OutputPins // Keep the same outputs
+              },
+              _originalNode: childNode // Store reference to original node for debugging
+            };
+
+            console.log("📖 STORY MODE: Created virtual hub node for flow fragment child:", {
+              originalNodeId: childNode.Properties.Id,
+              originalNodeType: childNode.Type,
+              virtualNodeId: virtualHubNode.Properties.Id,
+              outputCount: outputs.length
+            });
+
+            setCurrentNode(virtualHubNode);
             // STOP HERE - let the user make a choice instead of auto-continuing
             // The choice screen will be shown by the normal rendering logic
           } else {
@@ -523,8 +544,29 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         console.log("📖 STORY MODE: Multiple outputs found, setting up choices:", outputs.length);
         // Add the node to history (so it appears in Previous Choice)
         setNodeHistory([...nodeHistory, node]);
-        // Set the instruction node as current so choices can be displayed
-        setCurrentNode(node);
+
+        // Instead of setting the hidden node as current, create a virtual hub node
+        // that represents the choice point without displaying the instruction/condition content
+        const virtualHubNode = {
+          Type: "VirtualHub",
+          Properties: {
+            Id: `virtual_hub_${node.Properties.Id}`,
+            DisplayName: "Choose your action",
+            Text: "",
+            Expression: "",
+            OutputPins: node.Properties.OutputPins // Keep the same outputs
+          },
+          _originalNode: node // Store reference to original node for debugging
+        };
+
+        console.log("📖 STORY MODE: Created virtual hub node to hide instruction/condition content:", {
+          originalNodeId: node.Properties.Id,
+          originalNodeType: node.Type,
+          virtualNodeId: virtualHubNode.Properties.Id,
+          outputCount: outputs.length
+        });
+
+        setCurrentNode(virtualHubNode);
         // STOP HERE - let the user make a choice instead of auto-continuing
         // The choice screen will be shown by the normal rendering logic
         return;
@@ -804,9 +846,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     // These represent important decision points in the narrative
     const isHubNode = hasMultipleOutputs(node);
 
-    // Also keep Hub nodes as they are special hub-like nodes
+    // Also keep Hub nodes and VirtualHub nodes as they are special hub-like nodes
     // NOTE: DialogueIntActionTemplate nodes are now Flow Fragments and will be entered automatically
-    const isSpecialHubNode = node.Type === "Hub";
+    const isSpecialHubNode = node.Type === "Hub" || node.Type === "VirtualHub";
 
     if (isHubNode || isSpecialHubNode) {
       console.log('📖 STORY MODE: Keeping hub node:', {
@@ -881,7 +923,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       if (lastChoice.fromMultiChoice) {
         // Check if the restored node is a hub node (multiple outputs) or special hub type
         const isHubNode = hasMultipleOutputs(lastChoice.node);
-        const isSpecialHubNode = lastChoice.node.Type === "Hub"; // Removed DialogueIntActionTemplate
+        const isSpecialHubNode = lastChoice.node.Type === "Hub" || lastChoice.node.Type === "VirtualHub"; // Removed DialogueIntActionTemplate
 
         if (isHubNode || isSpecialHubNode) {
           // For hub nodes, directly show choices without calling handleNext
@@ -1290,9 +1332,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           }
         }
 
-        if (currentNode.Type === "Hub") {
-          nodeText = ''; // Hub nodes have no body text, only title
-          choiceTitle = currentNode.Properties.DisplayName || 'Hub';
+        if (currentNode.Type === "Hub" || currentNode.Type === "VirtualHub") {
+          nodeText = ''; // Hub nodes and virtual hub nodes have no body text, only title
+          choiceTitle = currentNode.Properties.DisplayName || (currentNode.Type === "VirtualHub" ? 'Choose your action' : 'Hub');
         } else if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
           nodeText = currentNode.Properties.Text;
         } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
@@ -1359,7 +1401,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       // NOTE: DialogueIntActionTemplate nodes are now handled as Flow Fragments, not immediate hub nodes
       // NOTE: Regular Hub nodes should now be stored as previous choices since they show content first
       // NOTE: Condition nodes should NOT be treated as hub-style nodes - they show content first, then choices
-      const isSpecialHubNode = currentNode.Type === "Hub"; // Removed DialogueIntActionTemplate
+      const isSpecialHubNode = currentNode.Type === "Hub" || currentNode.Type === "VirtualHub"; // Removed DialogueIntActionTemplate
 
       // Check if this is a dialogue fragment (needed for both hub and non-hub logic)
       const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
@@ -1388,9 +1430,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         // 1. Text property (main content)
         // 2. Expression property (for instruction nodes)
         // 3. DisplayName as fallback
-        if (currentNode.Type === "Hub") {
-          nodeText = ''; // Hub nodes have no body text, only title
-          choiceTitle = currentNode.Properties.DisplayName || 'Hub';
+        if (currentNode.Type === "Hub" || currentNode.Type === "VirtualHub") {
+          nodeText = ''; // Hub nodes and virtual hub nodes have no body text, only title
+          choiceTitle = currentNode.Properties.DisplayName || (currentNode.Type === "VirtualHub" ? 'Choose your action' : 'Hub');
         } else if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
           nodeText = currentNode.Properties.Text;
         } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
@@ -1561,6 +1603,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       const shouldNeverSkip = (
         isFlowFragment ||  // Flow Fragments must be entered, never skipped
         targetNode.Type === "Hub" ||  // Articy hub nodes always show
+        targetNode.Type === "VirtualHub" ||  // Virtual hub nodes always show
         hasMultipleOutputs(targetNode) ||  // Any node with multiple outputs (hub nodes) - ALWAYS show
         targetNode.Type === "DialogueExplorationFragmentTemplate" ||  // Dialogue nodes should always be shown
         targetNode.Type === "DialogueInteractiveFragmentTemplate" ||  // Dialogue nodes should always be shown
@@ -2304,10 +2347,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // 1. Text property (main content)
   // 2. Expression property (for instruction nodes)
   // 3. DisplayName as fallback
-  // Special case: Hub nodes should only show their DisplayName as title, no body text
-  if (currentNode.Type === "Hub") {
-    nodeText = ''; // Hub nodes have no body text, only title
-    nodeTitle = currentNode.Properties.DisplayName || 'Hub';
+  // Special case: Hub nodes and VirtualHub nodes should only show their DisplayName as title, no body text
+  if (currentNode.Type === "Hub" || currentNode.Type === "VirtualHub") {
+    nodeText = ''; // Hub nodes and virtual hub nodes have no body text, only title
+    nodeTitle = currentNode.Properties.DisplayName || (currentNode.Type === "VirtualHub" ? 'Choose your action' : 'Hub');
   } else if (currentNode.Properties.Text && currentNode.Properties.Text.trim()) {
     nodeText = currentNode.Properties.Text;
   } else if (currentNode.Properties.Expression && currentNode.Properties.Expression.trim()) {
