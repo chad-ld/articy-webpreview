@@ -487,16 +487,6 @@
       }
     },
     {
-      "Type": "TravelFlowTemplate",
-      "Class": "FlowFragment",
-      "InheritsFrom": "FlowFragment",
-      "Template": {
-        "TechnicalName": "TravelFlowTemplate",
-        "DisplayName": "Travel Flow",
-        "Features": []
-      }
-    },
-    {
       "Type": "PlayerActionFlowTemplate",
       "Class": "FlowFragment",
       "InheritsFrom": "FlowFragment",
@@ -567,22 +557,32 @@
       }
     },
     {
-      "Type": "InfoUI",
+      "Type": "InfoUITemplate_01",
       "Class": "FlowFragment",
       "InheritsFrom": "FlowFragment",
       "Template": {
-        "TechnicalName": "InfoUI",
+        "TechnicalName": "InfoUITemplate_01",
         "DisplayName": "InfoUI",
         "Features": []
       }
     },
     {
-      "Type": "Minigame",
+      "Type": "MinigameTemplate",
       "Class": "FlowFragment",
       "InheritsFrom": "FlowFragment",
       "Template": {
-        "TechnicalName": "Minigame",
+        "TechnicalName": "MinigameTemplate",
         "DisplayName": "Minigame",
+        "Features": []
+      }
+    },
+    {
+      "Type": "TravelFlowTemplate_99",
+      "Class": "FlowFragment",
+      "InheritsFrom": "FlowFragment",
+      "Template": {
+        "TechnicalName": "TravelFlowTemplate_99",
+        "DisplayName": "Travel Flow",
         "Features": []
       }
     },
