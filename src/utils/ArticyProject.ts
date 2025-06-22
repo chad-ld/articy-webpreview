@@ -432,6 +432,12 @@ class ArticyProject {
     if (node.Properties == undefined) return;
     if (node.Properties.Expression == undefined) return;
 
+    // Skip processing for Condition nodes - they contain evaluation expressions, not assignments
+    if (node.Type === "Condition") {
+      console.log(`🔍 SKIPPING VARIABLE PROCESSING for Condition node ${node.Properties.Id}: Contains evaluation expressions, not assignments`);
+      return;
+    }
+
     const textChunks: string[] = (node.Properties.Expression as string).split("\n");
 
     console.log(`🔄 PROCESSING VARIABLES LINE-BY-LINE for node ${node.Properties.Id}:`, {
