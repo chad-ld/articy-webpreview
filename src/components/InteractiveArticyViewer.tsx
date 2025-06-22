@@ -409,10 +409,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             console.log("📖 STORY MODE: Multiple outputs found, setting up choices:", outputs.length);
             // Set the instruction node as current so choices can be displayed
             setCurrentNode(childNode);
-            // The normal handleNext logic will take over and show choices
-            setTimeout(() => {
-              handleNext();
-            }, 0);
+            // STOP HERE - let the user make a choice instead of auto-continuing
+            // The choice screen will be shown by the normal rendering logic
           } else {
             // No valid outputs
             console.log("📖 STORY MODE: No valid outputs found");
@@ -527,10 +525,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         setNodeHistory([...nodeHistory, node]);
         // Set the instruction node as current so choices can be displayed
         setCurrentNode(node);
-        // The normal handleNext logic will take over and show choices
-        setTimeout(() => {
-          handleNext();
-        }, 0);
+        // STOP HERE - let the user make a choice instead of auto-continuing
+        // The choice screen will be shown by the normal rendering logic
         return;
       } else {
         // No valid outputs, treat as end of flow
@@ -1588,7 +1584,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           finalTargetNode = targetOutputs[0].targetNode;
 
           // Process the skipped node (store variables, etc.) but don't display it
-          if (project) {
+          if (project && skippedNode.Type !== "Condition") {
             project.StoreVariablesFromNode(skippedNode);
           }
         }
@@ -1889,7 +1885,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
     // Reset bubble render key when choice options change
     setBubbleRenderKey(0);
-  }, [choiceOptions, storyOnlyMode]);
+  }, [choiceOptions, storyModeSettings.enabled]);
 
   // Force re-render of condition bubbles after DOM is mounted
   useEffect(() => {
@@ -1902,7 +1898,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
       return () => clearTimeout(timer);
     }
-  }, [choiceOptions, bubbleRenderKey]);
+  }, [choiceOptions, bubbleRenderKey, storyModeSettings.enabled]);
 
   // Handle Hub nodes that should show choices immediately
   useEffect(() => {

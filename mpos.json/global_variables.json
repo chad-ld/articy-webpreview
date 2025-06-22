@@ -195,6 +195,24 @@
           "Type": "Boolean",
           "Value": "False",
           "Description": "Test Inventory Item"
+        },
+        {
+          "Variable": "pr_var01_bl",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "pr_var02_st",
+          "Type": "String",
+          "Value": "",
+          "Description": ""
+        },
+        {
+          "Variable": "pr_var03_int",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
         }
       ]
     },
@@ -257,16 +275,16 @@
       "Description": "",
       "Variables": [
         {
-          "Variable": "photo_affair_found",
+          "Variable": "va_photo_affair_found",
           "Type": "Boolean",
           "Value": "False",
-          "Description": "found photo of the affiair yet?"
+          "Description": ""
         },
         {
-          "Variable": "photo_affair_fingerprint",
+          "Variable": "va_photo_affair_analyzed",
           "Type": "Boolean",
           "Value": "False",
-          "Description": "processed fingerprrint on photo?"
+          "Description": ""
         },
         {
           "Variable": "new_autopsy_found",
@@ -275,31 +293,217 @@
           "Description": ""
         },
         {
-          "Variable": "paternity_test_found",
+          "Variable": "va_paternity_test_found",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
         },
         {
-          "Variable": "new_will_found",
+          "Variable": "va_new_will_found",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
         },
         {
-          "Variable": "paternity_test_analyzed",
+          "Variable": "va_paternity_test_analyzed",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
         },
         {
-          "Variable": "new_will_analyzed",
+          "Variable": "va_new_will_analyzed",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
         },
         {
           "Variable": "safe_opened",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_reciept_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_reciept_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_wintergreen_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_wintergreen_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_alexcam_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_alexcam_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_lawyerletter_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_lawyerletter_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_ciagree_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_ciagree_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_bankstate_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_bankstate_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_leopass_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_leopass_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_tikimug_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_tikimug_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_victorcam_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_victorcam_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_vape_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_vape_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_leoalexpic_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_leoalexpic_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "CurrentLocation",
+          "Type": "String",
+          "Value": "va",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "do_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "va_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_completed",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
@@ -367,7 +571,7 @@
         {
           "Variable": "DRMO22",
           "Type": "Boolean",
-          "Value": "True",
+          "Value": "False",
           "Description": ""
         },
         {
