@@ -692,6 +692,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // State to control dropdown visibility
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [variableUpdateTrigger, setVariableUpdateTrigger] = useState(0);
+  const [isVariableBeingEdited, setIsVariableBeingEdited] = useState(false);
 
   const handleDropdownOpenChange = (open: boolean) => {
     setDropdownOpen(open);
@@ -1780,6 +1782,12 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     // Only handle keyboard events when a project is loaded
     if (!project || !currentNode) return;
 
+    // Skip keyboard navigation if a variable is being edited
+    if (isVariableBeingEdited) {
+      console.log('🔧 Skipping keyboard navigation - variable being edited');
+      return;
+    }
+
     const availableChoices = getCurrentAvailableChoices();
 
     switch (event.key) {
@@ -1844,7 +1852,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         setChoiceOptions([]);
         break;
     }
-  }, [project, currentNode, getCurrentAvailableChoices, selectedChoiceIndex, showPrevious, previousChoiceHistory.length, goBack, handleNext, handleChoiceSelect, handleRestart, handleLoadScreen]);
+  }, [project, currentNode, getCurrentAvailableChoices, selectedChoiceIndex, showPrevious, previousChoiceHistory.length, goBack, handleNext, handleChoiceSelect, handleRestart, handleLoadScreen, isVariableBeingEdited]);
 
   // Add keyboard event listener
   useEffect(() => {
@@ -2016,6 +2024,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               project={project}
               currentNode={currentNode}
               onWidthChange={setVariablesPanelWidth}
+              onVariableUpdate={() => setVariableUpdateTrigger(prev => prev + 1)}
+              onEditingStateChange={setIsVariableBeingEdited}
               isVisible={isVariablesPanelVisible}
               onToggleVisibility={handleVariablesPanelToggle}
               onToggleSearchPanel={handleSearchPanelToggle}
@@ -2327,6 +2337,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             project={project}
             currentNode={currentNode}
             onWidthChange={setVariablesPanelWidth}
+            onVariableUpdate={() => setVariableUpdateTrigger(prev => prev + 1)}
+            onEditingStateChange={setIsVariableBeingEdited}
             isVisible={isVariablesPanelVisible}
             onToggleVisibility={handleVariablesPanelToggle}
             onToggleSearchPanel={handleSearchPanelToggle}
