@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button, Input, Tooltip, Dropdown, Checkbox } from "antd";
 import type { MenuProps } from 'antd';
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined } from "@ant-design/icons";
+import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined, EditOutlined } from "@ant-design/icons";
 
 interface StoryModeSettings {
     enabled: boolean;
@@ -16,6 +16,8 @@ interface VariablesPanelProps {
     project: any;
     currentNode: any;
     onWidthChange: (width: number) => void;
+    onVariableUpdate?: () => void; // Callback to trigger re-render when variables change
+    onEditingStateChange?: (isEditing: boolean) => void; // Callback to notify parent when editing state changes
     // showPrevious, onTogglePrevious, hasPreviousChoice - REMOVED: Previous choice visibility now controlled via Story Mode dropdown
     isVisible: boolean;
     onToggleVisibility: () => void;
@@ -39,6 +41,17 @@ function VariablesPanel(props: VariablesPanelProps) {
     const [searchFilter, setSearchFilter] = useState("");
     const [fontSize, setFontSize] = useState(12);
     const [isGroupedView, setIsGroupedView] = useState(false);
+
+    // Edit mode state
+    const [editingVariable, setEditingVariable] = useState<string | null>(null);
+    const [editValue, setEditValue] = useState<string>("");
+    const [contextMenuVisible, setContextMenuVisible] = useState(false);
+    const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
+    const [selectedVariable, setSelectedVariable] = useState<string | null>(null);
+
+    // Touch/mobile support
+    const longPressTimer = useRef<NodeJS.Timeout | null>(null);
+    const isTouchDevice = 'ontouchstart' in window;
 
     useEffect(() => {
         if (props.project) {
@@ -77,6 +90,97 @@ function VariablesPanel(props: VariablesPanelProps) {
             document.removeEventListener('mouseup', handleMouseUp);
         };
     }, [isResizing]);
+
+    // Helper functions for variable editing
+    const startEdit = (variablePath: string, currentValue: any) => {
+        setEditingVariable(variablePath);
+        setEditValue(String(currentValue));
+        setContextMenuVisible(false);
+
+        // Notify parent that editing has started
+        if (props.onEditingStateChange) {
+            props.onEditingStateChange(true);
+        }
+    };
+
+    const cancelEdit = () => {
+        setEditingVariable(null);
+        setEditValue("");
+
+        // Notify parent that editing has ended
+        if (props.onEditingStateChange) {
+            props.onEditingStateChange(false);
+        }
+    };
+
+    const saveEdit = (variablePath: string) => {
+        if (!props.project || editingVariable !== variablePath) return;
+
+        const pathParts = variablePath.split('.');
+        let convertedValue: any = editValue;
+
+        // Try to convert to appropriate type
+        if (editValue.toLowerCase() === 'true') {
+            convertedValue = true;
+        } else if (editValue.toLowerCase() === 'false') {
+            convertedValue = false;
+        } else if (!isNaN(Number(editValue)) && editValue.trim() !== '') {
+            convertedValue = Number(editValue);
+        }
+
+        console.log(`🔧 VariablesPanel: Saving variable edit: ${variablePath} = ${convertedValue} (type: ${typeof convertedValue})`);
+
+        // Update the variable in the project
+        props.project.UpdateVariableDirectly(pathParts, convertedValue);
+
+        // Update local state immediately
+        const newVariables = { ...props.project.variables };
+        setVariables(newVariables);
+
+        console.log(`✅ VariablesPanel: Variable updated successfully, local state refreshed`);
+
+        // Notify parent component (optional, for other components that might need to update)
+        if (props.onVariableUpdate) {
+            props.onVariableUpdate();
+        }
+
+        cancelEdit();
+    };
+
+    // Context menu and touch handlers
+    const handleContextMenu = (e: React.MouseEvent, variablePath: string, currentValue: any) => {
+        e.preventDefault();
+        setSelectedVariable(variablePath);
+        setContextMenuPosition({ x: e.clientX, y: e.clientY });
+        setContextMenuVisible(true);
+    };
+
+    const handleLongPressStart = (variablePath: string, currentValue: any) => {
+        if (!isTouchDevice) return;
+
+        longPressTimer.current = setTimeout(() => {
+            startEdit(variablePath, currentValue);
+        }, 500);
+    };
+
+    const handleLongPressEnd = () => {
+        if (longPressTimer.current) {
+            clearTimeout(longPressTimer.current);
+            longPressTimer.current = null;
+        }
+    };
+
+    // Close context menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = () => {
+            setContextMenuVisible(false);
+        };
+
+        if (contextMenuVisible) {
+            document.addEventListener('click', handleClickOutside);
+            return () => document.removeEventListener('click', handleClickOutside);
+        }
+    }, [contextMenuVisible]);
 
     const parseVariableValue = (value: any) => {
         const valueStr = value.toString();
@@ -121,6 +225,77 @@ function VariablesPanel(props: VariablesPanelProps) {
         return <span style={{ color: '#CE93D8' }}>{valueStr}</span>;
     };
 
+    // Helper to render a single variable row with edit support
+    const renderVariableRow = (namespace: string, varName: string, value: any, isGrouped: boolean = false) => {
+        const variablePath = `${namespace}.${varName}`;
+        const isEditing = editingVariable === variablePath;
+
+        const handleKeyDown = (e: React.KeyboardEvent) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                e.stopPropagation();
+                saveEdit(variablePath);
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                e.stopPropagation();
+                cancelEdit();
+            }
+        };
+
+        const rowStyle = {
+            fontSize: `${fontSize}px`,
+            color: '#fff',
+            marginBottom: '2px',
+            marginLeft: isGrouped ? '15px' : '0px',
+            fontFamily: 'monospace',
+            backgroundColor: 'rgba(0,0,0,0.3)',
+            padding: '2px 5px',
+            borderRadius: '2px',
+            wordBreak: 'break-all' as const,
+            cursor: 'context-menu',
+            position: 'relative' as const
+        };
+
+        return (
+            <div
+                key={variablePath}
+                style={rowStyle}
+                onContextMenu={(e) => handleContextMenu(e, variablePath, value)}
+                onTouchStart={() => handleLongPressStart(variablePath, value)}
+                onTouchEnd={handleLongPressEnd}
+                onTouchCancel={handleLongPressEnd}
+            >
+                {!isGrouped && (
+                    <>
+                        <span style={{ color: '#4CAF50' }}>{namespace}</span>
+                        <span style={{ color: '#fff' }}>.</span>
+                    </>
+                )}
+                <span style={{ color: '#2196F3' }}>{varName}</span>
+                <span style={{ color: '#fff' }}> = </span>
+                {isEditing ? (
+                    <Input
+                        value={editValue}
+                        onChange={(e) => setEditValue(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        onBlur={() => saveEdit(variablePath)}
+                        autoFocus
+                        size="small"
+                        style={{
+                            width: '120px',
+                            fontSize: `${fontSize}px`,
+                            fontFamily: 'monospace',
+                            display: 'inline-block',
+                            verticalAlign: 'baseline'
+                        }}
+                    />
+                ) : (
+                    parseVariableValue(value)
+                )}
+            </div>
+        );
+    };
+
     const renderVariablesFlat = () => {
         const entries: JSX.Element[] = [];
 
@@ -137,24 +312,7 @@ function VariablesPanel(props: VariablesPanelProps) {
                     return;
                 }
 
-                entries.push(
-                    <div key={`${namespace}.${varName}`} style={{
-                        fontSize: `${fontSize}px`,
-                        color: '#fff',
-                        marginBottom: '2px',
-                        fontFamily: 'monospace',
-                        backgroundColor: 'rgba(0,0,0,0.3)',
-                        padding: '2px 5px',
-                        borderRadius: '2px',
-                        wordBreak: 'break-all'
-                    }}>
-                        <span style={{ color: '#4CAF50' }}>{namespace}</span>
-                        <span style={{ color: '#fff' }}>.</span>
-                        <span style={{ color: '#2196F3' }}>{varName}</span>
-                        <span style={{ color: '#fff' }}> = </span>
-                        {parseVariableValue(value)}
-                    </div>
-                );
+                entries.push(renderVariableRow(namespace, varName, value, false));
             });
         });
 
@@ -208,23 +366,7 @@ function VariablesPanel(props: VariablesPanelProps) {
                     return;
                 }
 
-                entries.push(
-                    <div key={`${namespace}.${varName}`} style={{
-                        fontSize: `${fontSize}px`,
-                        color: '#fff',
-                        marginBottom: '2px',
-                        marginLeft: '15px',
-                        fontFamily: 'monospace',
-                        backgroundColor: 'rgba(0,0,0,0.3)',
-                        padding: '2px 5px',
-                        borderRadius: '2px',
-                        wordBreak: 'break-all'
-                    }}>
-                        <span style={{ color: '#2196F3' }}>{varName}</span>
-                        <span style={{ color: '#fff' }}> = </span>
-                        {parseVariableValue(value)}
-                    </div>
-                );
+                entries.push(renderVariableRow(namespace, varName, value, true));
             });
         });
 
@@ -566,6 +708,52 @@ function VariablesPanel(props: VariablesPanelProps) {
                             borderRight: '1px solid #666'
                         }}
                     />
+                </div>
+            )}
+
+            {/* Context Menu */}
+            {contextMenuVisible && selectedVariable && (
+                <div
+                    style={{
+                        position: 'fixed',
+                        left: contextMenuPosition.x,
+                        top: contextMenuPosition.y,
+                        backgroundColor: '#1f1f1f',
+                        border: '1px solid #444',
+                        borderRadius: '4px',
+                        padding: '4px 0',
+                        zIndex: 2000,
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.5)'
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <div
+                        style={{
+                            padding: '6px 12px',
+                            color: '#fff',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px'
+                        }}
+                        onClick={() => {
+                            const pathParts = selectedVariable.split('.');
+                            const namespace = pathParts[0];
+                            const varName = pathParts[1];
+                            const currentValue = variables[namespace]?.[varName];
+                            startEdit(selectedVariable, currentValue);
+                        }}
+                        onMouseEnter={(e) => {
+                            (e.target as HTMLElement).style.backgroundColor = '#333';
+                        }}
+                        onMouseLeave={(e) => {
+                            (e.target as HTMLElement).style.backgroundColor = 'transparent';
+                        }}
+                    >
+                        <EditOutlined />
+                        Edit Value
+                    </div>
                 </div>
             )}
         </>
