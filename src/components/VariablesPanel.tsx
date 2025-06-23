@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from "react";
-import { Button, Input, Tooltip, Dropdown, Checkbox } from "antd";
-import type { MenuProps } from 'antd';
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined, EditOutlined } from "@ant-design/icons";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { Button, Input, Tooltip, Dropdown, Checkbox, message } from "antd";
+
+import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 
 interface StoryModeSettings {
     enabled: boolean;
@@ -50,8 +50,12 @@ function VariablesPanel(props: VariablesPanelProps) {
     const [selectedVariable, setSelectedVariable] = useState<string | null>(null);
 
     // Touch/mobile support
-    const longPressTimer = useRef<NodeJS.Timeout | null>(null);
+    const longPressTimer = useRef<number | null>(null);
     const isTouchDevice = 'ontouchstart' in window;
+
+    // Drag and drop state
+    const [isDragOver, setIsDragOver] = useState(false);
+    const [isProcessingFile, setIsProcessingFile] = useState(false);
 
     useEffect(() => {
         if (props.project) {
@@ -148,7 +152,7 @@ function VariablesPanel(props: VariablesPanelProps) {
     };
 
     // Context menu and touch handlers
-    const handleContextMenu = (e: React.MouseEvent, variablePath: string, currentValue: any) => {
+    const handleContextMenu = (e: React.MouseEvent, variablePath: string, _currentValue: any) => {
         e.preventDefault();
         setSelectedVariable(variablePath);
         setContextMenuPosition({ x: e.clientX, y: e.clientY });
@@ -168,6 +172,194 @@ function VariablesPanel(props: VariablesPanelProps) {
             clearTimeout(longPressTimer.current);
             longPressTimer.current = null;
         }
+    };
+
+    // Drag and drop handlers
+    const handleDragOver = useCallback((e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+    }, []);
+
+    const handleDragEnter = useCallback((e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragOver(true);
+    }, []);
+
+    const handleDragLeave = useCallback((e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // Only set drag over to false if we're leaving the panel entirely
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+            setIsDragOver(false);
+        }
+    }, []);
+
+    const handleDrop = useCallback(async (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragOver(false);
+
+        const files = e.dataTransfer.files;
+        if (files.length === 0) {
+            message.error('No files dropped');
+            return;
+        }
+
+        if (files.length > 1) {
+            message.error('Please drop only one file at a time');
+            return;
+        }
+
+        const file = files[0];
+        await processVariableFile(file);
+    }, []);
+
+    // File processing function
+    const processVariableFile = useCallback(async (file: File) => {
+        // Validate file type
+        const fileName = file.name.toLowerCase();
+        const validExtensions = ['.txt', '.csv'];
+        const isValidFile = validExtensions.some(ext => fileName.endsWith(ext));
+
+        if (!isValidFile) {
+            message.error(`Invalid file type. Please use ${validExtensions.join(' or ')} files.`);
+            return;
+        }
+
+        setIsProcessingFile(true);
+
+        try {
+            // Read file content
+            const content = await readFileAsText(file);
+
+            // Parse and update variables
+            const result = await parseAndUpdateVariables(content, fileName.endsWith('.csv'));
+
+            // Show success message
+            if (result.successCount > 0) {
+                message.success(`Successfully updated ${result.successCount} variable(s)${result.errorCount > 0 ? ` (${result.errorCount} errors)` : ''}`);
+            }
+
+            if (result.errorCount > 0 && result.successCount === 0) {
+                message.error(`Failed to update variables. ${result.errorCount} error(s) encountered.`);
+            }
+
+            // Trigger re-render if variables were updated
+            if (result.successCount > 0 && props.onVariableUpdate) {
+                props.onVariableUpdate();
+            }
+
+        } catch (error) {
+            console.error('❌ Error processing variable file:', error);
+            message.error(`Failed to process file: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        } finally {
+            setIsProcessingFile(false);
+        }
+    }, [props]);
+
+    // Read file as text
+    const readFileAsText = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target?.result as string);
+            reader.onerror = () => reject(new Error('Failed to read file'));
+            reader.readAsText(file);
+        });
+    };
+
+    // Parse and update variables from file content
+    const parseAndUpdateVariables = useCallback(async (content: string, isCSV: boolean): Promise<{successCount: number, errorCount: number}> => {
+        let successCount = 0;
+        let errorCount = 0;
+        const lines = content.split(/\r?\n/);
+
+        console.log(`🔧 VariablesPanel: Processing ${lines.length} lines from ${isCSV ? 'CSV' : 'text'} file`);
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+
+            // Skip empty lines and comments
+            if (line.length === 0 || line.startsWith('//') || line.startsWith('#')) {
+                continue;
+            }
+
+            try {
+                let variablePath: string;
+                let value: any;
+
+                if (isCSV) {
+                    // Parse CSV format: "VariableName","Value" or VariableName,Value
+                    const csvMatch = line.match(/^"?([^",]+)"?\s*,\s*"?([^"]*)"?$/);
+                    if (csvMatch) {
+                        variablePath = csvMatch[1].trim();
+                        value = csvMatch[2].trim();
+                    } else {
+                        throw new Error(`Invalid CSV format on line ${i + 1}: ${line}`);
+                    }
+                } else {
+                    // Parse text format: VariableName = Value
+                    const textMatch = line.match(/^([^=]+)\s*=\s*(.*)$/);
+                    if (textMatch) {
+                        variablePath = textMatch[1].trim();
+                        value = textMatch[2].trim();
+                    } else {
+                        throw new Error(`Invalid format on line ${i + 1}: ${line}`);
+                    }
+                }
+
+                // Convert value to appropriate type
+                const convertedValue = convertStringValue(value);
+
+                // Split variable path into namespace and variable name
+                const pathParts = variablePath.split('.');
+                if (pathParts.length < 2) {
+                    throw new Error(`Invalid variable path on line ${i + 1}: ${variablePath} (must include namespace)`);
+                }
+
+                // Update the variable using the existing method
+                if (props.project) {
+                    props.project.UpdateVariableDirectly(pathParts, convertedValue);
+                    console.log(`✅ Updated variable: ${variablePath} = ${convertedValue} (type: ${typeof convertedValue})`);
+                    successCount++;
+                } else {
+                    throw new Error('No project available for variable update');
+                }
+
+            } catch (error) {
+                console.error(`❌ Error processing line ${i + 1}:`, error instanceof Error ? error.message : 'Unknown error');
+                errorCount++;
+            }
+        }
+
+        // Update local variables state to reflect changes
+        if (successCount > 0 && props.project) {
+            setVariables({ ...props.project.variables });
+        }
+
+        console.log(`🔧 VariablesPanel: File processing complete. Success: ${successCount}, Errors: ${errorCount}`);
+        return { successCount, errorCount };
+    }, [props.project]);
+
+    // Convert string value to appropriate type (boolean, number, or string)
+    const convertStringValue = (value: string): any => {
+        // Remove quotes if present
+        const trimmedValue = value.replace(/^["']|["']$/g, '');
+
+        // Convert boolean values
+        if (trimmedValue.toLowerCase() === 'true') {
+            return true;
+        } else if (trimmedValue.toLowerCase() === 'false') {
+            return false;
+        }
+
+        // Convert numeric values
+        if (!isNaN(Number(trimmedValue)) && trimmedValue.trim() !== '') {
+            return Number(trimmedValue);
+        }
+
+        // Return as string
+        return trimmedValue;
     };
 
     // Close context menu when clicking outside
@@ -573,19 +765,26 @@ function VariablesPanel(props: VariablesPanelProps) {
 
             {/* Variables Panel */}
             {props.isVisible && (
-                <div style={{
-                    position: 'fixed',
-                    left: 0,
-                    top: 0,
-                    width: panelWidth,
-                    height: '100vh',
-                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                    border: 'none',
-                    borderRight: '1px solid #444',
-                    zIndex: 1000,
-                    display: 'flex',
-                    flexDirection: 'column'
-                }}>
+                <div
+                    style={{
+                        position: 'fixed',
+                        left: 0,
+                        top: 0,
+                        width: panelWidth,
+                        height: '100vh',
+                        backgroundColor: isDragOver ? 'rgba(24, 144, 255, 0.1)' : 'rgba(0, 0, 0, 0.9)',
+                        border: 'none',
+                        borderRight: isDragOver ? '2px solid #1890ff' : '1px solid #444',
+                        zIndex: 1000,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        transition: 'all 0.3s ease'
+                    }}
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    onDragEnter={handleDragEnter}
+                    onDragLeave={handleDragLeave}
+                >
                     {/* Header */}
                     <div style={{
                         fontSize: '14px',
@@ -689,8 +888,68 @@ function VariablesPanel(props: VariablesPanelProps) {
                     <div style={{
                         flex: 1,
                         overflowY: 'auto',
-                        padding: '10px'
+                        padding: '10px',
+                        position: 'relative'
                     }}>
+                        {/* Drag-over indicator */}
+                        {isDragOver && (
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(24, 144, 255, 0.1)',
+                                border: '2px dashed #1890ff',
+                                borderRadius: '8px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                zIndex: 10,
+                                pointerEvents: 'none'
+                            }}>
+                                <div style={{
+                                    color: '#1890ff',
+                                    fontSize: '16px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'center'
+                                }}>
+                                    <UploadOutlined style={{ fontSize: '24px', marginBottom: '8px', display: 'block' }} />
+                                    Drop variable file here
+                                    <div style={{ fontSize: '12px', marginTop: '4px', opacity: 0.8 }}>
+                                        Supports .txt and .csv files
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Processing indicator */}
+                        {isProcessingFile && (
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                zIndex: 10
+                            }}>
+                                <div style={{
+                                    color: '#fff',
+                                    fontSize: '16px',
+                                    textAlign: 'center'
+                                }}>
+                                    <div style={{ marginBottom: '8px' }}>Processing variables...</div>
+                                    <div style={{ fontSize: '12px', opacity: 0.8 }}>
+                                        Please wait while we update your variables
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {renderVariables()}
                     </div>
 

@@ -1,0 +1,22 @@
+# Test variable file for drag-and-drop functionality
+# This file contains sample variable assignments for QA testing
+
+SuspectVariables.Leo_Points = 6
+SuspectVariables.Alex_Points = 3
+SuspectVariables.Daria_Points = 4
+SuspectVariables.Liza_Points = 3
+
+// Additional test variables
+GameState.CurrentLevel = 5
+GameState.PlayerHealth = 100
+GameState.HasKey = true
+GameState.PlayerName = "TestPlayer"
+
+// Boolean and numeric tests
+Settings.SoundEnabled = false
+Settings.Volume = 75
+Settings.Difficulty = 2
+
+// String values with spaces
+PlayerData.LastLocation = "Central Park"
+PlayerData.CurrentQuest = "Find the missing artifact"
