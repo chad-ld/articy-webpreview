@@ -43,11 +43,11 @@
       "Description": "Exports all objects & types of the project",
       "IsDefaultPackage": true,
       "IsIncluded": true,
-      "ScriptFragmentHash": "IIHzWaHoFpz2UofEkuG0GI0EIwpkAFjvZxtwoA5P4po=",
+      "ScriptFragmentHash": "mgz6CuLYVKJ+aGa2ala5V7qYJUkcd2roGnwlcbsm4+w=",
       "Files": {
         "Objects": {
           "FileName": "package_010000060000401C_objects.json",
-          "Hash": "HRGfnNwfnExpwySUn+QPBplRoLyurPSFoovnbSy4fRs="
+          "Hash": "D2uHmuRLI7QHe3L4XTyE5WyiSYbB6viQscFnFiuXOEM="
         },
         "Texts": {
           "FileName": "package_010000060000401C_localization.json",

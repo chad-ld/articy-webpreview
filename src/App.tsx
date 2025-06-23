@@ -169,10 +169,18 @@ function App() {
           const articyVersion = manifest.Settings?.ExportVersion ?
                                `4.x v${manifest.Settings.ExportVersion}` : '4.x';
 
+          let displayName = manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
+
+          // Try to find and extract subtitle from HTMLPREVIEW node
+          const subtitle = await findHtmlPreviewSubtitleLegacy(name);
+          if (subtitle) {
+            displayName = displayName + ' - ' + subtitle;
+          }
+
           available.push({
             name,
             folder: `${name}.json`,
-            displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
+            displayName,
             description: manifest.Project?.DetailName || `${name} dataset`,
             articyVersion,
             format: '4.x'
@@ -212,6 +220,58 @@ function App() {
 
     console.log(`🎯 Legacy detection found ${available.length} available datasets`);
     return available;
+  };
+
+  // Helper function to find HTMLPREVIEW subtitle in legacy detection
+  const findHtmlPreviewSubtitleLegacy = async (datasetName: string): Promise<string | null> => {
+    try {
+      // Try to fetch the objects file that contains the node data
+      const objectsResponse = await fetch(`./${datasetName}.json/package_010000060000401C_objects.json`);
+      if (!objectsResponse.ok) {
+        return null;
+      }
+
+      const objectsData = await objectsResponse.json();
+      if (!objectsData || !objectsData.Models) {
+        return null;
+      }
+
+      // Search through all models for HTMLPREVIEW marker
+      for (const model of objectsData.Models) {
+        if (!model.Properties) {
+          continue;
+        }
+
+        const properties = model.Properties;
+        let textContent = '';
+
+        // Check both Text and Expression properties for HTMLPREVIEW marker
+        if (properties.Text && properties.Text.includes('HTMLPREVIEW')) {
+          textContent = properties.Text;
+        } else if (properties.Expression && properties.Expression.includes('HTMLPREVIEW')) {
+          textContent = properties.Expression;
+        }
+
+        if (textContent) {
+          // Extract subtitle from "Project Sub Name:" line
+          const lines = textContent.split('\n');
+          for (const line of lines) {
+            const trimmedLine = line.trim();
+            if (trimmedLine.startsWith('//Project Sub Name:')) {
+              const subtitle = trimmedLine.substring('//Project Sub Name:'.length).trim();
+              if (subtitle) {
+                return subtitle;
+              }
+            }
+          }
+        }
+      }
+
+      return null;
+    } catch (error) {
+      console.warn(`⚠️ Could not extract subtitle from ${datasetName}:`, error);
+      return null;
+    }
   };
 
   const loadDataset = async (datasetName: string) => {
