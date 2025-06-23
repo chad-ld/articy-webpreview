@@ -1,0 +1,2288 @@
+🔍 Checking child for internal inputs: 
+Object { childId: "0x0100000B00000BB5", childType: "Comment", childDisplayName: undefined, hasInternalInputs: false }
+ArticyProject.ts:168:15
+🔍 Checking child for internal inputs: 
+Object { childId: "0x0100000B00000BBE", childType: "Comment", childDisplayName: undefined, hasInternalInputs: false }
+ArticyProject.ts:168:15
+🎯 Found nodes connected to Flow Fragment input: 
+Object { flowFragmentId: "0x0100000B000002F2", flowFragmentType: "DialogueIntActionTemplate", totalChildren: 26, inputConnectedCount: 17, inputConnectedNodes: (17) […] }
+ArticyProject.ts:178:13
+🔄 FLOW FRAGMENT ENTRY - Input Analysis: 
+Object { flowFragmentId: "0x0100000B000002F2", flowFragmentType: "DialogueIntActionTemplate", flowFragmentDisplayName: "Liza Statements", inputConnectedNodes: 17, inputNodes: (17) […] }
+InteractiveArticyViewer.tsx:213:15
+🎯 FLOW FRAGMENT: Multiple input nodes detected, creating choice menu InteractiveArticyViewer.tsx:226:17
+🚫 Filtering out Comment annotation node: Statements InteractiveArticyViewer.tsx:229:21
+🚫 Filtering out Comment annotation node: Opportunity InteractiveArticyViewer.tsx:229:21
+🚫 Filtering out Comment annotation node: Motive InteractiveArticyViewer.tsx:229:21
+🚫 Filtering out Comment annotation node: Means InteractiveArticyViewer.tsx:229:21
+🔍 PARSING BOOLEAN EXPRESSION: SuspectVariables.Liza_Cracked==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: SuspectVariables.Liza_Cracked==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "SuspectVariables.Liza_Cracked==false", operator: "==", variablePath: "SuspectVariables.Liza_Cracked", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: SuspectVariables.Liza_Cracked==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: SuspectVariables.Liza_Cracked==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "SuspectVariables.Liza_Cracked==true", operator: "==", variablePath: "SuspectVariables.Liza_Cracked", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: SuspectVariables.Liza_Cracked==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: SuspectVariables.Liza_Cracked==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "SuspectVariables.Liza_Cracked==false", operator: "==", variablePath: "SuspectVariables.Liza_Cracked", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ "MMOVariables.LZOP32==false", "MMOVariables.LZOP33==true" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZOP32==false", operator: "==", variablePath: "MMOVariables.LZOP32", actualValue: true, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ "MMOVariables.LZOP32==true", "MMOVariables.LZOP33==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZOP32==true", operator: "==", variablePath: "MMOVariables.LZOP32", actualValue: true, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP33==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZOP33==false", operator: "==", variablePath: "MMOVariables.LZOP33", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ "MMOVariables.LZOP32==true", "MMOVariables.LZOP33==true" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZOP32==true", operator: "==", variablePath: "MMOVariables.LZOP32", actualValue: true, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP33==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZOP33==true", operator: "==", variablePath: "MMOVariables.LZOP33", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array(3) [ "MMOVariables.LZOP32==false", "MMOVariables.LZOP33==false", "MMOVariables.LZOP34==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZOP32==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZOP32==false", operator: "==", variablePath: "MMOVariables.LZOP32", actualValue: true, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ "MMOVariables.LZMO22==true", "MMOVariables.LZMO23==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZMO22==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZMO22==true", operator: "==", variablePath: "MMOVariables.LZMO22", actualValue: true, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZMO23==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZMO23==false", operator: "==", variablePath: "MMOVariables.LZMO23", actualValue: true, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ "MMOVariables.LZMO22==false", "MMOVariables.LZMO23==true" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZMO22==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZMO22==false", operator: "==", variablePath: "MMOVariables.LZMO22", actualValue: true, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ "MMOVariables.LZMO22==false", "MMOVariables.LZMO23==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZMO22==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZMO22==false", operator: "==", variablePath: "MMOVariables.LZMO22", actualValue: true, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZME12==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZME12==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZME12==false", operator: "==", variablePath: "MMOVariables.LZME12", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: MMOVariables.LZME12==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: MMOVariables.LZME12==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "MMOVariables.LZME12==true", operator: "==", variablePath: "MMOVariables.LZME12", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 PARSING BOOLEAN EXPRESSION: SuspectVariables.Liza_Cracked==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: SuspectVariables.Liza_Cracked==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "SuspectVariables.Liza_Cracked==true", operator: "==", variablePath: "SuspectVariables.Liza_Cracked", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🔢 Template sort order: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", technicalName: "DialogueInteractiveFragmentTemplate", hasPostfix: false, number: 50 }
+ArticyProject.ts:321:15
+🎯 FLOW FRAGMENT: Sorted choice options: 
+Array(13) [ {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, … ]
+InteractiveArticyViewer.tsx:260:17
+🎯 FLOW FRAGMENT: Created choice options: 
+Array(13) [ {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, … ]
+InteractiveArticyViewer.tsx:266:17
+✅ Selected choice: Liza Statements InteractiveArticyViewer.tsx:1419:13
+🔄 Navigated to: 0x0100000B000002F2 DialogueIntActionTemplate InteractiveArticyViewer.tsx:1420:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 35, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔗 Found internal connection: 0x0100000B000019BD → 0x0100000B000019D3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B00000600 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B0000060D ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000616 → 0x0100000B00000ED3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000019B5 → 0x0100000B000019BD ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000ED3 → 0x0100000B000009EC ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000600 → 0x0100000B00001EF5 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000005EF → 0x0100000B0000061C ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000060D → 0x0100000B00000616 ArticyProject.ts:248:25
+🎯 Found start node in Flow Fragment (from 17 candidates): 0x0100000B00000B61 DialogueInteractiveFragmentTemplate undefined ArticyProject.ts:131:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 35, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔗 Found internal connection: 0x0100000B000019BD → 0x0100000B000019D3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B00000600 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B0000060D ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000616 → 0x0100000B00000ED3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000019B5 → 0x0100000B000019BD ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000ED3 → 0x0100000B000009EC ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000600 → 0x0100000B00001EF5 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000005EF → 0x0100000B0000061C ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000060D → 0x0100000B00000616 ArticyProject.ts:248:25
+🎯 Found start node in Flow Fragment (from 17 candidates): 0x0100000B00000B61 DialogueInteractiveFragmentTemplate undefined ArticyProject.ts:131:13
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1562:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 35, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔗 Found internal connection: 0x0100000B000019BD → 0x0100000B000019D3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B00000600 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B0000060D ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000616 → 0x0100000B00000ED3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000019B5 → 0x0100000B000019BD ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000ED3 → 0x0100000B000009EC ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000600 → 0x0100000B00001EF5 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000005EF → 0x0100000B0000061C ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000060D → 0x0100000B00000616 ArticyProject.ts:248:25
+🎯 Found start node in Flow Fragment (from 17 candidates): 0x0100000B00000B61 DialogueInteractiveFragmentTemplate undefined ArticyProject.ts:131:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 35, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔗 Found internal connection: 0x0100000B000019BD → 0x0100000B000019D3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B00000600 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B0000060D ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000616 → 0x0100000B00000ED3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000019B5 → 0x0100000B000019BD ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000ED3 → 0x0100000B000009EC ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000600 → 0x0100000B00001EF5 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000005EF → 0x0100000B0000061C ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000060D → 0x0100000B00000616 ArticyProject.ts:248:25
+🎯 Found start node in Flow Fragment (from 17 candidates): 0x0100000B00000B61 DialogueInteractiveFragmentTemplate undefined ArticyProject.ts:131:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 35, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔗 Found internal connection: 0x0100000B000019BD → 0x0100000B000019D3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B00000600 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B0000060D ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000616 → 0x0100000B00000ED3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000019B5 → 0x0100000B000019BD ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000ED3 → 0x0100000B000009EC ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000600 → 0x0100000B00001EF5 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000005EF → 0x0100000B0000061C ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000060D → 0x0100000B00000616 ArticyProject.ts:248:25
+🎯 Found start node in Flow Fragment (from 17 candidates): 0x0100000B00000B61 DialogueInteractiveFragmentTemplate undefined ArticyProject.ts:131:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 35, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueIntActionTemplate", className: "FlowFragment", definitionClass: "FlowFragment", definitionInheritsFrom: "FlowFragment" }
+ArticyProject.ts:269:13
+✅ Direct class match: DialogueIntActionTemplate is FlowFragment ArticyProject.ts:276:15
+🔗 Found internal connection: 0x0100000B000019BD → 0x0100000B000019D3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B00000600 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000061C → 0x0100000B0000060D ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000616 → 0x0100000B00000ED3 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000019B5 → 0x0100000B000019BD ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000ED3 → 0x0100000B000009EC ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B00000600 → 0x0100000B00001EF5 ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B000005EF → 0x0100000B0000061C ArticyProject.ts:248:25
+🔗 Found internal connection: 0x0100000B0000060D → 0x0100000B00000616 ArticyProject.ts:248:25
+🎯 Found start node in Flow Fragment (from 17 candidates): 0x0100000B00000B61 DialogueInteractiveFragmentTemplate undefined ArticyProject.ts:131:13
+🎯 FLOW FRAGMENT: Showing stored choices for flow fragment: 
+Object { currentNodeId: "0x0100000B000002F2", currentNodeType: "DialogueIntActionTemplate", choiceCount: 13 }
+InteractiveArticyViewer.tsx:995:15
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 13, filteredChoicesLength: 4, nodeRefsLength: 4, storyModeSettings: {…}, choiceConditions: (4) […] }
+InteractiveArticyViewer.tsx:1562:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 FORCING BUBBLE RE-RENDER InteractiveArticyViewer.tsx:1578:17
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: true, storyModeEnabled: true, shouldHidePreviousChoices: true, shouldShow: false }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 2, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 Story Only Mode toggled: false InteractiveArticyViewer.tsx:562:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 0 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 0 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: undefined, hasCondition: true, hasNodeRef: false, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 13, filteredChoicesLength: 13, nodeRefsLength: 13, storyModeSettings: {…}, choiceConditions: (13) […] }
+InteractiveArticyViewer.tsx:1562:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 FORCING BUBBLE RE-RENDER InteractiveArticyViewer.tsx:1578:17
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 0 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 8 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 9 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 10 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 11 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 12 InteractiveArticyViewer.tsx:1817:23
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 0 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 8 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 9 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 10 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 11 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 12 InteractiveArticyViewer.tsx:1817:23
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 0 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 8 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 9 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 10 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 11 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 12 InteractiveArticyViewer.tsx:1817:23
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 NORMAL CHOICE: Resolving Jump node for choice text: 
+Object { jumpNodeId: "0x0100000B000002FA", jumpTargetId: "0x0100000B000002C8", jumpTargetType: "InfoUITemplate_01" }
+InteractiveArticyViewer.tsx:933:27
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000002FA", targetNodeId: "0x0100000B000002FA", targetNodeType: "Jump", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 36, hidePreviousChoices: false, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1728:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 0 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 1 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: "MMOVariables.LZOP32==true&&MMOVariables.LZOP33==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "MMOVariables.LZOP32==false&&MMOVariables.LZOP33==false&&MMOVariables.LZOP34==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "MMOVariables.LZMO22==true&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 8, filteredIndex: 8, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 8, filteredIndex: 8, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 8 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 9, filteredIndex: 9, hasCondition: true, condition: "MMOVariables.LZMO22==false&&MMOVariables.LZMO23==false", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 9, filteredIndex: 9, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 9 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 10, filteredIndex: 10, hasCondition: true, condition: "MMOVariables.LZME12==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 10, filteredIndex: 10, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 10 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 11, filteredIndex: 11, hasCondition: true, condition: "MMOVariables.LZME12==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 11, filteredIndex: 11, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 11 InteractiveArticyViewer.tsx:1817:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 12, filteredIndex: 12, hasCondition: true, condition: "SuspectVariables.Liza_Cracked==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1798:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 12, filteredIndex: 12, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1808:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 12 InteractiveArticyViewer.tsx:1817:23
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 Checking inheritance for: 
+Object { nodeType: "DialogueInteractiveFragmentTemplate", className: "FlowFragment", definitionClass: "DialogueFragment", definitionInheritsFrom: "DialogueFragment" }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
