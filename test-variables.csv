@@ -1,0 +1,13 @@
+SuspectVariables.Leo_Points,8
+SuspectVariables.Alex_Points,5
+SuspectVariables.Daria_Points,7
+SuspectVariables.Liza_Points,2
+GameState.CurrentLevel,10
+GameState.PlayerHealth,85
+GameState.HasKey,false
+GameState.PlayerName,"CSVTestPlayer"
+Settings.SoundEnabled,true
+Settings.Volume,90
+Settings.Difficulty,3
+PlayerData.LastLocation,"Downtown District"
+PlayerData.CurrentQuest,"Investigate the warehouse"
