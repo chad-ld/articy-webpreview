@@ -1,0 +1,6 @@
+TestFlowVariables.SampleString = mycooltest
+TestFlowVariables.ArticyHubEnter = true
+RNDVariables.Option01Discussed = true
+RNDVariables.EndingVariable = true
+RNDVariables.nevertruevar = true
+RNDVariables.GitVar = 69

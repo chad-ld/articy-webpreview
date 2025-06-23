@@ -1,0 +1,1964 @@
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: false, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 0 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 FORCING BUBBLE RE-RENDER InteractiveArticyViewer.tsx:1574:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1813:23
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1813:23
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1813:23
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00000223", targetNodeId: "0x0100000B00000223", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.va_completed==false", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.va_completed==false ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.va_completed==false", operator: "==", variablePath: "EvidenceVariables.va_completed", actualValue: false, comparisonValue: false, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: true ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00000223", conditionText: "EvidenceVariables.va_completed==false", conditionTextLength: 37, conditionTextTrimmed: "EvidenceVariables.va_completed==false", conditionMet: true, choiceText: "||LOCATION - Crime Scene", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001061", targetNodeId: "0x0100000B00001061", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="do"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="do" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="do"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "do", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.do_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001061", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', conditionMet: false, choiceText: "||LOCATION - Daria's Home Office", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001108", targetNodeId: "0x0100000B00001108", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="ap"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="ap" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="ap"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "ap", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.ap_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001108", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', conditionMet: false, choiceText: "||LOCATION - Alex Apartment", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000011AF", targetNodeId: "0x0100000B000011AF", targetNodeType: "LocationTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false) ArticyProject.ts:441:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="lt"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="lt" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="lt"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "lt", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: (EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||false ArticyProject.ts:485:13
+🔍 EVALUATING INNER EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:479:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false ArticyProject.ts:494:13
+🔍 AND PARTS: 
+Array [ 'EvidenceVariables.CurrentLocation=="none"', "EvidenceVariables.lt_completed==false" ]
+ArticyProject.ts:502:15
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.CurrentLocation=="none" ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: 'EvidenceVariables.CurrentLocation=="none"', operator: "==", variablePath: "EvidenceVariables.CurrentLocation", actualValue: "va", comparisonValue: "none", currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 INNER EXPRESSION RESULT: false ArticyProject.ts:481:13
+🔍 EXPRESSION AFTER PARENTHESES EVALUATION: false||false ArticyProject.ts:485:13
+🔍 EVALUATING SIMPLE EXPRESSION: false||false ArticyProject.ts:494:13
+🔍 OR PARTS: 
+Array [ "false", "false" ]
+ArticyProject.ts:497:15
+🔍 EVALUATING SIMPLE EXPRESSION: false 2 ArticyProject.ts:494:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B000011AF", conditionText: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionTextLength: 164, conditionTextTrimmed: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', conditionMet: false, choiceText: "||LOCATION -Leo's Townhome", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001E9E", targetNodeId: "0x0100000B00001E9E", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001E9E", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Evidence List Kiosk", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EB1", targetNodeId: "0x0100000B00001EB1", targetNodeType: "TravelFlowTemplate_99", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "EvidenceVariables.safe_opened==true", hasText: true }
+InteractiveArticyViewer.tsx:810:13
+🔍 PARSING BOOLEAN EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:441:13
+🔍 EVALUATING SIMPLE EXPRESSION: EvidenceVariables.safe_opened==true ArticyProject.ts:494:13
+🔍 CONDITION EVALUATION DEBUG: 
+Object { originalCondition: "EvidenceVariables.safe_opened==true", operator: "==", variablePath: "EvidenceVariables.safe_opened", actualValue: false, comparisonValue: true, currentVariables: {…} }
+ArticyProject.ts:592:13
+🔍 CONDITION RESULT: false ArticyProject.ts:623:13
+🔍 CONDITION CHECK: 
+Object { targetNodeId: "0x0100000B00001EB1", conditionText: "EvidenceVariables.safe_opened==true", conditionTextLength: 35, conditionTextTrimmed: "EvidenceVariables.safe_opened==true", conditionMet: false, choiceText: "||TRAVEL - View Murder Board", currentVariableValues: {} }
+InteractiveArticyViewer.tsx:917:25
+🔍 ALL TESTFLOWVARIABLES: 
+Object { Quest001_waypoint01_completed: "False", Quest001_waypoint02_completed: "False", Quest001_waypoint03_completed: "False", HasSword: "False", HasShield: "False", Quest001_waypoint01_visible: "False", Quest001_waypoint02_visible: "False", Quest001_waypoint03_visible: "False", TestPlayerHitPoints: "10", TestPlayerLevel: "1", … }
+InteractiveArticyViewer.tsx:926:25
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EE4", targetNodeId: "0x0100000B00001EE4", targetNodeType: "DialogueInteractiveFragmentTemplate", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B00001EEB", targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:810:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK: 
+Object { showPrevious: true, previousChoiceHistoryLength: 2, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:1724:19
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 0, filteredIndex: 0, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 0, filteredIndex: 0, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 1, filteredIndex: 1, hasCondition: false, condition: "", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 1, filteredIndex: 1, shouldRenderBubble: "", hasCondition: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 2, filteredIndex: 2, hasCondition: true, condition: "EvidenceVariables.va_completed==false", disabled: false, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 2, filteredIndex: 2, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 2 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 3, filteredIndex: 3, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.do_completed==false)||(EvidenceVariables.CurrentLocation=="do"&&EvidenceVariables.do_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 3, filteredIndex: 3, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 3 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 4, filteredIndex: 4, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.ap_completed==false)||(EvidenceVariables.CurrentLocation=="ap"&&EvidenceVariables.ap_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 4, filteredIndex: 4, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 4 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 5, filteredIndex: 5, hasCondition: true, condition: '(EvidenceVariables.CurrentLocation=="none"&&EvidenceVariables.lt_completed==false)||(EvidenceVariables.CurrentLocation=="lt"&&EvidenceVariables.lt_completed==false)', disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 5, filteredIndex: 5, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 5 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 6, filteredIndex: 6, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 6, filteredIndex: 6, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 6 InteractiveArticyViewer.tsx:1813:23
+🔍 CONDITION BUBBLE CHECK: 
+Object { originalIndex: 7, filteredIndex: 7, hasCondition: true, condition: "EvidenceVariables.safe_opened==true", disabled: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1794:21
+🔍 CONDITION BUBBLE RENDER DECISION: 
+Object { originalIndex: 7, filteredIndex: 7, shouldRenderBubble: true, hasCondition: true, hasNodeRef: true, bubbleRenderKey: 1 }
+InteractiveArticyViewer.tsx:1804:21
+🔍 CREATING CONDITION BUBBLE FOR FILTERED INDEX: 7 InteractiveArticyViewer.tsx:1813:23
+🖱️ MOUSE CLICK - handleChoiceSelect called: 
+Object { choiceIndex: 0, choiceOptionsLength: 8, choiceExists: true, choiceDisabled: false, storyOnlyMode: false, targetNodeId: "0x0100000B00001EEB", targetNodeType: "Instruction" }
+InteractiveArticyViewer.tsx:1262:13
+🔄 SKIP DETECTED: Multiple → Single choice, skipping intermediate node: 
+Object { fromNodeId: "0x0100000B000012EF", fromNodeType: "InfoUITemplate_01", skippingNodeId: "0x0100000B00001EEB", skippingNodeType: "Instruction", finalTargetNodeId: "0x0100000B00001EF0", finalTargetNodeType: "Instruction" }
+InteractiveArticyViewer.tsx:1314:19
+🔄 PROCESSING VARIABLES LINE-BY-LINE for node 0x0100000B00001EEB: 
+Object { nodeType: "Instruction", totalLines: 1, expression: "//test node" }
+ArticyProject.ts:353:13
+🎯 FINAL VARIABLES AFTER LINE-BY-LINE PROCESSING: 
+Object { TestFlowVariables: {…}, RNDVariables: {…}, SuspectVariables: {…}, EvidenceVariables: {…}, MMOVariables: {…} }
+ArticyProject.ts:373:13
+📝 STORING PREVIOUS CHOICE (choice select): 
+Object { backToNodeId: "0x0100000B000012EF", backToNodeType: "InfoUITemplate_01", displayChoiceText: "//test node", displayChoiceTitle: "//test node", targetNodeId: "0x0100000B00001EF0", targetNodeType: "Instruction", skippedNodeId: "0x0100000B00001EEB", skippedNodeType: "Instruction", nodeHistoryLength: 2, previousChoiceHistoryLength: 2, … }
+InteractiveArticyViewer.tsx:1382:15
+🔄 CHOICE SELECT: About to navigate to node: 
+Object { finalTargetNodeId: "0x0100000B00001EF0", finalTargetNodeType: "Instruction", isDialogueFragment: false, hasOutputPins: true, outputPinsLength: 1 }
+InteractiveArticyViewer.tsx:1403:13
+🔄 NAVIGATE TO NODE: 
+Object { id: "0x0100000B00001EF0", type: "Instruction", displayName: "//htmlend", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:194:13
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+✅ Selected choice: test node InteractiveArticyViewer.tsx:1415:13
+🔄 Navigated to: 0x0100000B00001EF0 Instruction InteractiveArticyViewer.tsx:1416:13
+⏭️ Skipped intermediate node: 0x0100000B00001EEB Instruction InteractiveArticyViewer.tsx:1418:15
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 3, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:2022:17
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 3, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:2022:17
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1558:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 3, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:2022:17
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 3, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:2022:17
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 3, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:2022:17
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 3, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: true }
+InteractiveArticyViewer.tsx:2022:17

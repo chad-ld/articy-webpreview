@@ -232,12 +232,10 @@ const EnhancedFileInput: React.FC<EnhancedFileInputProps> = ({
     <div
       className={`file-upload-area ${isDragOver ? 'drag-over' : ''}`}
       style={{
-        padding: '40px',
+        padding: '20px',
         textAlign: 'center',
-        minHeight: '500px',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
         border: `2px dashed ${isDragOver ? '#1890ff' : '#d9d9d9'}`,
         borderRadius: '8px',
@@ -276,12 +274,11 @@ const EnhancedFileInput: React.FC<EnhancedFileInputProps> = ({
       {/* Main Upload Area */}
       {!isLoading && !processingState.isProcessing && (
         <>
-          <div style={{ marginBottom: '20px' }}>
-            <InboxOutlined style={{ fontSize: '48px', color: '#1890ff' }} />
+          <div style={{ marginBottom: '10px' }}>
+            <div className="drag-drop-text">DRAG AND DROP FILES HERE</div>
           </div>
-          
-          <h2 style={{ marginBottom: '10px' }}>Articy Web Viewer v4.x</h2>
-          <p style={{ fontSize: '16px', marginBottom: '30px', color: '#666' }}>
+
+          <p style={{ fontSize: '16px', marginBottom: '15px', color: '#666' }}>
             Supports both Articy Draft 3.x and 4.x formats
           </p>
 
@@ -295,87 +292,62 @@ const EnhancedFileInput: React.FC<EnhancedFileInputProps> = ({
               </div>
             }
             type="info"
-            showIcon
-            style={{ marginBottom: '30px', maxWidth: '500px' }}
+            style={{ marginBottom: '15px', maxWidth: '500px' }}
           />
 
           {/* Upload Options */}
-          <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'nowrap' }}>
             {/* Single File Upload */}
-            <div>
-              <input
-                type="file"
-                accept=".json,application/json"
-                onChange={handleFileSelect}
-                style={{ display: 'none' }}
-                id="single-file-input"
-              />
-              <Button
-                type="primary"
-                size="large"
-                icon={<FileOutlined />}
-                onClick={() => document.getElementById('single-file-input')?.click()}
-              >
-                Select JSON File
-              </Button>
-              <div style={{ fontSize: '12px', color: '#999', marginTop: '5px' }}>
-                3.x Format
-              </div>
-            </div>
+            <input
+              type="file"
+              accept=".json,application/json"
+              onChange={handleFileSelect}
+              style={{ display: 'none' }}
+              id="single-file-input"
+            />
+            <Button
+              type="primary"
+              size="large"
+              icon={<FileOutlined />}
+              onClick={() => document.getElementById('single-file-input')?.click()}
+            >
+              Select JSON File
+            </Button>
 
             {/* Multiple Files Upload */}
-            <div>
-              <input
-                type="file"
-                accept=".json,application/json"
-                multiple
-                onChange={handleFileSelect}
-                style={{ display: 'none' }}
-                id="multiple-files-input"
-              />
-              <Button
-                size="large"
-                icon={<FileOutlined />}
-                onClick={() => document.getElementById('multiple-files-input')?.click()}
-              >
-                Select Multiple Files
-              </Button>
-              <div style={{ fontSize: '12px', color: '#999', marginTop: '5px' }}>
-                4.x Format
-              </div>
-            </div>
+            <input
+              type="file"
+              accept=".json,application/json"
+              multiple
+              onChange={handleFileSelect}
+              style={{ display: 'none' }}
+              id="multiple-files-input"
+            />
+            <Button
+              size="large"
+              icon={<FileOutlined />}
+              onClick={() => document.getElementById('multiple-files-input')?.click()}
+            >
+              Select Multiple Files
+            </Button>
 
             {/* Folder Upload */}
-            <div>
-              <input
-                type="file"
-                // @ts-ignore - webkitdirectory is not in TypeScript types but is supported
-                webkitdirectory=""
-                onChange={handleFolderSelect}
-                style={{ display: 'none' }}
-                id="folder-input"
-              />
-              <Button
-                size="large"
-                icon={<FolderOutlined />}
-                onClick={() => document.getElementById('folder-input')?.click()}
-              >
-                Select Folder
-              </Button>
-              <div style={{ fontSize: '12px', color: '#999', marginTop: '5px' }}>
-                4.x Format
-              </div>
-            </div>
+            <input
+              type="file"
+              // @ts-ignore - webkitdirectory is not in TypeScript types but is supported
+              webkitdirectory=""
+              onChange={handleFolderSelect}
+              style={{ display: 'none' }}
+              id="folder-input"
+            />
+            <Button
+              size="large"
+              icon={<FolderOutlined />}
+              onClick={() => document.getElementById('folder-input')?.click()}
+            >
+              Select Folder
+            </Button>
           </div>
-
-          {/* Drag and Drop Instructions */}
-          <div style={{ marginTop: '30px', fontSize: '14px', color: '#666' }}>
-            <p><strong>Or drag and drop:</strong></p>
-            <p>• Single JSON file (3.x format)</p>
-            <p>• Multiple JSON files (4.x format)</p>
-            <p>• Entire folder contents (4.x format)</p>
-          </div>
-
 
         </>
       )}

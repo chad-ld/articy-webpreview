@@ -1,0 +1,604 @@
+[vite] connecting... client:206:9
+[vite] connected. client:286:21
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-37RMDTVC.js:21536:25
+[Articy Web Viewer v4.x - Hybrid Edition] Starting application... App.tsx:156:13
+✅ Auto-detection enabled App.tsx:157:13
+✅ 4.x format support enabled App.tsx:158:13
+✅ Drag-and-drop functionality enabled App.tsx:159:13
+🔍 Detecting available datasets... App.tsx:96:13
+[Articy Web Viewer v4.x - Hybrid Edition] Starting application... App.tsx:156:13
+✅ Auto-detection enabled App.tsx:157:13
+✅ 4.x format support enabled App.tsx:158:13
+✅ Drag-and-drop functionality enabled App.tsx:159:13
+🔍 Detecting available datasets... App.tsx:96:13
+✅ Found dataset: mpos 2 App.tsx:108:19
+🎯 Detected 1 available datasets App.tsx:113:13
+🔄 Loading mpos dataset... App.tsx:119:15
+🎯 Detected 1 available datasets App.tsx:113:13
+🔄 Loading mpos dataset... App.tsx:119:15
+✅ Loaded global_variables.json from mpos (cache-busted) 2 App.tsx:129:21
+✅ Loaded hierarchy.json from mpos (cache-busted) 2 App.tsx:129:21
+✅ Loaded manifest.json from mpos (cache-busted) 2 App.tsx:129:21
+✅ Loaded object_definitions.json from mpos (cache-busted) App.tsx:129:21
+✅ Loaded object_definitions_localization.json from mpos (cache-busted) App.tsx:129:21
+✅ Loaded object_definitions.json from mpos (cache-busted) App.tsx:129:21
+✅ Loaded package_010000060000401C_localization.json from mpos (cache-busted) App.tsx:129:21
+✅ Loaded object_definitions_localization.json from mpos (cache-busted) App.tsx:129:21
+✅ Loaded package_010000060000401C_objects.json from mpos (cache-busted) App.tsx:129:21
+✅ Loaded package_010000060000401C_localization.json from mpos (cache-busted) App.tsx:129:21
+✅ Loaded script_methods.json from mpos (cache-busted) App.tsx:129:21
+🚀 Starting data processing pipeline... dataRouter.js:35:15
+🔍 Starting format detection... formatDetector.js:26:15
+📋 Input type detected: object formatDetector.js:44:17
+🎯 Detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9, inputType: "object" }
+formatDetector.js:66:17
+🔍 Format detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9 }
+dataRouter.js:43:17
+📋 Processing 4.x format data... dataRouter.js:137:15
+Loading 4.x format data (raw)... dataLoader4x.js:57:15
+Available files: 
+Array(8) [ "global_variables.json", "hierarchy.json", "manifest.json", "object_definitions.json", "object_definitions_localization.json", "package_010000060000401C_localization.json", "package_010000060000401C_objects.json", "script_methods.json" ]
+dataLoader4x.js:58:15
+File sizes: 
+Array(8) [ "global_variables.json: 17748 chars", "hierarchy.json: 121285 chars", "manifest.json: 2127 chars", "object_definitions.json: 59490 chars", "object_definitions_localization.json: 2 chars", "package_010000060000401C_localization.json: 96267 chars", "package_010000060000401C_objects.json: 811682 chars", "script_methods.json: 27 chars" ]
+dataLoader4x.js:59:15
+Manifest loaded: 
+Object { exportVersion: "2.1", packagesCount: 1 }
+dataLoader4x.js:108:15
+Global variables loaded: 5 namespaces dataLoader4x.js:136:15
+Hierarchy loaded dataLoader4x.js:161:15
+Object definitions loaded dataLoader4x.js:177:17
+Object definitions localization loaded dataLoader4x.js:188:17
+🔍 Processing package: 
+Object { id: "0x010000060000401C", name: "All objects", objectsFile: "package_010000060000401C_objects.json" }
+dataLoader4x.js:208:15
+📦 Package objects loaded for 0x010000060000401C: 
+Object { objectsCount: 565, hasObjects: true, topLevelKeys: (1) […], firstObjectType: "FlowFragment", rawDataType: "object", isArray: false }
+dataLoader4x.js:221:19
+✅ Package 0x010000060000401C has 565 objects dataLoader4x.js:234:21
+Package localization loaded for 0x010000060000401C: 411 text entries dataLoader4x.js:250:19
+Script methods loaded dataLoader4x.js:277:15
+4.x raw data loading complete: 
+Object { hasManifest: true, packageCount: 1, totalObjects: 565 }
+dataLoader4x.js:83:15
+🔄 Starting data merge process... dataMerger4x.js:26:15
+🔍 LoadedData structure: 
+Object { hasManifest: true, hasPackages: true, packageKeys: (1) […], hasLocalizations: true }
+dataMerger4x.js:27:15
+🔄 Merging package 0x010000060000401C: 
+Object { name: "All objects", hasPackageData: true, packageDataKeys: (1) […], objectCount: 565, hasLocalization: true, packageDataType: "object", isPackageDataArray: false }
+dataMerger4x.js:146:17
+🔍 Package 0x010000060000401C detailed structure: 
+Object { hasObjects: true, objectsType: "object", objectsIsArray: true, objectsLength: 565, firstObjectType: "FlowFragment", packageDataKeys: (1) […] }
+dataMerger4x.js:159:17
+🔄 About to merge 565 objects for package 0x010000060000401C dataMerger4x.js:169:17
+📝 Resolved DisplayName: FFr_F1DC497C.DisplayName → RND Flows dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4F482B74.DisplayName → Dynaimic Node Data Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AED0C1F5.DisplayName → multi-operator test dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2818583C.DisplayName → v01 Mission Structure - Mission Centric dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AB2104B3.DisplayName → Template Nodes dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4B10A665.DisplayName → ||MINIGAME - Video Forensic Module dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_390E6E85.DisplayName → ||MINIGAME - WPA Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C3E449E6.DisplayName → ||MINIGAME - WPA Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7AAE9086.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B52F281F.DisplayName → ||MINIGAME - Fingerprint Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2F424BCF.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_37D275E0.DisplayName → ||MINIGAME - Fingerprint Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9F6691F3.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_671D743F.DisplayName → ||MINIGAME - (Module Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A38F2C77.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_3BA7D13F.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2FC901DA.DisplayName → ||MINIGAME - Fingerprint Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F538C287.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AA4B9733.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2CFB7F69.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_88A3AAFA.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8BA46AB4.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C6E08977.DisplayName → ||MINIGAME - Video Forensic Module dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2FBC30B0.DisplayName → ||MINIGAME - WPA Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9C7C7ADA.DisplayName → ||INFO_UI - Evidence List dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_167A8946.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9E64AF40.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F27928A8.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_456844EC.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E710521D.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_1E93C971.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_841EB515.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EA24D1D1.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F511AC08.DisplayName → ||INFO_UI - Initial Evidence Group dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2D38BC91.DisplayName → ||INFO_UI - Crime Scene Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4DBDFD53.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_0EB160F7.DisplayName → ||INFO_UI - Holodeck UI dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_FD7895A2.DisplayName → ||INFOUI - (Module Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A7C65D5E.DisplayName → ||INFO_UI - Daria's Office Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AC65DB97.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C3209F83.DisplayName → ||INFO_UI - Alex's Apartment Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_CCDE3F98.DisplayName → ||INFO_UI - Leo's Townhome Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7AF438EF.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_6DD7AAFB.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8EEDE60B.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_864B5E19.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A7945F90.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E60197DD.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_CCEF6647.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8933A359.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_021CD272.DisplayName → ||LOCATION - Crime Scene dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_81BF1393.DisplayName → ||LOCATION - Daria's Home Office dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_303DFF78.DisplayName → ||LOCATION - Alex Apartment dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D64FE7AD.DisplayName → ||LOCATION -Leo's Townhome dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4196D8BE.DisplayName → ||LOCATION - PerForge dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_124A97AE.DisplayName → ||LOCATION - The Lost Forest dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7412BD2A.DisplayName → ||LOCATION - The Pits of Gnesding dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_451AD1EC.DisplayName → ||LOCATION - (Location Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C68BB590.DisplayName → ||ACTION - Investigate Safe dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F9E551B9.DisplayName → ||ACTION - Look In Trash dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C232D97B.DisplayName → ||ACTION - Investigate Wall Monitor dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D663FB24.DisplayName → ||ACTION - Pick Up Tiki Mug dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A475652D.DisplayName → ||ACTION - Get bank statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_98184F35.DisplayName → ||ACTION - Lawyer Letter dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B84DFFD6.DisplayName → ||ACTION - Pick Up Vape Pen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7E041108.DisplayName → ||ACTION - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BDF8F607.DisplayName → ||ACTION - Get Wintergreen Paperwork dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_DB68309C.DisplayName → ||ACTION - Security Camera Panel dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2972831B.DisplayName → ||ACTION - Photograph dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_43C8F4E8.DisplayName → ||ACTION - Get Passport dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_283AB94A.DisplayName → ||ACTION - Get NBI CI Agreement dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_47EB4E72.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_5C9C250F.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4424765F.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_DDA6A2A2.DisplayName → ||TRAVEL - Holodeck Hub dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_56524921.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_98B1D152.DisplayName → ||TRAVEL - Holodeck Hub dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_54065032.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_5C9F459C.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BDD348EC.DisplayName → ||TRAVEL - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7B4B6429.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_91C7229A.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A084BBFD.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BEB868F0.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_180EFA03.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_67A1C545.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_394DA921.DisplayName → Liza Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D985C34A.DisplayName → Daria Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8F9280AE.DisplayName → Alex Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_31EB1DE1.DisplayName → Leo Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A325DF21.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_777D1E8B.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EA4474CC.DisplayName → ||QUEST_001 - The Narrative Bible of Ultimate Power dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_3033B87D.DisplayName → ||QUEST_000 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A97DCF5D.DisplayName → /BARKS - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E3C53E60.DisplayName → /BARKJUMP - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B9F87F33.DisplayName → Troll Threatens Player dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F6023C36.DisplayName → Duhvel Opper Works on Sword dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A3F385EA.DisplayName → /BARKS - IdleWorking - EXIT dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F59171D3.DisplayName → /BARKS - (Situation) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F75A144A.DisplayName → /BARKJUMP - (bark group name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EF5D9B66.DisplayName → Initiate Exploration Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D9D98307.DisplayName → ||CRAFTING - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4E79470B.DisplayName → ||COMBAT - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_18E68216.DisplayName → Player dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_C21FA208.DisplayName → Duhvel Opper dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F17EEBF5.DisplayName → Test - Angry Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_100228C8.DisplayName → Test - Happy Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_A4F9EF33.DisplayName → Liza dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_092A71A8.DisplayName → Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_BA3FA39C.DisplayName → Leo dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_64EF5775.DisplayName → Daria dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_78B71307.DisplayName → Detective Siri/Alexa dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F6CAC097.DisplayName → Toxic Troll dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_7AC9E953.DisplayName → The Mace Of Bug Squashing dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_3B0DE166.DisplayName → Updated Will dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_3CD15F77.DisplayName → Autopsy Report dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_AF0A0E80.DisplayName → Original Will dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_0EA4A19F.DisplayName → Paternity Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_0E90DB1E.DisplayName → Photo of Daria and Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_CFCA977C.DisplayName → Tiki Mug dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_26224FD9.DisplayName → Victor Ring Cam dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_B1F8ACEB.DisplayName → Second Autopsy dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_6047D0C1.DisplayName → Vape dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_5A0B89AA.DisplayName → Trashed Receipt dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_BBCE8FF1.DisplayName → Picture of Leo and Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_D3311CE2.DisplayName → Wintergreen Paperwork dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_52014BE7.DisplayName → Alex Ring Cam dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_9345A235.DisplayName → Lawyer Letter dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_383B46C6.DisplayName → NBI CI Agreement dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_D70D15A9.DisplayName → Bank Statement dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_1DF1CC19.DisplayName → Leo Passport dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_02F2E520.DisplayName → Safe dataMerger4x.js:247:21
+✅ Package 0x010000060000401C merged: 565 models dataMerger4x.js:181:19
+✅ Data merge complete: 
+Object { globalVariables: 5, objectDefinitions: 71, packages: 1, totalModels: 565 }
+dataMerger4x.js:46:15
+✅ 4.x data processed and converted: 
+Object { packages: 1, globalVariables: 5, objectDefinitions: 71, totalModels: 565 }
+dataRouter.js:152:15
+✅ Data processing complete: 
+Object { format: "4.x", packages: 1, totalModels: 565 }
+dataRouter.js:74:17
+🎉 Data loaded successfully: 
+Object { success: true, format: "4.x", version: "2.1", confidence: 0.9, summary: {…}, nodeTypes: {…}, features: {…}, processingInfo: {…} }
+App.tsx:188:13
+Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead. chunk-3TLNCLU7.js:1346:15
+🎉 mpos dataset loaded successfully! App.tsx:145:17
+🔄 InteractiveArticyViewer: Initializing ArticyProject with data: 
+Object { hasPackages: true, packageCount: 1, totalModels: 565 }
+InteractiveArticyViewer.tsx:494:17
+🔧 ArticyProject initialized with data: 
+Object { hasPackages: true, packageCount: 1, hasGlobalVariables: true, hasObjectDefinitions: true, sourceFormat: "4.x", totalModels: 565 }
+ArticyProject.ts:12:13
+📦 First package: 
+Object { name: "All objects", modelCount: 565, firstModel: "FlowFragment" }
+ArticyProject.ts:21:15
+🔍 InteractiveArticyViewer: Calling GetStartNode()... InteractiveArticyViewer.tsx:501:17
+🔍 Searching for start node in 1 packages ArticyProject.ts:50:13
+📦 Package 0: All objects, 565 models ArticyProject.ts:53:15
+🎯 Found start node: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true, foundIn: "Expression" }
+ArticyProject.ts:59:19
+🔍 InteractiveArticyViewer: GetStartNode() returned: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:503:17
+🔄 NAVIGATE TO NODE: 
+Object { id: "0x01000008000007DD", type: "Instruction", displayName: "//ARTICY HTML VIEWER START NODE", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:194:13
+✅ InteractiveArticyViewer: Start node set successfully InteractiveArticyViewer.tsx:512:19
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1562:13
+🔄 InteractiveArticyViewer: Initializing ArticyProject with data: 
+Object { hasPackages: true, packageCount: 1, totalModels: 565 }
+InteractiveArticyViewer.tsx:494:17
+🔧 ArticyProject initialized with data: 
+Object { hasPackages: true, packageCount: 1, hasGlobalVariables: true, hasObjectDefinitions: true, sourceFormat: "4.x", totalModels: 565 }
+ArticyProject.ts:12:13
+📦 First package: 
+Object { name: "All objects", modelCount: 565, firstModel: "FlowFragment" }
+ArticyProject.ts:21:15
+🔍 InteractiveArticyViewer: Calling GetStartNode()... InteractiveArticyViewer.tsx:501:17
+🔍 Searching for start node in 1 packages ArticyProject.ts:50:13
+📦 Package 0: All objects, 565 models ArticyProject.ts:53:15
+🎯 Found start node: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true, foundIn: "Expression" }
+ArticyProject.ts:59:19
+🔍 InteractiveArticyViewer: GetStartNode() returned: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:503:17
+🔄 NAVIGATE TO NODE: 
+Object { id: "0x01000008000007DD", type: "Instruction", displayName: "//ARTICY HTML VIEWER START NODE", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:194:13
+✅ InteractiveArticyViewer: Start node set successfully InteractiveArticyViewer.tsx:512:19
+🔍 NODE REFS INITIALIZED: 
+Object { choiceOptionsLength: 0, filteredChoicesLength: 0, nodeRefsLength: 0, storyModeSettings: {…}, choiceConditions: [] }
+InteractiveArticyViewer.tsx:1562:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+✅ Loaded package_010000060000401C_objects.json from mpos (cache-busted) App.tsx:129:21
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+✅ Loaded script_methods.json from mpos (cache-busted) App.tsx:129:21
+🚀 Starting data processing pipeline... dataRouter.js:35:15
+🔍 Starting format detection... formatDetector.js:26:15
+📋 Input type detected: object formatDetector.js:44:17
+🎯 Detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9, inputType: "object" }
+formatDetector.js:66:17
+🔍 Format detection result: 
+Object { format: "4.x", version: "2.1", confidence: 0.9 }
+dataRouter.js:43:17
+📋 Processing 4.x format data... dataRouter.js:137:15
+Loading 4.x format data (raw)... dataLoader4x.js:57:15
+Available files: 
+Array(8) [ "global_variables.json", "hierarchy.json", "manifest.json", "object_definitions.json", "object_definitions_localization.json", "package_010000060000401C_localization.json", "package_010000060000401C_objects.json", "script_methods.json" ]
+dataLoader4x.js:58:15
+File sizes: 
+Array(8) [ "global_variables.json: 17748 chars", "hierarchy.json: 121285 chars", "manifest.json: 2127 chars", "object_definitions.json: 59490 chars", "object_definitions_localization.json: 2 chars", "package_010000060000401C_localization.json: 96267 chars", "package_010000060000401C_objects.json: 811682 chars", "script_methods.json: 27 chars" ]
+dataLoader4x.js:59:15
+Manifest loaded: 
+Object { exportVersion: "2.1", packagesCount: 1 }
+dataLoader4x.js:108:15
+Global variables loaded: 5 namespaces dataLoader4x.js:136:15
+Hierarchy loaded dataLoader4x.js:161:15
+Object definitions loaded dataLoader4x.js:177:17
+Object definitions localization loaded dataLoader4x.js:188:17
+🔍 Processing package: 
+Object { id: "0x010000060000401C", name: "All objects", objectsFile: "package_010000060000401C_objects.json" }
+dataLoader4x.js:208:15
+📦 Package objects loaded for 0x010000060000401C: 
+Object { objectsCount: 565, hasObjects: true, topLevelKeys: (1) […], firstObjectType: "FlowFragment", rawDataType: "object", isArray: false }
+dataLoader4x.js:221:19
+✅ Package 0x010000060000401C has 565 objects dataLoader4x.js:234:21
+Package localization loaded for 0x010000060000401C: 411 text entries dataLoader4x.js:250:19
+Script methods loaded dataLoader4x.js:277:15
+4.x raw data loading complete: 
+Object { hasManifest: true, packageCount: 1, totalObjects: 565 }
+dataLoader4x.js:83:15
+🔄 Starting data merge process... dataMerger4x.js:26:15
+🔍 LoadedData structure: 
+Object { hasManifest: true, hasPackages: true, packageKeys: (1) […], hasLocalizations: true }
+dataMerger4x.js:27:15
+🔄 Merging package 0x010000060000401C: 
+Object { name: "All objects", hasPackageData: true, packageDataKeys: (1) […], objectCount: 565, hasLocalization: true, packageDataType: "object", isPackageDataArray: false }
+dataMerger4x.js:146:17
+🔍 Package 0x010000060000401C detailed structure: 
+Object { hasObjects: true, objectsType: "object", objectsIsArray: true, objectsLength: 565, firstObjectType: "FlowFragment", packageDataKeys: (1) […] }
+dataMerger4x.js:159:17
+🔄 About to merge 565 objects for package 0x010000060000401C dataMerger4x.js:169:17
+📝 Resolved DisplayName: FFr_F1DC497C.DisplayName → RND Flows dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4F482B74.DisplayName → Dynaimic Node Data Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AED0C1F5.DisplayName → multi-operator test dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2818583C.DisplayName → v01 Mission Structure - Mission Centric dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AB2104B3.DisplayName → Template Nodes dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4B10A665.DisplayName → ||MINIGAME - Video Forensic Module dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_390E6E85.DisplayName → ||MINIGAME - WPA Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C3E449E6.DisplayName → ||MINIGAME - WPA Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7AAE9086.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B52F281F.DisplayName → ||MINIGAME - Fingerprint Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2F424BCF.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_37D275E0.DisplayName → ||MINIGAME - Fingerprint Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9F6691F3.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_671D743F.DisplayName → ||MINIGAME - (Module Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A38F2C77.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_3BA7D13F.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2FC901DA.DisplayName → ||MINIGAME - Fingerprint Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F538C287.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AA4B9733.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2CFB7F69.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_88A3AAFA.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8BA46AB4.DisplayName → ||MINIGAME - Document Analytics dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C6E08977.DisplayName → ||MINIGAME - Video Forensic Module dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2FBC30B0.DisplayName → ||MINIGAME - WPA Analysis dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9C7C7ADA.DisplayName → ||INFO_UI - Evidence List dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_167A8946.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_9E64AF40.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F27928A8.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_456844EC.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E710521D.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_1E93C971.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_841EB515.DisplayName → ||INFO_UI - Game Over Screen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EA24D1D1.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F511AC08.DisplayName → ||INFO_UI - Initial Evidence Group dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2D38BC91.DisplayName → ||INFO_UI - Crime Scene Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4DBDFD53.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_0EB160F7.DisplayName → ||INFO_UI - Holodeck UI dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_FD7895A2.DisplayName → ||INFOUI - (Module Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A7C65D5E.DisplayName → ||INFO_UI - Daria's Office Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_AC65DB97.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C3209F83.DisplayName → ||INFO_UI - Alex's Apartment Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_CCDE3F98.DisplayName → ||INFO_UI - Leo's Townhome Evidence dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7AF438EF.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_6DD7AAFB.DisplayName → ||INFO_UI - Back To Evidence Main Menu dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8EEDE60B.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_864B5E19.DisplayName → ||INFO_UI - Return To Location Selection dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A7945F90.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E60197DD.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_CCEF6647.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8933A359.DisplayName → ||INFO_UI - Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_021CD272.DisplayName → ||LOCATION - Crime Scene dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_81BF1393.DisplayName → ||LOCATION - Daria's Home Office dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_303DFF78.DisplayName → ||LOCATION - Alex Apartment dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D64FE7AD.DisplayName → ||LOCATION -Leo's Townhome dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4196D8BE.DisplayName → ||LOCATION - PerForge dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_124A97AE.DisplayName → ||LOCATION - The Lost Forest dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7412BD2A.DisplayName → ||LOCATION - The Pits of Gnesding dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_451AD1EC.DisplayName → ||LOCATION - (Location Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C68BB590.DisplayName → ||ACTION - Investigate Safe dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F9E551B9.DisplayName → ||ACTION - Look In Trash dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_C232D97B.DisplayName → ||ACTION - Investigate Wall Monitor dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D663FB24.DisplayName → ||ACTION - Pick Up Tiki Mug dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A475652D.DisplayName → ||ACTION - Get bank statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_98184F35.DisplayName → ||ACTION - Lawyer Letter dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B84DFFD6.DisplayName → ||ACTION - Pick Up Vape Pen dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7E041108.DisplayName → ||ACTION - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BDF8F607.DisplayName → ||ACTION - Get Wintergreen Paperwork dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_DB68309C.DisplayName → ||ACTION - Security Camera Panel dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_2972831B.DisplayName → ||ACTION - Photograph dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_43C8F4E8.DisplayName → ||ACTION - Get Passport dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_283AB94A.DisplayName → ||ACTION - Get NBI CI Agreement dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_47EB4E72.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_5C9C250F.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4424765F.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_DDA6A2A2.DisplayName → ||TRAVEL - Holodeck Hub dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_56524921.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_98B1D152.DisplayName → ||TRAVEL - Holodeck Hub dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_54065032.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_5C9F459C.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BDD348EC.DisplayName → ||TRAVEL - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_7B4B6429.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_91C7229A.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A084BBFD.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_BEB868F0.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_180EFA03.DisplayName → ||TRAVEL - View Evidence List Kiosk dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_67A1C545.DisplayName → ||TRAVEL - View Murder Board dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_394DA921.DisplayName → Liza Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D985C34A.DisplayName → Daria Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_8F9280AE.DisplayName → Alex Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_31EB1DE1.DisplayName → Leo Statements dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A325DF21.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_777D1E8B.DisplayName → Initiate Interactive Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EA4474CC.DisplayName → ||QUEST_001 - The Narrative Bible of Ultimate Power dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_3033B87D.DisplayName → ||QUEST_000 - (Quest Name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A97DCF5D.DisplayName → /BARKS - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_E3C53E60.DisplayName → /BARKJUMP - IdleWorking dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_B9F87F33.DisplayName → Troll Threatens Player dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F6023C36.DisplayName → Duhvel Opper Works on Sword dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_A3F385EA.DisplayName → /BARKS - IdleWorking - EXIT dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F59171D3.DisplayName → /BARKS - (Situation) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_F75A144A.DisplayName → /BARKJUMP - (bark group name) dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_EF5D9B66.DisplayName → Initiate Exploration Dialogue dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_D9D98307.DisplayName → ||CRAFTING - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: FFr_4E79470B.DisplayName → ||COMBAT - Flow dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_18E68216.DisplayName → Player dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_C21FA208.DisplayName → Duhvel Opper dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F17EEBF5.DisplayName → Test - Angry Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_100228C8.DisplayName → Test - Happy Robot dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_A4F9EF33.DisplayName → Liza dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_092A71A8.DisplayName → Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_BA3FA39C.DisplayName → Leo dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_64EF5775.DisplayName → Daria dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_78B71307.DisplayName → Detective Siri/Alexa dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_F6CAC097.DisplayName → Toxic Troll dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_7AC9E953.DisplayName → The Mace Of Bug Squashing dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_3B0DE166.DisplayName → Updated Will dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_3CD15F77.DisplayName → Autopsy Report dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_AF0A0E80.DisplayName → Original Will dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_0EA4A19F.DisplayName → Paternity Test dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_0E90DB1E.DisplayName → Photo of Daria and Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_CFCA977C.DisplayName → Tiki Mug dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_26224FD9.DisplayName → Victor Ring Cam dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_B1F8ACEB.DisplayName → Second Autopsy dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_6047D0C1.DisplayName → Vape dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_5A0B89AA.DisplayName → Trashed Receipt dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_BBCE8FF1.DisplayName → Picture of Leo and Alex dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_D3311CE2.DisplayName → Wintergreen Paperwork dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_52014BE7.DisplayName → Alex Ring Cam dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_9345A235.DisplayName → Lawyer Letter dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_383B46C6.DisplayName → NBI CI Agreement dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_D70D15A9.DisplayName → Bank Statement dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_1DF1CC19.DisplayName → Leo Passport dataMerger4x.js:247:21
+📝 Resolved DisplayName: Ntt_02F2E520.DisplayName → Safe dataMerger4x.js:247:21
+✅ Package 0x010000060000401C merged: 565 models dataMerger4x.js:181:19
+✅ Data merge complete: 
+Object { globalVariables: 5, objectDefinitions: 71, packages: 1, totalModels: 565 }
+dataMerger4x.js:46:15
+✅ 4.x data processed and converted: 
+Object { packages: 1, globalVariables: 5, objectDefinitions: 71, totalModels: 565 }
+dataRouter.js:152:15
+✅ Data processing complete: 
+Object { format: "4.x", packages: 1, totalModels: 565 }
+dataRouter.js:74:17
+🎉 Data loaded successfully: 
+Object { success: true, format: "4.x", version: "2.1", confidence: 0.9, summary: {…}, nodeTypes: {…}, features: {…}, processingInfo: {…} }
+App.tsx:188:13
+🎉 mpos dataset loaded successfully! App.tsx:145:17
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔄 InteractiveArticyViewer: Initializing ArticyProject with data: 
+Object { hasPackages: true, packageCount: 1, totalModels: 565 }
+InteractiveArticyViewer.tsx:494:17
+🔧 ArticyProject initialized with data: 
+Object { hasPackages: true, packageCount: 1, hasGlobalVariables: true, hasObjectDefinitions: true, sourceFormat: "4.x", totalModels: 565 }
+ArticyProject.ts:12:13
+📦 First package: 
+Object { name: "All objects", modelCount: 565, firstModel: "FlowFragment" }
+ArticyProject.ts:21:15
+🔍 InteractiveArticyViewer: Calling GetStartNode()... InteractiveArticyViewer.tsx:501:17
+🔍 Searching for start node in 1 packages ArticyProject.ts:50:13
+📦 Package 0: All objects, 565 models ArticyProject.ts:53:15
+🎯 Found start node: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true, foundIn: "Expression" }
+ArticyProject.ts:59:19
+🔍 InteractiveArticyViewer: GetStartNode() returned: 
+Object { id: "0x01000008000007DD", type: "Instruction", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:503:17
+🔄 NAVIGATE TO NODE: 
+Object { id: "0x01000008000007DD", type: "Instruction", displayName: "//ARTICY HTML VIEWER START NODE", hasText: false, hasExpression: true }
+InteractiveArticyViewer.tsx:194:13
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+✅ InteractiveArticyViewer: Start node set successfully InteractiveArticyViewer.tsx:512:19
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+🔍 GET CONDITION TEXT DEBUG: 
+Object { connectionTarget: "0x0100000B000012EF", targetNodeId: "0x0100000B000012EF", targetNodeType: "InfoUITemplate_01", hasInputPins: true, inputPinsLength: 1, inputPinsData: (1) […], rawConditionText: "", hasText: false }
+InteractiveArticyViewer.tsx:836:13
+🔍 PREVIOUS CHOICE VISIBILITY CHECK (single choice): 
+Object { showPrevious: true, previousChoiceHistoryLength: 0, hidePreviousChoices: true, storyModeEnabled: false, shouldHidePreviousChoices: false, shouldShow: false }
+InteractiveArticyViewer.tsx:2037:17
+🔍 Checking inheritance for: 
+Object { nodeType: "Instruction", className: "FlowFragment", definitionClass: "Instruction", definitionInheritsFrom: undefined }
+ArticyProject.ts:269:13
+❌ No inheritance match found ArticyProject.ts:283:13
+The connection to ws://localhost:3000/ was interrupted while the page was loading. client:245:20
+[vite] server connection lost. polling for restart... client:262:17

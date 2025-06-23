@@ -1,0 +1,195 @@
+[vite] connecting... client:206:9
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-37RMDTVC.js:21536:25
+🔄 Sorting datasets in date mode: 
+Array []
+App.tsx:44:13
+✅ Sorted result: 
+Array []
+App.tsx:62:13
+🔄 Sorting datasets in date mode: 
+Array []
+App.tsx:44:13
+✅ Sorted result: 
+Array []
+App.tsx:62:13
+[Articy Web Viewer v4.x - Hybrid Edition] Starting application... App.tsx:253:13
+✅ Hybrid dataset detection enabled App.tsx:254:13
+✅ Relative path support enabled App.tsx:255:13
+✅ Multi-environment compatibility enabled App.tsx:256:13
+✅ 4.x format support enabled App.tsx:257:13
+✅ Drag-and-drop functionality enabled App.tsx:258:13
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔍 Environment Detection Report environmentDetector.js:211:13
+Environment Type: web environmentDetector.js:212:13
+Capabilities: 
+Array(6) [ "development", "hot-reload", "php-api", "server-side-scanning", "fetch-api", "cors" ]
+environmentDetector.js:213:13
+Recommended Strategy: php-api environmentDetector.js:214:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:215:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (10) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:216:13
+🔍 Starting hybrid dataset detection... App.tsx:67:13
+🔍 Starting hybrid dataset detection... hybridDatasetDetector.js:31:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔍 Environment Detection Report environmentDetector.js:211:13
+Environment Type: web environmentDetector.js:212:13
+Capabilities: 
+Array(6) [ "development", "hot-reload", "php-api", "server-side-scanning", "fetch-api", "cors" ]
+environmentDetector.js:213:13
+Recommended Strategy: php-api environmentDetector.js:214:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:215:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (10) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:216:13
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔄 Trying detection method: fallback hybridDatasetDetector.js:53:19
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔄 Using fallback detection with predefined dataset names hybridDatasetDetector.js:269:15
+[Articy Web Viewer v4.x - Hybrid Edition] Starting application... App.tsx:253:13
+✅ Hybrid dataset detection enabled App.tsx:254:13
+✅ Relative path support enabled App.tsx:255:13
+✅ Multi-environment compatibility enabled App.tsx:256:13
+✅ 4.x format support enabled App.tsx:257:13
+✅ Drag-and-drop functionality enabled App.tsx:258:13
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔍 Environment Detection Report environmentDetector.js:211:13
+Environment Type: web environmentDetector.js:212:13
+Capabilities: 
+Array(6) [ "development", "hot-reload", "php-api", "server-side-scanning", "fetch-api", "cors" ]
+environmentDetector.js:213:13
+Recommended Strategy: php-api environmentDetector.js:214:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:215:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (10) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:216:13
+🔍 Starting hybrid dataset detection... App.tsx:67:13
+🔍 Starting hybrid dataset detection... hybridDatasetDetector.js:31:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔍 Environment Detection Report environmentDetector.js:211:13
+Environment Type: web environmentDetector.js:212:13
+Capabilities: 
+Array(6) [ "development", "hot-reload", "php-api", "server-side-scanning", "fetch-api", "cors" ]
+environmentDetector.js:213:13
+Recommended Strategy: php-api environmentDetector.js:214:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:215:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (10) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:216:13
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔄 Trying detection method: fallback hybridDatasetDetector.js:53:19
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+🔄 Using fallback detection with predefined dataset names hybridDatasetDetector.js:269:15
+✅ Found dataset: mpos 2 hybridDatasetDetector.js:287:21
+✅ Found dataset: demo4 2 hybridDatasetDetector.js:287:21
+✅ Successfully detected 2 datasets using fallback hybridDatasetDetector.js:60:21
+🎯 Hybrid detection found 2 available datasets App.tsx:71:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+📁 Showing dataset selection interface (2 datasets detected) App.tsx:274:17
+📌 Pre-selected dataset: mpos (Mysteryworks Prince of Soulard) based on date sort App.tsx:286:19
+✅ Successfully detected 2 datasets using fallback hybridDatasetDetector.js:60:21
+🎯 Hybrid detection found 2 available datasets App.tsx:71:15
+🌐 Environment: Web browser (development) environmentDetector.js:73:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: true, capabilities: (6) […] }
+environmentDetector.js:88:15
+📁 Showing dataset selection interface (2 datasets detected) App.tsx:274:17
+📌 Pre-selected dataset: mpos (Mysteryworks Prince of Soulard) based on date sort App.tsx:286:19
+🔄 Sorting datasets in date mode: 
+Array [ {…}, {…} ]
+App.tsx:44:13
+📅 Comparing mpos (0) vs demo4 (0) = 0 App.tsx:54:17
+✅ Sorted result: 
+Array [ "mpos (no timestamp)", "demo4 (no timestamp)" ]
+App.tsx:62:13
+🔄 Sorting datasets in date mode: 
+Array [ {…}, {…} ]
+App.tsx:44:13
+📅 Comparing mpos (0) vs demo4 (0) = 0 App.tsx:54:17
+✅ Sorted result: 
+Array [ "mpos (no timestamp)", "demo4 (no timestamp)" ]
+App.tsx:62:13
+[vite] connected. client:286:21

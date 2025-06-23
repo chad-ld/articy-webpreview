@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Detection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: #52c41a; }
+        .error { color: #ff4d4f; }
+        .info { color: #1890ff; }
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background: #1890ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #40a9ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Hybrid Dataset Detection Test</h1>
+    <p>This page tests the hybrid dataset detection system in different environments.</p>
+
+    <div class="test-section">
+        <h2>📊 Environment Detection</h2>
+        <button onclick="testEnvironmentDetection()">Test Environment Detection</button>
+        <div id="environment-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📡 PHP API Test</h2>
+        <button onclick="testPHPAPI()">Test PHP API</button>
+        <div id="php-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔄 Fallback Detection Test</h2>
+        <button onclick="testFallbackDetection()">Test Fallback Detection</button>
+        <div id="fallback-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 Full Hybrid Detection Test</h2>
+        <button onclick="testHybridDetection()">Test Full Hybrid Detection</button>
+        <div id="hybrid-result"></div>
+    </div>
+
+    <script>
+        // Simple environment detector for testing
+        function detectEnvironment() {
+            const env = {
+                type: 'web',
+                isWeb: true,
+                isDevelopment: false,
+                isProduction: true,
+                hostname: window.location.hostname,
+                port: window.location.port,
+                protocol: window.location.protocol
+            };
+
+            if (env.hostname === 'localhost' || env.hostname === '127.0.0.1') {
+                env.isDevelopment = true;
+                env.isProduction = false;
+            }
+
+            return env;
+        }
+
+        function testEnvironmentDetection() {
+            const result = document.getElementById('environment-result');
+            const env = detectEnvironment();
+            
+            result.innerHTML = `
+                <h3 class="success">✅ Environment Detection Results</h3>
+                <pre>${JSON.stringify(env, null, 2)}</pre>
+            `;
+        }
+
+        async function testPHPAPI() {
+            const result = document.getElementById('php-result');
+            result.innerHTML = '<p class="info">🔄 Testing PHP API...</p>';
+
+            try {
+                const response = await fetch('./datasets.php', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Cache-Control': 'no-cache'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                result.innerHTML = `
+                    <h3 class="success">✅ PHP API Test Results</h3>
+                    <p><strong>Success:</strong> ${data.success}</p>
+                    <p><strong>Datasets Found:</strong> ${data.datasets.length}</p>
+                    <p><strong>Valid Datasets:</strong> ${data.debug.valid_datasets}</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <h3 class="error">❌ PHP API Test Failed</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><em>This is expected if you're not running on a PHP-enabled server.</em></p>
+                `;
+            }
+        }
+
+        async function testFallbackDetection() {
+            const result = document.getElementById('fallback-result');
+            result.innerHTML = '<p class="info">🔄 Testing fallback detection...</p>';
+
+            const commonDatasets = ['demo4', 'mpos', 'demo', 'test'];
+            const foundDatasets = [];
+
+            for (const name of commonDatasets) {
+                try {
+                    const response = await fetch(`./${name}.json/manifest.json`);
+                    if (response.ok) {
+                        const manifest = await response.json();
+                        foundDatasets.push({
+                            name,
+                            folder: `${name}.json`,
+                            displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
+                            description: manifest.Project?.DetailName || `${name} dataset`
+                        });
+                    }
+                } catch (error) {
+                    // Dataset doesn't exist, continue
+                }
+            }
+
+            result.innerHTML = `
+                <h3 class="success">✅ Fallback Detection Results</h3>
+                <p><strong>Datasets Found:</strong> ${foundDatasets.length}</p>
+                <pre>${JSON.stringify(foundDatasets, null, 2)}</pre>
+            `;
+        }
+
+        async function testHybridDetection() {
+            const result = document.getElementById('hybrid-result');
+            result.innerHTML = '<p class="info">🔄 Testing full hybrid detection...</p>';
+
+            const env = detectEnvironment();
+            let datasets = [];
+            let method = 'unknown';
+            let error = null;
+
+            // Try PHP API first (if in production)
+            if (env.isProduction) {
+                try {
+                    method = 'php-api';
+                    const response = await fetch('./datasets.php');
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.success) {
+                            datasets = data.datasets.filter(d => d.valid);
+                        }
+                    }
+                } catch (e) {
+                    error = e.message;
+                }
+            }
+
+            // Fallback to manual detection if PHP failed or in development
+            if (datasets.length === 0) {
+                method = 'fallback';
+                const commonDatasets = ['demo4', 'mpos', 'demo', 'test'];
+                
+                for (const name of commonDatasets) {
+                    try {
+                        const response = await fetch(`./${name}.json/manifest.json`);
+                        if (response.ok) {
+                            const manifest = await response.json();
+                            datasets.push({
+                                name,
+                                folder: `${name}.json`,
+                                displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
+                                description: manifest.Project?.DetailName || `${name} dataset`
+                            });
+                        }
+                    } catch (e) {
+                        // Continue
+                    }
+                }
+            }
+
+            result.innerHTML = `
+                <h3 class="success">✅ Hybrid Detection Results</h3>
+                <p><strong>Environment:</strong> ${env.isDevelopment ? 'Development' : 'Production'}</p>
+                <p><strong>Detection Method:</strong> ${method}</p>
+                <p><strong>Datasets Found:</strong> ${datasets.length}</p>
+                ${error ? `<p class="error"><strong>PHP Error:</strong> ${error}</p>` : ''}
+                <pre>${JSON.stringify(datasets, null, 2)}</pre>
+            `;
+        }
+
+        // Auto-run environment detection on page load
+        window.addEventListener('load', () => {
+            testEnvironmentDetection();
+        });
+    </script>
+</body>
+</html>

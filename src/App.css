@@ -71,8 +71,8 @@
 
 /* Main Content */
 .app-main {
-  flex: 1;
-  padding: 5px 0;
+  flex: 0 0 auto;
+  padding: 0;
 }
 
 .upload-section {
@@ -138,7 +138,7 @@
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 20px 0;
-  margin-top: auto;
+  margin-top: 50px;
 }
 
 .footer-content {
@@ -268,4 +268,25 @@
 .search-nodes-input:focus-within input {
   border-color: #1890ff !important;
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+}
+
+/* Bold dropdown arrow */
+.ant-select-arrow {
+  font-weight: 900 !important;
+  font-size: 14px !important;
+  color: #333 !important;
+}
+
+.ant-select-arrow .anticon {
+  font-weight: 900 !important;
+  font-size: 14px !important;
+}
+
+/* Drag and drop area text styling */
+.drag-drop-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1890ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
