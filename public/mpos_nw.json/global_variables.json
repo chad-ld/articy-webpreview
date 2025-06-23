@@ -1,0 +1,688 @@
+{
+  "GlobalVariables": [
+    {
+      "Namespace": "TestFlowVariables",
+      "Description": "",
+      "Variables": [
+        {
+          "Variable": "Quest001_waypoint01_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Boolean for testing purposes."
+        },
+        {
+          "Variable": "Quest001_waypoint02_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Boolean for testing purposes."
+        },
+        {
+          "Variable": "Quest001_waypoint03_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Boolean for testing purposes."
+        },
+        {
+          "Variable": "HasSword",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the sword?"
+        },
+        {
+          "Variable": "HasShield",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the shield?"
+        },
+        {
+          "Variable": "Quest001_waypoint01_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint02_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint03_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "TestPlayerHitPoints",
+          "Type": "Integer",
+          "Value": "10",
+          "Description": "Player Health in HP"
+        },
+        {
+          "Variable": "TestPlayerLevel",
+          "Type": "Integer",
+          "Value": "1",
+          "Description": "Player level"
+        },
+        {
+          "Variable": "HasBucket",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the bucket?"
+        },
+        {
+          "Variable": "HasHolyJerky",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Does the player have the holy Jerky Bits?"
+        },
+        {
+          "Variable": "TrollDead",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Is the troll dead?"
+        },
+        {
+          "Variable": "JerkyFist",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Crafted the JerkyFist?"
+        },
+        {
+          "Variable": "Quest001_waypoint04_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint05_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint04_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint05_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint06_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint06_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_Started",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_Finished",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint07_visible",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Quest001_waypoint07_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "SampleString",
+          "Type": "String",
+          "Value": "blank",
+          "Description": ""
+        },
+        {
+          "Variable": "ArticyHubEnter",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Been to the articy hub yet?"
+        }
+      ]
+    },
+    {
+      "Namespace": "RNDVariables",
+      "Description": "",
+      "Variables": [
+        {
+          "Variable": "Option01Discussed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Spoken in simple flow example yet?"
+        },
+        {
+          "Variable": "EndingVariable",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Sample Conditioni Check"
+        },
+        {
+          "Variable": "nevertruevar",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "never true variable"
+        },
+        {
+          "Variable": "GitVar",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "InventoryItem01",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Test Inventory Item"
+        },
+        {
+          "Variable": "pr_var01_bl",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "pr_var02_st",
+          "Type": "String",
+          "Value": "",
+          "Description": ""
+        },
+        {
+          "Variable": "pr_var03_int",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        }
+      ]
+    },
+    {
+      "Namespace": "SuspectVariables",
+      "Description": "",
+      "Variables": [
+        {
+          "Variable": "Leo_Points",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": "Evidence Points gathered on suspect"
+        },
+        {
+          "Variable": "Alex_Points",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": "Evidence Points gathered on suspect"
+        },
+        {
+          "Variable": "Daria_Points",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": "Evidence Points gathered on suspect"
+        },
+        {
+          "Variable": "Liza_Points",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": "Evidence Points gathered on suspect"
+        },
+        {
+          "Variable": "Liza_Cracked",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": "Liza flipped her statement?"
+        },
+        {
+          "Variable": "Daria_Cracked",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Alex_Cracked",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "Leo_Cracked",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        }
+      ]
+    },
+    {
+      "Namespace": "EvidenceVariables",
+      "Description": "",
+      "Variables": [
+        {
+          "Variable": "va_photo_affair_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_photo_affair_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "new_autopsy_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_paternity_test_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_new_will_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_paternity_test_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_new_will_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "safe_opened",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_reciept_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_reciept_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_wintergreen_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_wintergreen_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_alexcam_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_alexcam_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_lawyerletter_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_lawyerletter_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_ciagree_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_ciagree_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_bankstate_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_bankstate_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_leopass_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_leopass_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_tikimug_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_tikimug_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_victorcam_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_victorcam_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_vape_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_vape_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_leoalexpic_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_leoalexpic_analyzed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "CurrentLocation",
+          "Type": "String",
+          "Value": "va",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "do_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "va_evidence_count",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "do_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "lt_completed",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        }
+      ]
+    },
+    {
+      "Namespace": "MMOVariables",
+      "Description": "",
+      "Variables": [
+        {
+          "Variable": "LZME12",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LZMO22",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LZMO23",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LZOP32",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LZOP33",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LZOP34",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DRME12",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DRME13",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DRME14",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DRMO22",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DRMO23",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DRMO24",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DROP32",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DROP33",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "DROP34",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXME12",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXME13",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXMO22",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXMO23",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXMO24",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXMO25",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXOP32",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "AXOP33",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LOME12",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LOME13",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LOMO22",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LOOP32",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "LOOP33",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        }
+      ]
+    }
+  ]
+}
