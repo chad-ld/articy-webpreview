@@ -53,7 +53,7 @@ function App() {
     // Comprehensive list of possible dataset names
     const possibleDatasets = [
       // Common names
-      'mpos', 'demo', 'test', 'latest', 'current', 'main',
+      'mpos', 'demo', 'demo4', 'test', 'latest', 'current', 'main',
       // Project names
       'project-alpha', 'project-beta', 'project-gamma', 'project-delta',
       // Environment names
