@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ConfigProvider, message, Spin, Select, Button, Divider, Tooltip } from 'antd';
 import { SortAscendingOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import InteractiveArticyViewer from './components/InteractiveArticyViewer';
@@ -62,16 +62,16 @@ function App() {
   const hybridDetector = new HybridDatasetDetector();
   hybridDetector.setDebugMode(true);
 
-  // Sort datasets based on current sort mode
-  const sortDatasets = (datasets: Dataset[]): Dataset[] => {
-    console.log(`🔄 Sorting datasets in ${sortMode} mode:`, datasets.map(d => ({
+  // Get sorted datasets for display using useMemo to ensure recalculation when dependencies change
+  const sortedDatasets = useMemo(() => {
+    console.log(`🔄 Sorting datasets in ${sortMode} mode:`, availableDatasets.map(d => ({
       name: d.name,
       displayName: d.displayName,
       lastModified: d.lastModified,
       lastModifiedFormatted: d.lastModifiedFormatted
     })));
 
-    const sorted = [...datasets].sort((a, b) => {
+    const sorted = [...availableDatasets].sort((a, b) => {
       if (sortMode === 'date') {
         // Sort by newest file first (descending)
         const timeA = a.lastModified || 0;
@@ -88,10 +88,7 @@ function App() {
 
     console.log(`✅ Sorted result:`, sorted.map(d => `${d.name} (${d.lastModifiedFormatted || 'no timestamp'})`));
     return sorted;
-  };
-
-  // Get sorted datasets for display
-  const sortedDatasets = sortDatasets(availableDatasets);
+  }, [availableDatasets, sortMode]);
 
   // Auto-detect available datasets using hybrid detection
   const detectAvailableDatasets = async (): Promise<Dataset[]> => {
