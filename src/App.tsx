@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { ConfigProvider, message, Spin, Select, Button, Divider } from 'antd';
+import { ConfigProvider, message, Spin, Select, Button, Divider, Tooltip } from 'antd';
+import { SortAscendingOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import InteractiveArticyViewer from './components/InteractiveArticyViewer';
 import EnhancedFileInput from './components/EnhancedFileInput';
 // @ts-ignore
 import DataRouter from './utils/dataRouter';
+// @ts-ignore
+import HybridDatasetDetector from './utils/hybridDatasetDetector';
 import './App.css';
 
 const { Option } = Select;
@@ -35,6 +38,8 @@ interface Dataset {
   folder: string;
   displayName: string;
   description?: string;
+  lastModified?: number;
+  lastModifiedFormatted?: string;
 }
 
 function App() {
@@ -47,9 +52,78 @@ function App() {
   const [selectedDataset, setSelectedDataset] = useState<string>('');
   const [showDatasetSelection, setShowDatasetSelection] = useState(false);
   const [dataSource, setDataSource] = useState<'hardcoded' | 'manual' | null>(null);
+  const [detectionMethod, setDetectionMethod] = useState<string>('detecting...');
+  const [sortMode, setSortMode] = useState<'alphabetical' | 'date'>('date');
 
-  // Auto-detect available datasets
+  // Initialize hybrid dataset detector
+  const hybridDetector = new HybridDatasetDetector();
+  hybridDetector.setDebugMode(true);
+
+  // Sort datasets based on current sort mode
+  const sortDatasets = (datasets: Dataset[]): Dataset[] => {
+    console.log(`🔄 Sorting datasets in ${sortMode} mode:`, datasets.map(d => ({
+      name: d.name,
+      displayName: d.displayName,
+      lastModified: d.lastModified,
+      lastModifiedFormatted: d.lastModifiedFormatted
+    })));
+
+    const sorted = [...datasets].sort((a, b) => {
+      if (sortMode === 'date') {
+        // Sort by newest file first (descending)
+        const timeA = a.lastModified || 0;
+        const timeB = b.lastModified || 0;
+        console.log(`📅 Comparing ${a.name} (${timeA}) vs ${b.name} (${timeB}) = ${timeB - timeA}`);
+        return timeB - timeA;
+      } else {
+        // Sort alphabetically by display name
+        const result = a.displayName.localeCompare(b.displayName);
+        console.log(`🔤 Comparing "${a.displayName}" vs "${b.displayName}" = ${result}`);
+        return result;
+      }
+    });
+
+    console.log(`✅ Sorted result:`, sorted.map(d => `${d.name} (${d.lastModifiedFormatted || 'no timestamp'})`));
+    return sorted;
+  };
+
+  // Get sorted datasets for display
+  const sortedDatasets = sortDatasets(availableDatasets);
+
+  // Auto-detect available datasets using hybrid detection
   const detectAvailableDatasets = async (): Promise<Dataset[]> => {
+    console.log('🔍 Starting hybrid dataset detection...');
+    setDetectionMethod('detecting...');
+
+    try {
+      const datasets = await hybridDetector.detectDatasets();
+      console.log(`🎯 Hybrid detection found ${datasets.length} available datasets`);
+
+      // Determine which method was actually used
+      const env = hybridDetector.environmentDetector.detectEnvironment();
+      if (env.isDevelopment && env.hasPHPSupport) {
+        setDetectionMethod('PHP API (development server)');
+      } else if (env.isProduction && env.hasPHPSupport) {
+        setDetectionMethod('PHP API (web server)');
+      } else if (env.isDevelopment) {
+        setDetectionMethod('Local fallback detection');
+      } else {
+        setDetectionMethod('Fallback detection');
+      }
+
+      return datasets;
+    } catch (error) {
+      console.error('❌ Hybrid detection failed:', error);
+
+      // Fallback to legacy detection method
+      console.log('🔄 Falling back to legacy detection method...');
+      setDetectionMethod('Legacy fallback detection');
+      return await detectAvailableDatasetsLegacy();
+    }
+  };
+
+  // Legacy detection method as fallback
+  const detectAvailableDatasetsLegacy = async (): Promise<Dataset[]> => {
     // Comprehensive list of possible dataset names
     const possibleDatasets = [
       // Common names
@@ -71,7 +145,7 @@ function App() {
     ];
 
     const available: Dataset[] = [];
-    console.log('🔍 Detecting available datasets...');
+    console.log('🔍 Using legacy detection method...');
 
     for (const name of possibleDatasets) {
       try {
@@ -94,7 +168,7 @@ function App() {
       }
     }
 
-    console.log(`🎯 Detected ${available.length} available datasets`);
+    console.log(`🎯 Legacy detection found ${available.length} available datasets`);
     return available;
   };
 
@@ -165,9 +239,14 @@ function App() {
     // Log app startup
     console.log('%c[Articy Web Viewer v4.x - Hybrid Edition] Starting application...',
       'color: #1890ff; background: #f0f8ff; font-size: 16px; padding: 4px 8px; border-radius: 4px;');
-    console.log('✅ Auto-detection enabled');
+    console.log('✅ Hybrid dataset detection enabled');
+    console.log('✅ Relative path support enabled');
+    console.log('✅ Multi-environment compatibility enabled');
     console.log('✅ 4.x format support enabled');
     console.log('✅ Drag-and-drop functionality enabled');
+
+    // Log environment information
+    hybridDetector.environmentDetector.logEnvironmentInfo();
 
     // Initialize app with dataset detection
     initializeApp();
@@ -194,7 +273,18 @@ function App() {
         // Always show selection interface first (unless specific dataset requested)
         console.log(`📁 Showing dataset selection interface (${datasets.length} datasets detected)`);
         if (datasets.length > 0) {
-          setSelectedDataset(datasets[0].name); // Pre-select first dataset
+          // Pre-select first dataset based on current sort mode
+          const sortedDatasets = [...datasets].sort((a, b) => {
+            if (sortMode === 'date') {
+              const timeA = a.lastModified || 0;
+              const timeB = b.lastModified || 0;
+              return timeB - timeA;
+            } else {
+              return a.displayName.localeCompare(b.displayName);
+            }
+          });
+          setSelectedDataset(sortedDatasets[0].name);
+          console.log(`📌 Pre-selected dataset: ${sortedDatasets[0].name} (${sortedDatasets[0].displayName}) based on ${sortMode} sort`);
         }
         setShowDatasetSelection(true);
         setIsLoading(false);
@@ -244,9 +334,9 @@ function App() {
     setProcessingReport(null);
 
     // Update URL without page reload
-    const url = new URL(window.location);
+    const url = new URL(window.location.href);
     url.searchParams.set('dataset', datasetName);
-    window.history.pushState({}, '', url);
+    window.history.pushState({}, '', url.toString());
 
     await loadDataset(datasetName);
   };
@@ -289,32 +379,30 @@ function App() {
             marginLeft: articyData ? calculateHeaderMargin(panelWidth) : 'auto',
             transition: 'margin-left 0.3s ease'
           }}>
-            <h1>Articy Web Viewer v4.x - Hybrid Edition</h1>
-            <p>Auto-detection + drag-and-drop viewer for Articy Draft datasets</p>
+            <h1>Articy Web Viewer v4.x</h1>
+            <p style={{ marginBottom: '10px' }}>{detectionMethod}</p>
 
             {processingReport && (
-              <div className="format-badge">
-                <span className="format-label">Format:</span>
-                <span className="format-value">{processingReport.format} v{processingReport.version}</span>
-                <span className="confidence">({(processingReport.confidence * 100).toFixed(0)}% confidence)</span>
-                {dataSource && (
-                  <>
-                    <span style={{ margin: '0 8px', color: '#666' }}>|</span>
-                    <span className="source-label">Source:</span>
-                    <span className="source-value">
-                      {dataSource === 'hardcoded' ? `${selectedDataset} dataset` : 'Manual upload'}
-                    </span>
-                    {dataSource === 'hardcoded' && availableDatasets.length > 1 && (
-                      <Button
-                        size="small"
-                        style={{ marginLeft: '8px' }}
-                        onClick={handleSwitchToManual}
-                      >
-                        Switch Dataset
-                      </Button>
-                    )}
-                  </>
-                )}
+              <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+                <div style={{
+                  display: 'inline-block',
+                  padding: '8px 20px',
+                  background: '#e6f7ff',
+                  border: '1px solid #91d5ff',
+                  borderRadius: '12px'
+                }}>
+                  <span className="format-label">Format: </span>
+                  <span className="format-value">{processingReport.format} v{processingReport.version}</span>
+                  <span className="confidence"> ({(processingReport.confidence * 100).toFixed(0)}% confidence)</span>
+                  {dataSource && (
+                    <>
+                      <span className="source-label" style={{ color: 'black' }}> || Source: </span>
+                      <span className="source-value" style={{ color: 'black' }}>
+                        {dataSource === 'hardcoded' ? `${selectedDataset} dataset` : 'Manual upload'}
+                      </span>
+                    </>
+                  )}
+                </div>
               </div>
             )}
           </div>
@@ -337,51 +425,90 @@ function App() {
                 </div>
               ) : showDatasetSelection ? (
                 /* Dataset Selection Interface */
-                <div className="upload-section" style={{ padding: '40px 20px' }}>
+                <div className="upload-section" style={{ padding: '20px 20px 0 20px' }}>
                   <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-                    <h2 style={{ textAlign: 'center', color: '#1890ff', marginBottom: '30px' }}>
+                    <h2 style={{ textAlign: 'center', color: '#1890ff', marginBottom: '15px' }}>
                       Select Dataset or Upload Files
                     </h2>
 
                     {availableDatasets.length > 0 && (
-                      <>
-                        <div style={{ marginBottom: '30px' }}>
-                          <h3 style={{ marginBottom: '16px' }}>📁 Available Datasets</h3>
-                          <Select
-                            value={selectedDataset}
-                            onChange={setSelectedDataset}
-                            style={{ width: '100%', marginBottom: '16px' }}
-                            size="large"
-                            placeholder="Select a dataset to load"
-                          >
-                            {availableDatasets.map(dataset => (
-                              <Option key={dataset.name} value={dataset.name}>
-                                <div>
-                                  <strong>{dataset.displayName}</strong>
-                                  <div style={{ fontSize: '12px', color: '#666' }}>
-                                    {dataset.description}
-                                  </div>
-                                </div>
-                              </Option>
-                            ))}
-                          </Select>
-                          <Button
-                            type="primary"
-                            size="large"
-                            block
-                            disabled={!selectedDataset}
-                            onClick={() => selectedDataset && handleDatasetSwitch(selectedDataset)}
-                          >
-                            Load {availableDatasets.find(d => d.name === selectedDataset)?.displayName || 'Selected Dataset'}
-                          </Button>
-                        </div>
+                      <div style={{ marginBottom: '15px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                          <h3 style={{ margin: 0 }}>📁 Available Datasets</h3>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <span style={{ fontSize: '12px', color: '#666', fontWeight: 500 }}>
+                              {sortMode === 'date' ? 'Sorting By Latest Files' : 'Sorting A-Z By Folder Name'}
+                            </span>
+                            <Tooltip title={sortMode === 'alphabetical' ? 'Sort by newest files' : 'Sort alphabetically'}>
+                              <Button
+                                size="small"
+                                icon={sortMode === 'alphabetical' ? <ClockCircleOutlined /> : <SortAscendingOutlined />}
+                                onClick={() => {
+                                  const newMode = sortMode === 'alphabetical' ? 'date' : 'alphabetical';
+                                  console.log(`🔄 Changing sort mode from ${sortMode} to ${newMode}`);
+                                  setSortMode(newMode);
 
-                        <Divider>OR</Divider>
-                      </>
+                                  // Update selected dataset to the first item in the new sort order
+                                  if (availableDatasets.length > 0) {
+                                    const newSortedDatasets = [...availableDatasets].sort((a, b) => {
+                                      if (newMode === 'date') {
+                                        const timeA = a.lastModified || 0;
+                                        const timeB = b.lastModified || 0;
+                                        return timeB - timeA;
+                                      } else {
+                                        return a.displayName.localeCompare(b.displayName);
+                                      }
+                                    });
+                                    setSelectedDataset(newSortedDatasets[0].name);
+                                    console.log(`📌 Updated selected dataset to: ${newSortedDatasets[0].name} (${newSortedDatasets[0].displayName})`);
+                                  }
+                                }}
+                                style={{
+                                  backgroundColor: sortMode === 'date' ? '#1890ff' : undefined,
+                                  borderColor: sortMode === 'date' ? '#1890ff' : undefined,
+                                  color: sortMode === 'date' ? '#fff' : undefined
+                                }}
+                              />
+                            </Tooltip>
+                          </div>
+                        </div>
+                        <Select
+                          value={selectedDataset}
+                          onChange={setSelectedDataset}
+                          style={{ width: '100%', marginBottom: '12px' }}
+                          size="large"
+                          placeholder="Select a dataset to load"
+                        >
+                          {sortedDatasets.map(dataset => (
+                            <Option key={dataset.name} value={dataset.name}>
+                              <div>
+                                <strong>{dataset.displayName}</strong>
+                                <div style={{ fontSize: '12px', color: '#666' }}>
+                                  {dataset.description}
+                                  {sortMode === 'date' && dataset.lastModifiedFormatted && (
+                                    <span style={{ marginLeft: '8px', color: '#999' }}>
+                                      • {dataset.lastModifiedFormatted}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </Option>
+                          ))}
+                        </Select>
+                        <Button
+                          type="primary"
+                          size="large"
+                          block
+                          disabled={!selectedDataset}
+                          onClick={() => selectedDataset && handleDatasetSwitch(selectedDataset)}
+                        >
+                          Load {sortedDatasets.find(d => d.name === selectedDataset)?.displayName || 'Selected Dataset'}
+                        </Button>
+                      </div>
                     )}
 
                     <div>
-                      <h3 style={{ marginBottom: '16px' }}>📤 Upload Custom Files</h3>
+                      <h3 style={{ marginBottom: '12px' }}>📤 Upload Custom Files</h3>
                       <EnhancedFileInput
                         onDataLoaded={handleManualDataLoaded}
                         isLoading={false}
@@ -389,28 +516,7 @@ function App() {
                       />
                     </div>
 
-                    {/* Feature Information */}
-                    <div className="features-info" style={{ marginTop: '40px' }}>
-                      <h3 style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Hybrid Edition Features</h3>
-                      <div className="features-grid">
-                        <div className="feature-card">
-                          <h4>🔍 Auto-Detection</h4>
-                          <p>Automatically finds and lists available datasets</p>
-                        </div>
-                        <div className="feature-card">
-                          <h4>📁 Multiple Datasets</h4>
-                          <p>Switch between different embedded datasets easily</p>
-                        </div>
-                        <div className="feature-card">
-                          <h4>📤 Drag & Drop</h4>
-                          <p>Upload custom files when needed</p>
-                        </div>
-                        <div className="feature-card">
-                          <h4>🔄 Universal Format</h4>
-                          <p>Supports both 3.x and 4.x Articy Draft formats</p>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               ) : null
