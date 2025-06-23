@@ -181,25 +181,21 @@ function App() {
       const datasets = await detectAvailableDatasets();
       setAvailableDatasets(datasets);
 
-      if (datasets.length > 0) {
-        // Check URL parameter for specific dataset
-        const urlParams = new URLSearchParams(window.location.search);
-        const requestedDataset = urlParams.get('dataset');
+      // Check URL parameter for specific dataset auto-load
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestedDataset = urlParams.get('dataset');
 
-        let datasetToLoad = requestedDataset;
-
-        // If no URL parameter or requested dataset not found, use first available
-        if (!datasetToLoad || !datasets.find(d => d.name === datasetToLoad)) {
-          datasetToLoad = datasets[0].name;
-        }
-
-        setSelectedDataset(datasetToLoad);
-
-        // Auto-load the selected dataset
-        await loadDataset(datasetToLoad);
+      if (requestedDataset && datasets.find(d => d.name === requestedDataset)) {
+        // Auto-load specific dataset if requested via URL
+        console.log(`🎯 Auto-loading requested dataset: ${requestedDataset}`);
+        setSelectedDataset(requestedDataset);
+        await loadDataset(requestedDataset);
       } else {
-        // No datasets found, show selection interface
-        console.log('📁 No hardcoded datasets found, showing file selection');
+        // Always show selection interface first (unless specific dataset requested)
+        console.log(`📁 Showing dataset selection interface (${datasets.length} datasets detected)`);
+        if (datasets.length > 0) {
+          setSelectedDataset(datasets[0].name); // Pre-select first dataset
+        }
         setShowDatasetSelection(true);
         setIsLoading(false);
       }
