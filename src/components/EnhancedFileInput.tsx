@@ -292,7 +292,6 @@ const EnhancedFileInput: React.FC<EnhancedFileInputProps> = ({
               </div>
             }
             type="info"
-            showIcon
             style={{ marginBottom: '15px', maxWidth: '500px' }}
           />
 

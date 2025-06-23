@@ -35,11 +35,14 @@ interface ProcessingReport {
 
 interface Dataset {
   name: string;
-  folder: string;
+  folder?: string; // For 4.x format (folder structure)
+  file?: string; // For 3.x format (single file)
   displayName: string;
   description?: string;
   lastModified?: number;
   lastModifiedFormatted?: string;
+  articyVersion?: string; // e.g., "3.x v1.0", "4.x v2.1"
+  format?: string; // "3.x" or "4.x"
 }
 
 function App() {
@@ -99,16 +102,26 @@ function App() {
       const datasets = await hybridDetector.detectDatasets();
       console.log(`🎯 Hybrid detection found ${datasets.length} available datasets`);
 
-      // Determine which method was actually used
+      // Determine which method was actually used by checking available methods
       const env = hybridDetector.environmentDetector.detectEnvironment();
-      if (env.isDevelopment && env.hasPHPSupport) {
-        setDetectionMethod('PHP API (development server)');
-      } else if (env.isProduction && env.hasPHPSupport) {
-        setDetectionMethod('PHP API (web server)');
-      } else if (env.isDevelopment) {
-        setDetectionMethod('Local fallback detection');
+      const availableMethods = hybridDetector.environmentDetector.getAvailableDetectionMethods();
+
+      if (availableMethods.includes('php-api')) {
+        if (env.isDevelopment) {
+          setDetectionMethod('PHP API (development server)');
+        } else {
+          setDetectionMethod('PHP API (web server)');
+        }
+      } else if (availableMethods.includes('fallback')) {
+        if (env.isDevelopment) {
+          setDetectionMethod('Fallback (development server)');
+        } else {
+          setDetectionMethod('Fallback detection');
+        }
+      } else if (availableMethods.includes('dev-server-scan')) {
+        setDetectionMethod('Dev Server Scan (development server)');
       } else {
-        setDetectionMethod('Fallback detection');
+        setDetectionMethod('Unknown detection method');
       }
 
       return datasets;
@@ -124,6 +137,8 @@ function App() {
 
   // Legacy detection method as fallback
   const detectAvailableDatasetsLegacy = async (): Promise<Dataset[]> => {
+    // NOTE: This is a limited fallback method that only checks predefined names
+    // The PHP API provides true dynamic detection of ANY .json files/folders
     // Comprehensive list of possible dataset names
     const possibleDatasets = [
       // Common names
@@ -149,19 +164,49 @@ function App() {
 
     for (const name of possibleDatasets) {
       try {
-        // Test if manifest.json exists in the dataset folder
+        // Try 4.x format first (folder with manifest)
         const response = await fetch(`./${name}.json/manifest.json`);
         if (response.ok) {
           const manifest = await response.json();
+
+          const articyVersion = manifest.Settings?.ExportVersion ?
+                               `4.x v${manifest.Settings.ExportVersion}` : '4.x';
 
           available.push({
             name,
             folder: `${name}.json`,
             displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-            description: manifest.Project?.DetailName || `${name} dataset`
+            description: manifest.Project?.DetailName || `${name} dataset`,
+            articyVersion,
+            format: '4.x'
           });
 
-          console.log(`✅ Found dataset: ${name}`);
+          console.log(`✅ Found 4.x dataset: ${name}`);
+        } else {
+          // Try 3.x format (single JSON file)
+          const fileResponse = await fetch(`./${name}.json`);
+          if (fileResponse.ok) {
+            const jsonData = await fileResponse.json();
+
+            // Check if it looks like 3.x format
+            const is3xFormat = jsonData.Packages && jsonData.Project && jsonData.GlobalVariables;
+
+            if (is3xFormat) {
+              const articyVersion = jsonData.Settings?.ExportVersion ?
+                                   `3.x v${jsonData.Settings.ExportVersion}` : '3.x';
+
+              available.push({
+                name,
+                file: `${name}.json`,
+                displayName: jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
+                description: jsonData.Project?.DetailName || `${name} dataset (3.x format)`,
+                articyVersion,
+                format: '3.x'
+              });
+
+              console.log(`✅ Found 3.x dataset: ${name}`);
+            }
+          }
         }
       } catch (error) {
         // Dataset doesn't exist or manifest is invalid, skip silently
@@ -178,54 +223,90 @@ function App() {
     try {
       console.log(`🔄 Loading ${datasetName} dataset...`);
 
-      // List of JSON files to load
-      const datasetFiles = [
-        'global_variables.json',
-        'hierarchy.json',
-        'manifest.json',
-        'object_definitions.json',
-        'object_definitions_localization.json',
-        'package_010000060000401C_localization.json',
-        'package_010000060000401C_objects.json',
-        'script_methods.json'
-      ];
+      // Find the dataset info to determine format
+      const datasetInfo = availableDatasets.find(d => d.name === datasetName);
+      const is3xFormat = datasetInfo?.format === '3.x';
 
-      // Load all files with cache-busting
-      const fileContents: { [key: string]: string } = {};
-      const cacheBuster = Date.now();
+      if (is3xFormat) {
+        // Load 3.x single JSON file
+        console.log(`📄 Loading 3.x single file: ${datasetName}.json`);
+        const cacheBuster = Date.now();
+        const response = await fetch(`./${datasetName}.json?v=${cacheBuster}`);
 
-      for (const fileName of datasetFiles) {
-        try {
-          const response = await fetch(`./${datasetName}.json/${fileName}?v=${cacheBuster}`);
-          if (response.ok) {
-            const content = await response.text();
-            fileContents[fileName] = content;
-            console.log(`✅ Loaded ${fileName} from ${datasetName} (cache-busted)`);
-          } else {
-            console.warn(`⚠️ Could not load ${fileName} from ${datasetName}: ${response.status}`);
-          }
-        } catch (error) {
-          console.warn(`⚠️ Error loading ${fileName} from ${datasetName}:`, error);
+        if (!response.ok) {
+          throw new Error(`Failed to load ${datasetName}.json: ${response.status}`);
         }
-      }
 
-      // Process the loaded files using DataRouter
-      if (Object.keys(fileContents).length > 0) {
+        const content = await response.text();
+        const jsonData = JSON.parse(content);
+
+        // Process the 3.x data using DataRouter
         const dataRouter = new DataRouter();
         dataRouter.setDebugMode(true);
 
-        const processedData = await dataRouter.processData(fileContents);
+        const processedData = await dataRouter.processData(jsonData);
         const report = dataRouter.createProcessingReport(processedData);
 
         // Update report to indicate dataset source
-        report.processingInfo.inputType = `Hardcoded ${datasetName} dataset`;
+        report.processingInfo.inputType = `Hardcoded ${datasetName} dataset (3.x format)`;
 
         setDataSource('hardcoded');
         handleDataLoaded(processedData, report);
 
-        console.log(`🎉 ${datasetName} dataset loaded successfully!`);
+        console.log(`🎉 ${datasetName} 3.x dataset loaded successfully!`);
       } else {
-        throw new Error(`No files could be loaded from ${datasetName} dataset`);
+        // Load 4.x folder structure
+        console.log(`📁 Loading 4.x folder structure: ${datasetName}.json/`);
+
+        // List of JSON files to load
+        const datasetFiles = [
+          'global_variables.json',
+          'hierarchy.json',
+          'manifest.json',
+          'object_definitions.json',
+          'object_definitions_localization.json',
+          'package_010000060000401C_localization.json',
+          'package_010000060000401C_objects.json',
+          'script_methods.json'
+        ];
+
+        // Load all files with cache-busting
+        const fileContents: { [key: string]: string } = {};
+        const cacheBuster = Date.now();
+
+        for (const fileName of datasetFiles) {
+          try {
+            const response = await fetch(`./${datasetName}.json/${fileName}?v=${cacheBuster}`);
+            if (response.ok) {
+              const content = await response.text();
+              fileContents[fileName] = content;
+              console.log(`✅ Loaded ${fileName} from ${datasetName} (cache-busted)`);
+            } else {
+              console.warn(`⚠️ Could not load ${fileName} from ${datasetName}: ${response.status}`);
+            }
+          } catch (error) {
+            console.warn(`⚠️ Error loading ${fileName} from ${datasetName}:`, error);
+          }
+        }
+
+        // Process the loaded files using DataRouter
+        if (Object.keys(fileContents).length > 0) {
+          const dataRouter = new DataRouter();
+          dataRouter.setDebugMode(true);
+
+          const processedData = await dataRouter.processData(fileContents);
+          const report = dataRouter.createProcessingReport(processedData);
+
+          // Update report to indicate dataset source
+          report.processingInfo.inputType = `Hardcoded ${datasetName} dataset (4.x format)`;
+
+          setDataSource('hardcoded');
+          handleDataLoaded(processedData, report);
+
+          console.log(`🎉 ${datasetName} 4.x dataset loaded successfully!`);
+        } else {
+          throw new Error(`No files could be loaded from ${datasetName} dataset`);
+        }
       }
 
     } catch (error: any) {
@@ -258,6 +339,7 @@ function App() {
     try {
       // Detect available datasets
       const datasets = await detectAvailableDatasets();
+
       setAvailableDatasets(datasets);
 
       // Check URL parameter for specific dataset auto-load
@@ -482,7 +564,21 @@ function App() {
                           {sortedDatasets.map(dataset => (
                             <Option key={dataset.name} value={dataset.name}>
                               <div>
-                                <strong>{dataset.displayName}</strong>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                  <strong>{dataset.displayName}</strong>
+                                  {dataset.articyVersion && (
+                                    <span style={{
+                                      fontSize: '11px',
+                                      color: dataset.format === '3.x' ? '#ff6b35' : '#1890ff',
+                                      backgroundColor: dataset.format === '3.x' ? '#fff2e8' : '#e6f7ff',
+                                      padding: '2px 6px',
+                                      borderRadius: '4px',
+                                      fontWeight: '500'
+                                    }}>
+                                      {dataset.articyVersion}
+                                    </span>
+                                  )}
+                                </div>
                                 <div style={{ fontSize: '12px', color: '#666' }}>
                                   {dataset.description}
                                   {sortMode === 'date' && dataset.lastModifiedFormatted && (
