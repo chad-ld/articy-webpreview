@@ -766,6 +766,42 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     return outputCount > 1;
   };
 
+  // Helper function to check if a node has no output connections
+  const hasNoOutputs = (node: any): boolean => {
+    // Special case for Flow Fragments: they can have either children OR output connections
+    if (project?.isFlowFragment(node)) {
+      // Check if the Flow Fragment has children nodes
+      const firstChild = project.GetFirstChildOfNode(node);
+      if (firstChild) {
+        return false; // Has children, so it has "outputs" (can navigate into it)
+      }
+
+      // No children, so check for regular output connections
+      if (!node?.Properties?.OutputPins) return true;
+
+      let outputCount = 0;
+      node.Properties.OutputPins.forEach((outputPin: any) => {
+        if (outputPin.Connections && outputPin.Connections.length > 0) {
+          outputCount += outputPin.Connections.length;
+        }
+      });
+
+      return outputCount === 0;
+    }
+
+    // Regular nodes: check output connections
+    if (!node?.Properties?.OutputPins) return true;
+
+    let outputCount = 0;
+    node.Properties.OutputPins.forEach((outputPin: any) => {
+      if (outputPin.Connections && outputPin.Connections.length > 0) {
+        outputCount += outputPin.Connections.length;
+      }
+    });
+
+    return outputCount === 0;
+  };
+
   // Helper function to check if a node type inherits from a specific class
   const nodeInheritsFromClass = (nodeType: string, className: string): boolean => {
     if (!project) {
@@ -1036,12 +1072,26 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                 return; // Skip this connection
               }
 
-              // Get choice text from the target node or connection label
+              // For Jump nodes, resolve to the final target for choice text
+              let finalChoiceTargetNode = targetNode;
+              if (targetNode.Type === "Jump" && targetNode.Properties.Target) {
+                const jumpTarget = project?.GetNodeByID(targetNode.Properties.Target);
+                if (jumpTarget) {
+                  finalChoiceTargetNode = jumpTarget;
+                  console.log("🔄 CONDITION CHOICE: Resolving Jump node for choice text:", {
+                    jumpNodeId: targetNode.Properties.Id,
+                    jumpTargetId: jumpTarget.Properties.Id,
+                    jumpTargetType: jumpTarget.Type
+                  });
+                }
+              }
+
+              // Get choice text from the final target node or connection label
               let choiceText = connection.Label ||
-                             targetNode.Properties.DisplayName ||
-                             targetNode.Properties.Text ||
-                             targetNode.Properties.Expression ||
-                             `Go to ${targetNode.Type}`;
+                             finalChoiceTargetNode.Properties.DisplayName ||
+                             finalChoiceTargetNode.Properties.Text ||
+                             finalChoiceTargetNode.Properties.Expression ||
+                             `Go to ${finalChoiceTargetNode.Type}`;
 
               // Clean up the text (remove comments, etc.)
               choiceText = choiceText.replace(/^\/\//, '').trim();
@@ -1106,12 +1156,26 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                 return; // Skip this connection
               }
 
-              // Get choice text from the target node or connection label
+              // For Jump nodes, resolve to the final target for choice text
+              let finalChoiceTargetNode = targetNode;
+              if (targetNode.Type === "Jump" && targetNode.Properties.Target) {
+                const jumpTarget = project?.GetNodeByID(targetNode.Properties.Target);
+                if (jumpTarget) {
+                  finalChoiceTargetNode = jumpTarget;
+                  console.log("🔄 NORMAL CHOICE: Resolving Jump node for choice text:", {
+                    jumpNodeId: targetNode.Properties.Id,
+                    jumpTargetId: jumpTarget.Properties.Id,
+                    jumpTargetType: jumpTarget.Type
+                  });
+                }
+              }
+
+              // Get choice text from the final target node or connection label
               let choiceText = connection.Label ||
-                             targetNode.Properties.DisplayName ||
-                             targetNode.Properties.Text ||
-                             targetNode.Properties.Expression ||
-                             `Go to ${targetNode.Type}`;
+                             finalChoiceTargetNode.Properties.DisplayName ||
+                             finalChoiceTargetNode.Properties.Text ||
+                             finalChoiceTargetNode.Properties.Expression ||
+                             `Go to ${finalChoiceTargetNode.Type}`;
 
               // Clean up the text (remove comments, etc.)
               choiceText = choiceText.replace(/^\/\//, '').trim();
@@ -2235,7 +2299,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
             // Get the full text content from the target node (same logic as regular nodes)
             let choiceNodeText = 'No content';
-            const targetNode = option.targetNode;
+            let targetNode = option.targetNode;
+
+            // For Jump nodes, resolve to the final target for content display
+            if (targetNode.Type === "Jump" && targetNode.Properties.Target) {
+              const jumpTarget = project?.GetNodeByID(targetNode.Properties.Target);
+              if (jumpTarget) {
+                targetNode = jumpTarget;
+                console.log("🔄 CHOICE DISPLAY: Resolving Jump node for content:", {
+                  jumpNodeId: option.targetNode.Properties.Id,
+                  jumpTargetId: jumpTarget.Properties.Id,
+                  jumpTargetType: jumpTarget.Type
+                });
+              }
+            }
 
             // Special handling for Hub nodes - they never have body text
             if (targetNode.Type === 'Hub') {
@@ -2297,8 +2374,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
                   text={choiceNodeText}
                   title={choiceTitle}
                   stageDirections={choiceStageDirections}
-                  color={option.targetNode.Properties.Color || currentNode.Properties.Color}
-                  choices={[{
+                  color={targetNode.Properties.Color || currentNode.Properties.Color}
+                  choices={hasNoOutputs(targetNode) ? [] : [{
                     text: "Next",
                     disabled: option.disabled,
                     onClick: () => handleChoiceSelect(originalIndex)
@@ -2485,7 +2562,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           stageDirections={stageDirections}
           color={currentNode.Properties.Color}
           button={{
-            hidden: false,
+            hidden: hasNoOutputs(currentNode),
             text: "Next",
             onClick: handleNext
           }}
