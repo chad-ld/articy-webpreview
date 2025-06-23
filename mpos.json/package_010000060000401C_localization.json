@@ -59,17 +59,17 @@
     },
     "Context": "Flow/Template Nodes"
   },
-  "FFr_9F6691F3.DisplayName": {
+  "FFr_4B10A665.DisplayName": {
     "": {
-      "Text": "||MINIGAME - Document Analytics"
+      "Text": "||MINIGAME - Video Forensic Module"
     },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Video Forensic Module"
   },
-  "FFr_9F6691F3.Text": {
+  "FFr_4B10A665.Text": {
     "": {
-      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+      "Text": "Minigame with two modes:\r\n- extract video footage from video devices\r\n- AI detection and indentification of faces"
     },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Video Forensic Module"
   },
   "FFr_390E6E85.DisplayName": {
     "": {
@@ -79,81 +79,81 @@
   },
   "FFr_390E6E85.Text": {
     "": {
-      "Text": "Minigame to determine keycode and crack safe."
+      "Text": "Minigame to determine keycode for any system with a touch interface."
     },
     "Context": "Flow/||LOCATION - Crime Scene/||MINIGAME - WPA Analysis"
   },
-  "FFr_458DBF51.DisplayName": {
+  "FFr_C3E449E6.DisplayName": {
     "": {
-      "Text": "||MINIGAME - Video Forensic Module"
+      "Text": "||MINIGAME - WPA Analysis"
     },
-    "Context": "Flow/||LOCATION - Crime Scene/||MINIGAME - Video Forensic Module"
+    "Context": "Flow/||LOCATION - Crime Scene/||MINIGAME - WPA Analysis"
   },
-  "FFr_458DBF51.Text": {
+  "FFr_C3E449E6.Text": {
     "": {
-      "Text": "Minigame with two modes:\r\n- extract video footage from video devices\r\n- AI detection and indentification of faces"
+      "Text": "Minigame to determine keycode for any system with a touch interface."
     },
-    "Context": "Flow/||LOCATION - Crime Scene/||MINIGAME - Video Forensic Module"
-  },
-  "FFr_37D275E0.DisplayName": {
-    "": {
-      "Text": "||MINIGAME - Fingerprint Analysis"
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Fingerprint Analysis"
-  },
-  "FFr_37D275E0.Text": {
-    "": {
-      "Text": "Minigame to determine which suspect matches the fingerprint from the suspect fingerprint database."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Fingerprint Analysis"
-  },
-  "FFr_2F424BCF.DisplayName": {
-    "": {
-      "Text": "||MINIGAME - Document Analytics"
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
-  },
-  "FFr_2F424BCF.Text": {
-    "": {
-      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
-  },
-  "FFr_B52F281F.DisplayName": {
-    "": {
-      "Text": "||MINIGAME - Fingerprint Analysis"
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Fingerprint Analysis"
-  },
-  "FFr_B52F281F.Text": {
-    "": {
-      "Text": "Minigame to determine which suspect matches the fingerprint from the suspect fingerprint database."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Fingerprint Analysis"
+    "Context": "Flow/||LOCATION - Crime Scene/||MINIGAME - WPA Analysis"
   },
   "FFr_7AAE9086.DisplayName": {
     "": {
       "Text": "||MINIGAME - Document Analytics"
     },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Document Analytics"
   },
   "FFr_7AAE9086.Text": {
     "": {
       "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
     },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Document Analytics"
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Document Analytics"
   },
-  "FFr_4B10A665.DisplayName": {
+  "FFr_B52F281F.DisplayName": {
     "": {
-      "Text": "||MINIGAME - Video Forensic Module"
+      "Text": "||MINIGAME - Fingerprint Analysis"
     },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Video Forensic Module"
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Fingerprint Analysis"
   },
-  "FFr_4B10A665.Text": {
+  "FFr_B52F281F.Text": {
     "": {
-      "Text": "Minigame with two modes:\r\n- extract video footage from video devices\r\n- AI detection and indentification of faces"
+      "Text": "Minigame to determine which suspect matches the fingerprint from the suspect fingerprint database."
     },
-    "Context": "Flow/Dynaimic Node Data Test/||MINIGAME - Video Forensic Module"
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_2F424BCF.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_2F424BCF.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_37D275E0.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Fingerprint Analysis"
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_37D275E0.Text": {
+    "": {
+      "Text": "Minigame to determine which suspect matches the fingerprint from the suspect fingerprint database."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_9F6691F3.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_9F6691F3.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||MINIGAME - Document Analytics"
   },
   "FFr_671D743F.DisplayName": {
     "": {
@@ -166,6 +166,126 @@
       "Text": "Details on minigame"
     },
     "Context": "Flow/Template Nodes/||MINIGAME - (Module Name)"
+  },
+  "FFr_A38F2C77.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_A38F2C77.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_3BA7D13F.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_3BA7D13F.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_2FC901DA.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Fingerprint Analysis"
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_2FC901DA.Text": {
+    "": {
+      "Text": "Minigame to determine which suspect matches the fingerprint from the suspect fingerprint database."
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_F538C287.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_F538C287.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_AA4B9733.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_AA4B9733.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_2CFB7F69.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/||MINIGAME - Document Analytics"
+  },
+  "FFr_2CFB7F69.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/||MINIGAME - Document Analytics"
+  },
+  "FFr_88A3AAFA.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_88A3AAFA.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_8BA46AB4.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_8BA46AB4.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/||MINIGAME - Document Analytics"
+  },
+  "FFr_C6E08977.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Video Forensic Module"
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/||MINIGAME - Video Forensic Module"
+  },
+  "FFr_C6E08977.Text": {
+    "": {
+      "Text": "Minigame with two modes:\r\n- extract video footage from video devices\r\n- AI detection and indentification of faces"
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/||MINIGAME - Video Forensic Module"
+  },
+  "FFr_2FBC30B0.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - WPA Analysis"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||MINIGAME - WPA Analysis"
+  },
+  "FFr_2FBC30B0.Text": {
+    "": {
+      "Text": "Minigame to determine keycode for any system with a touch interface."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||MINIGAME - WPA Analysis"
   },
   "FFr_9C7C7ADA.DisplayName": {
     "": {
@@ -191,6 +311,18 @@
     },
     "Context": "Flow/||LOCATION - Crime Scene/||INFO_UI - Return To Location Selection"
   },
+  "FFr_9E64AF40.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Back To Evidence Main Menu"
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
+  "FFr_9E64AF40.Text": {
+    "": {
+      "Text": "Back to the evidence UI main menu"
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
   "FFr_F27928A8.DisplayName": {
     "": {
       "Text": "||INFO_UI - Murder Board"
@@ -203,29 +335,17 @@
     },
     "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Murder Board"
   },
-  "FFr_EA24D1D1.DisplayName": {
-    "": {
-      "Text": "||INFO_UI - Return To Location Selection"
-    },
-    "Context": "Flow/||LOCATION - Daria's Home Office/||INFO_UI - Return To Location Selection"
-  },
-  "FFr_EA24D1D1.Text": {
-    "": {
-      "Text": "Return to the screen to select a different location to investigate."
-    },
-    "Context": "Flow/||LOCATION - Daria's Home Office/||INFO_UI - Return To Location Selection"
-  },
-  "FFr_841EB515.DisplayName": {
+  "FFr_456844EC.DisplayName": {
     "": {
       "Text": "||INFO_UI - Game Over Screen"
     },
-    "Context": "Flow/Leo Statements/||INFO_UI - Game Over Screen"
+    "Context": "Flow/Liza Statements/||INFO_UI - Game Over Screen"
   },
-  "FFr_841EB515.Text": {
+  "FFr_456844EC.Text": {
     "": {
       "Text": "Game over screen with scores"
     },
-    "Context": "Flow/Leo Statements/||INFO_UI - Game Over Screen"
+    "Context": "Flow/Liza Statements/||INFO_UI - Game Over Screen"
   },
   "FFr_E710521D.DisplayName": {
     "": {
@@ -251,6 +371,30 @@
     },
     "Context": "Flow/Alex Statements/||INFO_UI - Game Over Screen"
   },
+  "FFr_841EB515.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Game Over Screen"
+    },
+    "Context": "Flow/Leo Statements/||INFO_UI - Game Over Screen"
+  },
+  "FFr_841EB515.Text": {
+    "": {
+      "Text": "Game over screen with scores"
+    },
+    "Context": "Flow/Leo Statements/||INFO_UI - Game Over Screen"
+  },
+  "FFr_EA24D1D1.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Return To Location Selection"
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||INFO_UI - Return To Location Selection"
+  },
+  "FFr_EA24D1D1.Text": {
+    "": {
+      "Text": "Return to the screen to select a different location to investigate."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||INFO_UI - Return To Location Selection"
+  },
   "FFr_F511AC08.DisplayName": {
     "": {
       "Text": "||INFO_UI - Initial Evidence Group"
@@ -271,7 +415,7 @@
   },
   "FFr_2D38BC91.Text": {
     "": {
-      "Text": "The collection of evidence available at the crime scene."
+      "Text": "The collection of evidence available from the crime scene."
     },
     "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Crime Scene Evidence"
   },
@@ -279,37 +423,13 @@
     "": {
       "Text": "||INFO_UI - Back To Evidence Main Menu"
     },
-    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Back To Evidence Main Menu"
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/||INFO_UI - Back To Evidence Main Menu"
   },
   "FFr_4DBDFD53.Text": {
     "": {
       "Text": "Back to the evidence UI main menu"
     },
-    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Back To Evidence Main Menu"
-  },
-  "FFr_9E64AF40.DisplayName": {
-    "": {
-      "Text": "||INFO_UI - Back To Evidence Main Menu"
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Back To Evidence Main Menu"
-  },
-  "FFr_9E64AF40.Text": {
-    "": {
-      "Text": "Back to the evidence UI main menu"
-    },
-    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Back To Evidence Main Menu"
-  },
-  "FFr_456844EC.DisplayName": {
-    "": {
-      "Text": "||INFO_UI - Game Over Screen"
-    },
-    "Context": "Flow/Liza Statements/||INFO_UI - Game Over Screen"
-  },
-  "FFr_456844EC.Text": {
-    "": {
-      "Text": "Game over screen with scores"
-    },
-    "Context": "Flow/Liza Statements/||INFO_UI - Game Over Screen"
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/||INFO_UI - Back To Evidence Main Menu"
   },
   "FFr_0EB160F7.DisplayName": {
     "": {
@@ -319,7 +439,7 @@
   },
   "FFr_0EB160F7.Text": {
     "": {
-      "Text": "UI screen where user can view virtual re-creation of locations of note for further investigation."
+      "Text": "UI screen where user can view virtual re-creations of noteworthy locations for further investigation."
     },
     "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Holodeck UI"
   },
@@ -334,6 +454,150 @@
       "Text": "Details on informational screen the helps track progress"
     },
     "Context": "Flow/Template Nodes/||INFOUI - (Module Name)"
+  },
+  "FFr_A7C65D5E.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Daria's Office Evidence"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Daria's Office Evidence"
+  },
+  "FFr_A7C65D5E.Text": {
+    "": {
+      "Text": "The collection of evidence available from Daria's Office."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Daria's Office Evidence"
+  },
+  "FFr_AC65DB97.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Back To Evidence Main Menu"
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
+  "FFr_AC65DB97.Text": {
+    "": {
+      "Text": "Back to the evidence UI main menu"
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
+  "FFr_C3209F83.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Alex's Apartment Evidence"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Alex's Apartment Evidence"
+  },
+  "FFr_C3209F83.Text": {
+    "": {
+      "Text": "The collection of evidence available from Alex Apartment."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Alex's Apartment Evidence"
+  },
+  "FFr_CCDE3F98.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Leo's Townhome Evidence"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Leo's Townhome Evidence"
+  },
+  "FFr_CCDE3F98.Text": {
+    "": {
+      "Text": "The collection of evidence available from Leo's Townhome."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||INFO_UI - Leo's Townhome Evidence"
+  },
+  "FFr_7AF438EF.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Back To Evidence Main Menu"
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
+  "FFr_7AF438EF.Text": {
+    "": {
+      "Text": "Back to the evidence UI main menu"
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
+  "FFr_6DD7AAFB.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Back To Evidence Main Menu"
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
+  "FFr_6DD7AAFB.Text": {
+    "": {
+      "Text": "Back to the evidence UI main menu"
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/||INFO_UI - Back To Evidence Main Menu"
+  },
+  "FFr_8EEDE60B.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Return To Location Selection"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||INFO_UI - Return To Location Selection"
+  },
+  "FFr_8EEDE60B.Text": {
+    "": {
+      "Text": "Return to the screen to select a different location to investigate."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||INFO_UI - Return To Location Selection"
+  },
+  "FFr_864B5E19.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Return To Location Selection"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||INFO_UI - Return To Location Selection"
+  },
+  "FFr_864B5E19.Text": {
+    "": {
+      "Text": "Return to the screen to select a different location to investigate."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||INFO_UI - Return To Location Selection"
+  },
+  "FFr_A7945F90.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Liza Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_A7945F90.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Liza Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_E60197DD.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Daria Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_E60197DD.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Daria Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_CCEF6647.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Alex Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_CCEF6647.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Alex Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_8933A359.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Leo Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_8933A359.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Leo Statements/||INFO_UI - Murder Board"
   },
   "FFr_021CD272.DisplayName": {
     "": {
@@ -527,6 +791,66 @@
     },
     "Context": "Flow/Template Nodes/||ACTION - Flow"
   },
+  "FFr_BDF8F607.DisplayName": {
+    "": {
+      "Text": "||ACTION - Get Wintergreen Paperwork"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Wintergreen Paperwork"
+  },
+  "FFr_BDF8F607.Text": {
+    "": {
+      "Text": "A series of legal documents."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Wintergreen Paperwork"
+  },
+  "FFr_DB68309C.DisplayName": {
+    "": {
+      "Text": "||ACTION - Security Camera Panel"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Security Camera Panel"
+  },
+  "FFr_DB68309C.Text": {
+    "": {
+      "Text": "A security cam monitor similar to the one found in Victor's apartment is on the wall by the door."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Security Camera Panel"
+  },
+  "FFr_2972831B.DisplayName": {
+    "": {
+      "Text": "||ACTION - Photograph"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Photograph"
+  },
+  "FFr_2972831B.Text": {
+    "": {
+      "Text": "A photograph of Alex and two other men is laying on the desk."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Photograph"
+  },
+  "FFr_43C8F4E8.DisplayName": {
+    "": {
+      "Text": "||ACTION - Get Passport"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Passport"
+  },
+  "FFr_43C8F4E8.Text": {
+    "": {
+      "Text": "A passport."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Passport"
+  },
+  "FFr_283AB94A.DisplayName": {
+    "": {
+      "Text": "||ACTION - Get NBI CI Agreement"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get NBI CI Agreement"
+  },
+  "FFr_283AB94A.Text": {
+    "": {
+      "Text": "A binding contract of some kind."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get NBI CI Agreement"
+  },
   "FFr_47EB4E72.DisplayName": {
     "": {
       "Text": "||TRAVEL - View Murder Board"
@@ -634,6 +958,78 @@
       "Text": "Use a Travel Flow if you need to group several actions, otherwise use a Travel Instruction."
     },
     "Context": "Flow/Template Nodes/||TRAVEL - Flow"
+  },
+  "FFr_7B4B6429.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Murder Board"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||TRAVEL - View Murder Board"
+  },
+  "FFr_7B4B6429.Text": {
+    "": {
+      "Text": "Move to the Murder Board screen where you can view the most up to date info on your suspects."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||TRAVEL - View Murder Board"
+  },
+  "FFr_91C7229A.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Evidence List Kiosk"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_91C7229A.Text": {
+    "": {
+      "Text": "Move to the kiosk where you can look over the evidence you've uncovered and details associated with them."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_A084BBFD.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Murder Board"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||TRAVEL - View Murder Board"
+  },
+  "FFr_A084BBFD.Text": {
+    "": {
+      "Text": "Move to the Murder Board screen where you can view the most up to date info on your suspects."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||TRAVEL - View Murder Board"
+  },
+  "FFr_BEB868F0.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Evidence List Kiosk"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_BEB868F0.Text": {
+    "": {
+      "Text": "Move to the kiosk where you can look over the evidence you've uncovered and details associated with them."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_180EFA03.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Evidence List Kiosk"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_180EFA03.Text": {
+    "": {
+      "Text": "Move to the kiosk where you can look over the evidence you've uncovered and details associated with them."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Evidence List Kiosk"
+  },
+  "FFr_67A1C545.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - View Murder Board"
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Murder Board"
+  },
+  "FFr_67A1C545.Text": {
+    "": {
+      "Text": "Move to the Murder Board screen where you can view the most up to date info on your suspects."
+    },
+    "Context": "Flow/Dynaimic Node Data Test/||TRAVEL - View Murder Board"
   },
   "FFr_394DA921.DisplayName": {
     "": {
@@ -871,7 +1267,7 @@
   },
   "DFr_7CF8BF59.Text": {
     "": {
-      "Text": "This panel is connected to a security cam feed outside the the door of the Victor's studio. It looks like it's capable of recording video. \r\n\r\nUse the Video Forensic Module to pull the videos off the device."
+      "Text": "This panel is connected to a security cam feed outside the the door of the Victor's studio. It looks like it's capable of recording video. \r\n\r\nUse the WPA Analysis to crack the passcode to the admin screen and download the videos for further investigation."
     },
     "Context": "Flow/||LOCATION - Crime Scene/Detective Siri/Alexa: \"This panel is connected to a securi...\""
   },
@@ -881,29 +1277,35 @@
     },
     "Context": "Flow/||LOCATION - Crime Scene/Detective Siri/Alexa: \"You've found a Tiki Mug with a fing...\""
   },
-  "DFr_4D7D11CD.Text": {
+  "DFr_33E4FE02.Text": {
     "": {
-      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint detected, needs analysis."
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
     },
-    "Context": "Flow/Dynaimic Node Data Test/Photo of Daria and Alex: \"A photo of Daria and Alex clearly m...\""
+    "Context": "Flow/||LOCATION - Crime Scene/Detective Siri/Alexa: \"You've uncovered all the possible e...\""
   },
-  "DFr_0985DFC6.Text": {
+  "DFr_519E50F6.Text": {
     "": {
-      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nThis evidence cannot be processed further."
+      "Text": "Several video clips with various dates pulled from the ring cam outside Victor's door. \r\n\r\nOne of the clips shows Leo desperately trying to crack the code to open the door, eventually giving up and leaving. The time stamp on the clip is X days before the murder.\r\n\r\nThis evidence cannot be processed further."
     },
-    "Context": "Flow/Dynaimic Node Data Test/Autopsy Report: \"Gives injected heroin as cause of d...\""
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Victor Ring Cam: \"Several video clips with various da...\""
   },
-  "DFr_BB7750C2.Text": {
+  "DFr_2099277F.Text": {
     "": {
-      "Text": "A series of legal documents from Victor's attorney with notes and markups detailing changes to Victor's will.\r\n\r\nThis evidence can be summarized with Document Analytics."
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nRevised autopsy report indicates the heavy presence of the drug Etomidate, known on the street as Space Oil, in the victims body. The drug acts as a powerful sedative.\r\n\r\nThis evidence cannot be processed further."
     },
-    "Context": "Flow/Dynaimic Node Data Test/Updated Will: \"A series of legal documents from Vi...\""
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_8A4EB5D3.Text": {
+    "": {
+      "Text": "Several video clips with various dates pulled from the ring cam outside Victor's door. There is extensive footage that needs to be scrubbed to find anything of note."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Victor Ring Cam: \"Several video clips with various da...\""
   },
   "DFr_2F7B7C50.Text": {
     "": {
       "Text": "A last will and testament showing that Victor had distributed his estate as follows:\r\n\r\n50% to Daria\r\n\r\n25% to Alex\r\n\r\n25% to Leo\r\n\r\nThis evidence cannot be processed further."
     },
-    "Context": "Flow/Dynaimic Node Data Test/Original Will: \"A last will and testament showing t...\""
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/Original Will: \"A last will and testament showing t...\""
   },
   "DFr_8527DCB9.Text": {
     "": {
@@ -919,9 +1321,9 @@
   },
   "DFr_0DD10AB4.Text": {
     "": {
-      "Text": "Attempt to contradict Liza?"
+      "Text": "Attempt to contradict Liza"
     },
-    "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Attempt to contradict Liza?\""
+    "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Attempt to contradict Liza\""
   },
   "DFr_E1FDF29A.Text": {
     "": {
@@ -995,11 +1397,23 @@
     },
     "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Congratulations! You've cracked you...\""
   },
-  "DFr_BA66ABFE.Text": {
+  "DFr_6496D864.Text": {
     "": {
-      "Text": "A document showing from a DNA testing lab with detailed scientific results of a paternity test. \r\n\r\nThis evidence can be summarized with document analytics."
+      "Text": "Accuse Liza of murder"
     },
-    "Context": "Flow/Dynaimic Node Data Test/Paternity Test: \"A document showing from a DNA testi...\""
+    "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Accuse Liza of murder\""
+  },
+  "DFr_BDCA888D.Text": {
+    "": {
+      "Text": "Incorrect! Liza did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+    },
+    "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Incorrect! Liza did not murder Vict...\""
+  },
+  "DFr_E97B6A59.Text": {
+    "": {
+      "Text": "A tiki glass that looks like it's been used recently. \r\n\r\nContains a fingerprint belonging to Alex.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Tiki Mug: \"A tiki glass that looks like it's b...\""
   },
   "DFr_3A29262A.Text": {
     "": {
@@ -1027,9 +1441,9 @@
   },
   "DFr_0CE3995E.Text": {
     "": {
-      "Text": "Attempt to contradict Daria?"
+      "Text": "Attempt to contradict Daria"
     },
-    "Context": "Flow/Daria Statements/Detective Siri/Alexa: \"Attempt to contradict Daria?\""
+    "Context": "Flow/Daria Statements/Detective Siri/Alexa: \"Attempt to contradict Daria\""
   },
   "DFr_7755B6A5.Text": {
     "": {
@@ -1103,6 +1517,18 @@
     },
     "Context": "Flow/Daria Statements/Daria: \"Daria is unaffected by the new will...\""
   },
+  "DFr_4AB985AC.Text": {
+    "": {
+      "Text": "Accuse Daria of murder"
+    },
+    "Context": "Flow/Daria Statements/Detective Siri/Alexa: \"Accuse Daria of murder\""
+  },
+  "DFr_850304E4.Text": {
+    "": {
+      "Text": "Incorrect! Daria did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+    },
+    "Context": "Flow/Daria Statements/Detective Siri/Alexa: \"Incorrect! Daria did not murder Vic...\""
+  },
   "DFr_8CB9502E.Text": {
     "": {
       "Text": "I have reformed from my troubled ways.\r\n\r\nLeo is doing well and is not in any trouble.\r\n\r\nVictor often took care of me financially.\r\n\r\nI didn’t know he had a love nest."
@@ -1129,9 +1555,9 @@
   },
   "DFr_DEF93694.Text": {
     "": {
-      "Text": "Attempt to contradict Alex?"
+      "Text": "Attempt to contradict Alex"
     },
-    "Context": "Flow/Alex Statements/Detective Siri/Alexa: \"Attempt to contradict Alex?\""
+    "Context": "Flow/Alex Statements/Detective Siri/Alexa: \"Attempt to contradict Alex\""
   },
   "DFr_C17046DC.Text": {
     "": {
@@ -1199,11 +1625,23 @@
     },
     "Context": "Flow/Alex Statements/Alex: \"Alex is having a profitable affair...\""
   },
+  "DFr_7A93115A.Text": {
+    "": {
+      "Text": "Accuse Alex of murder"
+    },
+    "Context": "Flow/Alex Statements/Detective Siri/Alexa: \"Accuse Alex of murder\""
+  },
+  "DFr_122A2D55.Text": {
+    "": {
+      "Text": "Correct! Alex did murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+    },
+    "Context": "Flow/Alex Statements/Detective Siri/Alexa: \"Correct! Alex did murder Victor....\""
+  },
   "DFr_6C2679B3.Text": {
     "": {
-      "Text": "I have reformed from my troubled ways.\r\n\r\nLeo is doing well and is not in any trouble.\r\n\r\nVictor often took care of me financially.\r\n\r\nI didn’t know he had a love nest."
+      "Text": "I am his former business partner and we parted ways on good terms.\r\n\r\nI hoped Victor would support Liza.\r\n\r\nAlex is on the straight and narrow.\r\n\r\nI didn’t know he had a love nest."
     },
-    "Context": "Flow/Leo Statements/Leo: \"I have reformed from my troubled wa...\""
+    "Context": "Flow/Leo Statements/Leo: \"I am his former business partner an...\""
   },
   "DFr_AE778612.Text": {
     "": {
@@ -1225,15 +1663,15 @@
   },
   "DFr_062D14EB.Text": {
     "": {
-      "Text": "Attempt to contradict Leo?"
+      "Text": "Attempt to contradict Leo"
     },
-    "Context": "Flow/Leo Statements/Detective Siri/Alexa: \"Attempt to contradict Leo?\""
+    "Context": "Flow/Leo Statements/Detective Siri/Alexa: \"Attempt to contradict Leo\""
   },
-  "DFr_E1AF1727.Text": {
+  "DFr_FD989F15.Text": {
     "": {
-      "Text": "I have reformed from my troubled ways.\r\n\r\nLeo is doing well and is not in any trouble.\r\n\r\nVictor often took care of me financially.\r\n\r\nI didn’t know he had a love nest."
+      "Text": "Based on the evidence you've currently analyzed, you might have enough evidence to contradict Liza's statement. Visit the Murder Board and see if she cracks."
     },
-    "Context": "Flow/Leo Statements/Leo: \"I have reformed from my troubled wa...\""
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Detective Siri/Alexa: \"Based on the evidence you've curren...\""
   },
   "DFr_998D671D.Text": {
     "": {
@@ -1283,53 +1721,65 @@
     },
     "Context": "Flow/Leo Statements/Leo: \"Leo has access to etomidate through...\""
   },
-  "DFr_D81337AB.Text": {
+  "DFr_DA36430A.Text": {
     "": {
-      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene.\r\n\r\nThis evidence cannot be processed further."
+      "Text": "Accuse Leo of murder"
     },
-    "Context": "Flow/Dynaimic Node Data Test/Photo of Daria and Alex: \"A photo of Daria and Alex clearly m...\""
+    "Context": "Flow/Leo Statements/Detective Siri/Alexa: \"Accuse Leo of murder\""
   },
-  "DFr_6905ECFD.Text": {
+  "DFr_BE3380DA.Text": {
     "": {
-      "Text": "The paternity test details the results of a paternity test between Victor and Liza's child. The test results are negative, proving that Victor is not the father. \r\n\r\nThis evidence cannot be processed further."
+      "Text": "Incorrect! Leo did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
     },
-    "Context": "Flow/Dynaimic Node Data Test/Paternity Test: \"The paternity test details the resu...\""
-  },
-  "DFr_D9D5B88D.Text": {
-    "": {
-      "Text": "A draft of a new will put together by Victor's attorney, showing revised estate distribution:\r\n\r\n0% to Daria\r\n\r\n0% to Alex\r\n\r\n0% to Leo\r\n\r\nThis evidence cannot be processed further."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/Updated Will: \"A draft of a new will put together...\""
-  },
-  "DFr_2099277F.Text": {
-    "": {
-      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nRevised autopsy report indicates the presence of the drug Etomidate, known on the street as Space Oil, in the victims body. The drug acts as a powerful sedative.\r\n\r\nThis evidence cannot be processed further without cause for a new report."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/Autopsy Report: \"Gives injected heroin as cause of d...\""
+    "Context": "Flow/Leo Statements/Detective Siri/Alexa: \"Incorrect! Leo did not murder Victo...\""
   },
   "DFr_503135B0.Text": {
     "": {
       "Text": "A tiki glass that looks like it's been used recently. \r\n\r\nInitial scan detects a fingerprint."
     },
-    "Context": "Flow/Dynaimic Node Data Test/Tiki Mug: \"A tiki glass that looks like it's b...\""
-  },
-  "DFr_E97B6A59.Text": {
-    "": {
-      "Text": "A tiki glass that looks like it's been used recently. \r\n\r\nContains a fingerprint belonging to Alex.\r\n\r\nThis evidence cannot be processed further."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/Tiki Mug: \"A tiki glass that looks like it's b...\""
-  },
-  "DFr_EE9C005D.Text": {
-    "": {
-      "Text": "A handful of receipts that show purchases made by the victim in the recent weeks."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/Trashed Receipt: \"A handful of receipts that show pur...\""
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Tiki Mug: \"A tiki glass that looks like it's b...\""
   },
   "DFr_3D8D6500.Text": {
     "": {
       "Text": "A handful of receipts that show purchases made by the victim in the recent weeks.\r\n\r\nOne receipt shows that the Tiki Mug in office was purchased a day before the victim's time of death.\r\n\r\nThis evidence cannot be processed further."
     },
-    "Context": "Flow/Dynaimic Node Data Test/Trashed Receipt: \"A handful of receipts that show pur...\""
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Trashed Receipt: \"A handful of receipts that show pur...\""
+  },
+  "DFr_EE9C005D.Text": {
+    "": {
+      "Text": "A handful of receipts that show purchases made by the victim in the recent weeks."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Trashed Receipt: \"A handful of receipts that show pur...\""
+  },
+  "DFr_0985DFC6.Text": {
+    "": {
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nThis evidence cannot be processed further at this time."
+    },
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_D81337AB.Text": {
+    "": {
+      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Photo of Daria and Alex: \"A photo of Daria and Alex clearly m...\""
+  },
+  "DFr_BA66ABFE.Text": {
+    "": {
+      "Text": "A document showing from a DNA testing lab with detailed scientific results of a paternity test. \r\n\r\nThis evidence can be summarized with document analytics."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Paternity Test: \"A document showing from a DNA testi...\""
+  },
+  "DFr_D9D5B88D.Text": {
+    "": {
+      "Text": "A draft of a new will put together by Victor's attorney, showing revised estate distribution:\r\n\r\n0% to Daria\r\n\r\n0% to Alex\r\n\r\n0% to Leo\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Updated Will: \"A draft of a new will put together...\""
+  },
+  "DFr_6905ECFD.Text": {
+    "": {
+      "Text": "The paternity test details the results of a paternity test between Victor and Liza's child. The test results are negative, proving that Victor is not the father. \r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Paternity Test: \"The paternity test details the resu...\""
   },
   "DFr_F7BF04BD.Text": {
     "": {
@@ -1355,65 +1805,23 @@
     },
     "Context": "Flow/||LOCATION - Daria's Home Office/Detective Siri/Alexa: \"You recognize this as the same vape...\""
   },
-  "DFr_7A93115A.Text": {
+  "DFr_93351040.Text": {
     "": {
-      "Text": "Accuse Alex of murder"
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
     },
-    "Context": "Flow/Alex Statements/Detective Siri/Alexa: \"Accuse Alex of murder\""
+    "Context": "Flow/||LOCATION - Daria's Home Office/Detective Siri/Alexa: \"You've uncovered all the possible e...\""
   },
-  "DFr_122A2D55.Text": {
+  "DFr_BB7750C2.Text": {
     "": {
-      "Text": "Correct! Alex did murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+      "Text": "A series of legal documents from Victor's attorney with notes and markups detailing changes to Victor's will.\r\n\r\nThis evidence can be summarized with Document Analytics."
     },
-    "Context": "Flow/Alex Statements/Detective Siri/Alexa: \"Correct! Alex did murder Victor....\""
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Updated Will: \"A series of legal documents from Vi...\""
   },
-  "DFr_4AB985AC.Text": {
+  "DFr_4D7D11CD.Text": {
     "": {
-      "Text": "Accuse Daria of murder"
+      "Text": "A photo of Daria and Alex clearly making out/kissing in the background crowd of a social event. \r\n\r\nFingerprint detected, needs analysis."
     },
-    "Context": "Flow/Daria Statements/Detective Siri/Alexa: \"Accuse Daria of murder\""
-  },
-  "DFr_850304E4.Text": {
-    "": {
-      "Text": "Incorrect! Daria did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
-    },
-    "Context": "Flow/Daria Statements/Detective Siri/Alexa: \"Incorrect! Daria did not murder Vic...\""
-  },
-  "DFr_BDCA888D.Text": {
-    "": {
-      "Text": "Incorrect! Liza did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
-    },
-    "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Incorrect! Liza did not murder Vict...\""
-  },
-  "DFr_6496D864.Text": {
-    "": {
-      "Text": "Accuse Liza of murder"
-    },
-    "Context": "Flow/Liza Statements/Detective Siri/Alexa: \"Accuse Liza of murder\""
-  },
-  "DFr_AF79DAE6.Text": {
-    "": {
-      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
-    },
-    "Context": "Flow/||LOCATION - Daria's Home Office/Detective Siri/Alexa: \"You've found all the evidence in th...\""
-  },
-  "DFr_34CC60DA.Text": {
-    "": {
-      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
-    },
-    "Context": "Flow/||LOCATION - Crime Scene/Detective Siri/Alexa: \"You've found all the evidence in th...\""
-  },
-  "DFr_8A4EB5D3.Text": {
-    "": {
-      "Text": "Several video clips with various dates pulled from the ring cam outside Victor's door. There is extensive footage that needs to be scrubbed to find anything of note."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/Victor Ring Cam: \"Several video clips with various da...\""
-  },
-  "DFr_519E50F6.Text": {
-    "": {
-      "Text": "Several video clips with various dates pulled from the ring cam outside Victor's door. \r\n\r\nOne of the clips shows Leo desperately trying to crack the code to open the door, eventually giving up and leaving. The time stamp on the clip is X days before the murder.\r\n\r\nThis evidence cannot be processed further."
-    },
-    "Context": "Flow/Dynaimic Node Data Test/Victor Ring Cam: \"Several video clips with various da...\""
+    "Context": "Flow/||INFO_UI - Crime Scene Evidence/Photo of Daria and Alex: \"A photo of Daria and Alex clearly m...\""
   },
   "DFr_24A7B6F7.Text": {
     "": {
@@ -1547,17 +1955,185 @@
     },
     "Context": "Flow/Template Nodes/...: \"The quick brown fox jumped over the...\""
   },
-  "DFr_BE3380DA.Text": {
+  "DFr_23009926.Text": {
     "": {
-      "Text": "Incorrect! Leo did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+      "Text": "A lawyer's letter, over a dozen pages in length, full of markup and notes."
     },
-    "Context": "Flow/Leo Statements/Detective Siri/Alexa: \"Incorrect! Leo did not murder Victo...\""
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/Lawyer Letter: \"A lawyer's letter, over a dozen pag...\""
   },
-  "DFr_DA36430A.Text": {
+  "DFr_5F207618.Text": {
     "": {
-      "Text": "Accuse Leo of murder"
+      "Text": "A lawyer's letter, over a dozen pages in length, full of markup and notes.\r\n\r\nThe letter details the legal fact that since they are married, Daria is entitled to 50% of Victor's estate, no matter legal tricks he throws at her, so her access to his money is secure.\r\n\r\nThis evidence cannot be processed further."
     },
-    "Context": "Flow/Leo Statements/Detective Siri/Alexa: \"Accuse Leo of murder\""
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/Lawyer Letter: \"A lawyer's letter, over a dozen pag...\""
+  },
+  "DFr_707A19B5.Text": {
+    "": {
+      "Text": "A printout of Daria's personal checking and savings account, showing large amounts of money moving around."
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/Bank Statement: \"A printout of Daria's personal chec...\""
+  },
+  "DFr_0D0E7F3B.Text": {
+    "": {
+      "Text": "A printout of Daria's personal checking and savings account, showing large amounts of money moving around.\r\n\r\nSeveral large payments were made to a organization called Wintergreen, which has no useful info online about it's ownership and board members.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/Bank Statement: \"A printout of Daria's personal chec...\""
+  },
+  "DFr_507C77BF.Text": {
+    "": {
+      "Text": "A sleek, modern vape pen used to inhale a variety of narcotics and drugs. \r\n\r\nInitial scan detects a fingerprint."
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/Vape: \"A sleek, modern vape pen used to in...\""
+  },
+  "DFr_6F74304A.Text": {
+    "": {
+      "Text": "A sleek, modern vape pen used to inhale a variety of narcotics and drugs. \r\n\r\nContains a fingerprint belonging to Alex.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Daria's Office Evidence/Vape: \"A sleek, modern vape pen used to in...\""
+  },
+  "DFr_2C67FA01.Text": {
+    "": {
+      "Text": "A legal document detailing the terms of being a confidential informant for the NBI.\r\n\r\nThis document details strict terms for a CI  to avoid prosecution by helping the NBI bust a drug ring involved selling in a new party drug called Space Oil, also known as Etomidate. Leo's signature is on multiple pages, proving he is a CI.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/NBI CI Agreement: \"A legal document detailing the term...\""
+  },
+  "DFr_2814ED51.Text": {
+    "": {
+      "Text": "A legal document detailing the terms of being a confidential informant for the NBI."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/NBI CI Agreement: \"A legal document detailing the term...\""
+  },
+  "DFr_EE297F7E.Text": {
+    "": {
+      "Text": "A passport found in Leo's Townhome with dozens of international trips recorded.\r\n\r\nLeo had taken several trips abroad to Hong Kong, the most recent trip being less than five months ago. \r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/Leo Passport: \"A passport found in Leo's Townhome...\""
+  },
+  "DFr_DD5FB96D.Text": {
+    "": {
+      "Text": "A passport found in Leo's Townhome with dozens of international trips recorded."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/Leo Passport: \"A passport found in Leo's Townhome...\""
+  },
+  "DFr_5FE257A2.Text": {
+    "": {
+      "Text": "Etomidate is a powerful sedative, capable of rendering a person unconscious. Also, it does not show up on most drug tests unless the lab is specifically looking for it. It might be worth revisiting the original autopsy report in the Evidence Kiosk and ordering a second report to see if the drug turns up."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/Detective Siri/Alexa: \"Etomidate is a powerful sedative, c...\""
+  },
+  "DFr_AE483108.Text": {
+    "": {
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nGiven the discovery of Leo's involvement with Etomidate, another Autopsy should be ordered."
+    },
+    "Context": "Flow/||INFO_UI - Initial Evidence Group/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_07968C7F.Text": {
+    "": {
+      "Text": "Articles of incorporation for an organization called Wintergreen LLC.\r\n\r\nLeo's signature is on several pages showing that he is a sole proprietor of the organization, giving him 100% ownership of the company.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/Wintergreen Paperwork: \"Articles of incorporation for an or...\""
+  },
+  "DFr_E0BDA2E8.Text": {
+    "": {
+      "Text": "Articles of incorporation for an organization called Wintergreen LLC."
+    },
+    "Context": "Flow/||INFO_UI - Leo's Townhome Evidence/Wintergreen Paperwork: \"Articles of incorporation for an or...\""
+  },
+  "DFr_3631158F.Text": {
+    "": {
+      "Text": "Dozens of video clips from Alex's Ring cam that span days of footage.\r\n\r\nFacial recognition software finds a clip of Victor banging on Alex's door, lambasting him for his betrayal of sleeping \"with her\". Alex never answers the door. He tells Alex to come apologize in person at Victor's apartment whenever he grows a spine, then leaves the area.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/Alex Ring Cam: \"Dozens of video clips from Alex's R...\""
+  },
+  "DFr_A3346C0E.Text": {
+    "": {
+      "Text": "Dozens of video clips from Alex's Ring cam that span days of footage."
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/Alex Ring Cam: \"Dozens of video clips from Alex's R...\""
+  },
+  "DFr_51DF8B25.Text": {
+    "": {
+      "Text": "A photo of Leo, Alex, and an unidentified individual, with several Hong Kong locations in the background. All three men are holding vape pens."
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/Picture of Leo and Alex: \"A photo of Leo, Alex, and an uniden...\""
+  },
+  "DFr_65F044E9.Text": {
+    "": {
+      "Text": "A photo of Leo, Alex, and an unidentified individual, with several Hong Kong locations in the background. All three men are holding vape pens.\r\n\r\nPhoto analysis shows the unidentified man to be a suspected drug lord, rumored to be heavily involved in trafficking a popular party drug called Space Oil, also known as Etomidate.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/Picture of Leo and Alex: \"A photo of Leo, Alex, and an uniden...\""
+  },
+  "DFr_E91E89DE.Text": {
+    "": {
+      "Text": "A photo of Leo, Alex, and an unidentified individual, with several Hong Kong locations in the background. \r\n\r\nPhoto analysis shows the unidentified man to be a suspected drug lord in the Hong Kong area, rumored to be heavily involved in trafficking a popular party drug called Space Oil, also known as Etomidate.\r\n\r\nThe vape pens in the photo match the make of the one found in Daria's office.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||INFO_UI - Alex's Apartment Evidence/Picture of Leo and Alex: \"A photo of Leo, Alex, and an uniden...\""
+  },
+  "DFr_650246CD.Text": {
+    "": {
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Detective Siri/Alexa: \"You've uncovered all the possible e...\""
+  },
+  "DFr_AB84B955.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Detective Siri/Alexa: \"You've found all the evidence in th...\""
+  },
+  "DFr_01812BED.Text": {
+    "": {
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Detective Siri/Alexa: \"You've uncovered all the possible e...\""
+  },
+  "DFr_2106BF41.Text": {
+    "": {
+      "Text": "The menu on the screen indicates there are dozens of video clips from the past several weeks stored on the panel. \r\n\r\nUse the WPA Analysis to crack the passcode to the admin screen and download the videos for further investigation."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Detective Siri/Alexa: \"The menu on the screen indicates th...\""
+  },
+  "DFr_68A599F2.Text": {
+    "": {
+      "Text": "You've found a photo of Alex, Leo, and an unidentified third man in a location with landmarks that appear to be Chinese."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Detective Siri/Alexa: \"You've found a photo of Alex, Leo,...\""
+  },
+  "DFr_D9998FE6.Text": {
+    "": {
+      "Text": "You've discovered documents that appear to be articles of incorporation for a company called Wintergreen LLC."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Detective Siri/Alexa: \"You've discovered documents that ap...\""
+  },
+  "DFr_D523B623.Text": {
+    "": {
+      "Text": "You've found a passport with several international trips marked inside."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Detective Siri/Alexa: \"You've found a passport with severa...\""
+  },
+  "DFr_135C498F.Text": {
+    "": {
+      "Text": "You've found a contract with footer and header information suggesting it originated from the NBI."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Detective Siri/Alexa: \"You've found a contract with footer...\""
+  },
+  "DFr_85DF3688.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Detective Siri/Alexa: \"You've found all the evidence in th...\""
+  },
+  "DFr_A5C91C3C.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/Detective Siri/Alexa: \"You've found all the evidence in th...\""
+  },
+  "DFr_9BFA85F0.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/Detective Siri/Alexa: \"You've found all the evidence in th...\""
   },
   "DFr_1576B9E6.Text": {
     "": {
