@@ -2,9 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: '/articy/v4.1/', // Add this line - customize for your deployment path
+  base: command === 'build' ? '/articy/v4.1/' : '/', // Only use base path for production builds
   server: {
     port: 3000,
     open: true
@@ -18,4 +18,4 @@ export default defineConfig({
       '@': '/src'
     }
   }
-})
+}))
