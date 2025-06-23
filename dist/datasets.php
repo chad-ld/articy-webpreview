@@ -89,7 +89,13 @@ try {
                                 } elseif (isset($manifest['Project']['Description'])) {
                                     $description = $manifest['Project']['Description'];
                                 }
-                                
+
+                                // Try to find and extract subtitle from HTMLPREVIEW node
+                                $subtitle = findHtmlPreviewSubtitle($itemPath);
+                                if ($subtitle) {
+                                    $displayName = $displayName . ' - ' . $subtitle;
+                                }
+
                                 // Add to datasets array
                                 $response['datasets'][] = [
                                     'name' => $datasetName,
@@ -174,5 +180,66 @@ try {
             'timestamp' => date('Y-m-d H:i:s')
         ]
     ], JSON_PRETTY_PRINT);
+}
+
+/**
+ * Find and extract subtitle from HTMLPREVIEW node in a 4.x dataset
+ * @param string $datasetPath Path to the dataset folder
+ * @return string|null The subtitle text or null if not found
+ */
+function findHtmlPreviewSubtitle($datasetPath) {
+    // Look for the objects file that contains the node data
+    $objectsFile = $datasetPath . '/package_010000060000401C_objects.json';
+
+    if (!file_exists($objectsFile)) {
+        return null;
+    }
+
+    try {
+        $objectsContent = file_get_contents($objectsFile);
+        if ($objectsContent === false) {
+            return null;
+        }
+
+        $objectsData = json_decode($objectsContent, true);
+        if ($objectsData === null || !isset($objectsData['Models'])) {
+            return null;
+        }
+
+        // Search through all models for HTMLPREVIEW marker
+        foreach ($objectsData['Models'] as $model) {
+            if (!isset($model['Properties'])) {
+                continue;
+            }
+
+            $properties = $model['Properties'];
+            $textContent = '';
+
+            // Check both Text and Expression properties for HTMLPREVIEW marker
+            if (isset($properties['Text']) && strpos($properties['Text'], 'HTMLPREVIEW') !== false) {
+                $textContent = $properties['Text'];
+            } elseif (isset($properties['Expression']) && strpos($properties['Expression'], 'HTMLPREVIEW') !== false) {
+                $textContent = $properties['Expression'];
+            }
+
+            if ($textContent) {
+                // Extract subtitle from "Project Sub Name:" line
+                $lines = explode("\n", $textContent);
+                foreach ($lines as $line) {
+                    $line = trim($line);
+                    if (strpos($line, '//Project Sub Name:') === 0) {
+                        $subtitle = trim(substr($line, strlen('//Project Sub Name:')));
+                        if ($subtitle) {
+                            return $subtitle;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
+    } catch (Exception $e) {
+        return null;
+    }
 }
 ?>

@@ -139,13 +139,8 @@ class HybridDatasetDetector {
       .map(dataset => ({
         name: dataset.name,
         folder: dataset.folder,
-        file: dataset.file,
         displayName: dataset.displayName,
-        description: dataset.description || `${dataset.name} dataset`,
-        lastModified: dataset.lastModified,
-        lastModifiedFormatted: dataset.lastModifiedFormatted,
-        articyVersion: dataset.articyVersion,
-        format: dataset.format
+        description: dataset.description || `${dataset.name} dataset`
       }));
 
     if (this.debugMode) {
@@ -266,123 +261,33 @@ class HybridDatasetDetector {
     const datasets = [];
 
     if (this.debugMode) {
-      console.log('🔄 Using fallback detection with predefined dataset names (limited browser capability)');
+      console.log('🔄 Using fallback detection with predefined dataset names');
     }
 
-    // Use comprehensive list like the legacy detection method
-    const comprehensiveDatasets = [
-      // Common names
-      'mpos', 'demo', 'demo4', 'demo3old', 'test', 'latest', 'current', 'main',
-      // Project names
-      'project-alpha', 'project-beta', 'project-gamma', 'project-delta',
-      // Environment names
-      'dev', 'staging', 'prod', 'qa', 'development', 'production',
-      // Version names
-      'v1', 'v2', 'v3', 'v4', 'v5',
-      // Date-based (current year)
-      '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06',
-      '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12',
-      '2025-01', '2025-02', '2025-03', '2025-04', '2025-05', '2025-06',
-      '2025-07', '2025-08', '2025-09', '2025-10', '2025-11', '2025-12',
-      // Common project names
-      'sample', 'example', 'tutorial', 'guide', 'template',
-      // Game-specific
-      'chapter1', 'chapter2', 'chapter3', 'prologue', 'epilogue',
-      'act1', 'act2', 'act3', 'scene1', 'scene2'
-    ];
-
-    for (const name of comprehensiveDatasets) {
+    for (const name of config.fallbackDatasets) {
       try {
-        // Try 4.x format first (folder with manifest)
+        // Test if manifest.json exists in the dataset folder
         const response = await fetch(`./${name}.json/manifest.json`);
         if (response.ok) {
           const manifest = await response.json();
 
-          const articyVersion = manifest.Settings?.ExportVersion ?
-                               `4.x v${manifest.Settings.ExportVersion}` : '4.x';
+          let displayName = manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
 
-          // Try to get last modified timestamp from HTTP headers
-          let lastModified = null;
-          let lastModifiedFormatted = null;
-          const lastModifiedHeader = response.headers.get('Last-Modified');
-          if (lastModifiedHeader) {
-            const date = new Date(lastModifiedHeader);
-            if (!isNaN(date.getTime())) {
-              lastModified = Math.floor(date.getTime() / 1000);
-              lastModifiedFormatted = date.toLocaleString('en-US', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-              });
-            }
+          // Try to find and extract subtitle from HTMLPREVIEW node
+          const subtitle = await this.findHtmlPreviewSubtitle(name);
+          if (subtitle) {
+            displayName = displayName + ' - ' + subtitle;
           }
 
           datasets.push({
             name,
             folder: `${name}.json`,
-            displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-            description: manifest.Project?.DetailName || `${name} dataset`,
-            lastModified,
-            lastModifiedFormatted,
-            articyVersion,
-            format: '4.x'
+            displayName,
+            description: manifest.Project?.DetailName || `${name} dataset`
           });
 
           if (this.debugMode) {
-            console.log(`✅ Found 4.x dataset: ${name}`);
-          }
-        } else {
-          // Try 3.x format (single JSON file)
-          const fileResponse = await fetch(`./${name}.json`);
-          if (fileResponse.ok) {
-            const jsonData = await fileResponse.json();
-
-            // Check if it looks like 3.x format
-            const is3xFormat = jsonData.Packages && jsonData.Project && jsonData.GlobalVariables;
-
-            if (is3xFormat) {
-              const articyVersion = jsonData.Settings?.ExportVersion ?
-                                   `3.x v${jsonData.Settings.ExportVersion}` : '3.x';
-
-              // Try to get last modified timestamp from HTTP headers
-              let lastModified = null;
-              let lastModifiedFormatted = null;
-              const lastModifiedHeader = fileResponse.headers.get('Last-Modified');
-              if (lastModifiedHeader) {
-                const date = new Date(lastModifiedHeader);
-                if (!isNaN(date.getTime())) {
-                  lastModified = Math.floor(date.getTime() / 1000);
-                  lastModifiedFormatted = date.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false
-                  });
-                }
-              }
-
-              datasets.push({
-                name,
-                file: `${name}.json`,
-                displayName: jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-                description: jsonData.Project?.DetailName || `${name} dataset (3.x format)`,
-                lastModified,
-                lastModifiedFormatted,
-                articyVersion,
-                format: '3.x'
-              });
-
-              if (this.debugMode) {
-                console.log(`✅ Found 3.x dataset: ${name}`);
-              }
-            }
+            console.log(`✅ Found dataset: ${name}`);
           }
         }
       } catch (error) {
@@ -390,11 +295,65 @@ class HybridDatasetDetector {
       }
     }
 
-    if (this.debugMode) {
-      console.log(`🎯 Fallback detection found ${datasets.length} available datasets`);
-    }
-
     return datasets;
+  }
+
+  /**
+   * Find and extract subtitle from HTMLPREVIEW node in a 4.x dataset
+   * @param {string} datasetName - Name of the dataset
+   * @returns {Promise<string|null>} The subtitle text or null if not found
+   */
+  async findHtmlPreviewSubtitle(datasetName) {
+    try {
+      // Try to fetch the objects file that contains the node data
+      const objectsResponse = await fetch(`./${datasetName}.json/package_010000060000401C_objects.json`);
+      if (!objectsResponse.ok) {
+        return null;
+      }
+
+      const objectsData = await objectsResponse.json();
+      if (!objectsData || !objectsData.Models) {
+        return null;
+      }
+
+      // Search through all models for HTMLPREVIEW marker
+      for (const model of objectsData.Models) {
+        if (!model.Properties) {
+          continue;
+        }
+
+        const properties = model.Properties;
+        let textContent = '';
+
+        // Check both Text and Expression properties for HTMLPREVIEW marker
+        if (properties.Text && properties.Text.includes('HTMLPREVIEW')) {
+          textContent = properties.Text;
+        } else if (properties.Expression && properties.Expression.includes('HTMLPREVIEW')) {
+          textContent = properties.Expression;
+        }
+
+        if (textContent) {
+          // Extract subtitle from "Project Sub Name:" line
+          const lines = textContent.split('\n');
+          for (const line of lines) {
+            const trimmedLine = line.trim();
+            if (trimmedLine.startsWith('//Project Sub Name:')) {
+              const subtitle = trimmedLine.substring('//Project Sub Name:'.length).trim();
+              if (subtitle) {
+                return subtitle;
+              }
+            }
+          }
+        }
+      }
+
+      return null;
+    } catch (error) {
+      if (this.debugMode) {
+        console.warn(`⚠️ Could not extract subtitle from ${datasetName}:`, error.message);
+      }
+      return null;
+    }
   }
 
   /**
