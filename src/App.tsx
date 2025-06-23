@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { ConfigProvider, message, Spin } from 'antd';
+import { ConfigProvider, message, Spin, Select, Button, Divider } from 'antd';
 import InteractiveArticyViewer from './components/InteractiveArticyViewer';
+import EnhancedFileInput from './components/EnhancedFileInput';
 // @ts-ignore
 import DataRouter from './utils/dataRouter';
 import './App.css';
+
+const { Option } = Select;
 
 interface ProcessingReport {
   success: boolean;
@@ -27,21 +30,82 @@ interface ProcessingReport {
   };
 }
 
+interface Dataset {
+  name: string;
+  folder: string;
+  displayName: string;
+  description?: string;
+}
+
 function App() {
   const [articyData, setArticyData] = useState<any>(null);
   const [processingReport, setProcessingReport] = useState<ProcessingReport | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Start with loading true
   const [panelWidth, setPanelWidth] = useState(0);
   const [hideFooter, setHideFooter] = useState(false);
+  const [availableDatasets, setAvailableDatasets] = useState<Dataset[]>([]);
+  const [selectedDataset, setSelectedDataset] = useState<string>('');
+  const [showDatasetSelection, setShowDatasetSelection] = useState(false);
+  const [dataSource, setDataSource] = useState<'hardcoded' | 'manual' | null>(null);
 
-  const loadMposData = async () => {
+  // Auto-detect available datasets
+  const detectAvailableDatasets = async (): Promise<Dataset[]> => {
+    // Comprehensive list of possible dataset names
+    const possibleDatasets = [
+      // Common names
+      'mpos', 'demo', 'test', 'latest', 'current', 'main',
+      // Project names
+      'project-alpha', 'project-beta', 'project-gamma', 'project-delta',
+      // Environment names
+      'dev', 'staging', 'prod', 'qa', 'development', 'production',
+      // Version names
+      'v1', 'v2', 'v3', 'v4', 'v5',
+      // Date-based (current year)
+      '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06',
+      '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12',
+      // Common project names
+      'sample', 'example', 'tutorial', 'guide', 'template',
+      // Game-specific
+      'chapter1', 'chapter2', 'chapter3', 'prologue', 'epilogue',
+      'act1', 'act2', 'act3', 'scene1', 'scene2'
+    ];
+
+    const available: Dataset[] = [];
+    console.log('🔍 Detecting available datasets...');
+
+    for (const name of possibleDatasets) {
+      try {
+        // Test if manifest.json exists in the dataset folder
+        const response = await fetch(`./${name}.json/manifest.json`);
+        if (response.ok) {
+          const manifest = await response.json();
+
+          available.push({
+            name,
+            folder: `${name}.json`,
+            displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
+            description: manifest.Project?.DetailName || `${name} dataset`
+          });
+
+          console.log(`✅ Found dataset: ${name}`);
+        }
+      } catch (error) {
+        // Dataset doesn't exist or manifest is invalid, skip silently
+      }
+    }
+
+    console.log(`🎯 Detected ${available.length} available datasets`);
+    return available;
+  };
+
+  const loadDataset = async (datasetName: string) => {
     setIsLoading(true);
 
     try {
-      console.log('🔄 Loading hardcoded MPOS dataset...');
+      console.log(`🔄 Loading ${datasetName} dataset...`);
 
-      // List of JSON files to load (customize for your dataset)
-      const mposFiles = [
+      // List of JSON files to load
+      const datasetFiles = [
         'global_variables.json',
         'hierarchy.json',
         'manifest.json',
@@ -54,22 +118,20 @@ function App() {
 
       // Load all files with cache-busting
       const fileContents: { [key: string]: string } = {};
-
-      // Add cache-busting timestamp to ensure fresh data loads
       const cacheBuster = Date.now();
 
-      for (const fileName of mposFiles) {
+      for (const fileName of datasetFiles) {
         try {
-          const response = await fetch(`./mpos.json/${fileName}?v=${cacheBuster}`);
+          const response = await fetch(`./${datasetName}.json/${fileName}?v=${cacheBuster}`);
           if (response.ok) {
             const content = await response.text();
             fileContents[fileName] = content;
-            console.log(`✅ Loaded ${fileName} (cache-busted)`);
+            console.log(`✅ Loaded ${fileName} from ${datasetName} (cache-busted)`);
           } else {
-            console.warn(`⚠️ Could not load ${fileName}: ${response.status}`);
+            console.warn(`⚠️ Could not load ${fileName} from ${datasetName}: ${response.status}`);
           }
         } catch (error) {
-          console.warn(`⚠️ Error loading ${fileName}:`, error);
+          console.warn(`⚠️ Error loading ${fileName} from ${datasetName}:`, error);
         }
       }
 
@@ -81,41 +143,80 @@ function App() {
         const processedData = await dataRouter.processData(fileContents);
         const report = dataRouter.createProcessingReport(processedData);
 
-        // Update report to indicate hardcoded loading
-        report.processingInfo.inputType = 'Hardcoded MPOS dataset';
+        // Update report to indicate dataset source
+        report.processingInfo.inputType = `Hardcoded ${datasetName} dataset`;
 
+        setDataSource('hardcoded');
         handleDataLoaded(processedData, report);
 
-        console.log('🎉 MPOS dataset loaded successfully!');
+        console.log(`🎉 ${datasetName} dataset loaded successfully!`);
       } else {
-        throw new Error('No MPOS files could be loaded');
+        throw new Error(`No files could be loaded from ${datasetName} dataset`);
       }
 
     } catch (error: any) {
-      console.error('❌ Failed to load MPOS dataset:', error);
-      message.error(`Failed to load MPOS dataset: ${error?.message || 'Unknown error'}`);
+      console.error(`❌ Failed to load ${datasetName} dataset:`, error);
+      message.error(`Failed to load ${datasetName} dataset: ${error?.message || 'Unknown error'}`);
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
     // Log app startup
-    console.log('%c[Articy Web Viewer v4.x - MPOS Hardcoded] Starting application...',
+    console.log('%c[Articy Web Viewer v4.x - Hybrid Edition] Starting application...',
       'color: #1890ff; background: #f0f8ff; font-size: 16px; padding: 4px 8px; border-radius: 4px;');
-    console.log('✅ Hardcoded MPOS dataset loading enabled');
+    console.log('✅ Auto-detection enabled');
     console.log('✅ 4.x format support enabled');
-    console.log('✅ Automatic format detection active');
+    console.log('✅ Drag-and-drop functionality enabled');
 
-    // Auto-load mpos.json data
-    loadMposData();
+    // Initialize app with dataset detection
+    initializeApp();
   }, []);
+
+  const initializeApp = async () => {
+    setIsLoading(true);
+
+    try {
+      // Detect available datasets
+      const datasets = await detectAvailableDatasets();
+      setAvailableDatasets(datasets);
+
+      if (datasets.length > 0) {
+        // Check URL parameter for specific dataset
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedDataset = urlParams.get('dataset');
+
+        let datasetToLoad = requestedDataset;
+
+        // If no URL parameter or requested dataset not found, use first available
+        if (!datasetToLoad || !datasets.find(d => d.name === datasetToLoad)) {
+          datasetToLoad = datasets[0].name;
+        }
+
+        setSelectedDataset(datasetToLoad);
+
+        // Auto-load the selected dataset
+        await loadDataset(datasetToLoad);
+      } else {
+        // No datasets found, show selection interface
+        console.log('📁 No hardcoded datasets found, showing file selection');
+        setShowDatasetSelection(true);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error('❌ Failed to initialize app:', error);
+      setShowDatasetSelection(true);
+      setIsLoading(false);
+    }
+  };
 
   const handleDataLoaded = (data: any, report: ProcessingReport) => {
     console.log('🎉 Data loaded successfully:', report);
 
     setArticyData(data);
     setProcessingReport(report);
-    setIsLoading(false); // Add this line
+    setIsLoading(false);
+    setShowDatasetSelection(false);
 
     // Show success message with format info
     message.success({
@@ -124,11 +225,42 @@ function App() {
     });
   };
 
+  const handleManualDataLoaded = (data: any, report: ProcessingReport) => {
+    // Update report to indicate manual upload
+    report.processingInfo.inputType = 'Manual file upload';
+    setDataSource('manual');
+    handleDataLoaded(data, report);
+  };
+
   const handleReset = () => {
     setArticyData(null);
     setProcessingReport(null);
     setPanelWidth(0);
-    console.log('🔄 Application reset - ready for new file');
+    setDataSource(null);
+    setShowDatasetSelection(true);
+    setIsLoading(false);
+    console.log('🔄 Application reset - ready for dataset selection');
+  };
+
+  const handleDatasetSwitch = async (datasetName: string) => {
+    setSelectedDataset(datasetName);
+    setArticyData(null);
+    setProcessingReport(null);
+
+    // Update URL without page reload
+    const url = new URL(window.location);
+    url.searchParams.set('dataset', datasetName);
+    window.history.pushState({}, '', url);
+
+    await loadDataset(datasetName);
+  };
+
+  const handleSwitchToManual = () => {
+    setArticyData(null);
+    setProcessingReport(null);
+    setDataSource(null);
+    setShowDatasetSelection(true);
+    setIsLoading(false);
   };
 
   // Calculate gradual margin for header responsiveness
@@ -161,14 +293,32 @@ function App() {
             marginLeft: articyData ? calculateHeaderMargin(panelWidth) : 'auto',
             transition: 'margin-left 0.3s ease'
           }}>
-            <h1>Articy Web Viewer v4.x - MPOS Edition</h1>
-            <p>Hardcoded viewer for MPOS dataset (4.x format)</p>
+            <h1>Articy Web Viewer v4.x - Hybrid Edition</h1>
+            <p>Auto-detection + drag-and-drop viewer for Articy Draft datasets</p>
 
             {processingReport && (
               <div className="format-badge">
                 <span className="format-label">Format:</span>
                 <span className="format-value">{processingReport.format} v{processingReport.version}</span>
                 <span className="confidence">({(processingReport.confidence * 100).toFixed(0)}% confidence)</span>
+                {dataSource && (
+                  <>
+                    <span style={{ margin: '0 8px', color: '#666' }}>|</span>
+                    <span className="source-label">Source:</span>
+                    <span className="source-value">
+                      {dataSource === 'hardcoded' ? `${selectedDataset} dataset` : 'Manual upload'}
+                    </span>
+                    {dataSource === 'hardcoded' && availableDatasets.length > 1 && (
+                      <Button
+                        size="small"
+                        style={{ marginLeft: '8px' }}
+                        onClick={handleSwitchToManual}
+                      >
+                        Switch Dataset
+                      </Button>
+                    )}
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -178,39 +328,96 @@ function App() {
         <main className="app-main">
           <div className="container">
             {!articyData ? (
-              /* Loading Screen */
-              <div className="upload-section" style={{ textAlign: 'center', padding: '60px 20px' }}>
-                <Spin size="large" spinning={isLoading} />
-                <h2 style={{ marginTop: '20px', color: '#1890ff' }}>
-                  {isLoading ? 'Loading MPOS Dataset...' : 'MPOS Dataset Ready'}
-                </h2>
-                <p style={{ color: '#666', fontSize: '16px' }}>
-                  {isLoading ? 'Automatically loading hardcoded MPOS data from 4.x format files' : 'Dataset loaded successfully'}
-                </p>
+              isLoading ? (
+                /* Loading Screen */
+                <div className="upload-section" style={{ textAlign: 'center', padding: '60px 20px' }}>
+                  <Spin size="large" />
+                  <h2 style={{ marginTop: '20px', color: '#1890ff' }}>
+                    {selectedDataset ? `Loading ${selectedDataset} Dataset...` : 'Detecting Available Datasets...'}
+                  </h2>
+                  <p style={{ color: '#666', fontSize: '16px' }}>
+                    {selectedDataset ? `Loading ${selectedDataset} data from 4.x format files` : 'Scanning for available datasets...'}
+                  </p>
+                </div>
+              ) : showDatasetSelection ? (
+                /* Dataset Selection Interface */
+                <div className="upload-section" style={{ padding: '40px 20px' }}>
+                  <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+                    <h2 style={{ textAlign: 'center', color: '#1890ff', marginBottom: '30px' }}>
+                      Select Dataset or Upload Files
+                    </h2>
 
-                {/* Update feature cards to reflect hardcoded nature */}
-                <div className="features-info" style={{ marginTop: '40px' }}>
-                  <h3 style={{ color: 'rgba(255, 255, 255, 0.7)' }}>MPOS Edition Features</h3>
-                  <div className="features-grid">
-                    <div className="feature-card">
-                      <h4>🎯 Hardcoded Dataset</h4>
-                      <p>Pre-configured to load MPOS data automatically on startup</p>
+                    {availableDatasets.length > 0 && (
+                      <>
+                        <div style={{ marginBottom: '30px' }}>
+                          <h3 style={{ marginBottom: '16px' }}>📁 Available Datasets</h3>
+                          <Select
+                            value={selectedDataset}
+                            onChange={setSelectedDataset}
+                            style={{ width: '100%', marginBottom: '16px' }}
+                            size="large"
+                            placeholder="Select a dataset to load"
+                          >
+                            {availableDatasets.map(dataset => (
+                              <Option key={dataset.name} value={dataset.name}>
+                                <div>
+                                  <strong>{dataset.displayName}</strong>
+                                  <div style={{ fontSize: '12px', color: '#666' }}>
+                                    {dataset.description}
+                                  </div>
+                                </div>
+                              </Option>
+                            ))}
+                          </Select>
+                          <Button
+                            type="primary"
+                            size="large"
+                            block
+                            disabled={!selectedDataset}
+                            onClick={() => selectedDataset && handleDatasetSwitch(selectedDataset)}
+                          >
+                            Load {availableDatasets.find(d => d.name === selectedDataset)?.displayName || 'Selected Dataset'}
+                          </Button>
+                        </div>
+
+                        <Divider>OR</Divider>
+                      </>
+                    )}
+
+                    <div>
+                      <h3 style={{ marginBottom: '16px' }}>📤 Upload Custom Files</h3>
+                      <EnhancedFileInput
+                        onDataLoaded={handleManualDataLoaded}
+                        isLoading={false}
+                        setIsLoading={setIsLoading}
+                      />
                     </div>
-                    <div className="feature-card">
-                      <h4>🚀 Instant Loading</h4>
-                      <p>No file selection needed - data loads immediately</p>
-                    </div>
-                    <div className="feature-card">
-                      <h4>📊 4.x Format</h4>
-                      <p>Optimized for Articy Draft 4.x multi-file format</p>
-                    </div>
-                    <div className="feature-card">
-                      <h4>🌐 Web Ready</h4>
-                      <p>Perfect for web deployment with embedded dataset</p>
+
+                    {/* Feature Information */}
+                    <div className="features-info" style={{ marginTop: '40px' }}>
+                      <h3 style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Hybrid Edition Features</h3>
+                      <div className="features-grid">
+                        <div className="feature-card">
+                          <h4>🔍 Auto-Detection</h4>
+                          <p>Automatically finds and lists available datasets</p>
+                        </div>
+                        <div className="feature-card">
+                          <h4>📁 Multiple Datasets</h4>
+                          <p>Switch between different embedded datasets easily</p>
+                        </div>
+                        <div className="feature-card">
+                          <h4>📤 Drag & Drop</h4>
+                          <p>Upload custom files when needed</p>
+                        </div>
+                        <div className="feature-card">
+                          <h4>🔄 Universal Format</h4>
+                          <p>Supports both 3.x and 4.x Articy Draft formats</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ) : null
             ) : (
               /* Articy Viewer Interface */
               <div className="viewer-section">
