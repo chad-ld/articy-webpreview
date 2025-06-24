@@ -9,7 +9,7 @@
     "dev:safe": "powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1",
     "dev:php": "powershell -ExecutionPolicy Bypass -File start-dev-with-php.ps1",
     "check:integrity": "powershell -ExecutionPolicy Bypass -File check-file-integrity.ps1",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

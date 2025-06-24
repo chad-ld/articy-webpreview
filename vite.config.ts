@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: command === 'build' ? '/articy/v4.1/' : '/', // Only use base path for production builds
+  base: './', // Use relative paths so build works from any folder
   // Disable caching to prevent file reversion issues
   cacheDir: false,
   server: {
