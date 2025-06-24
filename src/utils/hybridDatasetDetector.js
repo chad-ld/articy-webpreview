@@ -271,18 +271,10 @@ class HybridDatasetDetector {
         if (response.ok) {
           const manifest = await response.json();
 
-          let displayName = manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
-
-          // Try to find and extract subtitle from HTMLPREVIEW node
-          const subtitle = await this.findHtmlPreviewSubtitle(name);
-          if (subtitle) {
-            displayName = displayName + ' - ' + subtitle;
-          }
-
           datasets.push({
             name,
             folder: `${name}.json`,
-            displayName,
+            displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
             description: manifest.Project?.DetailName || `${name} dataset`
           });
 
@@ -312,12 +304,12 @@ class HybridDatasetDetector {
       }
 
       const objectsData = await objectsResponse.json();
-      if (!objectsData || !objectsData.Models) {
+      if (!objectsData || !objectsData.Objects) {
         return null;
       }
 
-      // Search through all models for HTMLPREVIEW marker
-      for (const model of objectsData.Models) {
+      // Search through all objects for HTMLPREVIEW marker
+      for (const model of objectsData.Objects) {
         if (!model.Properties) {
           continue;
         }

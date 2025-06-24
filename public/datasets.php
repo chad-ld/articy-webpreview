@@ -321,12 +321,12 @@ function findHtmlPreviewSubtitle($datasetPath) {
         }
 
         $objectsData = json_decode($objectsContent, true);
-        if ($objectsData === null || !isset($objectsData['Models'])) {
+        if ($objectsData === null || !isset($objectsData['Objects'])) {
             return null;
         }
 
-        // Search through all models for HTMLPREVIEW marker
-        foreach ($objectsData['Models'] as $model) {
+        // Search through all objects for HTMLPREVIEW marker
+        foreach ($objectsData['Objects'] as $model) {
             if (!isset($model['Properties'])) {
                 continue;
             }
