@@ -139,13 +139,8 @@ class HybridDatasetDetector {
       .map(dataset => ({
         name: dataset.name,
         folder: dataset.folder,
-        file: dataset.file,
         displayName: dataset.displayName,
-        description: dataset.description || `${dataset.name} dataset`,
-        lastModified: dataset.lastModified,
-        lastModifiedFormatted: dataset.lastModifiedFormatted,
-        articyVersion: dataset.articyVersion,
-        format: dataset.format
+        description: dataset.description || `${dataset.name} dataset`
       }));
 
     if (this.debugMode) {
@@ -266,44 +261,27 @@ class HybridDatasetDetector {
     const datasets = [];
 
     if (this.debugMode) {
-      console.log('🔄 Using fallback detection with predefined dataset names');
+      console.log('🔄 Using streamlined fallback detection');
     }
 
     for (const name of config.fallbackDatasets) {
       try {
-        // First try 4.x format (folder with manifest.json)
+        // Try 4.x format first (folder with manifest.json)
         const manifestResponse = await fetch(`./${name}.json/manifest.json`);
         if (manifestResponse.ok) {
           const manifest = await manifestResponse.json();
 
-          let displayName = manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
-
-          // Try to find and extract subtitle from HTMLPREVIEW node (4.x format)
-          if (this.debugMode) {
-            console.log(`🔍 About to extract subtitle for ${name}, current displayName: "${displayName}"`);
-          }
-          const subtitle = await this.findHtmlPreviewSubtitle(name);
-          if (this.debugMode) {
-            console.log(`🎯 Subtitle extraction result for ${name}: ${subtitle ? `"${subtitle}"` : 'null'}`);
-          }
-          if (subtitle) {
-            displayName = displayName + ' - ' + subtitle;
-            if (this.debugMode) {
-              console.log(`✅ Updated displayName for ${name}: "${displayName}"`);
-            }
-          }
-
           datasets.push({
             name,
             folder: `${name}.json`,
-            displayName,
+            displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
             description: manifest.Project?.DetailName || `${name} dataset`,
             articyVersion: manifest.Settings?.ExportVersion ? `4.x v${manifest.Settings.ExportVersion}` : '4.x',
             format: '4.x'
           });
 
           if (this.debugMode) {
-            console.log(`✅ Found 4.x dataset: ${name} - Display name: "${displayName}"`);
+            console.log(`✅ Found 4.x dataset: ${name}`);
           }
         } else {
           // Try 3.x format (single .json file)
@@ -313,18 +291,10 @@ class HybridDatasetDetector {
 
             // Check if it's a valid 3.x format
             if (jsonData.Packages && Array.isArray(jsonData.Packages)) {
-              let displayName = jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
-
-              // Try to find and extract subtitle from HTMLPREVIEW node (3.x format)
-              const subtitle = await this.findHtmlPreviewSubtitle3x(jsonData);
-              if (subtitle) {
-                displayName = displayName + ' - ' + subtitle;
-              }
-
               datasets.push({
                 name,
                 file: `${name}.json`,
-                displayName,
+                displayName: jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
                 description: jsonData.Project?.DetailName || `${name} dataset (3.x format)`,
                 articyVersion: jsonData.Settings?.ExportVersion ? `3.x v${jsonData.Settings.ExportVersion}` : '3.x',
                 format: '3.x'
@@ -345,7 +315,7 @@ class HybridDatasetDetector {
     }
 
     if (this.debugMode) {
-      console.log('🎯 Final fallback datasets:', datasets.map(d => `${d.name}: "${d.displayName}"`));
+      console.log('🎯 Streamlined fallback found:', datasets.map(d => `${d.name} (${d.format})`));
     }
 
     return datasets;
