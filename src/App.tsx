@@ -7,6 +7,8 @@ import EnhancedFileInput from './components/EnhancedFileInput';
 import DataRouter from './utils/dataRouter';
 // @ts-ignore
 import HybridDatasetDetector from './utils/hybridDatasetDetector';
+// @ts-ignore
+import DatasetDisplayFormatter from './utils/datasetDisplayFormatter';
 import './App.css';
 
 const { Option } = Select;
@@ -58,9 +60,12 @@ function App() {
   const [detectionMethod, setDetectionMethod] = useState<string>('detecting...');
   const [sortMode, setSortMode] = useState<'alphabetical' | 'date'>('date');
 
-  // Initialize hybrid dataset detector
+  // Initialize hybrid dataset detector and display formatter
   const hybridDetector = new HybridDatasetDetector();
   hybridDetector.setDebugMode(true);
+
+  const displayFormatter = new DatasetDisplayFormatter();
+  displayFormatter.setDebugMode(true);
 
   // Get sorted datasets for display using useMemo to ensure recalculation when dependencies change
   const sortedDatasets = useMemo(() => {
@@ -96,8 +101,13 @@ function App() {
     setDetectionMethod('detecting...');
 
     try {
-      const datasets = await hybridDetector.detectDatasets();
-      console.log(`🎯 Hybrid detection found ${datasets.length} available datasets`);
+      // Step 1: Detect datasets using any available method
+      const rawDatasets = await hybridDetector.detectDatasets();
+      console.log(`🎯 Hybrid detection found ${rawDatasets.length} available datasets`);
+
+      // Step 2: Enhance display names with subtitles (centralized formatting)
+      const datasets = await displayFormatter.formatDatasetDisplayNames(rawDatasets);
+      console.log(`🎨 Enhanced ${datasets.length} dataset display names`);
 
       // Determine which method was actually used by checking available methods
       const env = hybridDetector.environmentDetector.detectEnvironment();
