@@ -139,8 +139,13 @@ class HybridDatasetDetector {
       .map(dataset => ({
         name: dataset.name,
         folder: dataset.folder,
+        file: dataset.file,
         displayName: dataset.displayName,
-        description: dataset.description || `${dataset.name} dataset`
+        description: dataset.description || `${dataset.name} dataset`,
+        lastModified: dataset.lastModified,
+        lastModifiedFormatted: dataset.lastModifiedFormatted,
+        articyVersion: dataset.articyVersion,
+        format: dataset.format
       }));
 
     if (this.debugMode) {
@@ -229,19 +234,27 @@ class HybridDatasetDetector {
         const manifestResponse = await fetch(`./${name}.json/manifest.json`);
         if (manifestResponse.ok) {
           const manifest = await manifestResponse.json();
-          
-          const displayName = manifest.Project?.Name || 
-                            manifest.Project?.DisplayName || 
+
+          let displayName = manifest.Project?.Name ||
+                            manifest.Project?.DisplayName ||
                             name.charAt(0).toUpperCase() + name.slice(1);
-          const description = manifest.Project?.DetailName || 
-                            manifest.Project?.Description || 
+          const description = manifest.Project?.DetailName ||
+                            manifest.Project?.Description ||
                             `${name} dataset`;
+
+          // Try to find and extract subtitle from HTMLPREVIEW node
+          const subtitle = await this.findHtmlPreviewSubtitle(name);
+          if (subtitle) {
+            displayName = displayName + ' - ' + subtitle;
+          }
 
           datasets.push({
             name,
             folder: `${name}.json`,
             displayName,
-            description
+            description,
+            articyVersion: manifest.Settings?.ExportVersion ? `4.x v${manifest.Settings.ExportVersion}` : '4.x',
+            format: '4.x'
           });
         }
       } catch (error) {
@@ -271,11 +284,21 @@ class HybridDatasetDetector {
         if (response.ok) {
           const manifest = await response.json();
 
+          let displayName = manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
+
+          // Try to find and extract subtitle from HTMLPREVIEW node
+          const subtitle = await this.findHtmlPreviewSubtitle(name);
+          if (subtitle) {
+            displayName = displayName + ' - ' + subtitle;
+          }
+
           datasets.push({
             name,
             folder: `${name}.json`,
-            displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-            description: manifest.Project?.DetailName || `${name} dataset`
+            displayName,
+            description: manifest.Project?.DetailName || `${name} dataset`,
+            articyVersion: manifest.Settings?.ExportVersion ? `4.x v${manifest.Settings.ExportVersion}` : '4.x',
+            format: '4.x'
           });
 
           if (this.debugMode) {
