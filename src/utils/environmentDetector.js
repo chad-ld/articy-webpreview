@@ -179,7 +179,7 @@ class EnvironmentDetector {
     const config = {
       apiEndpoint: './datasets.php',
       fallbackDatasets: [
-        'mpos', 'demo', 'demo4', 'test', 'latest', 'current', 'main'
+        'mpos', 'mpos_nw', 'demo', 'demo4', 'demo3old', 'adventure', 'mystory', 'test', 'latest', 'current', 'main'
       ],
       timeout: 5000,
       retryAttempts: 2

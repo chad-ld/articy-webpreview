@@ -234,27 +234,19 @@ class HybridDatasetDetector {
         const manifestResponse = await fetch(`./${name}.json/manifest.json`);
         if (manifestResponse.ok) {
           const manifest = await manifestResponse.json();
-
-          let displayName = manifest.Project?.Name ||
-                            manifest.Project?.DisplayName ||
+          
+          const displayName = manifest.Project?.Name || 
+                            manifest.Project?.DisplayName || 
                             name.charAt(0).toUpperCase() + name.slice(1);
-          const description = manifest.Project?.DetailName ||
-                            manifest.Project?.Description ||
+          const description = manifest.Project?.DetailName || 
+                            manifest.Project?.Description || 
                             `${name} dataset`;
-
-          // Try to find and extract subtitle from HTMLPREVIEW node
-          const subtitle = await this.findHtmlPreviewSubtitle(name);
-          if (subtitle) {
-            displayName = displayName + ' - ' + subtitle;
-          }
 
           datasets.push({
             name,
             folder: `${name}.json`,
             displayName,
-            description,
-            articyVersion: manifest.Settings?.ExportVersion ? `4.x v${manifest.Settings.ExportVersion}` : '4.x',
-            format: '4.x'
+            description
           });
         }
       } catch (error) {
@@ -279,17 +271,26 @@ class HybridDatasetDetector {
 
     for (const name of config.fallbackDatasets) {
       try {
-        // Test if manifest.json exists in the dataset folder
-        const response = await fetch(`./${name}.json/manifest.json`);
-        if (response.ok) {
-          const manifest = await response.json();
+        // First try 4.x format (folder with manifest.json)
+        const manifestResponse = await fetch(`./${name}.json/manifest.json`);
+        if (manifestResponse.ok) {
+          const manifest = await manifestResponse.json();
 
           let displayName = manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
 
-          // Try to find and extract subtitle from HTMLPREVIEW node
+          // Try to find and extract subtitle from HTMLPREVIEW node (4.x format)
+          if (this.debugMode) {
+            console.log(`🔍 About to extract subtitle for ${name}, current displayName: "${displayName}"`);
+          }
           const subtitle = await this.findHtmlPreviewSubtitle(name);
+          if (this.debugMode) {
+            console.log(`🎯 Subtitle extraction result for ${name}: ${subtitle ? `"${subtitle}"` : 'null'}`);
+          }
           if (subtitle) {
             displayName = displayName + ' - ' + subtitle;
+            if (this.debugMode) {
+              console.log(`✅ Updated displayName for ${name}: "${displayName}"`);
+            }
           }
 
           datasets.push({
@@ -302,73 +303,52 @@ class HybridDatasetDetector {
           });
 
           if (this.debugMode) {
-            console.log(`✅ Found dataset: ${name}`);
+            console.log(`✅ Found 4.x dataset: ${name} - Display name: "${displayName}"`);
           }
-        }
-      } catch (error) {
-        // Dataset doesn't exist or manifest is invalid, skip silently
-      }
-    }
+        } else {
+          // Try 3.x format (single .json file)
+          const jsonResponse = await fetch(`./${name}.json`);
+          if (jsonResponse.ok) {
+            const jsonData = await jsonResponse.json();
 
-    return datasets;
-  }
+            // Check if it's a valid 3.x format
+            if (jsonData.Packages && Array.isArray(jsonData.Packages)) {
+              let displayName = jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
 
-  /**
-   * Find and extract subtitle from HTMLPREVIEW node in a 4.x dataset
-   * @param {string} datasetName - Name of the dataset
-   * @returns {Promise<string|null>} The subtitle text or null if not found
-   */
-  async findHtmlPreviewSubtitle(datasetName) {
-    try {
-      // Try to fetch the objects file that contains the node data
-      const objectsResponse = await fetch(`./${datasetName}.json/package_010000060000401C_objects.json`);
-      if (!objectsResponse.ok) {
-        return null;
-      }
-
-      const objectsData = await objectsResponse.json();
-      if (!objectsData || !objectsData.Objects) {
-        return null;
-      }
-
-      // Search through all objects for HTMLPREVIEW marker
-      for (const model of objectsData.Objects) {
-        if (!model.Properties) {
-          continue;
-        }
-
-        const properties = model.Properties;
-        let textContent = '';
-
-        // Check both Text and Expression properties for HTMLPREVIEW marker
-        if (properties.Text && properties.Text.includes('HTMLPREVIEW')) {
-          textContent = properties.Text;
-        } else if (properties.Expression && properties.Expression.includes('HTMLPREVIEW')) {
-          textContent = properties.Expression;
-        }
-
-        if (textContent) {
-          // Extract subtitle from "Project Sub Name:" line
-          const lines = textContent.split('\n');
-          for (const line of lines) {
-            const trimmedLine = line.trim();
-            if (trimmedLine.startsWith('//Project Sub Name:')) {
-              const subtitle = trimmedLine.substring('//Project Sub Name:'.length).trim();
+              // Try to find and extract subtitle from HTMLPREVIEW node (3.x format)
+              const subtitle = await this.findHtmlPreviewSubtitle3x(jsonData);
               if (subtitle) {
-                return subtitle;
+                displayName = displayName + ' - ' + subtitle;
+              }
+
+              datasets.push({
+                name,
+                file: `${name}.json`,
+                displayName,
+                description: jsonData.Project?.DetailName || `${name} dataset (3.x format)`,
+                articyVersion: jsonData.Settings?.ExportVersion ? `3.x v${jsonData.Settings.ExportVersion}` : '3.x',
+                format: '3.x'
+              });
+
+              if (this.debugMode) {
+                console.log(`✅ Found 3.x dataset: ${name}`);
               }
             }
           }
         }
+      } catch (error) {
+        // Dataset doesn't exist or is invalid, skip silently
+        if (this.debugMode) {
+          console.log(`❌ Dataset ${name} not found or invalid`);
+        }
       }
-
-      return null;
-    } catch (error) {
-      if (this.debugMode) {
-        console.warn(`⚠️ Could not extract subtitle from ${datasetName}:`, error.message);
-      }
-      return null;
     }
+
+    if (this.debugMode) {
+      console.log('🎯 Final fallback datasets:', datasets.map(d => `${d.name}: "${d.displayName}"`));
+    }
+
+    return datasets;
   }
 
   /**

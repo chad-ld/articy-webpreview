@@ -1,0 +1,421 @@
+[vite] connecting... client:206:9
+[vite] connected. client:286:21
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools chunk-4I33EHSE.js:21534:25
+🔄 Sorting datasets in date mode: 
+Array []
+App.tsx:44:13
+✅ Sorted result: 
+Array []
+App.tsx:62:13
+🔄 Sorting datasets in date mode: 
+Array []
+App.tsx:44:13
+✅ Sorted result: 
+Array []
+App.tsx:62:13
+GET
+http://localhost:3000/vite.svg
+[HTTP/1.1 404 Not Found 0ms]
+
+[Articy Web Viewer v4.x - Hybrid Edition] Starting application... App.tsx:306:13
+✅ Hybrid dataset detection enabled App.tsx:307:13
+✅ Relative path support enabled App.tsx:308:13
+✅ Multi-environment compatibility enabled App.tsx:309:13
+✅ 4.x format support enabled App.tsx:310:13
+✅ Drag-and-drop functionality enabled App.tsx:311:13
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔍 Environment Detection Report environmentDetector.js:212:13
+Environment Type: web environmentDetector.js:213:13
+Capabilities: 
+Array(4) [ "development", "hot-reload", "fetch-api", "cors" ]
+environmentDetector.js:214:13
+Recommended Strategy: fallback-with-dev-support environmentDetector.js:215:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:216:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (14) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:217:13
+🔍 Starting hybrid dataset detection... App.tsx:66:13
+🔍 Starting hybrid dataset detection... hybridDatasetDetector.js:31:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔍 Environment Detection Report environmentDetector.js:212:13
+Environment Type: web environmentDetector.js:213:13
+Capabilities: 
+Array(4) [ "development", "hot-reload", "fetch-api", "cors" ]
+environmentDetector.js:214:13
+Recommended Strategy: fallback-with-dev-support environmentDetector.js:215:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:216:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (14) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:217:13
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔄 Trying detection method: fallback hybridDatasetDetector.js:53:19
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔄 Using fallback detection with predefined dataset names hybridDatasetDetector.js:264:15
+[Articy Web Viewer v4.x - Hybrid Edition] Starting application... App.tsx:306:13
+✅ Hybrid dataset detection enabled App.tsx:307:13
+✅ Relative path support enabled App.tsx:308:13
+✅ Multi-environment compatibility enabled App.tsx:309:13
+✅ 4.x format support enabled App.tsx:310:13
+✅ Drag-and-drop functionality enabled App.tsx:311:13
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔍 Environment Detection Report environmentDetector.js:212:13
+Environment Type: web environmentDetector.js:213:13
+Capabilities: 
+Array(4) [ "development", "hot-reload", "fetch-api", "cors" ]
+environmentDetector.js:214:13
+Recommended Strategy: fallback-with-dev-support environmentDetector.js:215:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:216:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (14) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:217:13
+🔍 Starting hybrid dataset detection... App.tsx:66:13
+🔍 Starting hybrid dataset detection... hybridDatasetDetector.js:31:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔍 Environment Detection Report environmentDetector.js:212:13
+Environment Type: web environmentDetector.js:213:13
+Capabilities: 
+Array(4) [ "development", "hot-reload", "fetch-api", "cors" ]
+environmentDetector.js:214:13
+Recommended Strategy: fallback-with-dev-support environmentDetector.js:215:13
+Available Methods: 
+Array [ "fallback", "dev-server-scan" ]
+environmentDetector.js:216:13
+Configuration: 
+Object { apiEndpoint: "./datasets.php", fallbackDatasets: (14) […], timeout: 10000, retryAttempts: 2 }
+environmentDetector.js:217:13
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔄 Trying detection method: fallback hybridDatasetDetector.js:53:19
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🔄 Using fallback detection with predefined dataset names hybridDatasetDetector.js:264:15
+🔍 Searching 565 objects in mpos for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in mpos: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW... hybridDatasetDetector.js:382:21
+⚠️ No "Project Sub Name:" line found in HTMLPREVIEW for mpos hybridDatasetDetector.js:401:21
+✅ Found 4.x dataset: mpos hybridDatasetDetector.js:292:21
+🔍 Searching 565 objects in mpos for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in mpos: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW... hybridDatasetDetector.js:382:21
+⚠️ No "Project Sub Name:" line found in HTMLPREVIEW for mpos hybridDatasetDetector.js:401:21
+✅ Found 4.x dataset: mpos hybridDatasetDetector.js:292:21
+🔍 Searching 565 objects in mpos_nw for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in mpos_nw: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW
+//Project Sub Name: Prototype V1.2... hybridDatasetDetector.js:382:21
+✅ Found subtitle in mpos_nw: "Prototype V1.2" hybridDatasetDetector.js:392:25
+✅ Found 4.x dataset: mpos_nw hybridDatasetDetector.js:292:21
+XHRGET
+http://localhost:3000/demo.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+🔍 Searching 565 objects in mpos_nw for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in mpos_nw: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW
+//Project Sub Name: Prototype V1.2... hybridDatasetDetector.js:382:21
+✅ Found subtitle in mpos_nw: "Prototype V1.2" hybridDatasetDetector.js:392:25
+✅ Found 4.x dataset: mpos_nw hybridDatasetDetector.js:292:21
+XHRGET
+http://localhost:3000/demo.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+✅ Found 3.x dataset: demo 2 hybridDatasetDetector.js:320:25
+🔍 Searching 272 objects in demo4 for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in demo4: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW... hybridDatasetDetector.js:382:21
+⚠️ No "Project Sub Name:" line found in HTMLPREVIEW for demo4 hybridDatasetDetector.js:401:21
+✅ Found 4.x dataset: demo4 hybridDatasetDetector.js:292:21
+XHRGET
+http://localhost:3000/demo3old.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+🔍 Searching 272 objects in demo4 for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in demo4: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW... hybridDatasetDetector.js:382:21
+⚠️ No "Project Sub Name:" line found in HTMLPREVIEW for demo4 hybridDatasetDetector.js:401:21
+✅ Found 4.x dataset: demo4 hybridDatasetDetector.js:292:21
+XHRGET
+http://localhost:3000/demo3old.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+✅ Found 3.x dataset: demo3old 2 hybridDatasetDetector.js:320:25
+🔍 Searching 272 objects in adventure for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in adventure: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW... hybridDatasetDetector.js:382:21
+⚠️ No "Project Sub Name:" line found in HTMLPREVIEW for adventure hybridDatasetDetector.js:401:21
+✅ Found 4.x dataset: adventure hybridDatasetDetector.js:292:21
+🔍 Searching 272 objects in adventure for HTMLPREVIEW hybridDatasetDetector.js:361:17
+🎯 Found HTMLPREVIEW content in adventure: //ARTICY HTML VIEWER START NODE
+//HTMLPREVIEW... hybridDatasetDetector.js:382:21
+⚠️ No "Project Sub Name:" line found in HTMLPREVIEW for adventure hybridDatasetDetector.js:401:21
+✅ Found 4.x dataset: adventure hybridDatasetDetector.js:292:21
+XHRGET
+http://localhost:3000/mystory.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/mystory.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+✅ Found 3.x dataset: mystory hybridDatasetDetector.js:320:25
+XHRGET
+http://localhost:3000/test.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+✅ Found 3.x dataset: mystory hybridDatasetDetector.js:320:25
+XHRGET
+http://localhost:3000/test.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/test.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/test.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/latest.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/latest.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/latest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/latest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/current.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/current.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/current.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/current.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/main.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/main.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/main.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/dev.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/main.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/dev.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/dev.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/dev.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/development.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/development.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+XHRGET
+http://localhost:3000/development.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/local.json/manifest.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/development.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/local.json
+[HTTP/1.1 404 Not Found 1ms]
+
+XHRGET
+http://localhost:3000/local.json/manifest.json
+[HTTP/1.1 404 Not Found 0ms]
+
+✅ Successfully detected 7 datasets using fallback hybridDatasetDetector.js:60:21
+🎯 Hybrid detection found 7 available datasets App.tsx:70:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+📁 Showing dataset selection interface (7 datasets detected) App.tsx:327:17
+📌 Pre-selected dataset: mpos (Mysteryworks Prince of Soulard) based on date sort App.tsx:339:19
+🔄 Sorting datasets in date mode: 
+Array(7) [ {…}, {…}, {…}, {…}, {…}, {…}, {…} ]
+App.tsx:44:13
+📅 Comparing mpos (0) vs mpos_nw (0) = 0 App.tsx:54:17
+📅 Comparing mpos_nw (0) vs demo (0) = 0 App.tsx:54:17
+📅 Comparing demo (0) vs demo4 (0) = 0 App.tsx:54:17
+📅 Comparing demo4 (0) vs demo3old (0) = 0 App.tsx:54:17
+📅 Comparing demo3old (0) vs adventure (0) = 0 App.tsx:54:17
+📅 Comparing adventure (0) vs mystory (0) = 0 App.tsx:54:17
+✅ Sorted result: 
+Array(7) [ "mpos (no timestamp)", "mpos_nw (no timestamp)", "demo (no timestamp)", "demo4 (no timestamp)", "demo3old (no timestamp)", "adventure (no timestamp)", "mystory (no timestamp)" ]
+App.tsx:62:13
+XHRGET
+http://localhost:3000/local.json
+[HTTP/1.1 404 Not Found 1ms]
+
+🔄 Sorting datasets in date mode: 
+Array(7) [ {…}, {…}, {…}, {…}, {…}, {…}, {…} ]
+App.tsx:44:13
+📅 Comparing mpos (0) vs mpos_nw (0) = 0 App.tsx:54:17
+📅 Comparing mpos_nw (0) vs demo (0) = 0 App.tsx:54:17
+📅 Comparing demo (0) vs demo4 (0) = 0 App.tsx:54:17
+📅 Comparing demo4 (0) vs demo3old (0) = 0 App.tsx:54:17
+📅 Comparing demo3old (0) vs adventure (0) = 0 App.tsx:54:17
+📅 Comparing adventure (0) vs mystory (0) = 0 App.tsx:54:17
+✅ Sorted result: 
+Array(7) [ "mpos (no timestamp)", "mpos_nw (no timestamp)", "demo (no timestamp)", "demo4 (no timestamp)", "demo3old (no timestamp)", "adventure (no timestamp)", "mystory (no timestamp)" ]
+App.tsx:62:13
+✅ Successfully detected 7 datasets using fallback hybridDatasetDetector.js:60:21
+🎯 Hybrid detection found 7 available datasets App.tsx:70:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+🌐 Environment: Web browser (development) environmentDetector.js:75:17
+🔍 Environment detection result: 
+Object { type: "web", isWeb: true, isElectron: false, isDevelopment: true, isProduction: false, hasFileSystemAccess: false, hasPHPSupport: false, capabilities: (4) […] }
+environmentDetector.js:90:15
+📁 Showing dataset selection interface (7 datasets detected) App.tsx:327:17
+📌 Pre-selected dataset: mpos (Mysteryworks Prince of Soulard) based on date sort App.tsx:339:19
+🔄 Sorting datasets in date mode: 
+Array(7) [ {…}, {…}, {…}, {…}, {…}, {…}, {…} ]
+App.tsx:44:13
+📅 Comparing mpos (0) vs mpos_nw (0) = 0 App.tsx:54:17
+📅 Comparing mpos_nw (0) vs demo (0) = 0 App.tsx:54:17
+📅 Comparing demo (0) vs demo4 (0) = 0 App.tsx:54:17
+📅 Comparing demo4 (0) vs demo3old (0) = 0 App.tsx:54:17
+📅 Comparing demo3old (0) vs adventure (0) = 0 App.tsx:54:17
+📅 Comparing adventure (0) vs mystory (0) = 0 App.tsx:54:17
+✅ Sorted result: 
+Array(7) [ "mpos (no timestamp)", "mpos_nw (no timestamp)", "demo (no timestamp)", "demo4 (no timestamp)", "demo3old (no timestamp)", "adventure (no timestamp)", "mystory (no timestamp)" ]
+App.tsx:62:13
+🔄 Sorting datasets in date mode: 
+Array(7) [ {…}, {…}, {…}, {…}, {…}, {…}, {…} ]
+App.tsx:44:13
+📅 Comparing mpos (0) vs mpos_nw (0) = 0 App.tsx:54:17
+📅 Comparing mpos_nw (0) vs demo (0) = 0 App.tsx:54:17
+📅 Comparing demo (0) vs demo4 (0) = 0 App.tsx:54:17
+📅 Comparing demo4 (0) vs demo3old (0) = 0 App.tsx:54:17
+📅 Comparing demo3old (0) vs adventure (0) = 0 App.tsx:54:17
+📅 Comparing adventure (0) vs mystory (0) = 0 App.tsx:54:17
+✅ Sorted result: 
+Array(7) [ "mpos (no timestamp)", "mpos_nw (no timestamp)", "demo (no timestamp)", "demo4 (no timestamp)", "demo3old (no timestamp)", "adventure (no timestamp)", "mystory (no timestamp)" ]
+App.tsx:62:13
