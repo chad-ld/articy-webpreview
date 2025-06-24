@@ -11,6 +11,7 @@ class HybridDatasetDetector {
     this.debugMode = false;
     this.cache = new Map();
     this.cacheTimeout = 30000; // 30 seconds
+    this.lastSuccessfulMethod = null; // Track which method actually worked
   }
 
   /**
@@ -20,6 +21,14 @@ class HybridDatasetDetector {
   setDebugMode(enabled) {
     this.debugMode = enabled;
     this.environmentDetector.setDebugMode(enabled);
+  }
+
+  /**
+   * Get the method that was actually used in the last successful detection
+   * @returns {string|null} The method name that succeeded, or null if none succeeded yet
+   */
+  getLastSuccessfulMethod() {
+    return this.lastSuccessfulMethod;
   }
 
   /**
@@ -59,7 +68,10 @@ class HybridDatasetDetector {
           if (this.debugMode) {
             console.log(`✅ Successfully detected ${datasets.length} datasets using ${method}`);
           }
-          
+
+          // Track which method actually worked
+          this.lastSuccessfulMethod = method;
+
           // Cache successful result
           this.setCachedResult(cacheKey, datasets);
           return datasets;
