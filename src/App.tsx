@@ -126,9 +126,9 @@ function App() {
 
       if (actualMethod === 'php-api') {
         if (env.isDevelopment) {
-          setDetectionMethod('PHP API (development server)');
+          setDetectionMethod('🐘 PHP API (development server) - Dual deployment testing active');
         } else {
-          setDetectionMethod('PHP API (web server)');
+          setDetectionMethod('🐘 PHP API (web server) - Production deployment');
         }
       } else if (actualMethod === 'fallback') {
         if (env.isDevelopment) {
@@ -405,7 +405,11 @@ function App() {
             transition: 'margin-left 0.3s ease'
           }}>
             <h1>Articy Web Viewer v4.x</h1>
-            <p style={{ marginBottom: '10px' }}>{detectionMethod}</p>
+            <p style={{
+              marginBottom: '10px',
+              color: detectionMethod.includes('🐘 PHP API') ? '#52c41a' : '#666',
+              fontWeight: detectionMethod.includes('🐘 PHP API') ? 'bold' : 'normal'
+            }}>{detectionMethod}</p>
 
             {processingReport && (
               <div style={{ textAlign: 'center', marginBottom: '10px' }}>

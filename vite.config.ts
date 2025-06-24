@@ -8,16 +8,9 @@ export default defineConfig(({ command }) => ({
   server: {
     port: 3000,
     open: true,
-    hmr: {
-      overlay: false  // Disable error overlay that can cause cache issues
-    },
-    watch: {
-      usePolling: true,  // More reliable file watching
-      interval: 100      // Check for changes every 100ms
-    },
     proxy: {
       // Proxy PHP requests to a PHP server running on port 8080
-      '**/*.php': {
+      '/datasets.php': {
         target: 'http://localhost:8080',
         changeOrigin: true,
         configure: (proxy, options) => {
@@ -29,11 +22,14 @@ export default defineConfig(({ command }) => ({
             console.error('❌ PHP proxy error:', err.message);
           });
         }
+      },
+      // Catch-all for other PHP files
+      '*.php': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
       }
     }
   },
-  // Disable caching to prevent file reversion issues
-  cacheDir: false,
   build: {
     outDir: 'dist',
     sourcemap: true
