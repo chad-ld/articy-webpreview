@@ -440,7 +440,9 @@ function App() {
                     <>
                       <span className="source-label" style={{ color: 'black' }}> || Source: </span>
                       <span className="source-value" style={{ color: 'black' }}>
-                        {dataSource === 'hardcoded' ? `${selectedDataset} dataset` : 'Manual upload'}
+                        {dataSource === 'hardcoded'
+                          ? (availableDatasets.find(d => d.name === selectedDataset)?.displayName || `${selectedDataset} dataset`)
+                          : 'Manual upload'}
                       </span>
                     </>
                   )}
