@@ -327,6 +327,14 @@ class HybridDatasetDetector {
   }
 
   /**
+   * Get the last successful detection method
+   * @returns {string|null} The method name that was successful, or null if none succeeded
+   */
+  getLastSuccessfulMethod() {
+    return this.lastSuccessfulMethod;
+  }
+
+  /**
    * Test the hybrid detection system
    * @returns {Promise<Object>} Test results
    */
