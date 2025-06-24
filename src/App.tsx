@@ -72,6 +72,7 @@ function App() {
     // Only sort if we have actual datasets
     if (!availableDatasets || availableDatasets.length === 0) {
       console.log('🔄 No datasets available for sorting yet');
+      // TEST: Cache disabled - testing React file at 2025-06-24 05:12:30
       return [];
     }
 

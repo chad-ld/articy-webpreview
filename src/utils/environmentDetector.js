@@ -1,6 +1,7 @@
 /**
  * Environment Detection Utilities
  * Detects deployment environment and chooses appropriate dataset detection strategy
+ * TEST: Cache disabled - testing different file at 2025-06-24 05:12:00
  */
 
 class EnvironmentDetector {
