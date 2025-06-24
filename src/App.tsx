@@ -411,6 +411,19 @@ function App() {
               fontWeight: detectionMethod.includes('🐘 PHP API') ? 'bold' : 'normal'
             }}>{detectionMethod}</p>
 
+            {/* Show selected dataset name */}
+            {articyData && selectedDataset && availableDatasets.length > 0 && (
+              <h2 style={{
+                margin: '8px 0',
+                fontSize: '18px',
+                fontWeight: '500',
+                color: 'white',
+                textAlign: 'center'
+              }}>
+                {availableDatasets.find(d => d.name === selectedDataset)?.displayName || selectedDataset}
+              </h2>
+            )}
+
             {processingReport && (
               <div style={{ textAlign: 'center', marginBottom: '10px' }}>
                 <div style={{
