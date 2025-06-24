@@ -232,12 +232,12 @@ function App() {
       }
 
       const objectsData = await objectsResponse.json();
-      if (!objectsData || !objectsData.Models) {
+      if (!objectsData || !objectsData.Objects) {
         return null;
       }
 
-      // Search through all models for HTMLPREVIEW marker
-      for (const model of objectsData.Models) {
+      // Search through all objects for HTMLPREVIEW marker
+      for (const model of objectsData.Objects) {
         if (!model.Properties) {
           continue;
         }
