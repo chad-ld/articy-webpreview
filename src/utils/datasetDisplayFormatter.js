@@ -29,26 +29,36 @@ class DatasetDisplayFormatter {
     const formattedDataset = { ...dataset };
     
     try {
-      // Extract subtitle based on dataset format
-      let subtitle = null;
-      
-      if (dataset.format === '4.x' && dataset.folder) {
-        // 4.x format: extract from objects file
-        subtitle = await this.extractSubtitleFrom4x(dataset.name);
-      } else if (dataset.format === '3.x' && dataset.file) {
-        // 3.x format: extract from main JSON file
-        subtitle = await this.extractSubtitleFrom3x(dataset.name);
-      }
+      // Check if displayName already contains a subtitle (from PHP API)
+      const hasExistingSubtitle = dataset.displayName && dataset.displayName.includes(' - ');
 
-      // Add subtitle to display name if found
-      if (subtitle) {
-        formattedDataset.displayName = `${dataset.displayName} - ${subtitle}`;
-        
+      if (hasExistingSubtitle) {
+        // PHP API already provided subtitle, use as-is
         if (this.debugMode) {
-          console.log(`✅ Enhanced display name for ${dataset.name}: "${formattedDataset.displayName}"`);
+          console.log(`ℹ️ Using existing subtitle for ${dataset.name}: "${dataset.displayName}"`);
         }
-      } else if (this.debugMode) {
-        console.log(`ℹ️ No subtitle found for ${dataset.name}, using original name: "${dataset.displayName}"`);
+      } else {
+        // Extract subtitle based on dataset format
+        let subtitle = null;
+
+        if (dataset.format === '4.x' && dataset.folder) {
+          // 4.x format: extract from objects file
+          subtitle = await this.extractSubtitleFrom4x(dataset.name);
+        } else if (dataset.format === '3.x' && dataset.file) {
+          // 3.x format: extract from main JSON file
+          subtitle = await this.extractSubtitleFrom3x(dataset.name);
+        }
+
+        // Add subtitle to display name if found
+        if (subtitle) {
+          formattedDataset.displayName = `${dataset.displayName} - ${subtitle}`;
+
+          if (this.debugMode) {
+            console.log(`✅ Enhanced display name for ${dataset.name}: "${formattedDataset.displayName}"`);
+          }
+        } else if (this.debugMode) {
+          console.log(`ℹ️ No subtitle found for ${dataset.name}, using original name: "${dataset.displayName}"`);
+        }
       }
 
     } catch (error) {

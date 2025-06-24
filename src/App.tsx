@@ -107,6 +107,9 @@ function App() {
     setDetectionMethod('detecting...');
 
     try {
+      // Enable debug mode for troubleshooting
+      hybridDetector.setDebugMode(true);
+
       // Step 1: Detect datasets using any available method
       const rawDatasets = await hybridDetector.detectDatasets();
       console.log(`🎯 Hybrid detection found ${rawDatasets.length} available datasets`);
@@ -142,156 +145,18 @@ function App() {
 
       return datasets;
     } catch (error) {
-      console.error('❌ Hybrid detection failed:', error);
+      console.error('❌ Hybrid detection failed completely:', error);
+      console.error('❌ Error details:', error instanceof Error ? error.message : String(error));
+      console.error('❌ Error stack:', error instanceof Error ? error.stack : 'No stack trace');
 
-      // Fallback to legacy detection method
-      console.log('🔄 Falling back to legacy detection method...');
-      setDetectionMethod('Legacy fallback detection');
-      return await detectAvailableDatasetsLegacy();
+      // If hybrid detection fails completely, return empty array
+      // The hybrid detector already has its own fallback methods built-in
+      setDetectionMethod('Detection failed - no datasets available');
+      return [];
     }
   };
 
-  // Legacy detection method as fallback
-  const detectAvailableDatasetsLegacy = async (): Promise<Dataset[]> => {
-    // NOTE: This is a limited fallback method that only checks predefined names
-    // The PHP API provides true dynamic detection of ANY .json files/folders
-    // Comprehensive list of possible dataset names
-    const possibleDatasets = [
-      // Common names
-      'mpos', 'demo', 'demo4', 'test', 'latest', 'current', 'main',
-      // Project names
-      'project-alpha', 'project-beta', 'project-gamma', 'project-delta',
-      // Environment names
-      'dev', 'staging', 'prod', 'qa', 'development', 'production',
-      // Version names
-      'v1', 'v2', 'v3', 'v4', 'v5',
-      // Date-based (current year)
-      '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06',
-      '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12',
-      // Common project names
-      'sample', 'example', 'tutorial', 'guide', 'template',
-      // Game-specific
-      'chapter1', 'chapter2', 'chapter3', 'prologue', 'epilogue',
-      'act1', 'act2', 'act3', 'scene1', 'scene2'
-    ];
 
-    const available: Dataset[] = [];
-    console.log('🔍 Using legacy detection method...');
-
-    for (const name of possibleDatasets) {
-      try {
-        // Try 4.x format first (folder with manifest)
-        const response = await fetch(`./${name}.json/manifest.json`);
-        if (response.ok) {
-          const manifest = await response.json();
-
-          const articyVersion = manifest.Settings?.ExportVersion ?
-                               `4.x v${manifest.Settings.ExportVersion}` : '4.x';
-
-          let displayName = manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1);
-
-          // Try to find and extract subtitle from HTMLPREVIEW node
-          const subtitle = await findHtmlPreviewSubtitleLegacy(name);
-          if (subtitle) {
-            displayName = displayName + ' - ' + subtitle;
-          }
-
-          available.push({
-            name,
-            folder: `${name}.json`,
-            displayName,
-            description: manifest.Project?.DetailName || `${name} dataset`,
-            articyVersion,
-            format: '4.x'
-          });
-
-          console.log(`✅ Found 4.x dataset: ${name}`);
-        } else {
-          // Try 3.x format (single JSON file)
-          const fileResponse = await fetch(`./${name}.json`);
-          if (fileResponse.ok) {
-            const jsonData = await fileResponse.json();
-
-            // Check if it looks like 3.x format
-            const is3xFormat = jsonData.Packages && jsonData.Project && jsonData.GlobalVariables;
-
-            if (is3xFormat) {
-              const articyVersion = jsonData.Settings?.ExportVersion ?
-                                   `3.x v${jsonData.Settings.ExportVersion}` : '3.x';
-
-              available.push({
-                name,
-                file: `${name}.json`,
-                displayName: jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-                description: jsonData.Project?.DetailName || `${name} dataset (3.x format)`,
-                articyVersion,
-                format: '3.x'
-              });
-
-              console.log(`✅ Found 3.x dataset: ${name}`);
-            }
-          }
-        }
-      } catch (error) {
-        // Dataset doesn't exist or manifest is invalid, skip silently
-      }
-    }
-
-    console.log(`🎯 Legacy detection found ${available.length} available datasets`);
-    return available;
-  };
-
-  // Helper function to find HTMLPREVIEW subtitle in legacy detection
-  const findHtmlPreviewSubtitleLegacy = async (datasetName: string): Promise<string | null> => {
-    try {
-      // Try to fetch the objects file that contains the node data
-      const objectsResponse = await fetch(`./${datasetName}.json/package_010000060000401C_objects.json`);
-      if (!objectsResponse.ok) {
-        return null;
-      }
-
-      const objectsData = await objectsResponse.json();
-      if (!objectsData || !objectsData.Objects) {
-        return null;
-      }
-
-      // Search through all objects for HTMLPREVIEW marker
-      for (const model of objectsData.Objects) {
-        if (!model.Properties) {
-          continue;
-        }
-
-        const properties = model.Properties;
-        let textContent = '';
-
-        // Check both Text and Expression properties for HTMLPREVIEW marker
-        if (properties.Text && properties.Text.includes('HTMLPREVIEW')) {
-          textContent = properties.Text;
-        } else if (properties.Expression && properties.Expression.includes('HTMLPREVIEW')) {
-          textContent = properties.Expression;
-        }
-
-        if (textContent) {
-          // Extract subtitle from "Project Sub Name:" line
-          const lines = textContent.split('\n');
-          for (const line of lines) {
-            const trimmedLine = line.trim();
-            if (trimmedLine.startsWith('//Project Sub Name:')) {
-              const subtitle = trimmedLine.substring('//Project Sub Name:'.length).trim();
-              if (subtitle) {
-                return subtitle;
-              }
-            }
-          }
-        }
-      }
-
-      return null;
-    } catch (error) {
-      console.warn(`⚠️ Could not extract subtitle from ${datasetName}:`, error);
-      return null;
-    }
-  };
 
   const loadDataset = async (datasetName: string) => {
     setIsLoading(true);

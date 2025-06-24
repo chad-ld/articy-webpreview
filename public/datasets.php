@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 try {
-    // Get the directory where this script is located
+    // Get the current directory (we're already in the public directory)
     $scriptDir = dirname(__FILE__);
     
     // Initialize response

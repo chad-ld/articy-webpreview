@@ -11,7 +11,7 @@ class HybridDatasetDetector {
     this.debugMode = false;
     this.cache = new Map();
     this.cacheTimeout = 30000; // 30 seconds
-    this.lastSuccessfulMethod = null; // Track which method actually worked
+    this.lastSuccessfulMethod = null;
   }
 
   /**
@@ -24,8 +24,8 @@ class HybridDatasetDetector {
   }
 
   /**
-   * Get the method that was actually used in the last successful detection
-   * @returns {string|null} The method name that succeeded, or null if none succeeded yet
+   * Get the last successful detection method
+   * @returns {string|null} The last successful method or null if none
    */
   getLastSuccessfulMethod() {
     return this.lastSuccessfulMethod;
@@ -69,7 +69,7 @@ class HybridDatasetDetector {
             console.log(`✅ Successfully detected ${datasets.length} datasets using ${method}`);
           }
 
-          // Track which method actually worked
+          // Track successful method
           this.lastSuccessfulMethod = method;
 
           // Cache successful result
@@ -151,8 +151,13 @@ class HybridDatasetDetector {
       .map(dataset => ({
         name: dataset.name,
         folder: dataset.folder,
+        file: dataset.file, // For 3.x format
         displayName: dataset.displayName,
-        description: dataset.description || `${dataset.name} dataset`
+        description: dataset.description || `${dataset.name} dataset`,
+        articyVersion: dataset.articyVersion, // Include version info for tags
+        format: dataset.format, // Include format info for tag colors
+        lastModified: dataset.lastModified, // Include timestamp for sorting
+        lastModifiedFormatted: dataset.lastModifiedFormatted // Include formatted timestamp
       }));
 
     if (this.debugMode) {
@@ -273,61 +278,30 @@ class HybridDatasetDetector {
     const datasets = [];
 
     if (this.debugMode) {
-      console.log('🔄 Using streamlined fallback detection');
+      console.log('🔄 Using fallback detection with predefined dataset names');
     }
 
     for (const name of config.fallbackDatasets) {
       try {
-        // Try 4.x format first (folder with manifest.json)
-        const manifestResponse = await fetch(`./${name}.json/manifest.json`);
-        if (manifestResponse.ok) {
-          const manifest = await manifestResponse.json();
+        // Test if manifest.json exists in the dataset folder
+        const response = await fetch(`./${name}.json/manifest.json`);
+        if (response.ok) {
+          const manifest = await response.json();
 
           datasets.push({
             name,
             folder: `${name}.json`,
             displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-            description: manifest.Project?.DetailName || `${name} dataset`,
-            articyVersion: manifest.Settings?.ExportVersion ? `4.x v${manifest.Settings.ExportVersion}` : '4.x',
-            format: '4.x'
+            description: manifest.Project?.DetailName || `${name} dataset`
           });
 
           if (this.debugMode) {
-            console.log(`✅ Found 4.x dataset: ${name}`);
-          }
-        } else {
-          // Try 3.x format (single .json file)
-          const jsonResponse = await fetch(`./${name}.json`);
-          if (jsonResponse.ok) {
-            const jsonData = await jsonResponse.json();
-
-            // Check if it's a valid 3.x format
-            if (jsonData.Packages && Array.isArray(jsonData.Packages)) {
-              datasets.push({
-                name,
-                file: `${name}.json`,
-                displayName: jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-                description: jsonData.Project?.DetailName || `${name} dataset (3.x format)`,
-                articyVersion: jsonData.Settings?.ExportVersion ? `3.x v${jsonData.Settings.ExportVersion}` : '3.x',
-                format: '3.x'
-              });
-
-              if (this.debugMode) {
-                console.log(`✅ Found 3.x dataset: ${name}`);
-              }
-            }
+            console.log(`✅ Found dataset: ${name}`);
           }
         }
       } catch (error) {
-        // Dataset doesn't exist or is invalid, skip silently
-        if (this.debugMode) {
-          console.log(`❌ Dataset ${name} not found or invalid`);
-        }
+        // Dataset doesn't exist or manifest is invalid, skip silently
       }
-    }
-
-    if (this.debugMode) {
-      console.log('🎯 Streamlined fallback found:', datasets.map(d => `${d.name} (${d.format})`));
     }
 
     return datasets;
