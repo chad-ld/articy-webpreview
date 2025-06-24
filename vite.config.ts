@@ -8,27 +8,23 @@ export default defineConfig(({ command }) => ({
   server: {
     port: 3000,
     open: true,
-    proxy: {
-      // Proxy PHP requests to a PHP server running on port 8080
-      '/datasets.php': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        configure: (proxy, options) => {
-          // Log proxy requests for debugging
-          proxy.on('proxyReq', (proxyReq, req, res) => {
-            console.log(`🔄 Proxying PHP request: ${req.url} -> http://localhost:8080${req.url}`);
-          });
-          proxy.on('error', (err, req, res) => {
-            console.error('❌ PHP proxy error:', err.message);
-          });
-        }
-      },
-      // Catch-all for any other PHP files
-      '**/*.php': {
-        target: 'http://localhost:8080',
-        changeOrigin: true
-      }
-    }
+    // Temporarily disabled PHP proxy to test fallback detection
+    // proxy: {
+    //   // Proxy PHP requests to a PHP server running on port 8080
+    //   '**/*.php': {
+    //     target: 'http://localhost:8080',
+    //     changeOrigin: true,
+    //     configure: (proxy, options) => {
+    //       // Log proxy requests for debugging
+    //       proxy.on('proxyReq', (proxyReq, req, res) => {
+    //         console.log(`🔄 Proxying PHP request: ${req.url} -> http://localhost:8080${req.url}`);
+    //       });
+    //       proxy.on('error', (err, req, res) => {
+    //         console.error('❌ PHP proxy error:', err.message);
+    //       });
+    //     }
+    //   }
+    // }
   },
   build: {
     outDir: 'dist',

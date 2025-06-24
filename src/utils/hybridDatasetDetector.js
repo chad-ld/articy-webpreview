@@ -11,7 +11,6 @@ class HybridDatasetDetector {
     this.debugMode = false;
     this.cache = new Map();
     this.cacheTimeout = 30000; // 30 seconds
-    this.lastSuccessfulMethod = null;
   }
 
   /**
@@ -21,14 +20,6 @@ class HybridDatasetDetector {
   setDebugMode(enabled) {
     this.debugMode = enabled;
     this.environmentDetector.setDebugMode(enabled);
-  }
-
-  /**
-   * Get the last successful detection method
-   * @returns {string|null} The last successful method or null if none
-   */
-  getLastSuccessfulMethod() {
-    return this.lastSuccessfulMethod;
   }
 
   /**
@@ -68,10 +59,7 @@ class HybridDatasetDetector {
           if (this.debugMode) {
             console.log(`✅ Successfully detected ${datasets.length} datasets using ${method}`);
           }
-
-          // Track successful method
-          this.lastSuccessfulMethod = method;
-
+          
           // Cache successful result
           this.setCachedResult(cacheKey, datasets);
           return datasets;
@@ -151,13 +139,8 @@ class HybridDatasetDetector {
       .map(dataset => ({
         name: dataset.name,
         folder: dataset.folder,
-        file: dataset.file, // For 3.x format
         displayName: dataset.displayName,
-        description: dataset.description || `${dataset.name} dataset`,
-        articyVersion: dataset.articyVersion, // Include version info for tags
-        format: dataset.format, // Include format info for tag colors
-        lastModified: dataset.lastModified, // Include timestamp for sorting
-        lastModifiedFormatted: dataset.lastModifiedFormatted // Include formatted timestamp
+        description: dataset.description || `${dataset.name} dataset`
       }));
 
     if (this.debugMode) {
@@ -279,32 +262,108 @@ class HybridDatasetDetector {
 
     if (this.debugMode) {
       console.log('🔄 Using fallback detection with predefined dataset names');
+      console.log('🔍 Fallback dataset list:', config.fallbackDatasets);
     }
 
     for (const name of config.fallbackDatasets) {
+      if (this.debugMode) {
+        console.log(`🔍 Testing dataset: ${name}`);
+      }
+
       try {
-        // Test if manifest.json exists in the dataset folder
+        // Test 4.x format first (folder with manifest.json)
         const response = await fetch(`./${name}.json/manifest.json`);
         if (response.ok) {
           const manifest = await response.json();
+
+          // Try to get Last-Modified header for timestamp
+          const lastModified = await this.getFileTimestamp(`./${name}.json/manifest.json`);
+
+          // Get Articy version from manifest
+          const articyVersion = manifest.Settings?.ExportVersion ?
+                               `4.x v${manifest.Settings.ExportVersion}` : '4.x';
 
           datasets.push({
             name,
             folder: `${name}.json`,
             displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-            description: manifest.Project?.DetailName || `${name} dataset`
+            description: manifest.Project?.DetailName || `${name} dataset`,
+            articyVersion,
+            format: '4.x',
+            lastModified,
+            lastModifiedFormatted: new Date(lastModified).toLocaleString()
           });
 
           if (this.debugMode) {
-            console.log(`✅ Found dataset: ${name}`);
+            console.log(`✅ Found 4.x dataset: ${name}`);
+          }
+        } else {
+          // Test 3.x format (single JSON file)
+          const fileResponse = await fetch(`./${name}.json`);
+          if (fileResponse.ok) {
+            const jsonData = await fileResponse.json();
+
+            // Check if it looks like 3.x format
+            const is3xFormat = jsonData.Packages && jsonData.Project && jsonData.GlobalVariables;
+
+            if (is3xFormat) {
+              // Try to get Last-Modified header for timestamp
+              const lastModified = await this.getFileTimestamp(`./${name}.json`);
+
+              const articyVersion = jsonData.Settings?.ExportVersion ?
+                                   `3.x v${jsonData.Settings.ExportVersion}` : '3.x';
+
+              datasets.push({
+                name,
+                file: `${name}.json`,
+                displayName: jsonData.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
+                description: jsonData.Project?.DetailName || `${name} dataset (3.x format)`,
+                articyVersion,
+                format: '3.x',
+                lastModified,
+                lastModifiedFormatted: new Date(lastModified).toLocaleString()
+              });
+
+              if (this.debugMode) {
+                console.log(`✅ Found 3.x dataset: ${name}`);
+              }
+            }
           }
         }
       } catch (error) {
         // Dataset doesn't exist or manifest is invalid, skip silently
+        if (this.debugMode) {
+          console.log(`❌ ${name} not found or invalid`);
+        }
       }
     }
 
     return datasets;
+  }
+
+  /**
+   * Try to get file timestamp from HTTP Last-Modified header
+   * @param {string} url - File URL to check
+   * @returns {Promise<number>} Unix timestamp or current time as fallback
+   */
+  async getFileTimestamp(url) {
+    try {
+      const response = await fetch(url, { method: 'HEAD' });
+      if (response.ok) {
+        const lastModified = response.headers.get('Last-Modified');
+        if (lastModified) {
+          const timestamp = new Date(lastModified).getTime();
+          if (!isNaN(timestamp)) {
+            return timestamp;
+          }
+        }
+      }
+    } catch (error) {
+      // HEAD request failed, fall back to current time
+    }
+
+    // Fallback to current time if we can't get real timestamp
+    return Date.now();
   }
 
   /**
