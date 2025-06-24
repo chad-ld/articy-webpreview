@@ -12,6 +12,7 @@ class HybridDatasetDetector {
     this.cache = new Map();
     this.cacheTimeout = 30000; // 30 seconds
     this.lastSuccessfulMethod = null; // Track which method was successful
+    // TEST CHANGE: Added at 12:05 AM to test file reversion bug
   }
 
   /**
@@ -137,14 +138,21 @@ class HybridDatasetDetector {
       throw new Error(`PHP API error: ${data.error || 'Unknown error'}`);
     }
 
-    // Filter to only valid datasets and transform to expected format
+    // Filter to only valid datasets and preserve all metadata
     const validDatasets = data.datasets
       .filter(dataset => dataset.valid)
       .map(dataset => ({
         name: dataset.name,
         folder: dataset.folder,
+        file: dataset.file, // For 3.x format files
         displayName: dataset.displayName,
-        description: dataset.description || `${dataset.name} dataset`
+        description: dataset.description || `${dataset.name} dataset`,
+        lastModified: dataset.lastModified,
+        lastModifiedFormatted: dataset.lastModifiedFormatted,
+        articyVersion: dataset.articyVersion,
+        format: dataset.format,
+        manifestPath: dataset.manifestPath,
+        filePath: dataset.filePath // For 3.x format files
       }));
 
     if (this.debugMode) {
@@ -324,6 +332,14 @@ class HybridDatasetDetector {
    */
   clearCache() {
     this.cache.clear();
+  }
+
+  /**
+   * Get the last successful detection method
+   * @returns {string|null} The method name that was successful, or null if none succeeded
+   */
+  getLastSuccessfulMethod() {
+    return this.lastSuccessfulMethod;
   }
 
   /**
