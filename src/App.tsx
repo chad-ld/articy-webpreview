@@ -69,7 +69,13 @@ function App() {
 
   // Get sorted datasets for display using useMemo to ensure recalculation when dependencies change
   const sortedDatasets = useMemo(() => {
-    console.log(`🔄 Sorting datasets in ${sortMode} mode:`, availableDatasets.map(d => ({
+    // Only sort if we have actual datasets
+    if (!availableDatasets || availableDatasets.length === 0) {
+      console.log('🔄 No datasets available for sorting yet');
+      return [];
+    }
+
+    console.log(`🔄 Sorting ${availableDatasets.length} datasets in ${sortMode} mode:`, availableDatasets.map(d => ({
       name: d.name,
       displayName: d.displayName,
       lastModified: d.lastModified,
@@ -91,7 +97,7 @@ function App() {
       }
     });
 
-    console.log(`✅ Sorted result:`, sorted.map(d => `${d.name} (${d.lastModifiedFormatted || 'no timestamp'})`));
+    console.log(`✅ Sorted result:`, sorted.map(d => `${d.name}: "${d.displayName}" (${d.lastModifiedFormatted || 'no timestamp'})`));
     return sorted;
   }, [availableDatasets, sortMode]);
 
@@ -108,25 +114,28 @@ function App() {
       // Step 2: Enhance display names with subtitles (centralized formatting)
       const datasets = await displayFormatter.formatDatasetDisplayNames(rawDatasets);
       console.log(`🎨 Enhanced ${datasets.length} dataset display names`);
+      console.log('🎨 Final enhanced datasets:', datasets.map(d => `${d.name}: "${d.displayName}"`));
 
-      // Determine which method was actually used by checking available methods
+      // Determine which method was actually used by checking the successful method
+      const actualMethod = hybridDetector.getLastSuccessfulMethod();
       const env = hybridDetector.environmentDetector.detectEnvironment();
-      const availableMethods = hybridDetector.environmentDetector.getAvailableDetectionMethods();
 
-      if (availableMethods.includes('php-api')) {
+      if (actualMethod === 'php-api') {
         if (env.isDevelopment) {
           setDetectionMethod('PHP API (development server)');
         } else {
           setDetectionMethod('PHP API (web server)');
         }
-      } else if (availableMethods.includes('fallback')) {
+      } else if (actualMethod === 'fallback') {
         if (env.isDevelopment) {
-          setDetectionMethod('Fallback (development server)');
+          setDetectionMethod('JavaScript Fallback (development server)');
         } else {
-          setDetectionMethod('Fallback detection');
+          setDetectionMethod('JavaScript Fallback');
         }
-      } else if (availableMethods.includes('dev-server-scan')) {
+      } else if (actualMethod === 'dev-server-scan') {
         setDetectionMethod('Dev Server Scan (development server)');
+      } else if (actualMethod === 'file-system') {
+        setDetectionMethod('File System (desktop app)');
       } else {
         setDetectionMethod('Unknown detection method');
       }
@@ -408,6 +417,7 @@ function App() {
       const datasets = await detectAvailableDatasets();
 
       setAvailableDatasets(datasets);
+      console.log('🎯 Stored in state:', datasets.map(d => `${d.name}: "${d.displayName}"`));
 
       // Check URL parameter for specific dataset auto-load
       const urlParams = new URLSearchParams(window.location.search);
