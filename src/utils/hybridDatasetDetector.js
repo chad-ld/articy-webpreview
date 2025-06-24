@@ -1,6 +1,7 @@
 /**
  * Hybrid Dataset Detection Service
  * Automatically detects datasets using the best available method for the current environment
+ * TEST MARKER: No servers running - testing file stability at 2025-06-24 05:00:00
  */
 
 import EnvironmentDetector from './environmentDetector.js';
@@ -11,7 +12,6 @@ class HybridDatasetDetector {
     this.debugMode = false;
     this.cache = new Map();
     this.cacheTimeout = 30000; // 30 seconds
-    this.lastSuccessfulMethod = null;
   }
 
   /**
@@ -60,10 +60,7 @@ class HybridDatasetDetector {
           if (this.debugMode) {
             console.log(`✅ Successfully detected ${datasets.length} datasets using ${method}`);
           }
-
-          // Track successful method
-          this.lastSuccessfulMethod = method;
-
+          
           // Cache successful result
           this.setCachedResult(cacheKey, datasets);
           return datasets;
@@ -327,24 +324,16 @@ class HybridDatasetDetector {
   }
 
   /**
-   * Get the last successful detection method used
-   * @returns {string|null} The method name or null if none succeeded
-   */
-  getLastSuccessfulMethod() {
-    return this.lastSuccessfulMethod;
-  }
-
-  /**
    * Test the hybrid detection system
    * @returns {Promise<Object>} Test results
    */
   async testDetection() {
     const startTime = Date.now();
-
+    
     try {
       const datasets = await this.detectDatasets();
       const endTime = Date.now();
-
+      
       return {
         success: true,
         datasets,
@@ -354,7 +343,7 @@ class HybridDatasetDetector {
       };
     } catch (error) {
       const endTime = Date.now();
-
+      
       return {
         success: false,
         error: error.message,
