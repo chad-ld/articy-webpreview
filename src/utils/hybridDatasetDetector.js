@@ -40,7 +40,6 @@ class HybridDatasetDetector {
       if (this.debugMode) {
         console.log('📋 Using cached dataset results');
       }
-      // Note: lastSuccessfulMethod is preserved from when cache was set
       return cached;
     }
 
