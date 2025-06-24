@@ -11,7 +11,6 @@ class HybridDatasetDetector {
     this.debugMode = false;
     this.cache = new Map();
     this.cacheTimeout = 30000; // 30 seconds
-    this.lastSuccessfulMethod = null; // Track which method was successful
   }
 
   /**
@@ -55,15 +54,12 @@ class HybridDatasetDetector {
         }
 
         datasets = await this.detectUsingMethod(method);
-
+        
         if (datasets && datasets.length > 0) {
           if (this.debugMode) {
             console.log(`✅ Successfully detected ${datasets.length} datasets using ${method}`);
           }
-
-          // Track successful method
-          this.lastSuccessfulMethod = method;
-
+          
           // Cache successful result
           this.setCachedResult(cacheKey, datasets);
           return datasets;
@@ -137,14 +133,21 @@ class HybridDatasetDetector {
       throw new Error(`PHP API error: ${data.error || 'Unknown error'}`);
     }
 
-    // Filter to only valid datasets and transform to expected format
+    // Filter to only valid datasets and preserve all metadata
     const validDatasets = data.datasets
       .filter(dataset => dataset.valid)
       .map(dataset => ({
         name: dataset.name,
         folder: dataset.folder,
+        file: dataset.file, // For 3.x format files
         displayName: dataset.displayName,
-        description: dataset.description || `${dataset.name} dataset`
+        description: dataset.description || `${dataset.name} dataset`,
+        lastModified: dataset.lastModified,
+        lastModifiedFormatted: dataset.lastModifiedFormatted,
+        articyVersion: dataset.articyVersion,
+        format: dataset.format,
+        manifestPath: dataset.manifestPath,
+        filePath: dataset.filePath // For 3.x format files
       }));
 
     if (this.debugMode) {
@@ -190,18 +193,27 @@ class HybridDatasetDetector {
               const manifest = JSON.parse(manifestContent);
               
               const datasetName = item.slice(0, -5); // Remove .json extension
-              const displayName = manifest.Project?.Name || 
-                                manifest.Project?.DisplayName || 
+              const displayName = manifest.Project?.Name ||
+                                manifest.Project?.DisplayName ||
                                 datasetName.charAt(0).toUpperCase() + datasetName.slice(1);
-              const description = manifest.Project?.DetailName || 
-                                manifest.Project?.Description || 
+              const description = manifest.Project?.DetailName ||
+                                manifest.Project?.Description ||
                                 `${datasetName} dataset`;
+
+              // Get version info
+              const articyVersion = manifest.Settings?.ExportVersion
+                ? `4.x v${manifest.Settings.ExportVersion}`
+                : '4.x';
 
               datasets.push({
                 name: datasetName,
                 folder: item,
                 displayName,
-                description
+                description,
+                articyVersion,
+                format: '4.x',
+                lastModified: stats.mtime.getTime(),
+                lastModifiedFormatted: stats.mtime.toLocaleString()
               });
             } catch (error) {
               if (this.debugMode) {
@@ -233,19 +245,28 @@ class HybridDatasetDetector {
         const manifestResponse = await fetch(`./${name}.json/manifest.json`);
         if (manifestResponse.ok) {
           const manifest = await manifestResponse.json();
-          
-          const displayName = manifest.Project?.Name || 
-                            manifest.Project?.DisplayName || 
+
+          const displayName = manifest.Project?.Name ||
+                            manifest.Project?.DisplayName ||
                             name.charAt(0).toUpperCase() + name.slice(1);
-          const description = manifest.Project?.DetailName || 
-                            manifest.Project?.Description || 
+          const description = manifest.Project?.DetailName ||
+                            manifest.Project?.Description ||
                             `${name} dataset`;
+
+          // Get version info
+          const articyVersion = manifest.Settings?.ExportVersion
+            ? `4.x v${manifest.Settings.ExportVersion}`
+            : '4.x';
 
           datasets.push({
             name,
             folder: `${name}.json`,
             displayName,
-            description
+            description,
+            articyVersion,
+            format: '4.x',
+            lastModified: Date.now(), // Dev server uses current time
+            lastModifiedFormatted: new Date().toLocaleString()
           });
         }
       } catch (error) {
@@ -275,11 +296,20 @@ class HybridDatasetDetector {
         if (response.ok) {
           const manifest = await response.json();
 
+          // Get version info
+          const articyVersion = manifest.Settings?.ExportVersion
+            ? `4.x v${manifest.Settings.ExportVersion}`
+            : '4.x';
+
           datasets.push({
             name,
             folder: `${name}.json`,
             displayName: manifest.Project?.Name || name.charAt(0).toUpperCase() + name.slice(1),
-            description: manifest.Project?.DetailName || `${name} dataset`
+            description: manifest.Project?.DetailName || `${name} dataset`,
+            articyVersion,
+            format: '4.x',
+            lastModified: Date.now(), // Fallback uses current time
+            lastModifiedFormatted: new Date().toLocaleString()
           });
 
           if (this.debugMode) {
@@ -324,14 +354,6 @@ class HybridDatasetDetector {
    */
   clearCache() {
     this.cache.clear();
-  }
-
-  /**
-   * Get the last successful detection method
-   * @returns {string|null} The method name that was successful, or null if none succeeded
-   */
-  getLastSuccessfulMethod() {
-    return this.lastSuccessfulMethod;
   }
 
   /**
