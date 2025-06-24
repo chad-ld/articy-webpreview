@@ -36,11 +36,14 @@ interface PreviousChoice {
 }
 
 // Component for displaying previous choice
-function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
-  previousChoice: PreviousChoice,
-  onBack: () => void,
-  selected?: boolean
-}) {
+interface PreviousChoiceDisplayProps {
+  previousChoice: PreviousChoice;
+  onBack: () => void;
+  selected?: boolean;
+}
+
+const PreviousChoiceDisplay = React.forwardRef<HTMLDivElement, PreviousChoiceDisplayProps>(
+  ({ previousChoice, onBack, selected = false }, ref) => {
   // Convert Articy color (0.0-1.0) to CSS RGB (0-255) and create darker background
   const getColors = () => {
     if (previousChoice.color) {
@@ -75,7 +78,7 @@ function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
   const { frameColor, backgroundColor, headerTextColor } = getColors();
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div ref={ref} style={{ marginBottom: '20px' }}>
       <h3 style={{
         color: '#999',
         fontSize: '16px',
@@ -116,7 +119,7 @@ function PreviousChoiceDisplay({ previousChoice, onBack, selected = false }: {
       </div>
     </div>
   );
-}
+});
 
 const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data, onReset, onPanelWidthChange, onLoadScreen, onHideFooterChange }) => {
   const [project, setProject] = useState<ArticyProject | undefined>(undefined);
@@ -160,8 +163,9 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const [previousChoiceHistory, setPreviousChoiceHistory] = useState<PreviousChoice[]>([]);
   const [showPrevious, setShowPrevious] = useState(true);
 
-  // Refs for condition bubble positioning
+  // Refs for condition bubble positioning and scroll-into-view
   const nodeRefs = useRef<(React.RefObject<HTMLDivElement>)[]>([]);
+  const previousChoiceRef = useRef<HTMLDivElement>(null);
   // State to force re-render when refs are ready
   const [bubbleRenderKey, setBubbleRenderKey] = useState(0);
 
@@ -1838,27 +1842,37 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // Handle load screen - go back to file selection
   const handleLoadScreen = useCallback(() => {
+    // Clear URL parameters to return to root
+    const url = new URL(window.location.href);
+    url.search = ''; // Clear all query parameters
+    window.history.pushState({}, '', url.toString());
+
     if (onLoadScreen) {
       onLoadScreen();
     }
   }, [onLoadScreen]);
 
-  // Get current available choices for keyboard navigation (includes previous choice)
-  const getCurrentAvailableChoices = useCallback(() => {
-    let choices: any[] = [];
+  // Get currently available interactive elements for keyboard navigation
+  const getInteractiveElements = useCallback(() => {
+    const elements: Array<{
+      type: 'previous' | 'choice' | 'next';
+      index?: number;
+      onClick: () => void;
+    }> = [];
 
-    // Add previous choice as first option if available and visible
-    if (showPrevious && previousChoiceHistory.length > 0) {
-      choices.push({
-        isPreviousChoice: true,
+    // Add previous choice if available and visible
+    const shouldHidePreviousChoices = storyModeSettings.enabled && storyModeSettings.hidePreviousChoices;
+    if (showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices) {
+      elements.push({
+        type: 'previous',
         onClick: goBack
       });
     }
 
-    // Add current choices
-    if (showingChoices) {
-      // Filter choices based on story only mode and preserve original indices
-      const filteredChoicesWithIndices = choiceOptions
+    // Add current choices or next button
+    if (showingChoices && choiceOptions.length > 0) {
+      // Filter choices based on story mode settings
+      const visibleChoices = choiceOptions
         .map((option, originalIndex) => ({ option, originalIndex }))
         .filter(({ option }) => {
           if (storyModeSettings.enabled && storyModeSettings.hideInactiveChoices && option.disabled) {
@@ -1867,20 +1881,26 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           return true;
         });
 
-      // Add the filtered choices with their original indices preserved
-      choices.push(...filteredChoicesWithIndices.map(({ option, originalIndex }) => ({
-        ...option,
-        originalIndex: originalIndex
-      })));
+      // Add each visible choice
+      visibleChoices.forEach(({ originalIndex }) => {
+        elements.push({
+          type: 'choice',
+          index: originalIndex,
+          onClick: () => handleChoiceSelect(originalIndex)
+        });
+      });
     } else {
-      // Single choice or Next button
-      choices.push({ isSingleChoice: true, onClick: handleNext });
+      // Single next button
+      elements.push({
+        type: 'next',
+        onClick: handleNext
+      });
     }
 
-    return choices;
-  }, [showPrevious, previousChoiceHistory.length, showingChoices, choiceOptions, storyOnlyMode, goBack, handleNext]);
+    return elements;
+  }, [showPrevious, previousChoiceHistory.length, storyModeSettings, showingChoices, choiceOptions, goBack, handleChoiceSelect, handleNext]);
 
-  // Handle keyboard navigation
+  // New keyboard navigation handler
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     // Only handle keyboard events when a project is loaded
     if (!project || !currentNode) return;
@@ -1891,60 +1911,48 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       return;
     }
 
-    const availableChoices = getCurrentAvailableChoices();
+    const interactiveElements = getInteractiveElements();
 
     switch (event.key) {
       case 'ArrowUp':
         event.preventDefault();
-        if (availableChoices.length > 1) {
+        if (interactiveElements.length > 1) {
           setSelectedChoiceIndex(prev => {
-            const newIndex = prev > 0 ? prev - 1 : availableChoices.length - 1;
-            console.log('🔼 Selected choice:', newIndex + 1, 'of', availableChoices.length);
+            const newIndex = prev > 0 ? prev - 1 : interactiveElements.length - 1;
+            console.log('🔼 Selected element:', newIndex + 1, 'of', interactiveElements.length);
             return newIndex;
           });
         }
         break;
       case 'ArrowDown':
         event.preventDefault();
-        if (availableChoices.length > 1) {
+        if (interactiveElements.length > 1) {
           setSelectedChoiceIndex(prev => {
-            const newIndex = prev < availableChoices.length - 1 ? prev + 1 : 0;
-            console.log('🔽 Selected choice:', newIndex + 1, 'of', availableChoices.length);
+            const newIndex = prev < interactiveElements.length - 1 ? prev + 1 : 0;
+            console.log('🔽 Selected element:', newIndex + 1, 'of', interactiveElements.length);
             return newIndex;
           });
         }
         break;
       case 'Enter':
         event.preventDefault();
-        if (availableChoices.length === 0) return;
-
-        console.log('⏎ Confirming choice:', selectedChoiceIndex + 1);
-        const selectedChoice = availableChoices[selectedChoiceIndex];
-        if (selectedChoice.isPreviousChoice) {
-          goBack();
-        } else if (selectedChoice.isSingleChoice) {
-          handleNext();
-        } else {
-          // Get the selected choice and use its original index
-          const adjustedIndex = showPrevious && previousChoiceHistory.length > 0 ?
-            selectedChoiceIndex - 1 : selectedChoiceIndex;
-          const selectedChoiceData = availableChoices[selectedChoiceIndex];
-
-          // Use the original index if available, otherwise fall back to adjusted index
-          const choiceIndex = selectedChoiceData.originalIndex !== undefined ?
-            selectedChoiceData.originalIndex : adjustedIndex;
-          handleChoiceSelect(choiceIndex);
+        if (interactiveElements.length > 0 && selectedChoiceIndex < interactiveElements.length) {
+          const selectedElement = interactiveElements[selectedChoiceIndex];
+          console.log('⏎ Activating element:', selectedElement.type, selectedElement.index);
+          selectedElement.onClick();
         }
         break;
       case 'r':
         if (event.ctrlKey) {
           event.preventDefault();
+          console.log('🔄 Keyboard restart');
           handleRestart();
         }
         break;
       case 'l':
         if (event.ctrlKey) {
           event.preventDefault();
+          console.log('📁 Keyboard load screen');
           handleLoadScreen();
         }
         break;
@@ -1955,13 +1963,16 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         setChoiceOptions([]);
         break;
     }
-  }, [project, currentNode, getCurrentAvailableChoices, selectedChoiceIndex, showPrevious, previousChoiceHistory.length, goBack, handleNext, handleChoiceSelect, handleRestart, handleLoadScreen, isVariableBeingEdited]);
+  }, [project, currentNode, isVariableBeingEdited, getInteractiveElements, selectedChoiceIndex, handleRestart, handleLoadScreen]);
 
   // Add keyboard event listener
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
+
+
+
 
   // Reset selected choice index when node changes
   useEffect(() => {
@@ -1970,6 +1981,51 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices;
     setSelectedChoiceIndex(hasPreviousChoice ? 1 : 0);
   }, [currentNode, showPrevious, previousChoiceHistory.length, storyModeSettings.hidePreviousChoices]);
+
+  // Scroll selected element into view when selectedChoiceIndex changes
+  useEffect(() => {
+    if (!showingChoices || choiceOptions.length === 0) return;
+
+    // Determine which element should be scrolled into view
+    const shouldHidePreviousChoices = storyModeSettings.enabled && storyModeSettings.hidePreviousChoices;
+    const hasPreviousChoice = showPrevious && previousChoiceHistory.length > 0 && !shouldHidePreviousChoices;
+
+    let elementToScroll: HTMLElement | null = null;
+
+    if (selectedChoiceIndex === 0 && hasPreviousChoice) {
+      // Previous choice is selected - use the previous choice ref
+      elementToScroll = previousChoiceRef.current;
+    } else {
+      // A regular choice is selected - use nodeRefs
+      const adjustedIndex = hasPreviousChoice ? selectedChoiceIndex - 1 : selectedChoiceIndex;
+
+      // Filter choices to match the same logic as the render
+      const filteredChoices = choiceOptions.filter((option) => {
+        if (storyModeSettings.enabled && storyModeSettings.hideInactiveChoices && option.disabled) {
+          return false;
+        }
+        return true;
+      });
+
+      if (adjustedIndex >= 0 && adjustedIndex < filteredChoices.length && nodeRefs.current[adjustedIndex]?.current) {
+        elementToScroll = nodeRefs.current[adjustedIndex].current;
+      }
+    }
+
+    // Scroll the element into view with smooth behavior
+    if (elementToScroll) {
+      elementToScroll.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest'
+      });
+      console.log('📜 Scrolled element into view:', {
+        selectedChoiceIndex,
+        hasPreviousChoice,
+        elementType: selectedChoiceIndex === 0 && hasPreviousChoice ? 'previous' : 'choice'
+      });
+    }
+  }, [selectedChoiceIndex, showingChoices, choiceOptions, showPrevious, previousChoiceHistory.length, storyModeSettings]);
 
   // Initialize node refs when choice options change
   useEffect(() => {
@@ -2207,6 +2263,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         })() && (
           <>
             <PreviousChoiceDisplay
+              ref={previousChoiceRef}
               previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
               onBack={goBack}
               selected={selectedChoiceIndex === 0} // First choice is previous choice
@@ -2387,11 +2444,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           })}
         </div>
 
-          <div style={{ marginTop: '10px', fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>
-            <strong>Navigation:</strong> Use ↑↓ arrow keys to select, Enter to choose, Esc to cancel<br />
-            <strong>Selected:</strong> {selectedChoiceIndex + 1} of {getCurrentAvailableChoices().length}<br />
-            <strong>Debug Info:</strong> Node ID: {currentNode.Properties.Id}, Type: {currentNode.Type}
-          </div>
+
         </div>
       </div>
     );
@@ -2533,6 +2586,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         })() && (
           <>
             <PreviousChoiceDisplay
+              ref={previousChoiceRef}
               previousChoice={previousChoiceHistory[previousChoiceHistory.length - 1]}
               onBack={goBack}
               selected={selectedChoiceIndex === 0} // First choice is previous choice
