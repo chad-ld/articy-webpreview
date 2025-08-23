@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, createRef } from 'react';
-import { Button, message, Modal } from 'antd';
+import { Button, message } from 'antd';
 import { InboxOutlined, CommentOutlined } from '@ant-design/icons';
 import ArticyProject from '../utils/ArticyProject';
 import InstructionPanel from '../panels/InstructionPanel';
@@ -9,6 +9,7 @@ import VariablesPanel from './VariablesPanel';
 import SearchNodesPanel from './SearchNodesPanel';
 import ConditionBubble from './ConditionBubble';
 import TextBlock from './TextBlock';
+import { usePlugins } from '../hooks/usePlugins';
 
 interface InteractiveArticyViewerProps {
   data: any;
@@ -737,17 +738,19 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const [variableUpdateTrigger, setVariableUpdateTrigger] = useState(0);
   const [isVariableBeingEdited, setIsVariableBeingEdited] = useState(false);
 
-  // Plugin modal state
-  const [isPluginModalVisible, setIsPluginModalVisible] = useState(false);
-
-  // Plugin modal handlers
-  const handlePluginModalOpen = () => {
-    setIsPluginModalVisible(true);
-  };
-
-  const handlePluginModalClose = () => {
-    setIsPluginModalVisible(false);
-  };
+  // Initialize plugin system
+  const { pluginButtons, renderPluginModals } = usePlugins({
+    project,
+    currentNode,
+    variables: project?.variables,
+    isVariablesPanelVisible,
+    isSearchPanelVisible,
+    storyOnlyMode,
+    onNavigateToNode: (nodeId: string) => {
+      // Navigate to specific node if needed
+      console.log('Navigate to node:', nodeId);
+    }
+  });
 
   const handleDropdownOpenChange = (open: boolean) => {
     setDropdownOpen(open);
@@ -2210,7 +2213,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               onStoryModePreset={handleStoryModePreset}
               onDropdownOpenChange={handleDropdownOpenChange}
               dropdownOpen={dropdownOpen}
-              onPluginModalOpen={handlePluginModalOpen}
+              pluginButtons={pluginButtons}
             />
             <SearchNodesPanel
               project={project}
@@ -2534,7 +2537,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             onStoryModePreset={handleStoryModePreset}
             onDropdownOpenChange={handleDropdownOpenChange}
             dropdownOpen={dropdownOpen}
-            onPluginModalOpen={handlePluginModalOpen}
+            pluginButtons={pluginButtons}
           />
           <SearchNodesPanel
             project={project}
@@ -2651,25 +2654,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           </div>
         )}
 
-        {/* Plugin Modal */}
-        <Modal
-          title="Hello World Plugin"
-          open={isPluginModalVisible}
-          onCancel={handlePluginModalClose}
-          footer={null}
-          width={1280}
-          style={{ top: 20 }}
-          bodyStyle={{
-            height: 720,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '24px',
-            fontWeight: 'bold'
-          }}
-        >
-          Hello World
-        </Modal>
+        {/* Dynamic Plugin Modals */}
+        {renderPluginModals()}
       </div>
     </div>
   );

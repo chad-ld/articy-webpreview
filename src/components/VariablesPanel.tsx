@@ -32,7 +32,12 @@ interface VariablesPanelProps {
     onStoryModePreset: (preset: 'all' | 'none') => void;
     onDropdownOpenChange: (open: boolean) => void;
     dropdownOpen: boolean;
-    onPluginModalOpen: () => void;
+    pluginButtons: Array<{
+        plugin: any;
+        config: { text: string; icon?: React.ReactNode; position?: number };
+        onClick: () => void;
+        isActive: boolean;
+    }>;
 }
 
 function VariablesPanel(props: VariablesPanelProps) {
@@ -760,34 +765,45 @@ function VariablesPanel(props: VariablesPanelProps) {
                         </Dropdown>
                     </div>
 
-                    {/* Plugin Section Divider */}
-                    <div style={{
-                        position: 'fixed',
-                        left: props.isVisible ? panelWidth + 10 : 10,
-                        top: 115,
-                        zIndex: 1001,
-                        transition: 'left 0.3s ease',
-                        width: '120px',
-                        height: '1px',
-                        backgroundColor: '#444',
-                        marginBottom: '10px'
-                    }} />
+                    {/* Plugin Section */}
+                    {props.pluginButtons && props.pluginButtons.length > 0 && (
+                        <>
+                            {/* Plugin Section Divider */}
+                            <div style={{
+                                position: 'fixed',
+                                left: props.isVisible ? panelWidth + 10 : 10,
+                                top: 115,
+                                zIndex: 1001,
+                                transition: 'left 0.3s ease',
+                                width: '120px',
+                                height: '1px',
+                                backgroundColor: '#444',
+                                marginBottom: '10px'
+                            }} />
 
-                    {/* Plugin Buttons Section */}
-                    <Button
-                        icon={<ApiOutlined />}
-                        onClick={props.onPluginModalOpen}
-                        style={{
-                            position: 'fixed',
-                            left: props.isVisible ? panelWidth + 10 : 10,
-                            top: 125,
-                            zIndex: 1001,
-                            transition: 'left 0.3s ease'
-                        }}
-                        size="small"
-                    >
-                        Hello World
-                    </Button>
+                            {/* Dynamic Plugin Buttons */}
+                            {props.pluginButtons.map((pluginButton, index) => (
+                                <Button
+                                    key={pluginButton.plugin.metadata.id}
+                                    icon={pluginButton.config.icon}
+                                    onClick={pluginButton.onClick}
+                                    style={{
+                                        position: 'fixed',
+                                        left: props.isVisible ? panelWidth + 10 : 10,
+                                        top: 125 + (index * 35), // Stack buttons vertically
+                                        zIndex: 1001,
+                                        transition: 'left 0.3s ease',
+                                        backgroundColor: pluginButton.isActive ? '#1890ff' : undefined,
+                                        borderColor: pluginButton.isActive ? '#1890ff' : undefined,
+                                        color: pluginButton.isActive ? '#fff' : undefined
+                                    }}
+                                    size="small"
+                                >
+                                    {pluginButton.config.text}
+                                </Button>
+                            ))}
+                        </>
+                    )}
 
                     {/* Show Previous Button - REMOVED: Previous choice visibility is now controlled via Story Mode dropdown */}
                 </>

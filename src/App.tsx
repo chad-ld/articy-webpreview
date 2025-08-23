@@ -3,12 +3,15 @@ import { ConfigProvider, message, Spin, Select, Button, Divider, Tooltip } from 
 import { SortAscendingOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import InteractiveArticyViewer from './components/InteractiveArticyViewer';
 import EnhancedFileInput from './components/EnhancedFileInput';
+import PluginSelector from './components/PluginSelector';
 // @ts-ignore
 import DataRouter from './utils/dataRouter';
 // @ts-ignore
 import HybridDatasetDetector from './utils/hybridDatasetDetector';
 // @ts-ignore
 import DatasetDisplayFormatter from './utils/datasetDisplayFormatter';
+// Initialize plugin system
+import './plugins';
 import './App.css';
 
 const { Option } = Select;
@@ -564,6 +567,11 @@ function App() {
                         </Button>
                       </div>
                     )}
+
+                    {/* Plugin Selection */}
+                    <div style={{ marginBottom: '20px' }}>
+                      <PluginSelector />
+                    </div>
 
                     <div>
                       <h3 style={{ marginBottom: '12px' }}>📤 Upload Custom Files</h3>

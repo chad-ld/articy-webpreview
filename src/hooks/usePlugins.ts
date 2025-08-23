@@ -1,0 +1,165 @@
+/**
+ * usePlugins Hook
+ * React hook for managing plugin state and interactions
+ */
+
+import { useState, useEffect, useCallback } from 'react';
+import { message } from 'antd';
+import { pluginManager } from '../plugins/manager';
+import { IPlugin, PluginContext } from '../plugins/types';
+
+interface UsePluginsProps {
+  project?: any;
+  currentNode?: any;
+  variables?: any;
+  isVariablesPanelVisible?: boolean;
+  isSearchPanelVisible?: boolean;
+  storyOnlyMode?: boolean;
+  onNavigateToNode?: (nodeId: string) => void;
+}
+
+export const usePlugins = (props: UsePluginsProps) => {
+  const [enabledPlugins, setEnabledPlugins] = useState<IPlugin[]>([]);
+  const [pluginModals, setPluginModals] = useState<{ [pluginId: string]: boolean }>({});
+  const [initialized, setInitialized] = useState(false);
+
+  // Initialize plugin manager
+  useEffect(() => {
+    const initializePlugins = async () => {
+      if (initialized) return;
+
+      const context: PluginContext = {
+        project: props.project,
+        currentNode: props.currentNode,
+        variables: props.variables,
+        isVariablesPanelVisible: props.isVariablesPanelVisible || false,
+        isSearchPanelVisible: props.isSearchPanelVisible || false,
+        storyOnlyMode: props.storyOnlyMode || false,
+        showMessage: (content: string, type = 'info') => {
+          message[type](content);
+        },
+        navigateToNode: props.onNavigateToNode,
+        emitEvent: (eventName: string, data?: any) => {
+          // Plugin manager will handle event emission
+        },
+        onEvent: (eventName: string, handler: (data?: any) => void) => {
+          // Plugin manager will handle event subscription
+        }
+      };
+
+      try {
+        await pluginManager.initialize(context);
+        const enabled = pluginManager.getEnabledPlugins();
+        setEnabledPlugins(enabled);
+        setInitialized(true);
+      } catch (error) {
+        console.error('Failed to initialize plugin manager:', error);
+      }
+    };
+
+    initializePlugins();
+
+    // Cleanup on unmount
+    return () => {
+      if (initialized) {
+        pluginManager.destroy();
+        setInitialized(false);
+      }
+    };
+  }, [initialized]);
+
+  // Update plugin context when props change
+  useEffect(() => {
+    if (!initialized) return;
+
+    const contextUpdate: Partial<PluginContext> = {
+      project: props.project,
+      currentNode: props.currentNode,
+      variables: props.variables,
+      isVariablesPanelVisible: props.isVariablesPanelVisible || false,
+      isSearchPanelVisible: props.isSearchPanelVisible || false,
+      storyOnlyMode: props.storyOnlyMode || false,
+      navigateToNode: props.onNavigateToNode
+    };
+
+    pluginManager.updateContext(contextUpdate);
+
+    // Notify plugins of data changes
+    if (props.project) {
+      // Emit dataset loaded event
+      // pluginRegistry.emitEvent('dataset-loaded', props.project);
+    }
+    
+    if (props.currentNode) {
+      // Notify plugins of node changes
+      const plugins = pluginManager.getEnabledPlugins();
+      plugins.forEach(plugin => {
+        if (plugin.onNodeChange) {
+          plugin.onNodeChange(props.currentNode);
+        }
+      });
+    }
+
+    if (props.variables) {
+      // Notify plugins of variable changes
+      const plugins = pluginManager.getEnabledPlugins();
+      plugins.forEach(plugin => {
+        if (plugin.onVariableChange) {
+          plugin.onVariableChange(props.variables);
+        }
+      });
+    }
+  }, [props.project, props.currentNode, props.variables, props.isVariablesPanelVisible, props.isSearchPanelVisible, props.storyOnlyMode, props.onNavigateToNode, initialized]);
+
+  // Open plugin modal
+  const openPluginModal = useCallback((pluginId: string) => {
+    setPluginModals(prev => ({ ...prev, [pluginId]: true }));
+  }, []);
+
+  // Close plugin modal
+  const closePluginModal = useCallback((pluginId: string) => {
+    setPluginModals(prev => ({ ...prev, [pluginId]: false }));
+  }, []);
+
+  // Toggle plugin modal (open if closed, close if open)
+  const togglePluginModal = useCallback((pluginId: string) => {
+    setPluginModals(prev => ({
+      ...prev,
+      [pluginId]: !prev[pluginId]
+    }));
+  }, []);
+
+  // Get plugin button configurations
+  const getPluginButtons = useCallback(() => {
+    return enabledPlugins.map(plugin => ({
+      plugin,
+      config: plugin.getButtonConfig(),
+      onClick: () => togglePluginModal(plugin.metadata.id),
+      isActive: pluginModals[plugin.metadata.id] || false
+    })).sort((a, b) => (a.config.position || 999) - (b.config.position || 999));
+  }, [enabledPlugins, togglePluginModal, pluginModals]);
+
+  // Render plugin modals
+  const renderPluginModals = useCallback(() => {
+    return enabledPlugins.map(plugin => {
+      const isVisible = pluginModals[plugin.metadata.id] || false;
+      
+      return plugin.renderModal({
+        isVisible,
+        onClose: () => closePluginModal(plugin.metadata.id),
+        width: 1280,
+        height: 720,
+        title: plugin.metadata.name
+      });
+    });
+  }, [enabledPlugins, pluginModals, closePluginModal]);
+
+  return {
+    enabledPlugins,
+    pluginButtons: getPluginButtons(),
+    renderPluginModals,
+    openPluginModal,
+    closePluginModal,
+    initialized
+  };
+};
