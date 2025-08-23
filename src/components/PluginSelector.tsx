@@ -8,6 +8,7 @@ import { Card, Checkbox, Collapse, Badge, Tooltip, Space } from 'antd';
 import { ApiOutlined, SettingOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { PluginMetadata } from '../plugins/types';
 import { pluginRegistry } from '../plugins/registry';
+import { pluginDiscoveryService } from '../plugins/discovery';
 
 const { Panel } = Collapse;
 
@@ -24,7 +25,29 @@ const PluginSelector: React.FC<PluginSelectorProps> = ({ onPluginToggle }) => {
   }, []);
 
   const loadPlugins = () => {
-    const availablePlugins = pluginRegistry.getPluginMetadata();
+    // Get all discovered plugins (not just registered ones)
+    const discoveredPlugins = pluginDiscoveryService.getDiscoveredPlugins();
+
+    // Convert to metadata format and check enabled state from localStorage
+    const savedState = localStorage.getItem('articy-plugin-state');
+    let enabledPluginIds: string[] = [];
+
+    if (savedState) {
+      try {
+        const state = JSON.parse(savedState);
+        enabledPluginIds = Object.entries(state)
+          .filter(([_, config]: [string, any]) => config.enabled)
+          .map(([pluginId, _]) => pluginId);
+      } catch (error) {
+        console.error('Failed to parse plugin state:', error);
+      }
+    }
+
+    const availablePlugins = discoveredPlugins.map(plugin => ({
+      ...plugin.metadata,
+      enabled: enabledPluginIds.includes(plugin.metadata.id)
+    }));
+
     setPlugins(availablePlugins);
   };
 
@@ -32,11 +55,23 @@ const PluginSelector: React.FC<PluginSelectorProps> = ({ onPluginToggle }) => {
     setLoading(true);
 
     try {
-      // Update plugin registry state directly
+      // Get the discovered plugin
+      const discoveredPlugin = pluginDiscoveryService.getPlugin(pluginId);
+
+      if (!discoveredPlugin) {
+        console.error(`Plugin ${pluginId} not found in discovered plugins`);
+        return;
+      }
+
+      // Update plugin registry state
       if (enabled) {
+        // Register the plugin when enabled
+        pluginRegistry.register(discoveredPlugin);
         pluginRegistry.enablePlugin(pluginId);
       } else {
+        // Unregister the plugin when disabled
         pluginRegistry.disablePlugin(pluginId);
+        pluginRegistry.unregister(pluginId);
       }
 
       // Save state to localStorage

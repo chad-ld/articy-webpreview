@@ -8,21 +8,27 @@ import { pluginDiscoveryService } from './discovery';
 
 /**
  * Initialize the plugin system with automatic plugin discovery
+ * This only discovers plugins, doesn't register them until user enables them
  */
 export async function initializePluginSystem(): Promise<void> {
   console.log('🔌 Initializing Plugin System with Auto-Discovery...');
 
   try {
-    // Discover and register all plugins automatically
+    // Step 1: Discover all available plugins (but don't register them yet)
     await pluginDiscoveryService.discoverPlugins();
 
-    const pluginCount = pluginRegistry.getAllPlugins().length;
-    console.log(`✅ Plugin System initialized with ${pluginCount} plugins`);
+    // Step 2: Register only the plugins that are enabled by the user
+    pluginDiscoveryService.registerEnabledPlugins();
 
-    // Log discovered plugins
+    const discoveredCount = pluginDiscoveryService.getDiscoveredPlugins().length;
+    const registeredCount = pluginRegistry.getAllPlugins().length;
+
+    console.log(`✅ Plugin System initialized: ${discoveredCount} plugins discovered, ${registeredCount} plugins registered`);
+
+    // Log registered plugins
     const plugins = pluginRegistry.getAllPlugins();
     if (plugins.length > 0) {
-      console.log('📋 Discovered plugins:', plugins.map(p => `${p.metadata.name} (${p.metadata.id})`));
+      console.log('📋 Registered plugins:', plugins.map(p => `${p.metadata.name} (${p.metadata.id})`));
     }
 
   } catch (error) {
