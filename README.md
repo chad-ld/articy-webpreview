@@ -1,62 +1,222 @@
-# Articy HTML Flow Preview
-One of Articy’s biggest pain points is that you need Articy installed and shared access to a repository in order to preview a flow with someone who isn’t sitting at the same computer as you. This involves the clunky process of screenshots and/or recording your screen while you play through the flow. Neither option is ideal. This plugin was developed to overcome those limitations, letting any user with a web browser demo the flow first hand for repeated playthroughs. You can see a demo of an exported Articy flow in action here:
+# Articy Web Viewer v4.x
 
-https://dev.chadbriggs.com/articy/testing/demo/index.html
+A modern React-based web viewer for Articy Draft projects that allows anyone with a web browser to preview and interact with your narrative flows without needing Articy installed.
 
-### Requirements:
+🌐 **Live Demo**: https://dev.chadbriggs.com/articy/v4/
 
-- A web server to host files for preview.
-- Articy Draft 3.X
-- Text editor to modify HTML to point to Articy JSON file.
-- NOTE: Has NOT been tested with Articy Draft X
+## ✨ **Key Features**
 
-### Current Features:
+### **Dual Format Support**
+- **Articy Draft 3.x** - Single JSON file format
+- **Articy Draft X (4.x)** - Multi-file JSON format with manifest
+- **Automatic Detection** - Seamlessly handles both formats
 
-- Supports all major Articy node types.
-- Supports custom node templates and custom color on nodes.
-- Shows syntax highlighting on code elements.
-- Processes Articy variables.
-- Can change the Articy JSON file the plugin pulls the flow from.
-- Shows input/output pin conditions on nodes.
-- Toggles nodes that can’t be accessed due to lack of conditions met, darkens them out.
+### **Smart Dataset Loading**
+- **Dynamic Detection** - Automatically finds datasets on server
+- **Drag & Drop** - Load files directly into the browser
+- **Version Tags** - Visual indicators for 3.x vs 4.x formats
+- **Metadata Display** - Shows project names, timestamps, and descriptions
 
-### On Roadmap Features:
+### **Interactive Navigation**
+- **All Node Types** - Instructions, dialogues, choices, conditions, hubs
+- **Custom Templates** - Supports user-defined node templates
+- **Variable Processing** - Real-time variable tracking and updates
+- **Condition Evaluation** - Dynamic choice enabling/disabling
+- **Flow Fragments** - Proper sub-flow handling
 
-- Investigate consolidating code so HTML files may be run locally without uploading to a web server or running a local web server.
-- Add support for external hyperlinks in node body/text.
-- Add support to jump to “bark” nodes.
-- Tweak view/formatting on mobile devices.
-- Have a “variable” sidebar/view where you can toggle to see the states of all the variables at any point in the flow.
-- Add item/character images to node renderings in HTML.
+### **Modern UI**
+- **React + TypeScript** - Modern, maintainable codebase
+- **Ant Design** - Professional UI components
+- **Responsive Design** - Works on desktop and mobile
+- **Variables Panel** - Collapsible sidebar with search and editing
+- **Search Panel** - Find nodes by content across the entire project
 
-### Usage Instructions
+## 🚀 **Quick Start**
 
-1. Download the HTML template files here:
-    
-   https://github.com/chad-ld/articy-webpreview/tree/main/builds
-    
-2. Export the files to a folder on your hard drive, keeping the same folder structure as the zip file. 
-3. Open up your Articy project in the Articy Editor. 
-4. Wherever you want the HTML preview of your flow to start, create an instruction node and insert the following line in the node: //HTMLPREVIEW
-An example of such a node in Articy is as follows:
-    
-![Untitled](https://github.com/chad-ld/articy-webpreview/assets/124286589/301456c0-2225-4184-8cbd-744b6e34efa6)
+### **For End Users**
+1. Visit https://dev.chadbriggs.com/articy/v4/
+2. Either:
+   - **Select from dropdown** - Choose from auto-detected datasets
+   - **Drag & drop** - Drop your JSON files directly onto the page
+3. Navigate through your story using the interactive interface
 
-5. Save your Articy project.
-6. Export your Articy project. 
-    
-![Untitled (1)](https://github.com/chad-ld/articy-webpreview/assets/124286589/a26450e8-e086-425f-baeb-bcf3af6ecc19)
-    
-7. Select the JSON format, and then set the location of the JSON export. In most cases, the other default export settings will work just fine, no need to modify those. The HTML preview exporter will only use the flows that are connected to your //HTMLPREVEW start node. 
-    
-![Untitled (2)](https://github.com/chad-ld/articy-webpreview/assets/124286589/9d9440bd-c122-4d22-9137-c6d4008d764c)
+### **For Developers**
+```bash
+# Clone the repository
+git clone https://github.com/chad-ld/articy-webpreview.git
+cd articy-webpreview
 
-8. Move the newly exported Articy JSON file in the same folder as the index.hml that you downloaded above. 
-9. Open the index.html file inside a text editor, change the default JSON file export to the name of your Articy export. Save and close the text editor. 
-    
-![Untitled (3)](https://github.com/chad-ld/articy-webpreview/assets/124286589/16d66700-a294-41e2-8ac8-a684bee92b0d)
+# Install dependencies
+npm install
 
-10. Copy the Articy template folder to a webserver. The main folder your index.html and associated files will reside in can be renamed from “html_viewer_template_v1” to whatever you wish, just do not rename or move the “assets” folder relative to the index.html file.  
-11. Navigate to the URL of the folder location based where you uploaded the file to on your webserver. So a sample path might be https://www.customurl.com/myflowname/index.html
+# Start development server (with file integrity protection)
+npm run dev:safe
 
-As always, any feedback is greatly appreciated to help me improve the project. Shared under the GNU GENERAL PUBLIC LICENSE terms. 
+# Or start with PHP support for dataset detection
+npm run dev:php
+```
+
+## 📋 **Requirements**
+
+### **For Articy Projects**
+- **Articy Draft 3.x** OR **Articy Draft X (4.x)**
+- JSON export from your Articy project
+- **Start Node**: Create an instruction node with `//HTMLPREVIEW` comment
+
+### **For Development**
+- **Node.js** 16+ and npm
+- **PHP** (optional, for server-side dataset detection)
+- **Modern browser** with ES6+ support
+
+## 🔧 **Development Scripts**
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Standard Vite development server |
+| `npm run dev:safe` | Development with file integrity checking |
+| `npm run dev:php` | Development with PHP server for dataset detection |
+| `npm run build` | Build for production deployment |
+| `npm run check:integrity` | Verify critical files haven't been corrupted |
+
+## 📁 **Project Structure**
+
+```
+articy-webpreview/
+├── src/
+│   ├── components/          # React components
+│   │   ├── InteractiveArticyViewer.tsx
+│   │   ├── VariablesPanel.tsx
+│   │   └── SearchNodesPanel.tsx
+│   ├── panels/              # Node type panels
+│   │   ├── InstructionPanel.tsx
+│   │   ├── QuestionPanel.tsx
+│   │   └── EndOfFlowPanel.tsx
+│   └── utils/               # Core utilities
+│       ├── hybridDatasetDetector.js
+│       ├── dataRouter.js
+│       └── formatDetector.js
+├── public/                  # Static assets and demo datasets
+├── php-api/                 # Server-side dataset detection
+├── builds/                  # Production builds
+└── docs/                    # Documentation
+```
+
+## 🎮 **Usage Guide**
+
+### **Exporting from Articy**
+
+1. **Create Start Node**: Add an instruction node with `//HTMLPREVIEW` in the text
+2. **Export Project**: File → Export → JSON format
+3. **Upload Files**: 
+   - **3.x**: Upload the single `.json` file
+   - **4.x**: Upload the entire folder (contains `manifest.json`)
+
+### **Navigation Controls**
+
+- **Mouse/Touch**: Click choices and buttons
+- **Keyboard**: Arrow keys + Enter for navigation
+- **Shortcuts**:
+  - `Ctrl+R` - Restart story
+  - `Ctrl+L` - Return to file loading screen
+
+### **Variables Panel**
+
+- **Toggle**: Click the variables button to show/hide
+- **Search**: Filter variables by name or value
+- **Edit**: Right-click (desktop) or long-press (mobile) to edit values
+- **Import**: Drag TXT or CSV files to bulk update variables
+
+## 🔄 **Dual Deployment Architecture**
+
+This project supports two deployment targets from a single codebase:
+
+### **Web Version** (Current)
+- **Server**: DreamHost shared hosting
+- **Detection**: PHP script scans for uploaded datasets
+- **URL**: https://dev.chadbriggs.com/articy/v4/
+
+### **Desktop EXE Version** (Planned)
+- **Platform**: Electron-based desktop application
+- **Detection**: Local folder scanning + drag-and-drop
+- **Distribution**: Single executable file
+
+## 👨‍💻 **Developer Notes**
+
+### **⚠️ Important Development Guidelines**
+
+#### **Git & Repository Management**
+- **🚨 ALWAYS ASK BEFORE PUSHING**: Never push to local git or remote repository without explicit permission from the project maintainer
+- **Branch Safety**: Currently working on `v4.x` branch - ensure you're on the correct branch before making changes
+- **Commit Frequently**: Make small, frequent commits during development to prevent work loss
+
+#### **Server Process Management**
+- **Kill Existing Processes**: Always terminate running web server processes before starting new ones
+- **Automatic Cleanup**: The development scripts (`start-dev-safe.ps1`, `start-dev-with-php.ps1`) automatically handle process cleanup when stopped with `Ctrl+C`
+- **Manual Cleanup**: If processes get stuck, manually kill PHP and Node processes:
+  ```bash
+  # Kill PHP processes
+  taskkill /F /IM php.exe
+
+  # Kill Node processes
+  taskkill /F /IM node.exe
+  ```
+
+#### **Log Files & Debugging**
+- **Log Location**: Development and debugging logs are stored in the `logs/` folder
+- **Console Exports**: Browser console exports saved as `logs/console-export-YYYY-MM-DD_HH-MM-SS.txt`
+- **Investigation Logs**: Specific debugging logs like `fallback-detection-debug.log`, `work-loss-investigation.log`
+- **Log Cleanup**: Excessive logs are automatically cleaned during project maintenance
+
+#### **File Integrity Protection**
+- **Always Run**: Use `npm run dev:safe` instead of `npm run dev` to enable file protection
+- **Check Integrity**: Run `npm run check:integrity` before starting development sessions
+- **Backup System**: Critical files have `.backup` versions that are automatically restored if corruption is detected
+
+## ⚠️ **Known Issues & Solutions**
+
+### **File Reversion Problem**
+During development, critical files occasionally revert to older versions. This project includes a protection system:
+
+```bash
+# Always check file integrity before development
+npm run check:integrity
+
+# Use the safe development script
+npm run dev:safe
+```
+
+### **PHP Proxy Issues**
+If PHP detection isn't working in development:
+
+1. Ensure PHP is installed and in PATH
+2. Use `npm run dev:php` instead of `npm run dev`
+3. Check that `vite.config.ts` has proxy configuration
+
+## 📚 **Documentation**
+
+- **[Dual Deployment Plan](dual-deployment-plan.md)** - Technical architecture details
+- **[File Protection System](FILE-PROTECTION-README.md)** - Development stability guide
+- **[SFTP Setup Guide](SFTP_Setup_Guide.md)** - Deployment configuration
+
+## 🤝 **Contributing**
+
+1. Fork the repository
+2. Create a feature branch
+3. Run `npm run check:integrity` before starting
+4. Make your changes
+5. Test with both 3.x and 4.x datasets
+6. Submit a pull request
+
+## 📄 **License**
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 **Acknowledgments**
+
+- **Articy Software** - For creating the excellent narrative design tool
+- **React Community** - For the robust framework and ecosystem
+- **Ant Design** - For the beautiful UI components
+
+---
+
+**Need help?** Open an issue on GitHub or visit the live demo to see the viewer in action.

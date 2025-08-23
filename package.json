@@ -10,8 +10,12 @@
     "dev:php": "powershell -ExecutionPolicy Bypass -File start-dev-with-php.ps1",
     "check:integrity": "powershell -ExecutionPolicy Bypass -File check-file-integrity.ps1",
     "build": "vite build",
+    "build:serve": "npm run build && cd dist && php -S localhost:8080",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "preview": "vite preview",
+    "clean": "powershell -Command \"Remove-Item -Recurse -Force dist, node_modules/.vite -ErrorAction SilentlyContinue\"",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "antd": "^5.5.0",
