@@ -82,10 +82,11 @@ npm run dev:php
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev:safe` | **🚀 RECOMMENDED**: Development with full cache protection and file integrity |
-| `npm run dev:php` | Development with PHP server for dataset detection |
+| `npm run dev:safe` | **🚀 RECOMMENDED**: Development with automatic cleanup, cache protection and file integrity |
+| `npm run dev:php` | Development with automatic cleanup and PHP server for dataset detection |
 | `npm run dev` | ⚠️ Basic Vite server (use only for debugging cache system) |
 | `npm run build` | Build for production deployment |
+| `npm run cleanup:servers` | **🧹 NEW**: Stop all running PHP and Node.js development servers |
 | `npm run check:integrity` | Verify critical files haven't been corrupted |
 | `npm run test:cache` | **🧪 Testing**: Run 12 cache busting configuration tests |
 | `npm run test:runtime` | **🧪 Testing**: Test live cache behavior while server is running |
@@ -304,16 +305,28 @@ npm run test:runtime
 - **Commit Frequently**: Make small, frequent commits during development to prevent work loss
 
 #### **Server Process Management**
-- **Kill Existing Processes**: Always terminate running web server processes before starting new ones
-- **Automatic Cleanup**: The development scripts (`start-dev-safe.ps1`, `start-dev-with-php.ps1`) automatically handle process cleanup when stopped with `Ctrl+C`
-- **Manual Cleanup**: If processes get stuck, manually kill PHP and Node processes:
-  ```bash
-  # Kill PHP processes
-  taskkill /F /IM php.exe
+- **🔄 Automatic Cleanup**: Development scripts now automatically kill existing PHP and Node.js processes before starting new ones
+- **🧹 Manual Cleanup**: Use `npm run cleanup:servers` to manually stop all development servers
+- **⚡ Streamlined Startup**: Git status check removed for faster, uninterrupted development workflow
+- **🛡️ Error Resilient**: Scripts continue even if cleanup encounters issues
 
-  # Kill Node processes
-  taskkill /F /IM node.exe
-  ```
+**Available Cleanup Commands:**
+```bash
+# Automatic cleanup (built into startup scripts)
+npm run dev:safe          # Includes automatic cleanup + full protection
+npm run dev:php           # Includes automatic cleanup + PHP support
+
+# Manual cleanup
+npm run cleanup:servers   # Stop all PHP and Node.js processes
+powershell -ExecutionPolicy Bypass -File cleanup-servers.ps1  # Direct execution
+```
+
+**Script Modifications (2025-08-23):**
+- ✅ **Added automatic server cleanup** to `start-dev-safe.ps1` and `start-dev-with-php.ps1`
+- ✅ **Removed git status check** from startup process for uninterrupted workflow
+- ✅ **Created standalone cleanup script** (`cleanup-servers.ps1`) for manual use
+- ✅ **Added error handling** with try-catch blocks for robust operation
+- ✅ **Improved user feedback** showing number of processes stopped
 
 #### **Log Files & Debugging**
 - **Log Location**: Development and debugging logs are stored in the `logs/` folder

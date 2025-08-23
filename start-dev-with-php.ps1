@@ -2,6 +2,19 @@
 Write-Host "Starting Articy Web Viewer with PHP support..." -ForegroundColor Cyan
 Write-Host ""
 
+# Kill any existing servers first
+Write-Host "Cleaning up existing servers..." -ForegroundColor Yellow
+Write-Host "Stopping any running PHP processes..." -ForegroundColor Gray
+Get-Process -Name "php" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+
+Write-Host "Stopping any running Node.js processes..." -ForegroundColor Gray
+Get-Process -Name "node" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+
+# Wait a moment for processes to fully terminate
+Start-Sleep -Seconds 2
+Write-Host "SUCCESS: Server cleanup complete" -ForegroundColor Green
+Write-Host ""
+
 # Check if PHP is available
 try {
     $phpVersion = php --version 2>$null

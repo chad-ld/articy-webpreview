@@ -1,21 +1,21 @@
 /**
- * Hello World Plugin
- * A simple example plugin that demonstrates the plugin system
+ * Mysteryworks Murderboard Plugin
+ * A plugin for displaying and managing murder mystery investigation boards
  */
 
 import React from 'react';
 import { Modal } from 'antd';
-import { ApiOutlined } from '@ant-design/icons';
+import { FileSearchOutlined } from '@ant-design/icons';
 import { IPlugin, PluginMetadata, PluginButtonConfig, PluginModalProps, PluginContext } from '../types';
 
-export class HelloWorldPlugin implements IPlugin {
+export class MysteryworksMurderboardPlugin implements IPlugin {
   metadata: PluginMetadata = {
-    id: 'hello-world',
-    name: 'Hello World',
-    description: 'A simple test plugin that displays a Hello World message',
+    id: 'mysteryworks-murderboard',
+    name: 'Mysteryworks Murderboard',
+    description: 'Interactive murder mystery investigation board for tracking suspects, evidence, and connections',
     version: '1.0.0',
-    author: 'Articy Web Viewer',
-    icon: 'api',
+    author: 'Mysteryworks',
+    icon: 'file-search',
     enabled: false
   };
 
@@ -23,25 +23,25 @@ export class HelloWorldPlugin implements IPlugin {
 
   async initialize(context: PluginContext): Promise<void> {
     this.context = context;
-    console.log('🌍 Hello World Plugin initialized');
+    console.log('🔍 Mysteryworks Murderboard Plugin initialized');
 
     // Show a welcome message when plugin is loaded
-    context.showMessage('Hello World plugin loaded!', 'success');
+    context.showMessage('Mysteryworks Murderboard plugin loaded!', 'success');
 
     // Subscribe to dataset load events
     context.onEvent('dataset-loaded', this.onDatasetLoad.bind(this));
   }
 
   async destroy(): Promise<void> {
-    console.log('🌍 Hello World Plugin destroyed');
+    console.log('🔍 Mysteryworks Murderboard Plugin destroyed');
     this.context = undefined;
   }
 
   getButtonConfig(): PluginButtonConfig {
     return {
-      text: 'Hello World',
-      icon: <ApiOutlined />,
-      position: 1
+      text: 'Murderboard',
+      icon: <FileSearchOutlined />,
+      position: 2
     };
   }
 
@@ -75,12 +75,12 @@ export class HelloWorldPlugin implements IPlugin {
             fontSize: '48px',
             fontWeight: 'bold',
             marginBottom: '20px',
-            background: 'linear-gradient(45deg, #1890ff, #52c41a)',
+            background: 'linear-gradient(45deg, #8B0000, #DC143C)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text'
           }}>
-            Hello World! 🌍
+            Mysteryworks Murderboard 🔍
           </div>
 
           <div style={{
@@ -90,7 +90,7 @@ export class HelloWorldPlugin implements IPlugin {
             maxWidth: '600px',
             lineHeight: '1.6'
           }}>
-            Welcome to the Articy Web Viewer Plugin System! This is a demonstration of how plugins can be loaded dynamically and provide custom functionality.
+            Interactive investigation board for tracking suspects, evidence, and connections in your murder mystery. Organize clues and build your case as the story unfolds.
           </div>
 
           {this.context?.project && (
@@ -126,20 +126,20 @@ export class HelloWorldPlugin implements IPlugin {
 
   // Optional event handlers
   onDatasetLoad(data: any): void {
-    console.log('🌍 Hello World Plugin: Dataset loaded', data);
+    console.log('🔍 Mysteryworks Murderboard Plugin: Dataset loaded', data);
     if (this.context) {
-      this.context.showMessage('Hello World plugin detected dataset load!', 'info');
+      this.context.showMessage('Mysteryworks Murderboard plugin detected dataset load!', 'info');
     }
   }
 
   onNodeChange(node: any): void {
-    console.log('🌍 Hello World Plugin: Node changed', node);
+    console.log('🔍 Mysteryworks Murderboard Plugin: Node changed', node);
   }
 
   onVariableChange(variables: any): void {
-    console.log('🌍 Hello World Plugin: Variables changed', variables);
+    console.log('🔍 Mysteryworks Murderboard Plugin: Variables changed', variables);
   }
 }
 
 // Export plugin instance
-export const helloWorldPlugin = new HelloWorldPlugin();
+export const mysteryworksMurderboardPlugin = new MysteryworksMurderboardPlugin();

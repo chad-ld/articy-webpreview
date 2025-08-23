@@ -17,6 +17,7 @@
     "lint:fix": "eslint src --ext ts,tsx --fix",
     "preview": "vite preview",
     "clean": "powershell -Command \"Remove-Item -Recurse -Force dist, node_modules/.vite -ErrorAction SilentlyContinue\"",
+    "cleanup:servers": "powershell -ExecutionPolicy Bypass -File cleanup-servers.ps1",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
