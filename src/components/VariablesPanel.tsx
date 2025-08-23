@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { Button, Input, Tooltip, Dropdown, Checkbox, message } from "antd";
 
-import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
+import { EyeOutlined, EyeInvisibleOutlined, PlusOutlined, MinusOutlined, SearchOutlined, UnorderedListOutlined, AppstoreOutlined, BookOutlined, DownOutlined, EditOutlined, UploadOutlined, ApiOutlined } from "@ant-design/icons";
 
 interface StoryModeSettings {
     enabled: boolean;
@@ -32,6 +32,7 @@ interface VariablesPanelProps {
     onStoryModePreset: (preset: 'all' | 'none') => void;
     onDropdownOpenChange: (open: boolean) => void;
     dropdownOpen: boolean;
+    onPluginModalOpen: () => void;
 }
 
 function VariablesPanel(props: VariablesPanelProps) {
@@ -758,6 +759,35 @@ function VariablesPanel(props: VariablesPanelProps) {
                             />
                         </Dropdown>
                     </div>
+
+                    {/* Plugin Section Divider */}
+                    <div style={{
+                        position: 'fixed',
+                        left: props.isVisible ? panelWidth + 10 : 10,
+                        top: 115,
+                        zIndex: 1001,
+                        transition: 'left 0.3s ease',
+                        width: '120px',
+                        height: '1px',
+                        backgroundColor: '#444',
+                        marginBottom: '10px'
+                    }} />
+
+                    {/* Plugin Buttons Section */}
+                    <Button
+                        icon={<ApiOutlined />}
+                        onClick={props.onPluginModalOpen}
+                        style={{
+                            position: 'fixed',
+                            left: props.isVisible ? panelWidth + 10 : 10,
+                            top: 125,
+                            zIndex: 1001,
+                            transition: 'left 0.3s ease'
+                        }}
+                        size="small"
+                    >
+                        Hello World
+                    </Button>
 
                     {/* Show Previous Button - REMOVED: Previous choice visibility is now controlled via Story Mode dropdown */}
                 </>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, createRef } from 'react';
-import { Button, message } from 'antd';
+import { Button, message, Modal } from 'antd';
 import { InboxOutlined, CommentOutlined } from '@ant-design/icons';
 import ArticyProject from '../utils/ArticyProject';
 import InstructionPanel from '../panels/InstructionPanel';
@@ -736,6 +736,18 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [variableUpdateTrigger, setVariableUpdateTrigger] = useState(0);
   const [isVariableBeingEdited, setIsVariableBeingEdited] = useState(false);
+
+  // Plugin modal state
+  const [isPluginModalVisible, setIsPluginModalVisible] = useState(false);
+
+  // Plugin modal handlers
+  const handlePluginModalOpen = () => {
+    setIsPluginModalVisible(true);
+  };
+
+  const handlePluginModalClose = () => {
+    setIsPluginModalVisible(false);
+  };
 
   const handleDropdownOpenChange = (open: boolean) => {
     setDropdownOpen(open);
@@ -2198,6 +2210,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               onStoryModePreset={handleStoryModePreset}
               onDropdownOpenChange={handleDropdownOpenChange}
               dropdownOpen={dropdownOpen}
+              onPluginModalOpen={handlePluginModalOpen}
             />
             <SearchNodesPanel
               project={project}
@@ -2521,6 +2534,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             onStoryModePreset={handleStoryModePreset}
             onDropdownOpenChange={handleDropdownOpenChange}
             dropdownOpen={dropdownOpen}
+            onPluginModalOpen={handlePluginModalOpen}
           />
           <SearchNodesPanel
             project={project}
@@ -2636,6 +2650,26 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             Text: {nodeText.substring(0, 50)}...
           </div>
         )}
+
+        {/* Plugin Modal */}
+        <Modal
+          title="Hello World Plugin"
+          open={isPluginModalVisible}
+          onCancel={handlePluginModalClose}
+          footer={null}
+          width={1280}
+          style={{ top: 20 }}
+          bodyStyle={{
+            height: 720,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '24px',
+            fontWeight: 'bold'
+          }}
+        >
+          Hello World
+        </Modal>
       </div>
     </div>
   );
