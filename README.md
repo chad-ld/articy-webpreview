@@ -165,6 +165,11 @@ The Articy Web Viewer includes a powerful plugin system that allows you to exten
 
 - **Hello World Plugin** - Demonstrates basic plugin functionality with project info display
 - **Test Plugin** - Shows auto-discovery features and plugin development capabilities
+- **Mysteryworks Murderboard Plugin** - Interactive murder mystery investigation board with evidence and suspect management
+  - **Features**: Visual evidence board, suspect profiles, document viewing, interactive layout
+  - **Scaling**: Automatically scales PSD layout to 30% for optimal modal display (1152px content → 345.6px display)
+  - **Modal**: Fixed-size modal (393.6px wide) with 24px padding margins and z-index 9999 for proper layering
+  - **Assets**: Includes character portraits, evidence documents, and background imagery
 
 ### **Plugin Features**
 

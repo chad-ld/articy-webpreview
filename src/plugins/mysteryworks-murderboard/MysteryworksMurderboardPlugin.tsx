@@ -51,23 +51,12 @@ const MurderboardCanvasWithResize: React.FC = () => {
     <div
       style={{
         position: 'relative',
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#000'
+        width: layout.size.width * scale,
+        height: layout.size.height * scale,
+        overflow: 'hidden',
+        border: '2px solid red' // Debug border
       }}
     >
-      <div
-        style={{
-          position: 'relative',
-          width: layout.size.width * scale,
-          height: layout.size.height * scale,
-          overflow: 'hidden',
-          border: '2px solid red' // Debug border
-        }}
-      >
         {layout.children.map((element, index) => {
           const fileName = `${element.relativePath}.${element.type}`;
           const imagePath = getAssetUrl(fileName);
@@ -104,7 +93,6 @@ const MurderboardCanvasWithResize: React.FC = () => {
             />
           );
         })}
-      </div>
     </div>
   );
 };
@@ -147,16 +135,23 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
   }
 
   renderModal(props: PluginModalProps): React.ReactNode {
+    // Calculate exact modal size based on content - no padding needed
+    const layout = layoutData as LayoutRoot;
+    const scale = 0.30; // Match the scale in the component
+    const contentWidth = layout.size.width * scale;
+    const contentHeight = layout.size.height * scale;
+
     return (
       <Modal
         title={props.title || this.metadata.name}
         open={props.isVisible}
         onCancel={props.onClose}
         footer={null}
-        width="90%"
+        width={contentWidth + 48}
+        zIndex={9999}
         style={{ top: 20 }}
         bodyStyle={{
-          height: '80vh',
+          height: contentHeight,
           padding: '0px',
           backgroundColor: '#000'
         }}
