@@ -14,16 +14,16 @@ Write-Host ""
 Write-Host "Step 2: Checking git status..." -ForegroundColor Yellow
 $gitStatus = git status --porcelain
 if ($gitStatus) {
-    Write-Host "⚠️ Uncommitted changes detected:" -ForegroundColor Yellow
+    Write-Host "WARNING: Uncommitted changes detected:" -ForegroundColor Yellow
     git status --short
     Write-Host ""
     $response = Read-Host "Continue anyway? (y/N)"
     if ($response -ne 'y' -and $response -ne 'Y') {
-        Write-Host "❌ Startup cancelled" -ForegroundColor Red
+        Write-Host "ERROR: Startup cancelled" -ForegroundColor Red
         exit 1
     }
 } else {
-    Write-Host "✅ Git working tree is clean" -ForegroundColor Green
+    Write-Host "SUCCESS: Git working tree is clean" -ForegroundColor Green
 }
 
 Write-Host ""
@@ -35,9 +35,9 @@ Write-Host "Step 3: Starting development servers..." -ForegroundColor Yellow
 try {
     $phpVersion = php --version 2>$null
     if ($LASTEXITCODE -eq 0) {
-        Write-Host "✅ PHP is available" -ForegroundColor Green
+        Write-Host "SUCCESS: PHP is available" -ForegroundColor Green
         Write-Host $phpVersion.Split("`n")[0] -ForegroundColor Gray
-        
+
         # Start with PHP support
         Write-Host ""
         Write-Host "Starting with PHP support..." -ForegroundColor Cyan

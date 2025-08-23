@@ -73,10 +73,12 @@ npm run dev:php
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Standard Vite development server |
-| `npm run dev:safe` | Development with file integrity checking |
+| `npm run dev:safe` | **Recommended**: Development with file integrity checking and cache protection |
 | `npm run dev:php` | Development with PHP server for dataset detection |
 | `npm run build` | Build for production deployment |
 | `npm run check:integrity` | Verify critical files haven't been corrupted |
+| `npm run test:cache` | **Testing**: Run 12 cache busting configuration tests |
+| `npm run test:runtime` | **Testing**: Test live cache behavior while server is running |
 
 ## 📁 **Project Structure**
 
@@ -142,6 +144,22 @@ This project supports two deployment targets from a single codebase:
 
 ## 👨‍💻 **Developer Notes**
 
+### **🚀 Quick Start for Developers**
+
+```bash
+# 1. Check system health
+npm run check:integrity
+
+# 2. Test cache configuration
+npm run test:cache
+
+# 3. Start development safely
+npm run dev:safe
+
+# 4. Test runtime behavior (in another terminal)
+npm run test:runtime
+```
+
 ### **⚠️ Important Development Guidelines**
 
 #### **Git & Repository Management**
@@ -172,6 +190,74 @@ This project supports two deployment targets from a single codebase:
 - **Check Integrity**: Run `npm run check:integrity` before starting development sessions
 - **Backup System**: Critical files have `.backup` versions that are automatically restored if corruption is detected
 
+#### **Cache Busting Verification**
+- **Test Configuration**: Run `npm run test:cache` to verify all cache prevention features
+- **Test Runtime**: Run `npm run test:runtime` while server is running to check live behavior
+- **Monitor Performance**: Tests verify minimal cache accumulation and fast file detection
+
+## 🧪 **Cache Busting & Testing**
+
+This project includes comprehensive cache prevention and testing systems to ensure reliable development without file reversion issues.
+
+### **Cache Prevention Features**
+
+- **Vite Cache Disabled**: `cacheDir: false` prevents internal caching
+- **HMR Overlay Disabled**: Prevents cache-related UI corruption
+- **File Watching with Polling**: Reliable change detection every 100ms
+- **Cache-Busting Parameters**: Dynamic timestamps in data loading
+- **File Integrity Protection**: Automatic backup/restore system
+
+### **Testing Commands**
+
+```bash
+# Test all cache busting configuration
+npm run test:cache
+
+# Test runtime cache behavior (while server is running)
+npm run test:runtime
+
+# Check file integrity and restore if needed
+npm run check:integrity
+```
+
+### **Cache Test Results**
+
+The `npm run test:cache` command runs 12 comprehensive tests:
+
+- ✅ **Vite Cache Disabled** - Configuration verification
+- ✅ **HMR Overlay Disabled** - UI protection active
+- ✅ **File Watching Uses Polling** - Reliable change detection
+- ✅ **Vite Cache Directory Status** - Minimal cache files present
+- ✅ **Backup Files Exist** - Protection system ready
+- ✅ **Integrity Checker Works** - Restoration system functional
+- ✅ **HybridDatasetDetector Methods** - Core functionality intact
+- ✅ **PHP Proxy Configuration** - API routing configured
+- ✅ **Cache Busting in App** - Dynamic timestamps implemented
+- ✅ **Safe Mode Scripts** - Development tools available
+- ✅ **File Modification Detection** - Sub-second change detection
+- ✅ **Memory Cache Management** - Proper cache lifecycle
+
+### **Runtime Testing**
+
+The `npm run test:runtime` command verifies live server behavior:
+
+- **Server Status**: Confirms development server is running on port 3000
+- **PHP Integration**: Verifies PHP server on port 8080 with proxy
+- **Process Health**: Monitors Node.js memory usage and process count
+- **Cache Directory**: Ensures minimal cache file accumulation
+- **File Detection**: Tests real-time file modification detection
+
+### **Manual Browser Testing**
+
+For complete verification:
+
+1. **Start Server**: `npm run dev:safe`
+2. **Open Browser**: http://localhost:3000/
+3. **Open Dev Tools**: F12 → Network tab
+4. **Edit Source File**: Make changes and save
+5. **Verify Hot Reload**: Page updates automatically
+6. **Check Network Tab**: Look for cache-busting parameters (`?v=timestamp`)
+
 ## ⚠️ **Known Issues & Solutions**
 
 ### **File Reversion Problem**
@@ -184,6 +270,30 @@ npm run check:integrity
 # Use the safe development script
 npm run dev:safe
 ```
+
+### **Cache Issues Troubleshooting**
+
+If you experience slow file updates or caching problems:
+
+```bash
+# 1. Test cache configuration
+npm run test:cache
+
+# 2. Check runtime behavior
+npm run test:runtime
+
+# 3. Clear any accumulated cache
+npm run clean
+
+# 4. Restart with safe mode
+npm run dev:safe
+```
+
+**Expected Test Results:**
+- Cache tests should show 11/12 or 12/12 passing
+- Runtime tests should show all servers running
+- File modification detection should be under 2 seconds
+- Cache directory should have fewer than 50 files
 
 ### **PHP Proxy Issues**
 If PHP detection isn't working in development:
