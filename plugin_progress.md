@@ -88,25 +88,46 @@ interface IPlugin {
 - [x] Add plugin-specific modal rendering system
 - [x] Create plugin UI state management
 
-## 🎨 **Phase 5: Enhanced Plugin Features**
+## ✅ **Phase 5: Auto-Discovery System (COMPLETED)**
 
-### **5.1 Plugin Configuration**
+### **5.1 Runtime Plugin Discovery (Option 2)**
+- [x] Implement automatic plugin folder scanning
+- [x] Add dynamic plugin import system
+- [x] Create plugin validation during discovery
+- [x] Add error handling for invalid plugins
+- [x] Support fallback to manual registration
+
+### **5.2 Plugin Discovery Infrastructure**
+- [x] Create plugin discovery service
+- [x] Implement plugin loading queue
+- [x] Add plugin dependency resolution
+- [x] Create plugin conflict detection
+
+## 🎨 **Phase 6: Enhanced Plugin Features (FUTURE)**
+
+### **6.1 Plugin Configuration**
 - [ ] Add plugin settings/preferences system
 - [ ] Create plugin configuration UI
 - [ ] Implement plugin-specific storage
 - [ ] Add plugin configuration validation
 
-### **5.2 Plugin Communication**
+### **6.2 Plugin Communication**
 - [ ] Implement plugin-to-plugin messaging
 - [ ] Add shared plugin data store
 - [ ] Create plugin event broadcasting
 - [ ] Add plugin dependency injection
 
-### **5.3 Advanced Plugin Types**
+### **6.3 Advanced Plugin Types**
 - [ ] Support for different plugin types (modal, panel, overlay)
 - [ ] Add plugin positioning options
 - [ ] Implement plugin keyboard shortcuts
 - [ ] Create plugin toolbar integration
+
+### **6.4 Manifest System Upgrade (Option 3)**
+- [ ] Add manifest.json support for plugins
+- [ ] Implement plugin metadata validation
+- [ ] Create plugin dependency management
+- [ ] Add plugin versioning and compatibility checks
 
 ## 📁 **File Structure Plan**
 
@@ -175,7 +196,7 @@ src/
 - [x] No breaking changes to existing functionality
 
 ## 🎯 **Current Status**
-**Phase 2-4 COMPLETE!** The plugin system is now fully functional with dynamic loading, state persistence, UI integration, and enhanced UX features. Ready for Phase 5 enhancements or additional plugin development.
+**Phase 2-5 COMPLETE!** The plugin system is now fully functional with automatic plugin discovery, dynamic loading, state persistence, UI integration, and enhanced UX features. Ready for Phase 6 enhancements or additional plugin development.
 
 ### **✅ Additional UX Enhancements Completed:**
 - [x] **Toggle Button Behavior**: Plugin buttons now toggle modals open/closed on click
@@ -183,6 +204,14 @@ src/
 - [x] **Consistent Close Behavior**: Both button click and X button close the modal
 - [x] **Dark Theme Compatibility**: Plugin loading screen fully visible in dark browser themes
 - [x] **Enhanced Visual Design**: White backgrounds and proper borders for all plugin UI elements
+
+### **✅ Auto-Discovery System Features:**
+- [x] **Automatic Plugin Detection**: Scans `src/plugins/*/index.ts` files automatically
+- [x] **Dynamic Plugin Loading**: Uses Vite's `import.meta.glob` for runtime discovery
+- [x] **Plugin Validation**: Validates plugin structure and IPlugin interface compliance
+- [x] **Error Handling**: Graceful handling of invalid plugins with fallback registration
+- [x] **Drop-in Plugin Support**: Simply add plugin folder - no code changes required
+- [x] **Development Ready**: Supports hot-reloading and development workflow
 
 ### **🎨 UI/UX Features:**
 - **Plugin Loading Screen**: Collapsible section with plugin cards, checkboxes, and metadata
