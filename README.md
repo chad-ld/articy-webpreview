@@ -33,6 +33,14 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 - **Variables Panel** - Collapsible sidebar with search and editing
 - **Search Panel** - Find nodes by content across the entire project
 
+### **Plugin System**
+- **Auto-Discovery** - Plugins automatically detected from `src/plugins/` folder
+- **User Selection** - Enable/disable plugins on loading screen
+- **Dynamic Loading** - Plugins only load when selected by user
+- **Toggle Interface** - Click plugin buttons to open/close modal windows
+- **State Persistence** - Plugin preferences saved between sessions
+- **Drop-in Development** - Add new plugins without code changes
+
 ## 🚀 **Quick Start**
 
 ### **For End Users**
@@ -90,11 +98,21 @@ articy-webpreview/
 │   ├── components/          # React components
 │   │   ├── InteractiveArticyViewer.tsx
 │   │   ├── VariablesPanel.tsx
-│   │   └── SearchNodesPanel.tsx
+│   │   ├── SearchNodesPanel.tsx
+│   │   └── PluginSelector.tsx
 │   ├── panels/              # Node type panels
 │   │   ├── InstructionPanel.tsx
 │   │   ├── QuestionPanel.tsx
 │   │   └── EndOfFlowPanel.tsx
+│   ├── plugins/             # Plugin system
+│   │   ├── types.ts         # Plugin interfaces
+│   │   ├── registry.ts      # Plugin registry
+│   │   ├── manager.ts       # Plugin lifecycle
+│   │   ├── discovery.ts     # Auto-discovery service
+│   │   ├── hello-world/     # Example plugin
+│   │   └── test-plugin/     # Demo plugin
+│   ├── hooks/               # React hooks
+│   │   └── usePlugins.ts    # Plugin state management
 │   └── utils/               # Core utilities
 │       ├── hybridDatasetDetector.js
 │       ├── dataRouter.js
@@ -130,7 +148,121 @@ articy-webpreview/
 - **Edit**: Right-click (desktop) or long-press (mobile) to edit values
 - **Import**: Drag TXT or CSV files to bulk update variables
 
-## 🔄 **Dual Deployment Architecture**
+## � **Plugin System**
+
+The Articy Web Viewer includes a powerful plugin system that allows you to extend functionality with custom features. Plugins are automatically discovered and can be enabled/disabled by users.
+
+### **Using Plugins**
+
+1. **Loading Screen**: When you start the app, expand the "Configure Plugins" section
+2. **Select Plugins**: Check the plugins you want to enable for this session
+3. **Load Dataset**: Proceed to load your Articy project
+4. **Access Plugins**: Enabled plugins appear as buttons in the left sidebar
+5. **Toggle Windows**: Click plugin buttons to open/close their modal windows
+
+### **Available Plugins**
+
+- **Hello World Plugin** - Demonstrates basic plugin functionality with project info display
+- **Test Plugin** - Shows auto-discovery features and plugin development capabilities
+
+### **Plugin Features**
+
+- **🔍 Auto-Discovery**: Plugins are automatically detected from the `src/plugins/` folder
+- **👤 User Control**: Users choose which plugins to enable on the loading screen
+- **💾 State Persistence**: Plugin preferences are saved between browser sessions
+- **🎛️ Toggle Interface**: Plugin buttons in sidebar toggle modal windows open/closed
+- **🎨 Visual Feedback**: Active plugin buttons show blue background when modal is open
+- **📱 Responsive Design**: Plugin modals work on both desktop and mobile devices
+
+### **For Plugin Developers**
+
+#### **Creating a New Plugin**
+
+1. **Create Plugin Folder**: `src/plugins/my-plugin/`
+2. **Implement Plugin Class**:
+   ```typescript
+   // src/plugins/my-plugin/MyPlugin.tsx
+   import { IPlugin, PluginMetadata, PluginButtonConfig, PluginModalProps, PluginContext } from '../types';
+
+   export class MyPlugin implements IPlugin {
+     metadata: PluginMetadata = {
+       id: 'my-plugin',
+       name: 'My Plugin',
+       description: 'Description of what my plugin does',
+       version: '1.0.0',
+       author: 'Your Name',
+       enabled: false
+     };
+
+     async initialize(context: PluginContext): Promise<void> {
+       // Plugin initialization code
+     }
+
+     async destroy(): Promise<void> {
+       // Cleanup code
+     }
+
+     getButtonConfig(): PluginButtonConfig {
+       return {
+         text: 'My Plugin',
+         icon: <YourIcon />,
+         position: 1
+       };
+     }
+
+     renderModal(props: PluginModalProps): React.ReactNode {
+       return (
+         <Modal title="My Plugin" open={props.isVisible} onCancel={props.onClose}>
+           {/* Your plugin UI here */}
+         </Modal>
+       );
+     }
+   }
+
+   export const myPlugin = new MyPlugin();
+   ```
+
+3. **Create Entry Point**:
+   ```typescript
+   // src/plugins/my-plugin/index.ts
+   export { myPlugin as default } from './MyPlugin';
+   ```
+
+4. **Refresh Browser**: Your plugin will be automatically discovered and available for selection!
+
+#### **Plugin Interface (IPlugin)**
+
+All plugins must implement the `IPlugin` interface:
+
+- **`metadata`**: Plugin information (id, name, description, version, author)
+- **`initialize(context)`**: Called when plugin is enabled
+- **`destroy()`**: Called when plugin is disabled
+- **`getButtonConfig()`**: Returns button configuration for sidebar
+- **`renderModal(props)`**: Returns React component for plugin modal
+- **`onDatasetLoad(data)`** *(optional)*: Called when dataset loads
+- **`onNodeChange(node)`** *(optional)*: Called when current node changes
+- **`onVariableChange(variables)`** *(optional)*: Called when variables update
+
+#### **Plugin Context API**
+
+Plugins receive a context object with access to:
+
+- **`project`**: Current Articy project data
+- **`currentNode`**: Currently active node
+- **`variables`**: Project variables
+- **`showMessage(content, type)`**: Display notifications to user
+- **`navigateToNode(nodeId)`**: Navigate to specific node
+- **`emitEvent(name, data)`**: Send events to other plugins
+- **`onEvent(name, handler)`**: Listen for events from other plugins
+
+#### **Development Workflow**
+
+1. **No Registration Required**: Plugins are automatically discovered
+2. **Hot Reloading**: Changes to plugin code update immediately during development
+3. **Error Handling**: Invalid plugins are gracefully handled with console warnings
+4. **TypeScript Support**: Full type checking and IntelliSense support
+
+## �🔄 **Dual Deployment Architecture**
 
 This project supports two deployment targets from a single codebase:
 
