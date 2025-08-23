@@ -3,10 +3,111 @@
  * A plugin for displaying and managing murder mystery investigation boards
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from 'antd';
 import { FileSearchOutlined } from '@ant-design/icons';
 import { IPlugin, PluginMetadata, PluginButtonConfig, PluginModalProps, PluginContext } from '../types';
+
+// Import the layout structure
+import layoutData from './murderboard_template.psd-structure.json';
+
+// Define types for the layout structure
+interface LayoutElement {
+  name: string;
+  type: string;
+  options: any;
+  offset: { left: number; top: number };
+  size: { width: number; height: number };
+  relativePath: string;
+  children: any[];
+}
+
+interface LayoutRoot {
+  type: string;
+  options: any;
+  size: { width: number; height: number };
+  children: LayoutElement[];
+}
+
+// Function to get asset URL for Vite
+const getAssetUrl = (fileName: string) => {
+  return new URL(`./murderboard_template.psd-assets/${fileName}`, import.meta.url).href;
+};
+
+// Simple murderboard component - just center and shrink by 20%
+const MurderboardCanvasWithResize: React.FC = () => {
+  const layout = layoutData as LayoutRoot;
+
+  // Simple 30% scale
+  const scale = 0.30;
+
+  console.log('Simple murderboard scaling:', {
+    originalWidth: layout.size.width,
+    originalHeight: layout.size.height,
+    scale: scale
+  });
+
+  return (
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000'
+      }}
+    >
+      <div
+        style={{
+          position: 'relative',
+          width: layout.size.width * scale,
+          height: layout.size.height * scale,
+          overflow: 'hidden',
+          border: '2px solid red' // Debug border
+        }}
+      >
+        {layout.children.map((element, index) => {
+          const fileName = `${element.relativePath}.${element.type}`;
+          const imagePath = getAssetUrl(fileName);
+
+          // Reverse z-index so background (last element) has lowest z-index
+          const zIndex = layout.children.length - 1 - index;
+
+          console.log(`Loading image: ${fileName} from ${imagePath} (z-index: ${zIndex})`);
+
+          return (
+            <img
+              key={index}
+              src={imagePath}
+              alt={element.name}
+              style={{
+                position: 'absolute',
+                left: element.offset.left * scale,
+                top: element.offset.top * scale,
+                width: element.size.width * scale,
+                height: element.size.height * scale,
+                objectFit: 'contain',
+                zIndex: zIndex, // Reversed z-order so background is at bottom
+                border: '1px solid rgba(255,255,255,0.2)' // Debug border
+              }}
+              onLoad={() => {
+                console.log(`Successfully loaded: ${fileName}`);
+              }}
+              onError={(e) => {
+                console.warn(`Failed to load image: ${fileName} from ${imagePath}`);
+                // Show a placeholder instead of hiding
+                e.currentTarget.style.backgroundColor = 'rgba(255,0,0,0.3)';
+                e.currentTarget.style.border = '2px solid red';
+              }}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 export class MysteryworksMurderboardPlugin implements IPlugin {
   metadata: PluginMetadata = {
@@ -16,7 +117,7 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
     version: '1.0.0',
     author: 'Mysteryworks',
     icon: 'file-search',
-    enabled: false
+    enabled: true
   };
 
   private context?: PluginContext;
@@ -52,74 +153,15 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
         open={props.isVisible}
         onCancel={props.onClose}
         footer={null}
-        width={props.width || 1280}
+        width="90%"
         style={{ top: 20 }}
         bodyStyle={{
-          height: props.height || 720,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '40px'
+          height: '80vh',
+          padding: '0px',
+          backgroundColor: '#000'
         }}
       >
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100%',
-          textAlign: 'center'
-        }}>
-          <div style={{
-            fontSize: '48px',
-            fontWeight: 'bold',
-            marginBottom: '20px',
-            background: 'linear-gradient(45deg, #8B0000, #DC143C)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}>
-            Mysteryworks Murderboard 🔍
-          </div>
-
-          <div style={{
-            fontSize: '18px',
-            color: '#666',
-            marginBottom: '30px',
-            maxWidth: '600px',
-            lineHeight: '1.6'
-          }}>
-            Interactive investigation board for tracking suspects, evidence, and connections in your murder mystery. Organize clues and build your case as the story unfolds.
-          </div>
-
-          {this.context?.project && (
-            <div style={{
-              backgroundColor: '#f5f5f5',
-              padding: '20px',
-              borderRadius: '8px',
-              marginBottom: '20px'
-            }}>
-              <h3 style={{ margin: '0 0 10px 0', color: '#1890ff' }}>Current Project Info</h3>
-              <p style={{ margin: '5px 0', color: '#666' }}>
-                <strong>Project Name:</strong> {this.context.project.Name || 'Unknown'}
-              </p>
-              {this.context.currentNode && (
-                <p style={{ margin: '5px 0', color: '#666' }}>
-                  <strong>Current Node:</strong> {this.context.currentNode.Properties?.DisplayName || this.context.currentNode.Properties?.Id || 'Unknown'}
-                </p>
-              )}
-            </div>
-          )}
-
-          <div style={{
-            fontSize: '14px',
-            color: '#999',
-            fontStyle: 'italic'
-          }}>
-            Plugin Version: {this.metadata.version} | Author: {this.metadata.author}
-          </div>
-        </div>
+        <MurderboardCanvasWithResize />
       </Modal>
     );
   }
