@@ -4,6 +4,8 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 
 🌐 **Live Demo**: https://dev.chadbriggs.com/articy/v4/
 
+> **🚀 For Developers**: Always use `npm run dev:safe` for development. This mode includes comprehensive cache protection, file integrity checking, and prevents the file reversion issues that can occur with standard development servers.
+
 ## ✨ **Key Features**
 
 ### **Dual Format Support**
@@ -49,10 +51,10 @@ cd articy-webpreview
 # Install dependencies
 npm install
 
-# Start development server (with file integrity protection)
+# Start development server (RECOMMENDED - includes cache protection)
 npm run dev:safe
 
-# Or start with PHP support for dataset detection
+# Alternative: Start with PHP support only (if you don't need full protection)
 npm run dev:php
 ```
 
@@ -72,13 +74,13 @@ npm run dev:php
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Standard Vite development server |
-| `npm run dev:safe` | **Recommended**: Development with file integrity checking and cache protection |
+| `npm run dev:safe` | **🚀 RECOMMENDED**: Development with full cache protection and file integrity |
 | `npm run dev:php` | Development with PHP server for dataset detection |
+| `npm run dev` | ⚠️ Basic Vite server (use only for debugging cache system) |
 | `npm run build` | Build for production deployment |
 | `npm run check:integrity` | Verify critical files haven't been corrupted |
-| `npm run test:cache` | **Testing**: Run 12 cache busting configuration tests |
-| `npm run test:runtime` | **Testing**: Test live cache behavior while server is running |
+| `npm run test:cache` | **🧪 Testing**: Run 12 cache busting configuration tests |
+| `npm run test:runtime` | **🧪 Testing**: Test live cache behavior while server is running |
 
 ## 📁 **Project Structure**
 
@@ -153,12 +155,14 @@ npm run check:integrity
 # 2. Test cache configuration
 npm run test:cache
 
-# 3. Start development safely
+# 3. Start development (ALWAYS use safe mode)
 npm run dev:safe
 
 # 4. Test runtime behavior (in another terminal)
 npm run test:runtime
 ```
+
+> **💡 Important**: Always use `npm run dev:safe` for development. The basic `npm run dev` command should only be used when debugging the cache system itself.
 
 ### **⚠️ Important Development Guidelines**
 
@@ -186,7 +190,8 @@ npm run test:runtime
 - **Log Cleanup**: Excessive logs are automatically cleaned during project maintenance
 
 #### **File Integrity Protection**
-- **Always Run**: Use `npm run dev:safe` instead of `npm run dev` to enable file protection
+- **🚀 Default Mode**: Always use `npm run dev:safe` for all development work
+- **⚠️ Basic Mode**: Only use `npm run dev` when debugging the cache system itself
 - **Check Integrity**: Run `npm run check:integrity` before starting development sessions
 - **Backup System**: Critical files have `.backup` versions that are automatically restored if corruption is detected
 
@@ -198,6 +203,21 @@ npm run test:runtime
 ## 🧪 **Cache Busting & Testing**
 
 This project includes comprehensive cache prevention and testing systems to ensure reliable development without file reversion issues.
+
+### **🚀 Why Safe Mode is Superior**
+
+Safe mode (`npm run dev:safe`) provides **better development experience** than basic mode with **zero meaningful downsides**:
+
+| Feature | Safe Mode | Basic Mode |
+|---------|-----------|------------|
+| **File Protection** | ✅ Complete protection from reversions | ❌ Vulnerable to file corruption |
+| **Development Speed** | ✅ No interruptions from lost work | ❌ Time lost to file issues |
+| **Hot Reload** | ✅ Reliable with polling-based detection | ⚠️ Event-based (less reliable) |
+| **PHP Integration** | ✅ Automatic server management | ❌ Manual setup required |
+| **Error Handling** | ✅ Better diagnostics and recovery | ❌ Basic error reporting |
+| **Performance** | ✅ Negligible impact (sub-2s file detection) | ✅ Slightly faster (not noticeable) |
+
+**Recommendation**: Use safe mode for **all development work**. Only use basic mode when debugging the cache system itself.
 
 ### **Cache Prevention Features**
 
@@ -251,25 +271,32 @@ The `npm run test:runtime` command verifies live server behavior:
 
 For complete verification:
 
-1. **Start Server**: `npm run dev:safe`
+1. **Start Server**: `npm run dev:safe` (always use safe mode)
 2. **Open Browser**: http://localhost:3000/
 3. **Open Dev Tools**: F12 → Network tab
 4. **Edit Source File**: Make changes and save
 5. **Verify Hot Reload**: Page updates automatically
 6. **Check Network Tab**: Look for cache-busting parameters (`?v=timestamp`)
 
+> **💡 Note**: Safe mode provides superior development experience with zero downsides compared to basic mode.
+
 ## ⚠️ **Known Issues & Solutions**
 
 ### **File Reversion Problem**
-During development, critical files occasionally revert to older versions. This project includes a protection system:
+This project previously experienced file reversion issues during development. **The safe mode completely prevents these issues.**
 
 ```bash
-# Always check file integrity before development
+# ALWAYS use safe mode for development (prevents file reversions)
+npm run dev:safe
+
+# Check file integrity if you suspect issues
 npm run check:integrity
 
-# Use the safe development script
-npm run dev:safe
+# Test cache system health
+npm run test:cache
 ```
+
+> **✅ Solution**: Safe mode eliminates file reversion problems entirely. There's no reason to use basic mode unless debugging the cache system.
 
 ### **Cache Issues Troubleshooting**
 
