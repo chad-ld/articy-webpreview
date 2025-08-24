@@ -1,20 +1,24 @@
 {"type":"root","options":{
 
-},"size":{"width":3840,"height":2160},"children":[{"name":"suspect_daria","type":"png","options":{
+},"size":{"width":3840,"height":2160},"children":[{"name":"va_paternity_test_update","type":"png","options":{
 
-},"offset":{"left":205,"top":163},"size":{"width":622,"height":573},"relativePath":"suspect_daria","children":[
+},"offset":{"left":3137,"top":800},"size":{"width":68,"height":67},"relativePath":"va_paternity_test_update","children":[
 
-]},{"name":"suspect_alex","type":"png","options":{
+]},{"name":"va_new_will_update","type":"png","options":{
 
-},"offset":{"left":3033,"top":164},"size":{"width":629,"height":575},"relativePath":"suspect_alex","children":[
+},"offset":{"left":1400,"top":130},"size":{"width":68,"height":67},"relativePath":"va_new_will_update","children":[
 
-]},{"name":"suspect_leo","type":"png","options":{
+]},{"name":"va_photo_affair_update","type":"png","options":{
 
-},"offset":{"left":198,"top":1403},"size":{"width":629,"height":616},"relativePath":"suspect_leo","children":[
+},"offset":{"left":1346,"top":1330},"size":{"width":68,"height":67},"relativePath":"va_photo_affair_update","children":[
 
-]},{"name":"suspect_liza","type":"png","options":{
+]},{"name":"suspect_liza_update","type":"png","options":{
 
-},"offset":{"left":3029,"top":1429},"size":{"width":631,"height":592},"relativePath":"suspect_liza","children":[
+},"offset":{"left":3007,"top":1396},"size":{"width":68,"height":67},"relativePath":"suspect_liza_update","children":[
+
+]},{"name":"va_new_will","type":"png","options":{
+
+},"offset":{"left":1434,"top":165},"size":{"width":303,"height":393},"relativePath":"va_new_will","children":[
 
 ]},{"name":"ap_leoalexpic","type":"png","options":{
 
@@ -38,7 +42,7 @@
 
 ]},{"name":"va_photo_affair","type":"png","options":{
 
-},"offset":{"left":1387,"top":1357},"size":{"width":281,"height":186},"relativePath":"va_photo_affair","children":[
+},"offset":{"left":1380,"top":1353},"size":{"width":281,"height":186},"relativePath":"va_photo_affair","children":[
 
 ]},{"name":"bg","type":"jpg","options":{"jpgQuality":8},"offset":{"left":0,"top":0},"size":{"width":3840,"height":2160},"relativePath":"bg","children":[
 
