@@ -110,6 +110,14 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
 
   private context?: PluginContext;
 
+  /**
+   * Enable isolated rendering to prevent infinite re-render loops
+   * on multiple choice nodes
+   */
+  useIsolatedRendering(): boolean {
+    return true;
+  }
+
   async initialize(context: PluginContext): Promise<void> {
     this.context = context;
     console.log('🔍 Mysteryworks Murderboard Plugin initialized');

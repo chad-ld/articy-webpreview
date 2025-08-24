@@ -52,19 +52,22 @@ export interface PluginContext {
 export interface IPlugin {
   // Plugin metadata
   metadata: PluginMetadata;
-  
+
   // Lifecycle methods
   initialize(context: PluginContext): Promise<void>;
   destroy(): Promise<void>;
-  
+
   // UI Integration
   getButtonConfig(): PluginButtonConfig;
   renderModal(props: PluginModalProps): React.ReactNode;
-  
+
   // Optional hooks
   onDatasetLoad?(data: any): void;
   onNodeChange?(node: any): void;
   onVariableChange?(variables: any): void;
+
+  // Optional isolated rendering
+  useIsolatedRendering?(): boolean; // Return true if plugin should use isolated render tree
 }
 
 export interface PluginState {
