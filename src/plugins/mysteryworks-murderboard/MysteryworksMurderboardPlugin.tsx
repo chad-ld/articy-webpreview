@@ -34,17 +34,61 @@ const getAssetUrl = (fileName: string) => {
   return new URL(`./murderboard_template.psd-assets/${fileName}`, import.meta.url).href;
 };
 
-// Simple murderboard component - just center and shrink by 20%
-const MurderboardCanvasWithResize: React.FC = () => {
+// Dynamic murderboard component with variable-based visibility
+interface MurderboardCanvasProps {
+  variables?: any;
+}
+
+const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variables }) => {
   const layout = layoutData as LayoutRoot;
 
   // Simple 30% scale
   const scale = 0.30;
 
-  console.log('Simple murderboard scaling:', {
+  // Function to check if an element should be visible
+  const isElementVisible = (elementName: string): boolean => {
+    // Always show background
+    if (elementName === 'bg') {
+      return true;
+    }
+
+    // For all other elements, check for corresponding "_found" variable
+    const foundVariableName = `${elementName}_found`;
+
+    // Look through all variable namespaces for the found variable
+    if (variables) {
+      // Check in all possible variable namespaces
+      for (const namespace in variables) {
+        const namespaceVars = variables[namespace];
+        if (namespaceVars) {
+          // Check for exact match first
+          if (namespaceVars[foundVariableName] === true) {
+            console.log(`🔍 Found evidence: ${elementName} (${foundVariableName} = true)`);
+            return true;
+          }
+
+          // Check for case-insensitive match
+          for (const varName in namespaceVars) {
+            if (varName.toLowerCase() === foundVariableName.toLowerCase() && namespaceVars[varName] === true) {
+              console.log(`🔍 Found evidence (case-insensitive): ${elementName} (${varName} = true, looking for ${foundVariableName})`);
+              return true;
+            }
+          }
+        }
+      }
+    }
+
+    // Default to hidden if variable not found or false
+    console.log(`🔒 Hidden evidence: ${elementName} (${foundVariableName} not found or false)`);
+    return false;
+  };
+
+  console.log('🎨 Murderboard rendering with variables:', {
     originalWidth: layout.size.width,
     originalHeight: layout.size.height,
-    scale: scale
+    scale: scale,
+    variablesAvailable: !!variables,
+    variableNamespaces: variables ? Object.keys(variables) : []
   });
 
   return (
@@ -60,11 +104,12 @@ const MurderboardCanvasWithResize: React.FC = () => {
         {layout.children.map((element, index) => {
           const fileName = `${element.relativePath}.${element.type}`;
           const imagePath = getAssetUrl(fileName);
+          const isVisible = isElementVisible(element.name);
 
           // Reverse z-index so background (last element) has lowest z-index
           const zIndex = layout.children.length - 1 - index;
 
-          console.log(`Loading image: ${fileName} from ${imagePath} (z-index: ${zIndex})`);
+          console.log(`🖼️ Processing image: ${fileName} (visible: ${isVisible}, z-index: ${zIndex})`);
 
           return (
             <img
@@ -79,13 +124,14 @@ const MurderboardCanvasWithResize: React.FC = () => {
                 height: element.size.height * scale,
                 objectFit: 'contain',
                 zIndex: zIndex, // Reversed z-order so background is at bottom
-                border: '1px solid rgba(255,255,255,0.2)' // Debug border
+                border: '1px solid rgba(255,255,255,0.2)', // Debug border
+                display: isVisible ? 'block' : 'none' // Hide/show based on variables
               }}
               onLoad={() => {
-                console.log(`Successfully loaded: ${fileName}`);
+                console.log(`✅ Successfully loaded: ${fileName} (visible: ${isVisible})`);
               }}
               onError={(e) => {
-                console.warn(`Failed to load image: ${fileName} from ${imagePath}`);
+                console.warn(`❌ Failed to load image: ${fileName} from ${imagePath}`);
                 // Show a placeholder instead of hiding
                 e.currentTarget.style.backgroundColor = 'rgba(255,0,0,0.3)';
                 e.currentTarget.style.border = '2px solid red';
@@ -109,6 +155,7 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
   };
 
   private context?: PluginContext;
+  private currentVariables?: any;
 
   /**
    * Enable isolated rendering to prevent infinite re-render loops
@@ -120,6 +167,7 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
 
   async initialize(context: PluginContext): Promise<void> {
     this.context = context;
+    this.currentVariables = context.variables;
     console.log('🔍 Mysteryworks Murderboard Plugin initialized');
 
     // Show a welcome message when plugin is loaded
@@ -127,6 +175,9 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
 
     // Subscribe to dataset load events
     context.onEvent('dataset-loaded', this.onDatasetLoad.bind(this));
+
+    // Log initial variable state for debugging
+    console.log('🔍 Initial variables:', this.currentVariables);
   }
 
   async destroy(): Promise<void> {
@@ -149,6 +200,9 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
     const contentWidth = layout.size.width * scale;
     const contentHeight = layout.size.height * scale;
 
+    // Log current variables when modal is rendered
+    console.log('🎨 Rendering murderboard modal with variables:', this.currentVariables);
+
     return (
       <Modal
         title={props.title || this.metadata.name}
@@ -164,7 +218,7 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
           backgroundColor: '#000'
         }}
       >
-        <MurderboardCanvasWithResize />
+        <MurderboardCanvasWithResize variables={this.currentVariables} />
       </Modal>
     );
   }
@@ -183,6 +237,26 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
 
   onVariableChange(variables: any): void {
     console.log('🔍 Mysteryworks Murderboard Plugin: Variables changed', variables);
+    this.currentVariables = variables;
+
+    // Log any "_found" variables for debugging
+    if (variables) {
+      const foundVariables: any = {};
+      for (const namespace in variables) {
+        const namespaceVars = variables[namespace];
+        if (namespaceVars) {
+          for (const varName in namespaceVars) {
+            if (varName.toLowerCase().endsWith('_found') && namespaceVars[varName] === true) {
+              foundVariables[`${namespace}.${varName}`] = namespaceVars[varName];
+            }
+          }
+        }
+      }
+
+      if (Object.keys(foundVariables).length > 0) {
+        console.log('🔍 Found evidence variables (case-insensitive):', foundVariables);
+      }
+    }
   }
 }
 

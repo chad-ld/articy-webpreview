@@ -41,6 +41,24 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 - **State Persistence** - Plugin preferences saved between sessions
 - **Drop-in Development** - Add new plugins without code changes
 
+## 🆕 **Latest Updates (August 2025)**
+
+### **🔧 Enhanced Plugin System**
+- **Case-Insensitive Variable Matching**: Plugins now support mixed-case variable names
+- **Improved Murderboard Plugin**: Better variable detection and debugging capabilities
+- **Robust Error Handling**: Plugins gracefully handle missing assets and variables
+
+### **🛡️ Development Improvements**
+- **Integrated Safe Script**: PHP server logic moved directly into safe development script
+- **Automatic Server Cleanup**: Development scripts now kill existing processes before starting
+- **Enhanced File Integrity**: Better protection against file corruption during development
+- **Streamlined Workflow**: Removed git status checks for faster startup
+
+### **🔍 Better Debugging**
+- **Comprehensive Logging**: Enhanced console output for plugin and variable debugging
+- **Asset Loading Feedback**: Clear error messages for missing plugin assets
+- **Variable Detection Logs**: Detailed logging for troubleshooting variable visibility issues
+
 ## 🚀 **Quick Start**
 
 ### **For End Users**
@@ -167,9 +185,13 @@ The Articy Web Viewer includes a powerful plugin system that allows you to exten
 - **Test Plugin** - Shows auto-discovery features and plugin development capabilities
 - **Mysteryworks Murderboard Plugin** - Interactive murder mystery investigation board with evidence and suspect management
   - **Features**: Visual evidence board, suspect profiles, document viewing, interactive layout
+  - **Variable-Based Visibility**: Graphics show/hide based on Articy variables (e.g., `alex_found = true` shows Alex)
+  - **Case-Insensitive Matching**: Supports mixed-case variable names (`Alex_Found`, `alex_found`, `ALEX_FOUND`)
+  - **Multi-Namespace Support**: Works with variables in any namespace (`SuspectVariables`, `EvidenceVariables`, etc.)
   - **Scaling**: Automatically scales PSD layout to 30% for optimal modal display (1152px content → 345.6px display)
   - **Modal**: Fixed-size modal (393.6px wide) with 24px padding margins and z-index 9999 for proper layering
   - **Assets**: Includes character portraits, evidence documents, and background imagery
+  - **Debug Logging**: Comprehensive console logging for troubleshooting variable detection
 
 ### **Plugin Features**
 
@@ -248,6 +270,41 @@ All plugins must implement the `IPlugin` interface:
 - **`onDatasetLoad(data)`** *(optional)*: Called when dataset loads
 - **`onNodeChange(node)`** *(optional)*: Called when current node changes
 - **`onVariableChange(variables)`** *(optional)*: Called when variables update
+
+#### **Variable Handling Best Practices**
+
+When working with Articy variables in plugins:
+
+```typescript
+// ✅ GOOD: Case-insensitive variable checking
+const isElementVisible = (elementName: string): boolean => {
+  const foundVariableName = `${elementName}_found`;
+
+  // Check all namespaces and variable names case-insensitively
+  for (const namespace in variables) {
+    const namespaceVars = variables[namespace];
+    if (namespaceVars) {
+      for (const varName in namespaceVars) {
+        if (varName.toLowerCase() === foundVariableName.toLowerCase() &&
+            namespaceVars[varName] === true) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};
+
+// ❌ AVOID: Case-sensitive exact matching only
+const badCheck = variables.SomeNamespace?.exact_variable_name === true;
+```
+
+**Variable Naming Conventions Supported:**
+- `alex_found` (lowercase with underscore)
+- `Alex_Found` (PascalCase with underscore)
+- `ALEX_FOUND` (uppercase with underscore)
+- `alexFound` (camelCase)
+- `AlexFound` (PascalCase)
 
 #### **Plugin Context API**
 
