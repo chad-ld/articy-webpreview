@@ -1,20 +1,20 @@
 {"type":"root","options":{
 
-},"size":{"width":3840,"height":2160},"children":[{"name":"va_paternity_test_update","type":"png","options":{
+},"size":{"width":3840,"height":2160},"children":[{"name":"liza_update","type":"png","options":{
 
-},"offset":{"left":3137,"top":800},"size":{"width":68,"height":67},"relativePath":"va_paternity_test_update","children":[
-
-]},{"name":"va_new_will_update","type":"png","options":{
-
-},"offset":{"left":1400,"top":130},"size":{"width":68,"height":67},"relativePath":"va_new_will_update","children":[
+},"offset":{"left":3122,"top":1369},"size":{"width":424,"height":74},"relativePath":"liza_update","children":[
 
 ]},{"name":"va_photo_affair_update","type":"png","options":{
 
-},"offset":{"left":1346,"top":1330},"size":{"width":68,"height":67},"relativePath":"va_photo_affair_update","children":[
+},"offset":{"left":1319,"top":1555},"size":{"width":410,"height":74},"relativePath":"va_photo_affair_update","children":[
 
-]},{"name":"suspect_liza_update","type":"png","options":{
+]},{"name":"va_new_will_update","type":"png","options":{
 
-},"offset":{"left":3007,"top":1396},"size":{"width":68,"height":67},"relativePath":"suspect_liza_update","children":[
+},"offset":{"left":1379,"top":66},"size":{"width":410,"height":74},"relativePath":"va_new_will_update","children":[
+
+]},{"name":"va_paternity_test_update","type":"png","options":{
+
+},"offset":{"left":3138,"top":773},"size":{"width":410,"height":74},"relativePath":"va_paternity_test_update","children":[
 
 ]},{"name":"va_new_will","type":"png","options":{
 
@@ -24,13 +24,13 @@
 
 },"offset":{"left":2299,"top":244},"size":{"width":278,"height":217},"relativePath":"ap_leoalexpic","children":[
 
-]},{"name":"va_original_will","type":"png","options":{
+]},{"name":"va_old_will","type":"png","options":{
 
-},"offset":{"left":1731,"top":797},"size":{"width":360,"height":466},"relativePath":"va_original_will","children":[
+},"offset":{"left":1731,"top":797},"size":{"width":360,"height":466},"relativePath":"va_old_will","children":[
 
-]},{"name":"va_autopsy_original","type":"png","options":{
+]},{"name":"va_old_autopsy","type":"png","options":{
 
-},"offset":{"left":1306,"top":798},"size":{"width":360,"height":466},"relativePath":"va_autopsy_original","children":[
+},"offset":{"left":1306,"top":798},"size":{"width":360,"height":466},"relativePath":"va_old_autopsy","children":[
 
 ]},{"name":"va_paternity_test","type":"png","options":{
 
@@ -43,6 +43,26 @@
 ]},{"name":"va_photo_affair","type":"png","options":{
 
 },"offset":{"left":1380,"top":1353},"size":{"width":281,"height":186},"relativePath":"va_photo_affair","children":[
+
+]},{"name":"va_safe","type":"png","options":{
+
+},"offset":{"left":2353,"top":1526},"size":{"width":456,"height":499},"relativePath":"va_safe","children":[
+
+]},{"name":"daria","type":"png","options":{
+
+},"offset":{"left":205,"top":163},"size":{"width":622,"height":568},"relativePath":"daria","children":[
+
+]},{"name":"alex","type":"png","options":{
+
+},"offset":{"left":3033,"top":164},"size":{"width":629,"height":570},"relativePath":"alex","children":[
+
+]},{"name":"leo","type":"png","options":{
+
+},"offset":{"left":198,"top":1403},"size":{"width":629,"height":604},"relativePath":"leo","children":[
+
+]},{"name":"liza","type":"png","options":{
+
+},"offset":{"left":3029,"top":1429},"size":{"width":631,"height":586},"relativePath":"liza","children":[
 
 ]},{"name":"bg","type":"jpg","options":{"jpgQuality":8},"offset":{"left":0,"top":0},"size":{"width":3840,"height":2160},"relativePath":"bg","children":[
 

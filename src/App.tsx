@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ConfigProvider, message, Spin, Select, Button, Divider, Tooltip } from 'antd';
-import { SortAscendingOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { ConfigProvider, message, Spin, Select, Button, Divider, Tooltip, Switch, Space } from 'antd';
+import { SortAscendingOutlined, ClockCircleOutlined, FileTextOutlined, DownloadOutlined } from '@ant-design/icons';
 import InteractiveArticyViewer from './components/InteractiveArticyViewer';
 import EnhancedFileInput from './components/EnhancedFileInput';
 import PluginSelector from './components/PluginSelector';
@@ -12,6 +12,8 @@ import HybridDatasetDetector from './utils/hybridDatasetDetector';
 import DatasetDisplayFormatter from './utils/datasetDisplayFormatter';
 // Initialize plugin system
 import './plugins';
+import { configService } from './services/configService';
+import { consoleLogger } from './utils/consoleLogger';
 import './App.css';
 
 const { Option } = Select;
@@ -62,6 +64,7 @@ function App() {
   const [dataSource, setDataSource] = useState<'hardcoded' | 'manual' | null>(null);
   const [detectionMethod, setDetectionMethod] = useState<string>('detecting...');
   const [sortMode, setSortMode] = useState<'alphabetical' | 'date'>('date');
+  const [consoleLoggingEnabled, setConsoleLoggingEnabled] = useState(false);
 
   // Initialize hybrid dataset detector and display formatter
   const hybridDetector = new HybridDatasetDetector();
@@ -270,58 +273,111 @@ function App() {
     console.log('✅ Multi-environment compatibility enabled');
     console.log('✅ 4.x format support enabled');
     console.log('✅ Drag-and-drop functionality enabled');
+    console.log('✅ Configuration-based auto-loading enabled');
 
     // Log environment information
     hybridDetector.environmentDetector.logEnvironmentInfo();
 
+    // Initialize console logger
+    consoleLogger.loadState();
+    setConsoleLoggingEnabled(consoleLogger.isLoggingEnabled());
+
     // Initialize app with dataset detection
     initializeApp();
+  }, []);
+
+  // Add keyboard shortcut handler for Ctrl+L (access loading screen)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Ctrl+L: Access loading screen (even when bypassed)
+      if (event.ctrlKey && event.key.toLowerCase() === 'l') {
+        event.preventDefault();
+        console.log('⌨️ Ctrl+L pressed - Accessing loading screen');
+        handleSwitchToManual();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const initializeApp = async () => {
     setIsLoading(true);
 
     try {
+      // Load configuration first
+      const config = await configService.loadConfig();
+      console.log('🔧 Configuration loaded for app initialization:', config);
+      console.log('🔧 Should auto-load dataset?', configService.shouldAutoLoadDataset());
+      console.log('🔧 Should skip loading screen?', configService.shouldSkipLoadingScreen());
+      console.log('🔧 Auto-load dataset:', configService.getAutoLoadDataset());
+
       // Detect available datasets
       const datasets = await detectAvailableDatasets();
 
       setAvailableDatasets(datasets);
       console.log('🎯 Stored in state:', datasets.map(d => `${d.name}: "${d.displayName}"`));
 
-      // Check URL parameter for specific dataset auto-load
+      // Check URL parameter for specific dataset auto-load (highest priority)
       const urlParams = new URLSearchParams(window.location.search);
       const requestedDataset = urlParams.get('dataset');
 
       if (requestedDataset && datasets.find(d => d.name === requestedDataset)) {
         // Auto-load specific dataset if requested via URL
-        console.log(`🎯 Auto-loading requested dataset: ${requestedDataset}`);
+        console.log(`🎯 Auto-loading requested dataset from URL: ${requestedDataset}`);
         setSelectedDataset(requestedDataset);
         await loadDataset(requestedDataset);
-      } else {
-        // Always show selection interface first (unless specific dataset requested)
-        console.log(`📁 Showing dataset selection interface (${datasets.length} datasets detected)`);
-        if (datasets.length > 0) {
-          // Pre-select first dataset based on current sort mode
-          const sortedDatasets = [...datasets].sort((a, b) => {
-            if (sortMode === 'date') {
-              const timeA = a.lastModified || 0;
-              const timeB = b.lastModified || 0;
-              return timeB - timeA;
-            } else {
-              return a.displayName.localeCompare(b.displayName);
-            }
-          });
-          setSelectedDataset(sortedDatasets[0].name);
-          console.log(`📌 Pre-selected dataset: ${sortedDatasets[0].name} (${sortedDatasets[0].displayName}) based on ${sortMode} sort`);
+      } else if (configService.shouldAutoLoadDataset()) {
+        // Check configuration for auto-loading (second priority)
+        const autoLoadDataset = configService.getAutoLoadDataset();
+        const datasetExists = datasets.find(d => d.name === autoLoadDataset);
+
+        if (datasetExists) {
+          console.log(`🔧 Auto-loading dataset from configuration: ${autoLoadDataset}`);
+          setSelectedDataset(autoLoadDataset);
+
+          if (configService.shouldSkipLoadingScreen()) {
+            console.log('⏭️ Skipping loading screen as configured');
+            await loadDataset(autoLoadDataset);
+          } else {
+            console.log('📁 Showing loading screen with pre-selected dataset');
+            setShowDatasetSelection(true);
+            setIsLoading(false);
+          }
+        } else {
+          console.warn(`⚠️ Configured auto-load dataset "${autoLoadDataset}" not found. Available datasets:`, datasets.map(d => d.name));
+          console.log('📁 Falling back to dataset selection interface');
+          await showDatasetSelectionInterface(datasets);
         }
-        setShowDatasetSelection(true);
-        setIsLoading(false);
+      } else {
+        // No auto-loading configured, show selection interface
+        console.log(`📁 No auto-loading configured, showing dataset selection interface (${datasets.length} datasets detected)`);
+        await showDatasetSelectionInterface(datasets);
       }
     } catch (error) {
       console.error('❌ Failed to initialize app:', error);
       setShowDatasetSelection(true);
       setIsLoading(false);
     }
+  };
+
+  const showDatasetSelectionInterface = async (datasets: any[]) => {
+    if (datasets.length > 0) {
+      // Pre-select first dataset based on current sort mode
+      const sortedDatasets = [...datasets].sort((a, b) => {
+        if (sortMode === 'date') {
+          const timeA = a.lastModified || 0;
+          const timeB = b.lastModified || 0;
+          return timeB - timeA;
+        } else {
+          return a.displayName.localeCompare(b.displayName);
+        }
+      });
+      setSelectedDataset(sortedDatasets[0].name);
+      console.log(`📌 Pre-selected dataset: ${sortedDatasets[0].name} (${sortedDatasets[0].displayName}) based on ${sortMode} sort`);
+    }
+    setShowDatasetSelection(true);
+    setIsLoading(false);
   };
 
   const handleDataLoaded = (data: any, report: ProcessingReport) => {
@@ -375,6 +431,19 @@ function App() {
     setDataSource(null);
     setShowDatasetSelection(true);
     setIsLoading(false);
+  };
+
+  const handleConsoleLoggingToggle = (enabled: boolean) => {
+    if (enabled) {
+      consoleLogger.enable();
+    } else {
+      consoleLogger.disable();
+    }
+    setConsoleLoggingEnabled(enabled);
+  };
+
+  const handleDownloadLogs = () => {
+    consoleLogger.downloadLogs();
   };
 
   // Calculate gradual margin for header responsiveness
@@ -571,6 +640,44 @@ function App() {
                     {/* Plugin Selection */}
                     <div style={{ marginBottom: '20px' }}>
                       <PluginSelector />
+                    </div>
+
+                    {/* Console Logging Controls */}
+                    <div style={{
+                      marginBottom: '20px',
+                      padding: '0 16px',
+                      backgroundColor: '#ffffff',
+                      borderRadius: '6px',
+                      border: '1px solid #d9d9d9',
+                      height: '48px',
+                      maxHeight: '48px',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}>
+                      <span style={{ fontSize: '14px', color: '#262626', fontWeight: '500', lineHeight: '1' }}>
+                        <FileTextOutlined style={{ marginRight: '8px', color: '#1890ff' }} />
+                        Debug Console Logging
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', height: '100%' }}>
+                        {consoleLoggingEnabled && (
+                          <Button
+                            size="small"
+                            icon={<DownloadOutlined />}
+                            onClick={handleDownloadLogs}
+                            type="primary"
+                            style={{ fontSize: '11px', height: '22px', lineHeight: '1' }}
+                          >
+                            Save ({consoleLogger.getLogCount()})
+                          </Button>
+                        )}
+                        <Switch
+                          checked={consoleLoggingEnabled}
+                          onChange={handleConsoleLoggingToggle}
+                          size="small"
+                        />
+                      </div>
                     </div>
 
                     <div>

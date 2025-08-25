@@ -334,7 +334,7 @@ Plugins receive a context object with access to:
 3. **Error Handling**: Invalid plugins are gracefully handled with console warnings
 4. **TypeScript Support**: Full type checking and IntelliSense support
 
-## � **Configuration System (In Development)**
+## � **Configuration System **
 
 The Articy Web Viewer includes a flexible configuration system that allows developers to set default behaviors for first-time users while preserving user preferences through localStorage persistence.
 
@@ -343,7 +343,7 @@ The Articy Web Viewer includes a flexible configuration system that allows devel
 - **localStorage = User Overrides**: User choices always take precedence after first interaction
 - **Expandable Design**: Built to support future configuration options
 
-### **Implementation Plan**
+### **Current Features** ✅
 
 #### **Phase 1: Plugin Auto-Loading Configuration** ✅ *Complete*
 ```typescript
@@ -388,23 +388,64 @@ The Articy Web Viewer includes a flexible configuration system that allows devel
 3. **Config Validation**: Invalid config.json falls back gracefully to empty defaults
 4. **UI Indicators**: Plugin selector shows blue "Default" tags for configured plugins
 
-#### **Phase 2: Dataset Auto-Loading** 📋 *Planned*
+#### **Phase 2: Dataset Auto-Loading** ✅ *Complete*
 ```typescript
 // Extended config.json
 {
   "datasets": {
-    "autoLoad": "mpos.json",        // Skip loading screen, load this dataset
+    "autoLoad": "mpos1.5",          // Skip loading screen, load this dataset
     "skipLoadingScreen": true,      // Bypass file selection entirely
-    "allowUserOverride": true       // Let users still access loading screen via Ctrl+L
+    "allowUserOverride": true,      // Let users still access loading screen via Ctrl+L
+    "fallbackBehavior": "showLoadingScreen"
   }
 }
 ```
 
 **Phase 2 Tasks:**
-- [ ] Add dataset configuration options
-- [ ] Implement auto-loading logic with loading screen bypass
-- [ ] Add keyboard shortcut (Ctrl+L) to access loading screen when bypassed
-- [ ] Test with various dataset formats (3.x and 4.x)
+- [x] Add dataset configuration options
+- [x] Implement auto-loading logic with loading screen bypass
+- [x] Add keyboard shortcut (Ctrl+L) to access loading screen when bypassed
+- [x] Test with various dataset formats (3.x and 4.x)
+
+**Phase 2 Implementation Details:**
+- **Extended Configuration**: Added `datasets` section to `config.json` with auto-loading options
+- **Auto-Loading Logic**: Modified `App.tsx` to check config after URL parameters but before manual selection
+- **Loading Screen Bypass**: When `skipLoadingScreen: true`, app loads dataset directly without showing selection interface
+- **Keyboard Override**: Ctrl+L shortcut allows access to loading screen even when bypassed
+- **Fallback Handling**: Graceful fallback to loading screen if configured dataset doesn't exist
+- **Priority System**: URL parameters → config auto-loading → manual selection
+
+**Testing Phase 2:**
+1. **Auto-Loading Test**: Set `autoLoad: "mpos.json"` and `skipLoadingScreen: true` - should load directly into murder mystery
+2. **Keyboard Override Test**: Press Ctrl+L while in auto-loaded dataset - should return to loading screen
+3. **Fallback Test**: Set `autoLoad: "nonexistent.json"` - should show loading screen with warning
+4. **Plugin Integration**: Auto-loaded dataset should have murderboard plugin enabled by default
+
+#### **Console Logging System** 📝 *Implemented*
+
+The application includes a comprehensive console logging system for debugging and development purposes.
+
+**Features:**
+- **Toggle Control**: Enable/disable console logging from the loading screen interface
+- **Server-Side Saving**: Logs are automatically saved to the server's `logs/` folder
+- **Fallback Download**: If server saving fails, falls back to browser download
+- **Auto-Save**: Automatically saves logs when they reach 1000 entries
+- **Session Tracking**: Each logging session has a unique identifier
+- **Comprehensive Capture**: Captures all console.log, console.error, console.warn, etc.
+
+**Implementation Details:**
+- **Console Logger**: `src/utils/consoleLogger.ts` - Core logging functionality
+- **Server Endpoint**: `public/save-log.php` - Handles server-side log saving
+- **UI Integration**: Debug Console Logging section in loading screen
+- **File Format**: Timestamped log entries with session metadata
+- **Security**: Filename validation and directory protection
+
+**Current Status:**
+- ✅ Console interception and logging
+- ✅ Toggle interface in loading screen
+- ✅ Server-side saving endpoint
+- ✅ Fallback download mechanism
+- ⚠️ Auto-save to server (needs debugging - currently saves to Downloads folder)
 
 #### **Phase 3: UI State Defaults** 🎨 *Future*
 ```typescript
@@ -425,7 +466,7 @@ The Articy Web Viewer includes a flexible configuration system that allows devel
 - [ ] Ensure user interactions override defaults
 - [ ] Add theme system foundation
 
-#### **Phase 4: Advanced Configuration** ⚙️ *Future*
+#### **Phase 4: Advanced Configuration** ⚙️ *Partially Complete*
 ```typescript
 // Extended config.json
 {

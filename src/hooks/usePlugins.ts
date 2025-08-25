@@ -119,6 +119,11 @@ export const usePlugins = (props: UsePluginsProps) => {
         if (plugin.onVariableChange) {
           plugin.onVariableChange(props.variables);
         }
+
+        // Refresh isolated plugins to update their rendering
+        if (plugin.useIsolatedRendering && plugin.useIsolatedRendering()) {
+          isolatedRenderManager.refreshPlugin(plugin.metadata.id);
+        }
       });
     }
   }, [props.project, props.currentNode, props.variables, props.isVariablesPanelVisible, props.isSearchPanelVisible, props.storyOnlyMode, props.onNavigateToNode, initialized]);

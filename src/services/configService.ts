@@ -9,21 +9,21 @@ export interface AppConfig {
   plugins: {
     defaultEnabled: string[];
   };
-  future?: {
-    datasets?: {
-      autoLoad?: string | null;
-      skipLoadingScreen?: boolean;
-    };
-    ui?: {
-      storyMode?: boolean;
-      variablesPanel?: boolean;
-      searchPanel?: boolean;
-    };
-    advanced?: {
-      debugging?: {
-        enableConsoleLogging?: boolean;
-        logLevel?: 'error' | 'warn' | 'info' | 'debug';
-      };
+  datasets?: {
+    autoLoad?: string | null;
+    skipLoadingScreen?: boolean;
+    allowUserOverride?: boolean;
+    fallbackBehavior?: 'showLoadingScreen' | 'showError';
+  };
+  ui?: {
+    storyMode?: boolean;
+    variablesPanel?: boolean;
+    searchPanel?: boolean;
+  };
+  advanced?: {
+    debugging?: {
+      enableConsoleLogging?: boolean;
+      logLevel?: 'error' | 'warn' | 'info' | 'debug';
     };
   };
 }
@@ -139,6 +139,57 @@ class ConfigService {
    */
   isLoaded(): boolean {
     return this.loaded;
+  }
+
+  /**
+   * Get dataset auto-loading configuration
+   */
+  getDatasetConfig(): {
+    autoLoad: string | null;
+    skipLoadingScreen: boolean;
+    allowUserOverride: boolean;
+    fallbackBehavior: 'showLoadingScreen' | 'showError';
+  } {
+    if (!this.config) {
+      return {
+        autoLoad: null,
+        skipLoadingScreen: false,
+        allowUserOverride: true,
+        fallbackBehavior: 'showLoadingScreen'
+      };
+    }
+
+    const datasets = this.config.datasets || {};
+    return {
+      autoLoad: datasets.autoLoad || null,
+      skipLoadingScreen: datasets.skipLoadingScreen || false,
+      allowUserOverride: datasets.allowUserOverride !== false, // Default to true
+      fallbackBehavior: datasets.fallbackBehavior || 'showLoadingScreen'
+    };
+  }
+
+  /**
+   * Check if dataset auto-loading is enabled
+   */
+  shouldAutoLoadDataset(): boolean {
+    const datasetConfig = this.getDatasetConfig();
+    return datasetConfig.autoLoad !== null && datasetConfig.autoLoad !== '';
+  }
+
+  /**
+   * Check if loading screen should be skipped
+   */
+  shouldSkipLoadingScreen(): boolean {
+    const datasetConfig = this.getDatasetConfig();
+    return this.shouldAutoLoadDataset() && datasetConfig.skipLoadingScreen;
+  }
+
+  /**
+   * Get the dataset to auto-load
+   */
+  getAutoLoadDataset(): string | null {
+    const datasetConfig = this.getDatasetConfig();
+    return datasetConfig.autoLoad;
   }
 }
 

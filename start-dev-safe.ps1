@@ -55,15 +55,50 @@ try {
         Write-Host "SUCCESS: PHP is available" -ForegroundColor Green
         Write-Host $phpVersion.Split("`n")[0] -ForegroundColor Gray
 
-        # Start with PHP support
+        # Start PHP server in background
         Write-Host ""
-        Write-Host "Starting with PHP support..." -ForegroundColor Cyan
-        & .\start-dev-with-php.ps1
+        Write-Host "Starting PHP server on localhost:8080..." -ForegroundColor Cyan
+        $phpProcess = Start-Process -FilePath "php" -ArgumentList "-S", "localhost:8080", "-t", "public" -PassThru -WindowStyle Hidden
+        Start-Sleep -Seconds 2
+
+        # Check if PHP server started successfully
+        try {
+            $response = Invoke-WebRequest -Uri "http://localhost:8080/datasets.php" -TimeoutSec 5 -ErrorAction Stop
+            Write-Host "SUCCESS: PHP server started successfully" -ForegroundColor Green
+        } catch {
+            Write-Host "WARNING: PHP server may not have started properly" -ForegroundColor Yellow
+            Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+        }
+
+        Write-Host ""
+        Write-Host "Starting Vite dev server on localhost:3000..." -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "PHP requests will be proxied from Vite to PHP server" -ForegroundColor Gray
+        Write-Host "Open: http://localhost:3000/" -ForegroundColor Green
+        Write-Host "PHP API: http://localhost:3000/datasets.php (proxied to localhost:8080)" -ForegroundColor Green
+        Write-Host ""
+        Write-Host "Press Ctrl+C to stop both servers" -ForegroundColor Yellow
+        Write-Host ""
+
+        # Start Vite dev server
+        try {
+            npm run dev
+        } finally {
+            # Cleanup: Kill PHP server when Vite stops
+            Write-Host ""
+            Write-Host "Stopping PHP server..." -ForegroundColor Yellow
+            if ($phpProcess -and !$phpProcess.HasExited) {
+                Stop-Process -Id $phpProcess.Id -Force -ErrorAction SilentlyContinue
+            }
+            # Also kill any remaining PHP processes on port 8080
+            Get-Process -Name "php" -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -eq "php" } | Stop-Process -Force -ErrorAction SilentlyContinue
+            Write-Host "SUCCESS: Cleanup complete" -ForegroundColor Green
+        }
     } else {
         throw "PHP not found"
     }
 } catch {
-    Write-Host "PHP not available - starting in fallback mode" -ForegroundColor Yellow
+    Write-Host "ERROR: PHP is not installed or not in PATH" -ForegroundColor Red
     Write-Host ""
     Write-Host "Starting Vite dev server only..." -ForegroundColor Cyan
     npm run dev

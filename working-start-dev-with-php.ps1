@@ -35,9 +35,7 @@ try {
     Write-Host ""
     Read-Host "Press Enter to exit"
     exit 1
-}
-
-# Start PHP server in background
+?7Art PHP server in background
 Write-Host "Starting PHP server on localhost:8080..." -ForegroundColor Cyan
 $phpProcess = Start-Process -FilePath "php" -ArgumentList "-S", "localhost:8080", "-t", "public" -PassThru -WindowStyle Hidden
 Start-Sleep -Seconds 2
@@ -75,3 +73,4 @@ try {
     Get-Process -Name "php" -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -eq "php" } | Stop-Process -Force -ErrorAction SilentlyContinue
     Write-Host "SUCCESS: Cleanup complete" -ForegroundColor Green
 }
+

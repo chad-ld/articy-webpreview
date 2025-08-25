@@ -603,6 +603,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         const articyProject = new ArticyProject(data);
         setProject(articyProject);
 
+        // Store project globally for plugin access (temporary workaround)
+        if (typeof window !== 'undefined') {
+          (window as any).articyProject = articyProject;
+        }
+
         console.log('🔍 InteractiveArticyViewer: Calling GetStartNode()...');
 
         // Find and set the start node

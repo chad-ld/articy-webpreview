@@ -136,6 +136,21 @@ class IsolatedRenderManager {
   }
 
   /**
+   * Force re-render an isolated plugin (useful when plugin data changes)
+   */
+  refreshPlugin(pluginId: string): void {
+    const instance = this.isolatedPlugins.get(pluginId);
+    if (!instance) {
+      console.warn(`Plugin ${pluginId} is not registered for isolated rendering`);
+      return;
+    }
+
+    // Re-render with current visibility state
+    this.renderPlugin(pluginId, instance.isVisible);
+    console.log(`🔄 Plugin ${pluginId} refreshed in isolated tree`);
+  }
+
+  /**
    * Render a plugin in its isolated container
    */
   private renderPlugin(pluginId: string, isVisible: boolean): void {

@@ -6,21 +6,21 @@
       "mysteryworks-murderboard"
     ]
   },
-  "future": {
-    "datasets": {
-      "autoLoad": null,
-      "skipLoadingScreen": false
-    },
-    "ui": {
-      "storyMode": false,
-      "variablesPanel": false,
-      "searchPanel": false
-    },
-    "advanced": {
-      "debugging": {
-        "enableConsoleLogging": false,
-        "logLevel": "error"
-      }
+  "datasets": {
+    "autoLoad": "mpos1.5",
+    "skipLoadingScreen": true,
+    "allowUserOverride": true,
+    "fallbackBehavior": "showLoadingScreen"
+  },
+  "ui": {
+    "storyMode": false,
+    "variablesPanel": false,
+    "searchPanel": false
+  },
+  "advanced": {
+    "debugging": {
+      "enableConsoleLogging": false,
+      "logLevel": "error"
     }
   }
 }
