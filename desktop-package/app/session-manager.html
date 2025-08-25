@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISABLED - Session Manager (Legacy)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #1890ff;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #1890ff;
+            padding-bottom: 5px;
+        }
+        button {
+            background: #1890ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #40a9ff;
+        }
+        button:disabled {
+            background: #d9d9d9;
+            cursor: not-allowed;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f8ff;
+            border-left: 4px solid #1890ff;
+            border-radius: 4px;
+        }
+        .success {
+            background: #f6ffed;
+            border-left-color: #52c41a;
+        }
+        .error {
+            background: #fff2f0;
+            border-left-color: #ff4d4f;
+        }
+        .session-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .session-item {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #d9d9d9;
+        }
+        .session-id {
+            font-family: monospace;
+            font-weight: bold;
+            color: #1890ff;
+        }
+        .session-details {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        .cleanup-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .stat-item {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1890ff;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ DISABLED - Session Manager (Legacy)</h1>
+        <div style="background: #fff2e8; border: 1px solid #ffb84d; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+            <strong>Notice:</strong> The real-time session-based logging system has been disabled in favor of a simpler batch logging approach.
+            Console logs are now captured automatically and can be saved using the floating log button in the main application.
+        </div>
+        <p><em>This interface is no longer functional. Please use the simplified logging button in the main application.</em></p>
+        
+        <div>
+            <button onclick="checkActiveSessions()">🔍 Check Active Sessions</button>
+            <button onclick="runCleanup()">🧹 Run Cleanup</button>
+            <button onclick="testSessionLogging()">🧪 Test Session Logging</button>
+        </div>
+        
+        <div id="status" class="status" style="display: none;">
+            <div id="statusMessage"></div>
+        </div>
+    </div>
+
+    <div class="container" id="activeSessionsContainer" style="display: none;">
+        <h2>📊 Active Sessions</h2>
+        <div id="activeSessions"></div>
+    </div>
+
+    <div class="container" id="cleanupStatsContainer" style="display: none;">
+        <h2>🧹 Cleanup Statistics</h2>
+        <div id="cleanupStats"></div>
+    </div>
+
+    <div class="container" id="rawDataContainer" style="display: none;">
+        <h2>📋 Raw Response Data</h2>
+        <pre id="rawData"></pre>
+    </div>
+
+    <script>
+        function showStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            statusDiv.className = `status ${type}`;
+            statusMessage.textContent = message;
+            statusDiv.style.display = 'block';
+        }
+
+        function hideContainers() {
+            document.getElementById('activeSessionsContainer').style.display = 'none';
+            document.getElementById('cleanupStatsContainer').style.display = 'none';
+            document.getElementById('rawDataContainer').style.display = 'none';
+        }
+
+        async function checkActiveSessions() {
+            showStatus('Checking active sessions...', 'info');
+            hideContainers();
+            
+            try {
+                const response = await fetch('./cleanup-sessions.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    showStatus(`Found ${data.activeSessionCount} active sessions`, 'success');
+                    displayActiveSessions(data.activeSessions);
+                    displayRawData(data);
+                } else {
+                    showStatus(`Error: ${data.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`Network error: ${error.message}`, 'error');
+            }
+        }
+
+        async function runCleanup() {
+            showStatus('Running session cleanup...', 'info');
+            hideContainers();
+            
+            try {
+                const response = await fetch('./cleanup-sessions.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const stats = data.cleanup;
+                    showStatus(`Cleanup completed: ${stats.totalCleaned} items cleaned`, 'success');
+                    displayCleanupStats(stats);
+                    displayActiveSessions(data.activeSessions);
+                    displayRawData(data);
+                } else {
+                    showStatus(`Error: ${data.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`Network error: ${error.message}`, 'error');
+            }
+        }
+
+        function displayActiveSessions(sessions) {
+            const container = document.getElementById('activeSessionsContainer');
+            const sessionsDiv = document.getElementById('activeSessions');
+            
+            if (sessions.length === 0) {
+                sessionsDiv.innerHTML = '<p>No active sessions found.</p>';
+            } else {
+                const sessionItems = sessions.map(session => `
+                    <div class="session-item">
+                        <div class="session-id">Session: ${session.sessionId}</div>
+                        <div class="session-details">
+                            <strong>Last Activity:</strong> ${session.timestamp} (${session.minutesAgo} minutes ago)<br>
+                            <strong>User Agent:</strong> ${session.userAgent}
+                        </div>
+                    </div>
+                `).join('');
+                
+                sessionsDiv.innerHTML = `
+                    <div class="session-list">
+                        ${sessionItems}
+                    </div>
+                `;
+            }
+            
+            container.style.display = 'block';
+        }
+
+        function displayCleanupStats(stats) {
+            const container = document.getElementById('cleanupStatsContainer');
+            const statsDiv = document.getElementById('cleanupStats');
+            
+            statsDiv.innerHTML = `
+                <div class="cleanup-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.oldLogFiles}</div>
+                        <div class="stat-label">Old Log Files Cleaned</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.inactiveSessions}</div>
+                        <div class="stat-label">Inactive Sessions Closed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.orphanedHeartbeats}</div>
+                        <div class="stat-label">Orphaned Heartbeats Removed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.totalCleaned}</div>
+                        <div class="stat-label">Total Items Cleaned</div>
+                    </div>
+                </div>
+                ${stats.errors.length > 0 ? `
+                    <div class="status error" style="margin-top: 15px;">
+                        <strong>Errors:</strong><br>
+                        ${stats.errors.join('<br>')}
+                    </div>
+                ` : ''}
+            `;
+            
+            container.style.display = 'block';
+        }
+
+        function displayRawData(data) {
+            const container = document.getElementById('rawDataContainer');
+            const rawDataDiv = document.getElementById('rawData');
+            
+            rawDataDiv.textContent = JSON.stringify(data, null, 2);
+            container.style.display = 'block';
+        }
+
+        function testSessionLogging() {
+            showStatus('Opening main application to test session logging...', 'info');
+            window.open('./', '_blank');
+        }
+
+        // Auto-refresh active sessions every 30 seconds
+        setInterval(() => {
+            const container = document.getElementById('activeSessionsContainer');
+            if (container.style.display !== 'none') {
+                checkActiveSessions();
+            }
+        }, 30000);
+
+        // Initial load
+        window.addEventListener('load', () => {
+            console.log('🔧 Session Manager loaded');
+            console.log('📝 Use the buttons above to manage console logging sessions');
+        });
+    </script>
+</body>
+</html>

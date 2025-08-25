@@ -193,7 +193,7 @@ class FormatDetector {
    */
   async detectObjectFormat(obj, detection) {
     detection.data = obj;
-    
+
     if (this.is3xFormat(obj)) {
       detection.format = '3.x';
       detection.version = obj.Settings?.ExportVersion || '1.0';
@@ -201,11 +201,19 @@ class FormatDetector {
     } else if (this.is4xFileCollection(obj)) {
       detection.format = '4.x';
       detection.files = obj;
-      
+
       if (obj['manifest.json']) {
-        const manifest = JSON.parse(obj['manifest.json']);
-        detection.version = manifest.Settings?.ExportVersion || '2.1';
-        detection.confidence = 0.9;
+        try {
+          const manifest = JSON.parse(obj['manifest.json']);
+          detection.version = manifest.Settings?.ExportVersion || '2.1';
+          detection.confidence = 0.9;
+        } catch (error) {
+          if (this.debugMode) {
+            console.error('❌ Failed to parse manifest.json:', error);
+          }
+          detection.errors.push(`Failed to parse manifest.json: ${error.message}`);
+          detection.confidence = 0.7;
+        }
       } else {
         detection.confidence = 0.7;
       }

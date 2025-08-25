@@ -24,15 +24,16 @@ articy-desktop-viewer/
 │   ├── datasets.php           # Dataset detection API
 │   ├── append-log.php         # Real-time logging API
 │   ├── cleanup-sessions.php   # Session management API
-│   └── save-log.php           # Legacy logging API
+│   ├── save-log.php           # Legacy logging API
+│   ├── myproject.json/        # User dataset folder (example)
+│   │   ├── manifest.json      # 4.x format manifest
+│   │   ├── global_variables.json
+│   │   └── ...                # Other 4.x JSON files
+│   └── myproject3x.json       # User 3.x dataset (single file)
 ├── php/                       # Portable PHP installation
 │   ├── php.exe                # PHP executable
 │   ├── php.ini                # PHP configuration
 │   └── ext/                   # Required PHP extensions
-├── datasets/                  # User datasets folder
-│   ├── demo.json              # Sample 3.x dataset
-│   ├── demo4.json/            # Sample 4.x dataset
-│   └── mpos.json/             # Complex sample dataset
 ├── logs/                      # Application logs (auto-created)
 └── README.txt                 # User instructions
 ```
@@ -241,7 +242,7 @@ module.exports = { createDesktopPackage };
 ### **Daily Usage**
 1. **Start** - Double-click launcher (remembers previous session)
 2. **Use** - Identical interface to web version
-3. **Add Datasets** - Copy to datasets folder or drag-drop
+3. **Add Datasets** - Copy your Articy JSON folders to the `app` directory or drag-drop
 4. **Stop** - Close command window or run stop script
 
 ### **No Installation Required**
@@ -286,9 +287,8 @@ extension=openssl
 |-----------|------|-------|
 | **Portable PHP** | ~20MB | Essential extensions only |
 | **Built Web App** | ~10MB | Optimized production build |
-| **Sample Datasets** | ~5MB | Demo content for immediate use |
 | **Scripts & Docs** | ~1MB | Launchers and user guide |
-| **Total Package** | **~35MB** | vs 100-200MB for Electron |
+| **Total Package** | **~30MB** | vs 100-200MB for Electron |
 
 ## 🚀 **Distribution Strategy**
 

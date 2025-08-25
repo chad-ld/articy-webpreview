@@ -13,6 +13,7 @@
     "test:runtime": "powershell -ExecutionPolicy Bypass -File test-runtime-simple.ps1",
     "build": "vite build",
     "build:serve": "npm run build && cd dist && php -S localhost:8080",
+    "build:desktop": "npm run build && node scripts/create-desktop-package.js",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --fix",
     "preview": "vite preview",
@@ -33,9 +34,11 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
+    "adm-zip": "^0.5.16",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "fs-extra": "^11.3.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.2"
   }

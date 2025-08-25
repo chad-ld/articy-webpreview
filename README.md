@@ -32,6 +32,13 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 - **Accessibility** - Full keyboard navigation and screen reader support
 - **Performance Optimized** - Fast loading and smooth navigation
 
+### **🖥️ Desktop Version**
+- **Zero Installation** - Portable desktop app, no admin rights required
+- **Offline Capable** - Works completely offline with local datasets
+- **Same Features** - Identical functionality to web version
+- **Small Package** - ~35MB total vs 100-200MB for Electron alternatives
+- **Easy Dataset Setup** - Copy your Articy JSON folders directly to the app directory
+
 ## 🆕 **Latest Updates (August 2025)**
 
 ### **🔧 Simplified Console Logging**
@@ -48,10 +55,18 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 
 ## 🚀 **Quick Start**
 
-### **For End Users**
+### **🌐 Web Version (Online)**
 1. Visit https://dev.chadbriggs.com/articy/v4/
 2. Drag and drop your Articy JSON files or select from available datasets
 3. Start exploring your interactive story!
+
+### **🖥️ Desktop Version (Offline)**
+1. Download the latest desktop release from [GitHub Releases](https://github.com/chad-ld/articy-webpreview/releases)
+2. Extract the ZIP file to any location (Desktop, Documents, USB drive)
+3. **Add your datasets**: Copy your Articy JSON folders to the `app` directory
+   - Example: Copy `myproject.json` folder to `app/myproject.json`
+4. Double-click `start-articy.bat` to launch
+5. Your browser opens automatically - no installation required!
 
 ### **For Developers**
 ```bash
@@ -95,6 +110,7 @@ articy-webpreview/
 | `npm run check:integrity` | Verify critical files haven't been corrupted |
 | `npm run test:cache` | Test cache busting configuration |
 | `npm run build` | Build for production deployment |
+| `npm run build:desktop` | Create portable desktop package in builds/ folder |
 
 ### **Plugin Development**
 1. Create a new folder in `src/plugins/`
@@ -108,12 +124,13 @@ See [Plugin Documentation](devdoc_plugins.md) for detailed plugin development gu
 
 ### **For Developers**
 - **[Developer Guide](devdoc.md)** - Main developer documentation with best practices
+- **[Desktop Version](devdoc_desktop-version.md)** - Portable desktop implementation guide
 - **[Logging System](devdoc_logging.md)** - Real-time session-based console logging
 - **[Plugin Architecture](devdoc_plugins.md)** - Plugin development and integration
 - **[File Protection](devdoc_fileprotection.md)** - Development stability and backup systems
 
 ### **Legacy Documentation**
-- **[Dual Deployment Plan](dual-deployment-plan.md)** - Technical architecture details
+- **[Dual Deployment Plan](dual-deployment-plan.md)** - Original Electron-based desktop plan (superseded)
 - **[File Protection System](FILE-PROTECTION-README.md)** - Development stability guide
 
 ## 🤝 **Contributing**
