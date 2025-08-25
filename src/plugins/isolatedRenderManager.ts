@@ -13,6 +13,7 @@ interface IsolatedPluginInstance {
   container: HTMLElement;
   root: Root;
   isVisible: boolean;
+  onVisibilityChange?: (pluginId: string, isVisible: boolean) => void;
 }
 
 class IsolatedRenderManager {
@@ -21,9 +22,9 @@ class IsolatedRenderManager {
   /**
    * Register a plugin for isolated rendering
    */
-  registerPlugin(plugin: IPlugin): void {
+  registerPlugin(plugin: IPlugin, onVisibilityChange?: (pluginId: string, isVisible: boolean) => void): void {
     const pluginId = plugin.metadata.id;
-    
+
     // Skip if already registered
     if (this.isolatedPlugins.has(pluginId)) {
       console.warn(`Plugin ${pluginId} is already registered for isolated rendering`);
@@ -50,7 +51,8 @@ class IsolatedRenderManager {
       plugin,
       container,
       root,
-      isVisible: false
+      isVisible: false,
+      onVisibilityChange
     };
 
     this.isolatedPlugins.set(pluginId, instance);
@@ -158,7 +160,13 @@ class IsolatedRenderManager {
     if (!instance) return;
 
     // Update visibility state
+    const wasVisible = instance.isVisible;
     instance.isVisible = isVisible;
+
+    // Notify visibility change if callback is provided and state actually changed
+    if (instance.onVisibilityChange && wasVisible !== isVisible) {
+      instance.onVisibilityChange(pluginId, isVisible);
+    }
 
     // Update container pointer events
     instance.container.style.pointerEvents = isVisible ? 'auto' : 'none';

@@ -55,7 +55,10 @@ export const usePlugins = (props: UsePluginsProps) => {
         // Register plugins that need isolated rendering
         enabled.forEach(plugin => {
           if (plugin.useIsolatedRendering && plugin.useIsolatedRendering()) {
-            isolatedRenderManager.registerPlugin(plugin);
+            // Register with visibility change callback to update button state
+            isolatedRenderManager.registerPlugin(plugin, (pluginId: string, isVisible: boolean) => {
+              setPluginModals(prev => ({ ...prev, [pluginId]: isVisible }));
+            });
             console.log(`🔄 Plugin ${plugin.metadata.name} registered for isolated rendering`);
           }
         });
