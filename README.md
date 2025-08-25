@@ -334,7 +334,192 @@ Plugins receive a context object with access to:
 3. **Error Handling**: Invalid plugins are gracefully handled with console warnings
 4. **TypeScript Support**: Full type checking and IntelliSense support
 
-## 🔍 **Murderboard Evidence Popup System**
+## � **Configuration System (In Development)**
+
+The Articy Web Viewer includes a flexible configuration system that allows developers to set default behaviors for first-time users while preserving user preferences through localStorage persistence.
+
+### **Configuration Philosophy**
+- **Config File = Initial Defaults**: Sets the experience for first-time visitors
+- **localStorage = User Overrides**: User choices always take precedence after first interaction
+- **Expandable Design**: Built to support future configuration options
+
+### **Implementation Plan**
+
+#### **Phase 1: Plugin Auto-Loading Configuration** ✅ *Complete*
+```typescript
+// config.json - Default configuration for first-time users
+{
+  "version": "1.0.0",
+  "plugins": {
+    "defaultEnabled": [
+      "mysteryworks-murderboard"  // Auto-enable murderboard on first visit
+    ]
+  },
+  "future": {
+    "datasets": {
+      "autoLoad": null,           // Future: Auto-load specific dataset
+      "skipLoadingScreen": false  // Future: Bypass loading screen
+    },
+    "ui": {
+      "storyMode": false,         // Future: Default story mode state
+      "variablesPanel": false     // Future: Default variables panel state
+    }
+  }
+}
+```
+
+**Phase 1 Tasks:**
+- [x] Create `public/config.json` with plugin defaults
+- [x] Modify plugin loading logic to check localStorage first, then config fallback
+- [x] Add config validation and error handling
+- [x] Test first-visit vs. returning-user behavior
+- [x] Update plugin selector to show "default" indicators
+
+**Phase 1 Implementation Details:**
+- **Configuration File**: `public/config.json` with murderboard plugin as default
+- **Configuration Service**: `src/services/configService.ts` handles loading and validation
+- **Plugin Discovery**: Modified to use config defaults for first-time users
+- **Plugin Selector**: Shows "Default" tags for plugins specified in config
+- **Priority System**: localStorage (user preferences) → config.json (defaults) → hardcoded fallbacks
+
+**Testing Phase 1:**
+1. **First-time User Test**: Clear localStorage and reload - murderboard should be enabled by default
+2. **Returning User Test**: Disable murderboard and reload - should stay disabled (user preference wins)
+3. **Config Validation**: Invalid config.json falls back gracefully to empty defaults
+4. **UI Indicators**: Plugin selector shows blue "Default" tags for configured plugins
+
+#### **Phase 2: Dataset Auto-Loading** 📋 *Planned*
+```typescript
+// Extended config.json
+{
+  "datasets": {
+    "autoLoad": "mpos.json",        // Skip loading screen, load this dataset
+    "skipLoadingScreen": true,      // Bypass file selection entirely
+    "allowUserOverride": true       // Let users still access loading screen via Ctrl+L
+  }
+}
+```
+
+**Phase 2 Tasks:**
+- [ ] Add dataset configuration options
+- [ ] Implement auto-loading logic with loading screen bypass
+- [ ] Add keyboard shortcut (Ctrl+L) to access loading screen when bypassed
+- [ ] Test with various dataset formats (3.x and 4.x)
+
+#### **Phase 3: UI State Defaults** 🎨 *Future*
+```typescript
+// Extended config.json
+{
+  "ui": {
+    "storyMode": true,              // Default story mode state
+    "variablesPanel": false,        // Default variables panel visibility
+    "searchPanel": false,           // Default search panel visibility
+    "theme": "default"              // Future: Theme selection
+  }
+}
+```
+
+**Phase 3 Tasks:**
+- [ ] Add UI state configuration options
+- [ ] Implement default UI state loading
+- [ ] Ensure user interactions override defaults
+- [ ] Add theme system foundation
+
+#### **Phase 4: Advanced Configuration** ⚙️ *Future*
+```typescript
+// Extended config.json
+{
+  "advanced": {
+    "caching": {
+      "enableBrowserCache": false,  // Override cache settings
+      "cacheTimeout": 3600         // Cache timeout in seconds
+    },
+    "debugging": {
+      "enableConsoleLogging": false, // Control debug output
+      "logLevel": "error"           // Logging verbosity
+    },
+    "performance": {
+      "lazyLoadPlugins": true,      // Load plugins on-demand
+      "preloadAssets": false        // Preload plugin assets
+    }
+  }
+}
+```
+
+### **Technical Implementation Details**
+
+#### **Configuration Loading Priority**
+1. **User localStorage** (highest priority) - Existing user preferences
+2. **config.json** (fallback) - Default configuration for new users
+3. **Hardcoded defaults** (lowest priority) - System fallbacks
+
+#### **Configuration Validation**
+- JSON schema validation for config file structure
+- Graceful fallback to hardcoded defaults if config is invalid
+- Console warnings for configuration issues
+- Version compatibility checking
+
+#### **Development Workflow**
+- Configuration changes require app restart in development
+- Production builds include config.json in public folder
+- Config file can be customized per deployment without code changes
+
+### **Usage Examples**
+
+#### **Scenario 1: Murder Mystery Experience**
+```json
+{
+  "plugins": {
+    "defaultEnabled": ["mysteryworks-murderboard"]
+  },
+  "datasets": {
+    "autoLoad": "mpos.json",
+    "skipLoadingScreen": true
+  },
+  "ui": {
+    "storyMode": true,
+    "variablesPanel": false
+  }
+}
+```
+*Result: New users immediately start the murder mystery with murderboard enabled*
+
+#### **Scenario 2: Developer/Testing Mode**
+```json
+{
+  "plugins": {
+    "defaultEnabled": ["hello-world", "test-plugin"]
+  },
+  "datasets": {
+    "autoLoad": null,
+    "skipLoadingScreen": false
+  },
+  "advanced": {
+    "debugging": {
+      "enableConsoleLogging": true,
+      "logLevel": "debug"
+    }
+  }
+}
+```
+*Result: New users see all development tools and debugging enabled*
+
+#### **Scenario 3: Clean Story Experience**
+```json
+{
+  "plugins": {
+    "defaultEnabled": []
+  },
+  "ui": {
+    "storyMode": true,
+    "variablesPanel": false,
+    "searchPanel": false
+  }
+}
+```
+*Result: New users get a clean, distraction-free reading experience*
+
+## �🔍 **Murderboard Evidence Popup System**
 
 The Mysteryworks Murderboard Plugin includes an advanced evidence interaction system that allows users to click on evidence images to view detailed information with dynamic content states based on Articy variables.
 

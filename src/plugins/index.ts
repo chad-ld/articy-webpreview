@@ -17,8 +17,8 @@ export async function initializePluginSystem(): Promise<void> {
     // Step 1: Discover all available plugins (but don't register them yet)
     await pluginDiscoveryService.discoverPlugins();
 
-    // Step 2: Register only the plugins that are enabled by the user
-    pluginDiscoveryService.registerEnabledPlugins();
+    // Step 2: Register only the plugins that are enabled by the user (now async)
+    await pluginDiscoveryService.registerEnabledPlugins();
 
     const discoveredCount = pluginDiscoveryService.getDiscoveredPlugins().length;
     const registeredCount = pluginRegistry.getAllPlugins().length;

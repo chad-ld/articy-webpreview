@@ -5,6 +5,7 @@
 
 import { IPlugin } from './types';
 import { pluginRegistry } from './registry';
+import { configService } from '../services/configService';
 
 interface PluginModule {
   default?: IPlugin;
@@ -64,13 +65,16 @@ class PluginDiscoveryService {
 
   /**
    * Register only the plugins that are enabled by the user
+   * Uses localStorage first, then falls back to config defaults for first-time users
    */
-  registerEnabledPlugins(): void {
+  async registerEnabledPlugins(): Promise<void> {
     console.log('📋 Registering enabled plugins...');
 
-    // Get saved plugin state from localStorage
-    const savedState = localStorage.getItem('articy-plugin-state');
     let enabledPluginIds: string[] = [];
+    let isFirstTimeUser = false;
+
+    // Step 1: Check localStorage for existing user preferences
+    const savedState = localStorage.getItem('articy-plugin-state');
 
     if (savedState) {
       try {
@@ -78,14 +82,50 @@ class PluginDiscoveryService {
         enabledPluginIds = Object.entries(state)
           .filter(([_, config]: [string, any]) => config.enabled)
           .map(([pluginId, _]) => pluginId);
+        console.log('🔌 Found existing user preferences in localStorage:', enabledPluginIds);
       } catch (error) {
         console.error('Failed to parse plugin state:', error);
+        isFirstTimeUser = true;
+      }
+    } else {
+      isFirstTimeUser = true;
+    }
+
+    // Step 2: If no localStorage (first-time user), use config defaults
+    if (isFirstTimeUser) {
+      console.log('👋 First-time user detected, loading default configuration...');
+
+      try {
+        const config = await configService.loadConfig();
+        enabledPluginIds = config.plugins.defaultEnabled;
+        console.log('🔧 Using default plugins from config:', enabledPluginIds);
+
+        // Save the default configuration to localStorage for future use
+        if (enabledPluginIds.length > 0) {
+          const defaultState: { [key: string]: { enabled: boolean } } = {};
+
+          // Set all discovered plugins to disabled first
+          for (const plugin of this.discoveredPlugins.values()) {
+            defaultState[plugin.metadata.id] = { enabled: false };
+          }
+
+          // Enable only the default plugins
+          for (const pluginId of enabledPluginIds) {
+            if (this.discoveredPlugins.has(pluginId)) {
+              defaultState[pluginId] = { enabled: true };
+            }
+          }
+
+          localStorage.setItem('articy-plugin-state', JSON.stringify(defaultState));
+          console.log('💾 Saved default configuration to localStorage for future sessions');
+        }
+      } catch (error) {
+        console.error('❌ Failed to load configuration, using empty defaults:', error);
+        enabledPluginIds = [];
       }
     }
 
-    console.log('🔌 Enabled plugin IDs from localStorage:', enabledPluginIds);
-
-    // Register only enabled plugins
+    // Step 3: Register the enabled plugins
     let registeredCount = 0;
     for (const pluginId of enabledPluginIds) {
       const plugin = this.discoveredPlugins.get(pluginId);
@@ -99,6 +139,10 @@ class PluginDiscoveryService {
     }
 
     console.log(`📋 Registration complete: ${registeredCount} plugins registered`);
+
+    if (isFirstTimeUser && enabledPluginIds.length > 0) {
+      console.log('🎉 Welcome! Default plugins have been enabled for your first visit.');
+    }
   }
 
   /**

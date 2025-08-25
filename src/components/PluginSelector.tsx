@@ -4,11 +4,12 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Card, Checkbox, Collapse, Badge, Tooltip, Space } from 'antd';
+import { Card, Checkbox, Collapse, Badge, Tooltip, Space, Tag } from 'antd';
 import { ApiOutlined, SettingOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { PluginMetadata } from '../plugins/types';
 import { pluginRegistry } from '../plugins/registry';
 import { pluginDiscoveryService } from '../plugins/discovery';
+import { configService } from '../services/configService';
 
 const { Panel } = Collapse;
 
@@ -16,17 +17,32 @@ interface PluginSelectorProps {
   onPluginToggle?: (pluginId: string, enabled: boolean) => void;
 }
 
+interface ExtendedPluginMetadata extends PluginMetadata {
+  isDefault?: boolean; // Indicates if this plugin is enabled by default in config
+}
+
 const PluginSelector: React.FC<PluginSelectorProps> = ({ onPluginToggle }) => {
-  const [plugins, setPlugins] = useState<PluginMetadata[]>([]);
+  const [plugins, setPlugins] = useState<ExtendedPluginMetadata[]>([]);
   const [loading, setLoading] = useState(false);
+  const [defaultPlugins, setDefaultPlugins] = useState<string[]>([]);
 
   useEffect(() => {
     loadPlugins();
   }, []);
 
-  const loadPlugins = () => {
+  const loadPlugins = async () => {
     // Get all discovered plugins (not just registered ones)
     const discoveredPlugins = pluginDiscoveryService.getDiscoveredPlugins();
+
+    // Load default plugins from config
+    let configDefaultPlugins: string[] = [];
+    try {
+      const config = await configService.loadConfig();
+      configDefaultPlugins = config.plugins.defaultEnabled;
+      setDefaultPlugins(configDefaultPlugins);
+    } catch (error) {
+      console.error('Failed to load config for plugin selector:', error);
+    }
 
     // Convert to metadata format and check enabled state from localStorage
     const savedState = localStorage.getItem('articy-plugin-state');
@@ -45,7 +61,8 @@ const PluginSelector: React.FC<PluginSelectorProps> = ({ onPluginToggle }) => {
 
     const availablePlugins = discoveredPlugins.map(plugin => ({
       ...plugin.metadata,
-      enabled: enabledPluginIds.includes(plugin.metadata.id)
+      enabled: enabledPluginIds.includes(plugin.metadata.id),
+      isDefault: configDefaultPlugins.includes(plugin.metadata.id)
     }));
 
     setPlugins(availablePlugins);
@@ -178,15 +195,15 @@ const PluginSelector: React.FC<PluginSelectorProps> = ({ onPluginToggle }) => {
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                         {getPluginIcon(plugin.icon)}
-                        <span style={{ 
-                          fontWeight: '500', 
+                        <span style={{
+                          fontWeight: '500',
                           fontSize: '14px',
                           color: plugin.enabled ? '#389e0d' : '#262626'
                         }}>
                           {plugin.name}
                         </span>
-                        <span style={{ 
-                          fontSize: '12px', 
+                        <span style={{
+                          fontSize: '12px',
                           color: '#999',
                           backgroundColor: '#f0f0f0',
                           padding: '2px 6px',
@@ -194,6 +211,20 @@ const PluginSelector: React.FC<PluginSelectorProps> = ({ onPluginToggle }) => {
                         }}>
                           v{plugin.version}
                         </span>
+                        {plugin.isDefault && (
+                          <Tag
+                            color="blue"
+                            size="small"
+                            style={{
+                              fontSize: '11px',
+                              margin: 0,
+                              padding: '1px 6px',
+                              lineHeight: '16px'
+                            }}
+                          >
+                            Default
+                          </Tag>
+                        )}
                       </div>
                       
                       <p style={{ 

@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "description": "Articy Web Viewer Configuration - Sets default behaviors for first-time users",
+  "plugins": {
+    "defaultEnabled": [
+      "mysteryworks-murderboard"
+    ]
+  },
+  "future": {
+    "datasets": {
+      "autoLoad": null,
+      "skipLoadingScreen": false
+    },
+    "ui": {
+      "storyMode": false,
+      "variablesPanel": false,
+      "searchPanel": false
+    },
+    "advanced": {
+      "debugging": {
+        "enableConsoleLogging": false,
+        "logLevel": "error"
+      }
+    }
+  }
+}
