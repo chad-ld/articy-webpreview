@@ -4,7 +4,7 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 
 🌐 **Live Demo**: https://dev.chadbriggs.com/articy/v4/
 
-> **🚀 For Developers**: Always use `npm run dev:safe` for development. This mode includes comprehensive cache protection, file integrity checking, and prevents the file reversion issues that can occur with standard development servers.
+> **🚀 For Developers**: Always run the safe script DIRECTLY: `powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1`. This provides comprehensive cache protection, file integrity checking, and prevents file reversion issues. If the direct command doesn't work, use `npm run dev:safe` as fallback.
 
 ## ✨ **Key Features**
 
@@ -45,6 +45,7 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 
 ### **🔧 Enhanced Plugin System**
 - **Case-Insensitive Variable Matching**: Plugins now support mixed-case variable names
+- **Fixed Evidence Content Refresh**: Murderboard plugin now properly updates evidence content when variables change
 - **Improved Murderboard Plugin**: Better variable detection and debugging capabilities
 - **Robust Error Handling**: Plugins gracefully handle missing assets and variables
 
@@ -78,6 +79,10 @@ cd articy-webpreview
 npm install
 
 # Start development server (RECOMMENDED - includes cache protection)
+# IMPORTANT: Run the PowerShell script DIRECTLY, not through npm
+powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1
+
+# Alternative: Use npm command (may have issues on some systems)
 npm run dev:safe
 
 # Alternative: Start with PHP support only (if you don't need full protection)
@@ -100,7 +105,8 @@ npm run dev:php
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev:safe` | **🚀 RECOMMENDED**: Development with automatic cleanup, cache protection and file integrity |
+| `powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1` | **🚀 RECOMMENDED**: Run PowerShell script DIRECTLY for best results |
+| `npm run dev:safe` | **🚀 ALTERNATIVE**: Development with automatic cleanup, cache protection and file integrity |
 | `npm run dev:php` | Development with automatic cleanup and PHP server for dataset detection |
 | `npm run dev` | ⚠️ Basic Vite server (use only for debugging cache system) |
 | `npm run build` | Build for production deployment |
@@ -186,8 +192,10 @@ The Articy Web Viewer includes a powerful plugin system that allows you to exten
 - **Mysteryworks Murderboard Plugin** - Interactive murder mystery investigation board with evidence and suspect management
   - **Features**: Visual evidence board, suspect profiles, document viewing, interactive layout
   - **Variable-Based Visibility**: Graphics show/hide based on Articy variables (e.g., `alex_found = true` shows Alex)
+  - **Interactive Evidence Popups**: Click evidence images to view detailed information with dynamic content states
   - **Case-Insensitive Matching**: Supports mixed-case variable names (`Alex_Found`, `alex_found`, `ALEX_FOUND`)
   - **Multi-Namespace Support**: Works with variables in any namespace (`SuspectVariables`, `EvidenceVariables`, etc.)
+  - **Update Notifications**: Visual indicators when evidence has new information to discover
   - **Scaling**: Automatically scales PSD layout to 30% for optimal modal display (1152px content → 345.6px display)
   - **Modal**: Fixed-size modal (393.6px wide) with 24px padding margins and z-index 9999 for proper layering
   - **Assets**: Includes character portraits, evidence documents, and background imagery
@@ -325,6 +333,278 @@ Plugins receive a context object with access to:
 3. **Error Handling**: Invalid plugins are gracefully handled with console warnings
 4. **TypeScript Support**: Full type checking and IntelliSense support
 
+## 🔍 **Murderboard Evidence Popup System**
+
+The Mysteryworks Murderboard Plugin includes an advanced evidence interaction system that allows users to click on evidence images to view detailed information with dynamic content states based on Articy variables.
+
+### **Core Features**
+
+- **🖱️ Interactive Evidence**: Click any visible evidence image to open detailed information popup
+- **📋 Dynamic Content**: Popup content changes based on current variable states in the story
+- **🔔 Update Notifications**: Visual indicators when evidence has new information to discover
+- **🎨 Themed Design**: Popup matches the overall app design aesthetic
+- **📱 Responsive**: Works on both desktop and mobile devices
+- **⌨️ Accessible**: Close via clicking outside popup or X button
+
+### **How It Works**
+
+#### **1. Character Name Resolution**
+When a user clicks an evidence image (e.g., `va_paternity_test.png`):
+- Plugin looks for variable `{imageName}_charname` (e.g., `va_paternity_test_charname`)
+- Retrieves the plain English evidence name (e.g., "Paternity Test")
+- Uses this name as the popup header and for dialogue fragment matching
+
+#### **2. Dialogue Fragment Discovery**
+- Searches all dialogue fragments in the Articy project data
+- Finds fragments where the speaker name matches the evidence character name
+- These fragments contain the various information states for that evidence
+
+#### **3. Condition Evaluation & Content Selection**
+- Examines input pin conditions on each dialogue fragment
+- Evaluates conditions against current variable states
+- Displays content from the fragment whose conditions are met
+- Example condition: `EvidenceVariables.va_paternity_test_found==true&&EvidenceVariables.va_paternity_test_analyzed==false`
+- If no conditions exist on a fragment, it serves as the default/fallback content
+
+#### **4. Update Notification System**
+- Stores the unique ID of the currently displayed dialogue fragment
+- When murderboard reopens, compares current fragment ID vs. previously stored ID
+- If different (content has changed), shows `{imageName}_updated.png` indicator
+- Hides update indicator once user clicks to view the evidence
+- Update tracking persists until new Articy data is loaded
+
+### **Implementation Plan**
+
+#### **Phase 1: Visual Popup Component** ✅ *Ready to Implement*
+```typescript
+// Create reusable popup component with:
+- Modal overlay with high z-index (above murderboard)
+- Header with evidence name
+- Content area for dialogue text
+- Close button (X) and click-outside-to-close
+- Responsive design matching app theme
+- Test with static content:
+  "Gives injected heroin as cause of death. Daria used 'Find my phone'
+   after Victor was missing for Days, and body was found.
+   Revised autopsy report indicates the heavy presence of the drug
+   Etomidate, known on the street as Space Oil, in the victims body.
+   The drug acts as a powerful sedative.
+   This evidence cannot be processed further."
+```
+
+#### **Phase 2: Click Handler Integration**
+```typescript
+// Add click handlers to evidence images:
+- Detect clicks on visible evidence images
+- Extract evidence name from image filename
+- Trigger popup with evidence-specific data
+- Handle mobile touch events appropriately
+```
+
+#### **Phase 3: Character Name Resolution**
+```typescript
+// Implement name lookup system:
+- Parse image filename to get base evidence name
+- Look up {evidenceName}_charname variable
+- Handle case-insensitive variable matching
+- Support multi-namespace variable searching
+- Fallback to filename if charname variable not found
+```
+
+#### **Phase 4: Dialogue Fragment Matching**
+```typescript
+// Search and filter dialogue fragments:
+- Iterate through all project dialogue nodes
+- Filter by speaker name matching evidence character name
+- Handle case-insensitive speaker name matching
+- Build array of potential content fragments
+```
+
+#### **Phase 5: Condition Evaluation Engine**
+```typescript
+// Implement condition parsing and evaluation:
+- Parse input pin condition strings
+- Evaluate boolean expressions against current variables
+- Handle complex conditions with && and || operators
+- Support namespace-qualified variable references
+- Select fragment with matching conditions or fallback to default
+```
+
+#### **Phase 6: Update Tracking System**
+```typescript
+// Implement change detection:
+- Store fragment IDs in component state/localStorage
+- Compare current vs. previous fragment ID on murderboard open
+- Show/hide update indicator images based on changes
+- Clear update indicators when evidence is viewed
+- Reset tracking when new dataset is loaded
+```
+
+#### **Phase 7: Integration & Polish**
+```typescript
+// Final integration and user experience:
+- Integrate all systems into murderboard plugin
+- Add comprehensive error handling
+- Implement debug logging for troubleshooting
+- Add loading states and smooth animations
+- Test with various evidence configurations
+- Optimize performance for large datasets
+```
+
+### **Technical Specifications**
+
+#### **Variable Naming Conventions**
+- **Character Name**: `{evidenceName}_charname` → Plain English evidence name
+- **Update Indicator**: `{evidenceName}_updated` → Boolean for showing update notification
+- **Evidence Visibility**: `{evidenceName}_found` → Boolean for showing evidence image
+
+#### **Dialogue Fragment Requirements**
+- **Speaker Field**: Must match the character name from `_charname` variable
+- **Input Pin Conditions**: Optional boolean expressions for content state logic
+- **Content Field**: The main text content to display in popup
+
+#### **Popup Component Specifications**
+- **Z-Index**: 10000+ (above murderboard modal at 9999)
+- **Width**: Responsive, max 500px on desktop
+- **Position**: Centered on screen
+- **Background**: Semi-transparent overlay
+- **Animation**: Smooth fade in/out transitions
+- **Accessibility**: Keyboard navigation support (ESC to close)
+
+### **Example Usage Scenario**
+
+1. **User opens murderboard** → Plugin evaluates all evidence visibility
+2. **Evidence becomes visible** → `va_paternity_test_found = true` shows paternity test image
+3. **User clicks evidence** → Plugin looks up `va_paternity_test_charname = "Paternity Test"`
+4. **System finds dialogue fragments** → Searches for speaker "Paternity Test"
+5. **Condition evaluation** → Checks `EvidenceVariables.va_paternity_test_analyzed == false`
+6. **Content display** → Shows unanalyzed evidence description
+7. **Later in story** → `va_paternity_test_analyzed = true` changes available content
+8. **Update notification** → `va_paternity_test_updated.png` becomes visible
+9. **User clicks again** → Sees new analyzed evidence content, update indicator disappears
+
+This system provides a rich, dynamic evidence investigation experience that adapts to the player's progress through the narrative.
+
+## � **Current Bug Investigation: Evidence Content Not Updating (August 25, 2025)**
+
+### **Issue Summary**
+The Mysteryworks Murderboard Plugin evidence popup system is not displaying updated content when variables change during gameplay. Users see stale evidence content instead of the current state-appropriate content.
+
+### **Problem Description**
+- **Expected Behavior**: When evidence is processed (e.g., paternity test analyzed), clicking the evidence should show the analyzed content
+- **Actual Behavior**: Evidence popups continue showing the original unprocessed content even after variables change
+- **Specific Case**: Paternity test shows unanalyzed content ("This evidence can be summarized with document analytics") instead of analyzed content ("The test results are negative, proving that Victor is not the father")
+
+### **Root Cause Analysis**
+The issue stems from a **stale cache problem** in the evidence content pre-evaluation system:
+
+1. **Cache Population**: When murderboard opens, all evidence content is pre-evaluated and cached for performance
+2. **Variable Changes**: When user processes evidence, variables change (e.g., `va_paternity_test_analyzed = true`)
+3. **Stale Cache**: The cached content is not invalidated/refreshed when variables change
+4. **Wrong Content**: Evidence clicks use stale cached content instead of re-evaluating with current variables
+
+### **Technical Investigation Progress**
+
+#### **Phase 1: Condition Parsing Bug (FIXED)**
+- **Issue**: Trailing semicolons in Articy conditions caused parsing failures
+- **Example**: `"EvidenceVariables.va_paternity_test_analyzed==true;"` was comparing `true == "true;"` (failed)
+- **Fix**: Updated `parseValue()` function to strip trailing semicolons before boolean parsing
+- **Status**: ✅ **RESOLVED** - Condition evaluation now works correctly
+
+#### **Phase 2: Cache Invalidation System (RESOLVED)**
+- **Issue**: Evidence content cache not refreshing when variables change
+- **Problem**: `useEffect` dependency array trying to detect variable changes, but variables object is mutated in place
+- **Solution**: Changed approach to refresh cache every time murderboard opens instead of trying to detect variable changes
+- **Status**: ✅ **RESOLVED** - Fresh evaluation on every murderboard open ensures current content is always displayed
+
+### **Code Changes Made (Since Last Git Push)**
+
+#### **1. Fixed Condition Parsing (MysteryworksMurderboardPlugin.tsx)**
+```typescript
+// BEFORE: Semicolons caused parsing failures
+const parseValue = (value: string): any => {
+  const trimmed = value.trim();
+  // Boolean parsing failed with "true;" vs true
+}
+
+// AFTER: Strip semicolons before parsing
+const parseValue = (value: string): any => {
+  let trimmed = value.trim();
+
+  // Remove trailing semicolon if present (Articy conditions end with semicolons)
+  if (trimmed.endsWith(';')) {
+    trimmed = trimmed.slice(0, -1).trim();
+  }
+
+  // Now boolean parsing works correctly
+}
+```
+
+#### **2. Enhanced Cache Management**
+```typescript
+// BEFORE: Cache never refreshed when variables changed
+useEffect(() => {
+  if (variables && project) {
+    preEvaluateAllEvidence();
+  }
+}, [variables, project, evaluationTrigger]);
+
+// AFTER: Explicit cache clearing + debugging
+useEffect(() => {
+  if (variables && project) {
+    console.log(`🔄 Pre-evaluating all evidence (trigger: ${evaluationTrigger})...`);
+    console.log(`🗑️ Clearing evidence content cache...`);
+    setEvidenceContentCache({}); // Force fresh evaluation
+    preEvaluateAllEvidence();
+  }
+}, [variables, project, evaluationTrigger]);
+```
+
+#### **3. Added Comprehensive Debugging**
+- Enhanced console logging for cache operations
+- Variable state tracking in evidence evaluation
+- Condition evaluation step-by-step debugging
+- Cache hit/miss logging for troubleshooting
+
+### **Testing Status**
+
+#### **✅ Confirmed Working**
+- Condition parsing with semicolons
+- Variable detection and evaluation
+- Real-time evidence evaluation (when cache is empty)
+- Evidence visibility based on `_found` variables
+- Cache invalidation when murderboard opens
+- Fresh content evaluation after evidence processing
+- Proper content selection based on current variable states
+
+#### **✅ Testing Complete - All Systems Working**
+- Evidence content now updates correctly when variables change
+- Murderboard performs fresh evaluation every time it opens
+- Evidence popups show current state-appropriate content
+
+#### **📋 Test Scenario**
+1. Load MPOS dataset
+2. Open murderboard (cache populated with unprocessed content)
+3. Process paternity test evidence (sets `va_paternity_test_analyzed = true`)
+4. Reopen murderboard (should clear cache and re-evaluate)
+5. Click paternity test evidence (should show analyzed content)
+
+### **✅ Resolution Confirmed**
+The cache clearing mechanism has successfully resolved the issue by:
+- Forcing fresh evaluation every time murderboard opens
+- Ensuring evidence content reflects current game state
+- Maintaining performance benefits while providing accurate content
+
+### **✅ Completed Steps**
+1. **✅ Fix Verified**: Evidence content updates correctly after variable changes
+2. **✅ Performance Confirmed**: Cache clearing doesn't negatively impact performance
+3. **✅ Testing Complete**: Multiple evidence state changes work correctly
+4. **✅ Documentation Updated**: Cache invalidation system documented for future developers
+
+### **Files Modified**
+- `src/plugins/mysteryworks-murderboard/MysteryworksMurderboardPlugin.tsx` - Cache management and condition parsing fixes
+- `logs/console-export-*.log` - Debugging logs for investigation
+
 ## �🔄 **Dual Deployment Architecture**
 
 This project supports two deployment targets from a single codebase:
@@ -350,14 +630,14 @@ npm run check:integrity
 # 2. Test cache configuration
 npm run test:cache
 
-# 3. Start development (ALWAYS use safe mode)
-npm run dev:safe
+# 3. Start development (ALWAYS use safe mode - run PowerShell script DIRECTLY)
+powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1
 
 # 4. Test runtime behavior (in another terminal)
 npm run test:runtime
 ```
 
-> **💡 Important**: Always use `npm run dev:safe` for development. The basic `npm run dev` command should only be used when debugging the cache system itself.
+> **💡 Important**: Always run the safe script DIRECTLY: `powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1`. If that doesn't work, use `npm run dev:safe` as fallback. The basic `npm run dev` command should only be used when debugging the cache system itself.
 
 ### **⚠️ Important Development Guidelines**
 
@@ -372,9 +652,12 @@ npm run test:runtime
 - **⚡ Streamlined Startup**: Git status check removed for faster, uninterrupted development workflow
 - **🛡️ Error Resilient**: Scripts continue even if cleanup encounters issues
 
-**Available Cleanup Commands:**
+**Available Startup Commands:**
 ```bash
-# Automatic cleanup (built into startup scripts)
+# RECOMMENDED: Run PowerShell script directly for best results
+powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1
+
+# Alternative: Use npm commands (may have issues on some systems)
 npm run dev:safe          # Includes automatic cleanup + full protection
 npm run dev:php           # Includes automatic cleanup + PHP support
 
@@ -478,7 +761,7 @@ The `npm run test:runtime` command verifies live server behavior:
 
 For complete verification:
 
-1. **Start Server**: `npm run dev:safe` (always use safe mode)
+1. **Start Server**: `powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1` (run PowerShell script directly)
 2. **Open Browser**: http://localhost:3000/
 3. **Open Dev Tools**: F12 → Network tab
 4. **Edit Source File**: Make changes and save

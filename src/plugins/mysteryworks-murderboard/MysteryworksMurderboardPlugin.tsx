@@ -49,17 +49,53 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     content: ''
   });
 
+  // Cache for pre-evaluated evidence content (updated when murderboard opens)
+  const [evidenceContentCache, setEvidenceContentCache] = useState<{
+    [evidenceName: string]: {
+      title: string;
+      content: string;
+      fragmentId: string;
+    }
+  }>({});
+
   // Phase 6: Update tracking state
   const [evidenceFragmentIds, setEvidenceFragmentIds] = useState<{[evidenceName: string]: string}>({});
   const [updateIndicators, setUpdateIndicators] = useState<{[evidenceName: string]: boolean}>({});
 
-  // Phase 6: Check for content updates when variables or project change
+  // Trigger for forcing re-evaluation
+  const [evaluationTrigger, setEvaluationTrigger] = useState(0);
+
+  // Pre-evaluate all evidence content when murderboard opens (triggered by evaluationTrigger)
+  useEffect(() => {
+    if (variables && project) {
+      console.log(`🔄 Murderboard opened - Pre-evaluating all evidence with current variable states...`);
+      console.log(`🔄 Variables available:`, !!variables);
+      console.log(`🔄 Project available:`, !!project);
+
+      // Always clear existing cache to force fresh evaluation based on current variables
+      console.log(`🗑️ Clearing evidence content cache for fresh evaluation...`);
+      setEvidenceContentCache({});
+
+      // Pre-evaluate all evidence with current variable states
+      preEvaluateAllEvidence();
+    } else {
+      console.log(`⚠️ Skipping pre-evaluation: variables=${!!variables}, project=${!!project}`);
+    }
+  }, [evaluationTrigger]); // Only re-run when murderboard opens (evaluationTrigger changes)
+
+  // Trigger fresh evaluation every time murderboard component mounts (when modal opens)
+  useEffect(() => {
+    console.log(`🔄 Murderboard modal opened, triggering fresh evidence evaluation...`);
+    setEvaluationTrigger(prev => prev + 1);
+  }, []); // Only run once when component mounts (each time modal opens)
+
+  // Phase 6: Check for content updates when murderboard opens (part of fresh evaluation)
   useEffect(() => {
     if (!variables || !project) return;
 
-    console.log(`🔄 Checking for evidence content updates...`);
+    console.log(`🔄 Checking for evidence content updates on murderboard open...`);
     checkForContentUpdates();
-  }, [variables, project]);
+  }, [evaluationTrigger]); // Only run when murderboard opens
 
   // Phase 6: Check for content updates for all visible evidence
   const checkForContentUpdates = () => {
@@ -102,6 +138,76 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     setUpdateIndicators(newUpdateIndicators);
   };
 
+  // Pre-evaluate all visible evidence content when murderboard opens
+  const preEvaluateAllEvidence = () => {
+    if (!variables || !project) {
+      console.log(`⚠️ Cannot pre-evaluate evidence: missing variables or project`);
+      return;
+    }
+
+    console.log(`🔄 Pre-evaluating all visible evidence content...`);
+    const layout = layoutData as LayoutRoot;
+    const newContentCache: typeof evidenceContentCache = {};
+
+    // Process each evidence image
+    for (const element of layout.children) {
+      const baseEvidenceName = element.name.replace(/\.(png|jpg|jpeg)$/i, '');
+
+      // Check if this is evidence (has _found variable)
+      const foundVariableName = `${baseEvidenceName}_found`;
+      let isEvidenceFound = false;
+
+      // Look through all variable namespaces for the found variable (same logic as isElementVisible)
+      if (variables) {
+        for (const namespace in variables) {
+          const namespaceVars = variables[namespace];
+          if (namespaceVars) {
+            // Check for exact match first
+            if (namespaceVars[foundVariableName] === true) {
+              isEvidenceFound = true;
+              break;
+            }
+            // Check for case-insensitive match
+            for (const varName in namespaceVars) {
+              if (varName.toLowerCase() === foundVariableName.toLowerCase() && namespaceVars[varName] === true) {
+                isEvidenceFound = true;
+                break;
+              }
+            }
+            if (isEvidenceFound) break;
+          }
+        }
+      }
+
+      if (isEvidenceFound) {
+        console.log(`🔍 Pre-evaluating evidence: ${baseEvidenceName}`);
+
+        // Get character name for this evidence
+        const characterName = getCharacterNameForEvidence(baseEvidenceName);
+        if (characterName) {
+          // Find dialogue fragments for this character
+          const dialogueFragments = findDialogueFragmentsByCharacter(characterName);
+
+          // Select content based on current conditions
+          const selectedContent = selectContentByConditions(dialogueFragments);
+
+          // Cache the result
+          newContentCache[baseEvidenceName] = {
+            title: characterName,
+            content: selectedContent.content,
+            fragmentId: selectedContent.fragmentId
+          };
+
+          console.log(`✅ Cached content for ${baseEvidenceName}: ${selectedContent.content.substring(0, 50)}...`);
+        }
+      }
+    }
+
+    // Update the cache
+    setEvidenceContentCache(newContentCache);
+    console.log(`🎯 Pre-evaluation complete. Cached ${Object.keys(newContentCache).length} evidence items.`);
+  };
+
   // Phase 2: Enhanced evidence click handler with character name resolution
   const handleEvidenceClick = (imageName: string) => {
     console.log(`🔍 Evidence clicked: ${imageName}`);
@@ -124,25 +230,28 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     const baseEvidenceName = imageName.replace(/\.(png|jpg|jpeg)$/i, '');
     console.log(`📝 Base evidence name: ${baseEvidenceName}`);
 
-    // Step 2: Look up character name from variables
+    // Step 2: Check if we have cached content for this evidence
+    const cachedContent = evidenceContentCache[baseEvidenceName];
+
+    if (cachedContent) {
+      console.log(`✅ Using cached content for ${baseEvidenceName}`);
+      // Display the popup with cached content
+      setEvidencePopup({
+        isVisible: true,
+        evidenceName: cachedContent.title,
+        content: cachedContent.content
+      });
+      return;
+    }
+
+    console.log(`⚠️ No cached content found for ${baseEvidenceName}, falling back to real-time evaluation`);
+
+    // Fallback: Real-time evaluation (same as before)
     const characterName = getCharacterNameForEvidence(baseEvidenceName);
     console.log(`👤 Character name resolved: "${characterName}"`);
 
-    // Step 3: Find dialogue fragments by speaker (the correct process)
     const dialogueFragments = findDialogueFragmentsByCharacter(characterName);
     console.log(`💬 Found ${dialogueFragments.length} dialogue fragments for speaker: "${characterName}"`);
-
-    // Step 4: Select appropriate content based on conditions
-    console.log(`🔍 DEBUG: About to select content from ${dialogueFragments.length} dialogue fragments`);
-    dialogueFragments.forEach((fragment, index) => {
-      console.log(`🔍 DEBUG: Fragment ${index + 1}:`, {
-        id: fragment.Properties.Id,
-        text: fragment.Properties.Text,
-        stageDirections: fragment.Properties.StageDirections,
-        hasInputPins: !!fragment.Properties.InputPins,
-        inputPinsCount: fragment.Properties.InputPins?.length || 0
-      });
-    });
 
     const selectedContent = selectContentByConditions(dialogueFragments);
     console.log(`📋 Selected content:`, selectedContent);
@@ -748,7 +857,12 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
 
   // Phase 5: Enhanced value parsing with type detection
   const parseValue = (value: string): any => {
-    const trimmed = value.trim();
+    let trimmed = value.trim();
+
+    // Remove trailing semicolon if present (Articy conditions end with semicolons)
+    if (trimmed.endsWith(';')) {
+      trimmed = trimmed.slice(0, -1).trim();
+    }
 
     // Remove quotes if present
     if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
