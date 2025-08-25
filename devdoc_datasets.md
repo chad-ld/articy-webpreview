@@ -4,6 +4,27 @@
 
 The Articy Web Viewer includes a sophisticated dataset management system that automatically detects, loads, and manages Articy Draft project files in both 3.x and 4.x formats. The system provides seamless switching between different projects and versions.
 
+## 🆕 **Dataset Separation System (August 2025)**
+
+### **Clean Development/Production Separation**
+- **Development Datasets**: Located in `datasets-dev/` folder (isolated from production builds)
+- **Production Builds**: Clean `dist/` folder without any development datasets
+- **Custom Middleware**: Vite plugin serves development datasets during development only
+- **Identical Functionality**: All deployment types work identically despite different data sources
+
+### **How It Works Across Deployments**
+| Deployment Type | Dataset Source | File Serving Method |
+|----------------|----------------|-------------------|
+| **Development** | `datasets-dev/` folder | Custom Vite middleware |
+| **Web Build** | Server dataset folder | Standard web server |
+| **Desktop Build** | App dataset folder | Embedded PHP server |
+
+### **Benefits**
+- ✅ **Clean Deployments** - No development test data in production builds
+- ✅ **Smaller Builds** - Reduced deployment size without development datasets
+- ✅ **Better Security** - No accidental exposure of development data
+- ✅ **Seamless Development** - Full dataset functionality during development
+
 ## 🏗️ **Architecture**
 
 ### **Core Components**

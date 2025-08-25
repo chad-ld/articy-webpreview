@@ -41,6 +41,12 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 
 ## 🆕 **Latest Updates (August 2025)**
 
+### **🔧 Clean Dataset Separation**
+- **Development Isolation** - Development datasets separated from production builds
+- **Clean Deployments** - Web builds no longer include development test data
+- **Seamless Development** - Full dataset functionality during development without contamination
+- **Identical Functionality** - All deployment types (web, desktop, development) work identically
+
 ### **🔧 Simplified Console Logging**
 - **Automatic Capture** - Console logs captured in memory from app startup
 - **One-Click Save** - Floating button to save all logs to server instantly
@@ -90,23 +96,41 @@ npm run dev:safe
 articy-webpreview/
 ├── src/
 │   ├── components/          # React components
+│   ├── services/            # API and data services
 │   ├── plugins/            # Plugin system
 │   ├── utils/              # Utility functions
 │   └── types/              # TypeScript definitions
 ├── public/
-│   ├── datasets/           # Sample datasets
 │   ├── *.php              # Server endpoints
 │   └── assets/            # Static assets
+├── datasets-dev/          # 🆕 Development datasets (isolated from builds)
+│   ├── mpos1.5.json/      # Sample dataset folder
+│   ├── demo4.json/        # Sample dataset folder
+│   └── ...                # Other development datasets
 ├── devdoc.md              # Developer documentation
 └── devdoc_*.md            # Feature-specific docs
 ```
 
 ## 🔧 **Development**
 
+### **🚀 Starting Development Server**
+
+**IMPORTANT**: Always use the safe development script, not `npm run dev` directly.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1
+```
+
+This script provides:
+- ✅ **Dual Server Setup** - PHP server (port 8080) + Vite server (port 3000)
+- ✅ **Dataset Separation** - Development datasets isolated from production builds
+- ✅ **Cache Protection** - Prevents file reversion issues during development
+- ✅ **Process Cleanup** - Ensures clean startup without port conflicts
+
 ### **Essential Commands**
 | Command | Description |
 |---------|-------------|
-| `npm run dev:safe` | **🚀 RECOMMENDED**: Development with full protection |
+| `start-dev-safe.ps1` | **🚀 REQUIRED**: Development with dataset separation and protection |
 | `npm run check:integrity` | Verify critical files haven't been corrupted |
 | `npm run test:cache` | Test cache busting configuration |
 | `npm run build` | Build for production deployment |

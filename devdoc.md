@@ -23,13 +23,19 @@ The Articy Web Viewer is a modern React-based application that allows web browse
 # 1. Check system health
 npm run check:integrity
 
-# 2. Start development (RECOMMENDED)
+# 2. Start development (REQUIRED - not npm run dev)
 powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1
 
 # 3. Make changes and test
 # 4. Commit frequently to prevent work loss
 git add . && git commit -m "Description" && git push origin v4.x
 ```
+
+### **🆕 Dataset Separation System**
+- **Development Datasets**: Located in `datasets-dev/` folder (isolated from builds)
+- **Production Builds**: Clean `dist/` folder without development datasets
+- **Custom Middleware**: Vite middleware serves development datasets during development
+- **Identical Functionality**: All deployment types work identically despite different data sources
 
 ### **File Protection System**
 - **Safe Mode**: Prevents file reversion issues through cache disabling and polling
