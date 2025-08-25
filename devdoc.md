@@ -80,9 +80,12 @@ git add . && git commit -m "Description" && git push origin v4.x
 - **nodeProcessor.ts**: Story node parsing and processing
 
 ### **Plugin System**
-- **Plugin Discovery**: Automatic loading from `src/plugins/` directory
-- **Plugin Interface**: Standardized API for consistent integration
-- **Hot Reloading**: Development-time plugin updates without restart
+- **Plugin Separation**: Plugins built separately from main application
+- **Dynamic Loading**: Runtime plugin loading from external files in production
+- **Development Mode**: Bundled plugins with hot reloading for development
+- **Post-Build Customization**: Add/remove plugins without rebuilding application
+- **Config Integration**: Plugin defaults controlled via config.json
+- **Dual Deployment**: Identical plugin system for web and desktop versions
 
 ## 📚 **Detailed Documentation**
 
@@ -162,6 +165,56 @@ See **[Desktop Version Documentation](devdoc_desktop-version.md)** for complete 
 - **Plugin Functionality**: Verify all plugins load and function correctly
 - **Navigation Flow**: Test story progression and choice handling
 - **Variable System**: Verify variable tracking and editing
+
+## 🔨 **Build System**
+
+### **Available Build Commands**
+```bash
+# Development
+npm run dev:safe                # Safe development server (REQUIRED)
+powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1  # Alternative
+
+# Production Builds
+npm run build                   # Full build (app + plugins + config)
+npm run build:app              # Main application only
+npm run build:plugins          # Plugins only (separate compilation)
+npm run build:serve            # Build and serve locally for testing
+
+# Desktop Distribution
+npm run build:desktop          # Create portable desktop package
+npm run package:desktop        # Create distribution ZIP
+
+# Testing & Verification
+npm run check:integrity        # Validate critical files
+npm run test:cache             # Test cache prevention
+npm run test:runtime           # Test live server behavior
+```
+
+### **Plugin Build System**
+The plugin system now uses **separated builds** for maximum flexibility:
+
+- **Development**: Plugins bundled with hot-reloading
+- **Production**: Plugins compiled separately to `dist/plugins/`
+- **Post-Build**: Add/remove plugins without rebuilding application
+- **Config-Driven**: Plugin defaults controlled via `config.json`
+
+### **Deployment Structure**
+```
+dist/                          # Web deployment
+├── index.html
+├── assets/
+├── config.json               # Runtime configuration
+├── plugins/                  # Separate plugin files
+│   ├── mysteryworks-murderboard.js
+│   ├── hello-world.js
+│   └── plugins.json         # Plugin manifest
+└── datasets.php
+
+builds/articy-desktop-*/       # Desktop deployment
+├── app/                      # Same as dist/
+├── php/                      # Portable PHP
+└── datasets/                 # Sample datasets
+```
 
 ## 📞 **Support & Troubleshooting**
 

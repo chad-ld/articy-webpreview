@@ -106,6 +106,89 @@ class DesktopPackageCreator {
     if (await fs.pathExists(originalDatasetsPath)) {
       await fs.copy(originalDatasetsPath, path.join(this.appDir, 'datasets.php'));
     }
+
+    // Ensure plugins directory is copied for desktop version
+    await this.copyPluginsForDesktop();
+
+    // Ensure config.json is copied for desktop version
+    await this.copyConfigForDesktop();
+  }
+
+  /**
+   * Copy plugins directory for desktop version
+   */
+  async copyPluginsForDesktop() {
+    const distPluginsDir = path.join('dist', 'plugins');
+    const appPluginsDir = path.join(this.appDir, 'plugins');
+
+    if (await fs.pathExists(distPluginsDir)) {
+      await fs.copy(distPluginsDir, appPluginsDir);
+      console.log('📁 Copied plugins directory for desktop version');
+
+      // List copied plugins for verification
+      try {
+        const pluginFiles = await fs.readdir(appPluginsDir);
+        const jsFiles = pluginFiles.filter(file => file.endsWith('.js'));
+        console.log(`  ✓ Copied ${jsFiles.length} plugin files:`, jsFiles);
+      } catch (error) {
+        console.warn('⚠️ Could not list plugin files:', error.message);
+      }
+    } else {
+      console.log('📝 No plugins directory found in dist, creating empty plugins directory');
+      await fs.ensureDir(appPluginsDir);
+
+      // Create empty manifest for desktop
+      const emptyManifest = {
+        version: '1.0.0',
+        generated: new Date().toISOString(),
+        available: []
+      };
+      await fs.writeJson(path.join(appPluginsDir, 'plugins.json'), emptyManifest, { spaces: 2 });
+    }
+  }
+
+  /**
+   * Copy config.json for desktop version
+   */
+  async copyConfigForDesktop() {
+    const distConfigPath = path.join('dist', 'config.json');
+    const appConfigPath = path.join(this.appDir, 'config.json');
+
+    if (await fs.pathExists(distConfigPath)) {
+      await fs.copy(distConfigPath, appConfigPath);
+      console.log('📋 Copied config.json for desktop version');
+    } else {
+      console.log('📝 No config.json found in dist, creating default config');
+
+      // Create default config for desktop
+      const defaultConfig = {
+        version: '1.0.0',
+        description: 'Articy Web Viewer Configuration - Desktop Version',
+        plugins: {
+          defaultEnabled: []
+        },
+        datasets: {
+          autoLoad: null,
+          skipLoadingScreen: false,
+          allowUserOverride: true,
+          fallbackBehavior: 'showLoadingScreen'
+        },
+        ui: {
+          storyMode: false,
+          variablesPanel: false,
+          searchPanel: false
+        },
+        advanced: {
+          debugging: {
+            enableConsoleLogging: false,
+            logLevel: 'error'
+          }
+        }
+      };
+
+      await fs.writeJson(appConfigPath, defaultConfig, { spaces: 2 });
+      console.log('📋 Created default config.json for desktop version');
+    }
   }
 
   async setupPortablePHP() {

@@ -195,8 +195,38 @@ src/
 - [x] Loading screen shows plugin status clearly
 - [x] No breaking changes to existing functionality
 
+## ✅ **Phase 6: Plugin Separation System (COMPLETED)**
+
+### **6.1 Plugin Build Separation**
+- [x] Implemented separate plugin build system using Vite
+- [x] Created `scripts/build-plugins.js` for independent plugin compilation
+- [x] Added plugin manifest generation (`plugins.json`)
+- [x] Updated build process to exclude plugins from main bundle
+- [x] Added plugin copying to desktop builds
+
+### **6.2 Dynamic Plugin Loading**
+- [x] Implemented hybrid plugin discovery (development vs production)
+- [x] Added environment detection for bundled vs dynamic loading
+- [x] Created dynamic plugin import system for production builds
+- [x] Added fallback mechanisms for plugin loading failures
+- [x] Enhanced error handling and logging for plugin discovery
+
+### **6.3 Config.json Integration**
+- [x] Added config.json copying to build process
+- [x] Implemented runtime config loading with cache busting
+- [x] Added plugin default configuration support
+- [x] Created desktop config.json handling
+- [x] Enabled post-build configuration changes
+
+### **6.4 Production Deployment Support**
+- [x] Separated plugins from main application bundle
+- [x] Enabled post-build plugin addition/removal
+- [x] Added plugin manifest system for dynamic discovery
+- [x] Created identical web and desktop plugin systems
+- [x] Implemented config-driven plugin defaults
+
 ## 🎯 **Current Status**
-**Phase 2-5 COMPLETE!** The plugin system is now fully functional with automatic plugin discovery, dynamic loading, state persistence, UI integration, and enhanced UX features. Ready for Phase 6 enhancements or additional plugin development.
+**Phase 2-6 COMPLETE!** The plugin system now supports complete plugin separation with post-build customization. Plugins are built separately and can be added/removed without rebuilding the application. Config.json allows runtime behavior changes.
 
 ### **✅ Additional UX Enhancements Completed:**
 - [x] **Toggle Button Behavior**: Plugin buttons now toggle modals open/closed on click
@@ -220,6 +250,63 @@ src/
 - **State Persistence**: Plugin preferences saved to localStorage between sessions
 - **Error Handling**: Graceful plugin failure recovery with console logging
 
+### **📦 Plugin Separation Benefits:**
+- **Post-Build Customization**: Add/remove plugins without rebuilding application
+- **Client-Specific Deployments**: Different plugin sets for different clients
+- **Config-Driven Behavior**: Upload new config.json to change defaults instantly
+- **Identical Codebase**: Same system works for web and desktop deployments
+- **Development Workflow**: Maintains hot-reloading and development experience
+
+## 🚨 **Current Issues & Status**
+
+### **Environment Detection Issue (IN PROGRESS)**
+**Problem**: When deployed to production servers, the plugin system sometimes fails to properly detect production mode and attempts to load TypeScript source files instead of compiled JavaScript plugins.
+
+**Error Symptoms**:
+```
+GET https://server.com/src/plugins/isolatedRenderManager.ts NS_ERROR_CORRUPTED_CONTENT
+Loading module from "...src/plugins/isolatedRenderManager.ts" was blocked because of a disallowed MIME type ("text/html")
+```
+
+**Root Cause**: Environment detection logic not properly distinguishing between development and production environments on remote servers.
+
+**Current Status**:
+- ✅ Enhanced environment detection with multiple fallback checks
+- ✅ Added detailed logging for debugging environment detection
+- ✅ Improved fallback logic between bundled and dynamic plugin loading
+- 🔄 Testing needed on actual production server deployment
+
+**Next Steps**:
+1. Deploy to production server and test environment detection
+2. Verify dynamic plugin loading works correctly in production
+3. Confirm config.json functionality on remote server
+4. Document any server-specific configuration requirements
+
+### **Build System Status**
+- ✅ **Development Mode**: Working correctly with bundled plugins
+- ✅ **Local Production**: Working with Python HTTP server (port 8081)
+- ✅ **Desktop Builds**: Working with plugin separation
+- 🔄 **Remote Production**: Needs testing and verification
+
+### **File Structure (Current)**
+```
+dist/                           # Built web application
+├── index.html
+├── assets/
+├── config.json                # Runtime configuration
+├── plugins/                   # Separate plugin files
+│   ├── mysteryworks-murderboard.js
+│   ├── hello-world.js
+│   ├── test-plugin.js
+│   └── plugins.json           # Plugin manifest
+└── datasets.php
+
+builds/articy-desktop-*/        # Desktop builds
+├── app/                       # Same structure as dist/
+├── php/                       # Portable PHP
+└── datasets/                  # Sample datasets
+```
+
 ---
 
-*This document will be updated as we progress through each phase of the plugin system implementation.*
+*This document tracks the complete plugin system implementation including current issues and deployment status.*

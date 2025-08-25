@@ -42,8 +42,29 @@ const datasetFilePlugin = () => ({
   }
 });
 
+// Custom plugin to copy config.json to dist during build
+const copyConfigPlugin = () => ({
+  name: 'copy-config',
+  writeBundle() {
+    // Copy config.json from datasets-dev to dist during build
+    const configSource = resolve(__dirname, 'datasets-dev', 'config.json');
+    const configDest = resolve(__dirname, 'dist', 'config.json');
+
+    if (fs.existsSync(configSource)) {
+      try {
+        fs.copyFileSync(configSource, configDest);
+        console.log('📋 Copied config.json to dist folder');
+      } catch (error) {
+        console.error('❌ Failed to copy config.json:', error);
+      }
+    } else {
+      console.warn('⚠️ config.json not found in datasets-dev folder');
+    }
+  }
+});
+
 export default defineConfig(({ command }) => ({
-  plugins: [react(), datasetFilePlugin()],
+  plugins: [react(), datasetFilePlugin(), copyConfigPlugin()],
   base: command === 'build' ? './' : '/', // Use relative paths for builds, root path for dev
   // Disable caching to prevent file reversion issues
   cacheDir: false,
@@ -104,7 +125,14 @@ export default defineConfig(({ command }) => ({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      // Exclude plugin files from main bundle in production builds
+      external: command === 'build' ? (id) => {
+        // Exclude plugin modules from main bundle
+        return id.includes('/src/plugins/') && !id.includes('/src/plugins/types.ts') && !id.includes('/src/plugins/registry.ts') && !id.includes('/src/plugins/manager.ts') && !id.includes('/src/plugins/discovery.ts') && !id.includes('/src/plugins/index.ts');
+      } : undefined
+    }
   },
   resolve: {
     alias: {

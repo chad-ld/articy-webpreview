@@ -31,41 +31,65 @@ const PluginSelector: React.FC<PluginSelectorProps> = ({ onPluginToggle }) => {
   }, []);
 
   const loadPlugins = async () => {
-    // Get all discovered plugins (not just registered ones)
-    const discoveredPlugins = pluginDiscoveryService.getDiscoveredPlugins();
+    setLoading(true);
 
-    // Load default plugins from config
-    let configDefaultPlugins: string[] = [];
     try {
-      const config = await configService.loadConfig();
-      configDefaultPlugins = config.plugins.defaultEnabled;
-      setDefaultPlugins(configDefaultPlugins);
-    } catch (error) {
-      console.error('Failed to load config for plugin selector:', error);
-    }
+      // First, discover all available plugins (supports both bundled and dynamic)
+      await pluginDiscoveryService.discoverPlugins();
 
-    // Convert to metadata format and check enabled state from localStorage
-    const savedState = localStorage.getItem('articy-plugin-state');
-    let enabledPluginIds: string[] = [];
+      // Get all discovered plugins (not just registered ones)
+      const discoveredPlugins = pluginDiscoveryService.getDiscoveredPlugins();
 
-    if (savedState) {
+      console.log(`🔌 Plugin Selector: Found ${discoveredPlugins.length} available plugins`);
+
+      // Load default plugins from config
+      let configDefaultPlugins: string[] = [];
       try {
-        const state = JSON.parse(savedState);
-        enabledPluginIds = Object.entries(state)
-          .filter(([_, config]: [string, any]) => config.enabled)
-          .map(([pluginId, _]) => pluginId);
+        const config = await configService.loadConfig();
+        configDefaultPlugins = config.plugins.defaultEnabled;
+        setDefaultPlugins(configDefaultPlugins);
+        console.log('🔌 Plugin Selector: Config default plugins:', configDefaultPlugins);
       } catch (error) {
-        console.error('Failed to parse plugin state:', error);
+        console.error('Failed to load config for plugin selector:', error);
       }
+
+      // Convert to metadata format and check enabled state from localStorage
+      const savedState = localStorage.getItem('articy-plugin-state');
+      let enabledPluginIds: string[] = [];
+
+      if (savedState) {
+        try {
+          const state = JSON.parse(savedState);
+          enabledPluginIds = Object.entries(state)
+            .filter(([_, config]: [string, any]) => config.enabled)
+            .map(([pluginId, _]) => pluginId);
+          console.log('🔌 Plugin Selector: Enabled plugins from localStorage:', enabledPluginIds);
+        } catch (error) {
+          console.error('Failed to parse plugin state:', error);
+        }
+      } else {
+        console.log('🔌 Plugin Selector: No saved state found, will use config defaults');
+      }
+
+      const availablePlugins = discoveredPlugins.map(plugin => {
+        const enabled = enabledPluginIds.includes(plugin.metadata.id);
+        const isDefault = configDefaultPlugins.includes(plugin.metadata.id);
+        console.log(`🔌 Plugin ${plugin.metadata.name}: ${enabled ? 'enabled' : 'disabled'}${isDefault ? ' (default)' : ''}`);
+
+        return {
+          ...plugin.metadata,
+          enabled,
+          isDefault
+        };
+      });
+
+      setPlugins(availablePlugins);
+
+    } catch (error) {
+      console.error('Failed to load plugins:', error);
+    } finally {
+      setLoading(false);
     }
-
-    const availablePlugins = discoveredPlugins.map(plugin => ({
-      ...plugin.metadata,
-      enabled: enabledPluginIds.includes(plugin.metadata.id),
-      isDefault: configDefaultPlugins.includes(plugin.metadata.id)
-    }));
-
-    setPlugins(availablePlugins);
   };
 
   const handlePluginToggle = async (pluginId: string, enabled: boolean) => {
