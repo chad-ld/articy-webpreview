@@ -174,6 +174,29 @@ articy-webpreview/
 - **Edit**: Right-click (desktop) or long-press (mobile) to edit values
 - **Import**: Drag TXT or CSV files to bulk update variables
 
+### **Real-Time Console Logging**
+
+The application includes an advanced session-based logging system for debugging and development:
+
+#### **For End Users**
+1. **Enable Logging**: Toggle console logging from the loading screen
+2. **Real-Time Capture**: All console activity is immediately streamed to a persistent log file
+3. **Session Persistence**: Your log file grows continuously throughout your browser session
+4. **Automatic Management**: Sessions are automatically managed and cleaned up
+
+#### **For Developers**
+1. **Session Manager**: Visit `http://localhost:3000/session-manager.html` for administrative controls
+2. **Monitor Sessions**: View all active logging sessions and their activity
+3. **Manual Cleanup**: Run cleanup operations to remove old files and inactive sessions
+4. **Log File Access**: Session log files are stored in `logs/console-session-{sessionId}.log`
+
+#### **Session Management**
+- **Session Files**: `logs/console-session-YYYY-MM-DDTHH-MM-SS.log`
+- **Heartbeat Files**: `logs/session-YYYY-MM-DDTHH-MM-SS.heartbeat`
+- **Automatic Cleanup**: Sessions inactive for 1+ hours are automatically closed
+- **File Cleanup**: Log files older than 24 hours are automatically removed
+- **Real-Time Monitoring**: Session manager updates every 30 seconds
+
 ## � **Plugin System**
 
 The Articy Web Viewer includes a powerful plugin system that allows you to extend functionality with custom features. Plugins are automatically discovered and can be enabled/disabled by users.
@@ -334,7 +357,7 @@ Plugins receive a context object with access to:
 3. **Error Handling**: Invalid plugins are gracefully handled with console warnings
 4. **TypeScript Support**: Full type checking and IntelliSense support
 
-## � **Configuration System **
+## ⚙️ **Configuration System**
 
 The Articy Web Viewer includes a flexible configuration system that allows developers to set default behaviors for first-time users while preserving user preferences through localStorage persistence.
 
@@ -421,31 +444,45 @@ The Articy Web Viewer includes a flexible configuration system that allows devel
 3. **Fallback Test**: Set `autoLoad: "nonexistent.json"` - should show loading screen with warning
 4. **Plugin Integration**: Auto-loaded dataset should have murderboard plugin enabled by default
 
-#### **Console Logging System** 📝 *Implemented*
+#### **Real-Time Session-Based Console Logging System** 📝 *Implemented*
 
-The application includes a comprehensive console logging system for debugging and development purposes.
+The application includes an advanced real-time console logging system that maintains persistent log files per browser session, similar to server-side logging.
 
 **Features:**
+- **Real-Time Streaming**: Individual log entries are sent to the server immediately as they occur
+- **Session-Based Files**: Each browser session gets its own persistent log file that grows continuously
 - **Toggle Control**: Enable/disable console logging from the loading screen interface
-- **Server-Side Saving**: Logs are automatically saved to the server's `logs/` folder
-- **Fallback Download**: If server saving fails, falls back to browser download
-- **Auto-Save**: Automatically saves logs when they reach 1000 entries
-- **Session Tracking**: Each logging session has a unique identifier
+- **Session Management**: Automatic session initialization, heartbeat monitoring, and cleanup
 - **Comprehensive Capture**: Captures all console.log, console.error, console.warn, etc.
+- **Non-Blocking**: All operations run asynchronously to avoid blocking console operations
+- **Automatic Cleanup**: Old log files and inactive sessions are automatically cleaned up
+- **Graceful Shutdown**: Sessions are properly closed when the browser tab is closed
 
 **Implementation Details:**
-- **Console Logger**: `src/utils/consoleLogger.ts` - Core logging functionality
-- **Server Endpoint**: `public/save-log.php` - Handles server-side log saving
-- **UI Integration**: Debug Console Logging section in loading screen
-- **File Format**: Timestamped log entries with session metadata
-- **Security**: Filename validation and directory protection
+- **Console Logger**: `src/utils/consoleLogger.ts` - Core real-time logging functionality
+- **Real-Time Endpoint**: `public/append-log.php` - Handles individual log entry streaming
+- **Session Management**: `public/cleanup-sessions.php` - Manages session lifecycle and cleanup
+- **Session Manager UI**: `public/session-manager.html` - Administrative interface for monitoring sessions
+- **Legacy Endpoint**: `public/save-log.php` - Fallback for batch saving (legacy mode)
+- **File Format**: Timestamped log entries with session headers and footers
+- **Security**: Session ID validation, filename protection, and directory security
+
+**Session Lifecycle:**
+1. **Initialization**: Session starts with unique ID and creates persistent log file
+2. **Real-Time Logging**: Each console entry is immediately appended to the session file
+3. **Heartbeat Monitoring**: Regular heartbeats keep the session alive (every 30 seconds)
+4. **Graceful Closure**: Session properly closed when browser tab closes
+5. **Automatic Cleanup**: Inactive sessions (1+ hours) and old files (24+ hours) are cleaned up
 
 **Current Status:**
-- ✅ Console interception and logging
+- ✅ Real-time log streaming to persistent session files
+- ✅ Session initialization and management
+- ✅ Heartbeat monitoring for session activity
+- ✅ Automatic session cleanup and file management
 - ✅ Toggle interface in loading screen
-- ✅ Server-side saving endpoint
-- ✅ Fallback download mechanism
-- ⚠️ Auto-save to server (needs debugging - currently saves to Downloads folder)
+- ✅ Administrative session manager interface
+- ✅ Graceful session closure on page unload
+- ✅ Legacy fallback mode for compatibility
 
 #### **Phase 3: UI State Defaults** 🎨 *Future*
 ```typescript

@@ -32,6 +32,48 @@ export default defineConfig(({ command }) => ({
           });
         }
       },
+      // Proxy save-log.php specifically
+      '/save-log.php': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        configure: (proxy, options) => {
+          // Log proxy requests for debugging
+          proxy.on('proxyReq', (proxyReq, req, res) => {
+            console.log(`🔄 Proxying save-log.php request: ${req.url} -> http://localhost:8080${req.url}`);
+          });
+          proxy.on('error', (err, req, res) => {
+            console.error('❌ save-log.php proxy error:', err.message);
+          });
+        }
+      },
+      // Proxy append-log.php for real-time logging
+      '/append-log.php': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        configure: (proxy, options) => {
+          // Log proxy requests for debugging
+          proxy.on('proxyReq', (proxyReq, req, res) => {
+            console.log(`🔄 Proxying append-log.php request: ${req.url} -> http://localhost:8080${req.url}`);
+          });
+          proxy.on('error', (err, req, res) => {
+            console.error('❌ append-log.php proxy error:', err.message);
+          });
+        }
+      },
+      // Proxy cleanup-sessions.php for session management
+      '/cleanup-sessions.php': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        configure: (proxy, options) => {
+          // Log proxy requests for debugging
+          proxy.on('proxyReq', (proxyReq, req, res) => {
+            console.log(`🔄 Proxying cleanup-sessions.php request: ${req.url} -> http://localhost:8080${req.url}`);
+          });
+          proxy.on('error', (err, req, res) => {
+            console.error('❌ cleanup-sessions.php proxy error:', err.message);
+          });
+        }
+      },
       // Catch-all for other PHP files
       '*.php': {
         target: 'http://localhost:8080',

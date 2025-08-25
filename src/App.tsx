@@ -279,8 +279,11 @@ function App() {
     hybridDetector.environmentDetector.logEnvironmentInfo();
 
     // Initialize console logger
-    consoleLogger.loadState();
-    setConsoleLoggingEnabled(consoleLogger.isLoggingEnabled());
+    consoleLogger.loadState().then(() => {
+      setConsoleLoggingEnabled(consoleLogger.isLoggingEnabled());
+    }).catch(error => {
+      console.error('Failed to load console logger state:', error);
+    });
 
     // Initialize app with dataset detection
     initializeApp();
@@ -433,13 +436,17 @@ function App() {
     setIsLoading(false);
   };
 
-  const handleConsoleLoggingToggle = (enabled: boolean) => {
-    if (enabled) {
-      consoleLogger.enable();
-    } else {
-      consoleLogger.disable();
+  const handleConsoleLoggingToggle = async (enabled: boolean) => {
+    try {
+      if (enabled) {
+        await consoleLogger.enable();
+      } else {
+        await consoleLogger.disable();
+      }
+      setConsoleLoggingEnabled(enabled);
+    } catch (error) {
+      console.error('Failed to toggle console logging:', error);
     }
-    setConsoleLoggingEnabled(enabled);
   };
 
   const handleDownloadLogs = () => {
