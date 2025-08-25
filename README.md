@@ -488,13 +488,28 @@ The murderboard includes an intelligent update notification system that alerts u
 - **Variable Independence**: Update indicators are controlled by the plugin, not by Articy variables
 - **Session Persistence**: Fragment IDs are stored in component state and persist until new dataset loads
 - **Fresh Evaluation**: System re-evaluates all evidence content every time murderboard opens
+- **Proper Workflow**: Fragment ID comparison happens before updating stored IDs (at process end)
+- **Clean Interface**: Debug overlays removed for professional user experience
+
+#### **Technical Workflow (Every Murderboard Open)**
+1. **Evidence Visibility Check**: Compare variables to make evidence visible/hidden
+2. **Content Refresh Process**: Update all evidence popup content based on current variables
+3. **Content Update Process**: For each visible evidence:
+   - Get current fragment ID from refreshed content
+   - Compare current fragment ID to stored "previous" fragment ID
+   - If previous ID is null (first time): Ignore, no update flag
+   - If previous ID exists and differs: Show update flag
+   - If previous ID exists and matches: No update flag
+4. **Update Previous IDs**: At the very end, update all stored "previous" fragment IDs to current ones
 
 #### **Example Workflow**
-1. **Initial Discovery**: User finds paternity test → Fragment ID `0x123ABC` stored for unanalyzed content
+1. **Initial Discovery**: User finds paternity test → Fragment ID `0x123ABC` stored as "previous"
 2. **Story Progress**: User analyzes paternity test → `va_paternity_test_analyzed = true`
-3. **Content Changes**: Evidence now shows different dialogue fragment → Fragment ID `0x456DEF`
-4. **Update Notification**: Next time murderboard opens → `va_paternity_test_update.png` becomes visible
-5. **User Interaction**: User clicks evidence → Views new analyzed content → Update indicator disappears
+3. **Content Changes**: Evidence now shows different dialogue fragment → Current ID `0x456DEF`
+4. **Update Notification**: Next murderboard open → Compare `0x123ABC ≠ 0x456DEF` → Update flag appears
+5. **User Interaction**: User clicks evidence → Views new content → Update flag disappears
+6. **Process End**: Previous ID updated to `0x456DEF`
+7. **Next Open**: Compare `0x456DEF = 0x456DEF` → No update flag (until content changes again)
 
 ### **Example Usage Scenario**
 
@@ -549,8 +564,14 @@ The issue stems from a **stale cache problem** in the evidence content pre-evalu
 #### **Phase 3: Update Notification System (RESOLVED)**
 - **Issue**: No visual indication when evidence content changes between murderboard sessions
 - **Problem**: Component lifecycle events not triggering due to component reuse instead of remounting
-- **Solution**: Implemented modal open counter system to trigger evaluation on each murderboard open
-- **Status**: ✅ **RESOLVED** - Evidence shows `_update.png` indicators when content changes, cleared when viewed
+- **Solution**: Implemented modal open counter system with proper fragment ID tracking workflow
+- **Status**: ✅ **RESOLVED** - Evidence shows `_update.png` indicators when content changes, properly cleared and persistent
+
+#### **Phase 4: Update Indicator Persistence (RESOLVED)**
+- **Issue**: Update indicators reappearing after being cleared when murderboard reopens
+- **Problem**: Fragment ID tracking logic updating stored IDs during pre-evaluation instead of at process end
+- **Solution**: Corrected workflow to update previous fragment IDs only at the very end of update check process
+- **Status**: ✅ **RESOLVED** - Update indicators stay cleared until content actually changes again
 
 ### **Code Changes Made (Since Last Git Push)**
 
@@ -621,6 +642,8 @@ useEffect(() => {
 - Evidence popups show current state-appropriate content
 - Update indicators (`_update.png`) appear when evidence content changes
 - Update indicators disappear when evidence is viewed
+- Update indicators stay cleared when murderboard reopens (until content changes again)
+- Debug overlay removed for clean professional interface
 
 #### **📋 Test Scenario**
 1. Load MPOS dataset
@@ -634,6 +657,8 @@ The complete evidence system has successfully resolved all issues by:
 - Forcing fresh evaluation every time murderboard opens
 - Ensuring evidence content reflects current game state
 - Providing visual update notifications when content changes
+- Maintaining proper notification persistence and clearing behavior
+- Delivering a clean, professional interface without debug clutter
 - Maintaining performance benefits while providing accurate content
 
 ### **✅ Completed Steps**
@@ -641,7 +666,9 @@ The complete evidence system has successfully resolved all issues by:
 2. **✅ Performance Confirmed**: Cache clearing doesn't negatively impact performance
 3. **✅ Testing Complete**: Multiple evidence state changes work correctly
 4. **✅ Update Notifications Working**: Visual indicators show when evidence has new content
-5. **✅ Documentation Updated**: Complete evidence system documented for future developers
+5. **✅ Notification Persistence Fixed**: Update indicators properly clear and stay cleared
+6. **✅ Interface Cleaned**: Debug overlay removed for professional appearance
+7. **✅ Documentation Updated**: Complete evidence system documented for future developers
 
 ### **Files Modified**
 - `src/plugins/mysteryworks-murderboard/MysteryworksMurderboardPlugin.tsx` - Cache management and condition parsing fixes

@@ -101,6 +101,7 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     if (resetTrigger > 0) {
       console.log(`🔄 New dataset loaded, resetting evidence tracking state...`);
       setEvidenceFragmentIds({});
+      setViewedFragmentIds({});
       setUpdateIndicators({});
       setEvidenceContentCache({});
       console.log(`✅ Evidence tracking state reset complete`);
@@ -172,6 +173,36 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     // Update the indicators state
     console.log(`🔔 Setting update indicators:`, newUpdateIndicators);
     setUpdateIndicators(newUpdateIndicators);
+
+    // Step 4: Update all previous fragment IDs to current ones (at the very end)
+    const updatedFragmentIds: {[evidenceName: string]: string} = {};
+    for (const element of layout.children) {
+      const baseEvidenceName = element.name.replace(/\.(png|jpg|jpeg)$/i, '');
+
+      // Skip non-evidence images
+      if (!isEvidenceImage(element.name)) continue;
+
+      // Skip invisible evidence
+      if (!isElementVisible(element.name)) continue;
+
+      // Get current fragment ID
+      const characterName = getCharacterNameForEvidence(baseEvidenceName);
+      const dialogueFragments = findDialogueFragmentsByCharacter(characterName);
+      const currentContent = selectContentByConditions(dialogueFragments);
+
+      if (currentContent.fragmentId) {
+        updatedFragmentIds[baseEvidenceName] = currentContent.fragmentId;
+      }
+    }
+
+    // Update all previous fragment IDs to current ones
+    if (Object.keys(updatedFragmentIds).length > 0) {
+      setEvidenceFragmentIds(prev => ({
+        ...prev,
+        ...updatedFragmentIds
+      }));
+      console.log(`📝 Updated all previous fragment IDs to current:`, updatedFragmentIds);
+    }
   };
 
   // Pre-evaluate all visible evidence content when murderboard opens
@@ -184,7 +215,6 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     console.log(`🔄 Pre-evaluating all visible evidence content...`);
     const layout = layoutData as LayoutRoot;
     const newContentCache: typeof evidenceContentCache = {};
-    const newFragmentIds: {[evidenceName: string]: string} = {};
 
     // Process each evidence image
     for (const element of layout.children) {
@@ -235,28 +265,15 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
             fragmentId: selectedContent.fragmentId
           };
 
-          // Store fragment ID for update tracking (only if we don't have one stored yet)
-          if (selectedContent.fragmentId && !evidenceFragmentIds[baseEvidenceName]) {
-            newFragmentIds[baseEvidenceName] = selectedContent.fragmentId;
-            console.log(`📝 Storing initial fragment ID for ${baseEvidenceName}: ${selectedContent.fragmentId}`);
-          }
+          // Fragment ID tracking is now handled in checkForContentUpdates() at the very end
 
           console.log(`✅ Cached content for ${baseEvidenceName}: ${selectedContent.content.substring(0, 50)}...`);
         }
       }
     }
 
-    // Update the cache and fragment IDs
+    // Update the cache
     setEvidenceContentCache(newContentCache);
-
-    // Update fragment IDs for newly discovered evidence
-    if (Object.keys(newFragmentIds).length > 0) {
-      setEvidenceFragmentIds(prev => ({
-        ...prev,
-        ...newFragmentIds
-      }));
-      console.log(`📝 Stored ${Object.keys(newFragmentIds).length} new fragment IDs for update tracking`);
-    }
 
     console.log(`🎯 Pre-evaluation complete. Cached ${Object.keys(newContentCache).length} evidence items.`);
 
@@ -292,6 +309,14 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
 
     if (cachedContent) {
       console.log(`✅ Using cached content for ${baseEvidenceName}`);
+
+      // Clear update indicator for this evidence (user has now viewed the updated content)
+      setUpdateIndicators(prev => ({
+        ...prev,
+        [baseEvidenceName]: false
+      }));
+      console.log(`🔔 Cleared update indicator for ${baseEvidenceName} (viewed cached content)`);
+
       // Display the popup with cached content
       setEvidencePopup({
         isVisible: true,
@@ -327,6 +352,7 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
       }));
 
       console.log(`📝 Stored fragment ID for ${baseEvidenceName}: ${selectedContent.fragmentId}`);
+      console.log(`🔔 Cleared update indicator for ${baseEvidenceName} (viewed real-time content)`);
     }
 
     // If no dialogue content found, create evidence information from variables
@@ -1275,30 +1301,7 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
           }}
         />
 
-        {/* Debug: Show context info */}
-        {process.env.NODE_ENV === 'development' && (
-          <div style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            background: 'rgba(0,0,0,0.8)',
-            color: 'white',
-            padding: '10px',
-            borderRadius: '4px',
-            fontSize: '12px',
-            maxWidth: '300px',
-            zIndex: 10001,
-            maxWidth: '300px'
-          }}>
-            <div>Context Available: {!!this.context ? 'Yes' : 'No'}</div>
-            <div>Project Available: {!!this.context?.project ? 'Yes' : 'No'}</div>
-            <div>Project Type: {typeof this.context?.project}</div>
-            <div>Project Keys: {this.context?.project ? Object.keys(this.context.project).slice(0, 5).join(', ') : 'None'}</div>
-            <div>Context Keys: {this.context ? Object.keys(this.context).join(', ') : 'None'}</div>
-            <div>Variables Available: {!!this.context?.variables ? 'Yes' : 'No'}</div>
-            <div>Current Node: {!!this.context?.currentNode ? 'Yes' : 'No'}</div>
-          </div>
-        )}
+
       </Modal>
     );
   }
