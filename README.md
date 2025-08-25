@@ -46,6 +46,7 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 ### **🔧 Enhanced Plugin System**
 - **Case-Insensitive Variable Matching**: Plugins now support mixed-case variable names
 - **Fixed Evidence Content Refresh**: Murderboard plugin now properly updates evidence content when variables change
+- **Complete Update Notification System**: Evidence shows visual indicators when content changes between sessions
 - **Improved Murderboard Plugin**: Better variable detection and debugging capabilities
 - **Robust Error Handling**: Plugins gracefully handle missing assets and variables
 
@@ -341,6 +342,7 @@ The Mysteryworks Murderboard Plugin includes an advanced evidence interaction sy
 
 - **🖱️ Interactive Evidence**: Click any visible evidence image to open detailed information popup
 - **📋 Dynamic Content**: Popup content changes based on current variable states in the story
+- **🔔 Update Notifications**: Visual indicators show when evidence has new content to discover
 - **🔔 Update Notifications**: Visual indicators when evidence has new information to discover
 - **🎨 Themed Design**: Popup matches the overall app design aesthetic
 - **📱 Responsive**: Works on both desktop and mobile devices
@@ -471,6 +473,29 @@ When a user clicks an evidence image (e.g., `va_paternity_test.png`):
 - **Animation**: Smooth fade in/out transitions
 - **Accessibility**: Keyboard navigation support (ESC to close)
 
+### **🔔 Update Notification System**
+
+The murderboard includes an intelligent update notification system that alerts users when evidence content has changed between sessions:
+
+#### **How It Works**
+1. **Fragment ID Tracking**: When evidence is first viewed, the system stores the unique ID of the dialogue fragment being displayed
+2. **Content Change Detection**: Each time the murderboard opens, it compares current dialogue fragment IDs with stored ones
+3. **Visual Indicators**: If content has changed, an update indicator image becomes visible (e.g., `va_paternity_test_update.png`)
+4. **Notification Clearing**: When the user clicks the evidence to view the new content, the update indicator disappears
+
+#### **Technical Implementation**
+- **Naming Convention**: Update indicators use the same name as evidence with `_update` suffix
+- **Variable Independence**: Update indicators are controlled by the plugin, not by Articy variables
+- **Session Persistence**: Fragment IDs are stored in component state and persist until new dataset loads
+- **Fresh Evaluation**: System re-evaluates all evidence content every time murderboard opens
+
+#### **Example Workflow**
+1. **Initial Discovery**: User finds paternity test → Fragment ID `0x123ABC` stored for unanalyzed content
+2. **Story Progress**: User analyzes paternity test → `va_paternity_test_analyzed = true`
+3. **Content Changes**: Evidence now shows different dialogue fragment → Fragment ID `0x456DEF`
+4. **Update Notification**: Next time murderboard opens → `va_paternity_test_update.png` becomes visible
+5. **User Interaction**: User clicks evidence → Views new analyzed content → Update indicator disappears
+
 ### **Example Usage Scenario**
 
 1. **User opens murderboard** → Plugin evaluates all evidence visibility
@@ -479,6 +504,10 @@ When a user clicks an evidence image (e.g., `va_paternity_test.png`):
 4. **System finds dialogue fragments** → Searches for speaker "Paternity Test"
 5. **Condition evaluation** → Checks `EvidenceVariables.va_paternity_test_analyzed == false`
 6. **Content display** → Shows unanalyzed evidence description
+7. **Fragment ID stored** → System remembers this content for future comparison
+8. **Story progresses** → User analyzes evidence, `va_paternity_test_analyzed = true`
+9. **Murderboard reopens** → System detects content change, shows `va_paternity_test_update.png`
+10. **User clicks evidence** → Views new analyzed content, update indicator disappears
 7. **Later in story** → `va_paternity_test_analyzed = true` changes available content
 8. **Update notification** → `va_paternity_test_updated.png` becomes visible
 9. **User clicks again** → Sees new analyzed evidence content, update indicator disappears
@@ -516,6 +545,12 @@ The issue stems from a **stale cache problem** in the evidence content pre-evalu
 - **Problem**: `useEffect` dependency array trying to detect variable changes, but variables object is mutated in place
 - **Solution**: Changed approach to refresh cache every time murderboard opens instead of trying to detect variable changes
 - **Status**: ✅ **RESOLVED** - Fresh evaluation on every murderboard open ensures current content is always displayed
+
+#### **Phase 3: Update Notification System (RESOLVED)**
+- **Issue**: No visual indication when evidence content changes between murderboard sessions
+- **Problem**: Component lifecycle events not triggering due to component reuse instead of remounting
+- **Solution**: Implemented modal open counter system to trigger evaluation on each murderboard open
+- **Status**: ✅ **RESOLVED** - Evidence shows `_update.png` indicators when content changes, cleared when viewed
 
 ### **Code Changes Made (Since Last Git Push)**
 
@@ -576,11 +611,16 @@ useEffect(() => {
 - Cache invalidation when murderboard opens
 - Fresh content evaluation after evidence processing
 - Proper content selection based on current variable states
+- Update notification system with visual indicators
+- Fragment ID tracking and comparison
+- Modal open counter triggering system
 
 #### **✅ Testing Complete - All Systems Working**
 - Evidence content now updates correctly when variables change
 - Murderboard performs fresh evaluation every time it opens
 - Evidence popups show current state-appropriate content
+- Update indicators (`_update.png`) appear when evidence content changes
+- Update indicators disappear when evidence is viewed
 
 #### **📋 Test Scenario**
 1. Load MPOS dataset
@@ -590,16 +630,18 @@ useEffect(() => {
 5. Click paternity test evidence (should show analyzed content)
 
 ### **✅ Resolution Confirmed**
-The cache clearing mechanism has successfully resolved the issue by:
+The complete evidence system has successfully resolved all issues by:
 - Forcing fresh evaluation every time murderboard opens
 - Ensuring evidence content reflects current game state
+- Providing visual update notifications when content changes
 - Maintaining performance benefits while providing accurate content
 
 ### **✅ Completed Steps**
 1. **✅ Fix Verified**: Evidence content updates correctly after variable changes
 2. **✅ Performance Confirmed**: Cache clearing doesn't negatively impact performance
 3. **✅ Testing Complete**: Multiple evidence state changes work correctly
-4. **✅ Documentation Updated**: Cache invalidation system documented for future developers
+4. **✅ Update Notifications Working**: Visual indicators show when evidence has new content
+5. **✅ Documentation Updated**: Complete evidence system documented for future developers
 
 ### **Files Modified**
 - `src/plugins/mysteryworks-murderboard/MysteryworksMurderboardPlugin.tsx` - Cache management and condition parsing fixes

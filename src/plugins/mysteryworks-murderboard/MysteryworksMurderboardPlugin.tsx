@@ -3,7 +3,7 @@
  * A plugin for displaying and managing murder mystery investigation boards
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Modal } from 'antd';
 import { FileSearchOutlined } from '@ant-design/icons';
 import { IPlugin, PluginMetadata, PluginButtonConfig, PluginModalProps, PluginContext } from '../types';
@@ -39,9 +39,11 @@ const getAssetUrl = (fileName: string) => {
 interface MurderboardCanvasProps {
   variables?: any;
   project?: any; // Add project data access
+  onResetTracking?: () => void; // Function to reset tracking state
+  modalOpenCount?: number; // Counter that increments each time modal opens
 }
 
-const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variables, project }) => {
+const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variables, project, onResetTracking, modalOpenCount }) => {
   // Evidence popup state
   const [evidencePopup, setEvidencePopup] = useState({
     isVisible: false,
@@ -65,6 +67,9 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
   // Trigger for forcing re-evaluation
   const [evaluationTrigger, setEvaluationTrigger] = useState(0);
 
+  // Trigger for resetting state when new dataset loads
+  const [resetTrigger, setResetTrigger] = useState(0);
+
   // Pre-evaluate all evidence content when murderboard opens (triggered by evaluationTrigger)
   useEffect(() => {
     if (variables && project) {
@@ -83,11 +88,35 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     }
   }, [evaluationTrigger]); // Only re-run when murderboard opens (evaluationTrigger changes)
 
-  // Trigger fresh evaluation every time murderboard component mounts (when modal opens)
+  // Trigger fresh evaluation when modal opens (modalOpenCount changes)
   useEffect(() => {
-    console.log(`🔄 Murderboard modal opened, triggering fresh evidence evaluation...`);
-    setEvaluationTrigger(prev => prev + 1);
-  }, []); // Only run once when component mounts (each time modal opens)
+    if (variables && project && modalOpenCount && modalOpenCount > 0) {
+      console.log(`🔄 MurderboardCanvasWithResize modal opened (count: ${modalOpenCount}), triggering fresh evidence evaluation...`);
+      setEvaluationTrigger(prev => prev + 1);
+    }
+  }, [modalOpenCount, variables, project]); // Run when modal opens or data changes
+
+  // Reset fragment IDs and update indicators when new dataset loads
+  useEffect(() => {
+    if (resetTrigger > 0) {
+      console.log(`🔄 New dataset loaded, resetting evidence tracking state...`);
+      setEvidenceFragmentIds({});
+      setUpdateIndicators({});
+      setEvidenceContentCache({});
+      console.log(`✅ Evidence tracking state reset complete`);
+    }
+  }, [resetTrigger]);
+
+  // Expose reset function to parent component
+  useEffect(() => {
+    if (onResetTracking) {
+      // Store the reset function reference so parent can call it
+      (window as any).resetMurderboardTracking = () => {
+        console.log(`🔄 External reset triggered...`);
+        setResetTrigger(prev => prev + 1);
+      };
+    }
+  }, [onResetTracking]);
 
   // Phase 6: Check for content updates when murderboard opens (part of fresh evaluation)
   useEffect(() => {
@@ -99,7 +128,13 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
 
   // Phase 6: Check for content updates for all visible evidence
   const checkForContentUpdates = () => {
-    if (!variables || !project) return;
+    if (!variables || !project) {
+      console.log(`⚠️ Cannot check content updates: missing variables or project`);
+      return;
+    }
+
+    console.log(`🔄 Starting content update check...`);
+    console.log(`📊 Current stored fragment IDs:`, evidenceFragmentIds);
 
     const layout = layoutData as LayoutRoot;
     const newUpdateIndicators: {[evidenceName: string]: boolean} = {};
@@ -135,6 +170,7 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     }
 
     // Update the indicators state
+    console.log(`🔔 Setting update indicators:`, newUpdateIndicators);
     setUpdateIndicators(newUpdateIndicators);
   };
 
@@ -148,6 +184,7 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
     console.log(`🔄 Pre-evaluating all visible evidence content...`);
     const layout = layoutData as LayoutRoot;
     const newContentCache: typeof evidenceContentCache = {};
+    const newFragmentIds: {[evidenceName: string]: string} = {};
 
     // Process each evidence image
     for (const element of layout.children) {
@@ -198,14 +235,34 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
             fragmentId: selectedContent.fragmentId
           };
 
+          // Store fragment ID for update tracking (only if we don't have one stored yet)
+          if (selectedContent.fragmentId && !evidenceFragmentIds[baseEvidenceName]) {
+            newFragmentIds[baseEvidenceName] = selectedContent.fragmentId;
+            console.log(`📝 Storing initial fragment ID for ${baseEvidenceName}: ${selectedContent.fragmentId}`);
+          }
+
           console.log(`✅ Cached content for ${baseEvidenceName}: ${selectedContent.content.substring(0, 50)}...`);
         }
       }
     }
 
-    // Update the cache
+    // Update the cache and fragment IDs
     setEvidenceContentCache(newContentCache);
+
+    // Update fragment IDs for newly discovered evidence
+    if (Object.keys(newFragmentIds).length > 0) {
+      setEvidenceFragmentIds(prev => ({
+        ...prev,
+        ...newFragmentIds
+      }));
+      console.log(`📝 Stored ${Object.keys(newFragmentIds).length} new fragment IDs for update tracking`);
+    }
+
     console.log(`🎯 Pre-evaluation complete. Cached ${Object.keys(newContentCache).length} evidence items.`);
+
+    // Check for content updates after pre-evaluation
+    console.log(`🔄 Checking for evidence content updates after pre-evaluation...`);
+    checkForContentUpdates();
   };
 
   // Phase 2: Enhanced evidence click handler with character name resolution
@@ -975,8 +1032,8 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
       return true;
     }
 
-    // Phase 6: Handle update indicators
-    if (elementName.toLowerCase().includes('_update')) {
+    // Phase 6: Handle update indicators (elements ending with _update)
+    if (elementName.toLowerCase().endsWith('_update')) {
       const baseEvidenceName = elementName.replace(/_update$/i, '');
       const shouldShowUpdate = updateIndicators[baseEvidenceName];
       console.log(`🔔 Update indicator for ${baseEvidenceName}: ${shouldShowUpdate}`);
@@ -1017,7 +1074,7 @@ const MurderboardCanvasWithResize: React.FC<MurderboardCanvasProps> = ({ variabl
   // Check if an element is evidence (not an update indicator or background)
   const isEvidenceImage = (elementName: string): boolean => {
     // Evidence images don't end with _update and aren't background elements
-    return !elementName.toLowerCase().includes('_update') &&
+    return !elementName.toLowerCase().endsWith('_update') &&
            !elementName.toLowerCase().includes('background') &&
            !elementName.toLowerCase().includes('bg');
   };
@@ -1134,6 +1191,8 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
 
   private context?: PluginContext;
   private currentVariables?: any;
+  private resetTrackingFunction?: () => void;
+  private modalOpenCount: number = 0;
 
   /**
    * Enable isolated rendering to prevent infinite re-render loops
@@ -1187,8 +1246,9 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
     const contentWidth = layout.size.width * scale;
     const contentHeight = layout.size.height * scale;
 
-    // Log current variables when modal is rendered
-    console.log('🎨 Rendering murderboard modal with variables:', this.currentVariables);
+    // Increment modal open counter each time modal is rendered
+    this.modalOpenCount += 1;
+    console.log(`🎨 Rendering murderboard modal #${this.modalOpenCount} with variables:`, this.currentVariables);
 
     return (
       <Modal
@@ -1208,6 +1268,11 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
         <MurderboardCanvasWithResize
           variables={this.currentVariables}
           project={this.getCurrentProject()}
+          modalOpenCount={this.modalOpenCount}
+          onResetTracking={() => {
+            // Store the reset function reference
+            this.resetTrackingFunction = (window as any).resetMurderboardTracking;
+          }}
         />
 
         {/* Debug: Show context info */}
@@ -1245,6 +1310,12 @@ export class MysteryworksMurderboardPlugin implements IPlugin {
       this.context.showMessage('Mysteryworks Murderboard plugin detected dataset load!', 'info');
       // Update context with project data
       this.context.project = data;
+
+      // Reset evidence tracking state when new dataset loads
+      if ((window as any).resetMurderboardTracking) {
+        console.log('🔄 Resetting murderboard evidence tracking for new dataset...');
+        (window as any).resetMurderboardTracking();
+      }
     }
   }
 
