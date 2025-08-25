@@ -1,5 +1,7 @@
 # Articy Web Viewer - Dual Deployment Plan
 
+> **📝 Note**: This document contains the original Electron-based desktop plan. A **simplified portable desktop approach** has been adopted instead. See **[Desktop Version Documentation](devdoc_desktop-version.md)** for the current implementation plan using portable PHP servers.
+
 ## 🎯 Project Overview
 
 Create a unified codebase that supports two deployment targets:
