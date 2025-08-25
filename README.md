@@ -23,7 +23,7 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 ### **⚙️ Advanced Features**
 - **Variable System** - Real-time variable tracking with search, editing, and bulk import
 - **Dataset Management** - Automatic detection and loading with version tracking
-- **Real-Time Logging** - Session-based console logging for debugging
+- **Simple Console Logging** - One-click console log capture and save for debugging
 - **Keyboard Navigation** - Full keyboard support with arrow keys and shortcuts
 
 ### **🎯 User Experience**
@@ -34,11 +34,11 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 
 ## 🆕 **Latest Updates (August 2025)**
 
-### **🔧 Real-Time Session-Based Logging**
-- **Persistent Log Files** - Each browser session gets its own continuously growing log file
-- **Real-Time Streaming** - Console entries immediately written to server files
-- **Session Management** - Automatic session tracking with heartbeat monitoring
-- **Administrative Interface** - Monitor active sessions and manage log files
+### **🔧 Simplified Console Logging**
+- **Automatic Capture** - Console logs captured in memory from app startup
+- **One-Click Save** - Floating button to save all logs to server instantly
+- **Batch Processing** - Efficient single-request log saving with automatic cleanup
+- **User-Controlled** - Save logs only when needed for debugging
 
 ### **🛡️ Enhanced Development Tools**
 - **File Protection System** - Prevents file corruption during development

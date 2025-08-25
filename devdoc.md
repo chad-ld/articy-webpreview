@@ -42,7 +42,7 @@ git add . && git commit -m "Description" && git push origin v4.x
 - **Dual Format Support**: Articy 3.x and 4.x JSON formats
 - **Interactive Navigation**: Choice-based story progression with history
 - **Plugin Architecture**: Extensible system for custom functionality
-- **Real-Time Logging**: Session-based console logging system
+- **Simple Console Logging**: One-click console log capture and save
 - **Dataset Management**: Automatic detection and loading of story data
 - **Variable System**: Dynamic variable tracking and editing
 - **Configuration System**: Flexible default settings with user overrides
@@ -51,7 +51,7 @@ git add . && git commit -m "Description" && git push origin v4.x
 - **Story Mode**: Streamlined reading experience with optional elements hidden
 - **Search Functionality**: Node content search across entire projects
 - **Keyboard Navigation**: Full keyboard support for accessibility
-- **Session Management**: Persistent logging with automatic cleanup
+- **Simple Logging**: User-controlled console log capture and save
 - **Cache Busting**: Comprehensive development cache prevention
 
 ### **Deployment Options**
@@ -69,7 +69,7 @@ git add . && git commit -m "Description" && git push origin v4.x
 
 ### **Core Utilities**
 - **hybridDatasetDetector.js**: Automatic dataset discovery and loading
-- **consoleLogger.ts**: Real-time session-based logging system
+- **consoleLogger.ts**: Simple console log capture and batch save system
 - **configManager.ts**: Configuration loading and persistence
 - **nodeProcessor.ts**: Story node parsing and processing
 
@@ -83,7 +83,7 @@ git add . && git commit -m "Description" && git push origin v4.x
 For comprehensive technical details, see the feature-specific documentation:
 
 ### **Core Systems**
-- **[Logging System](devdoc_logging.md)** - Real-time session-based console logging
+- **[Logging System](devdoc_logging.md)** - Simple console log capture and save system
 - **[Plugin Architecture](devdoc_plugins.md)** - Plugin development and integration
 - **[Dataset Management](devdoc_datasets.md)** - Data loading and detection systems
 - **[Configuration System](devdoc_configuration.md)** - Settings and user preferences
@@ -114,7 +114,7 @@ For comprehensive technical details, see the feature-specific documentation:
 ### **Development Environment**
 - **PHP Server Required**: Many features need PHP proxy for server operations
 - **Cache Prevention**: Safe mode prevents development cache issues
-- **Session Management**: Real-time logging requires session cleanup
+- **Simple Logging**: Floating button for on-demand log capture and save
 
 ## 🖥️ **Desktop Version Implementation**
 
@@ -155,9 +155,9 @@ See **[Desktop Version Documentation](devdoc_desktop-version.md)** for complete 
 - **PHP Proxy Issues**: Verify server is running and proxy configuration
 
 ### **Debug Resources**
-- **Console Logging**: Enable real-time logging for detailed debugging
-- **Session Manager**: Monitor active logging sessions
-- **Log Files**: Check `logs/` directory for detailed error information
+- **Console Logging**: Use floating log button to capture and save console output
+- **Log Files**: Check `logs/` directory for saved console log files
+- **Browser Console**: Monitor real-time console output during development
 
 ---
 

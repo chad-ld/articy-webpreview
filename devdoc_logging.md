@@ -1,196 +1,163 @@
-# Real-Time Session-Based Console Logging System
+# Simple Console Logging System
 
 ## 🎯 **Overview**
 
-The Articy Web Viewer includes an advanced real-time console logging system that maintains persistent log files per browser session, similar to server-side logging. This system replaces traditional download-based logging with continuous streaming to persistent session files.
+The Articy Web Viewer includes a simple console logging system that captures console output in memory and allows users to save logs on demand via a floating button. This system provides easy debugging without the complexity of real-time streaming or session management.
 
 ## 🏗️ **Architecture**
 
 ### **Core Components**
-- **Console Logger** (`src/utils/consoleLogger.ts`) - Frontend logging orchestration
-- **Real-Time Endpoint** (`public/append-log.php`) - Server-side log streaming
-- **Session Management** (`public/cleanup-sessions.php`) - Lifecycle and cleanup
-- **Administrative Interface** (`public/session-manager.html`) - Monitoring and control
+- **Simple Console Logger** (`src/utils/consoleLogger.ts`) - Frontend logging capture and batch saving
+- **Save Endpoint** (`public/save-log.php`) - Server-side batch log saving
+- **Floating Button** (App.tsx) - User interface for saving captured logs
 
-### **Session Lifecycle**
-1. **Initialization**: Unique session ID created, persistent log file established
-2. **Real-Time Streaming**: Individual console entries immediately appended to session file
-3. **Heartbeat Monitoring**: Regular activity tracking (every 30 seconds)
-4. **Graceful Closure**: Session properly terminated when browser tab closes
-5. **Automatic Cleanup**: Inactive sessions and old files automatically removed
+### **Simple Workflow**
+1. **Automatic Capture**: Console logs are automatically captured in memory from app startup
+2. **User-Triggered Save**: User clicks floating log button to save all captured logs
+3. **Batch Upload**: All logs are sent to server in a single request
+4. **File Creation**: Server saves logs with timestamp to logs folder
+5. **Memory Clear**: Captured logs are cleared after successful save
 
 ## 🔧 **Implementation Details**
 
-### **Console Logger Class**
+### **Simple Console Logger Class**
 ```typescript
-class ConsoleLogger {
-  private sessionId: string;           // Unique session identifier
-  private isSessionInitialized: boolean; // Session state tracking
-  private heartbeatInterval: NodeJS.Timeout; // Activity monitoring
-  private useRealTimeLogging: boolean; // Mode selection flag
+class SimpleConsoleLogger {
+  private logs: string[];             // In-memory log storage
+  private originalConsole: any;       // Original console methods
+  private sessionId: string;          // Session identifier for file naming
 }
 ```
 
 ### **Key Methods**
-- **`enable()`**: Initialize session and start real-time logging
-- **`disable()`**: Close session and stop logging
-- **`appendLogToServer()`**: Stream individual log entries
-- **`initializeSession()`**: Create persistent session file
-- **`startHeartbeat()`**: Begin activity monitoring
-- **`closeSession()`**: Gracefully terminate session
+- **`saveLogs()`**: Save all captured logs to server and clear memory
+- **`getLogCount()`**: Get current number of captured logs
+- **`clearLogs()`**: Clear captured logs from memory
+- **`setupConsoleInterception()`**: Intercept console methods for automatic capture
 
-### **Session File Format**
+### **Log File Format**
 ```
-# Console Log Session
-# Session ID: 2025-08-25T15-58-23
-# Started: 2025-08-25 15:58:23 UTC
-# Real-time logging enabled
+# Console Log Capture
+# Session: 2025-08-25T15-58-23
+# Generated: 2025-08-25T16:30:15.123Z
+# Total entries: 45
 
-[2025-08-25 15:58:23.000 UTC] [LOG] Application started
-[2025-08-25 15:58:24.000 UTC] [INFO] Dataset loaded successfully
-[2025-08-25 15:58:25.000 UTC] [WARN] Plugin asset missing
+[2025-08-25T15:58:23.000Z] [LOG] Application started
+[2025-08-25T15:58:24.000Z] [INFO] Dataset loaded successfully
+[2025-08-25T15:58:25.000Z] [WARN] Plugin asset missing
 ...
-
-# Session closed: 2025-08-25 16:30:15 UTC
-# End of session log
 ```
 
 ## 📡 **Server Endpoints**
 
-### **append-log.php**
-**Purpose**: Handle real-time log streaming and session management
-
-**Actions Supported**:
-- **`init`**: Create new session log file with header
-- **`append`**: Add individual log entry to session file
-- **`heartbeat`**: Update session activity timestamp
-- **`close`**: Finalize session with footer and cleanup
+### **save-log.php**
+**Purpose**: Save batch console logs to server logs folder
 
 **Request Format**:
 ```json
 {
-  "sessionId": "2025-08-25T15-58-23",
-  "action": "append",
-  "logEntry": "[LOG] User clicked navigation button"
+  "filename": "console-capture-2025-08-25T16-30-15.log",
+  "content": "# Console Log Capture\n# Session: 2025-08-25T15-58-23\n..."
 }
 ```
 
-### **cleanup-sessions.php**
-**Purpose**: Manage session lifecycle and file cleanup
-
-**Cleanup Operations**:
-- Remove log files older than 24 hours
-- Close sessions inactive for 1+ hours
-- Delete orphaned heartbeat files
-- Provide active session statistics
-
-## 🎛️ **Configuration**
-
-### **Vite Proxy Setup**
-```typescript
-// vite.config.ts
-proxy: {
-  '/append-log.php': {
-    target: 'http://localhost:8080',
-    changeOrigin: true
-  },
-  '/cleanup-sessions.php': {
-    target: 'http://localhost:8080',
-    changeOrigin: true
-  }
+**Response Format**:
+```json
+{
+  "success": true,
+  "message": "Log saved successfully to logs/console-capture-2025-08-25T16-30-15.log",
+  "filename": "console-capture-2025-08-25T16-30-15.log",
+  "size": 1234
 }
 ```
+
+## 🎛️ **User Interface**
+
+### **Floating Log Button**
+- **Position**: Fixed bottom-right corner of screen
+- **Visibility**: Always visible on both loading screen and viewer interface
+- **Display**: Shows current log count (e.g., "📝 (23)")
+- **Action**: Click to save all captured logs and clear memory
 
 ### **Console Interception**
 ```typescript
-// Intercept all console methods
+// Intercept all console methods automatically
 ['log', 'error', 'warn', 'info', 'debug'].forEach(method => {
   console[method] = (...args) => {
     originalConsole[method].apply(console, args);
-    
-    if (this.isEnabled) {
-      const logEntry = `[${method.toUpperCase()}] ${message}`;
-      this.appendLogToServer(logEntry);
-    }
+
+    // Always capture logs in memory
+    const logEntry = `[${method.toUpperCase()}] ${message}`;
+    this.logs.push(`[${timestamp}] ${logEntry}`);
   };
 });
 ```
 
-## 🔄 **Session Management**
+## 🔄 **File Management**
 
-### **Session ID Generation**
-- **Format**: `YYYY-MM-DDTHH-MM-SS` (ISO timestamp without special characters)
+### **Filename Generation**
+- **Format**: `console-capture-YYYY-MM-DDTHH-MM-SS.log`
 - **Uniqueness**: Timestamp-based ensures no collisions
-- **Validation**: Server validates format with regex: `/^[a-zA-Z0-9_-]+$/`
+- **Validation**: Server validates format with regex: `/^console-(export|capture)-[\d-]+\.log$/`
 
-### **Heartbeat System**
-- **Frequency**: Every 30 seconds
-- **Purpose**: Track session activity and detect browser closure
-- **File Format**: `logs/session-{sessionId}.heartbeat`
-- **Content**: JSON with session metadata and timestamp
+### **Storage**
+- **Location**: `logs/` directory on server
+- **Retention**: Manual cleanup (no automatic deletion)
+- **Access**: Files remain until manually removed
+- **Backup**: Standard file system backup applies
 
-### **Automatic Cleanup**
-- **Inactive Sessions**: Closed after 1 hour of inactivity
-- **Old Log Files**: Removed after 24 hours
-- **Orphaned Files**: Heartbeats without corresponding logs deleted
-- **Trigger**: Manual via session manager or automated via cron
+## 🖥️ **Usage**
 
-## 🖥️ **Administrative Interface**
+### **How to Use**
+1. **Automatic Start**: Console logging starts automatically when app loads
+2. **Monitor Count**: Watch the floating button show increasing log count
+3. **Save Logs**: Click the floating button to save all logs to server
+4. **Success Feedback**: App shows success message when logs are saved
+5. **Memory Clear**: Logs are automatically cleared after successful save
 
-### **Session Manager** (`session-manager.html`)
-**Features**:
-- View all active sessions with activity timestamps
-- Run manual cleanup operations
-- Monitor cleanup statistics
-- Test session logging functionality
-
-**Access**: `http://localhost:3000/session-manager.html`
-
-### **Monitoring Capabilities**
-- **Active Session Count**: Real-time session tracking
-- **Last Activity**: Time since last heartbeat
-- **User Agent**: Browser identification
-- **Cleanup Statistics**: Files processed and errors
+### **Benefits**
+- **Simple**: No configuration or setup required
+- **Reliable**: No network dependencies during capture
+- **Efficient**: Batch upload reduces server requests
+- **User-Controlled**: Save only when needed
 
 ## 🧪 **Testing & Verification**
 
-### **Test Scripts**
-- **`test-auto-save-console.js`**: Browser console testing functions
-- **`test-auto-save-simple.html`**: Simple interface for log generation
-
 ### **Verification Steps**
-1. Enable console logging from loading screen
-2. Check `logs/` directory for session files
-3. Monitor real-time file growth during application use
-4. Verify heartbeat files are created and updated
-5. Test session closure on browser tab close
+1. Open application and observe floating log button
+2. Perform actions that generate console logs
+3. Watch log count increase in button text
+4. Click button to save logs
+5. Check `logs/` directory for new log file
+6. Verify button count resets to 0 after save
 
 ### **Expected Behavior**
-- **Immediate Logging**: Console entries appear in file within milliseconds
-- **Session Persistence**: Single file grows throughout browser session
-- **Automatic Management**: No manual intervention required
-- **Graceful Degradation**: Falls back to legacy mode if server unavailable
+- **Automatic Capture**: All console output captured from app start
+- **Real-Time Count**: Button shows current number of captured logs
+- **Successful Save**: Logs saved to server with timestamp filename
+- **Memory Clear**: Log count resets after successful save
+- **Fallback Download**: Browser download if server save fails
 
 ## ⚠️ **Troubleshooting**
 
 ### **Common Issues**
-- **Proxy Not Working**: Check PHP server is running on port 8080
-- **Session Not Initializing**: Verify append-log.php endpoint accessibility
-- **Files Not Created**: Check logs directory permissions
-- **Heartbeat Failures**: Normal if server temporarily unavailable
+- **Button Not Appearing**: Check if floating button CSS is being overridden
+- **Save Fails**: Verify PHP server is running and save-log.php is accessible
+- **No Logs Captured**: Check console interception is working properly
+- **Permission Errors**: Ensure logs directory is writable by web server
 
 ### **Debug Information**
-- **Console Messages**: Real-time logging status updates
-- **Network Tab**: Monitor append-log.php requests
-- **Session Manager**: Administrative oversight and statistics
-- **Log Files**: Direct file system verification
+- **Console Messages**: Check for save success/failure messages
+- **Network Tab**: Monitor save-log.php requests
+- **Log Count**: Button shows current captured log count
+- **File System**: Check logs directory for created files
 
-### **Legacy Fallback**
-If real-time logging fails, system automatically falls back to:
-- **Batch Logging**: Traditional download-based approach
-- **Manual Save**: User-triggered log export
-- **Local Storage**: Browser-based log retention
+### **Fallback Behavior**
+If server save fails, system automatically:
+- **Downloads File**: Browser downloads log file to Downloads folder
+- **Clears Memory**: Logs are still cleared after fallback download
+- **Shows Error**: User sees error message but logs are not lost
 
 ---
 
-> **💡 Note**: This system provides server-like logging persistence without requiring complex infrastructure, making it ideal for both development and production environments.
+> **💡 Note**: This simplified system provides reliable logging with minimal complexity, making it ideal for debugging without infrastructure overhead.

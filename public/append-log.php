@@ -1,8 +1,16 @@
 <?php
 /**
- * Real-Time Log Append Endpoint
+ * DISABLED - Real-Time Log Append Endpoint (Legacy)
+ * This file has been disabled in favor of simple batch logging
  * Maintains persistent log files per browser session and appends individual log entries
  */
+
+// This endpoint is disabled - return error
+http_response_code(410);
+echo json_encode(['error' => 'Real-time logging endpoint disabled - use simple batch logging instead']);
+exit();
+
+/*
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -153,4 +161,5 @@ try {
         'action' => $action ?? 'unknown'
     ]);
 }
+*/
 ?>

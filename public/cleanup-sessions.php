@@ -1,8 +1,14 @@
 <?php
 /**
- * Session Cleanup Script
+ * DISABLED - Session Cleanup Script (Legacy)
+ * This file has been disabled in favor of simple batch logging
  * Cleans up old log files and inactive sessions
  */
+
+// This endpoint is disabled - return error
+http_response_code(410);
+echo json_encode(['error' => 'Session cleanup endpoint disabled - no longer needed with simple batch logging']);
+exit();
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');

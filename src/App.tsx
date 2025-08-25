@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ConfigProvider, message, Spin, Select, Button, Divider, Tooltip, Switch, Space } from 'antd';
-import { SortAscendingOutlined, ClockCircleOutlined, FileTextOutlined, DownloadOutlined } from '@ant-design/icons';
+import { ConfigProvider, message, Spin, Select, Button, Divider, Tooltip, Space } from 'antd';
+import { SortAscendingOutlined, ClockCircleOutlined, FileTextOutlined } from '@ant-design/icons';
 import InteractiveArticyViewer from './components/InteractiveArticyViewer';
 import EnhancedFileInput from './components/EnhancedFileInput';
 import PluginSelector from './components/PluginSelector';
@@ -64,7 +64,6 @@ function App() {
   const [dataSource, setDataSource] = useState<'hardcoded' | 'manual' | null>(null);
   const [detectionMethod, setDetectionMethod] = useState<string>('detecting...');
   const [sortMode, setSortMode] = useState<'alphabetical' | 'date'>('date');
-  const [consoleLoggingEnabled, setConsoleLoggingEnabled] = useState(false);
 
   // Initialize hybrid dataset detector and display formatter
   const hybridDetector = new HybridDatasetDetector();
@@ -278,12 +277,7 @@ function App() {
     // Log environment information
     hybridDetector.environmentDetector.logEnvironmentInfo();
 
-    // Initialize console logger
-    consoleLogger.loadState().then(() => {
-      setConsoleLoggingEnabled(consoleLogger.isLoggingEnabled());
-    }).catch(error => {
-      console.error('Failed to load console logger state:', error);
-    });
+    // Console logger is now always capturing automatically
 
     // Initialize app with dataset detection
     initializeApp();
@@ -436,21 +430,14 @@ function App() {
     setIsLoading(false);
   };
 
-  const handleConsoleLoggingToggle = async (enabled: boolean) => {
+  const handleSaveLogs = async () => {
     try {
-      if (enabled) {
-        await consoleLogger.enable();
-      } else {
-        await consoleLogger.disable();
-      }
-      setConsoleLoggingEnabled(enabled);
+      await consoleLogger.saveLogs();
+      message.success('Console logs saved successfully!');
     } catch (error) {
-      console.error('Failed to toggle console logging:', error);
+      console.error('Failed to save console logs:', error);
+      message.error('Failed to save console logs');
     }
-  };
-
-  const handleDownloadLogs = () => {
-    consoleLogger.downloadLogs();
   };
 
   // Calculate gradual margin for header responsiveness
@@ -649,43 +636,7 @@ function App() {
                       <PluginSelector />
                     </div>
 
-                    {/* Console Logging Controls */}
-                    <div style={{
-                      marginBottom: '20px',
-                      padding: '0 16px',
-                      backgroundColor: '#ffffff',
-                      borderRadius: '6px',
-                      border: '1px solid #d9d9d9',
-                      height: '48px',
-                      maxHeight: '48px',
-                      overflow: 'hidden',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between'
-                    }}>
-                      <span style={{ fontSize: '14px', color: '#262626', fontWeight: '500', lineHeight: '1' }}>
-                        <FileTextOutlined style={{ marginRight: '8px', color: '#1890ff' }} />
-                        Debug Console Logging
-                      </span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', height: '100%' }}>
-                        {consoleLoggingEnabled && (
-                          <Button
-                            size="small"
-                            icon={<DownloadOutlined />}
-                            onClick={handleDownloadLogs}
-                            type="primary"
-                            style={{ fontSize: '11px', height: '22px', lineHeight: '1' }}
-                          >
-                            Save ({consoleLogger.getLogCount()})
-                          </Button>
-                        )}
-                        <Switch
-                          checked={consoleLoggingEnabled}
-                          onChange={handleConsoleLoggingToggle}
-                          size="small"
-                        />
-                      </div>
-                    </div>
+
 
                     <div>
                       <h3 style={{ marginBottom: '12px' }}>📤 Upload Custom Files</h3>
@@ -761,6 +712,31 @@ function App() {
             </div>
           </footer>
         )}
+
+        {/* Floating Log Capture Button */}
+        <Button
+          type="primary"
+          size="small"
+          onClick={handleSaveLogs}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 1000,
+            borderRadius: '20px',
+            padding: '4px 12px',
+            fontSize: '12px',
+            height: 'auto',
+            lineHeight: '1.2',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px'
+          }}
+        >
+          <FileTextOutlined style={{ fontSize: '12px' }} />
+          📝 ({consoleLogger.getLogCount()})
+        </Button>
       </div>
     </ConfigProvider>
   );

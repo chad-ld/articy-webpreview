@@ -35,7 +35,7 @@ try {
     $content = $data['content'];
     
     // Validate filename (security check)
-    if (!preg_match('/^console-export-[\d-]+\.log$/', $filename)) {
+    if (!preg_match('/^console-(export|capture)-[\w-]+\.log$/', $filename)) {
         throw new Exception('Invalid filename format');
     }
     
