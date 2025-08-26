@@ -23,9 +23,15 @@ The Articy Web Viewer includes a simple console logging system that captures con
 ### **Simple Console Logger Class**
 ```typescript
 class SimpleConsoleLogger {
-  private logs: string[];             // In-memory log storage
-  private originalConsole: any;       // Original console methods
+  private logs: string[] = [];        // In-memory log storage
+  private originalConsole: any = {};  // Original console methods
   private sessionId: string;          // Session identifier for file naming
+
+  constructor() {
+    this.sessionId = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    this.setupConsoleInterception();
+    this.startCapturing();
+  }
 }
 ```
 
@@ -34,17 +40,19 @@ class SimpleConsoleLogger {
 - **`getLogCount()`**: Get current number of captured logs
 - **`clearLogs()`**: Clear captured logs from memory
 - **`setupConsoleInterception()`**: Intercept console methods for automatic capture
+- **`isCapturing()`**: Always returns true (always capturing in this simple version)
+- **`fallbackDownload()`**: Downloads logs if server save fails
 
 ### **Log File Format**
 ```
 # Console Log Capture
-# Session: 2025-08-25T15-58-23
-# Generated: 2025-08-25T16:30:15.123Z
+# Session: 2025-08-26T02-47-08
+# Generated: 2025-08-26T02:55:15.123Z
 # Total entries: 45
 
-[2025-08-25T15:58:23.000Z] [LOG] Application started
-[2025-08-25T15:58:24.000Z] [INFO] Dataset loaded successfully
-[2025-08-25T15:58:25.000Z] [WARN] Plugin asset missing
+[2025-08-26T02:47:08.000Z] [LOG] Application started
+[2025-08-26T02:47:09.000Z] [INFO] Dataset loaded successfully
+[2025-08-26T02:47:10.000Z] [WARN] Plugin asset missing
 ...
 ```
 
@@ -56,8 +64,8 @@ class SimpleConsoleLogger {
 **Request Format**:
 ```json
 {
-  "filename": "console-capture-2025-08-25T16-30-15.log",
-  "content": "# Console Log Capture\n# Session: 2025-08-25T15-58-23\n..."
+  "filename": "console-capture-2025-08-26T02-55-15.log",
+  "content": "# Console Log Capture\n# Session: 2025-08-26T02-47-08\n..."
 }
 ```
 
@@ -65,32 +73,47 @@ class SimpleConsoleLogger {
 ```json
 {
   "success": true,
-  "message": "Log saved successfully to logs/console-capture-2025-08-25T16-30-15.log",
-  "filename": "console-capture-2025-08-25T16-30-15.log",
+  "message": "Log saved successfully to logs/console-capture-2025-08-26T02-55-15.log",
+  "filename": "console-capture-2025-08-26T02-55-15.log",
   "size": 1234
 }
 ```
 
+### **Disabled Legacy Endpoints**
+The following endpoints are disabled and return 410 errors:
+- **`append-log.php`** - Real-time log streaming (legacy)
+- **`cleanup-sessions.php`** - Session management (legacy)
+
+These were part of a previous real-time logging implementation that has been replaced by the simpler batch approach.
+
 ## 🎛️ **User Interface**
 
 ### **Floating Log Button**
-- **Position**: Fixed bottom-right corner of screen
+- **Position**: Fixed bottom-right corner of screen (z-index: 1000)
 - **Visibility**: Always visible on both loading screen and viewer interface
-- **Display**: Shows current log count (e.g., "📝 (23)")
+- **Display**: Shows current log count with file icon (e.g., "📝 (23)")
 - **Action**: Click to save all captured logs and clear memory
+- **Styling**: Blue primary button with rounded corners and shadow
+- **Size**: Small button with 12px font size for minimal intrusion
 
 ### **Console Interception**
 ```typescript
 // Intercept all console methods automatically
-['log', 'error', 'warn', 'info', 'debug'].forEach(method => {
-  console[method] = (...args) => {
-    originalConsole[method].apply(console, args);
+const interceptMethod = (method: string, originalFn: Function) => {
+  (console as any)[method] = (...args: any[]) => {
+    // Call original console method first
+    originalFn.apply(console, args);
 
     // Always capture logs in memory
+    const timestamp = new Date().toISOString();
+    const message = args.map(arg =>
+      typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+    ).join(' ');
+
     const logEntry = `[${method.toUpperCase()}] ${message}`;
     this.logs.push(`[${timestamp}] ${logEntry}`);
   };
-});
+};
 ```
 
 ## 🔄 **File Management**
@@ -98,13 +121,15 @@ class SimpleConsoleLogger {
 ### **Filename Generation**
 - **Format**: `console-capture-YYYY-MM-DDTHH-MM-SS.log`
 - **Uniqueness**: Timestamp-based ensures no collisions
-- **Validation**: Server validates format with regex: `/^console-(export|capture)-[\d-]+\.log$/`
+- **Validation**: Server validates format with regex: `/^console-(export|capture)-[\w-]+\.log$/`
+- **Example**: `console-capture-2025-08-26T02-55-15.log`
 
 ### **Storage**
-- **Location**: `logs/` directory on server
+- **Location**: `logs/` directory on server (created automatically if missing)
 - **Retention**: Manual cleanup (no automatic deletion)
 - **Access**: Files remain until manually removed
 - **Backup**: Standard file system backup applies
+- **Permissions**: Directory created with 0755 permissions
 
 ## 🖥️ **Usage**
 
@@ -114,12 +139,15 @@ class SimpleConsoleLogger {
 3. **Save Logs**: Click the floating button to save all logs to server
 4. **Success Feedback**: App shows success message when logs are saved
 5. **Memory Clear**: Logs are automatically cleared after successful save
+6. **Fallback Download**: If server save fails, logs download to browser Downloads folder
 
 ### **Benefits**
 - **Simple**: No configuration or setup required
 - **Reliable**: No network dependencies during capture
 - **Efficient**: Batch upload reduces server requests
 - **User-Controlled**: Save only when needed
+- **Fallback Support**: Works even if server is unavailable
+- **Always Capturing**: No need to enable/disable logging
 
 ## 🧪 **Testing & Verification**
 
@@ -141,22 +169,25 @@ class SimpleConsoleLogger {
 ## ⚠️ **Troubleshooting**
 
 ### **Common Issues**
-- **Button Not Appearing**: Check if floating button CSS is being overridden
-- **Save Fails**: Verify PHP server is running and save-log.php is accessible
-- **No Logs Captured**: Check console interception is working properly
-- **Permission Errors**: Ensure logs directory is writable by web server
+- **Button Not Appearing**: Check if floating button CSS is being overridden by other styles
+- **Save Fails**: Verify PHP server is running and `save-log.php` is accessible
+- **No Logs Captured**: Console interception starts automatically - check browser console for startup message
+- **Permission Errors**: Ensure `logs/` directory is writable by web server (auto-created with 0755)
+- **Empty Log Count**: Button shows (0) if no logs captured yet
 
 ### **Debug Information**
-- **Console Messages**: Check for save success/failure messages
-- **Network Tab**: Monitor save-log.php requests
-- **Log Count**: Button shows current captured log count
-- **File System**: Check logs directory for created files
+- **Console Messages**: Look for "📝 Console log capture started" message on app load
+- **Network Tab**: Monitor `./save-log.php` POST requests in browser dev tools
+- **Log Count**: Button shows current captured log count in real-time
+- **File System**: Check `logs/` directory for created `.log` files
+- **Server Response**: Success/error messages logged to console
 
 ### **Fallback Behavior**
 If server save fails, system automatically:
 - **Downloads File**: Browser downloads log file to Downloads folder
 - **Clears Memory**: Logs are still cleared after fallback download
 - **Shows Error**: User sees error message but logs are not lost
+- **Continues Capturing**: System continues capturing new logs after save/download
 
 ---
 

@@ -118,8 +118,7 @@ pause
 ```json
 {
   "scripts": {
-    "build:desktop": "npm run build && node scripts/create-desktop-package.js",
-    "package:desktop": "npm run build:desktop && node scripts/package-desktop.js"
+    "build:desktop": "npm run build && node scripts/create-desktop-package.js"
   }
 }
 ```
@@ -294,8 +293,12 @@ extension=openssl
 
 ### **GitHub Releases**
 ```bash
-# Create release package
-npm run package:desktop
+# Create desktop package
+npm run build:desktop
+
+# Manually create ZIP when ready for distribution
+# From builds/ folder: articy-desktop-viewer-v4.x/
+# Create ZIP: articy-desktop-viewer-v4.x.zip
 
 # Upload to GitHub releases
 # Tag: v4.x-desktop
@@ -329,10 +332,11 @@ SYSTEM REQUIREMENTS:
 ## 🔄 **Maintenance & Updates**
 
 ### **Update Process**
-1. **Build New Version** - `npm run package:desktop`
-2. **Release on GitHub** - Upload new ZIP file
-3. **User Updates** - Download and extract over existing folder
-4. **Data Preservation** - User datasets and logs are preserved
+1. **Build New Version** - `npm run build:desktop`
+2. **Create ZIP** - Manually zip the builds/ folder when ready
+3. **Release on GitHub** - Upload new ZIP file
+4. **User Updates** - Download and extract over existing folder
+5. **Data Preservation** - User datasets and logs are preserved
 
 ### **Backward Compatibility**
 - **Dataset Folder** - Always preserved during updates

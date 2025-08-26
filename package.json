@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "vite",
     "dev:safe": "powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1",
-    "dev:php": "powershell -ExecutionPolicy Bypass -File start-dev-with-php.ps1",
     "check:integrity": "powershell -ExecutionPolicy Bypass -File check-file-integrity.ps1",
     "test:cache": "powershell -ExecutionPolicy Bypass -File test-cache-busting.ps1",
     "test:runtime": "powershell -ExecutionPolicy Bypass -File test-runtime-simple.ps1",

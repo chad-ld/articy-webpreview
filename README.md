@@ -100,8 +100,9 @@ articy-webpreview/
 │   ├── components/          # React components
 │   ├── services/            # API and data services
 │   ├── plugins/            # Plugin system
-│   ├── utils/              # Utility functions
-│   └── types/              # TypeScript definitions
+│   ├── panels/             # Node type panels
+│   ├── hooks/              # React hooks
+│   └── utils/              # Utility functions
 ├── public/
 │   ├── *.php              # Server endpoints
 │   └── assets/            # Static assets
@@ -109,6 +110,9 @@ articy-webpreview/
 │   ├── mpos1.5.json/      # Sample dataset folder
 │   ├── demo4.json/        # Sample dataset folder
 │   └── ...                # Other development datasets
+├── scripts/               # Build and packaging scripts
+├── dist/                  # Production build output
+├── builds/                # Desktop build packages
 ├── devdoc.md              # Developer documentation
 └── devdoc_*.md            # Feature-specific docs
 ```
@@ -136,7 +140,26 @@ This script provides:
 | `npm run check:integrity` | Verify critical files haven't been corrupted |
 | `npm run test:cache` | Test cache busting configuration |
 | `npm run build` | Build for production deployment |
+| `npm run build:test` | **🧪 TEST**: Build and serve with cache busting for testing |
 | `npm run build:desktop` | Create portable desktop package in builds/ folder |
+
+### **🧪 Testing Environments**
+The project provides three distinct testing environments:
+
+1. **Development Server** (`start-dev-safe.ps1`)
+   - Tests unbuilt source files with hot reloading
+   - Full cache busting and file protection
+   - Uses `datasets-dev/` folder
+
+2. **Web Build Test Server** (`npm run build:test`)
+   - Tests production builds locally before deployment
+   - Cache busting for reliable testing
+   - Uses `dist/datasets/` folder
+
+3. **Desktop Version** (`start-articy.bat`)
+   - Tests portable desktop distribution
+   - Standard caching for end-user performance
+   - Uses `app/datasets/` folder
 
 ### **Plugin Development**
 1. Create a new folder in `src/plugins/`
@@ -151,13 +174,11 @@ See [Plugin Documentation](devdoc_plugins.md) for detailed plugin development gu
 ### **For Developers**
 - **[Developer Guide](devdoc.md)** - Main developer documentation with best practices
 - **[Desktop Version](devdoc_desktop-version.md)** - Portable desktop implementation guide
-- **[Logging System](devdoc_logging.md)** - Real-time session-based console logging
+- **[Logging System](devdoc_logging.md)** - Simple console logging with batch save functionality
 - **[Plugin Architecture](devdoc_plugins.md)** - Plugin development and integration
 - **[File Protection](devdoc_fileprotection.md)** - Development stability and backup systems
 
-### **Legacy Documentation**
-- **[Dual Deployment Plan](dual-deployment-plan.md)** - Original Electron-based desktop plan (superseded)
-- **[File Protection System](FILE-PROTECTION-README.md)** - Development stability guide
+
 
 ## 🤝 **Contributing**
 

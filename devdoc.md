@@ -58,7 +58,6 @@ git add . && git commit -m "Description" && git push origin v4.x
 - **Story Mode**: Streamlined reading experience with optional elements hidden
 - **Search Functionality**: Node content search across entire projects
 - **Keyboard Navigation**: Full keyboard support for accessibility
-- **Simple Logging**: User-controlled console log capture and save
 - **Cache Busting**: Comprehensive development cache prevention
 
 ### **Deployment Options**
@@ -103,13 +102,6 @@ For comprehensive technical details, see the feature-specific documentation:
 ### **Deployment & Distribution**
 - **[Desktop Version](devdoc_desktop-version.md)** - Portable desktop app implementation
 - **[File Protection](devdoc_fileprotection.md)** - Development stability and backup systems
-- **[Cache Busting](FILE-PROTECTION-README.md)** - Development cache prevention (legacy)
-- **[Testing Framework](README_old.md)** - Automated testing and verification (see sections in old README)
-
-### **User Interface**
-- **[Navigation System](README_old.md)** - Story flow and user interaction (see old README)
-- **[Variables Panel](README_old.md)** - Variable management and editing (see old README)
-- **[Story Mode](README_old.md)** - Reading experience optimization (see old README)
 
 ## ⚠️ **Critical Guidelines**
 
@@ -127,6 +119,50 @@ For comprehensive technical details, see the feature-specific documentation:
 - **PHP Server Required**: Many features need PHP proxy for server operations
 - **Cache Prevention**: Safe mode prevents development cache issues
 - **Simple Logging**: Floating button for on-demand log capture and save
+
+## 🛡️ **Cache Busting Features by Environment**
+
+### **1. Development Server (Unbuilt Files)**
+- **Command**: `powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1`
+- **Cache Busting**: ✅ **FULL PROTECTION**
+  - Vite cache disabled (`cacheDir: false`)
+  - HMR overlay disabled (prevents cache UI corruption)
+  - File watching with polling (reliable change detection)
+  - File integrity checking before startup
+  - Automatic server cleanup and port management
+- **Best For**: Active development and debugging
+
+### **2. Web Build Test Server (Built Files)**
+- **Command**: `npm run build:test`
+- **Cache Busting**: ✅ **TESTING PROTECTION**
+  - PHP opcache disabled for fresh execution
+  - Cache-control headers on PHP responses
+  - Automatic cache-busting configuration
+  - Temporary files cleaned up on exit
+- **Best For**: Testing production builds before deployment
+
+### **3. Desktop Version Server (Portable)**
+- **Command**: `start-articy.bat` (in desktop package)
+- **Cache Busting**: ⚠️ **BASIC** (standard PHP server)
+- **Best For**: End-user distribution (caching is actually desired for performance)
+
+## 📊 **Test Environment Comparison Table**
+
+| Feature | Development Server | Web Build Test Server | Desktop Version |
+|---------|-------------------|----------------------|-----------------|
+| **Command** | `start-dev-safe.ps1` | `npm run build:test` | `start-articy.bat` |
+| **Purpose** | Active development | Production build testing | End-user distribution |
+| **Source Files** | Unbuilt (`src/`) | Built (`dist/`) | Built (`app/`) |
+| **Dataset Folder** | `datasets-dev/` | `dist/datasets/` | `app/datasets/` |
+| **Default Port** | 3000 (Vite) + 8080 (PHP) | 8082 | 8080 |
+| **PHP Server** | System PHP | Portable PHP | Bundled PHP |
+| **Cache Busting** | ✅ Full (Vite + integrity) | ✅ Testing (headers + opcache) | ⚠️ Basic (standard) |
+| **Hot Reloading** | ✅ Yes (Vite HMR) | ❌ No | ❌ No |
+| **File Protection** | ✅ Integrity checking | ❌ No | ❌ No |
+| **Auto Cleanup** | ✅ Yes | ✅ Yes | ⚠️ Manual |
+| **Browser Auto-Open** | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Port Fallback** | ✅ Yes | ✅ Yes | ✅ Limited |
+| **Best Use Case** | Development & debugging | Pre-deployment testing | User distribution |
 
 ### **Production Testing**
 - **Dist Testing Server**: `start-dist-server.ps1` serves built application with portable PHP
@@ -186,19 +222,24 @@ powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1  # Alternative
 
 # Production Builds
 npm run build                   # Full build (app + plugins + config)
-npm run build:app              # Main application only
 npm run build:plugins          # Plugins only (separate compilation)
 npm run build:serve            # Build and serve locally for testing (requires system PHP)
-npm run build:test             # Build and serve with portable PHP for testing
+npm run build:test             # Build and serve with portable PHP + cache busting
 
 # Desktop Distribution
-npm run build:desktop          # Create portable desktop package
-npm run package:desktop        # Create distribution ZIP
+npm run build:desktop          # Create portable desktop package (outputs to builds/ folder)
 
 # Testing & Verification
 npm run check:integrity        # Validate critical files
 npm run test:cache             # Test cache prevention
 npm run test:runtime           # Test live server behavior
+
+# Development Tools
+npm run clean                  # Clean build artifacts and cache
+npm run cleanup:servers        # Stop all development servers
+npm run lint                   # Check code quality
+npm run lint:fix               # Fix linting issues automatically
+npm run type-check             # TypeScript type checking
 ```
 
 ### **Testing Built Applications**
