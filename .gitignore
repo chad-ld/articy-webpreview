@@ -1,6 +1,10 @@
 # VSCode SFTP configuration (contains password)
 .vscode/sftp.json
 
+# Notepad++ backup files
+nppBackup/
+**/nppBackup/
+
 # External credential files (stored outside Git repository)
 # Located in: E:\docs\text documents\batch\dh\
 # These paths are just for documentation - files are outside Git scope
