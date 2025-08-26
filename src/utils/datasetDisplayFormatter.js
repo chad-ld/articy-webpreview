@@ -43,10 +43,10 @@ class DatasetDisplayFormatter {
 
         if (dataset.format === '4.x' && dataset.folder) {
           // 4.x format: extract from objects file
-          subtitle = await this.extractSubtitleFrom4x(dataset.name);
+          subtitle = await this.extractSubtitleFrom4x(dataset);
         } else if (dataset.format === '3.x' && dataset.file) {
           // 3.x format: extract from main JSON file
-          subtitle = await this.extractSubtitleFrom3x(dataset.name);
+          subtitle = await this.extractSubtitleFrom3x(dataset);
         }
 
         // Add subtitle to display name if found
@@ -97,12 +97,13 @@ class DatasetDisplayFormatter {
 
   /**
    * Extract subtitle from HTMLPREVIEW node in a 4.x dataset
-   * @param {string} datasetName - Name of the dataset
+   * @param {Object} dataset - Dataset object with baseUrl
    * @returns {Promise<string|null>} The subtitle text or null if not found
    */
-  async extractSubtitleFrom4x(datasetName) {
+  async extractSubtitleFrom4x(dataset) {
     try {
-      const objectsResponse = await fetch(`./${datasetName}.json/package_010000060000401C_objects.json`);
+      const baseUrl = dataset.baseUrl || `./${dataset.name}.json`;
+      const objectsResponse = await fetch(`${baseUrl}/package_010000060000401C_objects.json`);
       if (!objectsResponse.ok) {
         return null;
       }
@@ -135,7 +136,7 @@ class DatasetDisplayFormatter {
       return null;
     } catch (error) {
       if (this.debugMode) {
-        console.warn(`⚠️ Error extracting 4.x subtitle from ${datasetName}:`, error.message);
+        console.warn(`⚠️ Error extracting 4.x subtitle from ${dataset.name}:`, error.message);
       }
       return null;
     }
@@ -143,12 +144,13 @@ class DatasetDisplayFormatter {
 
   /**
    * Extract subtitle from HTMLPREVIEW node in a 3.x dataset
-   * @param {string} datasetName - Name of the dataset
+   * @param {Object} dataset - Dataset object with baseUrl
    * @returns {Promise<string|null>} The subtitle text or null if not found
    */
-  async extractSubtitleFrom3x(datasetName) {
+  async extractSubtitleFrom3x(dataset) {
     try {
-      const jsonResponse = await fetch(`./${datasetName}.json`);
+      const baseUrl = dataset.baseUrl || `./${dataset.name}.json`;
+      const jsonResponse = await fetch(baseUrl);
       if (!jsonResponse.ok) {
         return null;
       }
@@ -185,7 +187,7 @@ class DatasetDisplayFormatter {
       return null;
     } catch (error) {
       if (this.debugMode) {
-        console.warn(`⚠️ Error extracting 3.x subtitle from ${datasetName}:`, error.message);
+        console.warn(`⚠️ Error extracting 3.x subtitle from ${dataset.name}:`, error.message);
       }
       return null;
     }

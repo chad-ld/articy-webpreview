@@ -21,13 +21,18 @@ try {
     // Get the current directory (we're already in the public directory)
     $scriptDir = dirname(__FILE__);
 
-    // For development, check if datasets-dev folder exists (one level up)
+    // For development: look in datasets-dev folder (one level up)
+    // For production: look in datasets folder (same directory as script)
     $devDatasetsDir = dirname($scriptDir) . DIRECTORY_SEPARATOR . 'datasets-dev';
-    $scanDir = $scriptDir; // Default to current directory
+    $prodDatasetsDir = $scriptDir . DIRECTORY_SEPARATOR . 'datasets';
 
+    // Check if we're in development mode (datasets-dev exists)
     if (is_dir($devDatasetsDir)) {
-        // Development mode - scan datasets-dev folder
         $scanDir = $devDatasetsDir;
+        $isDev = true;
+    } else {
+        $scanDir = $prodDatasetsDir;
+        $isDev = false;
     }
 
     // Initialize response
@@ -37,8 +42,7 @@ try {
         'debug' => [
             'script_location' => $scriptDir,
             'scan_directory' => $scanDir,
-            'dev_datasets_dir' => $devDatasetsDir,
-            'using_dev_mode' => ($scanDir === $devDatasetsDir),
+            'is_development' => $isDev,
             'php_version' => phpversion(),
             'timestamp' => date('Y-m-d H:i:s')
         ]
@@ -118,7 +122,7 @@ try {
                                 }
 
                                 // Determine the base URL for file access
-                                $baseUrl = ($scanDir === $devDatasetsDir) ? '/datasets-dev/' . $item : '/datasets/' . $item;
+                                $baseUrl = $isDev ? '/datasets-dev/' . $item : '/datasets/' . $item;
 
                                 // Add to datasets array
                                 $response['datasets'][] = [
@@ -128,7 +132,7 @@ try {
                                     'description' => $description,
                                     'manifestPath' => $manifestPath,
                                     'baseUrl' => $baseUrl,
-                                    'source' => ($scanDir === $devDatasetsDir) ? 'datasets-dev' : 'datasets',
+                                    'source' => $isDev ? 'datasets-dev' : 'datasets',
                                     'lastModified' => $newestTimestamp,
                                     'lastModifiedFormatted' => date('Y-m-d H:i:s', $newestTimestamp),
                                     'articyVersion' => $articyVersion,

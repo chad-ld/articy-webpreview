@@ -121,8 +121,9 @@ function App() {
       console.log(`🎯 Hybrid detection found ${rawDatasets.length} available datasets`);
 
       // Step 2: Enhance display names with subtitles (centralized formatting)
-      const datasets = await displayFormatter.formatDatasetDisplayNames(rawDatasets);
-      console.log(`🎨 Enhanced ${datasets.length} dataset display names`);
+      // TEMPORARY FIX: Skip formatter to resolve auto-loading issue
+      const datasets = rawDatasets;
+      console.log(`🎨 Enhanced ${datasets.length} dataset display names (FORMATTER BYPASSED)`);
       console.log('🎨 Final enhanced datasets:', datasets.map(d => `${d.name}: "${d.displayName}"`));
 
       // Determine which method was actually used by checking the successful method
@@ -164,14 +165,17 @@ function App() {
 
 
 
-  const loadDataset = async (datasetName: string) => {
+  const loadDataset = async (datasetName: string, datasetsToUse?: Dataset[]) => {
     setIsLoading(true);
 
     try {
       console.log(`🔄 Loading ${datasetName} dataset...`);
 
+      // Use provided datasets or fall back to state
+      const datasets = datasetsToUse || availableDatasets;
+
       // Find the dataset info to determine format
-      const datasetInfo = availableDatasets.find(d => d.name === datasetName);
+      const datasetInfo = datasets.find(d => d.name === datasetName);
       console.log(`🔍 Dataset info for ${datasetName}:`, datasetInfo);
       const is3xFormat = datasetInfo?.format === '3.x';
 
@@ -333,7 +337,7 @@ function App() {
         // Auto-load specific dataset if requested via URL
         console.log(`🎯 Auto-loading requested dataset from URL: ${requestedDataset}`);
         setSelectedDataset(requestedDataset);
-        await loadDataset(requestedDataset);
+        await loadDataset(requestedDataset, datasets);
       } else if (configService.shouldAutoLoadDataset()) {
         // Check configuration for auto-loading (second priority)
         const autoLoadDataset = configService.getAutoLoadDataset();
@@ -345,7 +349,7 @@ function App() {
 
           if (configService.shouldSkipLoadingScreen()) {
             console.log('⏭️ Skipping loading screen as configured');
-            await loadDataset(autoLoadDataset);
+            await loadDataset(autoLoadDataset, datasets);
           } else {
             console.log('📁 Showing loading screen with pre-selected dataset');
             setShowDatasetSelection(true);

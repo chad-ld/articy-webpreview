@@ -34,31 +34,13 @@ if (!(Test-Path $DistDir)) {
     exit 1
 }
 
-# Copy demo datasets for testing if they don't exist
+# Check if datasets folder exists in dist
 $DistDatasetsDir = Join-Path $DistDir "datasets"
-$DevDatasetsDir = Join-Path $ScriptDir "datasets-dev"
 
 if (!(Test-Path $DistDatasetsDir)) {
-    Write-Host "Setting up demo datasets for testing..." -ForegroundColor Yellow
-
-    if (Test-Path $DevDatasetsDir) {
-        # Create datasets directory in dist
-        New-Item -ItemType Directory -Path $DistDatasetsDir -Force | Out-Null
-
-        # Copy demo datasets
-        $DemoFiles = @("demo.json", "demo4.json", "mpos.json", "mpos1.5.json")
-        foreach ($DemoFile in $DemoFiles) {
-            $SourcePath = Join-Path $DevDatasetsDir $DemoFile
-            if (Test-Path $SourcePath) {
-                Copy-Item -Path $SourcePath -Destination $DistDatasetsDir -Recurse -Force
-                Write-Host "  Copied $DemoFile" -ForegroundColor Gray
-            }
-        }
-
-        Write-Host "Demo datasets ready for testing." -ForegroundColor Green
-    } else {
-        Write-Host "WARNING: datasets-dev folder not found. Dataset detection may not work." -ForegroundColor Yellow
-    }
+    Write-Host "WARNING: No datasets folder found in dist/" -ForegroundColor Yellow
+    Write-Host "Please manually copy your datasets to dist/datasets/ for testing." -ForegroundColor Yellow
+    Write-Host ""
 }
 
 # Check if PHP is available

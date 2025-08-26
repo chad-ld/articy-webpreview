@@ -49,9 +49,9 @@ git add . && git commit -m "Description" && git push origin v4.x
 - **Interactive Navigation**: Choice-based story progression with history
 - **Plugin Architecture**: Extensible system for custom functionality
 - **Simple Console Logging**: One-click console log capture and save
-- **Dataset Management**: Automatic detection and loading of story data
+- **Dataset Management**: Simplified environment-based data loading (dev/production separation)
 - **Variable System**: Dynamic variable tracking and editing
-- **Configuration System**: Flexible default settings with user overrides
+- **Configuration System**: Auto-loading datasets, plugin defaults, and deployment customization ✅
 
 ### **Advanced Features**
 - **Story Mode**: Streamlined reading experience with optional elements hidden
@@ -79,13 +79,15 @@ git add . && git commit -m "Description" && git push origin v4.x
 - **configManager.ts**: Configuration loading and persistence
 - **nodeProcessor.ts**: Story node parsing and processing
 
-### **Plugin System**
+### **Plugin System** ✅ **COMPLETE**
 - **Plugin Separation**: Plugins built separately from main application
 - **Dynamic Loading**: Runtime plugin loading from external files in production
 - **Development Mode**: Bundled plugins with hot reloading for development
 - **Post-Build Customization**: Add/remove plugins without rebuilding application
 - **Config Integration**: Plugin defaults controlled via config.json
 - **Dual Deployment**: Identical plugin system for web and desktop versions
+- **UMD Format**: Plugins use Universal Module Definition with React/Antd globals
+- **Auto-Discovery**: Automatic plugin detection and manifest generation
 
 ## 📚 **Detailed Documentation**
 

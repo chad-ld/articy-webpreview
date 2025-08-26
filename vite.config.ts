@@ -12,12 +12,12 @@ const datasetFilePlugin = () => ({
     // Add middleware to serve dataset files from datasets-dev
     server.middlewares.use((req, res, next) => {
       // Debug: Log all requests to see what's being requested
-      if (req.url?.includes('.json')) {
-        console.log(`🔍 Middleware checking JSON request: ${req.url}`);
+      if (req.url?.includes('datasets-dev') || req.url?.includes('.json')) {
+        console.log(`🔍 Middleware checking request: ${req.url}`);
       }
 
-      // Check if this is a dataset file request (pattern: /datasetname.json/filename.json with optional query params)
-      const match = req.url?.match(/^\/([^\/]+\.json)\/([^\/]+\.json)(\?.*)?$/);
+      // Check if this is a dataset file request (pattern: /datasets-dev/datasetname.json/filename.json with optional query params)
+      const match = req.url?.match(/^\/datasets-dev\/([^\/]+\.json)\/([^\/]+\.json)(\?.*)?$/);
       if (match) {
         const [, datasetFolder, fileName] = match;
         const filePath = resolve(__dirname, 'datasets-dev', datasetFolder, fileName);

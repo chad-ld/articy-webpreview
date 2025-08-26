@@ -14,11 +14,13 @@ A modern React-based web viewer for Articy Draft projects that allows anyone wit
 - **Navigation History** - Back button support with full state restoration
 - **Story Mode** - Clean reading experience with optional technical elements hidden
 
-### **🔌 Plugin System**
+### **🔌 Plugin System** ✅
 - **Extensible Architecture** - Add custom functionality without modifying core code
+- **Dynamic Loading** - Plugins load at runtime from external files in production
 - **Murderboard Plugin** - Interactive evidence board with variable-based visibility
 - **Evidence System** - Clickable evidence with popup dialogues and dynamic content
 - **Hot Reloading** - Plugins update instantly during development
+- **Post-Build Customization** - Add/remove plugins without rebuilding the application
 
 ### **⚙️ Advanced Features**
 - **Variable System** - Real-time variable tracking with search, editing, and bulk import
