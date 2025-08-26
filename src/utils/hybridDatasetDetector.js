@@ -120,7 +120,11 @@ class HybridDatasetDetector {
       console.log(`📡 Attempting PHP API request to: ${config.apiEndpoint}`);
     }
 
-    const response = await fetch(config.apiEndpoint, {
+    // Add cache-busting parameter to prevent cached responses
+    const cacheBuster = Date.now();
+    const apiUrl = `${config.apiEndpoint}?v=${cacheBuster}`;
+
+    const response = await fetch(apiUrl, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -152,7 +156,9 @@ class HybridDatasetDetector {
         articyVersion: dataset.articyVersion,
         format: dataset.format,
         manifestPath: dataset.manifestPath,
-        filePath: dataset.filePath // For 3.x format files
+        filePath: dataset.filePath, // For 3.x format files
+        baseUrl: dataset.baseUrl, // URL path for file access
+        source: dataset.source // Source location (datasets-dev or datasets)
       }));
 
     if (this.debugMode) {

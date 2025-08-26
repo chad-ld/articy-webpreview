@@ -125,6 +125,12 @@ For comprehensive technical details, see the feature-specific documentation:
 - **Cache Prevention**: Safe mode prevents development cache issues
 - **Simple Logging**: Floating button for on-demand log capture and save
 
+### **Production Testing**
+- **Dist Testing Server**: `start-dist-server.ps1` serves built application with portable PHP
+- **Automatic Port Selection**: Finds available ports (8082, 8083, 8084, etc.)
+- **Demo Dataset Setup**: Automatically copies demo datasets for testing
+- **Environment Detection**: Tests production plugin loading and configuration
+
 ## 🖥️ **Desktop Version Implementation** ✅
 
 ### **Portable Desktop App - COMPLETED**
@@ -178,7 +184,8 @@ powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1  # Alternative
 npm run build                   # Full build (app + plugins + config)
 npm run build:app              # Main application only
 npm run build:plugins          # Plugins only (separate compilation)
-npm run build:serve            # Build and serve locally for testing
+npm run build:serve            # Build and serve locally for testing (requires system PHP)
+npm run build:test             # Build and serve with portable PHP for testing
 
 # Desktop Distribution
 npm run build:desktop          # Create portable desktop package
@@ -189,6 +196,29 @@ npm run check:integrity        # Validate critical files
 npm run test:cache             # Test cache prevention
 npm run test:runtime           # Test live server behavior
 ```
+
+### **Testing Built Applications**
+Before deploying to production, always test the built application locally:
+
+```bash
+# Method 1: Using portable PHP (recommended)
+npm run build:test             # Builds and serves with portable PHP
+
+# Method 2: Using system PHP (if available)
+npm run build:serve            # Requires PHP in system PATH
+
+# Method 3: Manual testing
+npm run build                  # Build the application
+powershell -ExecutionPolicy Bypass -File start-dist-server.ps1  # Start test server
+```
+
+**Testing Features to Verify:**
+- ✅ Application loads without errors
+- ✅ Plugin loading from `dist/plugins/` directory
+- ✅ Dataset detection via `datasets.php`
+- ✅ Config.json loading and runtime configuration
+- ✅ Console logging endpoints (`save-log.php`)
+- ✅ All PHP endpoints respond correctly
 
 ### **Plugin Build System**
 The plugin system now uses **separated builds** for maximum flexibility:

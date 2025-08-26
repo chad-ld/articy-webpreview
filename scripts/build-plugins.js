@@ -139,7 +139,7 @@ class PluginBuilder {
             entry: 'index.ts',
             name: plugin.id,
             fileName: () => outputFile,
-            formats: ['es']
+            formats: ['umd']
           },
           rollupOptions: {
             external: ['react', 'react-dom', 'antd', 'lodash'],

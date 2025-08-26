@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-08-26T02:53:09.694Z",
+  "available": [
+    {
+      "id": "hello-world",
+      "name": "hello-world",
+      "file": "hello-world.js",
+      "version": "1.0.0",
+      "description": "",
+      "author": ""
+    },
+    {
+      "id": "mysteryworks-murderboard",
+      "name": "mysteryworks-murderboard",
+      "file": "mysteryworks-murderboard.js",
+      "version": "1.0.0",
+      "description": "",
+      "author": ""
+    },
+    {
+      "id": "test-plugin",
+      "name": "test-plugin",
+      "file": "test-plugin.js",
+      "version": "1.0.0",
+      "description": "",
+      "author": ""
+    }
+  ]
+}

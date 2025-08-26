@@ -33,6 +33,7 @@ class PluginDiscoveryService {
     // Detect if we're in development mode
     this.isDevelopment = this.detectDevelopmentMode();
     console.log(`🔧 Plugin discovery mode: ${this.isDevelopment ? 'Development (bundled)' : 'Production (dynamic)'}`);
+    console.log(`🔧 Environment detection fix applied - v2.0`);
   }
 
   /**
@@ -56,17 +57,23 @@ class PluginDiscoveryService {
       const hostname = window.location.hostname;
       const port = window.location.port;
 
-      console.log(`🔧 Checking hostname: ${hostname}, port: ${port}`);
+      console.log(`🔧 Environment detection - hostname: ${hostname}, port: ${port}`);
 
-      // Local development servers
-      if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        console.log('🔧 Development mode detected: localhost');
+      // Common development ports (Vite dev server and other dev servers)
+      if (port === '5173' || port === '3000' || port === '3001') {
+        console.log(`🔧 Development mode detected: development port ${port}`);
         return true;
       }
 
-      // Common development ports
-      if (port === '5173' || port === '3000' || port === '3001') {
-        console.log(`🔧 Development mode detected: development port ${port}`);
+      // Production testing ports (should be treated as production)
+      if (port === '8080' || port === '8081' || port === '8082' || port === '8083' || port === '8084') {
+        console.log(`🔧 Production mode detected: production testing port ${port}`);
+        return false;
+      }
+
+      // Only treat localhost as development if no port is specified (default HTTP/HTTPS)
+      if ((hostname === 'localhost' || hostname === '127.0.0.1') && !port) {
+        console.log('🔧 Development mode detected: localhost without specific port');
         return true;
       }
     }
@@ -100,6 +107,9 @@ class PluginDiscoveryService {
    */
   async discoverPlugins(): Promise<void> {
     console.log('🔍 Starting automatic plugin discovery...');
+
+    // Ensure all required globals are available for UMD plugins
+    await this.ensureGlobalsForUMD();
 
     try {
       if (this.isDevelopment) {
@@ -248,7 +258,7 @@ class PluginDiscoveryService {
   private async loadPluginManifest(): Promise<PluginManifest | null> {
     try {
       const timestamp = new Date().getTime();
-      const response = await fetch(`./plugins/plugins.json?v=${timestamp}`);
+      const response = await fetch(`/plugins/plugins.json?v=${timestamp}`);
 
       if (!response.ok) {
         console.log(`📝 Plugin manifest not found (${response.status}), this is normal for development or first-time setups`);
@@ -270,28 +280,122 @@ class PluginDiscoveryService {
    */
   private async loadDynamicPlugin(pluginInfo: PluginManifest['available'][0]): Promise<IPlugin | null> {
     try {
-      const pluginUrl = `./plugins/${pluginInfo.file}`;
-      console.log(`📥 Importing dynamic plugin from: ${pluginUrl}`);
+      // Use absolute path to avoid Vite base path transformation
+      const pluginUrl = `/plugins/${pluginInfo.file}`;
+      console.log(`📥 Loading dynamic plugin from: ${pluginUrl}`);
 
-      // Use dynamic import to load the plugin module
-      const module = await import(/* @vite-ignore */ pluginUrl) as PluginModule;
-      const plugin = this.extractPluginFromModule(module, pluginInfo.id);
-
-      if (plugin) {
-        // Validate that the plugin ID matches the manifest
-        if (plugin.metadata.id !== pluginInfo.id) {
-          console.warn(`⚠️ Plugin ID mismatch: manifest says "${pluginInfo.id}", plugin says "${plugin.metadata.id}"`);
-        }
-        return plugin;
-      } else {
-        console.error(`❌ No valid plugin found in dynamic module: ${pluginUrl}`);
-        return null;
+      // For .js files, assume they are UMD and skip ES module import
+      if (pluginInfo.file.endsWith('.js')) {
+        console.log(`🔧 Detected .js file, using UMD loading for: ${pluginUrl}`);
+        return await this.loadUMDPlugin(pluginUrl, pluginInfo.id);
       }
+
+      // Try ES module import for .mjs files or other module formats
+      try {
+        const module = await import(/* @vite-ignore */ pluginUrl) as PluginModule;
+        const plugin = this.extractPluginFromModule(module, pluginInfo.id);
+
+        if (plugin) {
+          // Validate that the plugin ID matches the manifest
+          if (plugin.metadata.id !== pluginInfo.id) {
+            console.warn(`⚠️ Plugin ID mismatch: manifest says "${pluginInfo.id}", plugin says "${plugin.metadata.id}"`);
+          }
+          return plugin;
+        }
+      } catch (esError) {
+        console.log(`📥 ES module import failed, trying UMD script loading...`);
+
+        // Fallback to UMD script loading
+        return await this.loadUMDPlugin(pluginUrl, pluginInfo.id);
+      }
+
+      console.error(`❌ No valid plugin found in dynamic module: ${pluginUrl}`);
+      return null;
 
     } catch (error) {
       console.error(`❌ Failed to load dynamic plugin ${pluginInfo.name}:`, error);
       return null;
     }
+  }
+
+  /**
+   * Load UMD plugin using script tag
+   */
+  private async loadUMDPlugin(pluginUrl: string, pluginId: string): Promise<IPlugin | null> {
+    // Globals should already be set up by ensureGlobalsForUMD(), but ensure process exists
+    if (typeof (window as any).process === 'undefined') {
+      (window as any).process = { env: { NODE_ENV: 'production' } };
+    }
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = pluginUrl;
+      script.type = 'text/javascript';
+
+      script.onload = () => {
+        try {
+          // Debug: Check if globals are available
+          console.log(`🔍 UMD script loaded. Checking globals:`, {
+            React: typeof (window as any).React,
+            ReactDOM: typeof (window as any).ReactDOM,
+            antd: typeof (window as any).antd,
+            process: typeof (window as any).process
+          });
+
+          // UMD plugins expose themselves on window using the plugin ID as the key
+          // Try multiple possible global names
+          const possibleNames = [
+            pluginId,                           // "hello-world"
+            this.toCamelCase(pluginId),        // "helloWorld"
+            this.toCamelCase(pluginId) + 'Plugin', // "helloWorldPlugin"
+            pluginId.replace(/-/g, '_'),       // "hello_world"
+          ];
+
+          let plugin = null;
+          for (const name of possibleNames) {
+            // Use bracket notation to handle names with hyphens
+            plugin = (window as any)[name];
+            console.log(`🔍 Checking window["${name}"]:`, typeof plugin, plugin);
+            if (plugin && this.isValidPlugin(plugin)) {
+              console.log(`✅ Successfully loaded UMD plugin: ${pluginId} (found as window["${name}"])`);
+              resolve(plugin);
+              return;
+            }
+          }
+
+          // If not found, log what's actually available on window
+          console.error(`❌ UMD plugin not found on window. Tried: ${possibleNames.join(', ')}`);
+          console.log(`🔍 Available window properties containing "${pluginId}":`,
+            Object.keys(window).filter(key => key.includes(pluginId.replace(/-/g, ''))));
+
+          // Debug: Check what the plugin actually exported
+          const actualPlugin = (window as any)[pluginId];
+          if (actualPlugin) {
+            console.log(`🔍 Found window["${pluginId}"] but it's not a valid plugin:`, actualPlugin);
+            console.log(`🔍 Plugin validation result:`, this.isValidPlugin(actualPlugin));
+            if (typeof actualPlugin === 'object') {
+              console.log(`🔍 Plugin properties:`, Object.keys(actualPlugin));
+            }
+          }
+
+          resolve(null);
+        } catch (error) {
+          console.error(`❌ Error extracting UMD plugin:`, error);
+          resolve(null);
+        } finally {
+          // Clean up script tag
+          document.head.removeChild(script);
+        }
+      };
+
+      script.onerror = (error) => {
+        console.error(`❌ Failed to load UMD script:`, error);
+        document.head.removeChild(script);
+        resolve(null);
+      };
+
+      document.head.appendChild(script);
+    });
   }
 
   /**
@@ -389,26 +493,41 @@ class PluginDiscoveryService {
    * Extract plugin instance from module
    */
   private extractPluginFromModule(module: PluginModule, fallbackName: string): IPlugin | null {
+    console.log(`🔍 Extracting plugin from module for: ${fallbackName}`);
+    console.log(`🔍 Module type:`, typeof module);
+    console.log(`🔍 Module keys:`, Object.keys(module));
+    console.log(`🔍 Module.default:`, typeof module.default, module.default);
+
     // Try different export patterns
-    
+
     // 1. Default export
     if (module.default && this.isValidPlugin(module.default)) {
+      console.log(`✅ Found valid plugin in default export`);
       return module.default;
+    } else if (module.default) {
+      console.log(`🔍 Default export exists but not valid plugin:`, this.isValidPlugin(module.default));
+      console.log(`🔍 Default export properties:`, Object.keys(module.default));
     }
-    
+
     // 2. Named export matching plugin name (e.g., helloWorldPlugin)
     const camelCaseName = this.toCamelCase(fallbackName) + 'Plugin';
+    console.log(`🔍 Checking for named export: ${camelCaseName}`);
     if (module[camelCaseName] && this.isValidPlugin(module[camelCaseName])) {
+      console.log(`✅ Found valid plugin in named export: ${camelCaseName}`);
       return module[camelCaseName];
     }
-    
+
     // 3. Look for any export that implements IPlugin
+    console.log(`🔍 Checking all exports for valid plugins...`);
     for (const [key, value] of Object.entries(module)) {
+      console.log(`🔍 Checking export "${key}":`, typeof value, this.isValidPlugin(value));
       if (key !== 'default' && this.isValidPlugin(value)) {
+        console.log(`✅ Found valid plugin in export: ${key}`);
         return value as IPlugin;
       }
     }
-    
+
+    console.log(`❌ No valid plugin found in module for: ${fallbackName}`);
     return null;
   }
 
@@ -432,6 +551,51 @@ class PluginDiscoveryService {
    */
   private toCamelCase(str: string): string {
     return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+  }
+
+  /**
+   * Ensure all required globals exist for UMD plugins
+   */
+  private async ensureGlobalsForUMD(): Promise<void> {
+    console.log('🔧 Setting up globals for UMD plugin compatibility...');
+
+    // Add process global for React
+    if (typeof (window as any).process === 'undefined') {
+      (window as any).process = {
+        env: {
+          NODE_ENV: 'production'
+        }
+      };
+      console.log('🔧 Added process global');
+    }
+
+    try {
+      // Add React global if not already present
+      if (typeof (window as any).React === 'undefined') {
+        const React = await import('react');
+        (window as any).React = React;
+        console.log('🔧 Added React global');
+      }
+
+      // Add ReactDOM global if not already present
+      if (typeof (window as any).ReactDOM === 'undefined') {
+        const ReactDOM = await import('react-dom');
+        (window as any).ReactDOM = ReactDOM;
+        console.log('🔧 Added ReactDOM global');
+      }
+
+      // Add antd global if not already present
+      if (typeof (window as any).antd === 'undefined') {
+        const antd = await import('antd');
+        (window as any).antd = antd;
+        console.log('🔧 Added antd global');
+      }
+
+      console.log('✅ All UMD globals ready');
+    } catch (error) {
+      console.error('❌ Failed to set up UMD globals:', error);
+      throw error;
+    }
   }
 
   /**

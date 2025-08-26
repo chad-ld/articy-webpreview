@@ -117,6 +117,9 @@ try {
                                     $displayName = $displayName . ' - ' . $subtitle;
                                 }
 
+                                // Determine the base URL for file access
+                                $baseUrl = ($scanDir === $devDatasetsDir) ? '/datasets-dev/' . $item : '/datasets/' . $item;
+
                                 // Add to datasets array
                                 $response['datasets'][] = [
                                     'name' => $datasetName,
@@ -124,6 +127,8 @@ try {
                                     'displayName' => $displayName,
                                     'description' => $description,
                                     'manifestPath' => $manifestPath,
+                                    'baseUrl' => $baseUrl,
+                                    'source' => ($scanDir === $devDatasetsDir) ? 'datasets-dev' : 'datasets',
                                     'lastModified' => $newestTimestamp,
                                     'lastModifiedFormatted' => date('Y-m-d H:i:s', $newestTimestamp),
                                     'articyVersion' => $articyVersion,

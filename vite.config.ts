@@ -129,8 +129,14 @@ export default defineConfig(({ command }) => ({
     rollupOptions: {
       // Exclude plugin files from main bundle in production builds
       external: command === 'build' ? (id) => {
-        // Exclude plugin modules from main bundle
-        return id.includes('/src/plugins/') && !id.includes('/src/plugins/types.ts') && !id.includes('/src/plugins/registry.ts') && !id.includes('/src/plugins/manager.ts') && !id.includes('/src/plugins/discovery.ts') && !id.includes('/src/plugins/index.ts');
+        // Exclude plugin modules from main bundle, but include core plugin system files
+        return id.includes('/src/plugins/') &&
+               !id.includes('/src/plugins/types.ts') &&
+               !id.includes('/src/plugins/registry.ts') &&
+               !id.includes('/src/plugins/manager.ts') &&
+               !id.includes('/src/plugins/discovery.ts') &&
+               !id.includes('/src/plugins/index.ts') &&
+               !id.includes('/src/plugins/isolatedRenderManager.ts');
       } : undefined
     }
   },

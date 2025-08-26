@@ -172,13 +172,15 @@ function App() {
 
       // Find the dataset info to determine format
       const datasetInfo = availableDatasets.find(d => d.name === datasetName);
+      console.log(`🔍 Dataset info for ${datasetName}:`, datasetInfo);
       const is3xFormat = datasetInfo?.format === '3.x';
 
       if (is3xFormat) {
         // Load 3.x single JSON file
         console.log(`📄 Loading 3.x single file: ${datasetName}.json`);
         const cacheBuster = Date.now();
-        const response = await fetch(`./${datasetName}.json?v=${cacheBuster}`);
+        const fileUrl = datasetInfo?.baseUrl || `./${datasetName}.json`;
+        const response = await fetch(`${fileUrl}?v=${cacheBuster}`);
 
         if (!response.ok) {
           throw new Error(`Failed to load ${datasetName}.json: ${response.status}`);
@@ -221,9 +223,12 @@ function App() {
         const fileContents: { [key: string]: string } = {};
         const cacheBuster = Date.now();
 
+        const baseUrl = datasetInfo?.baseUrl || `./${datasetName}.json`;
+
         for (const fileName of datasetFiles) {
           try {
-            const response = await fetch(`./${datasetName}.json/${fileName}?v=${cacheBuster}`);
+            const fileUrl = `${baseUrl}/${fileName}`;
+            const response = await fetch(`${fileUrl}?v=${cacheBuster}`);
             if (response.ok) {
               const content = await response.text();
               fileContents[fileName] = content;
@@ -257,7 +262,12 @@ function App() {
       }
 
     } catch (error: any) {
-      console.error(`❌ Failed to load ${datasetName} dataset:`, error);
+      console.error(`❌ Failed to load ${datasetName} dataset:`, {
+        message: error?.message || error?.toString() || 'Unknown error',
+        stack: error?.stack,
+        name: error?.name,
+        error: error
+      });
       message.error(`Failed to load ${datasetName} dataset: ${error?.message || 'Unknown error'}`);
       setIsLoading(false);
     }

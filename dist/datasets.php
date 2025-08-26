@@ -20,35 +20,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 try {
     // Get the current directory (we're already in the public directory)
     $scriptDir = dirname(__FILE__);
-    
+
+    // For development, check if datasets-dev folder exists (one level up)
+    $devDatasetsDir = dirname($scriptDir) . DIRECTORY_SEPARATOR . 'datasets-dev';
+    $scanDir = $scriptDir; // Default to current directory
+
+    if (is_dir($devDatasetsDir)) {
+        // Development mode - scan datasets-dev folder
+        $scanDir = $devDatasetsDir;
+    }
+
     // Initialize response
     $response = [
         'success' => true,
         'datasets' => [],
         'debug' => [
             'script_location' => $scriptDir,
-            'scan_directory' => $scriptDir,
+            'scan_directory' => $scanDir,
+            'dev_datasets_dir' => $devDatasetsDir,
+            'using_dev_mode' => ($scanDir === $devDatasetsDir),
             'php_version' => phpversion(),
             'timestamp' => date('Y-m-d H:i:s')
         ]
     ];
     
-    // Scan the script directory for .json directories
-    $items = scandir($scriptDir);
+    // Scan the target directory for .json directories
+    $items = scandir($scanDir);
     if ($items === false) {
-        throw new Exception("Failed to scan directory: $scriptDir");
+        throw new Exception("Failed to scan directory: $scanDir");
     }
-    
+
     $foundDirectories = [];
     $jsonDirectories = [];
-    
+
     foreach ($items as $item) {
         // Skip current and parent directory references
         if ($item === '.' || $item === '..') {
             continue;
         }
 
-        $itemPath = $scriptDir . DIRECTORY_SEPARATOR . $item;
+        $itemPath = $scanDir . DIRECTORY_SEPARATOR . $item;
 
         // Check if it's a directory (4.x format)
         if (is_dir($itemPath)) {
@@ -106,6 +117,9 @@ try {
                                     $displayName = $displayName . ' - ' . $subtitle;
                                 }
 
+                                // Determine the base URL for file access
+                                $baseUrl = ($scanDir === $devDatasetsDir) ? '/datasets-dev/' . $item : '/datasets/' . $item;
+
                                 // Add to datasets array
                                 $response['datasets'][] = [
                                     'name' => $datasetName,
@@ -113,6 +127,8 @@ try {
                                     'displayName' => $displayName,
                                     'description' => $description,
                                     'manifestPath' => $manifestPath,
+                                    'baseUrl' => $baseUrl,
+                                    'source' => ($scanDir === $devDatasetsDir) ? 'datasets-dev' : 'datasets',
                                     'lastModified' => $newestTimestamp,
                                     'lastModifiedFormatted' => date('Y-m-d H:i:s', $newestTimestamp),
                                     'articyVersion' => $articyVersion,

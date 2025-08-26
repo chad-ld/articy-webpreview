@@ -110,7 +110,12 @@ class DataLoader4x {
         packagesCount: this.manifest.Packages?.length || 0
       });
     } catch (error) {
-      throw new Error(`Failed to parse manifest.json: ${error.message}`);
+      console.error('❌ Failed to parse manifest.json:', {
+        error: error.message || error.toString(),
+        stack: error.stack,
+        manifestContent: manifestContent?.substring(0, 200) + '...'
+      });
+      throw new Error(`Failed to parse manifest.json: ${error.message || error.toString()}`);
     }
   }
 

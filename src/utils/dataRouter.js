@@ -35,9 +35,11 @@ class DataRouter {
       console.log('🚀 Starting data processing pipeline...');
     }
 
+    let detection = null;
+
     try {
       // Step 1: Detect format
-      const detection = await this.formatDetector.detectFormat(input);
+      detection = await this.formatDetector.detectFormat(input);
       
       if (this.debugMode) {
         console.log('🔍 Format detection result:', {
@@ -82,9 +84,14 @@ class DataRouter {
 
     } catch (error) {
       if (this.debugMode) {
-        console.error('❌ Data processing failed:', error);
+        console.error('❌ Data processing failed:', {
+          error: error.message || error.toString(),
+          stack: error.stack,
+          name: error.name,
+          detection: typeof detection !== 'undefined' ? detection : 'not yet defined'
+        });
       }
-      throw new Error(`Data processing failed: ${error.message}`);
+      throw new Error(`Data processing failed: ${error.message || error.toString()}`);
     }
   }
 
