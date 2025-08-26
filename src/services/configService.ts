@@ -191,6 +191,54 @@ class ConfigService {
     const datasetConfig = this.getDatasetConfig();
     return datasetConfig.autoLoad;
   }
+
+  /**
+   * Get UI configuration settings
+   */
+  getUIConfig(): {
+    storyMode: boolean;
+    variablesPanel: boolean;
+    searchPanel: boolean;
+  } {
+    if (!this.config) {
+      return {
+        storyMode: false,
+        variablesPanel: false,
+        searchPanel: false
+      };
+    }
+
+    const ui = this.config.ui || {};
+    return {
+      storyMode: ui.storyMode || false,
+      variablesPanel: ui.variablesPanel || false,
+      searchPanel: ui.searchPanel || false
+    };
+  }
+
+  /**
+   * Check if story mode should be enabled by default
+   */
+  shouldEnableStoryMode(): boolean {
+    const uiConfig = this.getUIConfig();
+    return uiConfig.storyMode;
+  }
+
+  /**
+   * Check if variables panel should be visible by default
+   */
+  shouldShowVariablesPanel(): boolean {
+    const uiConfig = this.getUIConfig();
+    return uiConfig.variablesPanel;
+  }
+
+  /**
+   * Check if search panel should be visible by default
+   */
+  shouldShowSearchPanel(): boolean {
+    const uiConfig = this.getUIConfig();
+    return uiConfig.searchPanel;
+  }
 }
 
 // Global configuration service instance

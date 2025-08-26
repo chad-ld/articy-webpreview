@@ -10,6 +10,7 @@ import SearchNodesPanel from './SearchNodesPanel';
 import ConditionBubble from './ConditionBubble';
 import TextBlock from './TextBlock';
 import { usePlugins } from '../hooks/usePlugins';
+import { configService } from '../services/configService';
 
 interface InteractiveArticyViewerProps {
   data: any;
@@ -634,6 +635,37 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       }
     }
   }, [data]);
+
+  // Load UI configuration on component mount
+  useEffect(() => {
+    const loadUIConfig = async () => {
+      try {
+        await configService.loadConfig();
+        const uiConfig = configService.getUIConfig();
+
+        console.log('🎨 Loading UI configuration:', uiConfig);
+
+        // Apply UI configuration to component state
+        setIsVariablesPanelVisible(uiConfig.variablesPanel);
+        setIsSearchPanelVisible(uiConfig.searchPanel);
+
+        // Apply story mode configuration
+        if (uiConfig.storyMode) {
+          setStoryModeSettings(prev => ({
+            ...prev,
+            enabled: true
+          }));
+          console.log('✅ Story mode enabled from configuration');
+        }
+
+        console.log('✅ UI configuration applied successfully');
+      } catch (error) {
+        console.warn('⚠️ Failed to load UI configuration, using defaults:', error);
+      }
+    };
+
+    loadUIConfig();
+  }, []); // Run once on mount
 
   // Notify parent when hideDebugInfo changes to control footer visibility
   useEffect(() => {
