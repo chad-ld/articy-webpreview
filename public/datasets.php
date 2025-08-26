@@ -26,9 +26,14 @@ try {
     $devDatasetsDir = dirname($scriptDir) . DIRECTORY_SEPARATOR . 'datasets-dev';
     $prodDatasetsDir = $scriptDir . DIRECTORY_SEPARATOR . 'datasets';
 
-    // Determine environment based on server port (more reliable than directory existence)
+    // Determine environment based on server port and directory structure
     $serverPort = $_SERVER['SERVER_PORT'] ?? '80';
-    $isDev = ($serverPort === '5173' || $serverPort === '3000' || $serverPort === '3001' || $serverPort === '8080');
+
+    // Check if we're in a desktop environment (datasets-dev doesn't exist, but datasets does)
+    $isDesktop = !is_dir($devDatasetsDir) && is_dir($prodDatasetsDir);
+
+    // Development ports, but exclude desktop environments
+    $isDev = ($serverPort === '5173' || $serverPort === '3000' || $serverPort === '3001' || $serverPort === '8080') && !$isDesktop;
 
     if ($isDev) {
         $scanDir = $devDatasetsDir;
@@ -44,6 +49,10 @@ try {
             'script_location' => $scriptDir,
             'scan_directory' => $scanDir,
             'is_development' => $isDev,
+            'is_desktop' => $isDesktop,
+            'server_port' => $serverPort,
+            'dev_dir_exists' => is_dir($devDatasetsDir),
+            'prod_dir_exists' => is_dir($prodDatasetsDir),
             'php_version' => phpversion(),
             'timestamp' => date('Y-m-d H:i:s')
         ]
