@@ -11,7 +11,7 @@ import HybridDatasetDetector from './utils/hybridDatasetDetector';
 // @ts-ignore
 import DatasetDisplayFormatter from './utils/datasetDisplayFormatter';
 // Initialize plugin system
-import './plugins';
+import { initializePluginSystem } from './plugins';
 import { configService } from './services/configService';
 import { consoleLogger } from './utils/consoleLogger';
 import './App.css';
@@ -322,6 +322,11 @@ function App() {
       console.log('🔧 Should auto-load dataset?', configService.shouldAutoLoadDataset());
       console.log('🔧 Should skip loading screen?', configService.shouldSkipLoadingScreen());
       console.log('🔧 Auto-load dataset:', configService.getAutoLoadDataset());
+
+      // Initialize plugin system before loading datasets (critical for auto-loading)
+      console.log('🔌 Ensuring plugin system is ready...');
+      await initializePluginSystem();
+      console.log('✅ Plugin system ready for dataset auto-loading');
 
       // Detect available datasets
       const datasets = await detectAvailableDatasets();
