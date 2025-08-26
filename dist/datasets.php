@@ -28,7 +28,7 @@ try {
 
     // Determine environment based on server port (more reliable than directory existence)
     $serverPort = $_SERVER['SERVER_PORT'] ?? '80';
-    $isDev = ($serverPort === '5173' || $serverPort === '3000' || $serverPort === '3001');
+    $isDev = ($serverPort === '5173' || $serverPort === '3000' || $serverPort === '3001' || $serverPort === '8080');
 
     if ($isDev) {
         $scanDir = $devDatasetsDir;

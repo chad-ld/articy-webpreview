@@ -653,9 +653,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         if (uiConfig.storyMode) {
           setStoryModeSettings(prev => ({
             ...prev,
-            enabled: true
+            enabled: true,
+            hideInstructions: true,
+            hideConditions: true,
+            hideInactiveChoices: true,
+            hidePreviousChoices: true,
+            hideDebugInfo: true
           }));
-          console.log('✅ Story mode enabled from configuration');
+          console.log('✅ Story mode enabled from configuration with all hide options');
         }
 
         console.log('✅ UI configuration applied successfully');
@@ -2366,7 +2371,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               bubbleRenderKey: bubbleRenderKey
             });
 
-            const shouldRenderBubble = option.condition && nodeRefs.current[filteredIndex] && bubbleRenderKey > 0 && !storyOnlyMode;
+            const shouldRenderBubble = option.condition && nodeRefs.current[filteredIndex] && bubbleRenderKey > 0 && !(storyModeSettings.enabled && storyModeSettings.hideConditions);
             console.log('🔍 CONDITION BUBBLE RENDER DECISION:', {
               originalIndex: originalIndex,
               filteredIndex: filteredIndex,

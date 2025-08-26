@@ -8,7 +8,7 @@
   },
   "datasets": {
     "autoLoad": "mpos1.5",
-    "skipLoadingScreen": true,
+    "skipLoadingScreen": false,
     "allowUserOverride": true,
     "fallbackBehavior": "showLoadingScreen"
   },
