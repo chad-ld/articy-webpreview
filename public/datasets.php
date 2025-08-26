@@ -121,8 +121,8 @@ try {
                                     $displayName = $displayName . ' - ' . $subtitle;
                                 }
 
-                                // Determine the base URL for file access
-                                $baseUrl = $isDev ? '/datasets-dev/' . $item : '/datasets/' . $item;
+                                // Determine the base URL for file access (use relative paths)
+                                $baseUrl = $isDev ? './datasets-dev/' . $item : './datasets/' . $item;
 
                                 // Add to datasets array
                                 $response['datasets'][] = [

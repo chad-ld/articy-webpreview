@@ -258,7 +258,7 @@ class PluginDiscoveryService {
   private async loadPluginManifest(): Promise<PluginManifest | null> {
     try {
       const timestamp = new Date().getTime();
-      const response = await fetch(`/plugins/plugins.json?v=${timestamp}`);
+      const response = await fetch(`./plugins/plugins.json?v=${timestamp}`);
 
       if (!response.ok) {
         console.log(`📝 Plugin manifest not found (${response.status}), this is normal for development or first-time setups`);
@@ -280,8 +280,8 @@ class PluginDiscoveryService {
    */
   private async loadDynamicPlugin(pluginInfo: PluginManifest['available'][0]): Promise<IPlugin | null> {
     try {
-      // Use absolute path to avoid Vite base path transformation
-      const pluginUrl = `/plugins/${pluginInfo.file}`;
+      // Use relative path for proper deployment compatibility
+      const pluginUrl = `./plugins/${pluginInfo.file}`;
       console.log(`📥 Loading dynamic plugin from: ${pluginUrl}`);
 
       // For .js files, assume they are UMD and skip ES module import

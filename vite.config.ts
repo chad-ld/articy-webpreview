@@ -42,7 +42,7 @@ const datasetFilePlugin = () => ({
   }
 });
 
-// Custom plugin to copy config.json to dist during build
+// Custom plugin to copy config.json and .htaccess to dist during build
 const copyConfigPlugin = () => ({
   name: 'copy-config',
   writeBundle() {
@@ -59,6 +59,132 @@ const copyConfigPlugin = () => ({
       }
     } else {
       console.warn('⚠️ config.json not found in datasets-dev folder');
+    }
+
+    // Copy .htaccess file to dist during build (for web server deployment)
+    const htaccessSource = resolve(__dirname, 'dist', '.htaccess');
+    if (fs.existsSync(htaccessSource)) {
+      console.log('📋 .htaccess file already exists in dist folder');
+    } else {
+      // Create .htaccess if it doesn't exist
+      const htaccessContent = `# Articy Web Viewer - Apache Configuration
+# Handles routing for Single Page Application while preserving direct file access
+
+RewriteEngine On
+
+# Security: Prevent access to sensitive files
+<Files "*.backup">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.log">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Enable CORS for all origins (adjust as needed for production)
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Handle preflight OPTIONS requests
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# CRITICAL: Allow direct access to PHP files (datasets.php, save-log.php, etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \\.php$
+RewriteRule ^(.*)$ $1 [L]
+
+# CRITICAL: Allow direct access to JSON files in dataset folders
+# Pattern: /datasets/datasetname.json/filename.json
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \\.json$
+RewriteRule ^(.*)$ $1 [L]
+
+# CRITICAL: Allow direct access to config.json
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} ^/config\\.json$
+RewriteRule ^(.*)$ $1 [L]
+
+# Allow direct access to static assets (CSS, JS, images, etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|map)$
+RewriteRule ^(.*)$ $1 [L]
+
+# Allow direct access to plugin files
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} ^/.*plugins/
+RewriteRule ^(.*)$ $1 [L]
+
+# Allow direct access to dataset files AND directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} ^/.*datasets/
+RewriteRule ^(.*)$ $1 [L]
+
+# SPA Fallback: Route everything else to index.html for React Router
+# This must be LAST to avoid interfering with direct file access
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [L]`;
+
+      try {
+        fs.writeFileSync(htaccessSource, htaccessContent);
+        console.log('📋 Created .htaccess file in dist folder');
+      } catch (error) {
+        console.error('❌ Failed to create .htaccess file:', error);
+      }
+    }
+
+    // Create empty datasets folder for web server deployment
+    const datasetsDir = resolve(__dirname, 'dist', 'datasets');
+    if (!fs.existsSync(datasetsDir)) {
+      try {
+        fs.mkdirSync(datasetsDir, { recursive: true });
+
+        // Create a README file in the datasets folder
+        const readmeContent = `# Datasets Folder
+
+This folder is for your Articy Draft JSON dataset files.
+
+## How to add datasets:
+
+### For 4.x format (Articy Draft X):
+1. Export your project from Articy Draft X as JSON
+2. Copy the entire exported folder (e.g., "myproject.json") into this datasets folder
+3. The folder should contain files like:
+   - manifest.json
+   - global_variables.json
+   - hierarchy.json
+   - object_definitions.json
+   - package_*.json files
+
+### For 3.x format (Articy Draft 3):
+1. Export your project from Articy Draft 3 as JSON
+2. Copy the exported JSON file (e.g., "myproject.json") directly into this datasets folder
+
+## Example structure:
+\`\`\`
+datasets/
+├── myproject.json/          # 4.x format (folder)
+│   ├── manifest.json
+│   ├── global_variables.json
+│   └── ...
+└── oldproject.json          # 3.x format (single file)
+\`\`\`
+
+The application will automatically detect and list all datasets in this folder.
+`;
+
+        fs.writeFileSync(resolve(datasetsDir, 'README.md'), readmeContent);
+        console.log('📁 Created empty datasets folder with README');
+      } catch (error) {
+        console.error('❌ Failed to create datasets folder:', error);
+      }
+    } else {
+      console.log('📁 Datasets folder already exists in dist');
     }
   }
 });

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articy Web Viewer - .htaccess Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .pending {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Articy Web Viewer - .htaccess Test</h1>
+    
+    <div class="test-container">
+        <h2>📋 Test Overview</h2>
+        <p>This test verifies that your web server's .htaccess configuration correctly handles:</p>
+        <ul>
+            <li>✅ Direct access to JSON files (dataset files)</li>
+            <li>✅ Direct access to PHP files (API endpoints)</li>
+            <li>✅ SPA routing fallback to index.html</li>
+            <li>✅ Static asset serving</li>
+        </ul>
+    </div>
+
+    <div class="test-container">
+        <h2>🧪 Test Results</h2>
+        
+        <div id="test1" class="test-result pending">
+            Test 1: JSON File Access - Pending...
+        </div>
+        
+        <div id="test2" class="test-result pending">
+            Test 2: PHP File Access - Pending...
+        </div>
+
+        <div id="php-info" class="test-result pending" style="display: none;">
+            PHP Version Info - Pending...
+        </div>
+        
+        <div id="test3" class="test-result pending">
+            Test 3: SPA Routing - Pending...
+        </div>
+        
+        <div id="test4" class="test-result pending">
+            Test 4: Static Assets - Pending...
+        </div>
+
+        <div id="test5" class="test-result pending">
+            Test 5: Plugin Manifest Access - Pending...
+        </div>
+
+        <div id="test6" class="test-result pending">
+            Test 6: Dataset Folder Access - Pending...
+        </div>
+        
+        <button onclick="runTests()">🚀 Run Tests</button>
+        <button onclick="clearResults()">🔄 Clear Results</button>
+    </div>
+
+    <div class="test-container">
+        <h2>📊 Detailed Results</h2>
+        <pre id="detailed-results">Click "Run Tests" to see detailed results...</pre>
+    </div>
+
+    <div class="test-container">
+        <h2>🛠️ Troubleshooting</h2>
+        <div id="troubleshooting">
+            <p><strong>If tests fail:</strong></p>
+            <ul>
+                <li>Ensure .htaccess file is uploaded to your web root</li>
+                <li>Check that your web server supports .htaccess files</li>
+                <li>Verify mod_rewrite is enabled on your server</li>
+                <li>Check file permissions (644 for .htaccess)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let testResults = [];
+
+        async function runTests() {
+            testResults = [];
+            updateDetailedResults('Starting tests...\n');
+            
+            // Test 1: JSON File Access
+            await testJsonAccess();
+            
+            // Test 2: PHP File Access  
+            await testPhpAccess();
+            
+            // Test 3: SPA Routing
+            await testSpaRouting();
+            
+            // Test 4: Static Assets
+            await testStaticAssets();
+
+            // Test 5: Plugin Manifest Access
+            await testPluginManifest();
+
+            // Test 6: Dataset Folder Access
+            await testDatasetAccess();
+
+            updateDetailedResults('\n=== TEST SUMMARY ===\n' + testResults.join('\n'));
+        }
+
+        async function testJsonAccess() {
+            const testId = 'test1';
+            const testName = 'JSON File Access';
+            
+            try {
+                updateTestStatus(testId, 'pending', 'Test 1: JSON File Access - Testing...');
+                
+                const response = await fetch('./test-data.json');
+                const contentType = response.headers.get('content-type');
+                
+                if (response.ok && contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    if (data.test === 'htaccess-json-test') {
+                        updateTestStatus(testId, 'success', 'Test 1: JSON File Access - ✅ PASSED');
+                        testResults.push('✅ JSON Access: PASSED - JSON files served correctly');
+                        updateDetailedResults(`✅ JSON Test: Response ${response.status}, Content-Type: ${contentType}\n`);
+                    } else {
+                        throw new Error('JSON content incorrect');
+                    }
+                } else {
+                    throw new Error(`Response: ${response.status}, Content-Type: ${contentType}`);
+                }
+            } catch (error) {
+                updateTestStatus(testId, 'error', 'Test 1: JSON File Access - ❌ FAILED');
+                testResults.push('❌ JSON Access: FAILED - ' + error.message);
+                updateDetailedResults(`❌ JSON Test: ${error.message}\n`);
+            }
+        }
+
+        async function testPhpAccess() {
+            const testId = 'test2';
+            const testName = 'PHP File Access';
+            
+            try {
+                updateTestStatus(testId, 'pending', 'Test 2: PHP File Access - Testing...');
+                
+                const response = await fetch('./test-api.php');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.test === 'htaccess-php-test') {
+                        updateTestStatus(testId, 'success', 'Test 2: PHP File Access - ✅ PASSED');
+                        testResults.push('✅ PHP Access: PASSED - PHP files executed correctly');
+                        updateDetailedResults(`✅ PHP Test: Response ${response.status}, Output received\n`);
+
+                        // Show PHP version info
+                        const phpInfoElement = document.getElementById('php-info');
+                        phpInfoElement.style.display = 'block';
+                        updateTestStatus('php-info', 'success', `PHP Version: ${data.php_version} - Server Time: ${data.timestamp}`);
+                        updateDetailedResults(`📋 PHP Version: ${data.php_version}\n📋 Server Time: ${data.timestamp}\n`);
+                    } else {
+                        throw new Error('PHP output incorrect');
+                    }
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                updateTestStatus(testId, 'error', 'Test 2: PHP File Access - ❌ FAILED');
+                testResults.push('❌ PHP Access: FAILED - ' + error.message);
+                updateDetailedResults(`❌ PHP Test: ${error.message}\n`);
+            }
+        }
+
+        async function testSpaRouting() {
+            const testId = 'test3';
+            
+            try {
+                updateTestStatus(testId, 'pending', 'Test 3: SPA Routing - Testing...');
+                
+                const response = await fetch('./non-existent-route');
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    if (text.includes('<title>Articy Web Viewer - .htaccess Test</title>')) {
+                        updateTestStatus(testId, 'success', 'Test 3: SPA Routing - ✅ PASSED');
+                        testResults.push('✅ SPA Routing: PASSED - Non-existent routes fallback to index.html');
+                        updateDetailedResults(`✅ SPA Test: Non-existent route correctly served index.html\n`);
+                    } else {
+                        throw new Error('SPA fallback not working');
+                    }
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                updateTestStatus(testId, 'error', 'Test 3: SPA Routing - ❌ FAILED');
+                testResults.push('❌ SPA Routing: FAILED - ' + error.message);
+                updateDetailedResults(`❌ SPA Test: ${error.message}\n`);
+            }
+        }
+
+        async function testStaticAssets() {
+            const testId = 'test4';
+            
+            try {
+                updateTestStatus(testId, 'pending', 'Test 4: Static Assets - Testing...');
+                
+                // Test CSS file access
+                const response = await fetch('./test-style.css');
+                const contentType = response.headers.get('content-type');
+                
+                if (response.ok && contentType && contentType.includes('text/css')) {
+                    updateTestStatus(testId, 'success', 'Test 4: Static Assets - ✅ PASSED');
+                    testResults.push('✅ Static Assets: PASSED - CSS files served correctly');
+                    updateDetailedResults(`✅ Static Test: CSS served with correct Content-Type: ${contentType}\n`);
+                } else {
+                    throw new Error(`Response: ${response.status}, Content-Type: ${contentType}`);
+                }
+            } catch (error) {
+                updateTestStatus(testId, 'error', 'Test 4: Static Assets - ❌ FAILED');
+                testResults.push('❌ Static Assets: FAILED - ' + error.message);
+                updateDetailedResults(`❌ Static Test: ${error.message}\n`);
+            }
+        }
+
+        async function testPluginManifest() {
+            const testId = 'test5';
+
+            try {
+                updateTestStatus(testId, 'pending', 'Test 5: Plugin Manifest Access - Testing...');
+
+                const response = await fetch('./plugins/plugins.json');
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.available && Array.isArray(data.available)) {
+                        updateTestStatus(testId, 'success', `Test 5: Plugin Manifest - ✅ PASSED (${data.available.length} plugins)`);
+                        testResults.push(`✅ Plugin Manifest: PASSED - Found ${data.available.length} plugins`);
+                        updateDetailedResults(`✅ Plugin Test: Response ${response.status}, Found plugins: ${data.available.map(p => p.name).join(', ')}\n`);
+                    } else {
+                        throw new Error('Invalid manifest format');
+                    }
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                updateTestStatus(testId, 'error', 'Test 5: Plugin Manifest Access - ❌ FAILED');
+                testResults.push('❌ Plugin Manifest: FAILED - ' + error.message);
+                updateDetailedResults(`❌ Plugin Test: ${error.message}\n`);
+            }
+        }
+
+        async function testDatasetAccess() {
+            const testId = 'test6';
+
+            try {
+                updateTestStatus(testId, 'pending', 'Test 6: Dataset Folder Access - Testing...');
+
+                const response = await fetch('./datasets/mpos1.5.json/manifest.json');
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.Project) {
+                        updateTestStatus(testId, 'success', `Test 6: Dataset Access - ✅ PASSED (${data.Project.Name || 'Dataset'})`);
+                        testResults.push(`✅ Dataset Access: PASSED - Dataset manifest loaded`);
+                        updateDetailedResults(`✅ Dataset Test: Response ${response.status}, Project: ${data.Project.Name || 'Unknown'}\n`);
+                    } else {
+                        throw new Error('Invalid dataset manifest');
+                    }
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                updateTestStatus(testId, 'error', 'Test 6: Dataset Folder Access - ❌ FAILED');
+                testResults.push('❌ Dataset Access: FAILED - ' + error.message);
+                updateDetailedResults(`❌ Dataset Test: ${error.message}\n`);
+            }
+        }
+
+        function updateTestStatus(testId, status, message) {
+            const element = document.getElementById(testId);
+            element.className = `test-result ${status}`;
+            element.textContent = message;
+        }
+
+        function updateDetailedResults(message) {
+            const element = document.getElementById('detailed-results');
+            element.textContent += message;
+        }
+
+        function clearResults() {
+            testResults = [];
+            document.getElementById('detailed-results').textContent = 'Click "Run Tests" to see detailed results...';
+
+            ['test1', 'test2', 'test3', 'test4', 'test5', 'test6'].forEach(id => {
+                updateTestStatus(id, 'pending', document.getElementById(id).textContent.split(' - ')[0] + ' - Pending...');
+            });
+
+            // Hide PHP info
+            const phpInfoElement = document.getElementById('php-info');
+            phpInfoElement.style.display = 'none';
+            updateTestStatus('php-info', 'pending', 'PHP Version Info - Pending...');
+        }
+    </script>
+</body>
+</html>

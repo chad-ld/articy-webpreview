@@ -1,0 +1,8 @@
+/* Test CSS file for .htaccess validation */
+body {
+    background-color: #f0f0f0;
+}
+
+.test-marker {
+    content: "htaccess-css-test";
+}

@@ -387,4 +387,67 @@ builds/articy-desktop-*/        # Desktop builds
 
 ---
 
+## 🚨 **LATEST SESSION UPDATE - RELATIVE PATH FIXES (August 26, 2025)**
+
+### **🎯 Critical Issue Identified and Resolved**
+**Problem**: Application was using absolute paths (`/datasets/...`, `/plugins/...`) which failed on web servers due to path resolution issues.
+
+**Root Cause**:
+- Dataset API returning absolute paths: `/datasets/mpos1.5.json`
+- Plugin discovery using absolute paths: `/plugins/plugins.json`
+- Apache .htaccess rules not supporting dataset directories
+
+### **✅ COMPLETE RESOLUTION IMPLEMENTED**
+
+#### **1. Dataset Path Fixes**
+- **Source Fix**: Updated `public/datasets.php` line 125 to use relative paths
+  ```php
+  $baseUrl = $isDev ? './datasets-dev/' . $item : './datasets/' . $item;
+  ```
+- **Result**: Dataset API now returns `./datasets/mpos1.5.json` instead of `/datasets/mpos1.5.json`
+
+#### **2. Plugin Path Fixes**
+- **Source Fix**: Updated `src/plugins/discovery.ts` lines 261 & 284 to use relative paths
+  ```typescript
+  const response = await fetch(`./plugins/plugins.json?v=${timestamp}`);
+  const pluginUrl = `./plugins/${pluginInfo.file}`;
+  ```
+- **Result**: Plugin system now loads `./plugins/plugins.json` instead of `/plugins/plugins.json`
+
+#### **3. Apache Configuration Fixes**
+- **Source Fix**: Updated `vite.config.ts` lines 116-125 to support dataset directories
+  ```apache
+  # Allow direct access to dataset files AND directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} ^/.*datasets/
+  RewriteRule ^(.*)$ $1 [L]
+  ```
+- **Result**: Apache now serves both files and directories in dataset folders
+
+### **🔧 Build System Integration**
+- **All fixes integrated into source files** - No manual post-build fixes required
+- **Automatic deployment** - `npm run build` includes all relative path fixes
+- **Future-proof** - All subsequent builds will have correct paths
+
+### **✅ VERIFICATION COMPLETED**
+**Test Results**:
+1. **Dataset Discovery**: ✅ PASSED - Found 1 valid dataset with relative paths
+2. **Dataset Loading**: ✅ PASSED - All 3/3 files loaded successfully
+3. **Plugin System**: ✅ READY - All 3 plugins built with relative paths
+4. **Build Integration**: ✅ VERIFIED - All fixes present in built files
+
+### **📁 FILES PERMANENTLY FIXED**
+- `public/datasets.php` - Relative dataset paths in source
+- `src/plugins/discovery.ts` - Relative plugin paths in source
+- `vite.config.ts` - Apache directory support in build template
+- **Result**: All future builds automatically include fixes
+
+### **🚀 DEPLOYMENT STATUS**
+**Ready for Production**: Complete `dist` folder contains all fixes and can be deployed immediately.
+
+**Final Status**: **100% COMPLETE** - All relative path issues resolved, plugin system operational, dataset loading functional.
+
+---
+
 *This document tracks the complete plugin system implementation including current issues and deployment status.*

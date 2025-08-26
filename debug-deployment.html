@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Debug Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .pass { background-color: #d4edda; border-color: #c3e6cb; }
+        .fail { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; overflow-x: auto; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Deployment Debug Tool</h1>
+    <p>This tool will test what files are actually accessible on your live deployment.</p>
+    
+    <button onclick="runAllTests()">🚀 Run All Tests</button>
+    <button onclick="clearResults()">🧹 Clear Results</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        async function testUrl(url, description) {
+            try {
+                const response = await fetch(url);
+                const status = response.status;
+                const contentType = response.headers.get('content-type') || 'unknown';
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    return {
+                        success: true,
+                        status,
+                        contentType,
+                        size: text.length,
+                        preview: text.substring(0, 200)
+                    };
+                } else {
+                    return {
+                        success: false,
+                        status,
+                        contentType,
+                        error: `HTTP ${status}`
+                    };
+                }
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        }
+        
+        function addResult(description, result) {
+            const div = document.createElement('div');
+            div.className = `test ${result.success ? 'pass' : 'fail'}`;
+            
+            let html = `<h3>${result.success ? '✅' : '❌'} ${description}</h3>`;
+            
+            if (result.success) {
+                html += `<p><strong>Status:</strong> ${result.status} | <strong>Type:</strong> ${result.contentType} | <strong>Size:</strong> ${result.size} bytes</p>`;
+                if (result.preview) {
+                    html += `<p><strong>Preview:</strong></p><pre>${result.preview}${result.size > 200 ? '...' : ''}</pre>`;
+                }
+            } else {
+                html += `<p><strong>Error:</strong> ${result.error}</p>`;
+                if (result.status) {
+                    html += `<p><strong>Status:</strong> ${result.status} | <strong>Type:</strong> ${result.contentType}</p>`;
+                }
+            }
+            
+            div.innerHTML = html;
+            results.appendChild(div);
+        }
+        
+        async function runAllTests() {
+            clearResults();
+            
+            const tests = [
+                // Basic files
+                ['./index.html', 'Main index.html'],
+                ['./config.json', 'Configuration file'],
+                ['./datasets.php', 'Dataset PHP API'],
+                
+                // Plugin system
+                ['./plugins/plugins.json', 'Plugin manifest'],
+                ['./plugins/hello-world.js', 'Hello World plugin'],
+                ['./plugins/mysteryworks-murderboard.js', 'Murderboard plugin'],
+                ['./plugins/test-plugin.js', 'Test plugin'],
+                
+                // Dataset structure (individual files only - no directory browsing needed)
+                ['./datasets/mpos1.5.json/manifest.json', 'Dataset manifest'],
+                ['./datasets/mpos1.5.json/global_variables.json', 'Global variables'],
+                ['./datasets/mpos1.5.json/hierarchy.json', 'Hierarchy data'],
+                ['./datasets/mpos1.5.json/object_definitions.json', 'Object definitions'],
+                ['./datasets/mpos1.5.json/package_010000060000401C_objects.json', 'Package objects'],
+                
+                // Test what the app actually calls
+                ['./datasets.php', 'Dataset API call'],
+            ];
+            
+            for (const [url, description] of tests) {
+                const result = await testUrl(url, description);
+                addResult(description, result);
+                
+                // Small delay to avoid overwhelming the server
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            // Add summary and real dataset discovery test
+            await testRealDatasetDiscovery();
+
+            const div = document.createElement('div');
+            div.className = 'test info';
+            div.innerHTML = '<h3>📋 Test Complete</h3><p>Check the results above to see what files are missing or inaccessible.</p>';
+            results.appendChild(div);
+        }
+        
+        async function testRealDatasetDiscovery() {
+            const div = document.createElement('div');
+            div.className = 'test info';
+            div.innerHTML = '<h3>🔍 Real Dataset Discovery Test</h3><p>Testing the actual dataset discovery flow your app uses...</p>';
+            results.appendChild(div);
+
+            try {
+                // Test the PHP API call that your app actually makes
+                const cacheBuster = Date.now();
+                const response = await fetch(`./datasets.php?v=${cacheBuster}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Cache-Control': 'no-cache'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    if (data.success && data.datasets) {
+                        const foundDatasets = data.datasets.filter(d => d.valid);
+
+                        addResult(`🎯 Dataset Discovery Result`, {
+                            success: true,
+                            status: response.status,
+                            contentType: response.headers.get('content-type'),
+                            size: JSON.stringify(data).length,
+                            preview: `Found ${foundDatasets.length} valid datasets:\n${foundDatasets.map(d => `• ${d.displayName} (${d.name}) - ${d.format}`).join('\n')}`
+                        });
+
+                        // Test loading the first dataset if available
+                        if (foundDatasets.length > 0) {
+                            const firstDataset = foundDatasets[0];
+                            await testDatasetLoading(firstDataset);
+                        }
+                    } else {
+                        addResult(`🎯 Dataset Discovery Result`, {
+                            success: false,
+                            error: `API returned success=false: ${data.error || 'Unknown error'}`
+                        });
+                    }
+                } else {
+                    addResult(`🎯 Dataset Discovery Result`, {
+                        success: false,
+                        status: response.status,
+                        error: `HTTP ${response.status}`
+                    });
+                }
+            } catch (error) {
+                addResult(`🎯 Dataset Discovery Result`, {
+                    success: false,
+                    error: error.message
+                });
+            }
+        }
+
+        async function testDatasetLoading(dataset) {
+            try {
+                // Test loading key files from the dataset
+                // Convert absolute path to relative path
+                let baseUrl = dataset.baseUrl || `./datasets/${dataset.folder}`;
+                if (baseUrl.startsWith('/')) {
+                    baseUrl = '.' + baseUrl;
+                }
+                const testFiles = ['manifest.json', 'global_variables.json', 'hierarchy.json'];
+
+                console.log(`Testing dataset loading for: ${dataset.displayName}`);
+                console.log(`Base URL: ${baseUrl}`);
+                console.log(`Dataset object:`, dataset);
+
+                let loadedFiles = 0;
+                let fileDetails = [];
+
+                for (const fileName of testFiles) {
+                    try {
+                        const fileUrl = `${baseUrl}/${fileName}`;
+                        console.log(`Testing file: ${fileUrl}`);
+
+                        const fileResponse = await fetch(fileUrl, {
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Cache-Control': 'no-cache'
+                            }
+                        });
+
+                        console.log(`Response for ${fileName}: ${fileResponse.status}`);
+
+                        if (fileResponse.ok) {
+                            loadedFiles++;
+                            fileDetails.push(`✅ ${fileName}`);
+                            console.log(`✅ Successfully loaded ${fileName}`);
+                        } else {
+                            fileDetails.push(`❌ ${fileName} (${fileResponse.status})`);
+                            console.log(`❌ Failed to load ${fileName}: ${fileResponse.status}`);
+                        }
+                    } catch (error) {
+                        fileDetails.push(`❌ ${fileName} (${error.message})`);
+                        console.log(`❌ Error loading ${fileName}:`, error);
+                    }
+                }
+
+                addResult(`📁 Dataset Loading Test: ${dataset.displayName}`, {
+                    success: loadedFiles > 0,
+                    status: 200,
+                    contentType: 'application/json',
+                    size: 0,
+                    preview: `Loaded ${loadedFiles}/${testFiles.length} files:\n${fileDetails.join('\n')}\nBase URL: ${baseUrl}`
+                });
+
+            } catch (error) {
+                addResult(`📁 Dataset Loading Test: ${dataset.displayName || 'Unknown'}`, {
+                    success: false,
+                    error: `${error.message}\nDataset: ${JSON.stringify(dataset, null, 2)}`
+                });
+            }
+        }
+
+        function clearResults() {
+            results.innerHTML = '';
+        }
+    </script>
+</body>
+</html>

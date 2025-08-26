@@ -33,9 +33,10 @@ git add . && git commit -m "Description" && git push origin v4.x
 
 ### **🆕 Dataset Separation System**
 - **Development Datasets**: Located in `datasets-dev/` folder (isolated from builds)
-- **Production Builds**: Clean `dist/` folder without development datasets
+- **Production Builds**: Clean `dist/` folder with empty `datasets/` folder for user files
 - **Custom Middleware**: Vite middleware serves development datasets during development
 - **Identical Functionality**: All deployment types work identically despite different data sources
+- **User-Friendly Setup**: Empty `datasets/` folder with README instructions automatically created
 
 ### **File Protection System**
 - **Safe Mode**: Prevents file reversion issues through cache disabling and polling
@@ -132,6 +133,7 @@ For comprehensive technical details, see the feature-specific documentation:
 - **Automatic Port Selection**: Finds available ports (8082, 8083, 8084, etc.)
 - **Demo Dataset Setup**: Automatically copies demo datasets for testing
 - **Environment Detection**: Tests production plugin loading and configuration
+- **Web Server Configuration**: `.htaccess` file automatically created for Apache/web server deployment
 
 ## 🖥️ **Desktop Version Implementation** ✅
 
@@ -247,6 +249,35 @@ builds/articy-desktop-*/       # Desktop deployment
 ├── php/                      # Portable PHP
 └── datasets/                 # Sample datasets
 ```
+
+## 🎯 **Current Development Status**
+
+### **Plugin System - COMPLETE** ✅
+- **Dynamic Plugin Loading**: Plugins load from separate files post-build
+- **Plugin UI Integration**: Loading screen plugin selection working
+- **Build Separation**: Plugins compile independently from main application
+- **Configuration System**: Runtime plugin defaults via config.json
+- **Development Workflow**: Hot-reloading and development experience maintained
+
+### **Dataset Management - COMPLETE** ✅
+- **Hybrid Detection**: PHP API + JavaScript fallback for maximum compatibility
+- **Environment Isolation**: Clean separation between development and production datasets
+- **Auto-Loading**: Configuration-driven dataset loading with skip loading screen option
+- **Format Support**: Full 3.x and 4.x Articy Draft format compatibility
+
+### **Deployment System - COMPLETE** ✅
+- **Web Deployment**: Single dist/ folder with all dependencies
+- **Desktop Deployment**: Portable PHP + identical codebase
+- **Configuration Management**: Runtime config changes without rebuilding
+- **Testing Infrastructure**: Local production testing with portable PHP
+
+### **Latest Update: Relative Path Fixes (August 26, 2025)** ✅
+- **Issue Resolved**: Fixed absolute path issues (`/datasets/`, `/plugins/`) that caused failures on web servers
+- **Dataset Paths**: Updated `datasets.php` to return relative paths (`./datasets/...`)
+- **Plugin Paths**: Updated plugin discovery to use relative paths (`./plugins/...`)
+- **Apache Rules**: Enhanced `.htaccess` to support dataset directories
+- **Build Integration**: All fixes integrated into source files for automatic inclusion in builds
+- **Verification**: Complete testing confirms dataset loading and plugin system operational
 
 ## 📞 **Support & Troubleshooting**
 

@@ -1,0 +1,91 @@
+# Articy Web Viewer - Apache Configuration
+# Handles routing for Single Page Application while preserving direct file access
+
+RewriteEngine On
+
+# Security: Prevent access to sensitive files
+<Files "*.backup">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.log">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Enable CORS for all origins (adjust as needed for production)
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Handle preflight OPTIONS requests
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# CRITICAL: Allow direct access to PHP files (datasets.php, save-log.php, etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \.php$
+RewriteRule ^(.*)$ $1 [L]
+
+# CRITICAL: Allow direct access to JSON files in dataset folders
+# Pattern: /datasets/datasetname.json/filename.json
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \.json$
+RewriteRule ^(.*)$ $1 [L]
+
+# CRITICAL: Allow direct access to config.json
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} ^/config\.json$
+RewriteRule ^(.*)$ $1 [L]
+
+# Allow direct access to static assets (CSS, JS, images, etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|map)$
+RewriteRule ^(.*)$ $1 [L]
+
+# Allow direct access to plugin files
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} ^/.*plugins/
+RewriteRule ^(.*)$ $1 [L]
+
+# Allow direct access to dataset files
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} ^/.*datasets/
+RewriteRule ^(.*)$ $1 [L]
+
+# SPA Fallback: Route everything else to index.html for React Router
+# This must be LAST to avoid interfering with direct file access
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [L]
+
+# Optional: Enable compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Optional: Set cache headers for static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    
+    # Don't cache JSON files or PHP files
+    ExpiresByType application/json "access plus 0 seconds"
+    ExpiresByType application/x-httpd-php "access plus 0 seconds"
+</IfModule>

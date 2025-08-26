@@ -21,31 +21,18 @@ try {
     // Get the current directory (we're already in the public directory)
     $scriptDir = dirname(__FILE__);
 
-    // Web build: ONLY look in datasets folder (same directory as script)
-    // NO FALLBACK to datasets-dev - if datasets folder doesn't exist, return empty
-    $scanDir = $scriptDir . DIRECTORY_SEPARATOR . 'datasets';
-    $isDev = false;
+    // For development: look in datasets-dev folder (one level up)
+    // For production: look in datasets folder (same directory as script)
+    $devDatasetsDir = dirname($scriptDir) . DIRECTORY_SEPARATOR . 'datasets-dev';
+    $prodDatasetsDir = $scriptDir . DIRECTORY_SEPARATOR . 'datasets';
 
-    // If datasets folder doesn't exist, return empty result immediately
-    if (!is_dir($scanDir)) {
-        $response = [
-            'success' => true,
-            'datasets' => [],
-            'total' => 0,
-            'valid' => 0,
-            'debug' => [
-                'script_location' => $scriptDir,
-                'scan_directory' => $scanDir,
-                'folder_exists' => false,
-                'is_development' => false,
-                'mode' => 'production (web build)',
-                'message' => 'Datasets folder not found - no fallback allowed',
-                'php_version' => phpversion(),
-                'timestamp' => date('Y-m-d H:i:s')
-            ]
-        ];
-        echo json_encode($response, JSON_PRETTY_PRINT);
-        exit;
+    // Check if we're in development mode (datasets-dev exists)
+    if (is_dir($devDatasetsDir)) {
+        $scanDir = $devDatasetsDir;
+        $isDev = true;
+    } else {
+        $scanDir = $prodDatasetsDir;
+        $isDev = false;
     }
 
     // Initialize response
@@ -134,8 +121,8 @@ try {
                                     $displayName = $displayName . ' - ' . $subtitle;
                                 }
 
-                                // Determine the base URL for file access
-                                $baseUrl = $isDev ? '/datasets-dev/' . $item : '/datasets/' . $item;
+                                // Determine the base URL for file access (use relative paths)
+                                $baseUrl = $isDev ? './datasets-dev/' . $item : './datasets/' . $item;
 
                                 // Add to datasets array
                                 $response['datasets'][] = [

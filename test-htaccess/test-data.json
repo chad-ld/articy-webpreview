@@ -1,0 +1,6 @@
+{
+  "test": "htaccess-json-test",
+  "message": "If you can read this, JSON files are being served correctly!",
+  "timestamp": "2025-08-26",
+  "status": "success"
+}
