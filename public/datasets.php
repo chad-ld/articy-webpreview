@@ -26,13 +26,14 @@ try {
     $devDatasetsDir = dirname($scriptDir) . DIRECTORY_SEPARATOR . 'datasets-dev';
     $prodDatasetsDir = $scriptDir . DIRECTORY_SEPARATOR . 'datasets';
 
-    // Check if we're in development mode (datasets-dev exists)
-    if (is_dir($devDatasetsDir)) {
+    // Determine environment based on server port (more reliable than directory existence)
+    $serverPort = $_SERVER['SERVER_PORT'] ?? '80';
+    $isDev = ($serverPort === '5173' || $serverPort === '3000' || $serverPort === '3001');
+
+    if ($isDev) {
         $scanDir = $devDatasetsDir;
-        $isDev = true;
     } else {
         $scanDir = $prodDatasetsDir;
-        $isDev = false;
     }
 
     // Initialize response

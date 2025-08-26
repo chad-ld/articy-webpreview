@@ -52,11 +52,20 @@ class EnvironmentDetector {
       env.isWeb = true;
 
       // Check if we're in development mode
-      if (window.location.hostname === 'localhost' ||
-          window.location.hostname === '127.0.0.1' ||
-          window.location.port === '5173' || // Vite dev server
-          window.location.port === '3000' ||  // Common dev ports
-          window.location.port === '3001') {  // Alternative dev port
+      const port = window.location.port;
+
+      // Development ports (Vite dev server and other dev servers)
+      if (port === '5173' || port === '3000' || port === '3001') {
+        env.isDevelopment = true;
+        env.capabilities.push('development', 'hot-reload');
+      }
+      // Production testing ports (should be treated as production)
+      else if (port === '8080' || port === '8081' || port === '8082' || port === '8083' || port === '8084') {
+        env.isProduction = true;
+        env.capabilities.push('production');
+      }
+      // Only treat localhost as development if no port is specified (default HTTP/HTTPS)
+      else if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && !port) {
         env.isDevelopment = true;
         env.capabilities.push('development', 'hot-reload');
       } else {
