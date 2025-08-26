@@ -100,7 +100,7 @@ if (strpos(`$_SERVER['REQUEST_URI'], '.php') !== false) {
 "@
 
 $CacheBustingHeadersPath = Join-Path $DistDir "cache-bust-headers.php"
-$CacheBustingHeaders | Out-File -FilePath $CacheBustingHeadersPath -Encoding UTF8
+$CacheBustingHeaders | Out-File -FilePath $CacheBustingHeadersPath -Encoding ASCII
 
 # Create cache-busting PHP configuration
 $CacheBustingConfig = @"
@@ -119,9 +119,9 @@ auto_prepend_file = "cache-bust-headers.php"
 "@
 
 $PhpIniPath = Join-Path $DistDir "php-cache-bust.ini"
-$CacheBustingConfig | Out-File -FilePath $PhpIniPath -Encoding UTF8
+$CacheBustingConfig | Out-File -FilePath $PhpIniPath -Encoding ASCII
 
-Write-Host "✅ Cache busting configuration created" -ForegroundColor Green
+Write-Host "SUCCESS: Cache busting configuration created" -ForegroundColor Green
 
 # Start PHP server
 Write-Host "Starting PHP server on port $Port with cache busting..." -ForegroundColor Green
@@ -148,9 +148,9 @@ if (!$NoBrowser) {
 }
 
 Write-Host ""
-Write-Host "🌐 Server running at: $ServerUrl" -ForegroundColor Green
-Write-Host "📁 Serving from: $DistDir" -ForegroundColor Gray
-Write-Host "🛡️ Cache busting: ENABLED" -ForegroundColor Green
+Write-Host "Server running at: $ServerUrl" -ForegroundColor Green
+Write-Host "Serving from: $DistDir" -ForegroundColor Gray
+Write-Host "Cache busting: ENABLED" -ForegroundColor Green
 Write-Host ""
 Write-Host "Press Ctrl+C to stop the server" -ForegroundColor Yellow
 
@@ -170,7 +170,7 @@ function Cleanup {
         Remove-Item $PhpIniPath -Force -ErrorAction SilentlyContinue
     }
 
-    Write-Host "✅ Cleanup complete" -ForegroundColor Green
+    Write-Host "SUCCESS: Cleanup complete" -ForegroundColor Green
 }
 
 # Register cleanup for Ctrl+C
