@@ -473,6 +473,12 @@
       "Template": {
         "TechnicalName": "CombatFlowTemplate",
         "DisplayName": "Combat Flow",
+        "Color": {
+          "a": 1.0,
+          "r": 0.58431375,
+          "g": 0.0,
+          "b": 0.0
+        },
         "Features": []
       }
     },
@@ -483,6 +489,12 @@
       "Template": {
         "TechnicalName": "CraftingFlowTemplate",
         "DisplayName": "Crafting Flow",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.6862745,
+          "b": 0.30980393
+        },
         "Features": []
       }
     },
@@ -493,6 +505,12 @@
       "Template": {
         "TechnicalName": "TravelFlowTemplate_99",
         "DisplayName": "Travel Flow",
+        "Color": {
+          "a": 1.0,
+          "r": 0.08627451,
+          "g": 0.20784314,
+          "b": 0.36078432
+        },
         "Features": []
       }
     },
@@ -503,6 +521,12 @@
       "Template": {
         "TechnicalName": "PlayerActionFlowTemplate",
         "DisplayName": "Player Action Flow",
+        "Color": {
+          "a": 1.0,
+          "r": 0.8901961,
+          "g": 0.42352942,
+          "b": 0.0
+        },
         "Features": []
       }
     },
@@ -513,6 +537,12 @@
       "Template": {
         "TechnicalName": "DialogueIntActionTemplate",
         "DisplayName": "Dialogue - Interactive Action",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.6862745,
+          "b": 0.9411765
+        },
         "Features": []
       }
     },
@@ -523,6 +553,12 @@
       "Template": {
         "TechnicalName": "DialogueInternalActionTemplate",
         "DisplayName": "Dialogue - Internal Action",
+        "Color": {
+          "a": 1.0,
+          "r": 0.4392157,
+          "g": 0.18039216,
+          "b": 0.62352943
+        },
         "Features": []
       }
     },
@@ -533,6 +569,12 @@
       "Template": {
         "TechnicalName": "DialogueExplorationActionTemplate",
         "DisplayName": "Dialogue - Exploration Action",
+        "Color": {
+          "a": 1.0,
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0
+        },
         "Features": []
       }
     },
@@ -543,16 +585,12 @@
       "Template": {
         "TechnicalName": "QuestHeaderTemplate",
         "DisplayName": "Quest Header",
-        "Features": []
-      }
-    },
-    {
-      "Type": "SubQuestTemplate",
-      "Class": "FlowFragment",
-      "InheritsFrom": "FlowFragment",
-      "Template": {
-        "TechnicalName": "SubQuestTemplate",
-        "DisplayName": "SubQuest",
+        "Color": {
+          "a": 1.0,
+          "r": 0.5803922,
+          "g": 0.34509805,
+          "b": 0.10980392
+        },
         "Features": []
       }
     },
@@ -563,16 +601,28 @@
       "Template": {
         "TechnicalName": "LocationTemplate",
         "DisplayName": "Location",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.0
+        },
         "Features": []
       }
     },
     {
-      "Type": "MinigameTemplate",
+      "Type": "GameKitTemplate",
       "Class": "FlowFragment",
       "InheritsFrom": "FlowFragment",
       "Template": {
-        "TechnicalName": "MinigameTemplate",
-        "DisplayName": "Minigame",
+        "TechnicalName": "GameKitTemplate",
+        "DisplayName": "GameKit",
+        "Color": {
+          "a": 1.0,
+          "r": 0.13333334,
+          "g": 0.13333334,
+          "b": 0.13333334
+        },
         "Features": []
       }
     },
@@ -583,6 +633,108 @@
       "Template": {
         "TechnicalName": "InfoUITemplate_01",
         "DisplayName": "InfoUI",
+        "Color": {
+          "a": 1.0,
+          "r": 0.13333334,
+          "g": 0.13333334,
+          "b": 0.13333334
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "MinigameTemplate",
+      "Class": "FlowFragment",
+      "InheritsFrom": "FlowFragment",
+      "Template": {
+        "TechnicalName": "MinigameTemplate",
+        "DisplayName": "Minigame",
+        "Color": {
+          "a": 1.0,
+          "r": 0.5372549,
+          "g": 0.16470589,
+          "b": 0.8862745
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "SuspectInfoTempate",
+      "Class": "FlowFragment",
+      "InheritsFrom": "FlowFragment",
+      "Template": {
+        "TechnicalName": "SuspectInfoTempate",
+        "DisplayName": "Suspect Info",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.6862745,
+          "b": 0.9411765
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "TravelFlowUIChangeTemplate",
+      "Class": "FlowFragment",
+      "InheritsFrom": "FlowFragment",
+      "Template": {
+        "TechnicalName": "TravelFlowUIChangeTemplate",
+        "DisplayName": "TravelFlow - UI Change",
+        "Color": {
+          "a": 1.0,
+          "r": 0.3254902,
+          "g": 0.54901963,
+          "b": 0.83137256
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "TravelFlowPhysicalMonitorTemplate",
+      "Class": "FlowFragment",
+      "InheritsFrom": "FlowFragment",
+      "Template": {
+        "TechnicalName": "TravelFlowPhysicalMonitorTemplate",
+        "DisplayName": "TravelFlow - Physical Monitor",
+        "Color": {
+          "a": 1.0,
+          "r": 0.08627451,
+          "g": 0.20784314,
+          "b": 0.36078432
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "PhysicalMonitorTemplate",
+      "Class": "FlowFragment",
+      "InheritsFrom": "FlowFragment",
+      "Template": {
+        "TechnicalName": "PhysicalMonitorTemplate",
+        "DisplayName": "Physical Monitor",
+        "Color": {
+          "a": 1.0,
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "SubQuestTemplate",
+      "Class": "FlowFragment",
+      "InheritsFrom": "FlowFragment",
+      "Template": {
+        "TechnicalName": "SubQuestTemplate",
+        "DisplayName": "SubQuest",
+        "Color": {
+          "a": 1.0,
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
         "Features": []
       }
     },
@@ -736,6 +888,12 @@
       "Template": {
         "TechnicalName": "DialogueInteractiveFragmentTemplate",
         "DisplayName": "Dialogue - Interactive",
+        "Color": {
+          "a": 1.0,
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
         "Features": []
       }
     },
@@ -746,6 +904,28 @@
       "Template": {
         "TechnicalName": "DialogueExplorationFragmentTemplate",
         "DisplayName": "Dialogue - Exploration",
+        "Color": {
+          "a": 1.0,
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "EvidenceInfoDiaolgueFragmentTemplate",
+      "Class": "DialogueFragment",
+      "InheritsFrom": "DialogueFragment",
+      "Template": {
+        "TechnicalName": "EvidenceInfoDiaolgueFragmentTemplate",
+        "DisplayName": "EvidenceInfo",
+        "Color": {
+          "a": 1.0,
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
         "Features": []
       }
     },
@@ -997,6 +1177,12 @@
       "Template": {
         "TechnicalName": "PCTemplate",
         "DisplayName": "Player Character",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.6862745,
+          "b": 0.30980393
+        },
         "Features": [
           {
             "TechnicalName": "Basic_Character_Feature",
@@ -1051,7 +1237,8 @@
                 "Property": "Sex",
                 "Type": "Enum",
                 "IsLocalized": "True",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               },
               {
                 "Property": "Occupation",
@@ -1084,7 +1271,8 @@
                 "Property": "Species",
                 "Type": "Enum",
                 "IsLocalized": "False",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               }
             ]
           }
@@ -1098,6 +1286,12 @@
       "Template": {
         "TechnicalName": "NPCTemplate",
         "DisplayName": "NPC",
+        "Color": {
+          "a": 1.0,
+          "r": 0.23921569,
+          "g": 0.23921569,
+          "b": 0.23921569
+        },
         "Features": [
           {
             "TechnicalName": "Basic_Character_Feature",
@@ -1152,7 +1346,8 @@
                 "Property": "Sex",
                 "Type": "Enum",
                 "IsLocalized": "True",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               },
               {
                 "Property": "Occupation",
@@ -1185,7 +1380,8 @@
                 "Property": "Species",
                 "Type": "Enum",
                 "IsLocalized": "False",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               }
             ]
           }
@@ -1199,6 +1395,12 @@
       "Template": {
         "TechnicalName": "WeaponTemplate",
         "DisplayName": "Weapon",
+        "Color": {
+          "a": 1.0,
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
         "Features": [
           {
             "TechnicalName": "WeaponFeature",
@@ -1220,7 +1422,8 @@
                 "Property": "ClassProperty",
                 "Type": "Enum",
                 "IsLocalized": "False",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               },
               {
                 "Property": "WhichPCInv",
@@ -1244,6 +1447,12 @@
       "Template": {
         "TechnicalName": "EnemyGenericTemplate",
         "DisplayName": "Enemy - Generic",
+        "Color": {
+          "a": 1.0,
+          "r": 0.78431374,
+          "g": 0.8862745,
+          "b": 0.90588236
+        },
         "Features": [
           {
             "TechnicalName": "Enemy_feature",
@@ -1265,7 +1474,8 @@
                 "Property": "SpeciesProperty",
                 "Type": "Enum",
                 "IsLocalized": "False",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               },
               {
                 "Property": "PossessedStatus",
@@ -1284,6 +1494,12 @@
       "Template": {
         "TechnicalName": "innervoice_template",
         "DisplayName": "InnerVoice",
+        "Color": {
+          "a": 1.0,
+          "r": 0.69411767,
+          "g": 0.0,
+          "b": 0.6
+        },
         "Features": [
           {
             "TechnicalName": "Basic_Character_Feature",
@@ -1338,7 +1554,8 @@
                 "Property": "Sex",
                 "Type": "Enum",
                 "IsLocalized": "True",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               },
               {
                 "Property": "Occupation",
@@ -1371,21 +1588,12 @@
                 "Property": "Species",
                 "Type": "Enum",
                 "IsLocalized": "False",
-                "SortMode": "BySortIndex"
+                "SortMode": "BySortIndex",
+                "IsSearchable": "False"
               }
             ]
           }
         ]
-      }
-    },
-    {
-      "Type": "Evidence",
-      "Class": "Entity",
-      "InheritsFrom": "Entity",
-      "Template": {
-        "TechnicalName": "Evidence",
-        "DisplayName": "Evidence",
-        "Features": []
       }
     },
     {
@@ -1395,6 +1603,44 @@
       "Template": {
         "TechnicalName": "SceneObject",
         "DisplayName": "Scene Object",
+        "Color": {
+          "a": 1.0,
+          "r": 0.19607843,
+          "g": 0.8039216,
+          "b": 0.19607843
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "EvidenceV01Template",
+      "Class": "Entity",
+      "InheritsFrom": "Entity",
+      "Template": {
+        "TechnicalName": "EvidenceV01Template",
+        "DisplayName": "EvidenceV01",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.79607844,
+          "b": 0.79607844
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "EvidenceTemplate",
+      "Class": "Entity",
+      "InheritsFrom": "Entity",
+      "Template": {
+        "TechnicalName": "EvidenceTemplate",
+        "DisplayName": "Evidence",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.79607844,
+          "b": 0.79607844
+        },
         "Features": []
       }
     },
@@ -1465,6 +1711,12 @@
       "Template": {
         "TechnicalName": "LocationMapGenericTemplate",
         "DisplayName": "Location - Map - Generic",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.5176471,
+          "b": 0.0
+        },
         "Features": [
           {
             "TechnicalName": "Location_Feature",
@@ -2066,6 +2318,12 @@
       "Template": {
         "TechnicalName": "WaypointTemplate",
         "DisplayName": "Waypoint",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.0,
+          "b": 1.0
+        },
         "Features": []
       }
     },
@@ -2076,6 +2334,12 @@
       "Template": {
         "TechnicalName": "JournalEntryTemplate",
         "DisplayName": "Journal Entry",
+        "Color": {
+          "a": 1.0,
+          "r": 0.37254903,
+          "g": 0.2784314,
+          "b": 0.4745098
+        },
         "Features": []
       }
     },
@@ -2086,6 +2350,12 @@
       "Template": {
         "TechnicalName": "PlayerActionTemplate",
         "DisplayName": "Player Action",
+        "Color": {
+          "a": 1.0,
+          "r": 0.79607844,
+          "g": 0.3764706,
+          "b": 0.0
+        },
         "Features": []
       }
     },
@@ -2096,6 +2366,12 @@
       "Template": {
         "TechnicalName": "CraftingTemplate",
         "DisplayName": "Crafting",
+        "Color": {
+          "a": 1.0,
+          "r": 0.0,
+          "g": 0.6117647,
+          "b": 0.2784314
+        },
         "Features": []
       }
     },
@@ -2106,6 +2382,12 @@
       "Template": {
         "TechnicalName": "CombatTemplate",
         "DisplayName": "Combat",
+        "Color": {
+          "a": 1.0,
+          "r": 0.52156866,
+          "g": 0.0,
+          "b": 0.0
+        },
         "Features": []
       }
     },
@@ -2116,6 +2398,12 @@
       "Template": {
         "TechnicalName": "TravelTemplate",
         "DisplayName": "Travel",
+        "Color": {
+          "a": 1.0,
+          "r": 0.050980393,
+          "g": 0.18039216,
+          "b": 0.31764707
+        },
         "Features": []
       }
     },
@@ -2126,6 +2414,60 @@
       "Template": {
         "TechnicalName": "AreaEventTemplate",
         "DisplayName": "Area Event",
+        "Color": {
+          "a": 1.0,
+          "r": 0.7058824,
+          "g": 0.7058824,
+          "b": 0.0
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "TravelInstructionPhysicalMonitorTemplate",
+      "Class": "Instruction",
+      "InheritsFrom": "Instruction",
+      "Template": {
+        "TechnicalName": "TravelInstructionPhysicalMonitorTemplate",
+        "DisplayName": "Travel Instruction - Physical Monitor",
+        "Color": {
+          "a": 1.0,
+          "r": 0.050980393,
+          "g": 0.18039216,
+          "b": 0.31764707
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "TravelInstructionUIChangeTemplate",
+      "Class": "Instruction",
+      "InheritsFrom": "Instruction",
+      "Template": {
+        "TechnicalName": "TravelInstructionUIChangeTemplate",
+        "DisplayName": "Travel Instruction - UI Change",
+        "Color": {
+          "a": 1.0,
+          "r": 0.3254902,
+          "g": 0.54901963,
+          "b": 0.83137256
+        },
+        "Features": []
+      }
+    },
+    {
+      "Type": "MiniGameInstructionTemplate",
+      "Class": "Instruction",
+      "InheritsFrom": "Instruction",
+      "Template": {
+        "TechnicalName": "MiniGameInstructionTemplate",
+        "DisplayName": "MiniGame Instruction",
+        "Color": {
+          "a": 1.0,
+          "r": 0.53333336,
+          "g": 0.14901961,
+          "b": 0.8862745
+        },
         "Features": []
       }
     },

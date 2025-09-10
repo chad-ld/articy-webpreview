@@ -4,9 +4,10 @@
     "set_IncludingAssets": "True",
     "set_IncludedNodes": "Settings, Project, GlobalVariables, ObjectDefinitions, Packages, ScriptMethods, Hierarchy, Assets, Languages",
     "set_UseScriptSupport": "True",
+    "RuleSetChecksum": "5DF1C2DE118CD9C4DEE1FFAC27D20312CB9FD54D-DA39A3EE5E6B4B0D3255BFEF95601890AFD80709",
     "ExportVersion": "2.1",
-    "RuleSetId": "0100000600004019",
-    "RuleSetName": "Default Export Ruleset (complete Project)"
+    "RuleSetId": "0100000B000031D9",
+    "RuleSetName": "Prince of Soulard v02 Data Export"
   },
   "Project": {
     "Name": "Mysteryworks Prince of Soulard",
@@ -24,12 +25,12 @@
   ],
   "GlobalVariables": {
     "FileName": "global_variables.json",
-    "Hash": "inyi2ejFkOmZ1FAjOcVOAkAeHPx45y36YK6uv+wkjuY="
+    "Hash": "ZErzNoeb9dIanMfSSgb1C8cemSDzCL2t/Jnh2nRB3VI="
   },
   "ObjectDefinitions": {
     "Types": {
       "FileName": "object_definitions.json",
-      "Hash": "p5tBuvLNaunZldD2MNILgUWXlmmrBxFpgxgKVEhB8B4="
+      "Hash": "E5iSzEWQcPyifti7LadVnq6iPAj9l+Qsb2OsD+LJkDc="
     },
     "Texts": {
       "FileName": "object_definitions_localization.json",
@@ -38,20 +39,20 @@
   },
   "Packages": [
     {
-      "Name": "All objects",
-      "Id": "0x010000060000401C",
-      "Description": "Exports all objects & types of the project",
+      "Name": "Export MPoS v02 only",
+      "Id": "0x0100000B000031DC",
+      "Description": "",
       "IsDefaultPackage": true,
       "IsIncluded": true,
-      "ScriptFragmentHash": "HjObS3/tWRWDMjD1ryA0+G8L3dkwFCGRBhHWVDKNKcQ=",
+      "ScriptFragmentHash": "WYxjS1lbimmffrf5fI8sC6yHjXaTevF64CyY7DG5fG8=",
       "Files": {
         "Objects": {
-          "FileName": "package_010000060000401C_objects.json",
-          "Hash": "i+938vLROd4egkI0jf9m4xLcOiRSadaX+qqEI8lHQ5k="
+          "FileName": "package_0100000B000031DC_objects.json",
+          "Hash": "8gtP0WdnbzRSPCmdMGaGx397J6k5caQH6BW8yXS5wlY="
         },
         "Texts": {
-          "FileName": "package_010000060000401C_localization.json",
-          "Hash": "SPA/izSdsLK7l95NeWlYi+3e7gJhQDSalSdZFhqXJSI="
+          "FileName": "package_0100000B000031DC_localization.json",
+          "Hash": "XWD5fcMVgFldv3ga8fTVkECSYCEQeuQygaYHRWzzIs8="
         }
       }
     }
@@ -62,6 +63,6 @@
   },
   "Hierarchy": {
     "FileName": "hierarchy.json",
-    "Hash": "LBQXWHaPCV3/xzd+53LBwIoWW3fS1acw17hOcVETNfQ="
+    "Hash": "YvL2dUTTn6elxeCa7jwmjs5ibJdfN+2T9/mw0gkrEoY="
   }
 }

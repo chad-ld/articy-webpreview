@@ -1,0 +1,2042 @@
+{
+  "FFr_EFE11F2D.DisplayName": {
+    "": {
+      "Text": "Mysteryworks Prince of Soulard -v02- ROOT"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT"
+  },
+  "FFr_EFE11F2D.Text": {
+    "": {
+      "Text": "Mysteryworks Prince of Soulard Flows v02\r\n\r\nCURRENT FLOW\r\n\r\nHISTORY\r\n\r\n09/07/2025 - Started new branch of old flow, to make it cleaner for room experience and prototyping tool"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT"
+  },
+  "FFr_510A9C6A.DisplayName": {
+    "": {
+      "Text": "||LOCATION - Crime Scene"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION - Crime Scene"
+  },
+  "FFr_510A9C6A.Text": {
+    "": {
+      "Text": "The crime scene, Victor's secret apartment.\r\n\r\nLocation Details: (can put a hyperlink to notion or google doc here for art or programmer reference)"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION - Crime Scene"
+  },
+  "FFr_554A070A.DisplayName": {
+    "": {
+      "Text": "||LOCATION - Daria's Home Office"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION - Daria's Home Office"
+  },
+  "FFr_554A070A.Text": {
+    "": {
+      "Text": "Daria's personal office in the suburban home she shared with her late husband Victor. \r\n\r\nLocation Details: (can put a hyperlink to notion or google doc here for art or programmer reference)"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION - Daria's Home Office"
+  },
+  "FFr_7A0E32F1.DisplayName": {
+    "": {
+      "Text": "||LOCATION - Alex Apartment"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION - Alex Apartment"
+  },
+  "FFr_7A0E32F1.Text": {
+    "": {
+      "Text": "Alex's bachelor pad. Small and flashy, but also cluttered and messy.\r\n\r\nLocation Details: (can put a hyperlink to notion or google doc here for art or programmer reference)"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION - Alex Apartment"
+  },
+  "FFr_26867A90.DisplayName": {
+    "": {
+      "Text": "||LOCATION -Leo's Townhome"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION -Leo's Townhome"
+  },
+  "FFr_26867A90.Text": {
+    "": {
+      "Text": "Leo's townhome in a wealthy district of the city.\r\n\r\nLocation Details: (can put a hyperlink to notion or google doc here for art or programmer reference)"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||LOCATION -Leo's Townhome"
+  },
+  "FFr_5979605F.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - WPA Analysis"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - WPA Analysis"
+  },
+  "FFr_5979605F.Text": {
+    "": {
+      "Text": "Minigame to determine keycode for any system with a touch interface."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - WPA Analysis"
+  },
+  "FFr_25AF4DA2.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Document Analytics"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - Document Analytics"
+  },
+  "FFr_25AF4DA2.Text": {
+    "": {
+      "Text": "An AI tool that analyses print documents and photographs and summarizes important evidence."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - Document Analytics"
+  },
+  "FFr_58F81E7C.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Fingerprint Analysis"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_58F81E7C.Text": {
+    "": {
+      "Text": "Minigame to determine which suspect matches the fingerprint from the suspect fingerprint database."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - Fingerprint Analysis"
+  },
+  "FFr_8EC4B1AF.DisplayName": {
+    "": {
+      "Text": "||MINIGAME - Video Forensic Module"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - Video Forensic Module"
+  },
+  "FFr_8EC4B1AF.Text": {
+    "": {
+      "Text": "Minigame with two modes:\r\n- extract video footage from video devices\r\n- AI detection and identification of faces"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||MINIGAME - Video Forensic Module"
+  },
+  "FFr_1A829702.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Liza Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_1A829702.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Liza Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_9785FEF6.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Daria Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_9785FEF6.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Daria Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_045EDC16.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Alex Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_045EDC16.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Alex Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_92FB7519.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Murder Board"
+    },
+    "Context": "Flow/Leo Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_92FB7519.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity"
+    },
+    "Context": "Flow/Leo Statements/||INFO_UI - Murder Board"
+  },
+  "FFr_30C81BE1.DisplayName": {
+    "": {
+      "Text": "||GameKit.MurderBoard.Evidence.Starting"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.Starting"
+  },
+  "FFr_30C81BE1.Text": {
+    "": {
+      "Text": "The collection of evidence available at the start of the murder."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.Starting"
+  },
+  "FFr_81110A27.DisplayName": {
+    "": {
+      "Text": "||GameKit.MurderBoard.Evidence.VA"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.VA"
+  },
+  "FFr_81110A27.Text": {
+    "": {
+      "Text": "The collection of evidence available from the crime scene."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.VA"
+  },
+  "FFr_6C4CB9A9.DisplayName": {
+    "": {
+      "Text": "||GameKit.MurderBoard.Evidence.DO"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.DO"
+  },
+  "FFr_6C4CB9A9.Text": {
+    "": {
+      "Text": "The collection of evidence available from Daria's Office."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.DO"
+  },
+  "FFr_2625C023.DisplayName": {
+    "": {
+      "Text": "||GameKit.MurderBoard.Evidence.AP"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.AP"
+  },
+  "FFr_2625C023.Text": {
+    "": {
+      "Text": "The collection of evidence available from Alex Apartment."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.AP"
+  },
+  "FFr_D189E24A.DisplayName": {
+    "": {
+      "Text": "||GameKit.MurderBoard.Evidence.LT"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.LT"
+  },
+  "FFr_D189E24A.Text": {
+    "": {
+      "Text": "The collection of evidence available from Leo's Townhome."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence.LT"
+  },
+  "FFr_AB1B2EBD.DisplayName": {
+    "": {
+      "Text": "||INFO_UI - Game Over Screen"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||INFO_UI - Game Over Screen"
+  },
+  "FFr_AB1B2EBD.Text": {
+    "": {
+      "Text": "Game over screen with scores"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||INFO_UI - Game Over Screen"
+  },
+  "FFr_AFC0EE39.DisplayName": {
+    "": {
+      "Text": "||ACTION - Investigate Safe"
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Investigate Safe"
+  },
+  "FFr_AFC0EE39.Text": {
+    "": {
+      "Text": "A sturdy, electronic safe sits in the corner of the office."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Investigate Safe"
+  },
+  "FFr_6577C347.DisplayName": {
+    "": {
+      "Text": "||ACTION - Look In Trash"
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Look In Trash"
+  },
+  "FFr_6577C347.Text": {
+    "": {
+      "Text": "A trash can has several pieces of paper jutting out."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Look In Trash"
+  },
+  "FFr_50751719.DisplayName": {
+    "": {
+      "Text": "||ACTION - Investigate Wall Monitor"
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Investigate Wall Monitor"
+  },
+  "FFr_50751719.Text": {
+    "": {
+      "Text": "A high tech monitor is on the wall by the door, showing a video feed of the hallway outside."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Investigate Wall Monitor"
+  },
+  "FFr_27E5327D.DisplayName": {
+    "": {
+      "Text": "||ACTION - Pick Up Tiki Mug"
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Pick Up Tiki Mug"
+  },
+  "FFr_27E5327D.Text": {
+    "": {
+      "Text": "A elaborately painted tiki mug stands out among the office decor."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||ACTION - Pick Up Tiki Mug"
+  },
+  "FFr_8714CBC6.DisplayName": {
+    "": {
+      "Text": "||ACTION - Get bank statements"
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||ACTION - Get bank statements"
+  },
+  "FFr_8714CBC6.Text": {
+    "": {
+      "Text": "Open envelopes from a bank with account statements are laying on the desk."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||ACTION - Get bank statements"
+  },
+  "FFr_D210E6AD.DisplayName": {
+    "": {
+      "Text": "||ACTION - Lawyer Letter"
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||ACTION - Lawyer Letter"
+  },
+  "FFr_D210E6AD.Text": {
+    "": {
+      "Text": "A letter from a law firm describing divorce terms."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||ACTION - Lawyer Letter"
+  },
+  "FFr_98C0F4B5.DisplayName": {
+    "": {
+      "Text": "||ACTION - Pick Up Vape Pen"
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||ACTION - Pick Up Vape Pen"
+  },
+  "FFr_98C0F4B5.Text": {
+    "": {
+      "Text": "A shiny, modern vape pen lies on a nearby table."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||ACTION - Pick Up Vape Pen"
+  },
+  "FFr_E3707D80.DisplayName": {
+    "": {
+      "Text": "||ACTION - Photograph"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Photograph"
+  },
+  "FFr_E3707D80.Text": {
+    "": {
+      "Text": "A photograph of Alex and two other men is laying on the desk."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Photograph"
+  },
+  "FFr_73348726.DisplayName": {
+    "": {
+      "Text": "||ACTION - Security Camera Panel"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Security Camera Panel"
+  },
+  "FFr_73348726.Text": {
+    "": {
+      "Text": "A security cam monitor similar to the one found in Victor's apartment is on the wall by the door."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||ACTION - Security Camera Panel"
+  },
+  "FFr_523746E9.DisplayName": {
+    "": {
+      "Text": "||ACTION - Get NBI CI Agreement"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get NBI CI Agreement"
+  },
+  "FFr_523746E9.Text": {
+    "": {
+      "Text": "A binding contract of some kind."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get NBI CI Agreement"
+  },
+  "FFr_3BEEEA45.DisplayName": {
+    "": {
+      "Text": "||ACTION - Get Passport"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Passport"
+  },
+  "FFr_3BEEEA45.Text": {
+    "": {
+      "Text": "A passport."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Passport"
+  },
+  "FFr_0F6774BA.DisplayName": {
+    "": {
+      "Text": "||ACTION - Get Wintergreen Paperwork"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Wintergreen Paperwork"
+  },
+  "FFr_0F6774BA.Text": {
+    "": {
+      "Text": "A series of legal documents."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||ACTION - Get Wintergreen Paperwork"
+  },
+  "FFr_EBE26793.DisplayName": {
+    "": {
+      "Text": "||ACTION - No Action"
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/||ACTION - No Action"
+  },
+  "FFr_EBE26793.Text": {
+    "": {
+      "Text": "No action taken on the minigame"
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/||ACTION - No Action"
+  },
+  "FFr_FC39D80B.DisplayName": {
+    "": {
+      "Text": "||ACTION - No Action"
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/||ACTION - No Action"
+  },
+  "FFr_FC39D80B.Text": {
+    "": {
+      "Text": "No action taken on the minigame"
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/||ACTION - No Action"
+  },
+  "FFr_845CE1A4.DisplayName": {
+    "": {
+      "Text": "||ACTION - No Action"
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/||ACTION - No Action"
+  },
+  "FFr_845CE1A4.Text": {
+    "": {
+      "Text": "No action taken on the minigame"
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/||ACTION - No Action"
+  },
+  "FFr_7E041108.DisplayName": {
+    "": {
+      "Text": "||ACTION - No Action"
+    },
+    "Context": "Flow/||MINIGAME - Video Forensic Module/||ACTION - No Action"
+  },
+  "FFr_7E041108.Text": {
+    "": {
+      "Text": "No action taken on the minigame"
+    },
+    "Context": "Flow/||MINIGAME - Video Forensic Module/||ACTION - No Action"
+  },
+  "FFr_0A75440C.DisplayName": {
+    "": {
+      "Text": "||ACTION - Accuse Liza"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Liza"
+  },
+  "FFr_0A75440C.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Liza"
+  },
+  "FFr_5A7A5934.DisplayName": {
+    "": {
+      "Text": "||ACTION - Accuse Daria"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Daria"
+  },
+  "FFr_5A7A5934.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Daria"
+  },
+  "FFr_E2711C11.DisplayName": {
+    "": {
+      "Text": "||ACTION - Accuse Alex"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Alex"
+  },
+  "FFr_E2711C11.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Alex"
+  },
+  "FFr_35582914.DisplayName": {
+    "": {
+      "Text": "||ACTION - Accuse Leo"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Leo"
+  },
+  "FFr_35582914.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/||ACTION - Accuse Leo"
+  },
+  "FFr_210D8FD8.DisplayName": {
+    "": {
+      "Text": "||GameKit.MurderBoard.Evidence"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence"
+  },
+  "FFr_210D8FD8.Text": {
+    "": {
+      "Text": "Murderboard UI screens where player can browse existing evidence"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.Evidence"
+  },
+  "FFr_E3926AE3.DisplayName": {
+    "": {
+      "Text": "||GameKit - MurderBoard"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit - MurderBoard"
+  },
+  "FFr_E3926AE3.Text": {
+    "": {
+      "Text": "UI screen where user can view suspects statements, means, motive, opportunity and view all evidence currently collected."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit - MurderBoard"
+  },
+  "FFr_3F3C8929.DisplayName": {
+    "": {
+      "Text": "||GameKit - EvidenceDiscovery"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit - EvidenceDiscovery"
+  },
+  "FFr_3F3C8929.Text": {
+    "": {
+      "Text": "UI screen where user can view virtual re-creations of noteworthy locations for further investigation."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit - EvidenceDiscovery"
+  },
+  "FFr_B18E8FCA.DisplayName": {
+    "": {
+      "Text": "||GameKit.MurderBoard.AccuseButton"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.AccuseButton"
+  },
+  "FFr_B18E8FCA.Text": {
+    "": {
+      "Text": "The accusation module trigger button on the murderboard"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit.MurderBoard.AccuseButton"
+  },
+  "FFr_51E58243.DisplayName": {
+    "": {
+      "Text": "||GameKit - EvidenceDiscovery"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit - EvidenceDiscovery"
+  },
+  "FFr_51E58243.Text": {
+    "": {
+      "Text": "UI Screen where the user can accuse one  of the suspects to see if they are correct."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||GameKit - EvidenceDiscovery"
+  },
+  "FFr_7DFB3293.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_7DFB3293.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_83CAF1AA.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_83CAF1AA.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_3F707BD4.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_3F707BD4.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared.."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_188F2E5B.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_188F2E5B.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_1CFBCE5D.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_1CFBCE5D.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_6703754D.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_6703754D.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_299F8E4D.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_299F8E4D.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_4EE6DBEA.DisplayName": {
+    "": {
+      "Text": "||UIChange - EvidenceDiscovery Main Menu"
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_4EE6DBEA.Text": {
+    "": {
+      "Text": "Return to EvidenceDiscovery main menu to select a different location to investigate if the location has been cleared."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/||UIChange - EvidenceDiscovery Main Menu"
+  },
+  "FFr_546219E8.DisplayName": {
+    "": {
+      "Text": "||UIChange - Evidence Location Categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.Starting/||UIChange - Evidence Location Categories"
+  },
+  "FFr_546219E8.Text": {
+    "": {
+      "Text": "Back to evidence location categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.Starting/||UIChange - Evidence Location Categories"
+  },
+  "FFr_D399B8B4.DisplayName": {
+    "": {
+      "Text": "||UIChange - Evidence Location Categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/||UIChange - Evidence Location Categories"
+  },
+  "FFr_D399B8B4.Text": {
+    "": {
+      "Text": "Back to evidence location categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/||UIChange - Evidence Location Categories"
+  },
+  "FFr_9831766D.DisplayName": {
+    "": {
+      "Text": "||UIChange - Evidence Location Categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/||UIChange - Evidence Location Categories"
+  },
+  "FFr_9831766D.Text": {
+    "": {
+      "Text": "Back to evidence location categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/||UIChange - Evidence Location Categories"
+  },
+  "FFr_E7DD45C7.DisplayName": {
+    "": {
+      "Text": "||UIChange - Murderboard Main Menu"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/||UIChange - Murderboard Main Menu"
+  },
+  "FFr_E7DD45C7.Text": {
+    "": {
+      "Text": "Return to Murderboard Main Menu"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/||UIChange - Murderboard Main Menu"
+  },
+  "FFr_2C85BEFC.DisplayName": {
+    "": {
+      "Text": "||UIChange - Evidence Location Categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/||UIChange - Evidence Location Categories"
+  },
+  "FFr_2C85BEFC.Text": {
+    "": {
+      "Text": "Back to evidence location categories"
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/||UIChange - Evidence Location Categories"
+  },
+  "FFr_1AB441DF.DisplayName": {
+    "": {
+      "Text": "||UIChange - Murderboard Main Menu"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||UIChange - Murderboard Main Menu"
+  },
+  "FFr_1AB441DF.Text": {
+    "": {
+      "Text": "Return to Murderboard Main Menu"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||UIChange - Murderboard Main Menu"
+  },
+  "FFr_03C8108B.DisplayName": {
+    "": {
+      "Text": "Liza Statements"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Liza Statements"
+  },
+  "FFr_03C8108B.Text": {
+    "": {
+      "Text": "Liza's statements, means, motives, and opportunities.\r\n\r\nLiza is a former worker at Victor's nightclub."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Liza Statements"
+  },
+  "FFr_73E738BD.DisplayName": {
+    "": {
+      "Text": "Daria Statements"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Daria Statements"
+  },
+  "FFr_73E738BD.Text": {
+    "": {
+      "Text": "Darias's statements, means, motives, and opportunities.\r\n\r\nDaria is Victor's wife."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Daria Statements"
+  },
+  "FFr_B21E68B4.DisplayName": {
+    "": {
+      "Text": "Alex Statements"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Alex Statements"
+  },
+  "FFr_B21E68B4.Text": {
+    "": {
+      "Text": "Alex's statements, means, motives, and opportunities.\r\n\r\nAlex is Victor's brother."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Alex Statements"
+  },
+  "FFr_B1DE6D8B.DisplayName": {
+    "": {
+      "Text": "Leo Statements"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Leo Statements"
+  },
+  "FFr_B1DE6D8B.Text": {
+    "": {
+      "Text": "Leo's statements, means, motives, and opportunities\r\n\r\nLeo is Victors former biz partner."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/Leo Statements"
+  },
+  "FFr_6D2B75E5.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Three Wall Screen"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Three Wall Screen"
+  },
+  "FFr_6D2B75E5.Text": {
+    "": {
+      "Text": "Walk over to the three wall screen/volume."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Three Wall Screen"
+  },
+  "FFr_7838BF8C.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Standalone Monitor"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Standalone Monitor"
+  },
+  "FFr_7838BF8C.Text": {
+    "": {
+      "Text": "Travel to standalone monitor"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Standalone Monitor"
+  },
+  "FFr_1FB8B6F6.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Kiosk Monitors"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Kiosk Monitors"
+  },
+  "FFr_1FB8B6F6.Text": {
+    "": {
+      "Text": "Walk over to the Kiosk Station"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Kiosk Monitors"
+  },
+  "FFr_6D43D16D.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Kiosk Monitors"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Kiosk Monitors"
+  },
+  "FFr_6D43D16D.Text": {
+    "": {
+      "Text": "Walk over to the Kiosk Station"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Kiosk Monitors"
+  },
+  "FFr_95B3A860.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Three Wall Screen"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Three Wall Screen"
+  },
+  "FFr_95B3A860.Text": {
+    "": {
+      "Text": "Walk over to the three wall screen/volume."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Three Wall Screen"
+  },
+  "FFr_133C87BD.DisplayName": {
+    "": {
+      "Text": "||TRAVEL - Standalone Monitor"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Standalone Monitor"
+  },
+  "FFr_133C87BD.Text": {
+    "": {
+      "Text": "Travel to standalone monitor"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||TRAVEL - Standalone Monitor"
+  },
+  "FFr_D4460211.DisplayName": {
+    "": {
+      "Text": "||PhysicalMonitor - Three Wall Screen"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||PhysicalMonitor - Three Wall Screen"
+  },
+  "FFr_D4460211.Text": {
+    "": {
+      "Text": "This is the projection wall that accepts touch screen input and position tracking on floor inside the three wall volume."
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||PhysicalMonitor - Three Wall Screen"
+  },
+  "FFr_2AB7B2F8.DisplayName": {
+    "": {
+      "Text": "||PhysicalMonitor - Kiosk Monitors"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||PhysicalMonitor - Kiosk Monitors"
+  },
+  "FFr_2AB7B2F8.Text": {
+    "": {
+      "Text": "These are the kiosk monitors and touch/joystick/dial/button controls"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||PhysicalMonitor - Kiosk Monitors"
+  },
+  "FFr_D4C258BF.DisplayName": {
+    "": {
+      "Text": "||PhysicalMonitor - Standalone Monitor"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||PhysicalMonitor - Standalone Monitor"
+  },
+  "FFr_D4C258BF.Text": {
+    "": {
+      "Text": "The monitor that contains the Murderboard GameKit"
+    },
+    "Context": "Flow/Mysteryworks Prince of Soulard -v02- ROOT/||PhysicalMonitor - Standalone Monitor"
+  },
+  "DFr_F901F388.Text": {
+    "": {
+      "Text": "The safe is locked has a keypad combination. Use the WPA (Wear Pattern Analysis) module to determine the key code and crack the safe.\r\n\r\nThe safe has also been logged as evidence on the Murderboard. You can visit the Muderboard at any time to browse the clues and evidence you have uncovered."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/Onscreen Guide: \"The safe is locked has a keypad com...\""
+  },
+  "DFr_5D29BB30.Text": {
+    "": {
+      "Text": "You've found several receipts for various purchases made by the victim over the past few weeks."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/Onscreen Guide: \"You've found several receipts for v...\""
+  },
+  "DFr_05FD77B7.Text": {
+    "": {
+      "Text": "This panel is connected to a security cam feed outside the the door of the Victor's studio. It looks like it's capable of recording video. \r\n\r\nUse the WPA Analysis to crack the passcode to the admin screen and download the videos for further investigation."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/Onscreen Guide: \"This panel is connected to a securi...\""
+  },
+  "DFr_8349F455.Text": {
+    "": {
+      "Text": "You've found a Tiki Mug with a fingerprint on the surface."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/Onscreen Guide: \"You've found a Tiki Mug with a fing...\""
+  },
+  "DFr_B57C2ABD.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/Onscreen Guide: \"You've found all the evidence in th...\""
+  },
+  "DFr_0934DFDA.Text": {
+    "": {
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time for you to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
+    },
+    "Context": "Flow/||LOCATION - Crime Scene/Onscreen Guide: \"You've uncovered all the possible e...\""
+  },
+  "DFr_99804965.Text": {
+    "": {
+      "Text": "I worked at the club for years while building my influencer career.\r\n\r\nVictor is the father of my child and I confronted him about it.\r\n\r\nIf anyone has heroin it would be that druggie, Alex. He and Leo are close.\r\n\r\nI have never heard of the love nest."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"I worked at the club for years whil...\""
+  },
+  "DFr_9ECBEB5A.Text": {
+    "": {
+      "Text": "Victor hated drugs.\r\n\r\nI am a former worker at the club and slept with Victor.\r\n\r\nVictor is not the father of my child, despite me thinking he was. It must be my other relationship.\r\n\r\nDaria is having an affair with Alex."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Victor hated drugs. I am a forme...\""
+  },
+  "DFr_79574950.Text": {
+    "": {
+      "Text": "Attempt to contradict Liza"
+    },
+    "Context": "Flow/Liza Statements/Onscreen Guide: \"Attempt to contradict Liza\""
+  },
+  "DFr_A8C22B48.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"I stand by what I said!\""
+  },
+  "DFr_5EB6C102.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Okay, okay... I lied!\""
+  },
+  "DFr_C15E8F89.Text": {
+    "": {
+      "Text": "None"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"None\""
+  },
+  "DFr_A7CECFDA.Text": {
+    "": {
+      "Text": "Liza has been to Victor's love nest before."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza has been to Victor's love nest...\""
+  },
+  "DFr_855EC91E.Text": {
+    "": {
+      "Text": "Liza has been in Victor's love nest before."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza has been in Victor's love nest...\""
+  },
+  "DFr_3FD725D4.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Unknown\""
+  },
+  "DFr_4A34114F.Text": {
+    "": {
+      "Text": "Liza may benefit from the new will, as it prefers blood relatives."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza may benefit from the new will,...\""
+  },
+  "DFr_33DFB6CC.Text": {
+    "": {
+      "Text": "Liza and her baby do not stand to financially benefit from the will."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza and her baby do not stand to f...\""
+  },
+  "DFr_733CF126.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Unknown\""
+  },
+  "DFr_16C648C9.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Unknown\""
+  },
+  "DFr_0ADC81B6.Text": {
+    "": {
+      "Text": "Liza does not have clear access to etomidate, but she can get heroin through the club’s patrons."
+    },
+    "Context": "Flow/Liza Statements/Liza: \"Liza does not have clear access to...\""
+  },
+  "DFr_209CA3A5.Text": {
+    "": {
+      "Text": "Congratulations! You've cracked your first witness! You now know how to scan in evidence, analyze it, and build your case!\r\n\r\nView the suspects updated statement and then go back to the crime scene to see if you missed any other evidence."
+    },
+    "Context": "Flow/Liza Statements/Onscreen Guide: \"Congratulations! You've cracked you...\""
+  },
+  "DFr_1E6BB172.Text": {
+    "": {
+      "Text": "I have been working on divorcing Victor because of his affair.\r\n\r\nLiza is a gold-digger and Victor wanted a genetic test as proof.\r\n\r\nI don’t know why Leo would have left and that is suspicious.\r\n\r\nI didn’t know he had a love nest."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"I have been working on divorcing Vi...\""
+  },
+  "DFr_845EDEEC.Text": {
+    "": {
+      "Text": "Victor hated drugs.\r\n\r\nI have been working on divorcing Victor because of my affair with Alex.\r\n\r\nI am not worried about the will, as I can still benefit in both versions.\r\n\r\nSomeone is under investigation. I thought it was about me and the irregularities in our finances, but it wasn’t. It was about Leo."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Victor hated drugs. I have been...\""
+  },
+  "DFr_FF4ACE35.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"I stand by what I said!\""
+  },
+  "DFr_9AEF8DF8.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Okay, okay... I lied!\""
+  },
+  "DFr_E309E1FC.Text": {
+    "": {
+      "Text": "Attempt to contradict Daria"
+    },
+    "Context": "Flow/Daria Statements/Onscreen Guide: \"Attempt to contradict Daria\""
+  },
+  "DFr_FCB24ECD.Text": {
+    "": {
+      "Text": "Daria has been to Victor’s love nest before."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria has been to Victor’s love nes...\""
+  },
+  "DFr_FCF6FFAD.Text": {
+    "": {
+      "Text": "Daria has an alibi for the time of the murder."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria has an alibi for the time of...\""
+  },
+  "DFr_20A3C283.Text": {
+    "": {
+      "Text": "Daria has been in Victor’s love nest before, but has an alibi for the time of the murder."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria has been in Victor’s love nes...\""
+  },
+  "DFr_71CBA604.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Unknown\""
+  },
+  "DFr_11F0F196.Text": {
+    "": {
+      "Text": "Daria may be affected by the changes in the will."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria may be affected by the change...\""
+  },
+  "DFr_513EFEE4.Text": {
+    "": {
+      "Text": "Daria is having an affair with Alex."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria is having an affair with Alex...\""
+  },
+  "DFr_68C996E9.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Unknown\""
+  },
+  "DFr_CEAB4463.Text": {
+    "": {
+      "Text": "Daria does not have clear access to etomidate, but she can get heroin through the club’s patrons."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria does not have clear access to...\""
+  },
+  "DFr_57FC1E6F.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Unknown\""
+  },
+  "DFr_24821D55.Text": {
+    "": {
+      "Text": "Daria has access to heroin through Alex."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria has access to heroin through...\""
+  },
+  "DFr_6DBE6333.Text": {
+    "": {
+      "Text": "Daria does not have clear access to etomidate, but she can get heroin through Alex."
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria does not have clear access to...\""
+  },
+  "DFr_4A00BB3A.Text": {
+    "": {
+      "Text": "Daria is unaffected by the new will, but is having an affair"
+    },
+    "Context": "Flow/Daria Statements/Daria: \"Daria is unaffected by the new will...\""
+  },
+  "DFr_78FE1083.Text": {
+    "": {
+      "Text": "I have reformed from my troubled ways.\r\n\r\nLeo is doing well and is not in any trouble.\r\n\r\nVictor often took care of me financially.\r\n\r\nI didn’t know he had a love nest."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"I have reformed from my troubled wa...\""
+  },
+  "DFr_6F4AD102.Text": {
+    "": {
+      "Text": "Victor hated drugs, especially with my problems.\r\n\r\nLeo and I have been actively using the club to deal drugs.\r\n\r\nI paid Leo for his silence.\r\n\r\nDaria embezzled money from the club to help me pay Leo."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Victor hated drugs, especially with...\""
+  },
+  "DFr_E7F2730A.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"I stand by what I said!\""
+  },
+  "DFr_CD086B9F.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Okay, okay... I lied!\""
+  },
+  "DFr_73DEF7BD.Text": {
+    "": {
+      "Text": "Attempt to contradict Alex"
+    },
+    "Context": "Flow/Alex Statements/Onscreen Guide: \"Attempt to contradict Alex\""
+  },
+  "DFr_5026A1E6.Text": {
+    "": {
+      "Text": "Alex is aware of the love nest."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex is aware of the love nest.\""
+  },
+  "DFr_4041476E.Text": {
+    "": {
+      "Text": "Alex has been in Victor’s love nest recently."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex has been in Victor’s love nest...\""
+  },
+  "DFr_97059B0D.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Unknown\""
+  },
+  "DFr_D139E6B5.Text": {
+    "": {
+      "Text": "Alex was confronted by Victor over his troubles."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex was confronted by Victor over...\""
+  },
+  "DFr_3B383F51.Text": {
+    "": {
+      "Text": "Alex is having an affair with Daria."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex is having an affair with Daria...\""
+  },
+  "DFr_F5ED37AD.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Unknown\""
+  },
+  "DFr_807A7010.Text": {
+    "": {
+      "Text": "Alex does not have clear access to etomidate, but he can get heroin through the club’s patrons."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex does not have clear access to...\""
+  },
+  "DFr_75625641.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Unknown\""
+  },
+  "DFr_A2D55405.Text": {
+    "": {
+      "Text": "Alex has access to etomidate and heroin through his drug dealing connections"
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex has access to etomidate and he...\""
+  },
+  "DFr_142C5CFE.Text": {
+    "": {
+      "Text": "Alex is having an affair with Daria, and his troubles were discovered by Victor."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex is having an affair with Daria...\""
+  },
+  "DFr_3260C6D8.Text": {
+    "": {
+      "Text": "Alex is having a profitable affair with Daria, and his troubles were discovered by Victor."
+    },
+    "Context": "Flow/Alex Statements/Alex: \"Alex is having a profitable affair...\""
+  },
+  "DFr_E3F87E6E.Text": {
+    "": {
+      "Text": "I am his former business partner and we parted ways on good terms.\r\n\r\nI hoped Victor would support Liza.\r\n\r\nAlex is on the straight and narrow.\r\n\r\nI didn’t know he had a love nest."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"I am his former business partner an...\""
+  },
+  "DFr_E93291D9.Text": {
+    "": {
+      "Text": "Victor hated drugs.\r\n\r\nI am a confidential informant for the NBI drug investigation. \r\n\r\nI blackmailed Alex to keep him out of the NBI investigation.\r\n\r\nVictor kicked me out of the club when he found out about the investigation.\r\n\r\nI know where the love nest is."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Victor hated drugs. I am a confi...\""
+  },
+  "DFr_111BE078.Text": {
+    "": {
+      "Text": "I stand by what I said!"
+    },
+    "Context": "Flow/Leo Statements/Leo: \"I stand by what I said!\""
+  },
+  "DFr_45C8A86A.Text": {
+    "": {
+      "Text": "Okay, okay... I lied!"
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Okay, okay... I lied!\""
+  },
+  "DFr_A66A9002.Text": {
+    "": {
+      "Text": "Attempt to contradict Leo"
+    },
+    "Context": "Flow/Leo Statements/Onscreen Guide: \"Attempt to contradict Leo\""
+  },
+  "DFr_B35B3D7B.Text": {
+    "": {
+      "Text": "Leo is aware of the love nest."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Leo is aware of the love nest.\""
+  },
+  "DFr_C9A3C443.Text": {
+    "": {
+      "Text": "Leo has been to Victor’s love nest before."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Leo has been to Victor’s love nest...\""
+  },
+  "DFr_EAC0EC9B.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Unknown\""
+  },
+  "DFr_6121F518.Text": {
+    "": {
+      "Text": "Leo stands to gain financially if the will remains unchanged."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Leo stands to gain financially if t...\""
+  },
+  "DFr_348F3F4E.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Unknown\""
+  },
+  "DFr_346C741E.Text": {
+    "": {
+      "Text": "Leo does not have clear access to etomidate, but he can get heroin through the club’s patrons."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Leo does not have clear access to e...\""
+  },
+  "DFr_FFB892B0.Text": {
+    "": {
+      "Text": "Unknown"
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Unknown\""
+  },
+  "DFr_201D24E8.Text": {
+    "": {
+      "Text": "Leo has access to etomidate through his travels and heroin through the club."
+    },
+    "Context": "Flow/Leo Statements/Leo: \"Leo has access to etomidate through...\""
+  },
+  "DFr_9C23ECBA.Text": {
+    "": {
+      "Text": "You've found several bank statements under Daria's name detailing numerous financial transactions."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/Onscreen Guide: \"You've found several bank statement...\""
+  },
+  "DFr_7F7CF861.Text": {
+    "": {
+      "Text": "This letter details several pages of legal information regarding Daria's finances if a divorce were to happen."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/Onscreen Guide: \"This letter details several pages o...\""
+  },
+  "DFr_4EB12B7C.Text": {
+    "": {
+      "Text": "You've found a sleek, modern vape pen. A fingerprint is discovered on the pen."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/Onscreen Guide: \"You've found a sleek, modern vape p...\""
+  },
+  "DFr_16DDD0B0.Text": {
+    "": {
+      "Text": "You recognize this as the same vape pen found in the photo of Alex and Leo."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/Onscreen Guide: \"You recognize this as the same vape...\""
+  },
+  "DFr_9D9280DD.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/Onscreen Guide: \"You've found all the evidence in th...\""
+  },
+  "DFr_8FBEECA1.Text": {
+    "": {
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
+    },
+    "Context": "Flow/||LOCATION - Daria's Home Office/Onscreen Guide: \"You've uncovered all the possible e...\""
+  },
+  "DFr_FF2BE0E4.Text": {
+    "": {
+      "Text": "You've found a photo of Alex, Leo, and an unidentified third man in a location with landmarks that appear to be Chinese."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Onscreen Guide: \"You've found a photo of Alex, Leo,...\""
+  },
+  "DFr_D081F0BF.Text": {
+    "": {
+      "Text": "The menu on the screen indicates there are dozens of video clips from the past several weeks stored on the panel. \r\n\r\nUse the WPA Analysis to crack the passcode to the admin screen and download the videos for further investigation."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Onscreen Guide: \"The menu on the screen indicates th...\""
+  },
+  "DFr_19C1DBF9.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Onscreen Guide: \"You've found all the evidence in th...\""
+  },
+  "DFr_F30B28C3.Text": {
+    "": {
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
+    },
+    "Context": "Flow/||LOCATION - Alex Apartment/Onscreen Guide: \"You've uncovered all the possible e...\""
+  },
+  "DFr_F24BE031.Text": {
+    "": {
+      "Text": "You've found a contract with footer and header information suggesting it originated from the NBI."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Onscreen Guide: \"You've found a contract with footer...\""
+  },
+  "DFr_CF4F7E13.Text": {
+    "": {
+      "Text": "You've found a passport with several international trips marked inside."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Onscreen Guide: \"You've found a passport with severa...\""
+  },
+  "DFr_485B5928.Text": {
+    "": {
+      "Text": "You've discovered documents that appear to be articles of incorporation for a company called Wintergreen LLC."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Onscreen Guide: \"You've discovered documents that ap...\""
+  },
+  "DFr_A0339D14.Text": {
+    "": {
+      "Text": "You've found all the evidence in the current scene. You may now choose another location to search for additional evidence."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Onscreen Guide: \"You've found all the evidence in th...\""
+  },
+  "DFr_E0CDE5B2.Text": {
+    "": {
+      "Text": "You've uncovered all the possible evidence from each location! Now it is the time to carefully review the evidence and the Murder Board, then make your accusation on which suspect committed the crime."
+    },
+    "Context": "Flow/||LOCATION -Leo's Townhome/Onscreen Guide: \"You've uncovered all the possible e...\""
+  },
+  "DFr_244CC932.Text": {
+    "": {
+      "Text": "The safe is open! You've discovered:\r\n\r\n-A last will and testament with markup and notes scrawled on it.\r\n\r\n-A printout of a photograph from Liza's social media influencer feed. Two people are circled in background.\r\n\r\n-Lab results from a DNA matching compnay.\r\n\r\nVisit the Evidence List Kiosk to examine the items further."
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/Simulator Onscreen Guide: \"The safe is open! You've discovered...\""
+  },
+  "DFr_56D09725.Text": {
+    "": {
+      "Text": "You've cracked the keycode on the Ring Cam! The camera's video clips are now available as evidence"
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/Simulator Onscreen Guide: \"You've cracked the keycode on the R...\""
+  },
+  "DFr_1226DC57.Text": {
+    "": {
+      "Text": "You've cracked the keycode on the Ring Cam! The camera's video clips are now available as evidence"
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/Simulator Onscreen Guide: \"You've cracked the keycode on the R...\""
+  },
+  "DFr_857CB9FF.Text": {
+    "": {
+      "Text": "Based on the evidence you've currently analyzed, you might have enough evidence to contradict Liza's statement. Visit the Murder Board and see if she cracks."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"Based on the evidence you've curren...\""
+  },
+  "DFr_BAD8CC51.Text": {
+    "": {
+      "Text": "The autopsy report has been updated with new clues. Revised autopsy report indicates the heavy presence of the drug Etomidate, known on the street as Space Oil, in the victims body. The drug acts as a powerful sedative, often smoked through vape pens."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"The autopsy report has been updated...\""
+  },
+  "DFr_3A6DC8F5.Text": {
+    "": {
+      "Text": "Once enlarged, the couple circled in the background crowd is clearly Daria and Alex making out/kissing."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"Once enlarged, the couple circled i...\""
+  },
+  "DFr_FE62CB4F.Text": {
+    "": {
+      "Text": "A draft of a new will put together by Victor's attorney, showing revised estate distribution:\r\n\r\n0% to Daria\r\n\r\n0% to Alex\r\n\r\n0% to Leo"
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"A draft of a new will put together...\""
+  },
+  "DFr_F8F02D80.Text": {
+    "": {
+      "Text": "The paternity test details the results of a paternity test between Victor and Liza's child. The test results are negative, proving that Victor is not the father."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"The paternity test details the resu...\""
+  },
+  "DFr_8F089050.Text": {
+    "": {
+      "Text": "One receipt shows that the Tiki Mug in office was purchased a day before the victim's time of death."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"One receipt shows that the Tiki Mug...\""
+  },
+  "DFr_FD74F12E.Text": {
+    "": {
+      "Text": "Several large payments were made to a organization called Wintergreen, which has no useful info online about it's ownership and board members."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"Several large payments were made to...\""
+  },
+  "DFr_3EBA57B5.Text": {
+    "": {
+      "Text": "The letter details the legal fact that since they are married, Daria is entitled to 50% of Victor's estate, no matter legal tricks he throws at her, so her access to his money is secure."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"The letter details the legal fact t...\""
+  },
+  "DFr_5C0009BC.Text": {
+    "": {
+      "Text": "Leo had taken several trips abroad to Hong Kong, the most recent trip being less than five months ago."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"Leo had taken several trips abroad...\""
+  },
+  "DFr_1BF99097.Text": {
+    "": {
+      "Text": "This document details strict terms for a CI  to avoid prosecution by helping the NBI bust a drug ring involved selling in a new party drug called Space Oil, also known as Etomidate. Leo's signature is on multiple pages, proving he is a CI.\r\n\r\nEtomidate is a powerful sedative, capable of rendering a person unconscious. Also, it does not show up on most drug tests unless the lab is specifically looking for it. It might be worth revisiting the original autopsy report in the Evidence Kiosk and ordering a second report to see if the drug turns up."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"This document details strict terms...\""
+  },
+  "DFr_C83B6292.Text": {
+    "": {
+      "Text": "Leo's signature is on several pages showing that he is a sole proprietor of the organization, giving him 100% ownership of the company."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"Leo's signature is on several pages...\""
+  },
+  "DFr_B9B9E5A0.Text": {
+    "": {
+      "Text": "Photo analysis shows the unidentified man to be a suspected drug lord, rumored to be heavily involved in trafficking a popular party drug called Space Oil, also known as Etomidate."
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Onscreen Guide: \"Photo analysis shows the unidentifi...\""
+  },
+  "DFr_BF7AC552.Text": {
+    "": {
+      "Text": "Based on the evidence you've currently analyzed, you might have enough evidence to contradict Liza's statement. Visit the Murder Board and see if she cracks."
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/Onscreen Guide: \"Based on the evidence you've curren...\""
+  },
+  "DFr_895796FC.Text": {
+    "": {
+      "Text": "Fingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene."
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/Onscreen Guide: \"Fingerprint analysis reveals the pr...\""
+  },
+  "DFr_7BA4FCCB.Text": {
+    "": {
+      "Text": "Contains a fingerprint belonging to Alex."
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/Onscreen Guide: \"Contains a fingerprint belonging to...\""
+  },
+  "DFr_D808E053.Text": {
+    "": {
+      "Text": "Contains a fingerprint belonging to Alex."
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/Onscreen Guide: \"Contains a fingerprint belonging to...\""
+  },
+  "DFr_D7D93C20.Text": {
+    "": {
+      "Text": "One of the clips shows Leo desperately trying to crack the code to open the door, eventually giving up and leaving. The time stamp on the clip is X days before the murder."
+    },
+    "Context": "Flow/||MINIGAME - Video Forensic Module/Simulator Onscreen Guide: \"One of the clips shows Leo desperat...\""
+  },
+  "DFr_15A8B6C7.Text": {
+    "": {
+      "Text": "Facial recognition software finds a clip of Victor banging on Alex's door, lambasting him for his betrayal of sleeping \"with her\". Alex never answers the door. He tells Alex to come apologize in person at Victor's apartment whenever he grows a spine, then leaves the area."
+    },
+    "Context": "Flow/||MINIGAME - Video Forensic Module/Simulator Onscreen Guide: \"Facial recognition software finds a...\""
+  },
+  "DFr_B71696A1.Text": {
+    "": {
+      "Text": "You haven't gathered enough evidence in the investigation to accuse a suspect. Keep investigating to find more clues."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.AccuseButton/Onscreen Guide: \"You haven't gathered enough evidenc...\""
+  },
+  "DFr_21731157.Text": {
+    "": {
+      "Text": "Accusation mode is enabled! Head over to the three large video walls to choose a suspect."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.AccuseButton/Onscreen Guide: \"Accusation mode is enabled! Head ov...\""
+  },
+  "DFr_055ECE67.Text": {
+    "": {
+      "Text": "Choose the suspect you think committed the murder."
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/Onscreen Guide: \"Choose the suspect you think commit...\""
+  },
+  "DFr_31CB61C1.Text": {
+    "": {
+      "Text": "Incorrect! Liza did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/Onscreen Guide: \"Incorrect! Liza did not murder Vict...\""
+  },
+  "DFr_3635E400.Text": {
+    "": {
+      "Text": "Incorrect! Daria did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/Onscreen Guide: \"Incorrect! Daria did not murder Vic...\""
+  },
+  "DFr_49AA8532.Text": {
+    "": {
+      "Text": "Correct! Alex did murder Victor! Congratulations! You solved the case!"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/Onscreen Guide: \"Correct! Alex did murder Victor! Co...\""
+  },
+  "DFr_4EA5FDEC.Text": {
+    "": {
+      "Text": "Incorrect! Leo did not murder Victor. \r\n\r\n(The host walks them through the steps by showing them what they missed?)"
+    },
+    "Context": "Flow/||GameKit - EvidenceDiscovery/Onscreen Guide: \"Incorrect! Leo did not murder Victo...\""
+  },
+  "DFr_4940BAFA.Text": {
+    "": {
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nThis evidence cannot be processed further at this time."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.Starting/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_81B6F225.Text": {
+    "": {
+      "Text": "A last will and testament showing that Victor had distributed his estate as follows:\r\n\r\n50% to Daria\r\n\r\n25% to Alex\r\n\r\n25% to Leo\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.Starting/Original Will: \"A last will and testament showing t...\""
+  },
+  "DFr_89233358.Text": {
+    "": {
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nRevised autopsy report indicates the heavy presence of the drug Etomidate, known on the street as Space Oil, in the victims body. The drug acts as a powerful sedative, often smoked through vape pens.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.Starting/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_922ECB5B.Text": {
+    "": {
+      "Text": "Gives injected heroin as cause of death. Daria used \"Find my phone\" after Victor was missing for Days, and body was found.\r\n\r\nGiven the discovery of Leo's involvement with Etomidate, another Autopsy should be ordered.  Analyze the Autopsy Report with the Document Analysis."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.Starting/Autopsy Report: \"Gives injected heroin as cause of d...\""
+  },
+  "DFr_841BC9E3.Text": {
+    "": {
+      "Text": "A printout of a photograph from Liza's social media influencer feed. Two people are circled in background.\r\n\r\nPeople circled in photo can be enlarged and analyzed in document analytics.\r\n\r\nFingerprint detected, needs fingerprint analysis."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Photo of Daria and Alex: \"A printout of a photograph from Liz...\""
+  },
+  "DFr_AEEB545E.Text": {
+    "": {
+      "Text": "A series of legal documents from Victor's attorney with notes and markups detailing changes to Victor's will.\r\n\r\nThis evidence can be summarized with Document Analytics."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Updated Will: \"A series of legal documents from Vi...\""
+  },
+  "DFr_D3D54AFC.Text": {
+    "": {
+      "Text": "A document showing from a DNA testing lab with detailed scientific results of a paternity test. \r\n\r\nThis evidence can be summarized with document analytics."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Paternity Test: \"A document showing from a DNA testi...\""
+  },
+  "DFr_17649B15.Text": {
+    "": {
+      "Text": "The paternity test details the results of a paternity test between Victor and Liza's child. The test results are negative, proving that Victor is not the father. \r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Paternity Test: \"The paternity test details the resu...\""
+  },
+  "DFr_F5B4B9DE.Text": {
+    "": {
+      "Text": "A draft of a new will put together by Victor's attorney, showing revised estate distribution:\r\n\r\n0% to Daria\r\n\r\n0% to Alex\r\n\r\n0% to Leo\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Updated Will: \"A draft of a new will put together...\""
+  },
+  "DFr_3A08F7D2.Text": {
+    "": {
+      "Text": "A tiki glass that looks like it's been used recently. \r\n\r\nInitial scan detects a fingerprint."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Tiki Mug: \"A tiki glass that looks like it's b...\""
+  },
+  "DFr_79595BAB.Text": {
+    "": {
+      "Text": "Once enlarged, the couple circled in the background crowd is clearly Daria and Alex making out/kissing.\r\n\r\nFingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Photo of Daria and Alex: \"Once enlarged, the couple circled i...\""
+  },
+  "DFr_E978A0FA.Text": {
+    "": {
+      "Text": "A handful of receipts that show purchases made by the victim in the recent weeks."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Trashed Receipt: \"A handful of receipts that show pur...\""
+  },
+  "DFr_3C15B9B9.Text": {
+    "": {
+      "Text": "A handful of receipts that show purchases made by the victim in the recent weeks.\r\n\r\nOne receipt shows that the Tiki Mug in office was purchased a day before the victim's time of death.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Trashed Receipt: \"A handful of receipts that show pur...\""
+  },
+  "DFr_C88293C7.Text": {
+    "": {
+      "Text": "A tiki glass that looks like it's been used recently. \r\n\r\nContains a fingerprint belonging to Alex.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Tiki Mug: \"A tiki glass that looks like it's b...\""
+  },
+  "DFr_C630BB8C.Text": {
+    "": {
+      "Text": "A Ring Cam controlled by a digital screen keypad. Requires correct access code to view video data. Use WPA Analysis on the screen to crack the code."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Victor Ring Cam: \"A Ring Cam controlled by a digital...\""
+  },
+  "DFr_AB0D9EDB.Text": {
+    "": {
+      "Text": "A Ring Cam controlled by a digital screen keypad. Requires correct access code to view video data. \r\n\r\nThe video data has been extracted and moved to a portable drive for analysis. \r\n\r\nThis evidence cannot be processed any further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Victor Ring Cam: \"A Ring Cam controlled by a digital...\""
+  },
+  "DFr_B127F5FB.Text": {
+    "": {
+      "Text": "A printout of a photograph from Liza's social media influencer feed. Two people are circled in background.\r\n\r\nFingerprint analysis reveals the print belongs to Liza, proving she had been to the crime scene.\r\n\r\nPeople circled in photo can be enlarged and analyzed in document analytics."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Photo of Daria and Alex: \"A printout of a photograph from Liz...\""
+  },
+  "DFr_24355B1F.Text": {
+    "": {
+      "Text": "Once enlarged, the couple circled in the background crowd is clearly Daria and Alex making out/kissing.\r\n\r\nFingerprint detected, needs fingerprint analysis."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Photo of Daria and Alex: \"Once enlarged, the couple circled i...\""
+  },
+  "DFr_2E1E9DA7.Text": {
+    "": {
+      "Text": "Several video clips with various dates pulled from the ring cam outside Victor's door. There is extensive footage that needs to be scrubbed to find anything of note."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Victor Ring Cam Data: \"Several video clips with various da...\""
+  },
+  "DFr_22537143.Text": {
+    "": {
+      "Text": "Several video clips with various dates pulled from the ring cam outside Victor's door. \r\n\r\nOne of the clips shows Leo desperately trying to crack the code to open the door, eventually giving up and leaving. The time stamp on the clip is X days before the murder.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Victor Ring Cam Data: \"Several video clips with various da...\""
+  },
+  "DFr_9D73B256.Text": {
+    "": {
+      "Text": "The safe is locked has a keypad combination. Use the WPA (Wear Pattern Analysis) module to determine the key code and crack the safe."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Safe: \"The safe is locked has a keypad com...\""
+  },
+  "DFr_BAA8B139.Text": {
+    "": {
+      "Text": "The safe is open! You've discovered:\r\n\r\n-A last will and testament with markup and notes scrawled on it.\r\n\r\n-A printout of a photograph from Liza's social media influencer feed. Two people are circled in background.\r\n\r\n-Lab results from a DNA matching compnay."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.VA/Safe: \"The safe is open! You've discovered...\""
+  },
+  "DFr_9DDFC0A5.Text": {
+    "": {
+      "Text": "A sleek, modern vape pen used to inhale a variety of narcotics and drugs. \r\n\r\nInitial scan detects a fingerprint."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/Vape: \"A sleek, modern vape pen used to in...\""
+  },
+  "DFr_B8C39B66.Text": {
+    "": {
+      "Text": "A sleek, modern vape pen used to inhale a variety of narcotics and drugs. \r\n\r\nContains a fingerprint belonging to Alex.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/Vape: \"A sleek, modern vape pen used to in...\""
+  },
+  "DFr_3ADD4BC6.Text": {
+    "": {
+      "Text": "A printout of Daria's personal checking and savings account, showing large amounts of money moving around.\r\n\r\nSeveral large payments were made to a organization called Wintergreen, which has no useful info online about it's ownership and board members.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/Bank Statement: \"A printout of Daria's personal chec...\""
+  },
+  "DFr_8990A44C.Text": {
+    "": {
+      "Text": "A printout of Daria's personal checking and savings account, showing large amounts of money moving around."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/Bank Statement: \"A printout of Daria's personal chec...\""
+  },
+  "DFr_300DE6D4.Text": {
+    "": {
+      "Text": "A lawyer's letter, over a dozen pages in length, full of markup and notes."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/Lawyer Letter: \"A lawyer's letter, over a dozen pag...\""
+  },
+  "DFr_FEF3B97C.Text": {
+    "": {
+      "Text": "A lawyer's letter, over a dozen pages in length, full of markup and notes.\r\n\r\nThe letter details the legal fact that since they are married, Daria is entitled to 50% of Victor's estate, no matter legal tricks he throws at her, so her access to his money is secure.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/Lawyer Letter: \"A lawyer's letter, over a dozen pag...\""
+  },
+  "DFr_0808F6E8.Text": {
+    "": {
+      "Text": "A printout of Daria's personal checking and savings account, showing large amounts of money moving around.\r\n\r\nSeveral large payments were made to a organization called Wintergreen, which is owned solely by Leo. \r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.DO/Bank Statement: \"A printout of Daria's personal chec...\""
+  },
+  "DFr_28253F83.Text": {
+    "": {
+      "Text": "A photo of Leo, Alex, and an unidentified individual, with several Hong Kong locations in the background. All three men are holding vape pens.\r\n\r\nPhoto analysis shows the unidentified man to be a suspected drug lord, rumored to be heavily involved in trafficking a popular party drug called Space Oil, also known as Etomidate.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/Picture of Leo and Alex: \"A photo of Leo, Alex, and an uniden...\""
+  },
+  "DFr_34203251.Text": {
+    "": {
+      "Text": "A photo of Leo, Alex, and an unidentified individual, with several Hong Kong locations in the background. All three men are holding vape pens."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/Picture of Leo and Alex: \"A photo of Leo, Alex, and an uniden...\""
+  },
+  "DFr_C6890467.Text": {
+    "": {
+      "Text": "A Ring Cam controlled by a digital screen keypad. Requires correct access code to view video data. \r\n\r\nUse WPA Analysis on the keypad to crack the access code."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/Alex Ring Cam: \"A Ring Cam controlled by a digital...\""
+  },
+  "DFr_ADFE7F06.Text": {
+    "": {
+      "Text": "A Ring Cam controlled by a digital screen keypad. Requires correct access code to view video data. \r\n\r\nThe video data has been extracted and moved to a portable drive for analysis. \r\n\r\nThis evidence cannot be processed any further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/Alex Ring Cam: \"A Ring Cam controlled by a digital...\""
+  },
+  "DFr_E03D634A.Text": {
+    "": {
+      "Text": "A photo of Leo, Alex, and an unidentified individual, with several Hong Kong locations in the background. \r\n\r\nPhoto analysis shows the unidentified man to be a suspected drug lord in the Hong Kong area, rumored to be heavily involved in trafficking a popular party drug called Space Oil, also known as Etomidate.\r\n\r\nThe vape pens in the photo match the make of the one found in Daria's office.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/Picture of Leo and Alex: \"A photo of Leo, Alex, and an uniden...\""
+  },
+  "DFr_BF9A2615.Text": {
+    "": {
+      "Text": "Dozens of video clips from Alex's Ring cam that span days of footage."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/Alex Ring Cam Data: \"Dozens of video clips from Alex's R...\""
+  },
+  "DFr_96D7EED5.Text": {
+    "": {
+      "Text": "Dozens of video clips from Alex's Ring cam that span days of footage.\r\n\r\nFacial recognition software finds a clip of Victor banging on Alex's door, lambasting him for his betrayal of sleeping \"with her\". Alex never answers the door. He tells Alex to come apologize in person at Victor's apartment whenever he grows a spine, then leaves the area.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.AP/Alex Ring Cam Data: \"Dozens of video clips from Alex's R...\""
+  },
+  "DFr_FCB792CF.Text": {
+    "": {
+      "Text": "A passport found in Leo's Townhome with dozens of international trips recorded."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/Leo Passport: \"A passport found in Leo's Townhome...\""
+  },
+  "DFr_6D761CFA.Text": {
+    "": {
+      "Text": "A passport found in Leo's Townhome with dozens of international trips recorded.\r\n\r\nLeo had taken several trips abroad to Hong Kong, the most recent trip being less than five months ago. \r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/Leo Passport: \"A passport found in Leo's Townhome...\""
+  },
+  "DFr_D512E036.Text": {
+    "": {
+      "Text": "A legal document detailing the terms of being a confidential informant for the NBI."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/NBI CI Agreement: \"A legal document detailing the term...\""
+  },
+  "DFr_DAE0AD5E.Text": {
+    "": {
+      "Text": "A legal document detailing the terms of being a confidential informant for the NBI.\r\n\r\nThis document details strict terms for a CI  to avoid prosecution by helping the NBI bust a drug ring involved selling in a new party drug called Space Oil, also known as Etomidate. Leo's signature is on multiple pages, proving he is a CI.\r\n\r\nEtomidate is a powerful sedative, capable of rendering a person unconscious. Also, it does not show up on most drug tests unless the lab is specifically looking for it. It might be worth revisiting the original autopsy report in the Evidence Kiosk and ordering a second report to see if the drug turns up.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/NBI CI Agreement: \"A legal document detailing the term...\""
+  },
+  "DFr_C8A36CC4.Text": {
+    "": {
+      "Text": "Articles of incorporation for an organization called Wintergreen LLC."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/Wintergreen Paperwork: \"Articles of incorporation for an or...\""
+  },
+  "DFr_24619D69.Text": {
+    "": {
+      "Text": "Articles of incorporation for an organization called Wintergreen LLC.\r\n\r\nLeo's signature is on several pages showing that he is a sole proprietor of the organization, giving him 100% ownership of the company.\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/Wintergreen Paperwork: \"Articles of incorporation for an or...\""
+  },
+  "DFr_0A74C937.Text": {
+    "": {
+      "Text": "A legal document detailing the terms of being a confidential informant for the NBI.\r\n\r\nThis document details strict terms for a CI  to avoid prosecution by helping the NBI bust a drug ring involved selling in a new party drug called Space Oil, also known as Etomidate. Leo's signature is on multiple pages, proving he is a CI.\r\n\r\nEtomidate is a powerful sedative, capable of rendering a person unconscious. Also, it does not show up on most drug tests unless the lab is specifically looking for it\r\n\r\nThis evidence cannot be processed further."
+    },
+    "Context": "Flow/||GameKit.MurderBoard.Evidence.LT/NBI CI Agreement: \"A legal document detailing the term...\""
+  },
+  "DFr_6375FF2B.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/Safe: \"...\""
+  },
+  "DFr_78A692F6.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/Victor Ring Cam: \"...\""
+  },
+  "DFr_946502C3.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - WPA Analysis/Alex Ring Cam: \"...\""
+  },
+  "DFr_4BF3749D.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Autopsy Report: \"...\""
+  },
+  "DFr_D2E44EAA.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Photo of Daria and Alex: \"...\""
+  },
+  "DFr_FA802FC1.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Updated Will: \"...\""
+  },
+  "DFr_F0AFEE43.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Paternity Test: \"...\""
+  },
+  "DFr_BC1DCE2B.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Trashed Receipt: \"...\""
+  },
+  "DFr_07E30511.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Bank Statement: \"...\""
+  },
+  "DFr_0836FA1A.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Lawyer Letter: \"...\""
+  },
+  "DFr_EC744C0E.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Leo Passport: \"...\""
+  },
+  "DFr_2D3AC7E7.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/NBI CI Agreement: \"...\""
+  },
+  "DFr_728CB2DA.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Wintergreen Paperwork: \"...\""
+  },
+  "DFr_2AB4F98C.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Document Analytics/Picture of Leo and Alex: \"...\""
+  },
+  "DFr_2F6774DC.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/Photo of Daria and Alex: \"...\""
+  },
+  "DFr_47600DEA.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/Tiki Mug: \"...\""
+  },
+  "DFr_349A2EA9.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Fingerprint Analysis/Vape: \"...\""
+  },
+  "DFr_2ADCA447.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Video Forensic Module/Victor Ring Cam Data: \"...\""
+  },
+  "DFr_78C9EDE0.Text": {
+    "": {
+      "Text": ""
+    },
+    "Context": "Flow/||MINIGAME - Video Forensic Module/Alex Ring Cam Data: \"...\""
+  },
+  "Ntt_18E68216.DisplayName": {
+    "": {
+      "Text": "Player"
+    },
+    "Context": "Entities/Player"
+  },
+  "Ntt_092A71A8.DisplayName": {
+    "": {
+      "Text": "Alex"
+    },
+    "Context": "Entities/Prince Of Soulard/Alex"
+  },
+  "Ntt_64EF5775.DisplayName": {
+    "": {
+      "Text": "Daria"
+    },
+    "Context": "Entities/Prince Of Soulard/Daria"
+  },
+  "Ntt_78B71307.DisplayName": {
+    "": {
+      "Text": "Onscreen Guide"
+    },
+    "Context": "Entities/Prince Of Soulard/Onscreen Guide"
+  },
+  "Ntt_BA3FA39C.DisplayName": {
+    "": {
+      "Text": "Leo"
+    },
+    "Context": "Entities/Prince Of Soulard/Leo"
+  },
+  "Ntt_A4F9EF33.DisplayName": {
+    "": {
+      "Text": "Liza"
+    },
+    "Context": "Entities/Prince Of Soulard/Liza"
+  },
+  "Ntt_51BF2B1A.DisplayName": {
+    "": {
+      "Text": "Alex Ring Cam Data"
+    },
+    "Context": "Entities/EvidenceV02/Alex Ring Cam Data"
+  },
+  "Ntt_0177D316.DisplayName": {
+    "": {
+      "Text": "Victor Ring Cam Data"
+    },
+    "Context": "Entities/EvidenceV02/Victor Ring Cam Data"
+  },
+  "Ntt_B266E294.DisplayName": {
+    "": {
+      "Text": "Updated Will"
+    },
+    "Context": "Entities/EvidenceV02/Updated Will"
+  },
+  "Ntt_7FADB44C.DisplayName": {
+    "": {
+      "Text": "Autopsy Report"
+    },
+    "Context": "Entities/EvidenceV02/Autopsy Report"
+  },
+  "Ntt_74C765AA.DisplayName": {
+    "": {
+      "Text": "Original Will"
+    },
+    "Context": "Entities/EvidenceV02/Original Will"
+  },
+  "Ntt_39CCCDB1.DisplayName": {
+    "": {
+      "Text": "Paternity Test"
+    },
+    "Context": "Entities/EvidenceV02/Paternity Test"
+  },
+  "Ntt_D51BD121.DisplayName": {
+    "": {
+      "Text": "Photo of Daria and Alex"
+    },
+    "Context": "Entities/EvidenceV02/Photo of Daria and Alex"
+  },
+  "Ntt_C7D99DF4.DisplayName": {
+    "": {
+      "Text": "Tiki Mug"
+    },
+    "Context": "Entities/EvidenceV02/Tiki Mug"
+  },
+  "Ntt_D7DE4540.DisplayName": {
+    "": {
+      "Text": "Victor Ring Cam"
+    },
+    "Context": "Entities/EvidenceV02/Victor Ring Cam"
+  },
+  "Ntt_538692B2.DisplayName": {
+    "": {
+      "Text": "Second Autopsy"
+    },
+    "Context": "Entities/EvidenceV02/Second Autopsy"
+  },
+  "Ntt_803C26AD.DisplayName": {
+    "": {
+      "Text": "Vape"
+    },
+    "Context": "Entities/EvidenceV02/Vape"
+  },
+  "Ntt_FBE43C3B.DisplayName": {
+    "": {
+      "Text": "Trashed Receipt"
+    },
+    "Context": "Entities/EvidenceV02/Trashed Receipt"
+  },
+  "Ntt_96A905D4.DisplayName": {
+    "": {
+      "Text": "Picture of Leo and Alex"
+    },
+    "Context": "Entities/EvidenceV02/Picture of Leo and Alex"
+  },
+  "Ntt_4C55AFBF.DisplayName": {
+    "": {
+      "Text": "Wintergreen Paperwork"
+    },
+    "Context": "Entities/EvidenceV02/Wintergreen Paperwork"
+  },
+  "Ntt_9F660D8C.DisplayName": {
+    "": {
+      "Text": "Alex Ring Cam"
+    },
+    "Context": "Entities/EvidenceV02/Alex Ring Cam"
+  },
+  "Ntt_0C798AE5.DisplayName": {
+    "": {
+      "Text": "Lawyer Letter"
+    },
+    "Context": "Entities/EvidenceV02/Lawyer Letter"
+  },
+  "Ntt_F817A22F.DisplayName": {
+    "": {
+      "Text": "NBI CI Agreement"
+    },
+    "Context": "Entities/EvidenceV02/NBI CI Agreement"
+  },
+  "Ntt_E4A6CF5A.DisplayName": {
+    "": {
+      "Text": "Bank Statement"
+    },
+    "Context": "Entities/EvidenceV02/Bank Statement"
+  },
+  "Ntt_4175C0A6.DisplayName": {
+    "": {
+      "Text": "Leo Passport"
+    },
+    "Context": "Entities/EvidenceV02/Leo Passport"
+  },
+  "Ntt_135BD210.DisplayName": {
+    "": {
+      "Text": "Safe"
+    },
+    "Context": "Entities/EvidenceV02/Safe"
+  }
+}

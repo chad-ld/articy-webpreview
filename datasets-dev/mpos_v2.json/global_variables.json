@@ -291,6 +291,18 @@
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
+        },
+        {
+          "Variable": "SuspectPointsTotal",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "AccuseModeEnabled",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
         }
       ]
     },
@@ -341,7 +353,7 @@
           "Description": ""
         },
         {
-          "Variable": "va_safe_opened",
+          "Variable": "va_safe_cracked",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
@@ -371,13 +383,13 @@
           "Description": ""
         },
         {
-          "Variable": "ap_alexcam_found",
+          "Variable": "ap_alexcam_keypad_cracked",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
         },
         {
-          "Variable": "ap_alexcam_analyzed",
+          "Variable": "ap_alexcam_data_analyzed",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
@@ -443,13 +455,13 @@
           "Description": ""
         },
         {
-          "Variable": "va_victorcam_found",
+          "Variable": "va_victorcam_keypad_cracked",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
         },
         {
-          "Variable": "va_victorcam_analyzed",
+          "Variable": "va_victorcam_data_analyzed",
           "Type": "Boolean",
           "Value": "False",
           "Description": ""
@@ -584,6 +596,48 @@
           "Variable": "va_new_will_charname",
           "Type": "String",
           "Value": "Updated Will",
+          "Description": ""
+        },
+        {
+          "Variable": "tutorial_progress",
+          "Type": "Integer",
+          "Value": "0",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_alexcam_keypad_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_victorcam_keypad_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "ap_alexcam_data_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "va_victorcam_data_found",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "new_autopsy_and_vape",
+          "Type": "Boolean",
+          "Value": "False",
+          "Description": ""
+        },
+        {
+          "Variable": "tutorial_complete",
+          "Type": "Boolean",
+          "Value": "False",
           "Description": ""
         }
       ]
