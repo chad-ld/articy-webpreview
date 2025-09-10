@@ -2541,11 +2541,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             let choiceTitle = targetNode.Properties.DisplayName || undefined;
 
             // Check if target node is a dialogue fragment and use speaker name with icon
-      const isCurrentDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
-                                        currentNode.Type === "DialogueExplorationFragmentTemplate" ||
-                                        currentNode.Type === "DialogueFragment" ||
-                                        currentNode.Type === "DialogueIntActionTemplate" ||
-                                        currentNode.Type === "EvidenceInfoDiaolgueFragmentTemplate";
+            const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                           targetNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                           targetNode.Type === "DialogueFragment" ||
+                                           targetNode.Type === "DialogueIntActionTemplate" ||
+                                           targetNode.Type === "EvidenceInfoDiaolgueFragmentTemplate";
 
             let choiceStageDirections = undefined;
             if (isTargetDialogueFragment) {
