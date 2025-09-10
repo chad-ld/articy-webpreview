@@ -173,6 +173,18 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
 
   // Helper function to get speaker name with icon for display
   const getSpeakerNameWithIcon = (node: any) => {
+    // Debug logging only for EvidenceInfo nodes that might have issues
+    if (node.Type === "EvidenceInfoDialogueFragmentTemplate") {
+      console.log("🔍 EvidenceInfo node speaker check:", {
+        nodeId: node.Properties.Id,
+        displayName: node.Properties.DisplayName,
+        hasSpeaker: !!node.Properties.Speaker,
+        hasEntity: !!node.Properties.Entity,
+        hasReference: !!node.Properties.Reference
+      });
+    }
+    
+    // Check for Speaker property (standard dialogue fragments)
     if (node.Properties.Speaker) {
       const speakerNode = project?.GetNodeByID(node.Properties.Speaker);
       if (speakerNode) {
@@ -182,19 +194,78 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             {speakerNode.Properties.DisplayName}
           </span>
         );
+      } else if (node.Type === "EvidenceInfoDialogueFragmentTemplate") {
+        console.log("⚠️ EvidenceInfo: Speaker ID exists but node not found:", {
+          speakerId: node.Properties.Speaker
+        });
       }
     }
+    
+    // Check for Entity property (might be used by EvidenceInfo nodes)
+    if (node.Properties.Entity) {
+      const entityNode = project?.GetNodeByID(node.Properties.Entity);
+      if (entityNode) {
+        console.log("🔍 Found Entity reference:", {
+          nodeType: node.Type,
+          entityId: node.Properties.Entity,
+          entityName: entityNode.Properties.DisplayName
+        });
+        return (
+          <span>
+            <CommentOutlined style={{ marginRight: '6px' }} />
+            {entityNode.Properties.DisplayName}
+          </span>
+        );
+      }
+    }
+    
+    // Check for Reference property (another possible entity reference)
+    if (node.Properties.Reference) {
+      const refNode = project?.GetNodeByID(node.Properties.Reference);
+      if (refNode) {
+        console.log("🔍 Found Reference:", {
+          nodeType: node.Type,
+          refId: node.Properties.Reference,
+          refName: refNode.Properties.DisplayName
+        });
+        return (
+          <span>
+            <CommentOutlined style={{ marginRight: '6px' }} />
+            {refNode.Properties.DisplayName}
+          </span>
+        );
+      }
+    }
+    
     return null;
   };
 
   // Helper function to get speaker name as string (without JSX)
   const getSpeakerNameString = (node: any): string => {
+    // Check for Speaker property (standard dialogue fragments)
     if (node.Properties.Speaker) {
       const speakerNode = project?.GetNodeByID(node.Properties.Speaker);
       if (speakerNode) {
         return speakerNode.Properties.DisplayName;
       }
     }
+    
+    // Check for Entity property (might be used by EvidenceInfo nodes)
+    if (node.Properties.Entity) {
+      const entityNode = project?.GetNodeByID(node.Properties.Entity);
+      if (entityNode) {
+        return entityNode.Properties.DisplayName;
+      }
+    }
+    
+    // Check for Reference property (another possible entity reference)
+    if (node.Properties.Reference) {
+      const refNode = project?.GetNodeByID(node.Properties.Reference);
+      if (refNode) {
+        return refNode.Properties.DisplayName;
+      }
+    }
+    
     return node.Properties.DisplayName || '';
   };
 
@@ -1442,7 +1513,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         // Store the current node as previous choice for single-path navigation
         const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
                                   currentNode.Type === "DialogueExplorationFragmentTemplate" ||
-                                  currentNode.Type === "DialogueFragment";
+                                  currentNode.Type === "DialogueFragment" ||
+                                  currentNode.Type === "EvidenceInfoDialogueFragmentTemplate";
 
         const originalChoiceTitle = isDialogueFragment ?
           getSpeakerNameString(currentNode) :
@@ -1472,9 +1544,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           if (currentNode.Type === "Instruction") {
             choiceTitle = currentNode.Properties.DisplayName || undefined;
           }
-        } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
-          nodeText = currentNode.Properties.DisplayName;
-          choiceTitle = undefined; // Don't duplicate title and text
+        } else {
+          // No text content - keep nodeText as 'No content' and preserve the title
+          nodeText = 'No content';
+          // choiceTitle already set from DisplayName above, keep it
         }
 
         const previousChoice: PreviousChoice = {
@@ -1535,7 +1608,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       // Check if this is a dialogue fragment (needed for both hub and non-hub logic)
       const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
                                 currentNode.Type === "DialogueExplorationFragmentTemplate" ||
-                                currentNode.Type === "DialogueFragment";
+                                currentNode.Type === "DialogueFragment" ||
+                                currentNode.Type === "EvidenceInfoDialogueFragmentTemplate";
 
       if (!isSpecialHubNode) {
         const originalChoiceTitle = isDialogueFragment ?
@@ -1570,9 +1644,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           if (currentNode.Type === "Instruction") {
             choiceTitle = currentNode.Properties.DisplayName || undefined;
           }
-        } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
-          nodeText = currentNode.Properties.DisplayName;
-          choiceTitle = undefined; // Don't duplicate title and text
+        } else {
+          // No text content - keep nodeText as 'No content' and preserve the title
+          nodeText = 'No content';
+          // choiceTitle already set from DisplayName above, keep it
         }
 
         // Store the current node as previous choice when transitioning to multiple choices
@@ -1783,7 +1858,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       const isTargetDialogueFragment = finalTargetNode.Type === "DialogueInteractiveFragmentTemplate" ||
                                       finalTargetNode.Type === "DialogueExplorationFragmentTemplate" ||
                                       finalTargetNode.Type === "DialogueFragment" ||
-                                      finalTargetNode.Type === "DialogueIntActionTemplate";
+                                      finalTargetNode.Type === "DialogueIntActionTemplate" ||
+                                      finalTargetNode.Type === "EvidenceInfoDialogueFragmentTemplate";
 
       // For DialogueIntActionTemplate (hub nodes), use the actual node content, not the choice text
       let choiceTitle, choiceText;
@@ -2450,14 +2526,14 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
               // Priority order for text content:
               // 1. Text property (main content)
               // 2. Expression property (for instruction nodes)
-              // 3. DisplayName as fallback
+              // 3. Keep as 'No content' if neither exists (DisplayName will be used as title)
               if (targetNode.Properties.Text && targetNode.Properties.Text.trim()) {
                 choiceNodeText = targetNode.Properties.Text;
               } else if (targetNode.Properties.Expression && targetNode.Properties.Expression.trim()) {
                 choiceNodeText = targetNode.Properties.Expression;
-              } else if (targetNode.Properties.DisplayName && targetNode.Properties.DisplayName.trim()) {
-                choiceNodeText = targetNode.Properties.DisplayName;
               }
+              // If no text or expression, keep choiceNodeText as 'No content'
+              // The DisplayName will be shown as the title instead
             }
 
             // Determine the title for the choice panel
@@ -2468,7 +2544,8 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
                                            targetNode.Type === "DialogueExplorationFragmentTemplate" ||
                                            targetNode.Type === "DialogueFragment" ||
-                                           targetNode.Type === "DialogueIntActionTemplate";
+                                           targetNode.Type === "DialogueIntActionTemplate" ||
+                                           targetNode.Type === "EvidenceInfoDialogueFragmentTemplate";
 
             let choiceStageDirections = undefined;
             if (isTargetDialogueFragment) {
@@ -2531,11 +2608,36 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // Check if this is a dialogue fragment and use speaker name with icon for title
   const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
                             currentNode.Type === "DialogueExplorationFragmentTemplate" ||
-                            currentNode.Type === "DialogueFragment";
+                            currentNode.Type === "DialogueFragment" ||
+                            currentNode.Type === "EvidenceInfoDialogueFragmentTemplate"; // Added EvidenceInfo dialogue fragment type
+
+  // Debug logging for dialogue fragment header resolution
+  if (currentNode.Type === "EvidenceInfoDialogueFragmentTemplate" || (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.includes("Safe"))) {
+    console.log("🔍 DEBUG - Node header resolution:", {
+      nodeId: currentNode.Properties.Id,
+      nodeType: currentNode.Type,
+      displayName: currentNode.Properties.DisplayName,
+      hasSpeaker: !!currentNode.Properties.Speaker,
+      speaker: currentNode.Properties.Speaker,
+      isDialogueFragment: isDialogueFragment,
+      properties: Object.keys(currentNode.Properties || {})
+    });
+  }
 
   let stageDirections = undefined;
   if (isDialogueFragment) {
     const speakerTitle = getSpeakerNameWithIcon(currentNode);
+    // Only log for debugging specific nodes, don't log the JSX element itself
+    if (currentNode.Type === "EvidenceInfoDialogueFragmentTemplate" || 
+        (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.includes("Safe"))) {
+      console.log("🔍 Speaker title result:", {
+        nodeType: currentNode.Type,
+        displayName: currentNode.Properties.DisplayName,
+        speakerFound: !!speakerTitle,
+        speakerName: getSpeakerNameString(currentNode),
+        hasSpeaker: !!currentNode.Properties.Speaker
+      });
+    }
     if (speakerTitle) {
       nodeTitle = speakerTitle;
     }
@@ -2548,7 +2650,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // Priority order for text content:
   // 1. Text property (main content)
   // 2. Expression property (for instruction nodes)
-  // 3. DisplayName as fallback
+  // 3. Keep empty if no content (show "No content" but preserve title)
   // Special case: Hub nodes and VirtualHub nodes should only show their DisplayName as title, no body text
   if (currentNode.Type === "Hub" || currentNode.Type === "VirtualHub") {
     nodeText = ''; // Hub nodes and virtual hub nodes have no body text, only title
@@ -2562,9 +2664,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
     if (currentNode.Type === "Instruction") {
       nodeTitle = currentNode.Properties.DisplayName || undefined;
     }
-  } else if (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.trim()) {
-    nodeText = currentNode.Properties.DisplayName;
-    nodeTitle = undefined; // Don't duplicate title and text
+  } else {
+    // No text content - keep nodeText as 'No content' and preserve the title
+    // This ensures nodes with only a DisplayName show it as a header, not as body text
+    nodeText = 'No content';
+    // nodeTitle already set from DisplayName above, keep it
   }
 
 
