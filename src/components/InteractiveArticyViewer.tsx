@@ -174,7 +174,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   // Helper function to get speaker name with icon for display
   const getSpeakerNameWithIcon = (node: any) => {
     // Debug logging only for EvidenceInfo nodes that might have issues
-    if (node.Type === "EvidenceInfoDialogueFragmentTemplate") {
+    if (node.Type === "EvidenceInfoDiaolgueFragmentTemplate") {
       console.log("🔍 EvidenceInfo node speaker check:", {
         nodeId: node.Properties.Id,
         displayName: node.Properties.DisplayName,
@@ -194,7 +194,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             {speakerNode.Properties.DisplayName}
           </span>
         );
-      } else if (node.Type === "EvidenceInfoDialogueFragmentTemplate") {
+      } else if (node.Type === "EvidenceInfoDiaolgueFragmentTemplate") {
         console.log("⚠️ EvidenceInfo: Speaker ID exists but node not found:", {
           speakerId: node.Properties.Speaker
         });
@@ -2541,11 +2541,11 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
             let choiceTitle = targetNode.Properties.DisplayName || undefined;
 
             // Check if target node is a dialogue fragment and use speaker name with icon
-            const isTargetDialogueFragment = targetNode.Type === "DialogueInteractiveFragmentTemplate" ||
-                                           targetNode.Type === "DialogueExplorationFragmentTemplate" ||
-                                           targetNode.Type === "DialogueFragment" ||
-                                           targetNode.Type === "DialogueIntActionTemplate" ||
-                                           targetNode.Type === "EvidenceInfoDialogueFragmentTemplate";
+      const isCurrentDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
+                                        currentNode.Type === "DialogueExplorationFragmentTemplate" ||
+                                        currentNode.Type === "DialogueFragment" ||
+                                        currentNode.Type === "DialogueIntActionTemplate" ||
+                                        currentNode.Type === "EvidenceInfoDiaolgueFragmentTemplate";
 
             let choiceStageDirections = undefined;
             if (isTargetDialogueFragment) {
@@ -2609,10 +2609,10 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   const isDialogueFragment = currentNode.Type === "DialogueInteractiveFragmentTemplate" ||
                             currentNode.Type === "DialogueExplorationFragmentTemplate" ||
                             currentNode.Type === "DialogueFragment" ||
-                            currentNode.Type === "EvidenceInfoDialogueFragmentTemplate"; // Added EvidenceInfo dialogue fragment type
+                            currentNode.Type === "EvidenceInfoDiaolgueFragmentTemplate"; // Added EvidenceInfo dialogue fragment type
 
   // Debug logging for dialogue fragment header resolution
-  if (currentNode.Type === "EvidenceInfoDialogueFragmentTemplate" || (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.includes("Safe"))) {
+  if (currentNode.Type === "EvidenceInfoDiaolgueFragmentTemplate" || (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.includes("Safe"))) {
     console.log("🔍 DEBUG - Node header resolution:", {
       nodeId: currentNode.Properties.Id,
       nodeType: currentNode.Type,
@@ -2628,7 +2628,7 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
   if (isDialogueFragment) {
     const speakerTitle = getSpeakerNameWithIcon(currentNode);
     // Only log for debugging specific nodes, don't log the JSX element itself
-    if (currentNode.Type === "EvidenceInfoDialogueFragmentTemplate" || 
+    if (currentNode.Type === "EvidenceInfoDiaolgueFragmentTemplate" || 
         (currentNode.Properties.DisplayName && currentNode.Properties.DisplayName.includes("Safe"))) {
       console.log("🔍 Speaker title result:", {
         nodeType: currentNode.Type,
