@@ -24,10 +24,12 @@ The Articy Web Viewer is a modern React-based application that allows web browse
 npm run check:integrity
 
 # 2. Start development (REQUIRED - not npm run dev)
+# Launch the start_dev_sever.bat in an external terminal window. 
+# For developer reference, that batch file simply runs this command:
 powershell -ExecutionPolicy Bypass -File start-dev-safe.ps1
 
 # 3. Make changes and test
-# 4. Commit frequently to prevent work loss
+# 4. Commit frequently to prevent work loss. Unless directly specified to in prompt, ALWAYS ask before commiting or pushing any data. 
 git add . && git commit -m "Description" && git push origin v4.x
 ```
 
