@@ -290,25 +290,29 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
           };
         });
 
-        // Sort choices by template technical name postfix
+        // Sort choices by Y position (top to bottom)
         choiceOptions.sort((a, b) => {
-          const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
-          const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+          const yPosA = project.getNodeYPosition(a.targetNode);
+          const yPosB = project.getNodeYPosition(b.targetNode);
 
-          // Primary sort: by numeric postfix (lower numbers first)
-          if (sortOrderA.number !== sortOrderB.number) {
-            return sortOrderA.number - sortOrderB.number;
+          // Sort by Y position (smaller Y values = higher on screen = come first)
+          if (yPosA !== yPosB) {
+            return yPosA - yPosB;
           }
 
-          // Secondary sort: by original template name for consistency
-          return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+          // If Y positions are the same, sort by X position as secondary sort
+          const xPosA = a.targetNode?.Properties?.Position?.x || 0;
+          const xPosB = b.targetNode?.Properties?.Position?.x || 0;
+          return xPosA - xPosB;
         });
 
         console.log("🎯 FLOW FRAGMENT: Sorted choice options:", choiceOptions.map(opt => ({
           text: opt.text,
           nodeType: opt.targetNode.Type,
-          templateName: project.getTemplateTechnicalName(opt.targetNode.Type),
-          sortOrder: project.getTemplateSortOrder(opt.targetNode.Type)
+          position: {
+            x: opt.targetNode?.Properties?.Position?.x || 0,
+            y: opt.targetNode?.Properties?.Position?.y || 0
+          }
         })));
 
         console.log("🎯 FLOW FRAGMENT: Created choice options:", choiceOptions.map(opt => ({ text: opt.text, targetId: opt.targetNode.Properties.Id })));
@@ -1603,18 +1607,20 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       if (isDialogueFragment && !showingChoices) {
         // For dialogue fragments, show choices after showing content
 
-        // Sort choices by template technical name postfix
+        // Sort choices by Y position (top to bottom)
         const sortedOutputs = [...outputs].sort((a, b) => {
-          const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
-          const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+          const yPosA = project.getNodeYPosition(a.targetNode);
+          const yPosB = project.getNodeYPosition(b.targetNode);
 
-          // Primary sort: by numeric postfix (lower numbers first)
-          if (sortOrderA.number !== sortOrderB.number) {
-            return sortOrderA.number - sortOrderB.number;
+          // Sort by Y position (smaller Y values = higher on screen = come first)
+          if (yPosA !== yPosB) {
+            return yPosA - yPosB;
           }
 
-          // Secondary sort: by original template name for consistency
-          return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+          // If Y positions are the same, sort by X position as secondary sort
+          const xPosA = a.targetNode?.Properties?.Position?.x || 0;
+          const xPosB = b.targetNode?.Properties?.Position?.x || 0;
+          return xPosA - xPosB;
         });
 
         setChoiceOptions(sortedOutputs);
@@ -1624,28 +1630,32 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
       } else {
         // For Hub nodes and other multi-output nodes, show choices immediately
 
-        // Sort choices by template technical name postfix
+        // Sort choices by Y position (top to bottom)  
         const sortedOutputs = [...outputs].sort((a, b) => {
-          const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
-          const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+          const yPosA = project.getNodeYPosition(a.targetNode);
+          const yPosB = project.getNodeYPosition(b.targetNode);
 
-          // Primary sort: by numeric postfix (lower numbers first)
-          if (sortOrderA.number !== sortOrderB.number) {
-            return sortOrderA.number - sortOrderB.number;
+          // Sort by Y position (smaller Y values = higher on screen = come first)
+          if (yPosA !== yPosB) {
+            return yPosA - yPosB;
           }
 
-          // Secondary sort: by original template name for consistency
-          return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+          // If Y positions are the same, sort by X position as secondary sort
+          const xPosA = a.targetNode?.Properties?.Position?.x || 0;
+          const xPosB = b.targetNode?.Properties?.Position?.x || 0;
+          return xPosA - xPosB;
         });
 
-        console.log('🔀 Setting choice options (sorted):', sortedOutputs.map((opt, idx) => ({
+        console.log('🔀 Setting choice options (sorted by Y position):', sortedOutputs.map((opt, idx) => ({
           index: idx,
           text: opt.text,
           condition: opt.condition,
           disabled: opt.disabled,
           nodeType: opt.targetNode.Type,
-          templateName: project.getTemplateTechnicalName(opt.targetNode.Type),
-          sortOrder: project.getTemplateSortOrder(opt.targetNode.Type)
+          position: {
+            x: opt.targetNode?.Properties?.Position?.x || 0,
+            y: opt.targetNode?.Properties?.Position?.y || 0
+          }
         })));
 
         setChoiceOptions(sortedOutputs);
@@ -2147,28 +2157,32 @@ const InteractiveArticyViewer: React.FC<InteractiveArticyViewerProps> = ({ data,
         outputCount: outputs.length,
         nodeId: currentNode.Properties.Id
       });
-      // Sort choices by template technical name postfix
+      // Sort choices by Y position (top to bottom)
       const sortedOutputs = [...outputs].sort((a, b) => {
-        const sortOrderA = project.getTemplateSortOrder(a.targetNode.Type);
-        const sortOrderB = project.getTemplateSortOrder(b.targetNode.Type);
+        const yPosA = project.getNodeYPosition(a.targetNode);
+        const yPosB = project.getNodeYPosition(b.targetNode);
 
-        // Primary sort: by numeric postfix (lower numbers first)
-        if (sortOrderA.number !== sortOrderB.number) {
-          return sortOrderA.number - sortOrderB.number;
+        // Sort by Y position (smaller Y values = higher on screen = come first)
+        if (yPosA !== yPosB) {
+          return yPosA - yPosB;
         }
 
-        // Secondary sort: by original template name for consistency
-        return sortOrderA.originalName.localeCompare(sortOrderB.originalName);
+        // If Y positions are the same, sort by X position as secondary sort
+        const xPosA = a.targetNode?.Properties?.Position?.x || 0;
+        const xPosB = b.targetNode?.Properties?.Position?.x || 0;
+        return xPosA - xPosB;
       });
 
-      console.log('🔀 Hub setting choice options (sorted):', sortedOutputs.map((opt, idx) => ({
+      console.log('🔀 Hub setting choice options (sorted by Y position):', sortedOutputs.map((opt, idx) => ({
         index: idx,
         text: opt.text,
         condition: opt.condition,
         disabled: opt.disabled,
         nodeType: opt.targetNode.Type,
-        templateName: project.getTemplateTechnicalName(opt.targetNode.Type),
-        sortOrder: project.getTemplateSortOrder(opt.targetNode.Type)
+        position: {
+          x: opt.targetNode?.Properties?.Position?.x || 0,
+          y: opt.targetNode?.Properties?.Position?.y || 0
+        }
       })));
       setChoiceOptions(sortedOutputs);
       setShowingChoices(true);

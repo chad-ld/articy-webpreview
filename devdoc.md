@@ -98,6 +98,7 @@ For comprehensive technical details, see the feature-specific documentation:
 - **[Plugin Architecture](devdoc_plugins.md)** - Plugin development and integration
 - **[Dataset Management](devdoc_datasets.md)** - Data loading and detection systems
 - **[Configuration System](devdoc_configuration.md)** - Settings and user preferences
+- **[Choice Sorting](devdoc_sorting.md)** - Multiple-choice sorting by Y position
 
 ### **Deployment & Distribution**
 - **[Desktop Version](devdoc_desktop-version.md)** - Portable desktop app implementation
