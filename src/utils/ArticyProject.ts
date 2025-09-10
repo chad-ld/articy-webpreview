@@ -384,7 +384,17 @@ class ArticyProject {
     return definition.Template.TechnicalName || '';
   }
 
-  // Extract the numeric suffix from a template technical name (e.g., "_99" from "TravelFlowTemplate_99")
+  /**
+   * @deprecated This method is no longer used. The application uses Y position sorting exclusively.
+   * 
+   * DEPRECATED: This was an older approach to sort choices by technical name suffix (e.g., "_01", "_99").
+   * The application now uses ONLY Y position (vertical position) for sorting multiple-choice options.
+   * See devdoc_sorting.md for current sorting implementation details.
+   * 
+   * This method is kept for reference but is NOT called anywhere in the codebase.
+   * 
+   * Extract the numeric suffix from a template technical name (e.g., "_99" from "TravelFlowTemplate_99")
+   */
   getTemplateSortOrder(nodeType: string): { hasPostfix: boolean; number: number; originalName: string } {
     const technicalName = this.getTemplateTechnicalName(nodeType);
 
@@ -417,6 +427,16 @@ class ArticyProject {
         originalName: technicalName
       };
     }
+  }
+
+  // Get the Y position of a node for sorting choices by vertical position
+  getNodeYPosition(node: any): number {
+    // Check if the node has a Position property with y coordinate
+    if (node && node.Properties && node.Properties.Position && typeof node.Properties.Position.y === 'number') {
+      return node.Properties.Position.y;
+    }
+    // Return a default value if position is not available (place at bottom)
+    return 999999;
   }
 
   StoreVariablesFromNode(node: any): void {
