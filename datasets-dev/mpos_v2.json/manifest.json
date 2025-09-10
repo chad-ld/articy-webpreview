@@ -1,0 +1,68 @@
+{
+  "Settings": {
+    "set_TextFormatter": "",
+    "set_IncludingAssets": "True",
+    "set_IncludedNodes": "Settings, Project, GlobalVariables, ObjectDefinitions, Packages, ScriptMethods, Hierarchy, Assets, Languages",
+    "set_UseScriptSupport": "True",
+    "RuleSetChecksum": "5DF1C2DE118CD9C4DEE1FFAC27D20312CB9FD54D-DA39A3EE5E6B4B0D3255BFEF95601890AFD80709",
+    "ExportVersion": "2.1",
+    "RuleSetId": "0100000B000031D9",
+    "RuleSetName": "Prince of Soulard v02 Data Export"
+  },
+  "Project": {
+    "Name": "Mysteryworks Prince of Soulard",
+    "DetailName": "",
+    "Guid": "10f57f06-94be-41f7-8cf3-b874a5c797f2",
+    "TechnicalName": "Articy_Base_Project"
+  },
+  "Languages": [
+    {
+      "CultureName": "",
+      "ArticyLanguageId": 127,
+      "LanguageName": "Invariant Language (Invariant Country)",
+      "IsVoiceOver": false
+    }
+  ],
+  "GlobalVariables": {
+    "FileName": "global_variables.json",
+    "Hash": "ZErzNoeb9dIanMfSSgb1C8cemSDzCL2t/Jnh2nRB3VI="
+  },
+  "ObjectDefinitions": {
+    "Types": {
+      "FileName": "object_definitions.json",
+      "Hash": "E5iSzEWQcPyifti7LadVnq6iPAj9l+Qsb2OsD+LJkDc="
+    },
+    "Texts": {
+      "FileName": "object_definitions_localization.json",
+      "Hash": "RBNvo1WzZ4oRRq0W9+hknpT7T8If536DEMBg9hyq/4o="
+    }
+  },
+  "Packages": [
+    {
+      "Name": "Export MPoS v02 only",
+      "Id": "0x0100000B000031DC",
+      "Description": "",
+      "IsDefaultPackage": true,
+      "IsIncluded": true,
+      "ScriptFragmentHash": "WYxjS1lbimmffrf5fI8sC6yHjXaTevF64CyY7DG5fG8=",
+      "Files": {
+        "Objects": {
+          "FileName": "package_0100000B000031DC_objects.json",
+          "Hash": "8gtP0WdnbzRSPCmdMGaGx397J6k5caQH6BW8yXS5wlY="
+        },
+        "Texts": {
+          "FileName": "package_0100000B000031DC_localization.json",
+          "Hash": "XWD5fcMVgFldv3ga8fTVkECSYCEQeuQygaYHRWzzIs8="
+        }
+      }
+    }
+  ],
+  "ScriptMethods": {
+    "FileName": "script_methods.json",
+    "Hash": "+Hc7CrqwO4HgaJLz4pXA58UKo/0PYZLVIzK1n03xTOY="
+  },
+  "Hierarchy": {
+    "FileName": "hierarchy.json",
+    "Hash": "YvL2dUTTn6elxeCa7jwmjs5ibJdfN+2T9/mw0gkrEoY="
+  }
+}

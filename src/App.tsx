@@ -211,24 +211,48 @@ function App() {
         // Load 4.x folder structure
         console.log(`📁 Loading 4.x folder structure: ${datasetName}.json/`);
 
-        // List of JSON files to load
+        const fileContents: { [key: string]: string } = {};
+        const cacheBuster = Date.now();
+        const baseUrl = datasetInfo?.baseUrl || `./${datasetName}.json`;
+
+        // First, load the manifest to determine which package files to load
+        const manifestUrl = `${baseUrl}/manifest.json`;
+        const manifestResponse = await fetch(`${manifestUrl}?v=${cacheBuster}`);
+        
+        if (!manifestResponse.ok) {
+          throw new Error(`Failed to load manifest.json: ${manifestResponse.status}`);
+        }
+        
+        const manifestContent = await manifestResponse.text();
+        fileContents['manifest.json'] = manifestContent;
+        console.log(`✅ Loaded manifest.json from ${datasetName} (cache-busted)`);
+        
+        const manifest = JSON.parse(manifestContent);
+        
+        // Build list of files to load based on manifest
         const datasetFiles = [
           'global_variables.json',
           'hierarchy.json',
-          'manifest.json',
           'object_definitions.json',
           'object_definitions_localization.json',
-          'package_010000060000401C_localization.json',
-          'package_010000060000401C_objects.json',
           'script_methods.json'
         ];
+        
+        // Add package files from manifest
+        if (manifest.Packages && manifest.Packages.length > 0) {
+          for (const pkg of manifest.Packages) {
+            if (pkg.Files?.Objects?.FileName) {
+              datasetFiles.push(pkg.Files.Objects.FileName);
+            }
+            if (pkg.Files?.Texts?.FileName) {
+              datasetFiles.push(pkg.Files.Texts.FileName);
+            }
+          }
+        }
+        
+        console.log(`📦 Files to load for ${datasetName}:`, datasetFiles);
 
         // Load all files with cache-busting
-        const fileContents: { [key: string]: string } = {};
-        const cacheBuster = Date.now();
-
-        const baseUrl = datasetInfo?.baseUrl || `./${datasetName}.json`;
-
         for (const fileName of datasetFiles) {
           try {
             const fileUrl = `${baseUrl}/${fileName}`;
