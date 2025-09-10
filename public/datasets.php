@@ -337,55 +337,62 @@ function getNewestFileTimestamp($dir) {
  * @return string|null The subtitle text or null if not found
  */
 function findHtmlPreviewSubtitle($datasetPath) {
-    // Look for the objects file that contains the node data
-    $objectsFile = $datasetPath . '/package_010000060000401C_objects.json';
-
-    if (!file_exists($objectsFile)) {
+    // Look for any package_*_objects.json file
+    $packageFiles = glob($datasetPath . '/package_*_objects.json');
+    
+    if (empty($packageFiles)) {
         return null;
     }
-
+    
     try {
-        $objectsContent = file_get_contents($objectsFile);
-        if ($objectsContent === false) {
-            return null;
-        }
-
-        $objectsData = json_decode($objectsContent, true);
-        if ($objectsData === null || !isset($objectsData['Objects'])) {
-            return null;
-        }
-
-        // Search through all objects for HTMLPREVIEW marker
-        foreach ($objectsData['Objects'] as $model) {
-            if (!isset($model['Properties'])) {
+        // Try each package file until we find the HTMLPREVIEW
+        foreach ($packageFiles as $objectsFile) {
+            if (!file_exists($objectsFile)) {
                 continue;
             }
 
-            $properties = $model['Properties'];
-            $textContent = '';
-
-            // Check both Text and Expression properties for HTMLPREVIEW marker
-            if (isset($properties['Text']) && strpos($properties['Text'], 'HTMLPREVIEW') !== false) {
-                $textContent = $properties['Text'];
-            } elseif (isset($properties['Expression']) && strpos($properties['Expression'], 'HTMLPREVIEW') !== false) {
-                $textContent = $properties['Expression'];
+            $objectsContent = file_get_contents($objectsFile);
+            if ($objectsContent === false) {
+                continue; // Try next file
             }
 
-            if ($textContent) {
-                // Extract subtitle from "Project Sub Name:" line
-                $lines = explode("\n", $textContent);
-                foreach ($lines as $line) {
-                    $line = trim($line);
-                    if (strpos($line, '//Project Sub Name:') === 0) {
-                        $subtitle = trim(substr($line, strlen('//Project Sub Name:')));
-                        if ($subtitle) {
-                            return $subtitle;
+            $objectsData = json_decode($objectsContent, true);
+            if ($objectsData === null || !isset($objectsData['Objects'])) {
+                continue; // Try next file
+            }
+
+            // Search through all objects for HTMLPREVIEW marker
+            foreach ($objectsData['Objects'] as $model) {
+                if (!isset($model['Properties'])) {
+                    continue;
+                }
+
+                $properties = $model['Properties'];
+                $textContent = '';
+
+                // Check both Text and Expression properties for HTMLPREVIEW marker
+                if (isset($properties['Text']) && strpos($properties['Text'], 'HTMLPREVIEW') !== false) {
+                    $textContent = $properties['Text'];
+                } elseif (isset($properties['Expression']) && strpos($properties['Expression'], 'HTMLPREVIEW') !== false) {
+                    $textContent = $properties['Expression'];
+                }
+
+                if ($textContent) {
+                    // Extract subtitle from "Project Sub Name:" line
+                    $lines = explode("\n", $textContent);
+                    foreach ($lines as $line) {
+                        $line = trim($line);
+                        if (strpos($line, '//Project Sub Name:') === 0) {
+                            $subtitle = trim(substr($line, strlen('//Project Sub Name:')));
+                            if ($subtitle) {
+                                return $subtitle;
+                            }
                         }
                     }
                 }
             }
         }
-
+        // If we've checked all package files and found nothing, return null
         return null;
     } catch (Exception $e) {
         return null;

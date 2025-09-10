@@ -312,6 +312,25 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Auto-select first dataset when sorted datasets change
+  // This ensures the dropdown always shows the first item from the sorted list
+  useEffect(() => {
+    if (sortedDatasets.length > 0 && showDatasetSelection) {
+      // When showing the dataset selection screen, always update to match the current sort
+      // unless there's a URL parameter or config override
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlDataset = urlParams.get('dataset');
+      
+      if (!urlDataset) {
+        // No URL override, so select the first sorted dataset
+        if (selectedDataset !== sortedDatasets[0].name) {
+          setSelectedDataset(sortedDatasets[0].name);
+          console.log(`📌 Auto-selected first sorted dataset: ${sortedDatasets[0].name} (${sortedDatasets[0].displayName}) - Sort mode: ${sortMode}`);
+        }
+      }
+    }
+  }, [sortedDatasets, showDatasetSelection, sortMode]);
+
   const initializeApp = async () => {
     setIsLoading(true);
 
@@ -378,20 +397,8 @@ function App() {
   };
 
   const showDatasetSelectionInterface = async (datasets: any[]) => {
-    if (datasets.length > 0) {
-      // Pre-select first dataset based on current sort mode
-      const sortedDatasets = [...datasets].sort((a, b) => {
-        if (sortMode === 'date') {
-          const timeA = a.lastModified || 0;
-          const timeB = b.lastModified || 0;
-          return timeB - timeA;
-        } else {
-          return a.displayName.localeCompare(b.displayName);
-        }
-      });
-      setSelectedDataset(sortedDatasets[0].name);
-      console.log(`📌 Pre-selected dataset: ${sortedDatasets[0].name} (${sortedDatasets[0].displayName}) based on ${sortMode} sort`);
-    }
+    // Don't pre-select here - let the sortedDatasets useMemo handle it
+    // This function just shows the interface
     setShowDatasetSelection(true);
     setIsLoading(false);
   };
