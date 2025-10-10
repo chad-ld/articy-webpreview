@@ -1,6 +1,9 @@
 # VSCode SFTP configuration (contains password)
 .vscode/sftp.json
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Notepad++ backup files
 nppBackup/
 **/nppBackup/
@@ -91,6 +94,9 @@ typings/
 
 # Build output
 builds/
+
+# Build artifacts (but keep dist/ tracked for deployment)
+dist/nppBackup/
 
 # OS generated files
 .DS_Store

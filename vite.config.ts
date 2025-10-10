@@ -186,6 +186,17 @@ The application will automatically detect and list all datasets in this folder.
     } else {
       console.log('📁 Datasets folder already exists in dist');
     }
+
+    // Remove nppBackup folder if it was copied from public/
+    const nppBackupDir = resolve(__dirname, 'dist', 'nppBackup');
+    if (fs.existsSync(nppBackupDir)) {
+      try {
+        fs.rmSync(nppBackupDir, { recursive: true, force: true });
+        console.log('🗑️ Removed nppBackup folder from dist');
+      } catch (error) {
+        console.error('❌ Failed to remove nppBackup folder:', error);
+      }
+    }
   }
 });
 
