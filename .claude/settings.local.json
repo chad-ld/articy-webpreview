@@ -14,7 +14,12 @@
       "Bash(git push:*)",
       "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter \"git rm -r --cached --ignore-unmatch builds/articy-desktop-viewer-v4.0.0-alpha.1-2025-08-26/app/datasets/mpos\" --prune-empty --tag-name-filter cat -- --all)",
       "Bash(git fetch:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(cat:*)",
+      "Bash(npm run build:*)",
+      "Bash(xcopy:*)",
+      "Bash(robocopy:*)",
+      "Bash(npm run build:desktop:*)"
     ],
     "deny": [],
     "ask": []
