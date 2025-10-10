@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git rm:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nRemove old build folder, keeping only articy-desktop-viewer-v4.0.0-alpha.1-2025-08-26\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git filter-repo:*)",
+      "Bash(git log:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter \"git rm -r --cached --ignore-unmatch builds/articy-desktop-viewer-v4.0.0-alpha.1-2025-08-25 builds/articy-webviewer-mpos-hardcoded-v4.1-cache-busted.zip builds/html_viewer_template_v1 builds/html_viewer_template_v1.zip builds/README.md builds/temp.txt\" --prune-empty --tag-name-filter cat -- --all)",
+      "Bash(git reflog:*)",
+      "Bash(git gc:*)",
+      "Bash(git push:*)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter \"git rm -r --cached --ignore-unmatch builds/articy-desktop-viewer-v4.0.0-alpha.1-2025-08-26/app/datasets/mpos\" --prune-empty --tag-name-filter cat -- --all)",
+      "Bash(git fetch:*)",
+      "Bash(git branch:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
