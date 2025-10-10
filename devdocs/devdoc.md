@@ -53,14 +53,15 @@ git add . && git commit -m "Description" && git push origin v4.x
 - **Plugin Architecture**: Extensible system for custom functionality
 - **Simple Console Logging**: One-click console log capture and save
 - **Dataset Management**: Simplified environment-based data loading (dev/production separation)
-- **Variable System**: Dynamic variable tracking and editing
+- **Variable System**: Dynamic variable tracking, increment/decrement, complex condition evaluation
 - **Configuration System**: Auto-loading datasets, plugin defaults, and deployment customization ✅
 
 ### **Advanced Features**
-- **Story Mode**: Streamlined reading experience with optional elements hidden
-- **Search Functionality**: Node content search across entire projects
-- **Keyboard Navigation**: Full keyboard support for accessibility
+- **Story Mode**: Streamlined reading experience that hides backend technical nodes (Instructions, Conditions) to focus on narrative content
+- **Search Functionality**: Real-time node content search across entire projects with preview and navigation
+- **Keyboard Navigation**: Full keyboard support for accessibility (Ctrl+L for loading screen)
 - **Cache Busting**: Comprehensive development cache prevention
+- **Environment Detection**: Automatic deployment environment identification and adaptation
 
 ### **Deployment Options**
 - **Web Version**: Server-hosted with PHP backend for dynamic dataset detection
@@ -100,7 +101,12 @@ For comprehensive technical details, see the feature-specific documentation:
 - **[Plugin Architecture](devdoc_plugins.md)** - Plugin development and integration
 - **[Dataset Management](devdoc_datasets.md)** - Data loading and detection systems
 - **[Configuration System](devdoc_configuration.md)** - Settings and user preferences
+- **[Variable System](devdoc_variables.md)** - Global variables, operations, and condition evaluation
+- **[Search Functionality](devdoc_search.md)** - Content search and node navigation
 - **[Choice Sorting](devdoc_sorting.md)** - Multiple-choice sorting by Y position
+
+### **Infrastructure**
+- **[Environment Detection](devdoc_environment.md)** - Deployment environment identification and adaptation
 
 ### **Deployment & Distribution**
 - **[Desktop Version](devdoc_desktop-version.md)** - Portable desktop app implementation
