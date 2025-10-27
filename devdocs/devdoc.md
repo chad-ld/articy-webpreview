@@ -197,13 +197,17 @@ The project now includes a fully functional zero-installation desktop version:
 - **✅ User Experience**: Double-click launcher opens browser automatically
 - **✅ Dataset Management**: Users copy datasets to app directory for direct serving
 
-### **Quick Desktop Build**
+### **Quick Distribution Builds**
 ```bash
 # Build desktop package
 npm run build:desktop
 
-# Create distribution ZIP
-npm run package:desktop
+# Build web server package
+npm run build:web
+
+# Both output to builds/ folder with timestamped names
+# Example: articy-desktop-viewer-v4.0.0-alpha.1-2025-10-27
+#          articy-webviewer-v4.0.0-alpha.1-2025-10-27
 ```
 
 See **[Desktop Version Documentation](devdoc_desktop-version.md)** for complete implementation details.
@@ -235,8 +239,9 @@ npm run build:plugins          # Plugins only (separate compilation)
 npm run build:serve            # Build and serve locally for testing (requires system PHP)
 npm run build:test             # Build and serve with portable PHP + cache busting
 
-# Desktop Distribution
+# Distribution Packages
 npm run build:desktop          # Create portable desktop package (outputs to builds/ folder)
+npm run build:web              # Create web server package (outputs to builds/ folder)
 
 # Testing & Verification
 npm run check:integrity        # Validate critical files
@@ -274,6 +279,15 @@ powershell -ExecutionPolicy Bypass -File start-dist-server.ps1  # Start test ser
 - ✅ Console logging endpoints (`save-log.php`)
 - ✅ All PHP endpoints respond correctly
 
+### **Build Scripts & Automation**
+The build system includes automated packaging scripts:
+
+- **scripts/create-desktop-package.js** - Creates portable desktop version with PHP server
+- **scripts/create-web-package.js** - Creates web server deployment package with README
+- **scripts/build-plugins.js** - Compiles plugins separately for production
+
+Both desktop and web packages are timestamped and output to the `builds/` folder.
+
 ### **Plugin Build System**
 The plugin system now uses **separated builds** for maximum flexibility:
 
@@ -284,20 +298,32 @@ The plugin system now uses **separated builds** for maximum flexibility:
 
 ### **Deployment Structure**
 ```
-dist/                          # Web deployment
+dist/                          # Development build output (temporary)
 ├── index.html
 ├── assets/
-├── config.json               # Runtime configuration
-├── plugins/                  # Separate plugin files
-│   ├── mysteryworks-murderboard.js
-│   ├── hello-world.js
-│   └── plugins.json         # Plugin manifest
-└── datasets.php
+├── config.json
+├── plugins/
+└── *.php
 
-builds/articy-desktop-*/       # Desktop deployment
-├── app/                      # Same as dist/
-├── php/                      # Portable PHP
-└── datasets/                 # Sample datasets
+builds/                        # Distribution packages
+├── articy-webviewer-v4.x.x-YYYY-MM-DD/    # Web server package
+│   ├── index.html
+│   ├── assets/
+│   ├── config.json          # Runtime configuration
+│   ├── plugins/             # Separate plugin files
+│   │   ├── mysteryworks-murderboard.js
+│   │   ├── hello-world.js
+│   │   └── plugins.json    # Plugin manifest
+│   ├── datasets/            # Empty folder for user datasets
+│   ├── *.php                # PHP backend files
+│   └── README.txt           # Deployment instructions
+│
+└── articy-desktop-viewer-v4.x.x-YYYY-MM-DD/  # Desktop package
+    ├── app/                 # Same as web package
+    ├── php/                 # Portable PHP server
+    ├── datasets/            # Sample datasets
+    ├── start-articy.bat     # Launcher
+    └── README.txt           # User instructions
 ```
 
 ## 🎯 **Current Development Status**
@@ -321,7 +347,23 @@ builds/articy-desktop-*/       # Desktop deployment
 - **Configuration Management**: Runtime config changes without rebuilding
 - **Testing Infrastructure**: Local production testing with portable PHP
 
-### **Latest Update: Relative Path Fixes (August 26, 2025)** ✅
+### **Latest Updates**
+
+#### **Localization Fix (October 27, 2025)** ✅
+- **Issue Resolved**: Fixed localization text resolution for datasets using language-specific keys
+- **Language Support**: Now supports both empty string (`""`) and language keys (e.g., `"en"`, `"de"`)
+- **Backward Compatible**: Maintains support for existing datasets with empty string keys
+- **Affected File**: `src/utils/dataMerger4x.js` - Updated `resolveTextReferences()` method
+- **Impact**: Fixes display issue where dialogue showed reference keys instead of actual text
+
+#### **Web Packaging System (October 27, 2025)** ✅
+- **New Script**: Added `scripts/create-web-package.js` for automated web packaging
+- **New Command**: `npm run build:web` creates timestamped web deployment packages
+- **Consistent Output**: Both web and desktop packages output to `builds/` folder
+- **Documentation**: Includes comprehensive README.txt with deployment instructions
+- **Build Integration**: Web packages include all necessary files for server deployment
+
+#### **Relative Path Fixes (August 26, 2025)** ✅
 - **Issue Resolved**: Fixed absolute path issues (`/datasets/`, `/plugins/`) that caused failures on web servers
 - **Dataset Paths**: Updated `datasets.php` to return relative paths (`./datasets/...`)
 - **Plugin Paths**: Updated plugin discovery to use relative paths (`./plugins/...`)
