@@ -239,10 +239,30 @@ class DataMerger4x {
     for (const [key, value] of Object.entries(obj)) {
       if (typeof value === 'string' && localization[value]) {
         // This is a text reference, resolve it
-        const resolvedText = localization[value]['']?.Text;
+        // Try empty string first (backward compatibility), then first available language
+        let resolvedText;
+        const locEntry = localization[value];
+        if (locEntry) {
+          // Try empty string first
+          if (locEntry['']) {
+            resolvedText = locEntry[''].Text;
+          } else {
+            // Fallback to first available language key
+            const availableLanguages = Object.keys(locEntry);
+            if (availableLanguages.length > 0) {
+              const firstLanguage = availableLanguages[0];
+              resolvedText = locEntry[firstLanguage]?.Text;
+
+              if (this.debugMode && resolvedText !== undefined) {
+                console.log(`🌐 Resolved ${key} using language key '${firstLanguage}': ${value} → ${resolvedText}`);
+              }
+            }
+          }
+        }
+
         if (resolvedText !== undefined) {
           obj[key] = resolvedText;
-          
+
           if (this.debugMode && key === 'DisplayName') {
             console.log(`📝 Resolved ${key}: ${value} → ${resolvedText}`);
           }
